@@ -14,7 +14,7 @@ VectorHub is a free open-source learning hub for people interested in adding vec
 
 * Learn about vendors in the space and select the ones that fit their use-case
 
-Read more about our philosophy in our [Manifesto](docs\manifesto.md).
+Read more about our philosophy in our [Manifesto](manifesto.md).
 
 ## The Vector Stack
 
@@ -44,27 +44,27 @@ Query and retrieve vectors for your use -case
 
 ::::link-array
 :::link-array-item{headerImage headerColor}
-[Personalized Search](docs\use_cases\personalized_search.md)
+[Personalized Search](use_cases/personalized_search.md)
 :::
 
 :::link-array-item{headerImage headerColor}
-[Recommender Systems](docs\use_cases\recommender_systems.md)
+[Recommender Systems](use_cases/recommender_systems.md)
 :::
 
 :::link-array-item{headerImage headerColor}
-[Retrieval Augmented Generation](docs\use_cases\retrieval_augmented_generation.md)
+[Retrieval Augmented Generation](use_cases/retrieval_augmented_generation.md)
 :::
 
 :::link-array-item{headerImage headerColor}
-[Fraud & Safety](docs\use_cases\fraud_&_safety.md)
+[Fraud & Safety](use_cases/fraud_&_safety.md)
 :::
 
 :::link-array-item{headerImage headerColor}
-[Clustering & Anomaly Detection](docs\use_cases\clustering_&_anomaly_detection.md)
+[Clustering & Anomaly Detection](use_cases/clustering_&_anomaly_detection.md)
 :::
 
 :::link-array-item{headerImage headerColor}
-[Cybersecurity](docs\use_cases\cybersecurity.md)
+[Cybersecurity](use_cases/cybersecurity.md)
 :::
 ::::
 
@@ -76,7 +76,7 @@ Tools are interesting apps/links/videos/tips & tricks that aid you in vector cre
 
 ::::link-array
 :::link-array-item{headerImage headerColor}
-[Tools](docs\tools\readme.md)
+[Tools](tools/readme.md)
 :::
 ::::
 
