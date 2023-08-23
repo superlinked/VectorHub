@@ -1,0 +1,11 @@
+{
+    "root": "./docs",
+    "structure": {
+      "summary": "summary.md",
+      "assets": "./assets"
+    },
+    "customJS": "",
+    "customCSS": "",
+    "footerTemplate": "",
+    "headerIncludes": ""
+  }
