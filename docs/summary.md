@@ -1,5 +1,5 @@
-- [Home](docs\home.md)
-- [Manifesto](docs\manifesto.md)
+- [Home](docs/home.md)
+- [Manifesto](docs/manifesto.md)
 
 - [Building Blocks](docs\building_blocks\readme.md)
   - [Data Sources](docs\building_blocks\data_sources\readme.md)
