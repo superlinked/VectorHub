@@ -1,9 +1,9 @@
-[//]: # (Replace this text with a summary of article for SEO)
+<!-- Replace this text with a summary of article for SEO here -->
 
 # Data Sources
 
 ::::tabs
-:::tab{label="Relational DBs"}
+:::tab{title="Relational DBs"}
 | Name |   |   |
 | ----- | - | - |
 | PSQL  |   |   |
@@ -11,7 +11,7 @@
 |       |   |   |
 :::
 
-:::tab{label="Data Pipeline Tools"}
+:::tab{title="Data Pipeline Tools"}
 | Name |   |   |
 | ---------- | - | - |
 | Kafka      |   |   |
@@ -20,7 +20,7 @@
 | Decodable  |   |   |
 :::
 
-:::tab{label="Data Warehouses"}
+:::tab{title="Data Warehouses"}
 | Name |   |   |
 | ---------- | - | - |
 | Snowflake  |   |   |
@@ -30,5 +30,3 @@
 ::::
 
 <what are the typical inputs to vector compute, where to get this data, how to pre-process it to get it ready for turning into vectors…>
-
-<!-- test comment -->

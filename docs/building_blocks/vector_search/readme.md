@@ -1,7 +1,9 @@
+<!-- Replace this text with a summary of article for SEO here -->
+
 # Data Sources
 
 ::::tabs
-:::tab{label="Vector-native vector DBs"}
+:::tab{title="Vector-native vector DBs"}
 | Name |   |   |
 | ----- | - | - |
 | Weaviate  |   |   |
@@ -10,7 +12,7 @@
 | Zilliz |   |   |
 :::
 
-:::tab{label="Hybrid DB"}
+:::tab{title="Hybrid DB"}
 | Name |   |   |
 | ---------- | - | - |
 | Redis |   |   |
@@ -19,7 +21,7 @@
 | RocksDB  |   |   |
 :::
 
-:::tab{label="Search tools"}
+:::tab{title="Search tools"}
 | Name |   |   |
 | ---------- | - | - |
 | ElasticSearch |   |   |
