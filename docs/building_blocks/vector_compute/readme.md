@@ -1,7 +1,9 @@
+<!-- Replace this text with a summary of article for SEO here -->
+
 # Vector Compute
 
 ::::tabs
-:::tab{label="Rename Models tab 1"}
+:::tab{title="Rename Models tab 1"}
 | Name |   |   |
 | ----- | - | - |
 |  |   |   |
@@ -9,7 +11,7 @@
 |  |   |   |
 :::
 
-:::tab{label="Rename Models tab 2"}
+:::tab{title="Rename Models tab 2"}
 | Name |   |   |
 | ---------- | - | - |
 |  |   |   |
@@ -18,7 +20,7 @@
 |  |   |   |
 :::
 
-:::tab{label="Rename Models tab 3"}
+:::tab{title="Rename Models tab 3"}
 | Name |   |   |
 | ---------- | - | - |
 |  |   |   |
