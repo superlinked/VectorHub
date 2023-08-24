@@ -6,6 +6,10 @@ If you want to add comments to your document that you don't want rendered to Vec
 
 ```markdown
 [//]: # (your comment here)
+
+or you use HTML comments
+
+<!-- Your comment here -->
 ```
 
 ## Adding diagrams
