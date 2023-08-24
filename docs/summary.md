@@ -17,3 +17,4 @@
 - [Tools](tools/readme.md)
 
 - [Contributing](contributing/readme.md)
+  - [Markdown Formatting](contributing/markdown_formatting.md)
