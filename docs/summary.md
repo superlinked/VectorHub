@@ -14,6 +14,6 @@
   - [Clustering & Anomaly Detection](use_cases/clustering_&_anomaly_detection.md)
   - [Cybersecurity](use_cases/cybersecurity.md)
 
-- [Tool](tools/readme.md)
+- [Tools](tools/readme.md)
 
 - [Contributing](contributing/readme.md)
