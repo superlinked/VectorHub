@@ -18,3 +18,4 @@
 
 - [Contributing](contributing/readme.md)
   - [Markdown Formatting](contributing/markdown_formatting.md)
+  - [Style Guide](contributing/style_guide.md)
