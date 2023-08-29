@@ -1,6 +1,6 @@
 <!-- TODO: Replace this text with a summary of article for SEO -->
 
-# Style Guide
+# VectorHub Style Guide
 
 some explanation of the style guide, brief, intro
 
