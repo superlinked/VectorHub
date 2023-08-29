@@ -4,6 +4,10 @@
 
 If you want to add comments to your document that you don't want rendered to VectorHub frontend, you can use the following format to add comments to your markdown files. Make sure to have blank lines before and after the comment for best results.
 
+test
+test
+test
+
 ```markdown
 [//]: # (your comment here)
 
