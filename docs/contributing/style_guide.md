@@ -2,11 +2,11 @@
 
 # Style Guide
 
-<some explanation of the style guide, brief, intro>
+some explanation of the style guide, brief, intro
 
 ## Commandments
 
-- [Commandment 1](#commandment-1)
+- [Commandment 1]()
   - Lorem ipsum one line
 - [Commandment 2]()
   - Lorem ipsum one line
@@ -19,18 +19,18 @@
 - [Etc]()
   - Lorem ipsum one line
 
-## <Commandment 1>
+## Commandment 1
 
 Explanation + Examples of commandment
 .
 .
 
-## <Commandment 2>
+## Commandment 2
 
 Explanation + Examples of commandment
 .
 .
-<Add more commandments like this>
+Add more commandments like this
 
 ---
 
