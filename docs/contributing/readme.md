@@ -16,6 +16,8 @@ The content on VectorHub itself falls into three major areas:
 
 <iframe src="https://www.loom.com/embed/aae75e4746f24453af0f3ae276f9ac56?sid=13a6723d-1b73-4792-9281-ee84066dd05a" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
 
+<https://www.loom.com/share/aae75e4746f24453af0f3ae276f9ac56?sid=28db5254-f95f-48ae-8bf9-e13ed201bbce>
+
 ## Get involved
 
 We release bounties looking for content contributions constantly. Keep an eye on the issues with bounty label on our GitHub.
