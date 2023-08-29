@@ -6,7 +6,7 @@ some explanation of the style guide, brief, intro
 
 ## Commandments
 A list of commandments and a sentence about each in a bulleted form. Each commandment will be linked to a section below which gives some details about the commandment, examples etc.
-
+A list of commandments and a sentence about each in a bulleted form. Each commandment will be linked to a section below which gives some details about the commandment, examples etc.
 
 
 ## Commandment 1
