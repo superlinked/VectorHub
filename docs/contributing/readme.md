@@ -14,9 +14,7 @@ The content on VectorHub itself falls into three major areas:
 
 ## How to contribute
 
-```html
-<div style="position: relative; padding-bottom: 56.25%; height: 0;"><iframe src="https://www.loom.com/embed/aae75e4746f24453af0f3ae276f9ac56?sid=13a6723d-1b73-4792-9281-ee84066dd05a" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
-```
+<iframe src="https://www.loom.com/embed/aae75e4746f24453af0f3ae276f9ac56?sid=13a6723d-1b73-4792-9281-ee84066dd05a" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
 
 ## Get involved
 
