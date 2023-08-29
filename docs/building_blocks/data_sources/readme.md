@@ -36,6 +36,7 @@
 <what are the typical inputs to vector compute, where to get this data, how to pre-process it to get it ready for turning into vectors…>
 
 ---
+
 ## Contributors
 
 - [Your Name](you_social_handle.com)
