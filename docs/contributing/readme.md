@@ -13,10 +13,7 @@ The content on VectorHub itself falls into three major areas:
 3. Tools: These are interesting apps/links/videos/tips & tricks that aid in vector creation and retrieval.
 
 ## How to contribute
-
-<iframe src="https://www.loom.com/embed/aae75e4746f24453af0f3ae276f9ac56?sid=13a6723d-1b73-4792-9281-ee84066dd05a" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-
-<https://www.loom.com/share/aae75e4746f24453af0f3ae276f9ac56?sid=28db5254-f95f-48ae-8bf9-e13ed201bbce>
+Have a look at [this](https://www.loom.com/share/aae75e4746f24453af0f3ae276f9ac56?sid=28db5254-f95f-48ae-8bf9-e13ed201bbce) loom to understand how to setup your contributing workflow.
 
 ## Get involved
 
