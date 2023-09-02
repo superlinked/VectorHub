@@ -20,7 +20,7 @@ VectorHub is a community-driven learning hub. Our style guide, therefore, serves
 
 
 ---
-## 1. Give value to your readers
+### 1. Give value to your readers
 <section id="section1">
 
 
@@ -32,7 +32,7 @@ Front load your first paragraph with **keywords**.
 </section>
 
 ---
-## 2 Be clear and brief
+### 2 Be clear and brief
 <section id="section2">
 
 Write clearly and concisely. Aim for ["crisp minimalism"](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice).
@@ -52,7 +52,7 @@ Don't add extra **spaces** anywhere. One space between sentences and words.
 </section>
 
 ---
-## 3 Be visual
+### 3 Be visual
 <section id="section3">
 
 Use **diagrams**, **graphs**, **charts**, **code snippets**, **images** and any other visual tools that explain your work more efficiently.
@@ -62,7 +62,7 @@ Use **diagrams**, **graphs**, **charts**, **code snippets**, **images** and any 
 </section>
 
 ---
-## 4 Be conversational, friendly, and use action verbs
+### 4 Be conversational, friendly, and use action verbs
 <section id="section4">
 
 Write with a **friendly** tone. Call your audience "you", and yourself "we".
@@ -74,7 +74,7 @@ As much as possible, use an **active voice** to explain events and relationships
 </section>
 
 ---
-## 5 Be hierarchical
+### 5 Be hierarchical
 <section id="section5">
 
 Add clear **headings** and **subheadings** that give information and an overview to your readers. This will enable readers to navigate to relevant sections and search engines to scan it.
@@ -86,7 +86,7 @@ Link (scroll-to-anchor) between concepts in your article (or to other articles o
 </section>
 
 ---
-## 6 Cite all sources
+### 6 Cite all sources
 <section id="section6">
 
 Cite sources for all graphics, images, direct quotations, and others' ideas.
@@ -97,7 +97,7 @@ Punctuate outside of links.
 </section>
 
 ---
-## 7 Edit and proofread
+### 7 Edit and proofread
 <section id="section7">
 
 As early as possible (when your article is still in point form), go through it, summarize each paragraph in one (concise) sentence. Now, put all your summary sentences together and see if they tell a story. Is there a logical flow? If not, rearrange, remove, or add content until the article makes sense. In our experience, going through this exercise saves a lot of time and energy. It's also a good way of checking whether your headings and subheadings are accurate.
@@ -108,7 +108,7 @@ Based on feedback, or your own revision process (outline, check logical flow)
 </section>
 
 ---
-## 8 Technical terminology
+### 8 Technical terminology
 <section id="section8">
 
 Use technology-specific terminology. If you think the thing you're describing is unfamiliar to most readers, it probably is. Feel free to link to external resources that provide more in-depth explanations of terms you do not have space to explain in your article.
@@ -118,7 +118,7 @@ In general, don't overcomplicate your text; communicate as simply and clearly as
 </section>
 
 ---
-## 9 Accessibility
+### 9 Accessibility
 <section id="section9">
 
 Improve accessibility by creating headings and subheadings that are clear and accurately describe your content.
@@ -128,7 +128,7 @@ include alt text for images and graphics.
 </section>
 
 ---
-## 10 Inclusive language
+### 10 Inclusive language
 <section id="section10">
 
 Avoid words and phrases with negative connotations; remember your audience is international and heterogeneous. Err on the side of **caution** - if you think a term might be offensive, don't use it.
