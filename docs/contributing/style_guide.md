@@ -7,7 +7,7 @@ VectorHub is a community-driven learning hub. Our style guide, therefore, aims t
 ## VectorHub's Ten Commandments
 
 ### [1 Give value to your readers](#section1)
-`+` Start with who you're writing for and what problem you're solving.
+`+` Who are you writing for and what problem are you solving?
 
 ### [2 Be clear and brief](#section2)
 `+` Use simple language, short sentences, write only what's essential. 800-2500 words.
@@ -42,11 +42,13 @@ VectorHub is a community-driven learning hub. Our style guide, therefore, aims t
 ### 1. Give value to your readers
 <section id="section1">
 
-Lead with why your article is **valuable** to your readers.
+Ask yourself why your article is **valuable** to your readers.
 Set the context: identify your readers explicitly - say who your article is relevant to and why. What **problem** of theirs are you helping to **solve**?
 Front load your first paragraph with **keywords**.
 
-  EXAMPLES..
+    #### EXAMPLE
+    Instead of this: This latest software update is packed with helpful enhancements.
+    Write this: Our November 15, 2023 update lets web developers optimize projects by developing faster with simplified coding.
 </section>
 
 ---
@@ -66,7 +68,8 @@ Introduce unfamiliar abbreviations - e.g.,  RAG (Retrieval Augmented Generation)
 Skip **periods** on headings (only use them in paragraphs and body text).
 Use last (Oxford) **commas** for clarity - eg. ...
 Don't add extra **spaces** anywhere. One space between sentences and words.
-
+    
+    EXAMPLES..
 </section>
 
 ---
