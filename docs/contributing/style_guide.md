@@ -18,6 +18,8 @@ VectorHub is a community-driven learning hub. Our style guide, therefore, serves
 ### [10 Inclusive language](#section10)
 
 
+
+---
 <section id="section1">
 ## 1 Give value to your readers
 
@@ -28,6 +30,7 @@ Front load your first paragraph with **keywords**.
   EXAMPLES..
 </section>
 
+---
 <section id="section2">
 ## 2 Be clear and brief
 
@@ -47,6 +50,7 @@ Don't add extra **spaces** anywhere. One space between sentences and words.
 
 </section>
 
+---
 <section id="section3">
 ## 3 Be visual
 
@@ -56,6 +60,7 @@ Use **diagrams**, **graphs**, **charts**, **code snippets**, **images** and any 
 
 </section>
 
+---
 <section id="section4">
 ## 4 Be conversational, friendly, and use action verbs
 
@@ -67,6 +72,7 @@ As much as possible, use an **active voice** to explain events and relationships
 
 </section>
 
+---
 <section id="section5">
 ## 5 Be hierarchical
 
@@ -78,6 +84,7 @@ Link (scroll-to-anchor) between concepts in your article (or to other articles o
   EXAMPLES..
 </section>
 
+---
 <section id="section6">
 ## 6 Cite all sources
 
@@ -88,6 +95,7 @@ Punctuate outside of links.
   EXAMPLES..
 </section>
 
+---
 <section id="section7">
 ## 7 Edit and proofread
 
@@ -98,6 +106,7 @@ Based on feedback, or your own revision process (outline, check logical flow)
   EXAMPLES..
 </section>
 
+---
 <section id="section8">
 ## 8 Technical terminology
 
@@ -107,6 +116,7 @@ In general, don't overcomplicate your text; communicate as simply and clearly as
   EXAMPLES..
 </section>
 
+---
 <section id="section9">
 ## 9 Accessibility
 
@@ -116,6 +126,7 @@ include alt text for images and graphics.
   EXAMPLES..
 </section>
 
+---
 <section id="section10">
 ## 10 Inclusive language
 
