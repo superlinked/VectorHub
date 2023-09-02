@@ -4,9 +4,18 @@
 
 VectorHub is a community-driven learning hub. Our style guide, therefore, serves primarily to help create a platform for sharing your thinking and work. We care about grammar, but our priority is meaning. We want to generate productive conversation between community members. To this end, we've written ten "commandments" outlining what to do and what not to do.
 
-## Commandments
-A list of commandments and a sentence about each in a bulleted form. Each commandment will be linked to a section below which gives some details about the commandment, examples etc.
+## VectorHub's Ten Commandments
 
+### 1 Give value to your readers
+### 2 Be clear and brief
+### 3 Be visual
+### 4 Be conversational, friendly, and use action verbs
+### 5 Be hierarchical
+### 6 Cite all sources
+### 7 Edit and proofread
+### 8 Technical terminology
+### 9 Accessibility
+### 10 Inclusive language
 
 
 ## 1 Give value to your readers
@@ -76,7 +85,7 @@ Based on feedback, or your own revision process (outline, check logical flow)
 ## 8 Technical terminology
 
 Use technology-specific terminology. If you think the thing you're describing is unfamiliar to most readers, it probably is. Feel free to link to external resources that provide more in-depth explanations of terms you do not have space to explain in your article.
-In general, strive not to overcomplicate your text; communicate as simply and clearly as possible.
+In general, don't overcomplicate your text; communicate as simply and clearly as possible.
 
   EXAMPLES..
 
@@ -91,7 +100,7 @@ include alt text for images and graphics.
 
 Avoid words and phrases with negative connotations; remember your audience is international and heterogeneous. Err on the side of **caution** - if you think a term might be offensive, don't use it.
 Avoid **stereotypes** and **biases**.
-Use **gender neutral pronouns** - e.g., instead of he, his, him, she, hers, her, use they, them, their.
+Use **gender neutral pronouns** - e.g., instead of he/his/him or she/hers/her, use they/them/their.
 
   EXAMPLES..
 
