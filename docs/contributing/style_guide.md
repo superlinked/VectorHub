@@ -2,25 +2,98 @@
 
 # VectorHub Style Guide
 
-VectorHub is a community-driven learning hub. Our style guide, therefore, serves primarily to help create a platform for sharing your thinking and work. We care about grammar, but our priority is generating productive conversation between community members. To this end, we've written ten "commandments" outlining what to do and what not to do.
+VectorHub is a community-driven learning hub. Our style guide, therefore, serves primarily to help create a platform for sharing your thinking and work. We care about grammar, but our priority is meaning. We want to generate productive conversation between community members. To this end, we've written ten "commandments" outlining what to do and what not to do.
 
 ## Commandments
 A list of commandments and a sentence about each in a bulleted form. Each commandment will be linked to a section below which gives some details about the commandment, examples etc.
 
 
 
-## Commandment 1
+## 1 Give value to your readers
 
-Explanation + Examples of commandment
-.
-.
+Lead with why your article is **valuable** to your readers.
+Set the context: identify your readers explicitly - say who your article is relevant to and why. What **problem** of theirs are you helping to **solve**?
+Front load your first paragraph with **keywords**.
 
-## Commandment 2
+  EXAMPLES..
 
-Explanation + Examples of commandment
-.
-.
-Add more commandments like this
+## 2 Be clear and brief
+
+Write clearly and concisely. Aim for ["crisp minimalism"](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice).
+Use simple language wherever possible; write like you speak.
+Be minimal; less is more. Use **adjectives** only when they add value.
+In general, aim for short sentences. Articles must be **at least 800 but less than max 2500 words**.
+
+Get the **content** down **first**. Don't worry about making perfect sentences until after you have your material down in point form. Writing stylistic prose can come later. First, make sure you've included everything that your article needs to make sense and convey value to your readers.
+
+Use common **abbreviations** - e.g., apps instead of applications
+Introduce unfamiliar abbreviations - e.g.,  RAG (Retrieval Augmented Generation)
+
+Skip **periods** on headings (only use them in paragraphs and body text).
+Use last (Oxford) **commas** for clarity - eg. ...
+Don't add extra **spaces** anywhere. One space between sentences and words.
+
+
+## 3 Be visual
+
+Use **diagrams**, **graphs**, **charts**, **code snippets**, **images** and any other visual tools that explain your work more efficiently.
+
+  EXAMPLES..
+
+## 4 Be conversational, friendly, and use action verbs
+
+Write with a **friendly** tone. Call your audience "you", and yourself "we".
+Use **contractions**. 
+As much as possible, use an **active voice** to explain events and relationships. Choose specific action verbs over generic ones. 
+
+  EXAMPLES..
+
+## 5 Be hierarchical
+
+Add clear **headings** and **subheadings** that give information and an overview to your readers. This will enable readers to navigate to relevant sections and search engines to scan it.
+Give an overview of where you're going in your Introduction.
+
+Link (scroll-to-anchor) between concepts in your article (or to other articles on the platform) where it makes sense.
+
+  EXAMPLES..
+
+## 6 Cite all sources
+
+Cite sources for all graphics, images, direct quotations, and others' ideas.
+example: Source: Github (liniked)
+Punctuate outside of links.
+
+  EXAMPLES..
+
+## 7 Edit and proofread
+
+As early as possible (when your article is still in point form), go through it, summarize each paragraph in one (concise) sentence. Now, put all your summary sentences together and see if they tell a story. Is there a logical flow? If not, rearrange, remove, or add content until the article makes sense. In our experience, going through this exercise saves a lot of time and energy. It's also a good way of checking whether your headings and subheadings are accurate.
+Whenever possible, find an industry-specific reader.
+Based on feedback, or your own revision process (outline, check logical flow)
+
+  EXAMPLES..
+
+## 8 Technical terminology
+
+Use technology-specific terminology. If you think the thing you're describing is unfamiliar to most readers, it probably is. Feel free to link to external resources that provide more in-depth explanations of terms you do not have space to explain in your article.
+In general, strive not to overcomplicate your text; communicate as simply and clearly as possible.
+
+  EXAMPLES..
+
+## 9 Accessibility
+
+Improve accessibility by creating headings and subheadings that are clear and accurately describe your content.
+include alt text for images and graphics.
+
+  EXAMPLES..
+
+## 10 Inclusive language
+
+Avoid words and phrases with negative connotations; remember your audience is international and heterogeneous. Err on the side of **caution** - if you think a term might be offensive, don't use it.
+Avoid **stereotypes** and **biases**.
+Use **gender neutral pronouns** - e.g., instead of he, his, him, she, hers, her, use they, them, their.
+
+  EXAMPLES..
 
 ---
 
