@@ -20,8 +20,9 @@ VectorHub is a community-driven learning hub. Our style guide, therefore, serves
 
 
 ---
-<section id="section1">
 ## 1 Give value to your readers
+<section id="section1">
+
 
 Lead with why your article is **valuable** to your readers.
 Set the context: identify your readers explicitly - say who your article is relevant to and why. What **problem** of theirs are you helping to **solve**?
