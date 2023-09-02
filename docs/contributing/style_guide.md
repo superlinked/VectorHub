@@ -1,6 +1,6 @@
 <!-- TODO: Replace this text with a summary of article for SEO -->
 
-# Style Guide
+# VectorHub Style Guide
 
 VectorHub is a community-driven learning hub. Our style guide, therefore, serves primarily to help create a platform for sharing your thinking and work. We care about grammar, but our priority is generating productive conversation between community members. To this end, we've written ten "commandments" outlining what to do and what not to do.
 
