@@ -121,7 +121,7 @@ Source citations go underneath visual elements. For example:
 <figure>
   <img src="https://github.com/superlinked/VectorHub/blob/main/docs/assets/building_blocks/data_sources/FIgure%201.%20Conceptual%20illustration%20of%20our%20approach.png" alt="Figure 1. Conceptual illustration of our approach, from Graph embeddings for movie visualization and recommendation" width="400"><br>
   <a href="https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ">Figure 1. Conceptual illustration. Graph embeddings for movie visualization and recommendation. Vlachos, M. 2012.</a>
-  <br>
+  <br><br>
 </figure>
 
 Punctuate outside of links - e.g., "We explain our approach in more depth [here](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice)."
