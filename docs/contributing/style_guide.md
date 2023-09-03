@@ -59,7 +59,7 @@ Write clearly and concisely. Aim for [crisp minimalism](https://learn.microsoft.
 Use simple language wherever possible; write like you speak.
 Be minimal; less is more. Use **adjectives** only when they add value.
 
-In general, aim for short sentences.
+In general, write short sentences.
 
 #### LENGTH
 Articles must be **at least 800 but less than max 2500 words**.
