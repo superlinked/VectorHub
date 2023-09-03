@@ -67,16 +67,13 @@ Articles must be **at least 800 but less than max 2500 words**.
 Get the **substance** down **first**. Don't worry about making perfect sentences until after you've completed your article in **point form**. Fine-tuned, stylized prose can come later. First, make sure you've included everything that your article needs to make sense and convey value to your readers.
 
 Use common **abbreviations**.
-<br> <div style="border: .5px solid white; border-radius: 5px; padding: 3px;">
-    e.g.
-</div>
-- e.g., "apps" instead of "applications"
+<br>e.g., "apps" instead of "applications"
 Introduce unfamiliar abbreviations
-<br> - e.g., "RAG (Retrieval Augmented Generation)"
+<br>e.g., "RAG (Retrieval Augmented Generation)"
 
 Skip **periods** on headings and subheadings. Only use them in paragraphs and body text.
 Use last (Oxford) **commas** for clarity.
-<br> - e.g., "We are programmers, data analysts, and web designers."
+<br>e.g., "We are programmers, data analysts, and web designers."
 
 Don't add extra **spaces** anywhere. One space between sentences and words.
 
@@ -144,7 +141,7 @@ Source citations go underneath visual elements.
 </figure>
 
 Punctuate outside of links.
-<br> - e.g., "We explain our approach in more depth [here](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice)."
+<br>e.g., "We explain our approach in more depth [here](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice)."
 
 </section>
 
@@ -186,7 +183,7 @@ The VectorHub community is international and heterogeneous. Avoid words and phra
 Avoid **stereotypes** and **biases**.
 
 Use **gender neutral pronouns**
-<br> - e.g., instead of he/his/him or she/hers/her, use they/them/their.
+<br>e.g., instead of he/his/him or she/hers/her, use they/them/their.
 
 </section>
 
