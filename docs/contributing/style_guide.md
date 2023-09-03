@@ -67,7 +67,7 @@ Articles must be **at least 800 but less than max 2500 words**.
 Get the **substance** down **first**. Don't worry about making perfect sentences until after you've completed your article in **point form**. Fine-tuned, stylized prose can come later. First, make sure you've included everything that your article needs to make sense and convey value to your readers.
 
 Use common **abbreviations**.
-<br> <div style="border: .5px solid #000; border-radius: 5px; padding: 3px;">
+<br> <div style="border: .5px solid white; border-radius: 5px; padding: 3px;">
     e.g.
 </div>
 - e.g., "apps" instead of "applications"
