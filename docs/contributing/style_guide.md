@@ -57,13 +57,20 @@ Front load your first paragraph with **keywords**.
 
 Write clearly and concisely. Aim for ["crisp minimalism"](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice).
 Use simple language wherever possible; write like you speak.
-Be minimal; less is more. Use **adjectives** only when they add value.
-In general, aim for short sentences. Articles must be **at least 800 but less than max 2500 words**.
+Be minimal; less is more. Use **adjectives** only when they add value. 
+In general, aim for short sentences.
+#### LENGTH
+Articles must be **at least 800 but less than max 2500 words**.
 
 Get the **content** down **first**. Don't worry about making perfect sentences until after you've completed your article in point form. Fine-tuned, stylistic prose can come later. First, make sure you've included everything that your article needs to make sense and convey value to your readers.
 
-Use common **abbreviations** - e.g., apps instead of applications
-Introduce unfamiliar abbreviations - e.g.,  RAG (Retrieval Augmented Generation)
+Use common **abbreviations**
+#### example: 
+apps instead of applications
+
+Introduce unfamiliar abbreviations
+#### example: 
+RAG (Retrieval Augmented Generation)
 
 Skip **periods** on headings (only use them in paragraphs and body text).
 Use last (Oxford) **commas** for clarity - eg. ...
@@ -111,7 +118,10 @@ Link (scroll-to-anchor) between concepts in your article (or to other articles o
 <section id="section6">
 
 Cite sources for all graphics, images, direct quotations, and others' ideas.
-example: Source: Github (liniked)
+Use hyperlinks.
+Source citations for visual elements go underneath.
+example: Source: Github (linked)
+
 Punctuate outside of links.
 
   EXAMPLES..
