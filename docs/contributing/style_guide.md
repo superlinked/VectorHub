@@ -57,7 +57,7 @@ Front load your first paragraph with **keywords**.
 
 Write clearly and concisely. Aim for [crisp minimalism](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice).
 Use simple language wherever possible; write like you speak.
-Be minimal; less is more. Use **adjectives** only when they add value.
+Be minimal. Less is more. Use **adjectives** only when they add value.
 
 In general, write short sentences.
 
@@ -68,7 +68,7 @@ Get the **substance** down **first**. Don't worry about making perfect sentences
 
 Use common **abbreviations**.
 <br>e.g. "apps" instead of "applications"
-Introduce unfamiliar abbreviations
+<br>Introduce unfamiliar abbreviations
 <br>e.g. "RAG (Retrieval Augmented Generation)"
 
 Skip **periods** on headings and subheadings. Only use them in paragraphs and body text.
@@ -168,7 +168,7 @@ In general, don't overcomplicate your text; communicate as simply and clearly as
 ### 9. Accessibility
 <section id="section9">
 
-Improve accessibility by creating headings and subheadings that are clear and accurately describe your content.
+Improve accessibility by creating headings and subheadings that are clear and accurately descriptive.
 
 Include alt text for all images and graphics.
 
