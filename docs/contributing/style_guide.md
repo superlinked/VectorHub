@@ -128,8 +128,8 @@ Punctuate outside of links - e.g., "We explain our approach in more depth [here]
 <section id="section7">
 
 As early as possible (when your article is still in point form), go through it, summarize each paragraph in one (concise) sentence. Now, put all your summary sentences together and see if they tell a story. Is there a logical flow? If not, rearrange, remove, or add content until the article makes sense. In our experience, going through this exercise saves a lot of time and energy. It's also a good way of checking whether your headings and subheadings are accurate.
+
 Whenever possible, find an industry-specific reader.
-Based on feedback, or your own revision process (outline, check logical flow)
 
 </section>
 
@@ -147,8 +147,8 @@ In general, don't overcomplicate your text; communicate as simply and clearly as
 <section id="section9">
 
 Improve accessibility by creating headings and subheadings that are clear and accurately describe your content.
+
 Include alt text for all images and graphics.
-...
 
 </section>
 
@@ -157,7 +157,9 @@ Include alt text for all images and graphics.
 <section id="section10">
 
 Avoid words and phrases with negative connotations; remember your audience is international and heterogeneous. Err on the side of **caution** - if you think a term might be offensive, don't use it.
+
 Avoid **stereotypes** and **biases**.
+
 Use **gender neutral pronouns** - e.g., instead of he/his/him or she/hers/her, use they/them/their.
 
 </section>
