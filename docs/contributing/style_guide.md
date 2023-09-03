@@ -65,12 +65,10 @@ Articles must be **at least 800 but less than max 2500 words**.
 Get the **content** down **first**. Don't worry about making perfect sentences until after you've completed your article in point form. Fine-tuned, stylistic prose can come later. First, make sure you've included everything that your article needs to make sense and convey value to your readers.
 
 Use common **abbreviations**
-#### example: 
-apps instead of applications
+    e.g., apps instead of applications
 
 Introduce unfamiliar abbreviations
-#### example: 
-RAG (Retrieval Augmented Generation)
+    e.g., RAG (Retrieval Augmented Generation)
 
 Skip **periods** on headings (only use them in paragraphs and body text).
 Use last (Oxford) **commas** for clarity - eg. ...
