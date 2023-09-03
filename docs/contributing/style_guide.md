@@ -80,7 +80,7 @@ Don't add extra **spaces** anywhere. One space between sentences and words.
 ### 3. Be visual
 <section id="section3">
 
-Use **diagrams**, **graphs**, **charts**, **code snippets**, **images** and any other visual tools that explain your work more efficiently.
+Text only goes so far. Complement your verbal descriptions with **diagrams**, **graphs**, **charts**, **code snippets**, **images** and any other visual tools that explain your work more efficiently.
 
 </section>
 
@@ -114,13 +114,19 @@ Link (scroll-to-anchor) between concepts in your article (or to other articles o
 ### 6. Cite all sources
 <section id="section6">
 
-Cite sources for all graphics, images, direct quotations, and others' ideas.
-Use hyperlinks.
+#### PERMISSION 
+Make sure you have permission to reuse any images you include in your VectorHub article.
+Even your own modified versions of images owned by someone else should be cited as a "Modified version of" the original source.
+
+Cite sources for all graphics, images, direct quotations, and others' unique or patented ideas.
+
+You should cite visual elements as follows: [Title], [Author/Photographer/Artist], [Year], [Source]. Provide a hyperlink for the Title or whole citation, pointing to the visual element source. Optionally, you can include separate hyperlinks for Title, Author, and Source.
+For example: [Feed Recommendation Illustration, Arunesh Singh, 2023, superlinked.com.](https://superlinked.com)
 
 Source citations go underneath visual elements. For example:
 <figure>
-  <img src="https://github.com/superlinked/VectorHub/blob/main/docs/assets/building_blocks/data_sources/FIgure%201.%20Conceptual%20illustration%20of%20our%20approach.png" alt="Figure 1. Conceptual illustration of our approach, from Graph embeddings for movie visualization and recommendation" width="400"><br>
-  <a href="https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ">Figure 1. Conceptual illustration. Graph embeddings for movie visualization and recommendation. Vlachos, M. 2012.</a>
+  <img src="https://github.com/superlinked/VectorHub/blob/main/docs/assets/building_blocks/data_sources/FIgure%201.%20Conceptual%20illustration%20of%20our%20approach.png" alt="Figure 1. Conceptual illustration of our approach, from Graph embeddings for movie visualization and recommendation. M. Vlachos, 2012, ResearchGate. https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ" width="400"><br>
+  <a href="https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ">Graph embeddings for movie visualization and recommendation. Figure 1. Conceptual illustration. M. Vlachos, 2012, ResearchGate.</a>
   <br><br>
 </figure>
 
