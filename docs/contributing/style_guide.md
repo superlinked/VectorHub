@@ -93,17 +93,16 @@ Text only goes so far. Complement your verbal descriptions with **diagrams**, **
 
 Write with a **friendly** tone. Call your audience "you" and yourselves "we."
 
-Use **contractions**
-<br> - e.g., Instead of "We are," "it is," and "they are,"<br>
-            use "We're," "it's", and "they're."
+Use **contractions**.
+<br> > e.g., Instead of "We are," "it is," and "they are," use "We're," "it's", and "they're."
 
 As much as possible, use an **active voice** to explain events and relationships.
 <br> - e.g., Instead of: "Deep neural networks are used by GPT to learn contextual embeddings."
-<br>        Write this: "GPT uses deep neural networks to learn contextual embeddings."
+<br>    Write this: "GPT uses deep neural networks to learn contextual embeddings."
 
 Choose specific action verbs over generic ones.
 <br> - e.g., Instead of: "We made changes to the code to improve performance."
-<br>        Write this: "We optimized the code to boost performance."
+<br>    Write this: "We optimized the code to boost performance."
 
 </section>
 
