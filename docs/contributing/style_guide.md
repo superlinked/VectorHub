@@ -119,7 +119,7 @@ Use hyperlinks.
 
 Source citations go underneath visual elements.
 
-Punctuate outside of links - e.g., "We explain our approach in more depth ["here"](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice)."
+Punctuate outside of links - e.g., "We explain our approach in more depth [here](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice)."
 
 </section>
 
