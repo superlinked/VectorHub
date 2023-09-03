@@ -44,11 +44,11 @@ VectorHub is a community-driven learning hub. Our style guide, therefore, aims t
 
 Ask yourself why your article is **valuable** to your readers.
 Set the context: identify your readers explicitly - say who your article is relevant to and why. What **problem** of theirs are you helping to **solve**?
+Instead of this: "This latest software update is packed with helpful enhancements."
+Write this: "Our November 15, 2023 update lets web developers optimize projects by developing faster with simplified coding."
+
 Front load your first paragraph with **keywords**.
 
-    #### EXAMPLE
-    Instead of this: This latest software update is packed with helpful enhancements.
-    Write this: Our November 15, 2023 update lets web developers optimize projects by developing faster with simplified coding.
 </section>
 
 ---
@@ -57,24 +57,23 @@ Front load your first paragraph with **keywords**.
 
 Write clearly and concisely. Aim for ["crisp minimalism"](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice).
 Use simple language wherever possible; write like you speak.
-Be minimal; less is more. Use **adjectives** only when they add value. 
+Be minimal; less is more. Use **adjectives** only when they add value.
+
 In general, aim for short sentences.
+
 #### LENGTH
 Articles must be **at least 800 but less than max 2500 words**.
 
-Get the **content** down **first**. Don't worry about making perfect sentences until after you've completed your article in point form. Fine-tuned, stylistic prose can come later. First, make sure you've included everything that your article needs to make sense and convey value to your readers.
+Get the **substance** down **first**. Don't worry about making perfect sentences until after you've completed your article in point form. Fine-tuned, stylized prose can come later. First, make sure you've included everything that your article needs to make sense and convey value to your readers.
 
-Use common **abbreviations**
-    e.g., apps instead of applications
-
-Introduce unfamiliar abbreviations
-    e.g., RAG (Retrieval Augmented Generation)
+Use common **abbreviations** - e.g., "apps" instead of "applications"
+Introduce unfamiliar abbreviations - e.g., "RAG (Retrieval Augmented Generation)"
 
 Skip **periods** on headings (only use them in paragraphs and body text).
-Use last (Oxford) **commas** for clarity - eg. ...
+Use last (Oxford) **commas** for clarity - e.g., "I love programming, data analysis, and web design."
+
 Don't add extra **spaces** anywhere. One space between sentences and words.
-    
-    EXAMPLES..
+
 </section>
 
 ---
@@ -83,8 +82,6 @@ Don't add extra **spaces** anywhere. One space between sentences and words.
 
 Use **diagrams**, **graphs**, **charts**, **code snippets**, **images** and any other visual tools that explain your work more efficiently.
 
-  EXAMPLES..
-
 </section>
 
 ---
@@ -92,10 +89,12 @@ Use **diagrams**, **graphs**, **charts**, **code snippets**, **images** and any 
 <section id="section4">
 
 Write with a **friendly** tone. Call your audience "you", and yourself "we".
-Use **contractions**. 
-As much as possible, use an **active voice** to explain events and relationships. Choose specific action verbs over generic ones. 
 
-  EXAMPLES..
+Use **contractions** - e.g., "I'm," "it's", "they're".
+
+As much as possible, use an **active voice** to explain events and relationships - e.g., Instead of: "Deep neural networks are used by GPT to learn contextual embeddings." Write this: "GPT uses deep neural networks to learn contextual embeddings."
+
+Choose specific action verbs over generic ones - e.g., Instead of: "We made changes to the code to improve performance." Write this: "We optimized the code to boost performance."
 
 </section>
 
@@ -104,11 +103,11 @@ As much as possible, use an **active voice** to explain events and relationships
 <section id="section5">
 
 Add clear **headings** and **subheadings** that give information and an overview to your readers. This will enable readers to navigate to relevant sections and search engines to scan it.
+
 Give an overview of where you're going in your Introduction.
 
 Link (scroll-to-anchor) between concepts in your article (or to other articles on the platform) where it makes sense.
 
-  EXAMPLES..
 </section>
 
 ---
@@ -117,12 +116,11 @@ Link (scroll-to-anchor) between concepts in your article (or to other articles o
 
 Cite sources for all graphics, images, direct quotations, and others' ideas.
 Use hyperlinks.
-Source citations for visual elements go underneath.
-example: Source: Github (linked)
 
-Punctuate outside of links.
+Source citations go underneath visual elements.
 
-  EXAMPLES..
+Punctuate outside of links - e.g., "We explain our approach in more depth ["here"](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice)."
+
 </section>
 
 ---
@@ -133,7 +131,6 @@ As early as possible (when your article is still in point form), go through it, 
 Whenever possible, find an industry-specific reader.
 Based on feedback, or your own revision process (outline, check logical flow)
 
-  EXAMPLES..
 </section>
 
 ---
@@ -143,7 +140,6 @@ Based on feedback, or your own revision process (outline, check logical flow)
 You're writing a technical article. Use technology-specific terminology. If you think the thing you're describing is unfamiliar to most readers, it probably is. Feel free to link to external resources that provide more in-depth explanations of terms you do not have space to explain in your article.
 In general, don't overcomplicate your text; communicate as simply and clearly as possible.
 
-  EXAMPLES..
 </section>
 
 ---
@@ -154,7 +150,6 @@ Improve accessibility by creating headings and subheadings that are clear and ac
 Include alt text for all images and graphics.
 ...
 
-  EXAMPLES..
 </section>
 
 ---
@@ -165,10 +160,9 @@ Avoid words and phrases with negative connotations; remember your audience is in
 Avoid **stereotypes** and **biases**.
 Use **gender neutral pronouns** - e.g., instead of he/his/him or she/hers/her, use they/them/their.
 
-  EXAMPLES..
 </section>
 ---
 
 ## Contributors
 
-- [Your Name](you_social_handle.com)
+- [Robert Turner](robertturner.co/copyedit)
