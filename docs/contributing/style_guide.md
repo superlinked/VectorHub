@@ -7,34 +7,34 @@ VectorHub is a community-driven learning hub. Our style guide, therefore, aims t
 ## VectorHub's Ten Commandments
 
 ### [1 Give value to your readers](#section1)
-`+` Who are you writing for and what problem are you solving?
+&#183; Who are you writing for and what problem are you solving?
 
 ### [2 Be clear and brief](#section2)
-`+` Use simple language, short sentences, write only what's essential. 800-2500 words.
+&#183; Use simple language, short sentences, write only what's essential. 800-2500 words.
 
 ### [3 Be visual](#section3)
-`+` Save a thousand words... Represent your ideas visually whenever possible.
+&#183; Save a thousand words... Represent your ideas visually whenever possible.
 
 ### [4 Be conversational, friendly, and use action verbs](#section4)
-`+` Write how you speak. Be personal. In an active voice.
+&#183; Write how you speak. Be personal. In an active voice.
 
 ### [5 Be hierarchical](#section5)
-`+` Organize your content like a building, and show us the blueprint.
+&#183; Organize your content like a building, and show us the blueprint.
 
 ### [6 Cite all sources](#section6)
-`+` Give credit where credit is due. Always.
+&#183; Give credit where credit is due. Always.
 
 ### [7 Edit and proofread](#section7)
-`+` Nail down your logic. Step back, outline, and revise. 
+&#183; Nail down your logic. Step back, outline, and revise. 
 
 ### [8 Technical terminology](#section8)
-`+` It's an article about tech. Use relevant, familiar technical terms.
+&#183; It's an article about tech. Use relevant, familiar technical terms.
 
 ### [9 Accessibility](#section9)
-`+` Hierarchize and tag.
+&#183; Hierarchize and tag.
 
 ### [10 Inclusive language](#section10)
-`+` Your readers are diverse. Be non-biased and gender neutral.
+&#183; Your readers are diverse. Be non-biased and gender neutral.
 
 
 
@@ -127,7 +127,7 @@ Or: [Feed Recommendation Illustration](https://superlinked.com), [Arunesh Singh]
 Source citations go underneath visual elements. For example:
 <figure>
   <img src="https://github.com/superlinked/VectorHub/blob/main/docs/assets/building_blocks/data_sources/FIgure%201.%20Conceptual%20illustration%20of%20our%20approach.png" alt="Figure 1. Conceptual illustration of our approach, from Graph embeddings for movie visualization and recommendation. M. Vlachos, 2012, ResearchGate. https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ" width="400"><br>
-  <a href="https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ">Graph embeddings for movie visualization and recommendation. Figure 1. Conceptual illustration. M. Vlachos, 2012, ResearchGate.</a>
+  <a href="https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ">Graph embeddings for movie visualization and recommendation.<br>Figure 1. Conceptual illustration. M. Vlachos, 2012, ResearchGate.</a>
   <br><br>
 </figure>
 
@@ -168,7 +168,7 @@ Include alt text for all images and graphics.
 ### 10. Inclusive language
 <section id="section10">
 
-Avoid words and phrases with negative connotations; remember your audience is international and heterogeneous. Err on the side of **caution** - if you think a term might be offensive, don't use it.
+The VectorHub community is international and heterogeneous. Avoid words and phrases with negative connotations. Err on the side of **caution** - if you think a term might be offensive, don't use it.
 
 Avoid **stereotypes** and **biases**.
 
