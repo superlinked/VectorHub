@@ -124,7 +124,7 @@ Link (scroll-to-anchor) between concepts in your article (or to other articles o
 
 #### PERMISSION 
 Make sure you have permission to reuse any images you include in your VectorHub article.
-Even your own modified versions of images owned by someone else should be cited as a "Modified version of" the original source.
+Cite your own modified versions of images owned by someone else as a "Modified version of" the original source.
 
 Cite sources for all graphics, images, direct quotations, and others' unique or patented ideas.
 
