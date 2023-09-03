@@ -174,8 +174,9 @@ Avoid **stereotypes** and **biases**.
 Use **gender neutral pronouns** - e.g., instead of he/his/him or she/hers/her, use they/them/their.
 
 </section>
----
 
-## Contributors
+
+---
+### Contributors
 
 - [Robert Turner](robertturner.co/copyedit)
