@@ -118,7 +118,7 @@ Cite sources for all graphics, images, direct quotations, and others' ideas.
 Use hyperlinks.
 
 Source citations go underneath visual elements. 
-![Figure 1. Conceptual illustration of our approach, from Graph embeddings for movie visualization and recommendation](docs/assets/building_blocks/data_sources/FIgure 1. Conceptual illustration of our approach.png)
+![Figure 1. Conceptual illustration of our approach, from Graph embeddings for movie visualization and recommendation](https://github.com/superlinked/VectorHub/blob/main/docs/assets/building_blocks/data_sources/FIgure%201.%20Conceptual%20illustration%20of%20our%20approach.png)
 [Figure 1. Conceptual illustration of our approach, from Graph embeddings for movie visualization and recommendation](https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ)
 
 Punctuate outside of links - e.g., "We explain our approach in more depth [here](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice)."
