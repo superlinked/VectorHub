@@ -94,15 +94,15 @@ Text only goes so far. Complement your verbal descriptions with **diagrams**, **
 Write with a **friendly** tone. Call your audience "you" and yourselves "we."
 
 Use **contractions**.
-<br> e.g., Instead of "We are," "it is," and "they are," use "We're," "it's", and "they're."
+<br>e.g., Instead of "We are," "it is," and "they are," use "We're," "it's", and "they're."
 
 As much as possible, use an **active voice** to explain events and relationships.
-<br> e.g., Instead of: "Deep neural networks are used by GPT to learn contextual embeddings."
-<br>    Write this: "GPT uses deep neural networks to learn contextual embeddings."
+<br>e.g., Instead of: "Deep neural networks are used by GPT to learn contextual embeddings."
+<br>Write this: "GPT uses deep neural networks to learn contextual embeddings."
 
 Choose specific action verbs over generic ones.
-<br> e.g., Instead of: "We made changes to the code to improve performance."
-<br>    Write this: "We optimized the code to boost performance."
+<br>e.g., Instead of: "We made changes to the code to improve performance."
+<br>Write this: "We optimized the code to boost performance."
 
 </section>
 
@@ -129,11 +129,11 @@ Cite your own modified versions of images owned by someone else as a "Modified v
 Cite sources for all graphics, images, direct quotations, and others' unique or patented ideas.
 
 You should cite visual elements as follows: [Title], [Author/Photographer/Artist], [Year], [Source].
-<br>Provide a hyperlink for the Title or whole citation, pointing to the visual element source. Optionally, you can include separate hyperlinks for Title, Author, and Source.<br>For example: [Feed Recommendation Illustration, Arunesh Singh, 2023, superlinked.com.](https://superlinked.com)<br>
-Or: [Feed Recommendation Illustration](https://superlinked.com), [Arunesh Singh](https://www.linkedin.com/in/aruneshsingh99/), 2023, [superlinked.com](https://superlinked.com).
+<br>Provide a hyperlink for the Title or whole citation, pointing to the visual element source. Optionally, you can include separate hyperlinks for Title, Author, and Source.<br>e.g. [Feed Recommendation Illustration, Arunesh Singh, 2023, superlinked.com.](https://superlinked.com)<br>
+or [Feed Recommendation Illustration](https://superlinked.com), [Arunesh Singh](https://www.linkedin.com/in/aruneshsingh99/), 2023, [superlinked.com](https://superlinked.com).
 
 Source citations go underneath visual elements.
-<br>For example:
+<br>e.g.
 <figure>
   <img src="https://github.com/superlinked/VectorHub/blob/main/docs/assets/building_blocks/data_sources/FIgure%201.%20Conceptual%20illustration%20of%20our%20approach.png" alt="Figure 1. Conceptual illustration of our approach, from Graph embeddings for movie visualization and recommendation. M. Vlachos, 2012, ResearchGate. https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ" width="400"><br>
   <a href="https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ">Graph embeddings for movie visualization and recommendation.<br>Figure 1. Conceptual illustration. M. Vlachos, 2012, ResearchGate.</a>
