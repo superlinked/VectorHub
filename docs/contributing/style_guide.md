@@ -9,7 +9,7 @@ VectorHub is a community-driven learning hub. Our style guide, therefore, aims t
 ### [1 Give value to your readers](#section1)
 &#183; Who are you writing for and what problem are you solving?
 
-### [2 Be clear and brief](#section2)
+### [2 Be clear, substantive, and brief](#section2)
 &#183; Use simple language, short sentences, write only what's essential. 800-2500 words.
 
 ### [3 Be visual](#section3)
@@ -44,15 +44,15 @@ VectorHub is a community-driven learning hub. Our style guide, therefore, aims t
 
 Ask yourself why your article is **valuable** to your readers.
 Set the context: identify your readers explicitly - say who your article is relevant to and why. What **problem** of theirs are you helping to **solve**?
-Instead of this: "This latest software update is packed with helpful enhancements."
-Write this: "Our November 15, 2023 update lets web developers optimize projects by developing faster with simplified coding."
+<br>Instead of this: "This latest software update is packed with helpful enhancements."
+<br>Write this: "Our November 15, 2023 update lets web developers optimize projects by developing faster with simplified coding."
 
 Front load your first paragraph with **keywords**.
 
 </section>
 
 ---
-### 2. Be clear and brief
+### 2. Be clear, substantive, and brief
 <section id="section2">
 
 Write clearly and concisely. Aim for ["crisp minimalism"](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice).
