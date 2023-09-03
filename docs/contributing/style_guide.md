@@ -13,7 +13,7 @@ VectorHub is a community-driven learning hub. Our style guide, therefore, aims t
 &#183; Use simple language, short sentences, write only what's essential. 800-2500 words.
 
 ### [3 Be visual](#section3)
-&#183; Save a thousand words... Represent your ideas visually whenever possible.
+&#183; Save a thousand words. Use a picture. Represent your ideas visually whenever possible.
 
 ### [4 Be conversational, friendly, and use action verbs](#section4)
 &#183; Write how you speak. Be personal. In an active voice.
@@ -34,7 +34,7 @@ VectorHub is a community-driven learning hub. Our style guide, therefore, aims t
 &#183; Hierarchize and tag.
 
 ### [10 Inclusive language](#section10)
-&#183; Your readers are diverse. Be non-biased and gender neutral.
+&#183; The VectorHub community is diverse. Be non-biased and gender neutral.
 
 
 
@@ -64,13 +64,16 @@ In general, aim for short sentences.
 #### LENGTH
 Articles must be **at least 800 but less than max 2500 words**.
 
-Get the **substance** down **first**. Don't worry about making perfect sentences until after you've completed your article in point form. Fine-tuned, stylized prose can come later. First, make sure you've included everything that your article needs to make sense and convey value to your readers.
+Get the **substance** down **first**. Don't worry about making perfect sentences until after you've completed your article in **point form**. Fine-tuned, stylized prose can come later. First, make sure you've included everything that your article needs to make sense and convey value to your readers.
 
-Use common **abbreviations** - e.g., "apps" instead of "applications"
-Introduce unfamiliar abbreviations - e.g., "RAG (Retrieval Augmented Generation)"
+Use common **abbreviations**
+<br> - e.g., "apps" instead of "applications"
+Introduce unfamiliar abbreviations
+<br> - e.g., "RAG (Retrieval Augmented Generation)"
 
-Skip **periods** on headings (only use them in paragraphs and body text).
-Use last (Oxford) **commas** for clarity - e.g., "I love programming, data analysis, and web design."
+Skip **periods** on headings and subheadings. Only use them in paragraphs and body text.
+Use last (Oxford) **commas** for clarity
+<br> - e.g., "We are programmers, data analysts, and web designers."
 
 Don't add extra **spaces** anywhere. One space between sentences and words.
 
@@ -88,13 +91,18 @@ Text only goes so far. Complement your verbal descriptions with **diagrams**, **
 ### 4. Be conversational, friendly, and use action verbs
 <section id="section4">
 
-Write with a **friendly** tone. Call your audience "you", and yourself "we".
+Write with a **friendly** tone. Call your audience "you" and yourselves "we."
 
-Use **contractions** - e.g., "I'm," "it's", "they're".
+Use **contractions**
+<br> - e.g., Instead of "We are," "it is," and "they are," use "We're," "it's", and "they're."
 
-As much as possible, use an **active voice** to explain events and relationships - e.g., Instead of: "Deep neural networks are used by GPT to learn contextual embeddings." Write this: "GPT uses deep neural networks to learn contextual embeddings."
+As much as possible, use an **active voice** to explain events and relationships
+<br> - e.g., Instead of: "Deep neural networks are used by GPT to learn contextual embeddings."
+<br>    Write this: "GPT uses deep neural networks to learn contextual embeddings."
 
-Choose specific action verbs over generic ones - e.g., Instead of: "We made changes to the code to improve performance." Write this: "We optimized the code to boost performance."
+Choose specific action verbs over generic ones
+<br> - e.g., Instead of: "We made changes to the code to improve performance."
+<br>    Write this: "We optimized the code to boost performance."
 
 </section>
 
@@ -124,14 +132,16 @@ You should cite visual elements as follows: [Title], [Author/Photographer/Artist
 For example: [Feed Recommendation Illustration, Arunesh Singh, 2023, superlinked.com.](https://superlinked.com)<br>
 Or: [Feed Recommendation Illustration](https://superlinked.com), [Arunesh Singh](https://www.linkedin.com/in/aruneshsingh99/), 2023, [superlinked.com](https://superlinked.com).
 
-Source citations go underneath visual elements. For example:
+Source citations go underneath visual elements.
+<br>For example:
 <figure>
   <img src="https://github.com/superlinked/VectorHub/blob/main/docs/assets/building_blocks/data_sources/FIgure%201.%20Conceptual%20illustration%20of%20our%20approach.png" alt="Figure 1. Conceptual illustration of our approach, from Graph embeddings for movie visualization and recommendation. M. Vlachos, 2012, ResearchGate. https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ" width="400"><br>
   <a href="https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ">Graph embeddings for movie visualization and recommendation.<br>Figure 1. Conceptual illustration. M. Vlachos, 2012, ResearchGate.</a>
   <br><br>
 </figure>
 
-Punctuate outside of links - e.g., "We explain our approach in more depth [here](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice)."
+Punctuate outside of links
+<br> - e.g., "We explain our approach in more depth [here](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice)."
 
 </section>
 
@@ -172,7 +182,8 @@ The VectorHub community is international and heterogeneous. Avoid words and phra
 
 Avoid **stereotypes** and **biases**.
 
-Use **gender neutral pronouns** - e.g., instead of he/his/him or she/hers/her, use they/them/their.
+Use **gender neutral pronouns**
+<br> - e.g., instead of he/his/him or she/hers/her, use they/them/their.
 
 </section>
 
