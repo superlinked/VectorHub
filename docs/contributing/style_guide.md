@@ -67,13 +67,13 @@ Articles must be **at least 800 but less than max 2500 words**.
 Get the **substance** down **first**. Don't worry about making perfect sentences until after you've completed your article in **point form**. Fine-tuned, stylized prose can come later. First, make sure you've included everything that your article needs to make sense and convey value to your readers.
 
 Use common **abbreviations**.
-<br>e.g., "apps" instead of "applications"
+<br>e.g. "apps" instead of "applications"
 Introduce unfamiliar abbreviations
-<br>e.g., "RAG (Retrieval Augmented Generation)"
+<br>e.g. "RAG (Retrieval Augmented Generation)"
 
 Skip **periods** on headings and subheadings. Only use them in paragraphs and body text.
 Use last (Oxford) **commas** for clarity.
-<br>e.g., "We are programmers, data analysts, and web designers."
+<br>e.g. "We are programmers, data analysts, and web designers."
 
 Don't add extra **spaces** anywhere. One space between sentences and words.
 
@@ -94,14 +94,14 @@ Text only goes so far. Complement your verbal descriptions with **diagrams**, **
 Write with a **friendly** tone. Call your audience "you" and yourselves "we."
 
 Use **contractions**.
-<br>e.g., Instead of "We are," "it is," and "they are," use "We're," "it's", and "they're."
+<br>e.g. Instead of "We are," "it is," and "they are," use "We're," "it's", and "they're."
 
 As much as possible, use an **active voice** to explain events and relationships.
-<br>e.g., Instead of: "Deep neural networks are used by GPT to learn contextual embeddings."
+<br>e.g. Instead of: "Deep neural networks are used by GPT to learn contextual embeddings."
 <br>Write this: "GPT uses deep neural networks to learn contextual embeddings."
 
 Choose specific action verbs over generic ones.
-<br>e.g., Instead of: "We made changes to the code to improve performance."
+<br>e.g. Instead of: "We made changes to the code to improve performance."
 <br>Write this: "We optimized the code to boost performance."
 
 </section>
@@ -141,7 +141,7 @@ Source citations go underneath visual elements.
 </figure>
 
 Punctuate outside of links.
-<br>e.g., "We explain our approach in more depth [here](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice)."
+<br>e.g. "We explain our approach in more depth [here](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice)."
 
 </section>
 
@@ -183,7 +183,7 @@ The VectorHub community is international and heterogeneous. Avoid words and phra
 Avoid **stereotypes** and **biases**.
 
 Use **gender neutral pronouns**
-<br>e.g., instead of he/his/him or she/hers/her, use they/them/their.
+<br>e.g. Instead of he/his/him or she/hers/her, use they/them/their.
 
 </section>
 
