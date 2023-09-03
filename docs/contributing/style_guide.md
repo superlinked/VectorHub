@@ -122,6 +122,7 @@ Cite sources for all graphics, images, direct quotations, and others' unique or 
 
 You should cite visual elements as follows: [Title], [Author/Photographer/Artist], [Year], [Source]. Provide a hyperlink for the Title or whole citation, pointing to the visual element source. Optionally, you can include separate hyperlinks for Title, Author, and Source.<br>
 For example: [Feed Recommendation Illustration, Arunesh Singh, 2023, superlinked.com.](https://superlinked.com)
+Or: [Feed Recommendation Illustration](https://superlinked.com), [Arunesh Singh](https://www.linkedin.com/in/aruneshsingh99/), 2023, [superlinked.com](https://superlinked.com).
 
 Source citations go underneath visual elements. For example:
 <figure>
