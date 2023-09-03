@@ -55,7 +55,7 @@ Front load your first paragraph with **keywords**.
 ### 2. Be clear, substantive, and brief
 <section id="section2">
 
-Write clearly and concisely. Aim for ["crisp minimalism"](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice).
+Write clearly and concisely. Aim for "[crisp minimalism](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice)".
 Use simple language wherever possible; write like you speak.
 Be minimal; less is more. Use **adjectives** only when they add value.
 
