@@ -117,9 +117,13 @@ Link (scroll-to-anchor) between concepts in your article (or to other articles o
 Cite sources for all graphics, images, direct quotations, and others' ideas.
 Use hyperlinks.
 
-Source citations go underneath visual elements. 
-![Figure 1. Conceptual illustration of our approach, from Graph embeddings for movie visualization and recommendation](https://github.com/superlinked/VectorHub/blob/main/docs/assets/building_blocks/data_sources/FIgure%201.%20Conceptual%20illustration%20of%20our%20approach.png)
-[Figure 1. Conceptual illustration of our approach, from Graph embeddings for movie visualization and recommendation](https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ)
+Source citations go underneath visual elements - e.g.,
+<figure>
+  <img src="https://github.com/superlinked/VectorHub/blob/main/docs/assets/building_blocks/data_sources/FIgure%201.%20Conceptual%20illustration%20of%20our%20approach.png" alt="Figure 1. Conceptual illustration of our approach, from Graph embeddings for movie visualization and recommendation" width="300">
+  <figcaption>Figure 1. Conceptual illustration of our approach
+  <a href="https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ">Graph embeddings for movie visualization and recommendation.</a>
+</figcaption>
+</figure>
 
 Punctuate outside of links - e.g., "We explain our approach in more depth [here](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice)."
 
