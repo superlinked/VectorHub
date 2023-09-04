@@ -6,7 +6,7 @@ VectorHub is a learning hub that lives on its contributors. As it keeps growing,
 
 The content on VectorHub itself falls into three major areas:
 
-1. Building Blcks: These cover the broad area of vector creation and retrieval. It is based on a step by step approach in creating a vector stack. Data Sources -> Vector Compute -> Vector Search
+1. Building Blocks: These cover the broad area of vector creation and retrieval. It is based on a step by step approach in creating a vector stack. Data Sources -> Vector Compute -> Vector Search
 
 2. Use cases: 7 use cases which map to how the vector retrieval can be utilized in production apps.
 
