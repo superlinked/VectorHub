@@ -1,6 +1,6 @@
 <!-- TODO: Replace this text with a summary of article for SEO -->
 
-# Data Sources
+# Vector Search
 
 <!-- TODO: Cover image: 
 1. You can create your own cover image and put it in the correct asset directory,
