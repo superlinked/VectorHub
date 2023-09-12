@@ -183,7 +183,7 @@ The VectorHub community is international and heterogeneous. Avoid words and phra
 Avoid **stereotypes** and **biases**.
 
 Use **gender neutral pronouns**
-<br>e.g. Instead of he/his/him or she/hers/her, use they/them/their.
+<br>e.g. Instead of he/his/him or she/hers/her, use they/their/them.
 
 </section>
 
