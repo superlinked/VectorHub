@@ -2,7 +2,7 @@
 
 # VectorHub Style Guide
 
-VectorHub is a community-driven learning hub. Our style guide, therefore, aims to help you share your thinking and work. We care about grammar, but our priority is meaning. We want to generate productive conversation between community members. To this end, we've written ten "commandments" outlining some do's and don'ts. Please read them before you start writing your article.
+VectorHub is a community-driven learning hub. Our style guide, therefore, aims to help you share your thinking and work. We care about grammar, but our priority is meaning. We want to generate productive conversation between community members. To this end, we've written ten "commandments" outlining some dos and don'ts. Please read them before you start writing your article.
 
 ## VectorHub's Ten Commandments
 
@@ -183,7 +183,7 @@ The VectorHub community is international and heterogeneous. Avoid words and phra
 Avoid **stereotypes** and **biases**.
 
 Use **gender neutral pronouns**
-<br>e.g. Instead of he/his/him or she/hers/her, use they/them/their.
+<br>e.g. Instead of he/his/him or she/hers/her, use they/their/them.
 
 </section>
 
