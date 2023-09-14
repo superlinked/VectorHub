@@ -18,4 +18,4 @@ Read more about our philosophy in our [Manifesto](manifesto.md).
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](docs/contributing/readme.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://hub.superlinked.com/contributing) for details on our code of conduct, and the process for submitting pull requests to us.
