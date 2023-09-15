@@ -6,9 +6,11 @@
 
 ## The exponential growth of data
 
-It's no secret that most organizations worldwide are experiencing exponential growth in the amount of structured and unstructured data they store. According to [IDC](https://www.idc.com/getdoc.jsp?containerId=US50397723), the vast majority - at least 80% - of all data in any given organization is unstructured, and by 2025, the total amount of unstructured data is expected grow to 175 zettabytes (175 billion terabytes). More data is expected to be generated in the next five years than in the last ten! 🤯
+It's no secret that most organizations worldwide are experiencing an exponential growth in the amount of data they generate and store. In 2021, there [already existed](https://firstsiteguide.com/big-data-stats/) around 79 zettabytes (79 billion terabytes) of data worldwide, and, according to [IDC](https://www.idc.com/getdoc.jsp?containerId=US50397723) the total amount of data, both structured and unstructured, is expected to grow to well over 175 zettabytes (175 billion terabytes) by 2027. 🤯
 
-Modern machine learning models (e.g., transformers) have made it possible to derive insights from unstructured data at scale, but the growth of this form of data has introduced new challenges. Traditional databases are not well-suited to handle unstructured data, and over the last few years, we've seen the rise in popularity of a new class of search engines and databases designed specifically for querying unstructured data.
+Modern machine learning models (e.g., transformers) have made it possible to derive insights from unstructured data, but we must not forget the fact that majority of the world's data is structured, and that the two forms of data are not mutually exclusive. In fact, the most interesting insights are often derived from combining structured and unstructured data.
+
+Vector search is a powerful method to search and retrieve information from *both* structured and unstructured data at scale.
 
 ## The early days of search
 
@@ -16,11 +18,11 @@ Search systems that can retrieve information from unstructured text data have be
 
 The limitation of full-text search is that it retrieves only those results that have at least a partial match with keywords in the query. Although techniques like phrase search, proximity search or fuzzy search can be used to improve relevance, it's still not very effective when the user query consists of synonyms or semantically similar terms. For example, a search for "car" will not return documents that contain the word "automobile", even though that's what the user might have wanted.
 
-Another limitation of full-text search is that it can't handle non-textual data (images or audio) or multi-modal data (images or audio with descriptions). For example, a user searching for a product on an e-commerce website or music app may want to find similar items based on their source and descriptions. Simply searching for keywords in the description may not yield relevant results.
+Another limitation of full-text search is that it can't handle structured data (tabular data), non-textual data (images or audio) or multi-modal data (images or audio with descriptions). For example, a user searching for a product on an e-commerce website or music app may want to find similar items based on their image/audio source and descriptions. Simply searching for keywords in the description may not yield relevant results. Another example is querying one's email history to retrieve information on past flight bookings -- this involves a combination of text, numbers, and dates, and requires a more sophisticated search system than one that simply matches on keywords.
 
 ## Introducing vector search
 
-Vector search leverages machine learning models to consider the semantics (i.e., the meaning) of unstructured data when performing search. This is done by converting the data into a numerical representation, termed a vector.
+Vector search leverages machine learning models to consider the semantics (i.e., the meaning) of the underlying data when performing search. This is done by converting the data into a numerical representation, termed a vector.
 
 In computer science, a vector is a one-dimensional array of numbers (typically floating point numbers).
 
@@ -52,20 +54,47 @@ The similarity between two vectors is quantified via a distance metric. A few co
 
 Cosine similarity, which considers the angle between two vectors, is commonly used in measuring the similarity between texts. Two vectors that are very dissimilar can be thought of as orthogonal to each other in vector space, with a cosine similarity of zero. On the other hand, vectors that are very similar to one another will have a cosine similarity close to 1, with a limiting value of 1 being the case where a given vector is always identical to itself.
 
-### The power of vector search
+## Vector search for unstructured data
 
-Vector search distinguishes itself from lexical or keyword search by being able to return results that are semantically similar, even when the exact keywords aren't present in the query. Additionally, because of the general-purpose nature of vector embeddings, they can be used to represent almost any form of data, including text, images and audio. Multimodal embedding models like [CLIP](https://github.com/openai/CLIP) can generate a single embedding for multiple forms of data, such as images and their descriptions.
+Vector (semantic) search distinguishes itself from keyword (lexical) search by being able to return relevant results *even when the exact terms aren't present in the query*. Because of the general-purpose nature of vector embeddings, they can be used to represent almost any form of data, from unstructured data like text, images and audio. Additionally, multimodal embedding models like [CLIP](https://github.com/openai/CLIP) can generate a single embedding that simultaneously captures the semantics of multiple forms of data, such as images and their descriptions.
 
 
 ![](../../assets/building_blocks/vector_search/vector-search-embeddings.png)
 
-However, simply generating the vectors and measuring their similarities isn't *useful* unless we can search through large amounts of data very quickly.
+
+### Context length for text embedding models
+
+When vectorizing unstructured text data, it's important to bear in mind that embedding models have a maximum context length, which is the maximum token sequence length that can be embedded into a single vector. For many open-source embedding models, this is in the range of 384 to 1024 tokens (in [English](https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them), 100 tokens equal roughly 75 words).
+
+Using an embedding model on long-form texts of the order of thousands of words would mean that the entire text cannot be embedded into a single vector, and would need to be split into smaller chunks, or require a windowing approach to capture the entire document in a single vector. Libraries like [LangChain](https://github.com/langchain-ai/langchain) and [LlamaIndex](https://github.com/jerryjliu/llama_index) can help with this.
+
+## Vector search for structured data
+
+A common misconception of vector search is that it's applicable only to unstructured data. This is not true! Vector embeddings have *always* been at the heart of deep learning models, and this section will highlight how structured data can be leveraged to gain new insights into existing data.
+
+### Tabular data
+
+Tabular data is typically stored in a relational database or data lake, and can be a powerful source of data for supervised learning systems. Neural networks that use gradient-based optimization have emerged as powerful tools to map numerical features, commonly seen in tabular data, to higher-dimensional vector representations.
+
+Historically, gradient-boosted decision trees have outperformed baseline neural networks on tabular data, but [recent research](https://arxiv.org/abs/2203.05556) shows that a traditional MLP-like (Multilayer Perceptron) models, when equipped with embeddings from numerical features, can perform on par with computationally-heavy transformers on tabular data. Transforming tabular data into vector embeddings can leverage the features of the underlying data in a more meaningful way, allowing you to build better recommendation algorithms and fraud-detection systems.
+
+### Time series
+
+Time series analysis is a useful tool for tasks like anomaly detection, where, historically, distance-based techniques like kNN (k-Nearest Neighbors) are popular because they are unsupervised. However, kNN suffers from the "curse of dimensionality" as the datasets become large because it needs to exhaustively compare distances vs. all other points in the dataset to detect outliers. To deal with this limitation, autoencoders have historically been used to reduce the dimensionality of time series data.
+
+Although there have been claims in [recent work](https://arxiv.org/abs/2205.13504) that transformers are not as effective as specialized linear models, at least for univariate time series, [further work](https://huggingface.co/blog/autoformer) by Hugging Face has shown that the embeddings learned in transformers are richer than linear models over covariate features. This means that the embeddings extracted from a time series transformer have the potential to describe and detect anomalies in time series data more effectively than traditional methods.
+
+### Knowledge graphs
+
+Graphs are connected data structures that can be used to represent the relationships between entities, and can be used to build a host of powerful applications that require access to factual information, such as recommender systems and question-answering engines. Just like NLP models can be used to generate vector embeddings for text, graph neural networks can be used to generate embeddings for the entities (nodes/edges) in a knowledge graph. [node2vec](https://arxiv.org/abs/1607.00653) and [GraphSAGE](https://arxiv.org/abs/1706.02216) are two popular methods to extract node embeddings from feature information and the overall graph structure.
+
+Nodes that are similar to one another in the graph are closer to one another in the node embedding space. This means that these embeddings can be used to perform similarity search on the graph, and can be used to answer questions like "what are the most similar nodes to this one?" or "what could be additional nodes linked to this one?". When combined with faster ways to store and query these vectors (such as those offered by vector databases), graph embeddings can be used to build powerful applications that consider both the semantics *and* structure the of underlying data.
 
 ## What is a vector database?
 
-A vector database is a purpose-built system designed to store and perform semantic (similarity) search at scale. The raw search is performed by comparing the query vector with the vectors stored in the database, and returning the top-k most similar ones.
+A vector database is a purpose-built system designed to store and perform semantic search at scale. The raw search is performed by comparing the query vector with the vectors stored in the database, and returning the top-k most similar ones.
 
-The figure below shows some of the key underlying components of a vector DB -- not all DB vendors may represent their internals this way, but the same principles generally apply.
+The figure below shows the key underlying components of a vector DB -- not all DB vendors may represent their internals this way, but the same principles generally apply.
 
 ![](../../assets/building_blocks/vector_search/vector-search-database.png)
 
@@ -79,7 +108,7 @@ What *makes* a vector DB? Why can't we just use a regular database and store vec
 - Replication and other reliability features
 - An accessible API that allows for efficient vector CRUD operations
 
-It's for these reasons that well-known open-source projects like [FAISS](https://github.com/facebookresearch/faiss), [SCANN](https://github.com/google-research/google-research/tree/master/scann) and [Hnswlib](https://github.com/nmslib/hnswlib) are considered vector search *libraries*, rather than full-fledged databases.
+It's for these reasons that well-known open-source projects like [FAISS](https://github.com/facebookresearch/faiss), [ScaNN](https://github.com/google-research/google-research/tree/master/scann) and [Hnswlib](https://github.com/nmslib/hnswlib) are **not** categorized as vector DBs -- they are vector search *libraries* that offer only a portion of the capabilities required to build production-grade solutions.
  
 ## Breakdown of the vector DB landscape
 
@@ -135,21 +164,21 @@ There is some debate on the distinction between a search engine and a vector DB,
 
 When designing a vector search system with cost, latency and quality in mind, aside from the choice of underlying database, it's important to keep the following points in mind.
 
-### Context length for embedding models
-
-Embedding models have a maximum context length, which is the maximum length of a sequence of tokens that can be embedded into a given vector (in [English](https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them), 100 tokens equal roughly 75 words). For many open-source embedding models, the maximum context length is in the range of 384 to 1024 tokens.
-
-Using an embedding model on long-form texts would mean that the entire text cannot be embedded into a single vector, and would need to be split into smaller chunks, or by using a windowing approach. Libraries like LangChain and LlamaIndex can help with this.
-
 ### Relevance ranking
 
 To improve search relevance when an exact match between keywords in the query and the results are required, several vector DBs and search engines offer hybrid search options that combine top-k scores from keyword and vector search. Research from [Google](https://arxiv.org/abs/2201.10582) shows that using Reciprocal Rank Fusion (RRF) to re-rank search results using a combination of keyword and vector search can improve search relevance by up to 20%.
 
 A more sophisticated method to improve relevance exist, such as re-ranking via [cross-encoders](https://www.sbert.net/examples/applications/cross-encoder/README.html). This approach uses a transformer-based model downstream of the vector DB that generates new scores for the top-k results returned by the DB. This approach is more computationally expensive, but can yield better results than RRF, at the expense of latency and added system complexity.
 
+### Fine-tuning embedding models to address bias
+
+Existing open source embedding models, whether in the image or text domain, can be biased towards certain concepts, or simply not model the distribution of unseen test data once their training is complete. For example, a model trained on a dataset of images of people may be biased towards certain skin tones, or a model trained on a dataset of text may be biased towards certain topics, which depends on the distribution of the training data. Additionally, embeddings from a model trained on a dataset of text from the web may not generalize well to text from a different domain, such as medical or legal text.
+
+In cases like where the semantics of the underlying domain are really important, it may be necessary to fine-tune the embedding model prior to using them to encode data for vector search. Many open source frameworks like [Hugging Face](https://huggingface.co/blog/how-to-train-sentence-transformers#how-to-train-or-fine-tune-a-sentence-transformer-model), enable this.
+
 ## Conclusions
 
-In this article, we covered the basics of vector search and how it's useful. A modern semantic search & retrieval system utilizes a number of specialized components, including embedding models, vector databases and re-ranking modules. We'll be going deeper into some of the components as well as interesting use-cases for vector search in other articles.
+Building a production-grade search and retrieval solution requires specialized components, including embedding models, vector databases and re-ranking modules. There are a lot of conflicting viewpoints out there on how to effectively combine these tools for real use cases. Hopefully, reading this post has made you excited to learn more about vector search for innovative use cases on *all* kinds of data in your organization.
 
 ---
 ## Contributors
