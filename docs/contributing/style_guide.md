@@ -7,7 +7,7 @@ VectorHub is a community-driven learning hub. Our style guide aims to help you s
 ## VectorHub's Ten Commandments
 
 ### 1 Give value to your readers
-#### Who are you writing for and what problem are you solving?
+#### Who are you writing for, and what problem are you solving?
 
 Ask yourself why your article is **valuable** to your readers.
 Set the context: identify your readers explicitly - say who your article is relevant to and why. What **problem** of theirs are you helping to **solve**?
@@ -26,13 +26,13 @@ Be minimal. Less is more. Use **adjectives** only when they add value.
 
 In general, write short sentences.
 
-Length: Articles must be **at least 800 but less than max 2500 words**.
+**Length**: Articles must be **at least 800 but less than max 2500 words**.
 
 Get the **substance** down **first**. Don't worry about making perfect sentences until after you've completed your article in **point form**. Fine-tuned, stylized prose can come later. First, make sure you've included everything that your article needs to make sense and convey value to your readers.
 
 Use common **abbreviations**.
 <br>e.g. "apps" instead of "applications"
-<br>Introduce unfamiliar abbreviations
+<br>Introduce unfamiliar abbreviations.
 <br>e.g. "RAG (Retrieval Augmented Generation)"
 
 Skip **periods** on headings and subheadings. Only use them in paragraphs and body text.
@@ -66,13 +66,14 @@ Choose specific action verbs over generic ones.
 
 
 ### 5 Be hierarchical
-#### Organize your content like a building, and show us the blueprint.
+#### Organize your content like a building, and show us the blueprint first.
 
 Add clear **headings** and **subheadings** that give information and an overview to your readers. This will enable readers to navigate to relevant sections and search engines to scan it.
 
 Give an overview of where you're going in your Introduction.
 
 Link (scroll-to-anchor) between concepts in your article (or to other articles on the platform) where it makes sense.
+
 
 ### 6 Cite all sources
 #### Give credit where credit is due. Always.
@@ -89,7 +90,7 @@ or [Feed Recommendation Illustration](https://superlinked.com), [Arunesh Singh](
 Source citations go underneath visual elements.
 <br>e.g.
 <figure>
-  <img src="https://github.com/superlinked/VectorHub/blob/main/docs/assets/building_blocks/data_sources/FIgure%201.%20Conceptual%20illustration%20of%20our%20approach.png" alt="Figure 1. Conceptual illustration of our approach, from Graph embeddings for movie visualization and recommendation. M. Vlachos, 2012, ResearchGate. https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ" width="400"><br>
+  <img src="https://github.com/superlinked/VectorHub/blob/main/docs/assets/building_blocks/data_sources/FIgure%201.%20Conceptual%20illustration%20of%20our%20approach.png" alt="Figure 1. Conceptual illustration of our approach, from Graph embeddings for movie visualization and recommendation. M. Vlachos, 2012, ResearchGate. https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ" width="400"/><br>
   <a href="https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ">Graph embeddings for movie visualization and recommendation.<br>Figure 1. Conceptual illustration. M. Vlachos, 2012, ResearchGate.</a>
   <br><br>
 </figure>
@@ -128,7 +129,7 @@ The VectorHub community is international and heterogeneous. Avoid words and phra
 
 Avoid **stereotypes** and **biases**.
 
-Use **gender neutral pronouns**
+Use **gender neutral pronouns**.
 <br>e.g. Instead of he/his/him or she/hers/her, use they/them/their.
 
 </section>
