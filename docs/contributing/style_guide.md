@@ -6,41 +6,8 @@ VectorHub is a community-driven learning hub. Our style guide, therefore, aims t
 
 ## VectorHub's Ten Commandments
 
-### [1 Give value to your readers](#section1)
-&#183; Who are you writing for and what problem are you solving?
-
-### [2 Be clear, substantive, and brief](#section2)
-&#183; Use simple language, short sentences, write only what's essential. 800-2500 words.
-
-### [3 Be visual](#section3)
-&#183; Save a thousand words. Use a picture. Represent your ideas visually whenever possible.
-
-### [4 Be conversational, friendly, and use action verbs](#section4)
-&#183; Write how you speak. Be personal. In an active voice.
-
-### [5 Be hierarchical](#section5)
-&#183; Organize your content like a building, and show us the blueprint.
-
-### [6 Cite all sources](#section6)
-&#183; Give credit where credit is due. Always.
-
-### [7 Edit and proofread](#section7)
-&#183; Nail down your logic. Step back, outline, and revise. 
-
-### [8 Technical terminology](#section8)
-&#183; It's an article about tech. Use relevant, familiar technical terms.
-
-### [9 Accessibility](#section9)
-&#183; Hierarchize and tag.
-
-### [10 Inclusive language](#section10)
-&#183; The VectorHub community is diverse. Be non-biased and gender neutral.
-
-
-
----
-### 1. Give value to your readers
-<section id="section1">
+### 1 Give value to your readers
+#### Who are you writing for and what problem are you solving?
 
 Ask yourself why your article is **valuable** to your readers.
 Set the context: identify your readers explicitly - say who your article is relevant to and why. What **problem** of theirs are you helping to **solve**?
@@ -49,11 +16,9 @@ Set the context: identify your readers explicitly - say who your article is rele
 
 Front load your first paragraph with **keywords**.
 
-</section>
 
----
-### 2. Be clear, substantive, and brief
-<section id="section2">
+### 2 Be clear, substantive, and brief
+#### Use simple language, short sentences, write only what's essential. 800-2500 words.
 
 Write clearly and concisely. Aim for [crisp minimalism](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice).
 Use simple language wherever possible; write like you speak.
@@ -61,8 +26,7 @@ Be minimal. Less is more. Use **adjectives** only when they add value.
 
 In general, write short sentences.
 
-#### LENGTH
-Articles must be **at least 800 but less than max 2500 words**.
+Length: Articles must be **at least 800 but less than max 2500 words**.
 
 Get the **substance** down **first**. Don't worry about making perfect sentences until after you've completed your article in **point form**. Fine-tuned, stylized prose can come later. First, make sure you've included everything that your article needs to make sense and convey value to your readers.
 
@@ -77,19 +41,15 @@ Use last (Oxford) **commas** for clarity.
 
 Don't add extra **spaces** anywhere. One space between sentences and words.
 
-</section>
 
----
-### 3. Be visual
-<section id="section3">
+### 3 Be visual
+#### Save a thousand words. Use a picture. Represent your ideas visually whenever possible.
 
 Text only goes so far. Complement your verbal descriptions with **diagrams**, **graphs**, **charts**, **code snippets**, **images** and any other visual tools that explain your work more efficiently.
 
-</section>
 
----
-### 4. Be conversational, friendly, and use action verbs
-<section id="section4">
+### 4 Be conversational, friendly, and use action verbs
+#### Write how you speak. Be personal. In an active voice.
 
 Write with a **friendly** tone. Call your audience "you" and yourselves "we."
 
@@ -104,11 +64,9 @@ Choose specific action verbs over generic ones.
 <br>e.g. Instead of: "We made changes to the code to improve performance."
 <br>Write this: "We optimized the code to boost performance."
 
-</section>
 
----
-### 5. Be hierarchical
-<section id="section5">
+### 5 Be hierarchical
+#### Organize your content like a building, and show us the blueprint.
 
 Add clear **headings** and **subheadings** that give information and an overview to your readers. This will enable readers to navigate to relevant sections and search engines to scan it.
 
@@ -116,14 +74,10 @@ Give an overview of where you're going in your Introduction.
 
 Link (scroll-to-anchor) between concepts in your article (or to other articles on the platform) where it makes sense.
 
-</section>
+### 6 Cite all sources
+#### Give credit where credit is due. Always.
 
----
-### 6. Cite all sources
-<section id="section6">
-
-#### PERMISSION 
-Make sure you have permission to reuse any images you include in your VectorHub article.
+Make sure you have **permission** to reuse any images you include in your VectorHub article.
 Cite your own modified versions of images owned by someone else as a "Modified version of" the original source.
 
 Cite sources for all graphics, images, direct quotations, and others' unique or patented ideas.
@@ -143,40 +97,32 @@ Source citations go underneath visual elements.
 Punctuate outside of links.
 <br>e.g. "We explain our approach in more depth [here](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice)."
 
-</section>
 
----
-### 7. Edit and proofread
-<section id="section7">
+### 7 Edit and proofread
+#### Nail down your logic. Step back, outline, and revise. 
 
 As early as possible (when your article is still in point form), go through it, summarize each paragraph in one (concise) sentence. Now, put all your summary sentences together and see if they tell a story. Is there a logical flow? If not, rearrange, remove, or add content until the article makes sense. In our experience, going through this exercise saves a lot of time and energy. It's also a good way of checking whether your headings and subheadings are accurate.
 
 Whenever possible, find an industry-specific reader.
 
-</section>
 
----
-### 8. Technical terminology
-<section id="section8">
+### 8 Technical terminology
+#### It's an article about tech. Use relevant, familiar technical terms.
 
 You're writing a technical article. Use technology-specific terminology. If you think the thing you're describing is unfamiliar to most readers, it probably is. Feel free to link to external resources that provide more in-depth explanations of terms you do not have space to explain in your article.
 In general, don't overcomplicate your text; communicate as simply and clearly as possible.
 
-</section>
 
----
-### 9. Accessibility
-<section id="section9">
+### 9 Accessibility
+#### Hierarchize and tag.
 
 Improve accessibility by creating headings and subheadings that are clear and accurately descriptive.
 
 Include alt text for all images and graphics.
 
-</section>
 
----
-### 10. Inclusive language
-<section id="section10">
+### 10 Inclusive language
+#### The VectorHub community is diverse. Be non-biased and gender neutral.
 
 The VectorHub community is international and heterogeneous. Avoid words and phrases with negative connotations. Err on the side of **caution** - if you think a term might be offensive, don't use it.
 
