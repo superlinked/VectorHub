@@ -1,23 +1,20 @@
-<!-- TODO: Replace this text with a summary of article for SEO -->
-
 # VectorHub Style Guide
 
 VectorHub is a community-driven learning hub. Our style guide aims to help you share your thinking and work. We care about grammar, but our priority is meaning. We want to generate productive conversation between community members. To this end, we've written ten "commandments" outlining some do's and don'ts. Please read them before you start writing your article.
 
 ## VectorHub's Ten Commandments
 
-### 1 Give value to your readers
+### 1. Give value to your readers
 #### Who are you writing for, and what problem are you solving?
 
 Ask yourself why your article is **valuable** to your readers.
 Set the context: identify your readers explicitly - say who your article is relevant to and why. What **problem** of theirs are you helping to **solve**?
-<br>Instead of this: "This latest software update is packed with helpful enhancements."
-<br>Write this: "Our November 15, 2023 update lets web developers optimize projects by developing faster with simplified coding."
+Instead of this: "This latest software update is packed with helpful enhancements."
+Write this: "Our November 15, 2023 update lets web developers optimize projects by developing faster with simplified coding."
 
 Front load your first paragraph with **keywords**.
 
-
-### 2 Be clear, substantive, and brief
+### 2. Be clear, substantive, and brief
 #### Use simple language, short sentences, write only what's essential. 800-2500 words.
 
 Write clearly and concisely. Aim for [crisp minimalism](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice).
@@ -31,41 +28,38 @@ In general, write short sentences.
 Get the **substance** down **first**. Don't worry about making perfect sentences until after you've completed your article in **point form**. Fine-tuned, stylized prose can come later. First, make sure you've included everything that your article needs to make sense and convey value to your readers.
 
 Use common **abbreviations**.
-<br>e.g. "apps" instead of "applications"
-<br>Introduce unfamiliar abbreviations.
-<br>e.g. "RAG (Retrieval Augmented Generation)"
+e.g. "apps" instead of "applications"
+Introduce unfamiliar abbreviations.
+e.g. "RAG (Retrieval Augmented Generation)"
 
 Skip **periods** on headings and subheadings. Only use them in paragraphs and body text.
 Use last (Oxford) **commas** for clarity.
-<br>e.g. "We are programmers, data analysts, and web designers."
+e.g. "We are programmers, data analysts, and web designers."
 
 Don't add extra **spaces** anywhere. One space between sentences and words.
 
-
-### 3 Be visual
+### 3. Be visual
 #### Save a thousand words. Use a picture. Represent your ideas visually whenever possible.
 
 Text only goes so far. Complement your verbal descriptions with **diagrams**, **graphs**, **charts**, **code snippets**, **images** and any other visual tools that explain your work more efficiently.
 
-
-### 4 Be conversational, friendly, and use action verbs
+### 4. Be conversational, friendly, and use action verbs
 #### Write how you speak. Be personal. In an active voice.
 
 Write with a **friendly** tone. Call your audience "you" and yourselves "we."
 
 Use **contractions**.
-<br>e.g. Instead of "We are," "it is," and "they are," use "We're," "it's", and "they're."
+e.g. Instead of "We are," "it is," and "they are," use "We're," "it's", and "they're."
 
 As much as possible, use an **active voice** to explain events and relationships.
-<br>e.g. Instead of: "Deep neural networks are used by GPT to learn contextual embeddings."
-<br>Write this: "GPT uses deep neural networks to learn contextual embeddings."
+e.g. Instead of: "Deep neural networks are used by GPT to learn contextual embeddings."
+Write this: "GPT uses deep neural networks to learn contextual embeddings."
 
 Choose specific action verbs over generic ones.
-<br>e.g. Instead of: "We made changes to the code to improve performance."
-<br>Write this: "We optimized the code to boost performance."
+e.g. Instead of: "We made changes to the code to improve performance."
+Write this: "We optimized the code to boost performance."
 
-
-### 5 Be hierarchical
+### 5. Be hierarchical
 #### Organize your content like a building, and show us the blueprint first.
 
 Add clear **headings** and **subheadings** that give information and an overview to your readers. This will enable readers to navigate to relevant sections and search engines to scan it.
@@ -74,8 +68,7 @@ Give an overview of where you're going in your Introduction.
 
 Link (scroll-to-anchor) between concepts in your article (or to other articles on the platform) where it makes sense.
 
-
-### 6 Cite all sources
+### 6. Cite all sources
 #### Give credit where credit is due. Always.
 
 Make sure you have **permission** to reuse any images you include in your VectorHub article.
@@ -84,45 +77,42 @@ Cite your own modified versions of images owned by someone else as a "Modified v
 Cite sources for all graphics, images, direct quotations, and others' unique or patented ideas.
 
 You should cite visual elements as follows: [Title], [Author/Photographer/Artist], [Year], [Source].
-<br>Provide a hyperlink for the Title or whole citation, pointing to the visual element source. Optionally, you can include separate hyperlinks for Title, Author, and Source.<br>e.g. [Feed Recommendation Illustration, Arunesh Singh, 2023, superlinked.com.](https://superlinked.com)<br>
+Provide a hyperlink for the Title or whole citation, pointing to the visual element source. Optionally, you can include separate hyperlinks for Title, Author, and Source.
+e.g. [Feed Recommendation Illustration, Arunesh Singh, 2023, superlinked.com.](https://superlinked.com)
+
 or [Feed Recommendation Illustration](https://superlinked.com), [Arunesh Singh](https://www.linkedin.com/in/aruneshsingh99/), 2023, [superlinked.com](https://superlinked.com).
 
 Source citations go underneath visual elements.
-<br>e.g.
-<figure>
-  <img src="https://github.com/superlinked/VectorHub/blob/main/docs/assets/building_blocks/data_sources/FIgure%201.%20Conceptual%20illustration%20of%20our%20approach.png" alt="Figure 1. Conceptual illustration of our approach, from Graph embeddings for movie visualization and recommendation. M. Vlachos, 2012, ResearchGate. https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ" width="400"/>
-  <a href="https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ">Graph embeddings for movie visualization and recommendation.<br>Figure 1. Conceptual illustration. M. Vlachos, 2012, ResearchGate.</a>
-  <br><br>
-</figure>
+e.g.
+
+![Figure 1. Conceptual illustration of our approach, from Graph embeddings for movie visualization and recommendation. M. Vlachos, 2012, ResearchGate. https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ](assets/misc/Figure1-Conceptual_illustration_of_our_approach.png)
+
+[Graph embeddings for movie visualization and recommendation. Figure 1. Conceptual illustration. M. Vlachos, 2012, ResearchGate.](https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ)
 
 Punctuate outside of links.
-<br>e.g. "We explain our approach in more depth [here](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice)."
+e.g. "We explain our approach in more depth [here](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice)."
 
-
-### 7 Edit and proofread
+### 7. Edit and proofread
 #### Nail down your logic. Step back, outline, and revise. 
 
 As early as possible (when your article is still in point form), go through it, summarize each paragraph in one (concise) sentence. Now, put all your summary sentences together and see if they tell a story. Is there a logical flow? If not, rearrange, remove, or add content until the article makes sense. In our experience, going through this exercise saves a lot of time and energy. It's also a good way of checking whether your headings and subheadings are accurate.
 
 Whenever possible, find an industry-specific reader.
 
-
-### 8 Technical terminology
+### 8. Technical terminology
 #### It's an article about tech. Use relevant, familiar technical terms.
 
 You're writing a technical article. Use technology-specific terminology. If you think the thing you're describing is unfamiliar to most readers, it probably is. Feel free to link to external resources that provide more in-depth explanations of terms you do not have space to explain in your article.
 In general, don't overcomplicate your text; communicate as simply and clearly as possible.
 
-
-### 9 Accessibility
+### 9. Accessibility
 #### Hierarchize and tag.
 
 Improve accessibility by creating headings and subheadings that are clear and accurately descriptive.
 
 Include alt text for all images and graphics.
 
-
-### 10 Inclusive language
+### 10. Inclusive language
 #### The VectorHub community is diverse. Be non-biased and gender neutral.
 
 The VectorHub community is international and heterogeneous. Avoid words and phrases with negative connotations. Err on the side of **caution** - if you think a term might be offensive, don't use it.
@@ -130,10 +120,7 @@ The VectorHub community is international and heterogeneous. Avoid words and phra
 Avoid **stereotypes** and **biases**.
 
 Use **gender neutral pronouns**.
-<br>e.g. Instead of he/his/him or she/hers/her, use they/them/their.
-
-</section>
-
+e.g. Instead of he/his/him or she/hers/her, use they/them/their.
 
 ---
 ### Contributors
