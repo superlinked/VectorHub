@@ -4,13 +4,13 @@ title: Home
 
 # Let's learn about Vectors!
 
-VectorHub is a community-driven learning hub for people interested in adding vector retrieval to their ML stack to help them -
+VectorHub is a community-driven learning hub for people interested in adding vector retrieval to their ML stack. On VectorHub you can -
 
 * Explore easy to follow learning materials to create MVPs
 
 * Solve use case specific challenges in vector retrieval
 
-* Get confident in taking their MVPs to production and making them actually useful
+* Get confident in taking MVPs to production and making them actually useful
 
 * Learn about vendors in the space and select the ones that fit their use-case
 
