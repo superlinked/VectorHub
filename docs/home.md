@@ -16,20 +16,20 @@ Read more about our philosophy in our [Manifesto](manifesto.md).
 ## Building Blocks
 
 ::::link-array
-:::link-array-item{headerType="IMAGE" headerImage="assets/misc/home_data_sources.png"}
-**1. Data Sources**
+:::link-array-item{headerType="IMAGE" headerImage="https://github.com/superlinked/VectorHub/blob/main/docs/assets/misc/home_data_sources.png"}
+[**1. Data Sources**](building_blocks/data_sources/readme.md)
 
 Connecting and extracting data from multiple sources
 :::
 
-:::link-array-item{headerType="IMAGE" headerImage="assets/misc/home_vector_compute.png"}
-**2. Vector Compute**
+:::link-array-item{headerType="IMAGE" headerImage="https://github.com/superlinked/VectorHub/blob/main/docs/assets/misc/home_vector_compute.png"}
+[**2. Vector Compute**](building_blocks/vector_compute/readme.md)
 
 Turn your data into vector by running pipelines and models
 :::
 
-:::link-array-item{headerType="IMAGE" headerImage="assets/misc/home_vector_search.png"}
-**3. Vector Search**
+:::link-array-item{headerType="IMAGE" headerImage="https://github.com/superlinked/VectorHub/blob/main/docs/assets/misc/home_vector_search.png"}
+[**3. Vector Search**](building_blocks/vector_search/readme.md)
 
 Query and retrieve vectors for your use -case
 :::
