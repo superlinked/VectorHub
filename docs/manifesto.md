@@ -2,7 +2,7 @@
 
 # Manifesto
 
-To make sure we can stay active and engaged, we've decided to follow these guiding principles in our commitment to VectorHub:
+To make sure we can stay active and engaged, we've decided to follow these guiding principles for VectorHub. These principles are designed to both guide and highlight our commitment to creating a practical, high quality resource for developers to use to both experiment with and launch products using vector retrieval. 
 
 ## Practicality
 
@@ -31,3 +31,14 @@ We don’t want to make content /*just/* about LLMs or “build a chatgpt for yo
 :::hint{type="info"}
 [Use cases](use_cases/readme.md) is a dedicated space for the myriad ways in which vector retrieval is used.
 :::
+
+## Together we're better
+
+We're here to learn and support each other as this space develops. This is a safe space and there are no stupid questions. Submit your feedback using the feedback button at the bottom of each page or email support@superlinked.com with the subject line "VectorHub feedback". The more we ask, test and experiment, the better we become
+
+## Spread the word!
+
+See something you like? Or hear something interesting? Tell people and share with the hashtag #vectorhub
+
+
+
