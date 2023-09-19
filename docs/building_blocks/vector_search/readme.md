@@ -120,11 +120,11 @@ Broadly speaking, vector DBs can be broken down into three categories:
 - **Hybrid**: Existing DBs that have added vector search capabilities
 - **Search engines**: Systems that natively support search and relevance ranking on unstructured data via an underlying index
 
-Although there is a strong overlap in capabilities across these categories, search engines are kept in their own category because they're typically not used as the primary database or for storing raw data. They're often used to index data that's already present in other databases or data lakes.
+Although there is a strong overlap in capabilities across these categories, search engines are kept in their own category because they're typically not used as the primary database or for storing raw data. They're often used to index data that's already present in other databases or data lakes.<!--I think you mean "databases, or "data lakes"" rather than "databases or data lakes" as two separate entities?-->
 
 ::::tabs
 :::tab{title="Vector-native DBs"}
-| Name | Built in | Open-source | Managed cloud | Self-hosting |
+| Name | Built-in | Open-source | Managed cloud | Self-hosting |
 | ---------- | :-: | :-: | :-: | :-: |
 | Weaviate | Go | ✅ | ✅ | ✅ |
 | Qdrant | Rust | ✅ | ✅ | ✅ |
@@ -139,7 +139,7 @@ Although there is a strong overlap in capabilities across these categories, sear
 :::
 
 :::tab{title="Hybrid DBs"}
-| Name | Built in | Open-source | Managed cloud | Self-hosting |
+| Name | Built-in | Open-source | Managed cloud | Self-hosting |
 | ---------- | :-: | :-: | :-: | :-: |
 | Redis | C | ✅ | ✅ | ✅ |
 | Postgres (pgvector) | C++ | ✅ | ❌ | ✅ |
@@ -160,27 +160,27 @@ Although there is a strong overlap in capabilities across these categories, sear
 :::
 ::::
 
-There is some debate on the distinction between a search engine and a vector DB, but in general, a lot of these tools offer variations of the same functionality -- the ability to store and query vectors at scale.
+There is some debate on the distinction between a search engine and a vector DB, but, in general, a lot of these tools<!--a lot od specifically search engines and vector DBs... or a lot of all of the above - search engines, vector DBs, and hyrbid DBs?--> offer variations of the same functionality -- the ability to store and query vectors at scale.
 
 ## Additional considerations
 
-When designing a vector search system with cost, latency and quality in mind, aside from the choice of underlying database, it's important to keep the following points in mind.
+When designing a vector search system with cost, latency, and quality in mind, aside from the choice of underlying database, it's important to keep the following points in mind.<!--important why? Try to be specific and explicit.-->
 
 ### Relevance ranking
 
 To improve search relevance when an exact match between keywords in the query and the results are required, several vector DBs and search engines offer hybrid search options that combine top-k scores from keyword and vector search. Research from [Google](https://arxiv.org/abs/2201.10582) shows that using Reciprocal Rank Fusion (RRF) to re-rank search results using a combination of keyword and vector search can improve search relevance by up to 20%.
 
-A more sophisticated method to improve relevance exist, such as re-ranking via [cross-encoders](https://www.sbert.net/examples/applications/cross-encoder/README.html). This approach uses a transformer-based model downstream of the vector DB that generates new scores for the top-k results returned by the DB. This approach is more computationally expensive, but can yield better results than RRF, at the expense of latency and added system complexity.
+More sophisticated methods to improve relevance exist, such as re-ranking via [cross-encoders](https://www.sbert.net/examples/applications/cross-encoder/README.html). This approach uses a transformer-based model downstream of the vector DB that generates new scores for the top-k results returned by the DB. This approach is more computationally expensive but can yield better results than RRF, at the expense of latency and added system complexity.
 
 ### Fine-tuning embedding models to address bias
 
-Existing open source embedding models, whether in the image or text domain, can be biased towards certain concepts, or simply not model the distribution of unseen test data once their training is complete. For example, a model trained on a dataset of images of people may be biased towards certain skin tones, or a model trained on a dataset of text may be biased towards certain topics, which depends on the distribution of the training data. Additionally, embeddings from a model trained on a dataset of text from the web may not generalize well to text from a different domain, such as medical or legal text.
+Existing open source embedding models, whether in the image or text domain, can be biased towards certain concepts, or simply not model the distribution of unseen test data once their training is complete. For example, a model trained on a dataset of images of people may be biased towards certain skin tones, or a model trained on a dataset of text may be biased towards certain topics, depending on the distribution of the training data. Additionally, embeddings from a model trained on a dataset of text from the web may not generalize well to text from a different domain, such as medical or legal text.
 
-In cases like where the semantics of the underlying domain are really important, it may be necessary to fine-tune the embedding model prior to using them to encode data for vector search. Many open source frameworks like [Hugging Face](https://huggingface.co/blog/how-to-train-sentence-transformers#how-to-train-or-fine-tune-a-sentence-transformer-model), enable this.
+In cases like where the semantics of the underlying domain are really important<!--e.g.?-->, it may be necessary to fine-tune the embedding model prior to using it to encode data for vector search. Many open source frameworks like [Hugging Face](https://huggingface.co/blog/how-to-train-sentence-transformers#how-to-train-or-fine-tune-a-sentence-transformer-model) enable this.
 
 ## Conclusions
-
-Building a production-grade search and retrieval solution requires specialized components, including embedding models, vector databases and re-ranking modules. There are a lot of conflicting viewpoints out there on how to effectively combine these tools for real use cases. Hopefully, reading this post has made you excited to learn more about vector search for innovative use cases on *all* kinds of data in your organization.
+<!--can you summarize your article more? The first sentence is the only one that summarizes points made above-->
+Building a production-grade search and retrieval solution requires specialized components, including embedding models, vector databases, and re-ranking modules. There are a lot of conflicting viewpoints out there on how to effectively combine these tools for real use cases<!--very vague, and not discussed above; if this is a main point of the article, it should be surfaced in the introduction-->. Hopefully, reading this post has made you excited to learn more about vector search for innovative use cases on *all* kinds of data in your organization<!--good to personalize, but you do not address the reader much above in the body of the article-->.
 
 ---
 ## Contributors
