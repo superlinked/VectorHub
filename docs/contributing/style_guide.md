@@ -125,4 +125,4 @@ e.g. Instead of he/his/him or she/hers/her, use they/them/their.
 ---
 ### Contributors
 
-- [Robert Turner](robertturner.co/copyedit)
+- [Robert Turner](https://www.robertturner.co/copyedit)
