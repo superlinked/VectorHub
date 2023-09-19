@@ -2,7 +2,7 @@
 
 # Manifesto
 
-To make sure we can stay active and engaged, we've decided to follow these guiding principles for VectorHub. These principles are designed to both guide and highlight our commitment to creating a quality resource for developers to use practically to both experiment with and launch products using vector retrieval. 
+To make sure we can stay active and engaged, we've decided to follow these guiding principles for VectorHub. These principles are designed to both guide and highlight our commitment to creating a practical, high quality resource for developers to use to both experiment with and launch products using vector retrieval. 
 
 ## Practicality
 
