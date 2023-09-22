@@ -14,7 +14,7 @@
   - [Clustering & Anomaly Detection](use_cases/clustering_&_anomaly_detection.md)
   - [Cybersecurity](use_cases/cybersecurity.md)
 
-- [Tools](tools/readme.md)
+- [Toolbox](tools/readme.md)
 
 - [Contributing](contributing/readme.md)
   - [Markdown Formatting](contributing/markdown_formatting.md)
