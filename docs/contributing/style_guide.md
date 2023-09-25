@@ -76,7 +76,7 @@ Cite your own modified versions of images owned by someone else as a "Modified v
 
 Cite sources for all graphics, images, direct quotations, and others' unique or patented ideas.
 
-You should cite visual elements as follows: [Title], [Author/Photographer/Artist], [Year], [Source].
+You should cite visual elements (i.e., figures) as follows: [Title], [Author/Photographer/Artist], [Year], [Source].
 Provide a hyperlink for the whole citation, pointing to the visual element source. 
 e.g. [Feed Recommendation Illustration, Arunesh Singh, 2023, superlinked.com.](https://superlinked.com)
 
