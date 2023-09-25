@@ -2,9 +2,9 @@
 
 # VectorHub
 
-VectorHub is a community-driven learning hub for people interested in adding vector retrieval to their ML stack to help them -
+VectorHub is a free and open-sourced learning hub for people interested in adding vector retrieval to their ML stack. On VectorHub you will find practical resources to help you -
 
-* Explore easy to follow learning materials to create MVPs
+* Create MVPs with easy-to-follow learning materials
 
 * Solve use case specific challenges in vector retrieval
 
