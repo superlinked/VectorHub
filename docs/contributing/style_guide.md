@@ -77,17 +77,16 @@ Cite your own modified versions of images owned by someone else as a "Modified v
 Cite sources for all graphics, images, direct quotations, and others' unique or patented ideas.
 
 You should cite visual elements as follows: [Title], [Author/Photographer/Artist], [Year], [Source].
-Provide a hyperlink for the Title or whole citation, pointing to the visual element source. Optionally, you can include separate hyperlinks for Title, Author, and Source.
+Provide a hyperlink for the whole citation, pointing to the visual element source. 
 e.g. [Feed Recommendation Illustration, Arunesh Singh, 2023, superlinked.com.](https://superlinked.com)
-
-or [Feed Recommendation Illustration](https://superlinked.com), [Arunesh Singh](https://www.linkedin.com/in/aruneshsingh99/), 2023, [superlinked.com](https://superlinked.com).
 
 Source citations go underneath visual elements.
 e.g.
 
 ![Figure 1. Conceptual illustration of our approach, from Graph embeddings for movie visualization and recommendation. M. Vlachos, 2012, ResearchGate. https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ](assets/misc/Figure1-Conceptual_illustration_of_our_approach.png)
 
-[Graph embeddings for movie visualization and recommendation. Figure 1. Conceptual illustration. M. Vlachos, 2012, ResearchGate.](https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ)
+[Graph embeddings for movie visualization and recommendation.
+Figure 1. Conceptual illustration. M. Vlachos, 2012, ResearchGate.](https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ)
 
 Punctuate outside of links.
 e.g. "We explain our approach in more depth [here](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice)."
