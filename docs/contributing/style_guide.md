@@ -5,7 +5,10 @@ VectorHub is a community-driven learning hub. Our style guide aims to help you s
 ## VectorHub's Ten Commandments
 
 ### 1. Give value to your readers
-#### Who are you writing for, and what problem are you solving?
+
+:::hint
+Who are you writing for, and what problem are you solving?
+:::
 
 Ask yourself why your article is **valuable** to your readers.
 Set the context: identify your readers explicitly - say who your article is relevant to and why. What **problem** of theirs are you helping to **solve**?
@@ -15,7 +18,10 @@ Write this: "Our November 15, 2023 update lets web developers optimize projects 
 Front load your first paragraph with **keywords**.
 
 ### 2. Be clear, substantive, and brief
-#### Use simple language, short sentences, write only what's essential. 800-2500 words.
+
+:::hint
+Use simple language, short sentences, write only what's essential. 800-2500 words.
+:::
 
 Write clearly and concisely. Aim for [crisp minimalism](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice).
 Use simple language wherever possible; write like you speak.
@@ -39,12 +45,18 @@ e.g. "We are programmers, data analysts, and web designers."
 Don't add extra **spaces** anywhere. One space between sentences and words.
 
 ### 3. Be visual
-#### Save a thousand words. Use a picture. Represent your ideas visually whenever possible.
+
+:::hint
+Save a thousand words. Use a picture. Represent your ideas visually whenever possible.
+:::
 
 Text only goes so far. Complement your verbal descriptions with **diagrams**, **graphs**, **charts**, **code snippets**, **images** and any other visual tools that explain your work more efficiently.
 
 ### 4. Be conversational, friendly, and use action verbs
-#### Write how you speak. Be personal. In an active voice.
+
+:::hint
+Write how you speak. Be personal. In an active voice.
+:::
 
 Write with a **friendly** tone. Call your audience "you" and yourselves "we."
 
@@ -60,7 +72,10 @@ e.g. Instead of: "We made changes to the code to improve performance."
 Write this: "We optimized the code to boost performance."
 
 ### 5. Be hierarchical
-#### Organize your content like a building, and show us the blueprint first.
+
+:::hint
+Organize your content like a building, and show us the blueprint first.
+:::
 
 Add clear **headings** and **subheadings** that give information and an overview to your readers. This will enable readers to navigate to relevant sections and search engines to scan it.
 
@@ -69,7 +84,10 @@ Give an overview of where you're going in your Introduction.
 Link (scroll-to-anchor) between concepts in your article (or to other articles on the platform) where it makes sense.
 
 ### 6. Cite all sources
-#### Give credit where credit is due. Always.
+
+:::hint
+Give credit where credit is due. Always.
+:::
 
 Make sure you have **permission** to reuse any images you include in your VectorHub article.
 Cite your own modified versions of images owned by someone else as a "Modified version of" the original source.
@@ -92,27 +110,39 @@ Punctuate outside of links.
 e.g. "We explain our approach in more depth [here](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice)."
 
 ### 7. Edit and proofread
-#### Nail down your logic. Step back, outline, and revise. 
+
+:::hint
+Nail down your logic. Step back, outline, and revise.
+:::
 
 As early as possible (when your article is still in point form), go through it, summarize each paragraph in one (concise) sentence. Now, put all your summary sentences together and see if they tell a story. Is there a logical flow? If not, rearrange, remove, or add content until the article makes sense. In our experience, going through this exercise saves a lot of time and energy. It's also a good way of checking whether your headings and subheadings are accurate.
 
 Whenever possible, find an industry-specific reader.
 
 ### 8. Technical terminology
-#### It's an article about tech. Use relevant, familiar technical terms.
+
+:::hint
+It's an article about tech. Use relevant, familiar technical terms.
+:::
 
 You're writing a technical article. Use technology-specific terminology. If you think the thing you're describing is unfamiliar to most readers, it probably is. Feel free to link to external resources that provide more in-depth explanations of terms you do not have space to explain in your article.
 In general, don't overcomplicate your text; communicate as simply and clearly as possible.
 
 ### 9. Accessibility
-#### Hierarchize and tag.
+
+:::hint
+Hierarchize and tag.
+:::
 
 Improve accessibility by creating headings and subheadings that are clear and accurately descriptive.
 
 Include alt text for all images and graphics.
 
 ### 10. Inclusive language
-#### The VectorHub community is diverse. Be non-biased and gender neutral.
+
+:::hint
+The VectorHub community is diverse. Be non-biased and gender neutral.
+:::
 
 The VectorHub community is international and heterogeneous. Avoid words and phrases with negative connotations. Err on the side of **caution** - if you think a term might be offensive, don't use it.
 
