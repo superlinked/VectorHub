@@ -4,25 +4,11 @@
 
 ![](../../assets/building_blocks/vector_search/vector-search-cover-sketch.png)
 
-## The exponential growth of data
+Search systems that can retrieve information from structured and unstructured text data have been around since the [1970s](https://en.wikipedia.org/wiki/IBM_STAIRS). In the early days of the web, keyword-based search engine libraries like Lucene used inverted indexes to improve search relevance and speed when querying large collections of data. Inverted indexes are data structures that map keyword frequencies relative to the documents in which they appear. Because these methods search on the entire collection of texts at once, they're referred to as *full-text* search.
 
-It's no secret that most organizations worldwide are experiencing an exponential growth in the amount of data they generate and store. In 2021, there [already existed](https://firstsiteguide.com/big-data-stats/) around 79 zettabytes (79 billion terabytes) of data worldwide, and, according to [IDC](https://www.idc.com/getdoc.jsp?containerId=US50397723) the total amount of data, both structured and unstructured, is expected to grow to well over 175 zettabytes (175 billion terabytes) by 2027. 🤯
+More recently, since the advent of deep learning models, search systems have evolved to capture the semantics of the underlying data. This is the basis of *vector* search, which is typically done by converting the data into a numerical representations that can be queried at scale.
 
-Modern machine learning models (e.g., transformers) have made it possible to derive insights from unstructured data, but we must not forget the fact that majority of the world's data is structured, and that the two forms of data are not mutually exclusive. In fact, the most interesting insights are often derived from combining structured and unstructured data.
-
-Vector search is a powerful method to search and retrieve information from *both* structured and unstructured data at scale.
-
-## The early days of search
-
-Search systems that can retrieve information from unstructured text data have been around since the [1970s](https://en.wikipedia.org/wiki/IBM_STAIRS). In the early days of the web, keyword-based search engine libraries like Lucene began using inverted indexes to improve search relevance and speed when querying large collections of data. Inverted indexes are data structures that map keyword frequencies relative to the documents in which they appear. Because these methods search on the entire collection of texts at once, they're referred to as *full-text* search.
-
-The limitation of full-text search is that it retrieves only those results that have at least a partial match with keywords in the query. Although techniques like phrase search, proximity search or fuzzy search can be used to improve relevance, it's still not very effective when the user query consists of synonyms or semantically similar terms. For example, a search for "car" will not return documents that contain the word "automobile", even though that's what the user might have wanted.
-
-Another limitation of full-text search is that it can't handle structured data (tabular data), non-textual data (images or audio) or multi-modal data (images or audio with descriptions). For example, a user searching for a product on an e-commerce website or music app may want to find similar items based on their image/audio source and descriptions. Simply searching for keywords in the description may not yield relevant results. Another example is querying one's email history to retrieve information on past flight bookings -- this involves a combination of text, numbers, and dates, and requires a more sophisticated search system than one that simply matches on keywords.
-
-## Introducing vector search
-
-Vector search leverages machine learning models to consider the semantics (i.e., the meaning) of the underlying data when performing search. This is done by converting the data into a numerical representation, termed a vector.
+## What are vectors?
 
 In computer science, a vector is a one-dimensional array of numbers (typically floating point numbers).
 
@@ -92,7 +78,7 @@ Nodes that are similar to one another in the graph are closer to one another in 
 
 ## What is a vector database?
 
-A vector database is a purpose-built system designed to store and perform semantic search at scale. The raw search is performed by comparing the query vector with the vectors stored in the database, and returning the top-k most similar ones.
+A vector database is a purpose-built system designed to manage and query vector embeddings at scale. It is able to perform vector (semantic) search and retrieval by comparing the query vector with those stored in the database, returning the top-k most similar ones.
 
 The figure below shows the key underlying components of a vector DB -- not all DB vendors may represent their internals this way, but the same principles generally apply.
 
@@ -134,6 +120,7 @@ Although there is a strong overlap in capabilities across these categories, sear
 | Pinecone | Rust | ❌ | ✅ | ❌ |
 | MyScale | C++ | ❌ | ✅ | ❌ |
 | AstraDB | Java | ❌ | ✅ | ❌ |
+| Timescale | Rust | ❌ | ✅ | ❌ |
 :::
 
 :::tab{title="Hybrid DBs"}
@@ -158,17 +145,39 @@ Although there is a strong overlap in capabilities across these categories, sear
 :::
 ::::
 
-There is some debate on the distinction between a search engine and a vector DB, but in general, a lot of these tools offer variations of the same functionality -- the ability to store and query vectors at scale.
+There is some debate on the distinction between a search engine and a vector DB, but in general, a lot of these tools offer variations of the same functionality -- the ability to manage and query vectors at scale.
 
-## Additional considerations
+## Important considerations
 
-When designing a vector search system with cost, latency and quality in mind, aside from the choice of underlying database, it's important to keep the following points in mind.
+In choosing a vector search solution for the optimal combination of cost, latency and quality, it's important to keep in mind the following factors.
 
-### Relevance ranking
+### Performance
+
+The performance of a vector search solution can be defined in many ways, but the most important metrics are:
+
+* QPS (queries per second)
+* Latency
+* Recall (the fraction of relevant results returned)
+* Indexing time
+
+The [`ann-benchmarks`](https://github.com/erikbern/ann-benchmarks) repo was among the first to offer a standardized test bench for benchmarking vector search solutions. However, a lot of the tasks in this benchmark are simplistic and not representative of real-world datasets, and as such, it's recommended to test your own data on at least a few of the solutions you're considering.
+
+In general, most modern vector DBs are expected to handle throughputs of hundreds of QPS, with latencies of under 100 ms per query, while also scaling to be able to serve many concurrent requests. Depending on the nature of the underlying index, the QPS generally increases as compression/quantization levels are increased, with a corresponding loss of recall as well.
+
+### Scalability for a given cost
+
+The scalability of a vector database depends not only on the throughput it can handle for a given amount of compute -- it also depends on how cost-effective the solution is for the given level of performance.
+
+Obtaining exact cost estimates for the many solutions out there is challenging because the field evolves so rapidly, but in this section, we attempt to highlight some factors that can define what "scalability" means for a given cost budget.
+
+> TODO: Need to add some details on monthly cost for the number of queries processed here.
+
+
+### Hybrid search and re-ranking
 
 To improve search relevance when an exact match between keywords in the query and the results are required, several vector DBs and search engines offer hybrid search options that combine top-k scores from keyword and vector search. Research from [Google](https://arxiv.org/abs/2201.10582) shows that using Reciprocal Rank Fusion (RRF) to re-rank search results using a combination of keyword and vector search can improve search relevance by up to 20%.
 
-A more sophisticated method to improve relevance exist, such as re-ranking via [cross-encoders](https://www.sbert.net/examples/applications/cross-encoder/README.html). This approach uses a transformer-based model downstream of the vector DB that generates new scores for the top-k results returned by the DB. This approach is more computationally expensive, but can yield better results than RRF, at the expense of latency and added system complexity.
+More sophisticated methods to improve relevance exist, such as re-ranking via [cross-encoders](https://www.sbert.net/examples/applications/cross-encoder/README.html). This approach uses a transformer-based model downstream of the vector DB that generates new scores for the top-k results returned by the DB. This approach is more computationally expensive, but can yield better results than RRF, at the expense of latency and added system complexity.
 
 ### Fine-tuning embedding models to address bias
 
@@ -178,9 +187,9 @@ In cases like where the semantics of the underlying domain are really important,
 
 ## Conclusions
 
-Building a production-grade search and retrieval solution requires specialized components, including embedding models, vector databases and re-ranking modules. There are a lot of conflicting viewpoints out there on how to effectively combine these tools for real use cases. Hopefully, reading this post has made you excited to learn more about vector search for innovative use cases on *all* kinds of data in your organization.
+Building a production-grade search and retrieval solution requires specialized components, including embedding models, vector databases and re-ranking modules. There are a lot of conflicting viewpoints out there on how to effectively combine these tools for real use cases. Hopefully, reading this post has made you excited to learn more about vector search for innovative use cases on all kinds of data in your organization.
 
 ---
 ## Contributors
 
-- [Prashanth Rao](https://twitter.com/tech_optimist)
+- [Prashanth Rao](https://www.linkedin.com/in/prrao87/)
