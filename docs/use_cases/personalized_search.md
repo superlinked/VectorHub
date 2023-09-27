@@ -2,17 +2,19 @@
 
 ## Introduction
 
-Imagine a world where your online searches return results that truly understand your needs. A world where you don't have to know the exact words to find what you're looking for. This isn't a distant future; it's happening now, with personalized search using vector embeddings. Companies like Pinterest, Spotify, eBay, Airbnb, and Doordash have integrated vector search into their platforms, seeing significant improvements in user experience and engagement, leading to higher conversion rates and customer satisfaction. So, what's the secret behind this powerful tool? Let's dive in.
+Imagine a world where your online searches return results that truly understand your needs. A world where you don't have to know the exact words to find what you're looking for. This isn't a distant future; it's happening now, with personalized search using vector embeddings. Companies like Pinterest, Spotify, eBay, Airbnb, and Doordash have integrated vector search into their platforms, seeing significant improvements in user experience and engagement, leading to higher conversion rates and customer satisfaction.
+
+A notable example is Spotify, which utilized vector embeddings to enhance its music recommendation system. When evaluated on a large-scale dataset, the use of vector embeddings led to a performance improvement of upwards of 10% in session and track recommendation tasks, showcasing a significant boost in user engagement and satisfaction on the platform [(Hansen et al., 2020)](https://doi.org/10.1145/3383313.3412248). So, what's the secret behind this powerful tool? Let's dive in.
 
 ## Why are there limits to traditional search methods?
 
-In this digital age, organizations across the globe are grappling with an exponential surge in data. By 2027, the world is projected to have over 175 zettabytes of data. This data, both structured and unstructured, is a treasure trove of insights waiting to be unlocked. The key to this treasure chest? Personalized search using vector embeddings.
+In this digital age, organizations across the globe are grappling with an exponential surge in data. By 2025, the world is projected to have over 175 zettabytes of data, [source](https://www.forbes.com/sites/tomcoughlin/2018/11/27/175-zettabytes-by-2025). This data, both structured and unstructured, is a treasure trove of insights waiting to be unlocked. The key to this treasure chest? Personalized search using vector embeddings.
 
 ## What is a vector embedding?
 
 Vector embeddings are revolutionizing the way we search and retrieve information. They work by converting data into a numerical representation, known as a vector. This process allows the search system to consider the semantics, or the underlying meaning, of the data when performing a search.
 
-![Illustration of vector embeddings](embeddings.png)
+![Illustration of vector embeddings](../assets/use_cases/personalized_search/embeddings.png)
 
 For instance, consider a user searching for a book on an online store. With traditional keyword-based search, the user would need to know the exact title or author's name. But with vector embeddings, the user could simply describe the book's theme or plot, and the search system would retrieve relevant results. This is because vector embeddings understand the 'meaning' of the query, rather than just matching keywords.
 
@@ -56,7 +58,7 @@ The use of vector embeddings in personalized search has opened up a plethora of 
 
 - **Content Discovery**: For media and entertainment companies, personalized search can enhance content discovery by providing more contextually relevant results. For instance, a news website can use vector embeddings to recommend articles that are contextually relevant to the user's reading history.
 
-![Use cases of personalized search with vector embeddings](vector_space.png)
+![Use cases of personalized search with vector embeddings](../assets/use_cases/personalized_search/vector_space.png)
 
 ## Conclusions and next steps 😊
 
