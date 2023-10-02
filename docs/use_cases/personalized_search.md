@@ -46,17 +46,36 @@ Using a vector database, which is a system designed to store and perform semanti
 
 ## How can I use this for personalized search?
 
-The use of vector embeddings in personalized search has opened up a plethora of exciting use cases. Let's explore a few:
+Before diving into various applications, let's illustrate how we might personalize a query using a simple code snippet:
 
-- **Symmetric Search**: This works well when we are trying to find new texts based on similarity to a text we already have. For instance, if you enjoyed a particular book and want to find similar ones, a symmetric search can help you discover new books that share similar themes or writing styles.
+```python
+from transformers import BertTokenizer, BertModel
+import torch
 
-- **Asymmetric Search**: This is optimized to maximize similarity between two texts that are heterogeneous in form. This could be particularly useful in a customer support scenario, where a customer's query (short, informal text) needs to be matched with relevant knowledge base articles (long, formal text).
+# Initialize an open-source embedding models
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+model = BertModel.from_pretrained('bert-base-uncased')
 
-- **Personalized Recommendations**: By understanding the semantic similarity between different items, personalized search can provide more accurate and relevant recommendations. For instance, a music streaming service can use vector embeddings to understand the semantic similarity between different songs and recommend new songs that match the user's taste.
+# Embed search queries
+def embed_query(query):
+    inputs = tokenizer(query, return_tensors='pt', truncation=True, padding=True, max_length=32)
+    outputs = model(**inputs)
+    return ... # return output from last layer
 
-- **Customer Support**: Personalized search can help customer support teams quickly find relevant information to resolve customer queries, leading to improved customer satisfaction.
+# Sample embedding
+query = "Looking for a thrilling mystery novel with a female lead."
+query_embedding = embed_query(query)
 
-- **Content Discovery**: For media and entertainment companies, personalized search can enhance content discovery by providing more contextually relevant results. For instance, a news website can use vector embeddings to recommend articles that are contextually relevant to the user's reading history.
+# Assume we have a user preference vector from user’s past interactions
+user_preference_vector = load_user_preference_vector(...)  # Placeholder Vector
+
+# Mix the query embedding with the user preference vector
+query_weight = 0.7
+user_preference_weight = 0.3
+biased_query_embedding = query_weight * query_embedding + user_preference_weight * user_preference_vector
+```
+
+In this code example, we convert a search query into a vector using an [open-source, pretrained BERT model from Hugging Face](https://huggingface.co/bert-base-uncased) (You can also try this out online using the link). We also have a user preference vector, which would be usually based on a user's past clicks or choices. We then arithmetically "add" the query vector and the user preference vector to create a new query vector that reflects both the user input as well as user preferences.
 
 ![Use cases of personalized search with vector embeddings](../assets/use_cases/personalized_search/vector_space.png)
 
