@@ -22,7 +22,7 @@ For instance, consider a user searching for a book on an online store. With trad
 
 The power of vector embeddings lies in their ability to quantify the similarity between two vectors. This is done using a distance metric, with cosine similarity being one of the most commonly used metrics. Simply put, cosine similarity measures how close two vectors are to each other, helping to determine how similar two pieces of data are. It returns relevant results even when the exact terms aren't present in the query. This is made possible by the general-purpose nature of vector embeddings, which can represent almost any form of data, from text to images to audio.
 
-When vectorizing unstructured text data, it's crucial to remember that embedding models have a maximum context length. This is the maximum number of words or phrases that can be embedded into a single vector. For many open-source embedding models, this is in the range of 384 to 1024 words or phrases.
+When vectorizing data, it's crucial to remember that embedding models have a limit on the maximum input length. The twelve best-performing models, based on the [Massive Text Embedding Benchmark (MTEB)](https://huggingface.co/spaces/mteb/leaderboard), are limited to an input size of 512 tokens, while the 13th best has an exceptional input size limit of 8192 tokens.
 
 For example, consider a user searching for a news article on a particular topic. If the article is longer than the model's maximum context length, the search system would need to split the article into smaller pieces or use a sliding window approach to capture the entire document in a single vector. This ensures that the search results are accurate and relevant, regardless of the length of the source document.
 
@@ -86,6 +86,10 @@ Vector embeddings are revolutionizing the way we interact with and use data. By 
 So, what's next? How can you start implementing personalized search in your organization? There are plenty of resources and tools available to help you get started. For instance, you can check out this [guide on implementing vector search](link) or this [tutorial on using vector embeddings](link).
 
 What are your thoughts on personalized search using vector embeddings? Have you used this technology in your organization? Share your experiences and join the conversation!
+
+Stay Updated: Drop your email in the footer box to keep all the latest guides coming your way.
+
+Found an Issue or Have a Suggestion? Your feedback shapes VectorHub! If you spot something off in the article or have a topic you want us to dive into, create a GitHub issue and we're happy to provide you with that information 😊.
 
 ---
 
