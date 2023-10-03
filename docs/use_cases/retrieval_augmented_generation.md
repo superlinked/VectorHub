@@ -533,5 +533,4 @@ The proposed multi-agent RAG architecture delivers significant benefits compared
 ---
 ## Contributors
 
-- [Your Name](you_social_handle.com)
-- [Co-author Name](their_social_handle.com)
+- [Anthony Alcaraz]([you_social_handle.com](https://www.linkedin.com/in/anthony-alcaraz-b80763155/))
