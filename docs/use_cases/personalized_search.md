@@ -4,7 +4,7 @@
 
 Imagine a world where your online searches return results that truly understand your needs. A world where you don't have to know the exact words to find what you're looking for. This isn't a distant future; it's happening now, with personalized search using vector embeddings. Companies like Pinterest, Spotify, eBay, Airbnb, and Doordash have integrated vector search into their platforms, seeing significant improvements in user experience and engagement, leading to higher conversion rates and customer satisfaction.
 
-A notable example is Spotify, which utilized vector embeddings to enhance its music recommendation system. When evaluated on a large-scale dataset, the use of vector embeddings led to a performance improvement of upwards of 10% in session and track recommendation tasks, showcasing a significant boost in user engagement and satisfaction on the platform [(Hansen et al., 2020)](https://doi.org/10.1145/3383313.3412248). So, what's the secret behind this powerful tool? Let's dive in.
+Spotify, for example, uses vector embeddings to enhance its music recommendation system. When evaluated on a large-scale dataset, the use of vector embeddings led to a performance improvement of upwards of 10% in session and track recommendation tasks, showcasing a significant boost in user engagement and satisfaction on the platform [(Hansen et al., 2020)](https://doi.org/10.1145/3383313.3412248). So, what's the secret behind this powerful tool? Let's dive in.
 
 ## Why are there limits to traditional search methods?
 
