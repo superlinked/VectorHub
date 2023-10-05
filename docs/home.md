@@ -16,7 +16,7 @@ Read more about our philosophy in our [Manifesto](manifesto.md).
 ## Building Blocks
 
 ::::link-array
-:::link-array-item{headerType="IMAGE" headerImage="![Data sources cover image](assets/misc/home_data_sources.png)}
+:::link-array-item{headerType="IMAGE" headerImage=![Data sources cover image](assets/misc/home_data_sources.png)}
 [**1. Data Sources**](building_blocks/data_sources/readme.md)
 
 Connecting and extracting data from multiple sources
