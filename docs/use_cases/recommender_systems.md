@@ -10,9 +10,9 @@ But not everyone has access to the kind or amount of metadata fashion retailers 
 
 ## Recommender systems as graphs
 
-Matrix factorization is a common collaborative filtering approach. After a low-rank matrix approximation, we have two sets of vectors, one representing the users and the other representing the items. The inner product of a user and item vector estimates the rating a particular user gave to a particular item. We can represent this process using a graph, in which users and items are graph nodes, and predicted ratings are edge weights between them. The graph is bipartite; links appear only between nodes belonging to different groups. The list of recommendations made to a user correspond to the most likely new item-connections for this user-node. We can easily represent side info injection as graph nodes - for example, a "genre" node that links related items.
+Matrix factorization is a common collaborative filtering approach. After a low-rank matrix approximation, we have two sets of vectors, one representing the users and the other representing the items. The inner product of a user and item vector estimates the rating a particular user gave to a particular item. We can represent this process using a graph, in which users and items are graph nodes, and predicted ratings are edge weights between them. The graph is bipartite: links appear only between nodes belonging to different groups. The list of recommendations made to a user correspond to the most likely new item-connections for this user-node. We can easily represent side info injection as graph nodes - for example, a "genre" node – that link related items.
 ​
-Using this graphical representation, it is easy to see how matrix factorization can be extended to include additional metadata. What we want is to somehow let the algorithm know about the new links, which help group similar items or users together. In other words, we want to "inject" new nodes – nodes that link the nodes belonging to the same group. How do we do this? Have a look at the illustration below:
+When understood from a graph perspective, it is easy to see how matrix factorization can be extended to include additional metadata. What we want is to somehow let the algorithm know about the new links, which help group similar items or users together. In other words, we want to "inject" new nodes – nodes that link nodes belonging to the same group. How do we do this? Have a look at the illustration below:
 
 ![](assets/use_cases/recommender_systems/dummy_nodes.jpg)
 
@@ -20,7 +20,7 @@ There are three users: u1, u2 and u3; and four items: i1, i2, i3, i4. The user u
 
 **Adaptation**
 
-We need only add dummy data to enrich a CF approach: when only item side information is available, add dummy users; when only user side information is available, add dummy items; when both user and item information is available, add both dummy users and dummy items. Obviously, the dummy nodes should not be included in the recommendations; these nodes are only there to help ‘inject’ some ‘commonality’ of the nodes belonging to a certain group.
+To enrich a CF approach, we need only add dummy data: when only item side information is available, add dummy users; when only user side information is available, add dummy items; when both user and item information are available, add both dummy users and dummy items. Obviously, the dummy nodes should not be included in the recommendations; these nodes are only there to help ‘inject’ some ‘commonality’ of the nodes belonging to a certain group.
 ​
 The same approach (as used above with MF) can be used with, for example, EASE, or with an explicitly graph-based approach for recommendations such as [PageRank](https://scikit-network.readthedocs.io/en/latest/use_cases/recommendation.html). In fact, with PageRank, the walks would include the dummy nodes.
 ​
