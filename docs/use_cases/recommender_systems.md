@@ -4,16 +4,15 @@
 
 ![](assets/use_cases/recommender_systems/recommender.jpg)
 
-Recommender Systems are becoming increasingly important, given the plethora of products offered to users/customers. Some twenty years ago fashion retailers developed basic versions of content-based recommenders that did increase users engagement (compared with the variant which offered no recommendations), but as soon as the capabilities of the tracking systems improved, 
-it became possible to integrate new signals that could help provide even better recommendations. At the moment of this writing, fashion retailers use far more sophisticated approaches that use not only users' purchasing/viewing history, but also of user metadata (age, location, spending habits, mood, etc.) and item metadata (category, popularity, etc.)
-
-However, it is sometimes the case that only scarce metadata about the users or the items is available to us. Public service providers, with their own on-demand audio and video platform, for example, are restricted in collecting user metadata. Such companies still have item data - genre, popularity, and so on - that can be used to improve the quality of the recommendations. Still, developers often disregard this side information, because it is scarce, and proceed with collaborative-filtering (CF) approaches, which make use of the historical interactions only (data consisting of user-item pairs). While CF work reasonably well in this use case - extrapolate user preferences via similarities of all users' browsing/purchasing history - can we improve the quality of the recommendations (increase users' engegement) using available side information even when it's scarce? More precisely, can we use the collaborative filtering paradigm in this case, with this scarce side info? Yes, there are libraries that allow us to ‘inject’ side information ([LightFM](https://making.lyst.com/lightfm/docs/home.html), for example). But there is also a way to extend the most efficient and effective collaborative filtering models, such as [ALS Matrix Factorization (MF)](http://yifanhu.net/PUB/cf.pdf) (the Python [‘implicit’](https://github.com/benfred/implicit) library) or [EASE] (https://arxiv.org/abs/1905.03375) (Embarassingly Shallow Autoencoder), to make use of the side information.
-
+Recommender Systems are becoming increasingly important, given the plethora of products offered to users/customers. Beginning approximately twenty years ago fashion retailers developed basic versions of content-based recommenders that did increase user engagement (compared with the no-recommendations approach). But when the capabilities of event-tracking systems improved, 
+it became possible to integrate new signals that could help provide even better recommendations. At the moment of this writing, fashion retailers have adopted more sophisticated recommendation systems that ingest not only users' purchasing/viewing history but also user metadata (age, location, spending habits, mood, etc.) and item metadata (category, popularity, etc.).
+​
+But not everyone has access to the kind or amount of metadata fashion retailers do. Sometimes only scarce side is available. Public service providers with their own on-demand audio and video platform, for example, are legally restricted in collecting user metadata. Typically, they use collaborative filtering (CF) approached, which employ historical interactions (data consisting of user-item pairs) to extrapolate user preferences via similarities of all users' browsing/purchasing history. Such companies still have item data - genre, popularity, and so on - that can be used to improve the quality of recommendations. Developers often disregard this side information because it is scarce. While CF work reasonably well in this use case - extrapolate user preferences via similarities of all users' browsing/purchasing history - we can improve recommendation quality (thereby increasing user engagement) of CF by adding available side information, even if it's scarce. More precisely, can we use the collaborative filtering paradigm in this case, with this scarce side info? Yes, there are libraries that allow us to ‘inject’ side information ([LightFM](https://making.lyst.com/lightfm/docs/home.html), for example). Even the most efficient and effective collaborative filtering models, such as [ALS Matrix Factorization (MF)](http://yifanhu.net/PUB/cf.pdf) (the Python [‘implicit’](https://github.com/benfred/implicit) library) or [EASE] (https://arxiv.org/abs/1905.03375) (Embarassingly Shallow Autoencoder), can be extended and improved using side information.
 
 ### Recommender Systems as Graphs
 
-Matrix factorization is a common collaborative filtering approach. After a low-rank matrix approximation, we have two sets of vectors, one represeting the users and the other representing the items. The inner product of a user and item vector estimates the rating or interaction strength. We can view this process through a graph perspective. Users and items become graph nodes. Predicted ratings are edge weights between them. Recommendations identify the most likely new connections for a user. With both users and items being nodes of a (bipartite) graph, we can easily inject additional nodes as needed - for example, a "genre" node that links related items - this couples similar items, which improves recommendations.
-
+Matrix factorization is a common collaborative filtering approach. After a low-rank matrix approximation, we have two sets of vectors, one represeting the users and the other representing the items. The inner product of a user and item vector estimates the rating this user gave to this particular item. We can represent this process using a graph. In this graph, users and items are graph nodes, and predicted ratings are edge weights between them. The graph is bipartite, meaning that links appear only between nodes belonging to different groups. What would be a list of recommendations made to a user would correspond to the most likely new item-connections for this user-node. We can easily represent side info injection as graph nodes - for example, a "genre" node that links related items.
+​
 Once the problem is understood as inherently a graph problem, it is easy to see how the model can be extended to include additional metadata. What we want to achieve is to somehow let the algorithm know about the new links, which would help group similar items or users together. In other words, we want to ‘inject’ new nodes, which would link the nodes belonging to the same group. How could this be achieved? Have a look at illustration below:
 
 ![](assets/use_cases/recommender_systems/dummy_nodes.jpg)
@@ -23,11 +22,11 @@ The dummy user couples similar items, helping the model identify related content
 
 **Adaptation**
 
-As discussed above, we only need to add dummy data: in case of only item side information available, add dummy users; in case of only user side information available, add dummy items; in case both the user and the item information is available, add both the dummy users and the dummy items. Obviously, the dummy nodes should not be part of recommendations; these nodes are only there to help ‘inject’ some ‘commonality’ of the nodes belonging to a certain group.
-
+We only need to add dummy data to enrich a CF approach: when only item side information available, add dummy users; when only user side information available, add dummy items; when both the user and the item information is available, add both the dummy users and the dummy items. Obviously, the dummy nodes should not be part of recommendations; these nodes are only there to help ‘inject’ some ‘commonality’ of the nodes belonging to a certain group.
+​
 Beside MF, the same approach can be used with EASE, for example, or with an explicitly graph-based approach for recommendations such as [PageRank](https://scikit-network.readthedocs.io/en/latest/use_cases/recommendation.html). In fact, with PageRank, the walks would include the dummy nodes.
-
-One question remains: which weights (ratings) to put for the dummy user interactions? We suggest you first start with low weights, and see how the quality of the recommendations changes.
+​
+A question remains: how should dummy user interactions be weighted (rated)? We suggest you first start with low weights, and see how recommendation quality changes and iteratively adjust your weights to fine-tune.
 
 **Minimal Code**
 
@@ -89,8 +88,7 @@ Obviously, the addition of dummy nodes increases the computational and memory co
 
 #### Real-world use case
 
-We evaluated an ALS matrix factorization model with genre dummy users on an audio platform with over 250k items (genre such as "comedy", "documentary", etc.). Compared to their production system, 
-it increased recommendation accuracy by over 10%.
+We evaluated an ALS matrix factorization model with genre dummy users on an audio platform with over 250k items (genre such as "comedy", "documentary", etc.). Compared to their production system, it increased recommendation accuracy by over 10%.
 
 #### Numerical data as side information
 
