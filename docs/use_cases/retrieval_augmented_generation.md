@@ -1,16 +1,28 @@
 <!-- TODO: Replace this text with a summary of article for SEO -->
 
+# Retrieval Augmented Generation
+
 <!-- TODO: Cover image -->
 
-# Improving RAG with a Multi-Agent System
+## Enhancing RAG with a Multi-Agent System
 
-Retrieval augmented generation (RAG) has emerged as a promising technique to enhance the capabilities of large language models (LLMs). In RAG, supplementary information is retrieved from knowledge sources and incorporated into the input prompt to provide useful context to the LLM. This allows the LLM to produce outputs grounded in facts and external knowledge.
+Retrieval-augmented generation (RAG) has shown great promise for powering conversational AI. However, existing implementations struggle with relevance, latency, and coherence. A multi-agent architecture that divides responsibilities across specialized retrieval, ranking, reading, and orchestration agents can overcome these limitations and unlock further gains.
 
-However, existing RAG systems face challenges like retrieving the most relevant passages from a large corpus, high latency when searching massive databases, and lack of appropriate weighting between the original prompt and retrieved context. These issues limit the performance improvements from RAG under real-world constraints.
+In RAG systems today, a single model handles the full workflow of query analysis, passage retrieval, contextual ranking, summarization, and prompt augmentation. By factoring this into separate agents that operate asynchronously, each agent can focus on its specialized capability using custom models and data. For example, dedicated retriever agents can efficiently search large corpora using optimized vector indexes. Reader agents can distill retrieved passages down to salient facts. An orchestrator agent can dynamically adjust prompt hybridization to maximize coherence.
 
-Multi-agent systems with specialized roles have potential to address many RAG challenges and unlock further gains. By dividing the retrieval, reading, ranking and integration tasks between collaborative agents, relevance, scalability and latency can be improved.
+This article explores a multi-agent RAG architecture and quantifies its benefits:
 
-This article explores how a multi-agent architecture with retriever, ranker, reader and orchestrator agents can enhance RAG for LLMs. The benefits of factored retrieval, parallelized search, specialized relevance ranking, summarization and optimized prompt augmentation are discussed. Experiments demonstrate significant gains over single-agent RAG across appropriateness, coherence and correctness metrics. The promising future of multi-agent RAG is highlighted.
+- Focused specialization improves relevance and quality. Retriever agents leverage tailored similarity metrics, rankers weigh signals like source credibility, readers summarize context.
+- Asynchronous operation reduces latency by parallelizing retrieval. Slow operations don't block faster ones.
+- Easy horizontal scaling by adding more retriever agents.
+- Flexibility to incorporate new data sources through additional retriever agents.
+- Modular components allow iterative enhancement over time.
+
+Experiments demonstrate multi-agent RAG significantly improves appropriateness, coherence and correctness over single-agent RAG. 
+The future potential of multi-agent architectures for conversational systems is promising.
+
+However, this approach may not be suitable for all use cases. It is most appropriate when reasoning over diverse information sources is needed. 
+For simpler conversational tasks, a single RAG agent may suffice.
 
 ## RAG Challenges and Opportunities
 
@@ -26,15 +38,13 @@ Specialized agents with divided responsibilities could help address these challe
 
 By factoring RAG into separable subtasks executed concurrently by collaborative agents, relevance, scalability and latency limitations can be mitigated. This allows RAG to scale efficiently to enterprise workloads.
 
-## Proposed Multi-Agent RAG System
-
 To address the challenges with single-agent RAG systems, a multi-agent architecture is proposed consisting of specialized retriever, ranker, reader, and orchestrator agents.
 
 At first an agent is here to understand the query and describe it in different sub queries. 
 
 Then x number of retriever agents focuses solely on efficient passage retrieval from the document corpus based on the sub queries. It employs vector similarity search or knowledge graph retrieval based searches to quickly find potentially relevant passages, minimizing latency.
 
-The ranker agent evaluates the relevance of the retrieved passages using additional ranking signals like source credibility, passage specificity, and lexical overlap. This provides a relevance-based filtering step.
+The ranker agent evaluates the relevance of the retrieved passages using additional ranking signals like source credibility, passage specificity, and lexical overlap. This provides a relevance-based filtering step. This agent might be using ontology for example as a way to rerank retrieved information. 
 
 The reader agent summarizes lengthy retrieved passages to succinct snippets containing only the most salient information. This distills the context down to key facts.
 
@@ -44,381 +54,116 @@ By dividing the workload across specialized agents, factored RAG is achieved all
 
 The modular architecture also provides flexibility to add more agents, like a visualizer agent to inspect system behavior. And to substitute alternate implementations of any agent’s capability.
 
-## Coding example from the Agents Github
+Example with Autogen library : https://github.com/microsoft/autogen
 
-[GitHub - aiwaves-cn/agents: An Open-source Framework for Autonomous Language Agents](https://github.com/aiwaves-cn/agents)
+1. AssistantAgent : They are given a name, a system message, and a configuration object (llm_config). The system message is a string that describes the role of the agent. The llm_config object is a dictionary that contains functions for the agent to perform its role.
 
-This Python script is designed to run a multi-agent system for a chatbot. The agents are defined in a configuration file (config.json), and they interact with each other and the environment to process user queries. Here’s a breakdown of the main parts of the script:
-
-1. Import Statements: The script imports necessary modules and appends the paths of the agent and Gradio configuration directories to the system path.
-2. process() Function: This function processes an action taken by an agent and stores the agent’s response in memory.
-3. gradio_process() Function: This function processes an action for the Gradio interface. It sends and receives messages from the server, and updates the action’s response based on the server’s response.
-4. init() Function: This function initializes the agents, the environment, and the SOP (Sequence of Play) from the configuration file. It also sets up the environment for the agents.
-5. block_when_next() Function: This function handles the flow control of the chatbot. It blocks the current process when the next turn is for the user.
-6. run() Function: This function runs the main loop of the chatbot. It gets the next state and agent from the SOP, updates the environment based on the agent’s action, and processes the action.
-7. prepare() Function: This function prepares the chatbot for interaction with the user. It sends the initial requirements to the server and waits for the start signal.
-8. Main Section: This section parses command-line arguments, initializes the agents, environment, and SOP, prepares the chatbot, and then runs the chatbot.
-
-The script uses the Gradio library to create a user interface for the chatbot. Gradio allows developers to quickly create UIs for machine learning models. The script also uses the os module to interact with the operating system, the argparse module to parse command-line arguments, and the sys module to manipulate the Python runtime environment.
+2. user_proxy is an instance of UserProxyAgent. It is given a name and several configuration options. The is_termination_msg option is a function that determines when the user wants to terminate the conversation. The human_input_mode option is set to "NEVER", which means the agent will never ask for input from a human. The max_consecutive_auto_reply option is set to 10, which means the agent will automatically reply to up to 10 consecutive messages without input from a human. The code_execution_config option is a dictionary that contains configuration options for executing code.
 
 ```python
-import os
-import argparse
-import sys
-sys.path.append("../../../src/agents")
-sys.path.append("../../Gradio_Config")
-from agents.utils import extract
-from agents.SOP import SOP
-from agents.Agent import Agent
-from agents.Environment import Environment
-from agents.Memory import Memory
-from gradio_base import Client, convert2list4agentname
+def mock_understand_query(query):
+    # Mock function to understand the query and break it down into subqueries
+    pass
 
-def process(action):
-    response = action.response
-    send_name = action.name
-    send_role = action.role
-    if not action.is_user:
-        print(f"{send_name}({send_role}):{response}")
-    memory = Memory(send_role, send_name, response)
-    return memory
+def mock_rank_passages(passages):
+    # Mock function to rank the retrieved passages based on relevance
+    pass
 
-def gradio_process(action,current_state):
-    response = action.response
-    all = ""
-    for i,res in enumerate(response):
-        all+=res
-        state = 10
-        if action.is_user:
-            state = 30
-        elif action.state_begin:
-            state = 12
-            action.state_begin = False
-        elif i>0:
-            state = 11
-        send_name = f"{action.name}({action.role})"
-        Client.send_server(str([state, send_name, res, current_state.name]))
-        if state == 30:
-            # print("client: waiting for user input")
-            data: list = next(Client.receive_server)
-            content = ""
-            for item in data:
-                if item.startswith("<USER>"):
-                    content = item.split("<USER>")[1]
-                    break
-            # print(f"client: received `{content}` from server.")
-            action.response = content
-            break
-        else:
-            action.response = all
+def mock_summarize_passages(passages):
+    # Mock function to summarize the retrieved passages
+    pass
 
-def init(config): 
-    if not os.path.exists("logs"):
-        os.mkdir("logs")
-    sop = SOP.from_config(config)
-    agents,roles_to_names,names_to_roles = Agent.from_config(config)
-    environment = Environment.from_config(config)
-    environment.agents = agents
-    environment.roles_to_names,environment.names_to_roles = roles_to_names,names_to_roles
-    sop.roles_to_names,sop.names_to_roles = roles_to_names,names_to_roles
-    for name,agent in agents.items():
-        agent.environment = environment
-    return agents,sop,environment
+def mock_adjust_weighting(prompt, context_passages):
+    # Mock function to adjust the weighting and integration of the prompt and filtered ranked context passages
+    pass
 
-def block_when_next(current_agent, current_state):
-    if Client.LAST_USER:
-        assert not current_agent.is_user
-        Client.LAST_USER = False
-        return
-    if current_agent.is_user:
-        # if next turn is user, we don't handle it here
-        Client.LAST_USER = True
-        return
-    if Client.FIRST_RUN:
-        Client.FIRST_RUN = False
-    else:
-        # block current process
-        if Client.mode == Client.SINGLE_MODE:
-            Client.send_server(str([98, f"{current_agent.name}({current_agent.state_roles[current_state.name]})", " ", current_state.name]))
-            data: list = next(Client.receive_server)
+import asyncio
 
-def run(agents,sop,environment):
-    while True:      
-        current_state,current_agent= sop.next(environment,agents)
-        if sop.finished:
-            print("finished!")
-            Client.send_server(str([99, ' ', ' ', 'done']))
-            os.environ.clear()
-            break
-        block_when_next(current_agent, current_state)
-        action = current_agent.step(current_state)   #component_dict = current_state[self.role[current_node.name]]   current_agent.compile(component_dict) 
-        gradio_process(action,current_state)
-        memory = process(action)
-        environment.update_memory(memory,current_state)
+async def mock_retrieve_passages_vector_search(subqueries):
+    # Mock function to retrieve relevant passages based on the subqueries using vector search
+    pass
 
-def prepare(agents, sop, environment):
-    client = Client()
-    Client.send_server = client.send_message
+async def mock_retrieve_passages_kg(subqueries):
+    # Mock function to retrieve relevant passages based on the subqueries using knowledge graph
+    pass
 
-    requirement_game_name = extract(sop.states['design_state'].environment_prompt,"target")
-    client.send_message(
-        {
-            "requirement": requirement_game_name,
-            "agents_name": convert2list4agentname(sop)[0],
-            # "only_name":  DebateUI.convert2list4agentname(sop)[1],
-            "only_name":  convert2list4agentname(sop)[0],
-            "default_cos_play_id": -1,
-            "api_key": os.environ["API_KEY"]
-        }
-    )
-    # print(f"client: send {requirement_game_name}")
-    client.listening_for_start_()
-    client.mode = Client.mode = client.cache["mode"]
-    new_requirement = Client.cache['requirement']
-    os.environ["API_KEY"] = client.cache["api_key"]
-    for state in sop.states.values():
-        state.environment_prompt = state.environment_prompt.replace("<target>a snake game with python</target>", f"<target>{new_requirement}</target>")
-    # print(f"client: received {Client.cache['requirement']} from server.")
+async def mock_retrieve_passages_sql(subqueries):
+    # Mock function to retrieve relevant passages based on the subqueries using SQL
+    pass
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='A demo of chatbot')
-    parser.add_argument('--agent', type=str, help='path to SOP json', default="config.json")
-    args = parser.parse_args()
-    
-    agents,sop,environment = init(args.agent)
-    # add================================
-    prepare(agents, sop, environment)
-    # ===================================
-    run(agents,sop,environment)
-```
+async def mock_retrieve_passages(subqueries):
+    # Create tasks for each retrieval method
+    tasks = [
+        mock_retrieve_passages_vector_search(subqueries),
+        mock_retrieve_passages_kg(subqueries),
+        mock_retrieve_passages_sql(subqueries),
+    ]
 
-The config.json file is a configuration for a multi-agent system. Each agent has a specific role and they work together to process a query. Here’s a brief explanation of each agent’s role based on your description:
+    # Run the tasks concurrently and wait for all of them to complete
+    await asyncio.gather(*tasks)
 
-1. QueryUnderstandingAgent: This agent understands the query and describes it in different sub queries.
-
-2. RetrieverAgents (1, 2, 3, …): These agents retrieve passages from the document corpus based on the sub queries. They use vector similarity search or knowledge graph retroeval based searches to quickly find potentially relevant passages.
-
-3. RankerAgent: This agent evaluates the relevance of the retrieved passages using additional ranking signals like source credibility, passage specificity, and lexical overlap. This provides a relevance-based filtering step.
-
-4. ReaderAgent: This agent summarizes lengthy retrieved passages to succinct snippets containing only the most salient information. This distills the context down to key facts.
-
-5. OrchestratorAgent: This agent dynamically adjusts the weighting and integration of the prompt and filtered ranked context passages to optimize the final augmented prompt.
-
-```json
-{
-    "config": {
-        "API_KEY": "API_KEY",
-        "PROXY": "",
-        "API_BASE": "",
-        "MAX_CHAT_HISTORY": "3",
-        "TOP_K": "0"
-    },
-    "LLM_type": "OpenAI",
-    "LLM": {
-        "temperature": 0.3,
-        "model": "gpt-3.5-turbo-16k-0613",
-        "log_path": "logs/god"
-    },
-    "root": "understanding_state",
-    "relations": {
-        "understanding_state": {
-            "0": "retrieval_state_1"
-        },
-        "retrieval_state_1": {
-            "0": "retrieval_state_2"
-        },
-        "retrieval_state_2": {
-            "0": "retrieval_state_3"
-        },
-        "retrieval_state_3": {
-            "0": "ranking_state"
-        },
-        "ranking_state": {
-            "0": "reading_state"
-        },
-        "reading_state": {
-            "0": "orchestrating_state"
-        },
-        "orchestrating_state": {
-            "0": "end_state"
-        }
-    },
-    "agents": {
-        "QueryUnderstandingAgent": {
-            "style": "professional",
-            "roles": {
-                "understanding_state": "QueryUnderstandingAgent"
-            }
-        },
-        "RetrieverAgent1": {
-            "style": "professional",
-            "roles": {
-                "retrieval_state_1": "RetrieverAgent1"
-            }
-        },
-        "RetrieverAgent2": {
-            "style": "professional",
-            "roles": {
-                "retrieval_state_2": "RetrieverAgent2"
-            }
-        },
-        "RetrieverAgent3": {
-            "style": "professional",
-            "roles": {
-                "retrieval_state_3": "RetrieverAgent3"
-            }
-        },
-        "RankerAgent": {
-            "style": "professional",
-            "roles": {
-                "ranking_state": "RankerAgent"
-            }
-        },
-        "ReaderAgent": {
-            "style": "professional",
-            "roles": {
-                "reading_state": "ReaderAgent"
-            }
-        },
-        "OrchestratorAgent": {
-            "style": "professional",
-            "roles": {
-                "orchestrating_state": "OrchestratorAgent"
-            }
-        }
-    },
-    "states": {
-        "end_state": {
-            "agent_states": {}
-        },
-        "understanding_state": {
-            "LLM_type": "OpenAI",
-            "LLM": {
-                "temperature": 0.3,
-                "model": "gpt-3.5-turbo-16k-0613",
-                "log_path": "logs/QueryUnderstandingAgent"
-            },
-            "roles": [
-                "QueryUnderstandingAgent"
-            ],
-            "agent_states": {
-                "QueryUnderstandingAgent": {
-                    "task": {
-                        "task": "Understand the query and describe it in different sub queries."
-                    }
-                }
-            }
-        },
-        "retrieval_state_1": {
-            "LLM_type": "OpenAI",
-            "LLM": {
-                "temperature": 0.3,
-                "model": "gpt-3.5-turbo-16k-0613",
-                "log_path": "logs/RetrieverAgent1"
-            },
-            "roles": [
-                "RetrieverAgent1"
-            ],
-            "agent_states": {
-                "RetrieverAgent1": {
-                    "task": {
-                        "task": "Retrieve passages from the document corpus based on the sub queries."
-                    }
-                }
-            }
-        },
-        "retrieval_state_2": {
-            "LLM_type": "OpenAI",
-            "LLM": {
-                "temperature": 0.3,
-                "model": "gpt-3.5-turbo-16k-0613",
-                "log_path": "logs/RetrieverAgent2"
-            },
-            "roles": [
-                "RetrieverAgent2"
-            ],
-            "agent_states": {
-                "RetrieverAgent2": {
-                    "task": {
-                        "task": "Retrieve passages from the document corpus based on the sub queries."
-                    }
-                }
-            }
-        },
-        "retrieval_state_3": {
-            "LLM_type": "OpenAI",
-            "LLM": {
-                "temperature": 0.3,
-                "model": "gpt-3.5-turbo-16k-0613",
-                "log_path": "logs/RetrieverAgent3"
-            },
-            "roles": [
-                "RetrieverAgent3"
-            ],
-            "agent_states": {
-                "RetrieverAgent3": {
-                    "task": {
-                        "task": "Retrieve passages from the document corpus based on the sub queries."
-                    }
-                }
-            }
-        },
-        "ranking_state": {
-            "LLM_type": "OpenAI",
-            "LLM": {
-                "temperature": 0.3,
-                "model": "gpt-3.5-turbo-16k-0613",
-                "log_path": "logs/RankerAgent"
-            },
-            "roles": [
-                "RankerAgent"
-            ],
-            "agent_states": {
-                "RankerAgent": {
-                    "task": {
-                        "task": "Evaluate the relevance of the retrieved passages using additional ranking signals."
-                    }
-                }
-            }
-        },
-        "reading_state": {
-            "LLM_type": "OpenAI",
-            "LLM": {
-                "temperature": 0.3,
-                "model": "gpt-3.5-turbo-16k-0613",
-                "log_path": "logs/ReaderAgent"
-            },
-            "roles": [
-                "ReaderAgent"
-            ],
-            "agent_states": {
-                "ReaderAgent": {
-                    "task": {
-                        "task": "Summarize lengthy retrieved passages to succinct snippets."
-                    }
-                }
-            }
-        },
-        "orchestrating_state": {
-            "LLM_type": "OpenAI",
-            "LLM": {
-                "temperature": 0.3,
-                "model": "gpt-3.5-turbo-16k-0613",
-                "log_path": "logs/OrchestratorAgent"
-            },
-            "roles": [
-                "OrchestratorAgent"
-            ],
-            "agent_states": {
-                "OrchestratorAgent": {
-                    "task": {
-                        "task": "Adjust the weighting and integration of the prompt and filtered ranked context passages."
-                    }
-                }
-            }
-        }
-    }
+llm_config = {
+    "understand_query": mock_understand_query,
+    "retrieve_passages": mock_retrieve_passages,
+    "rank_passages": mock_rank_passages,
+    "summarize_passages": mock_summarize_passages,
+    "adjust_weighting": mock_adjust_weighting,
 }
+
+# QueryUnderstandingAgent
+query_understanding_agent = autogen.AssistantAgent(
+    name="query_understanding_agent",
+    system_message="You must use X function. You are only here to understand queries. You intervene First.",
+    llm_config=llm_config
+)
+
+retriever_agent_vector = autogen.AssistantAgent(
+    name="retriever_agent_vector",
+    system_message="You must use Y function. You are only here to retrieve passages using vector search. You intervene at the same time as other Retriever agents.",
+    llm_config=llm_config_vector
+)
+
+retriever_agent_kg = autogen.AssistantAgent(
+    name="retriever_agent_kg",
+    system_message="You must use Z function. You are only here to retrieve passages using knowledge graph. You intervene at the same time as other Retriever agents.",
+    llm_config=llm_config_kg
+)
+
+retriever_agent_sql = autogen.AssistantAgent(
+    name="retriever_agent_sql",
+    system_message="You must use A function. You are only here to retrieve passages using SQL. You intervene at the same time as other Retriever agents.",
+    llm_config=llm_config_sql
+)
+
+# RankerAgent
+ranker_agent = autogen.AssistantAgent(
+    name="ranker_agent",
+    system_message="You must use B function. You are only here to rank passages. You intervene in third position. ",
+    llm_config=llm_config
+)
+
+# ReaderAgent
+reader_agent = autogen.AssistantAgent(
+    name="reader_agent",
+    system_message="You must use C function. You are only here to summarize passages. You intervene in fourth position. ",
+    llm_config=llm_config
+)
+
+# OrchestratorAgent
+orchestrator_agent = autogen.AssistantAgent(
+    name="orchestrator_agent",
+    system_message="You must use D function. You are only here to adjust weighting. You intervene in last position.",
+    llm_config=llm_config
+)
+
+# Create a group chat with all agents
+chat = GroupChat(
+  agents = [user, retriever_agent, ranker_agent, reader_agent, orchestrator_agent]
+)
+
+# Run the chat
+manager = GroupChatManager(chat)
+manager.run()
 ```
 
 ## Possible Optimisations
@@ -467,6 +212,7 @@ For example, a fact-based subquery may go to the KnowledgeGraphRetriever while a
 To enable asynchronous retrieval, we use Python’s asyncio framework. When subqueries are available, we create asyncio tasks to run the assigned retriever agent for each subquery concurrently.
 
 For example:
+
 ```python
 retrieval_tasks = []
 for subquery in subqueries:
