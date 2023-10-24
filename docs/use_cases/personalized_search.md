@@ -2,15 +2,9 @@
 
 ## Introduction
 
-Imagine a world where your online searches return results that truly understand your needs. A world where you don't have to know the exact words to find what you're looking for. This isn't a distant future; it's happening now, with personalized search using vector embeddings. Companies like Pinterest, Spotify, eBay, Airbnb, and Doordash have integrated vector search into their platforms, seeing significant improvements in user experience and engagement, leading to higher conversion rates and customer satisfaction.
+Imagine a world where your online searches return results that truly understand your needs, a world where you don't have to know the exact words to find what you're looking for. This isn't a distant future; it's happening now, with personalized search using vector embeddings. Companies like Pinterest, Spotify, eBay, Airbnb, and Doordash have integrated vector search into their platforms, seeing significant improvements in user experience and engagement. This data, both structured and unstructured, holds a treasure trove of insights waiting to be unlocked, driving higher conversion rates and customer satisfaction.
 
-Spotify, for example, uses vector embeddings to enhance its music recommendation system. When evaluated on a large-scale dataset, the use of vector embeddings led to a performance improvement of upwards of 10% in session and track recommendation tasks, showcasing a significant boost in user engagement and satisfaction on the platform [(Hansen et al., 2020)](https://doi.org/10.1145/3383313.3412248). So, what's the secret behind this powerful tool? Let's dive in.
-
-In this digital age, organizations across the globe are grappling with an exponential surge in data. By 2025, the world is projected to have over 175 zettabytes of data, [source](https://www.forbes.com/sites/tomcoughlin/2018/11/27/175-zettabytes-by-2025). This data, both structured and unstructured, is a treasure trove of insights waiting to be unlocked. The key to this treasure chest? Personalized search using vector embeddings.
-
-## What is a vector embedding? And why is it better than traditional keyword-based search?
-
-Vector embeddings are revolutionizing the way we search and retrieve information. They work by converting data into a numerical representation, known as a vector. Conversion into vectors allows the search system to consider the semantics – the underlying meaning – of the data when performing a search.
+For instance, Spotify uses vector embeddings to enhance its music recommendation system. This implementation led to a performance improvement of upwards of 10% in session and track recommendation tasks, showcasing a significant boost in user engagement and satisfaction on the platform [(Hansen et al., 2020)](https://doi.org/10.1145/3383313.3412248). The secret behind this powerful tool is the ability to harness the exponential growth of data available by 2025, projected to be over 175 zettabytes [source](https://www.forbes.com/sites/tomcoughlin/2018/11/27/175-zettabytes-by-2025), and turn it into actionable insights through personalized search using vector embeddings.
 
 ![Illustration of vector embeddings](../assets/use_cases/personalized_search/embeddings.png)
 
@@ -18,23 +12,23 @@ Let's say you're searching for a book on an online store. With traditional keywo
 
 ### How does it search?
 
-The power of vector embeddings lies in their ability to quantify the similarity between two vectors. This is done using a distance metric, with cosine similarity being one of the most commonly used metrics. Simply put, cosine similarity measures how close two vectors are to each other, helping to determine how similar two pieces of data are. It returns relevant results even when the exact terms aren't present in the query. This is made possible by the general-purpose nature of vector embeddings, which can represent almost any form of data, from text to images to audio.
+The power of vector embeddings lies in their ability to quantify the similarity between two vectors. This is done using a distance metric. One of the most commonly used distance metrics is cosine similarity. Cosine similarity measures how close two vectors are to each other; the distance between them is a measure of how similar two pieces of data are. In this way, vector search is able to return relevant results even when the exact terms aren't present in the query.
 
-When vectorizing data, it's crucial to remember that embedding models have a limit on the maximum input length. The twelve best-performing models, based on the [Massive Text Embedding Benchmark (MTEB)](https://huggingface.co/spaces/mteb/leaderboard), are limited to an input size of 512 tokens, while the 13th best has an exceptional input size limit of 8192 tokens.
+The embedding models used for vector search do have maximum input length limits that users need to consider. The twelve best-performing models, based on the [Massive Text Embedding Benchmark (MTEB)](https://huggingface.co/spaces/mteb/leaderboard), are limited to an input size of 512 tokens, while the 13th best has an exceptional input size limit of 8192 tokens.
 
-Let's think about the previous example of searching for books again. If the book is longer than the model's maximum context length, the search system would need to split the book into smaller pieces or use a sliding window approach to capture the entire text in a single vector. This ensures that the search results are accurate and relevant, regardless of the length of the source text.
+But we handle that by segmenting the data into smaller parts that fit the model's token constraints, or using a sliding window technique. Segmenting involves cutting the text into smaller pieces that can be individually vectorized. The sliding window method processes the text in sections, with each new window overlapping the previous one, to maintain context between portions. These techniques adjust the data to the model's requirements, allowing for detailed vector representation of larger texts.
+
+For example, say you're searching for a specific article about a local festival in a digital archive of a newspaper. The system identifies the lengthy Sunday edition where the piece appeared and then, to ensure a thorough search, it breaks the edition down, analyzing it article by article, much like going page by page, until it pinpoints your article about the local festival.
 
 ## But it's not only text that you can search!
 
-Contrary to popular belief, vector embeddings are not only applicable to unstructured data. In fact, they have always been integral to deep learning models and can be used to derive insights from structured data as well.
-
-In the book store example, we could represent each transaction as a vector, with each dimension representing a different attribute such as the transaction amount, date, or product category. By comparing these vectors, the search system can identify patterns or anomalies that would be difficult to spot with traditional search methods.
+This is made possible by the general-purpose nature of vector embeddings, which can represent almost any form of data, from text to images to audio. In the bookstore example, we could represent each transaction as a vector, with each dimension representing a different attribute such as the transaction amount, date, or product category. By comparing these vectors, the search system can identify patterns or anomalies that would be difficult to spot with traditional search methods.
 
 ## Great! But what can I use to get started?
 
-Using a vector database, which is a system designed to store and perform semantic search at scale, you can compare the query vector with the vectors stored in the database and return the top-k most similar ones. The key components of a vector database include a vector index, a query engine, partitioning/sharding capabilities, replication features, and an accessible API. Furthermore vector databases are categorized into vector-native, hybrid, and search engines. Notable vector database providers include [Pinecone](https://pinecone.io), [Milvus](https://milvus.io), and [Weaviate](https://weaviate.io).
+Using a vector database – a system designed to store and perform semantic search at scale – you can compare the query vector with vectors stored in the database and return the top-k most similar ones. The key components of a vector database include a vector index, a query engine, partitioning/sharding capabilities, replication features, and an accessible API. Furthermore, vector databases are categorized into vector-native, hybrid, and search engines. Notable vector database providers include [Pinecone](https://pinecone.io), [Milvus](https://milvus.io), and [Weaviate](https://weaviate.io).
 
-| Key Components        | Descriptions                                            |
+| Key Component         | Description                                             |
 | --------------------- | ------------------------------------------------------- |
 | Vector Index          | Allows fast and efficient retrieval of similar vectors  |
 | Query Engine          | Performs optimized similarity computations on the index |
@@ -50,7 +44,7 @@ Before diving into various applications, let's illustrate how we might personali
 from transformers import BertTokenizer, BertModel
 import torch
 
-# Initialize an open-source embedding models
+# Initialize an open-source embedding model
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 model = BertModel.from_pretrained('bert-base-uncased')
 
@@ -73,7 +67,7 @@ user_preference_weight = 0.3
 biased_query_embedding = query_weight * query_embedding + user_preference_weight * user_preference_vector
 ```
 
-In this code example, we convert a search query into a vector using an [open-source, pretrained BERT model from Hugging Face](https://huggingface.co/bert-base-uncased) (You can try this out online yourself by following the link). We also have a user preference vector, which would be usually be based on a user's past clicks or choices. We then arithmetically "add" the query vector and the user preference vector to create a new query vector that reflects both the user input and user preferences.
+In this code example, we convert a search query into a vector using an [open-source, pretrained BERT model from Hugging Face](https://huggingface.co/bert-base-uncased) (You can try this out online yourself by following the link). We also have a user preference vector, which would usually be based on a user's past clicks or choices. We then arithmetically "add" the query vector and the user preference vector to create a new query vector that reflects both the user input and user preferences.
 
 ![Use cases of personalized search with vector embeddings](../assets/use_cases/personalized_search/vector_space.png)
 
