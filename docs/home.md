@@ -41,6 +41,8 @@ Query and retrieve vectors for your use -case
 
 ## Vector retrieval use-cases
 
+Here are some examples from the community, more coming soon!
+
 ::::link-array
 :::link-array-item{headerImage headerColor}
 [Personalized Search](use_cases/personalized_search.md)
@@ -54,17 +56,6 @@ Query and retrieve vectors for your use -case
 [Retrieval Augmented Generation](use_cases/retrieval_augmented_generation.md)
 :::
 
-:::link-array-item{headerImage headerColor}
-[Fraud & Safety](use_cases/fraud_&_safety.md)
-:::
-
-:::link-array-item{headerImage headerColor}
-[Clustering & Anomaly Detection](use_cases/clustering_&_anomaly_detection.md)
-:::
-
-:::link-array-item{headerImage headerColor}
-[Cybersecurity](use_cases/cybersecurity.md)
-:::
 ::::
 
 ***
