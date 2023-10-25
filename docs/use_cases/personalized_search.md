@@ -8,7 +8,7 @@ And _how_ have they done this? How have these companies been able to harvest the
 
 The answer is vector embeddings. 
 
-Vector embeddings let you return more _relevant_ results to your search queries by 1) querying the _meaning_ of a search terms, as opposed to just looking for search keyword _matches_, and 2) informing the search with the _meaning_ of personal preference data, as opposed to just its explicit terms.
+Vector embeddings let you return more _relevant_ results to your search queries by 1) querying the _meaning_ of the search terms, as opposed to just looking for search keyword _matches_, and 2) informing the search with the _meaning_ of personal preference data, as opposed to just its explicit terms.
 
 Let's look first at how vector embeddings improve the relevance of search query results generally, and then how vector embeddings permit us to use the meaning of personal preferences to create truly personalized searches.
 
@@ -50,7 +50,7 @@ Using a vector database – a system designed to store and perform semantic sear
 
 ## How can I use this for personalized search?
 
-Before diving into various applications, let's illustrate how we might personalize a query using a simple code snippet:
+Let's illustrate how we might personalize a query (via a user preference vector) in a simple code snippet:
 
 ```python
 from transformers import BertTokenizer, BertModel
