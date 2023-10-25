@@ -14,7 +14,11 @@ Let's look first at how vector embedding improves the relevance of search query 
 
 ![Illustration of vector embeddings](../assets/use_cases/personalized_search/embeddings.png)
 
-Let's say you're searching for a book in an online store. With traditional keyword-based search, the user would need to know the exact title or author's name. But with vector embeddings, the user could simply describe the book's theme or plot, and the search system would retrieve relevant results. This is because vector embeddings understand the 'meaning' of the query, rather than just matching keywords.
+## Vector search vs. keyword-based search
+
+Vector embedding is revolutionizing the way we search and retrieve information. It works by converting data into a numerical representation, known as a vector. Conversion into vectors allows the search system to consider the semantics – the underlying meaning – of the data when performing a search.
+
+Let's say you're searching for a book in an online store. With traditional keyword-based search, you would need to know the exact title or author's name. But with vector embeddings, you can simply describe the book's theme or plot, and the search system retrieves relevant results. This is because vector embeddings understand the _meaning_ of the query, rather than just matching keywords.
 
 ### How does it search?
 
