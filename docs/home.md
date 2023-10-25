@@ -44,15 +44,15 @@ Query and retrieve vectors for your use -case
 Here are some examples from the community, more coming soon!
 
 ::::link-array
-:::link-array-item{headerImage headerColor}
+:::link-array-item{headerType="IMAGE" headerImage="https://uploads-ssl.webflow.com/64f9dd739f984c15f86e446e/65390fbbd5b9e7f28bd94e1e_personalized_search.png}
 [Personalized Search](use_cases/personalized_search.md)
 :::
 
-:::link-array-item{headerImage headerColor}
+:::link-array-item{headerType="IMAGE" headerImage="https://uploads-ssl.webflow.com/64f9dd739f984c15f86e446e/65390fbb48c6e5013090d6d4_recommender_systems.png"}
 [Recommender Systems](use_cases/recommender_systems.md)
 :::
 
-:::link-array-item{headerImage headerColor}
+:::link-array-item{headerType="IMAGE" headerImage="hhttps://uploads-ssl.webflow.com/64f9dd739f984c15f86e446e/65390fbb631557f00cf97689_rag.png"}
 [Retrieval Augmented Generation](use_cases/retrieval_augmented_generation.md)
 :::
 
