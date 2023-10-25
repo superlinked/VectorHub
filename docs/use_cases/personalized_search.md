@@ -8,7 +8,7 @@ And _how_ have they done this? How have these companies been able to harvest the
 
 The answer is vector embeddings. 
 
-Vector embeddings let you return more _relevant_ results to your search queries by 1) querying the _meaning_ of the search terms, as opposed to just looking for search keyword _matches_, and 2) informing your search query with the _meaning_ of personal preference data.
+Vector embeddings let you return more _relevant_ results to your search queries by 1) querying the _meaning_ of the search terms, as opposed to just looking for search keyword _matches_, and 2) informing your search query with the _meaning_ of personal preference data, through the addition of a personal preference vector.
 
 Let's look first at how vector embeddings improve the relevance of search query results generally, and then at how vector embeddings permit us to use the meaning of personal preferences to create truly personalized searches.
 
@@ -22,19 +22,19 @@ Let's say you're searching for a book in an online store. With traditional keywo
 
 ### How do vector embeddings return relevant results?
 
-The power of vector embeddings lies in their ability to quantify the similarity between two vectors. This is done using a distance metric. One of the most commonly used distance metrics is cosine similarity. Cosine similarity measures how close two vectors are to each other; the distance between them is a measure of how similar two pieces of data are. In this way, vector search is able to return relevant results even when the exact terms aren't present in the query.
+The power of vector embeddings lies in their ability to quantify the similarity between two vectors. This is done using a distance metric. One of the most commonly used distance metrics is cosine similarity, which measures how close two vectors are to each other; the distance between them is a measure of how similar two pieces of data are. In this way, vector search is able to return relevant results even when the exact terms aren't present in the query.
 
 ### Handling embedding model input limits
 
-The embedding models used for vector search do have maximum input length limits that users need to consider. The twelve best-performing models, based on the [Massive Text Embedding Benchmark (MTEB)](https://huggingface.co/spaces/mteb/leaderboard), are limited to an input size of 512 tokens, while the 13th best has an exceptional input size limit of 8192 tokens. 
+The embedding models used for vector search _do_ have maximum input length limits that users need to consider. The twelve best-performing models, based on the [Massive Text Embedding Benchmark (MTEB)](https://huggingface.co/spaces/mteb/leaderboard), are limited to an input size of 512 tokens. (The 13th best has an exceptional input size limit of 8192 tokens.)
 
 But we can handle this input size limitation by segmenting the data into smaller parts that fit the model's token constraints, or using a sliding window technique. Segmenting involves cutting the text into smaller pieces that can be individually vectorized. The sliding window method processes the text in sections, with each new window overlapping the previous one, to maintain context between portions. These techniques adjust the data to the model's requirements, allowing for detailed vector representation of larger texts.
 
-For example, say you're searching for a specific article about a local festival in a digital archive of a newspaper. The system identifies the lengthy Sunday edition where the piece appeared and then, to ensure a thorough search, it breaks the edition down, analyzing it article by article, much like going page by page, until it pinpoints your article about the local festival.
+Say, for example, you're searching for a specific article about a local festival in a newspaper's digital archive. The system identifies the lengthy Sunday edition where the piece appeared and then, to ensure a thorough search,  breaks the edition down, analyzing it article by article, much like going page by page, until it pinpoints your article about the local festival.
 
 ### But it's not only text that you can search!
 
-The general-purpose nature of vector embeddings make it possible to represent almost any form of data, from text to images to audio. In the bookstore example, we could represent each transaction as a vector, with each dimension representing a different attribute such as the transaction amount, date, or product category. By comparing these vectors, the search system can identify patterns or anomalies that would be difficult to spot with traditional search methods.
+The general-purpose nature of vector embeddings make it possible to represent almost any form of data, from text to images to audio. In the bookstore example, we could represent each transaction as a vector, with each dimension representing a different attribute, such as the transaction amount, date, or product category. By comparing these transaction vectors, the search system can identify patterns or anomalies that would be difficult to spot with traditional search methods.
 
 ### Great! But what can I use to get started?
 
@@ -50,7 +50,7 @@ Using a vector database – a system designed to store and perform semantic sear
 
 ## How can I personalize my search (using a vector database)?
 
-Let's illustrate in a simple code snippet how we might personalize a query – by adding a user preference vector:
+Let's illustrate, in a simple code snippet, how we might personalize a query – by adding a user preference vector:
 
 ```python
 from transformers import BertTokenizer, BertModel
@@ -79,7 +79,7 @@ user_preference_weight = 0.3
 biased_query_embedding = query_weight * query_embedding + user_preference_weight * user_preference_vector
 ```
 
-In this code example, we convert a search query into a vector using an [open-source, pretrained BERT model from Hugging Face](https://huggingface.co/bert-base-uncased) (You can try this out online yourself by following the link). We also have a user preference vector, which is usually based on a user's past clicks or choices. We then arithmetically "add" the query vector and the user preference vector to create a new query vector that reflects both the user input and user preferences.
+In this code example, we convert a search query into a vector using an [open-source, pretrained BERT model from Hugging Face](https://huggingface.co/bert-base-uncased) (you can try this out online yourself by following the link). We also have a user preference vector, which is usually based on a user's past clicks or choices. We then arithmetically "add" the query vector and the user preference vector to create a new query vector that reflects both the user input and user preferences.
 
 ![Use cases of personalized search with vector embeddings](../assets/use_cases/personalized_search/vector_space.png)
 
