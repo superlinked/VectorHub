@@ -4,23 +4,23 @@
 
 Imagine a world where your online searches return results that truly understand your needs, a world where you don't have to know the exact words to find what you're looking for. This isn't a distant future; it's happening now. Companies like Pinterest, Spotify, eBay, Airbnb, and Doordash have realized the value of data - data that is growing exponentially, and projected to surpass 175 zettabytes by 2025 [source](https://www.forbes.com/sites/tomcoughlin/2018/11/27/175-zettabytes-by-2025). By taking advantage of the treasure trove of insights inherent in data, these companies have seen significant improvements in user experience and engagement, higher conversion rates and customer satisfaction. Spotify, for example, has been able to enhance its music recommendation system, leading to a more than 10% performance improvement in session and track recommendation tasks, and a significant boost in user engagement and satisfaction [(Hansen et al. 2020)](https://doi.org/10.1145/3383313.3412248).
 
-And _how_ have they done this? How have these companies been able to harvest the inherent power of data? What's the secret?
+And _how_ have they done this? How have these companies been able to harvest the inherent power of data to their benefit? What's the secret?
 
 The answer is vector embeddings. 
 
 Vector embeddings let you return more _relevant_ results by 1) searching the _meaning_ of a search query rather than just search keyword _matches_, and 2) informing the search with the _meaning_ of personal preference data rather than just its explicit terms. 
 
-Let's look first at how vector embedding improves the relevance of search query results generally, and then how vector embedding permits us to use the meaning of personal preferences to create truly personalized searches.
+Let's look first at how vector embeddings improve the relevance of search query results generally, and then how vector embeddings permit us to use the meaning of personal preferences to create truly personalized searches.
 
 ![Illustration of vector embeddings](../assets/use_cases/personalized_search/embeddings.png)
 
 ## Vector search vs. keyword-based search
 
-Vector embedding is revolutionizing the way we search and retrieve information. It works by converting data into a numerical representation, known as a vector. Conversion into vectors allows the search system to consider the semantics – the underlying meaning – of the data when performing a search.
+Vector embeddings are revolutionizing the way we search and retrieve information. They work by converting data into a numerical representation, known as a vector. Conversion into vectors allows the search system to consider the _semantics_ – the underlying meaning – of the data when performing a search.
 
-Let's say you're searching for a book in an online store. With traditional keyword-based search, you would need to know the exact title or author's name. But with vector embeddings, you can simply describe the book's theme or plot, and the search system retrieves relevant results. This is because vector embeddings understand the _meaning_ of the query, rather than just matching keywords.
+Let's say you're searching for a book in an online store. With traditional keyword-based search, you would need to know the exact title or author's name. But with vector embeddings, you can simply describe the book's theme or plot, and the search system retrieves relevant results. This is because vector embeddings understand the _meaning_ of the query, rather than just matching on the keywords in your query.
 
-### How does it search?
+### How do vector embeddings return relevant results?
 
 The power of vector embeddings lies in their ability to quantify the similarity between two vectors. This is done using a distance metric. One of the most commonly used distance metrics is cosine similarity. Cosine similarity measures how close two vectors are to each other; the distance between them is a measure of how similar two pieces of data are. In this way, vector search is able to return relevant results even when the exact terms aren't present in the query.
 
