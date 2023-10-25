@@ -2,9 +2,9 @@
 
 ## Introduction
 
-Imagine a world where your online searches return results that truly understand your needs, a world where you don't have to know the exact words to find what you're looking for. This isn't a distant future; it's happening now. Companies like Pinterest, Spotify, eBay, Airbnb, and Doordash have realized the value of data - data that is growing exponentially, and projected to surpass 175 zettabytes by 2025 [source](https://www.forbes.com/sites/tomcoughlin/2018/11/27/175-zettabytes-by-2025). By taking advantage of the treasure trove of insights inherent in data, these companies have seen significant improvements in user experience and engagement, higher conversion rates and customer satisfaction. Spotify, for example, has been able to enhance its music recommendation system, leading to a more than 10% performance improvement in session and track recommendation tasks, and a significant boost in user engagement and satisfaction [(Hansen et al. 2020)](https://doi.org/10.1145/3383313.3412248).
+Imagine a world where your online searches return results that truly understand your needs, a world where you don't have to know the exact words to find what you're looking for. This isn't a distant future; it's happening now. Companies like Pinterest, Spotify, eBay, Airbnb, and Doordash have already taken advantage of the treasure trove of insights inherent in data (data that is growing exponentially, and projected to surpass 175 zettabytes by 2025 [source](https://www.forbes.com/sites/tomcoughlin/2018/11/27/175-zettabytes-by-2025)), to significantly improve user experience and engagement, conversion rates, and customer satisfaction. Spotify, for example, has been able to enhance its music recommendation system, leading to a more than 10% performance improvement in session and track recommendation tasks, and a significant boost in user engagement and satisfaction [(Hansen et al. 2020)](https://doi.org/10.1145/3383313.3412248).
 
-And _how_ have they done this? How have these companies been able to harvest the inherent power of data to their benefit? What's the secret?
+And _how_ have they done this? How have these companies been able to harvest the inherent power of data to their benefit?
 
 The answer is vector embeddings. 
 
