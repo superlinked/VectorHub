@@ -24,7 +24,7 @@ Let's say you're searching for a book in an online store. With traditional keywo
 
 The power of vector embeddings lies in their ability to quantify the similarity between two vectors. This is done using a distance metric. One of the most commonly used distance metrics is cosine similarity. Cosine similarity measures how close two vectors are to each other; the distance between them is a measure of how similar two pieces of data are. In this way, vector search is able to return relevant results even when the exact terms aren't present in the query.
 
-## Handling embedding model input limits
+### Handling embedding model input limits
 
 The embedding models used for vector search do have maximum input length limits that users need to consider. The twelve best-performing models, based on the [Massive Text Embedding Benchmark (MTEB)](https://huggingface.co/spaces/mteb/leaderboard), are limited to an input size of 512 tokens, while the 13th best has an exceptional input size limit of 8192 tokens. 
 
@@ -32,11 +32,11 @@ But we can handle this input size limitation by segmenting the data into smaller
 
 For example, say you're searching for a specific article about a local festival in a digital archive of a newspaper. The system identifies the lengthy Sunday edition where the piece appeared and then, to ensure a thorough search, it breaks the edition down, analyzing it article by article, much like going page by page, until it pinpoints your article about the local festival.
 
-## But it's not only text that you can search!
+### But it's not only text that you can search!
 
 The general-purpose nature of vector embeddings make it possible to represent almost any form of data, from text to images to audio. In the bookstore example, we could represent each transaction as a vector, with each dimension representing a different attribute such as the transaction amount, date, or product category. By comparing these vectors, the search system can identify patterns or anomalies that would be difficult to spot with traditional search methods.
 
-## Great! But what can I use to get started?
+### Great! But what can I use to get started?
 
 Using a vector database – a system designed to store and perform semantic search at scale, you can compare the query vector with vectors stored in the database and return the top-k most similar ones. The key components of a vector database include a vector index, a query engine, partitioning/sharding capabilities, replication features, and an accessible API. Furthermore, vector databases are categorized into vector-native, hybrid, and search engines. Notable vector database providers include [Pinecone](https://pinecone.io), [Milvus](https://milvus.io), and [Weaviate](https://weaviate.io).
 
@@ -48,7 +48,7 @@ Using a vector database – a system designed to store and perform semantic sear
 | Replication           | Ensures reliability and data integrity                  |
 | API                   | Allows for efficient vector CRUD operations             |
 
-## How can I use this for personalized search?
+## How can I personalize my search (using use a vector database)?
 
 Let's illustrate how we might personalize a query (via a user preference vector) in a simple code snippet:
 
