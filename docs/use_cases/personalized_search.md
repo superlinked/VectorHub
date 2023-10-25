@@ -50,7 +50,7 @@ Using a vector database – a system designed to store and perform semantic sear
 
 ## How can I personalize my search (using use a vector database)?
 
-Let's illustrate how we might personalize a query (via a user preference vector) in a simple code snippet:
+Let's illustrate in a simple code snippet how we might personalize a query (by adding a user preference vector):
 
 ```python
 from transformers import BertTokenizer, BertModel
@@ -79,7 +79,7 @@ user_preference_weight = 0.3
 biased_query_embedding = query_weight * query_embedding + user_preference_weight * user_preference_vector
 ```
 
-In this code example, we convert a search query into a vector using an [open-source, pretrained BERT model from Hugging Face](https://huggingface.co/bert-base-uncased) (You can try this out online yourself by following the link). We also have a user preference vector, which would usually be based on a user's past clicks or choices. We then arithmetically "add" the query vector and the user preference vector to create a new query vector that reflects both the user input and user preferences.
+In this code example, we convert a search query into a vector using an [open-source, pretrained BERT model from Hugging Face](https://huggingface.co/bert-base-uncased) (You can try this out online yourself by following the link). We also have a user preference vector, which is usually based on a user's past clicks or choices. We then arithmetically "add" the query vector and the user preference vector to create a new query vector that reflects both the user input and user preferences.
 
 ![Use cases of personalized search with vector embeddings](../assets/use_cases/personalized_search/vector_space.png)
 
