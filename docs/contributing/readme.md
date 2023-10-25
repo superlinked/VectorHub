@@ -23,7 +23,7 @@ We release bounties looking for content contributions constantly. Keep an eye on
 
 ::::link-array
 :::link-array-item{headerImage headerColor}
-[Report an error/bug/typo](https://github.com/superlinked/VectorHub-test/issues/new)
+[Report an error/bug/typo](https://github.com/superlinked/VectorHub/issues)
 :::
 
 :::link-array-item{headerImage headerColor}
