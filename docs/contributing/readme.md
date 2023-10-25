@@ -27,11 +27,7 @@ We release bounties looking for content contributions constantly. Keep an eye on
 :::
 
 :::link-array-item{headerImage headerColor}
-Edit or update existing contact
-:::
-
-:::link-array-item{headerImage headerColor}
-Create new content
+[Create new or update existing content](https://github.com/superlinked/VectorHub)
 :::
 ::::
 
