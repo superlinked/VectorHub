@@ -52,7 +52,7 @@ Here are some examples from the community, more coming soon!
 [Recommender Systems](use_cases/recommender_systems.md)
 :::
 
-:::link-array-item{headerType="IMAGE" headerImage="hhttps://uploads-ssl.webflow.com/64f9dd739f984c15f86e446e/65390fbb631557f00cf97689_rag.png"}
+:::link-array-item{headerType="IMAGE" headerImage="https://uploads-ssl.webflow.com/64f9dd739f984c15f86e446e/65390fbb631557f00cf97689_rag.png"}
 [Retrieval Augmented Generation](use_cases/retrieval_augmented_generation.md)
 :::
 
