@@ -38,7 +38,7 @@ The general-purpose nature of vector embeddings make it possible to represent al
 
 ## Great! But what can I use to get started?
 
-Using a vector database – a system designed to store and perform semantic search at scale – you can compare the query vector with vectors stored in the database and return the top-k most similar ones. The key components of a vector database include a vector index, a query engine, partitioning/sharding capabilities, replication features, and an accessible API. Furthermore, vector databases are categorized into vector-native, hybrid, and search engines. Notable vector database providers include [Pinecone](https://pinecone.io), [Milvus](https://milvus.io), and [Weaviate](https://weaviate.io).
+Using a vector database – a system designed to store and perform semantic search at scale, you can compare the query vector with vectors stored in the database and return the top-k most similar ones. The key components of a vector database include a vector index, a query engine, partitioning/sharding capabilities, replication features, and an accessible API. Furthermore, vector databases are categorized into vector-native, hybrid, and search engines. Notable vector database providers include [Pinecone](https://pinecone.io), [Milvus](https://milvus.io), and [Weaviate](https://weaviate.io).
 
 | Key Component         | Description                                             |
 | --------------------- | ------------------------------------------------------- |
@@ -89,11 +89,13 @@ Vector embeddings are revolutionizing the way we interact with and use data. By 
 
 So, what's next? How can you start implementing personalized search in your organization? There are plenty of resources and tools available to help you get started. For instance, you can check out this [guide on implementing vector search](link) or this [tutorial on using vector embeddings](link).
 
-What are your thoughts on personalized search using vector embeddings? Have you used this technology in your organization? Share your experiences and join the conversation!
+## Share your thoughts and stay updated
 
-Stay Updated: Drop your email in the footer box to keep all the latest guides coming your way.
+What are your thoughts on personalized search using vector embeddings? Have you used this technology in your organization? If you'd like to contribute an article to the conversation, don't hesitate to [get in touch](https://github.com/superlinked/VectorHub)!
 
-Found an Issue or Have a Suggestion? Your feedback shapes VectorHub! If you spot something off in the article or have a topic you want us to dive into, create a GitHub issue and we'll get on it right away!
+Stay Updated: Drop your email in the footer to stay up to date with new resources coming out of VectorHub and Superlinked.
+
+Found an Issue or Have a Suggestion? Your feedback shapes VectorHub! If you spot something off in the article or have a topic you want us to dive into, create a GitHub issue and we'll get on it!
 
 ---
 
