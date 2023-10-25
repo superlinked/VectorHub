@@ -18,7 +18,7 @@ Read more about our philosophy in our [Manifesto](manifesto.md).
 ## Building Blocks
 
 ::::link-array
-:::link-array-item{headerType="IMAGE" headerImage="hhttps://uploads-ssl.webflow.com/64f9dd739f984c15f86e446e/6539122074bfead102946fcb_home_data_sources.png"}
+:::link-array-item{headerType="IMAGE" headerImage="https://uploads-ssl.webflow.com/64f9dd739f984c15f86e446e/6539122074bfead102946fcb_home_data_sources.png"}
 [**1. Data Sources**](building_blocks/data_sources/readme.md)
 
 Connecting and extracting data from multiple sources
