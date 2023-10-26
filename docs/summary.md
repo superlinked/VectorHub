@@ -1,6 +1,5 @@
 - [Home](home.md)
 - [Manifesto](manifesto.md)
-- [Subscribe for updates](https://clients.superlinked.com/vectorhubsubscribe-0)
 
 - [Building Blocks](building_blocks/readme.md)
   - [Data Sources](building_blocks/data_sources/readme.md)
