@@ -91,7 +91,7 @@ tokenizer = AutoTokenizer.from_pretrained("microsoft/phi-1_5", trust_remote_code
 
 ```
 
-Let's say we are hobby investors and we consider investing in Tesla. We want to know how the company performed in Q2 this year. Let's ask our LLM about Tesla's revenue.
+Imagine we are hobby investors and are considering investing in Tesla. We want to know how the company performed in Q2 this year. Let's ask our LLM about Tesla's revenue.
 
 ```python
 
@@ -119,7 +119,7 @@ Answer: Tesla's revenue for Q2 2023 was $1.2 billion.
 
 ```
 
-$1.2 billion sounds like a lot of money! But unfortunately, I can assure you that this number is completely off. Notice how confident our model sounds. If I hadn't looked up the real revenue beforehand, I might've believed phi-1.5 here.
+Despite our model's confident assertion, it turns out that Telsa's February earnings were _not_ $1.2 billion. In fact, this result is way off. Without external data, we might have believed phi-1.5's result, and made a poorly informed investment decision.
 
 So how can we fix this? You already know the answer: RAG to the rescue. In order to retrieve relevant context, we need a document to retrieve from in the first place. We will download Tesla's financial report for Q2 2023 from their website.
 
@@ -159,7 +159,7 @@ docs
 
 ```
 
-I will only show the part of the document here that contains the answer to our question, so keep in mind that the following is *not* the full output of docs:
+Following is the relevant (answer-containing) part of the documents, not the full output:
 
 ```console
 
@@ -223,11 +223,13 @@ Answer: Tesla's revenue for Q2 2023 was $24.9 billion.
 
 ```
 
-Et voilà! If you go back to the passage from the financial report that we printed out above, you can see that "$24.9 billion" is the correct answer to our question. Which is more than 10x higher than what phi-1.5 hallucinated earlier - RAG saved us from what could've led to a terrible decision. 
+Et voilà! If you go back to the passage from the financial report that we printed out above, you can see that "$24.9 billion" is the correct answer to our question. That's more than 10x higher than what phi-1.5 hallucinated earlier - RAG saved us from what could've led to a terrible investment decision. 
 
 ## Conclusion
 
-RAG can add value to your LLM pipelines by combining the internal knowledge of your models with relevant context from external data sources. It addresses the issue of hallucinations and helps LLMs adapt to new data efficiently. This makes RAG a popular choice for applications in sectors like customer support, content generation, legal and compliance, education, and finance. When using RAG, you have to make sure the documents you're retrieving from do *actually* include the answers you're looking for. As with all things Data Science: garbage in, garbage out.
+RAG can add value to your LLM pipelines by combining the internal knowledge of your models with relevant context from external data sources. RAG can prevent hallucinations, and helps LLMs adapt to new data efficiently. This makes RAG a popular choice for applications in sectors and use cases that deal with overwhelming amounts of non-trivial text, including customer support, content generation, legal and compliance, education, and finance.
+
+One final caveat: When using RAG, you have to make sure the documents you're retrieving from do *actually* include the answers you're looking for. As with all things Data Science: garbage in, garbage out.
 
 ---
 ## Contributors
