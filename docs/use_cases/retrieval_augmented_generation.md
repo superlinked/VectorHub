@@ -75,7 +75,7 @@ accelerate einops pypdf sentencepiece
 
 ```
 
-For the model side of things, we will be using the transformer library from Huggingface. Our model of choice will be the new lightweight champion from Microsoft, phi-1.5, which comes with remarkable performance at only 1.7B parameters in size.
+On the model side, we'll use Hugging Face's Transformers library. We will use Microsoft's lightweight phi-1.5, which performs remarkably well despite being only 1.7B parameters in size.
 
 ```python
 
@@ -91,7 +91,7 @@ tokenizer = AutoTokenizer.from_pretrained("microsoft/phi-1_5", trust_remote_code
 
 ```
 
-Now that we got our model, what do we want to do with it? Let's say we are hobby investors and we consider investing in Tesla. We want to know how the company performed in Q2 this year. Let's ask our LLM about Tesla's revenue.
+Let's say we are hobby investors and we consider investing in Tesla. We want to know how the company performed in Q2 this year. Let's ask our LLM about Tesla's revenue.
 
 ```python
 
