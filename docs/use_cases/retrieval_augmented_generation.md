@@ -31,33 +31,39 @@ Let's take a quick look at our two components seperately and what they are doing
 
 Given how quickly and widely RAG is being adopted, it would be impractical here to explore all its sectors and use cases exhaustively. Instead, we'll focus on those use cases and settings where RAGs have seen the widest adoption.
 
-#### 1. Customer Support and Chatbots
+### 1. Customer Support and Chatbots
 
 Companies providing real-time customer support are increasingly using RAG-powered chatbots. By integrating retrieval mechanisms to access customer-specific data, purchase histories, and FAQs, these chatbots can offer highly personalized and accurate responses. This not only enhances customer satisfaction but also reduces the workload on human customer support agents.
 
-#### 2. Content Generation and Copywriting
+### 2. Content Generation and Copywriting
 
 Marketing professionals and content creators increasingly employ RAG models to generate engaging and relevant content. By retrieving data from various sources, such as research articles, market reports, or user-generated content, RAG assists in crafting informative and persuasive articles, product descriptions, and advertisements.
 
-#### 3. Legal and Compliance
+### 3. Legal and Compliance
 
 Lawyers and compliance officers deal with an extensive corpus of legal documents and regulations. RAG can simplify legal research by retrieving relevant case law, statutes, and precedents. It can also help in drafting legal documents and compliance reports by generating accurate and legally sound text based on the retrieved data.
 
-#### 4. Education and Training
+### 4. Education and Training
 
-In the education sector, RAG can enhance the learning experience for students. Educators can create personalized study materials by retrieving relevant textbooks, research papers, and educational resources. Additionally, RAG-powered virtual tutors can provide explanations and answer student questions in a more contextually relevant manner.
+Educators can enhance students' learning experience by creating personalized study materials using RAG models. RAG can retrieve relevant textbooks, research papers, and educational resources. Additionally, RAG-powered virtual tutors can provide explanations and answer student questions in a more contextually relevant manner.
 
-#### 5. Financial Services
+### 5. Financial Services
 
-Financial institutions are leveraging RAG to provide more insightful and data-driven services. Whether it's personalized investment advice based on market trends or retrieving historical financial data for risk analysis, RAG is proving to be an invaluable tool for making informed financial decisions.
+Financial institutions increasingly leverage RAG to provide more insightful and data-driven services. Whether it's personalized investment advice based on market trends or retrieving historical financial data for risk analysis, RAG is proving to be an invaluable tool for making informed financial decisions.
 
-Going over these examples, you might've noticed a pattern. RAG is an excellent method for sectors that are dealing with overwhelming amounts of non-trivial text (e.g., Legal, Education, Finance). The use cases in these sectors often involve Question Answering (QA) and Summarization while others, such as Customer Support, utilize these systems to reduce response rates and response quality under pressure. Note that most of the workflows we've just learned about include a human-in-the-loop, which means RAG is a complementary, assistive technology in these examples and it's advised to think carefully about guardrails like human supervision for your own applications.
 
-## Learning by example
+All the above use cases are in sectors (e.g., Legal, Education, Finance) that deal with overwhelming amounts of non-trivial text. RAG is built for and excels at this task, whether it's Question Answering (QA) and Summarization or quickly reducing response rates and improving response quality.
 
-Before we are wrapping this article up, let's get practical together! I'll be using LangChain, a popular LLM library, because it supports most of the technology we will need out-of-the-box and you'll be able to switch in any components of your preference, such as your favorite vector database or LLM. 
+That being said, if you are considering using an RAG, it's important to note that RAG is a complementary but not fool-proof method for improving generation context by adding external data. Most of the above use cases employ a human-in-the-loop as a guardrail, to ensure quality outcomes. You should carefully consider whether your use case might also warrant this kind of guardrail.
 
-First, we will need to install all the libraries that we will import later:
+
+## RAG implementation example - retrieval accurate financial data
+
+Let's say you want to make an investment decision, but you need accurate financial data to base it on. You can use RAG to ensure you're not getting erroneous information, and preempt a poorly informed, potentially costly investment choice.
+
+To start, we need an LLM library. I'll be using LangChain, a popular LLM library, because it supports most of the technology we will need out-of-the-box and you'll be able to switch in any components of your preference, such as your favorite vector database or LLM. 
+
+First, install all the libraries that we will import later:
 
 ```console
 
