@@ -1,5 +1,6 @@
 - [Home](home.md)
 - [Manifesto](manifesto.md)
+- [Subscribe](subscribe.md)
 
 - [Building Blocks](building_blocks/readme.md)
   - [Data Sources](building_blocks/data_sources/readme.md)
