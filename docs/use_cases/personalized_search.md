@@ -102,3 +102,7 @@ Found an Issue or Have a Suggestion? Your feedback shapes VectorHub! If you spot
 ## Author
 
 - [Michael Jancen-Widmer](https://www.contrarian.ai) from Contrarian AI
+
+## Editor
+
+- [Robert Turner](https://robertturner.co/copyedit)
