@@ -234,5 +234,5 @@ One final caveat: When using RAG, you have to make sure the documents you're ret
 ---
 ## Contributors
 
-- [Pascal Biese](https://www.linkedin.com/in/pascalbiese/)
+- [Pascal Biese, author](https://www.linkedin.com/in/pascalbiese/)
 - [Robert Turner, editor](https://robertturner.co/copyedit)
