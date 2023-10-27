@@ -2,7 +2,7 @@
 
 # A Recommender System: Collaborative Filtering with Sparse Metadata
 
-![](assets/use_cases/recommender_systems/recommender.jpg)
+![](assets/use_cases/recommender_systems/recommender.png)
 
 Recommender Systems are increasingly important, given the plethora of products offered to users/customers. Beginning approximately twenty years ago, fashion retailers developed basic versions of content-based recommenders that increased user engagement (compared with a no-recommendations approach). But when the capabilities of event-tracking systems improved, it became possible to integrate new signals that could help provide even better recommendations. At the moment of this writing, fashion retailers have adopted more sophisticated recommendation systems that ingest not only users' purchasing/viewing history but also user metadata (age, location, spending habits, mood, etc.) and item metadata (category, popularity, etc.).
 ​
