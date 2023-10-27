@@ -186,7 +186,7 @@ Unstructured data encompasses a wide variety of information that doesn't adhere 
 - **Typical Formats:** JPEG, PNG, TIFF.
 - **Datasets:**
     - Kaggle: [CIFAR-10 - Object Recognition in Images](https://www.kaggle.com/c/cifar-10)
-    - Hugging Face: [Transformers](https://huggingface.co/transformers/main_classes/datasets.html)
+    - Hugging Face: [Image Segmentation]([https://huggingface.co/transformers/main_classes/datasets.html](https://huggingface.co/datasets?task_categories=task_categories:image-segmentation&sort=trending))
 
 **Audio Data:**
 - **Example Data:** Speech recordings, music, environmental sounds.
