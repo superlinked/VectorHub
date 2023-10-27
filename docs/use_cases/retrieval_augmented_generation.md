@@ -2,7 +2,7 @@
 
 # Retrieval Augmented Generation
 
-![](assets/use_cases/recommender_systems/cover.jpg)
+![](assets/use_cases/recommender_systems/cover.png)
 
 ## The case for Retrieval-augmented Generation
 
