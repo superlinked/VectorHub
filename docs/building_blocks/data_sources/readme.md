@@ -315,3 +315,4 @@ Next, let’s dive into how [Vector Compute](link) connects your data to your [V
 
 - [Daniel Svonava](https://www.linkedin.com/in/svonava/)
 - [Paolo Perrone](https://www.linkedin.com/in/paoloperrone/)
+- [Robert Turner, editor](https://robertturner.co/copyedit)
