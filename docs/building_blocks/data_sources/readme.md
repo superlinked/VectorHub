@@ -47,7 +47,7 @@ Below is an overview of the data & ML stack Pinterest uses to convert all this d
             - Images and other media (unstructured data).
 
 3. **DataAnalysis**:
-    - Pinterest’s engineers use [**Querybook**](https://medium.com/pinterest-engineering/unified-flink-source-at-pinterest-streaming-data-processing-c9d4e89f2ed6), a collaborative big data hub that allows internal users to query and analyze data efficiently. Each **DataDoc** in Querybook consists of cells (text, query, or chart) that facilitate exploration and visualization.
+    - Pinterest’s engineers use [**Querybook**](https://medium.com/pinterest-engineering/open-sourcing-querybook-pinterests-collaborative-big-data-hub-ba2605558883), a collaborative big data hub that allows internal users to query and analyze data efficiently. Each **DataDoc** in Querybook consists of cells (text, query, or chart) that facilitate exploration and visualization.
     - The system supports complex queries for trend analysis, anomaly detection, recommendation algorithms, and personalized content delivery.
 
 For precise details about Pinterest’s specific data types and components, check out their engineering blog.
