@@ -65,13 +65,13 @@ The choice of data processing velocity is pivotal in determining the kind of dat
 - **ETL-Able Systems:** Systems like Magento for e-commerce or MailChimp for marketing are typical sources for batch accessed and processed data in your retrieval stack.
 
 2. **Micro-Batch Processing**
-- **Technologies**: Apache Spark Structured Streaming, Apache Flink, Apache Beam
+- **Technologies**: Apache Spark Structured Streaming, Apache Flink, Apache Beam.
 - **Example Data**: Social media posts, IoT sensor data, small-scale e-commerce transactions.
 - **Properties**: Micro-batch processing is a compromise between batch and stream. It processes data in smaller, more frequent batches, allowing for near-real-time updates. It's suitable for use cases that require a balance between real-time processing and resource efficiency.
 - **Formats**: Often similar to batch processing with data structured in formats like JSON or Avro.
 
 3. **Stream Processing**
-- **Technologies**: Apache Kafka, Apache Storm, Amazon Kinesis, [hazelcast](https://hazelcast.com/), [bytewax](https://github.com/bytewax/bytewax), [quix](https://quix.io/), [streamkap](https://streamkap.com/), [decodable](https://www.decodable.co/)
+- **Technologies**: Apache Kafka, Apache Storm, Amazon Kinesis, [hazelcast](https://hazelcast.com/), [bytewax](https://github.com/bytewax/bytewax), [quix](https://quix.io/), [streamkap](https://streamkap.com/), [decodable](https://www.decodable.co/).
 - **Example Data**: Social media feeds, stock market transactions, sensor readings, clickstream data, ad requests and responses. A credit card company aiming to detect fraudulent transactions in real-time benefits from streaming data. Real-time detection can prevent financial losses and protect customers from fraudulent activities.
 - **Properties**: Stream processing handles data in real-time, making it highly dynamic. It's designed to support immediate updates and changes, making it ideal for use cases that require up-to-the-second insights.
 - **Formats**: Data in stream processing is often in Protobuf, Avro, or other formats optimized for small footprint and fast serialization.
