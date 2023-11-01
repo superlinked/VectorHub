@@ -28,13 +28,13 @@ For simpler conversational tasks, a single RAG agent may suffice.
 
 Retrieval augmented generation faces several key challenges that limit its performance in real-world applications.
 
-Firstly, existing retrieval mechanisms struggle to identify the most relevant passages from corpora containing millions of documents. Simple similarity functions often return superfluous or tangential results. The lack of maximal relevance results in suboptimal prompting.
+First, existing retrieval mechanisms struggle to identify the most relevant passages from corpora containing millions of documents. Simple similarity functions often return superfluous or tangential results. When retrieval fails to return the most relevant information, it leads to suboptimal prompting.
 
-Secondly, retrieving supplementary information introduces latency that can be prohibitive for large databases. Searching terabytes of text with complex ranking causes high wait times unsuitable for consumer applications.
+Second, retrieving supplementary information introduces latency; if the database is large, this latency can be prohibitive. Searching terabytes of text with complex ranking creates wait times that are too long for consumer applications.
 
-Additionally, current RAG systems fail to appropriately weight the original prompt and retrieved passages. Without dynamic contextual weighting, the model can become over-reliant on the retrievals.
+In addition, current RAG systems fail to appropriately weight the original prompt and retrieved passages. Without dynamic contextual weighting, the model can become over-reliant on the retrievals (resulting in reduced control or adaptablity in generating meaningful responses).
 
-Specialized agents with divided responsibilities could help address these challenges and unlock the full potential of RAG. For example, retriever agents can focus solely on efficient passage retrieval using optimized vector similarity searches. Dedicated reader agents can analyze retrieved context and summarize the most salient information. Orchestrator agents can dynamically adjust relevance weightings between the prompt and context.
+Specialized agents with divided responsibilities can help address these challenges and unlock the full potential of RAG. For example, retriever agents can focus solely on efficient passage retrieval using optimized vector similarity searches. Dedicated reader agents can analyze retrieved context and summarize the most salient information. Orchestrator agents can dynamically adjust relevance weightings between the prompt and context.
 
 By factoring RAG into separable subtasks executed concurrently by collaborative agents, relevance, scalability and latency limitations can be mitigated. This allows RAG to scale efficiently to enterprise workloads.
 
