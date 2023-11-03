@@ -26,10 +26,11 @@ In addition, current RAG systems fail to appropriately weight the original promp
 Specialized agents with divided responsibilities can help address the challenges that plague single-agent architectures, and unlock RAG's full potential. 
 By factoring RAG into separable subtasks executed concurrently by collaborative and specialized retriever, ranker, reader, and orchestrator agents, multi-agent RAG can mitigate single-agent RAG's relevance, scalability, and latency limitations. This allows RAG to scale efficiently to enterprise workloads.
 
+Let's break multi-agent RAG into its parts:
 
-At first an agent is here to understand the query and describe it in different sub queries. 
+First, a query understanding / parsing agent comprehends the query, breaking it down and describing in different sub queries.
 
-Then x number of retriever agents focuses solely on efficient passage retrieval from the document corpus based on the sub queries. It employs vector similarity search or knowledge graph retrieval based searches to quickly find potentially relevant passages, minimizing latency.
+Then x number of retriever agents focus solely on efficient passage retrieval from the document corpus, based on the sub queries. These retriever agents employ vector similarity search or knowledge graph retrieval based searches to quickly find potentially relevant passages, minimizing latency.
 
 The ranker agent evaluates the relevance of the retrieved passages using additional ranking signals like source credibility, passage specificity, and lexical overlap. This provides a relevance-based filtering step. This agent might be using ontology for example as a way to rerank retrieved information. 
 
