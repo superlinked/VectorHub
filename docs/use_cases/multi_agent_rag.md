@@ -1,4 +1,5 @@
-<!-- TODO: Replace this text with a summary of article for SEO -->
+<!-- SEO: Retrieval-augmented generation (RAG) has shown great promise for powering conversational AI. However, existing implementations of RAG struggle with relevance, latency, and coherence. A multi-agent architecture that divides responsibilities across specialized retrieval, ranking, reading, and orchestration agents can overcome these limitations and unlock further gains.
+ -->
 
 # Retrieval Augmented Generation
 
@@ -6,20 +7,9 @@
 
 ## Enhancing RAG with a Multi-Agent System
 
-Retrieval-augmented generation (RAG) has shown great promise for powering conversational AI. However, existing implementations of RAG struggle with relevance, latency, and coherence. A multi-agent architecture that divides responsibilities across specialized retrieval, ranking, reading, and orchestration agents can overcome these limitations and unlock further gains.
+Retrieval-augmented generation (RAG) has shown great promise for powering conversational AI. However, in most RAG systems today, a single model handles the full workflow of query analysis, passage retrieval, contextual ranking, summarization, and prompt augmentation. This results in suboptimal relevance, latency, and coherence. A multi-agent architecture that factors responsibilities across specialized retrieval, ranking, reading, and orchestration agents, operating asynchronously, allows each agent to focus on its specialized capability using custom models and data. Multi-agent RAG is thus able to improve relevance, latency, and coherence overall. 
 
-In RAG systems today, a single model handles the full workflow of query analysis, passage retrieval, contextual ranking, summarization, and prompt augmentation. Factoring this workflow into separate agents that operate asynchronously allows each agent to focus on its specialized capability using custom models and data, thereby improving relevance, latency, and coherence. For example, dedicated retriever agents can efficiently search large corpora using optimized vector indexes, reader agents can distill retrieved passages down to salient facts, and an orchestrator agent can dynamically adjust prompt hybridization to maximize coherence.
-
-This article explores a multi-agent RAG architecture and quantifies its benefits:
-
-- Focused specialization _improves relevance and quality_. Retriever agents leverage tailored similarity metrics, rankers weigh signals like source credibility, and readers summarize context.
-- Asynchronous operation _reduces latency_ by parallelizing retrieval. Slow operations don't block faster ones.
-- Adding more retriever agents _allows easy horizontal scaling_, and optional _incorporation of new data sources_.
-- Modular components allow iterative enhancement over time.
-
-Experiments demonstrate multi-agent RAG significantly improves appropriateness, coherence and correctness over single-agent RAG. The future potential of multi-agent architectures for conversational systems is promising.
-
-But multi-agent RAG is not a panacea. It is most appropriate when reasoning over diverse information sources is needed. For simpler conversational tasks, a single RAG agent may suffice.
+While multi-agent RAG is not a panacea – for simpler conversational tasks a single RAG agent may suffice – multi-agent RAG outperforms single agent RAG when your use case requires reasoning over diverse information sources. This article explores a multi-agent RAG architecture and quantifies its benefits.
 
 ## RAG Challenges and Opportunities
 
@@ -31,9 +21,23 @@ Second, retrieving supplementary information introduces latency; if the database
 
 In addition, current RAG systems fail to appropriately weight the original prompt and retrieved passages. Without dynamic contextual weighting, the model can become over-reliant on the retrievals (resulting in reduced control or adaptablity in generating meaningful responses).
 
+
+
+For example, dedicated retriever agents can efficiently search large corpora using optimized vector indexes, reader agents can distill retrieved passages down to salient facts, and an orchestrator agent can dynamically adjust prompt hybridization to maximize coherence.
+
+benefits of multi-agent RAG architecture:
+- Focused specialization _improves relevance and quality_. Retriever agents leverage tailored similarity metrics, rankers weigh signals like source credibility, and readers summarize context.
+- Asynchronous operation _reduces latency_ by parallelizing retrieval. Slow operations don't block faster ones.
+- Adding more retriever agents _allows easy horizontal scaling_, and optional _incorporation of new data sources_.
+- Modular components allow iterative enhancement over time.
+
+Experiments demonstrate that multi-agent RAG significantly improves appropriateness, coherence, and correctness compared to single-agent RAG. The future potential of multi-agent architectures for conversational systems is promising.
+
 Specialized agents with divided responsibilities can help address these challenges and unlock the full potential of RAG. For example, retriever agents can focus solely on efficient passage retrieval using optimized vector similarity searches. Dedicated reader agents can analyze retrieved context and summarize the most salient information. Orchestrator agents can dynamically adjust relevance weightings between the prompt and context.
 
 By factoring RAG into separable subtasks executed concurrently by collaborative agents, relevance, scalability, and latency limitations can be mitigated. This allows RAG to scale efficiently to enterprise workloads.
+
+
 
 To address the challenges with single-agent RAG systems, a multi-agent architecture is proposed consisting of specialized retriever, ranker, reader, and orchestrator agents.
 
