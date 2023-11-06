@@ -284,7 +284,7 @@ Change Data Capture (CDC) provides a more efficient alternative – capturing gr
 
 The visualization below shows how CDC can be implemented within a streaming data retrieval system. A primary database emits CDC into a queue, which is then consumed like any other streaming data source:
 
-1. 1. **Primary Database**:
+1. **Primary Database**:
     - The primary database, which can be MySQL, PostgreSQL, SQL Server, or other database management system, serves as the source of data changes.
     - It continuously captures changes to its tables, including inserts, updates, and deletes, in its transaction logs.
 2. **Change Data Capture (CDC)**:
@@ -299,7 +299,6 @@ The visualization below shows how CDC can be implemented within a streaming data
     - Applications, analytics pipelines, and other data consumers subscribe to the message queue.
     - Streaming data consumers actively consume change events in real time, just as they would with any other streaming data source.
     - These consumers treat CDC data as a continuous flow of real-time data, making it readily available for processing and analysis.
-
 
 <!---- ![](IMAGE NUMBER 3 GOES HERE) --->
 
