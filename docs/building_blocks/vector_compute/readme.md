@@ -212,5 +212,6 @@ While generic pre-trained models fail to capture the nuances of proprietary data
 ---
 ## Contributors
 
-- [Your Name](you_social_handle.com)
-- [Co-author Name](their_social_handle.com)
+- [Daniel Svonava](https://www.linkedin.com/in/svonava/)
+- [Paolo Perrone](https://www.linkedin.com/in/paoloperrone/)
+- [Robert Turner, editor](https://robertturner.co/copyedit)
