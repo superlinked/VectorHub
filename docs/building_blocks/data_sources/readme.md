@@ -262,7 +262,7 @@ Here are some examples of structured data types, links to example datasets, typi
 - **Systems:** Spatial data can be stored in specialized Geographic Information Systems (GIS) or in databases with spatial extensions (e.g., PostGIS for PostgreSQL).
 
 **Logs Data**
--**Example Data:** Some examples of different logs include: system event logs that monitor traffic to an application, detect issues, and record errors causing a system to crash or user behaviour logs, which track actions a user takes on a website or signed into a device.
+- **Example Data:** Some examples of different logs include: system event logs that monitor traffic to an application, detect issues, and record errors causing a system to crash or user behaviour logs, which track actions a user takes on a website or signed into a device.
 - **Typical Formats:** [CLF](https://en.wikipedia.org/wiki/Common_Log_Format) or a custom text or binary file that contains ordered (timestamp action) pairs.
 - **Datasets:** 
  - [loghub](https://github.com/logpai/loghub): A large collection of different system log datasets for AI-driven log analytics.
