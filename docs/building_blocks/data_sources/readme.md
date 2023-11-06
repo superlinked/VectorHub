@@ -56,7 +56,7 @@ For precise details about Pinterest’s specific data types and components, chec
 
 The choice of data processing velocity is pivotal in determining the kind of data retrieval and vector compute tasks you can perform. Different velocities offer distinct advantages and make different use cases possible. Here's a breakdown of the three primary velocity categories:
 
-1. **Batch Processing**
+### 1. **Batch Processing**
 - **Technologies**: Open source tools like Apache Spark, or proprietary batch pipeline systems in Google BigQuery, AWS Batch or Snowflake. 
 - **Example Data**: Historical sales data, customer records, monthly financial reports. 
 - **Properties**: Batch processing involves processing data in fixed-size chunks or batches, typically scheduled at specific intervals (e.g., daily, weekly, or monthly). It provides the ability to handle large volumes of data efficiently but lacks real-time responsiveness. For instance, a product recommendation system for an online store email newsletter might opt for batch updates. Updating recommendations once per week may suffice, given that the email is also sent just once a week.
@@ -64,13 +64,13 @@ The choice of data processing velocity is pivotal in determining the kind of dat
 - **Databases**: Data storage systems like AWS S3 / Google Cloud Storage and document databases like MongoDB commonly store data that can be batch-processed for your retrieval system.
 - **ETL-Able Systems:** Systems like Magento for e-commerce or MailChimp for marketing are typical sources for batch accessed and processed data in your retrieval stack.
 
-2. **Micro-Batch Processing**
+### 2. **Micro-Batch Processing**
 - **Technologies**: Apache Spark Structured Streaming, Apache Flink, Apache Beam.
 - **Example Data**: Social media posts, IoT sensor data, small-scale e-commerce transactions.
 - **Properties**: Micro-batch processing is a compromise between batch and stream. It processes data in smaller, more frequent batches, allowing for near-real-time updates. It's suitable for use cases that require a balance between real-time processing and resource efficiency.
 - **Formats**: Often similar to batch processing with data structured in formats like JSON or Avro.
 
-3. **Stream Processing**
+### 3. **Stream Processing**
 - **Technologies**: Apache Kafka, Apache Storm, Amazon Kinesis, [hazelcast](https://hazelcast.com/), [bytewax](https://github.com/bytewax/bytewax), [quix](https://quix.io/), [streamkap](https://streamkap.com/), [decodable](https://www.decodable.co/).
 - **Example Data**: Social media feeds, stock market transactions, sensor readings, clickstream data, ad requests and responses. A credit card company aiming to detect fraudulent transactions in real-time benefits from streaming data. Real-time detection can prevent financial losses and protect customers from fraudulent activities.
 - **Properties**: Stream processing handles data in real-time, making it highly dynamic. It's designed to support immediate updates and changes, making it ideal for use cases that require up-to-the-second insights.
