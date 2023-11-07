@@ -36,27 +36,20 @@ The ranker agent evaluates the relevance of the retrieved passages using additio
 
 The reader agent summarizes lengthy retrieved passages to succinct snippets containing only the most salient information. This distills the context down to key facts.
 
-Finally, the orchestrator agent dynamically adjusts the relevance weighting and integration of the prompt and filtered, ranked context passages to optimize the final augmented prompt.
+Finally, the orchestrator agent dynamically adjusts the relevance weighting and integration of the prompt and filtered, ranked context passages (i.e., prompt hybridization) to maximize coherence in the final augmented prompt.
+
+## Benefits of multi-agent RAG architecture
 
 By dividing the workload across specialized agents, multi-agent RAG can achieve factored RAG, with improved relevance, reduced latency, better summarization, and optimized prompting.
 
 Multi-agent RAG's modular architecture is also flexible. You can add more agents (for example, a visualizer agent to inspect system behavior), or substitute alternate implementations of any agent.
 
-[combine two following passages, and check against content above:]
-
-and an orchestrator agent can dynamically adjust prompt hybridization to maximize coherence.
-
-
-## Benefits of multi-agent RAG architecture:
 - Focused specialization _improves relevance and quality_. Retriever agents leverage tailored similarity metrics, rankers weigh signals like source credibility, and readers summarize context.
 - Asynchronous operation _reduces latency_ by parallelizing retrieval. Slow operations don't block faster ones.
 - Adding more retriever agents _allows easy horizontal scaling_, and optional _incorporation of new data sources_.
 - Modular components allow iterative enhancement over time.
 
 Experiments demonstrate that multi-agent RAG significantly improves appropriateness, coherence, and correctness compared to single-agent RAG. The future potential of multi-agent architectures for conversational systems is promising.
-
-
-
 
 ## Example with Autogen library : https://github.com/microsoft/autogen
 
