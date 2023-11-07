@@ -51,9 +51,9 @@ These benefits of multi-agent over single-agent RAG have been demonstrated in ex
 
 Let's look at an implementation of multi-agent RAG, and then explore in more depth the range of possible optimizations made possible by multi-agent RAG.
 
-## Example with Autogen library : https://github.com/microsoft/autogen
+## Example with Autogen library: https://github.com/microsoft/autogen
 
-1. AssistantAgent : They are given a name, a system message, and a configuration object (llm_config). The system message is a string that describes the role of the agent. The llm_config object is a dictionary that contains functions for the agent to perform its role.
+1. AssistantAgent: They are given a name, a system message, and a configuration object (llm_config). The system message is a string that describes the role of the agent. The llm_config object is a dictionary that contains functions for the agent to perform its role.
 
 2. user_proxy is an instance of UserProxyAgent. It is given a name and several configuration options. The is_termination_msg option is a function that determines when the user wants to terminate the conversation. The human_input_mode option is set to "NEVER", which means the agent will never ask for input from a human. The max_consecutive_auto_reply option is set to 10, which means the agent will automatically reply to up to 10 consecutive messages without input from a human. The code_execution_config option is a dictionary that contains configuration options for executing code.
 
