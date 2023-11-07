@@ -46,8 +46,10 @@ Finally, the orchestrator agent dynamically adjusts the relevance weighting and 
 - Prompt hybridization achieves _optimized prompting_. Orchestrator agents balance prompt and ranked context data for more coherent outcome prompts.
 - Flexible, modular architecture _enables easy horizontal scaling_ and optional _incorporation of new data sources_. You can enhance iteratively over time by adding more agents (e.g., a visualizer agent to inspect system behavior), or substituting alternative implementations of any agent.
 
+These benefits of multi-agent over single-agent RAG have been demonstrated in experiments [any examples?].
 
-Experiments demonstrate that multi-agent RAG significantly improves appropriateness, coherence, and correctness compared to single-agent RAG. The future potential of multi-agent architectures for conversational systems is promising.
+
+Let's look at an implementation of multi-agent RAG, and then explore in more depth the range of possible optimizations made possible by multi-agent RAG.
 
 ## Example with Autogen library : https://github.com/microsoft/autogen
 
