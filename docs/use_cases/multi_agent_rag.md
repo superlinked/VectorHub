@@ -19,7 +19,7 @@ First, existing retrieval mechanisms struggle to identify the most relevant pass
 
 Second, retrieving supplementary information introduces latency; if the database is large, this latency can be prohibitive. Searching terabytes of text with complex ranking creates wait times that are too long for consumer applications.
 
-In addition, current RAG systems fail to appropriately weight the original prompt and retrieved passages. Without dynamic contextual weighting, the model can become over-reliant on the retrievals (resulting in reduced control or adaptablity in generating meaningful responses).
+In addition, current RAG systems fail to appropriately weight the original prompt and retrieved passages. Without dynamic contextual weighting, the model can become over-reliant on retrievals (resulting in reduced control or adaptablity in generating meaningful responses).
 
 ## Multi-agent RAGs address real-world challenges
 
@@ -30,21 +30,21 @@ Let's break multi-agent RAG into its parts:
 
 First, a query understanding / parsing agent comprehends the query, breaking it down and describing in different sub queries.
 
-Then x number of retriever agents focus solely on efficient passage retrieval from the document corpus, based on the sub queries. These retriever agents employ vector similarity search or knowledge graph retrieval based searches to quickly find potentially relevant passages, minimizing latency.
+Then x number of retriever agents, each utilizing optimized vector indices, focus solely on efficient passage retrieval from the document corpus, based on the sub-queries. These retriever agents employ vector similarity search or knowledge graph retrieval-based searches to quickly find potentially relevant passages, minimizing latency even when document corpora are large.
 
-The ranker agent evaluates the relevance of the retrieved passages using additional ranking signals like source credibility, passage specificity, and lexical overlap. This provides a relevance-based filtering step. This agent might be using ontology for example as a way to rerank retrieved information. 
+The ranker agent evaluates the relevance of the retrieved passages using additional ranking signals like source credibility, passage specificity, and lexical overlap. This provides a relevance-based filtering step. This agent might be using ontology, for example, as a way to rerank retrieved information. 
 
 The reader agent summarizes lengthy retrieved passages to succinct snippets containing only the most salient information. This distills the context down to key facts.
 
-Finally, the orchestrator agent dynamically adjusts the weighting and integration of the prompt and filtered ranked context passages to optimize the final augmented prompt.
+Finally, the orchestrator agent dynamically adjusts the relevance weighting and integration of the prompt and filtered, ranked context passages to optimize the final augmented prompt.
 
-By dividing the workload across specialized agents, factored RAG is achieved allowing gains in relevance, reduced latency, better summarization, and optimized prompting.
+By dividing the workload across specialized agents, multi-agent RAG can achieve factored RAG, with improved relevance, reduced latency, better summarization, and optimized prompting.
 
-The modular architecture also provides flexibility to add more agents, like a visualizer agent to inspect system behavior. And to substitute alternate implementations of any agent’s capability.
+Multi-agent RAG's modular architecture is also flexible. You can add more agents (for example, a visualizer agent to inspect system behavior), or substitute alternate implementations of any agent.
 
 [combine two following passages, and check against content above:]
-For example, retriever agents can focus solely on efficient passage retrieval using optimized vector similarity searches. Dedicated reader agents can analyze retrieved context and summarize the most salient information. Orchestrator agents can dynamically adjust relevance weightings between the prompt and context.
-For example, dedicated retriever agents can efficiently search large corpora using optimized vector indexes, reader agents can distill retrieved passages down to salient facts, and an orchestrator agent can dynamically adjust prompt hybridization to maximize coherence.
+
+and an orchestrator agent can dynamically adjust prompt hybridization to maximize coherence.
 
 
 ## Benefits of multi-agent RAG architecture:
