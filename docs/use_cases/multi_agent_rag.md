@@ -40,14 +40,12 @@ Finally, the orchestrator agent dynamically adjusts the relevance weighting and 
 
 ## Benefits of multi-agent RAG architecture
 
-By dividing the workload across specialized agents, multi-agent RAG can achieve factored RAG, with improved relevance, reduced latency, better summarization, and optimized prompting.
-
-Multi-agent RAG's modular architecture is also flexible. You can add more agents (for example, a visualizer agent to inspect system behavior), or substitute alternate implementations of any agent.
-
-- Focused specialization _improves relevance and quality_. Retriever agents leverage tailored similarity metrics, rankers weigh signals like source credibility, and readers summarize context.
+- Agent-specific, focused specialization _improves relevance and quality_. Retriever agents leverage tailored similarity metrics, rankers weigh signals like source credibility, and readers summarize context.
 - Asynchronous operation _reduces latency_ by parallelizing retrieval. Slow operations don't block faster ones.
-- Adding more retriever agents _allows easy horizontal scaling_, and optional _incorporation of new data sources_.
-- Modular components allow iterative enhancement over time.
+- Salient extraction and abstraction techniques achieve _better summarization_. Reader agents condense complex information from retrieved passages into concise, coherent, highly informative summaries.
+- Prompt hybridization achieves _optimized prompting_. Orchestrator agents balance prompt and ranked context data for more coherent outcome prompts.
+- Flexible, modular architecture _enables easy horizontal scaling_ and optional _incorporation of new data sources_. You can enhance iteratively over time by adding more agents (e.g., a visualizer agent to inspect system behavior), or substituting alternative implementations of any agent.
+
 
 Experiments demonstrate that multi-agent RAG significantly improves appropriateness, coherence, and correctness compared to single-agent RAG. The future potential of multi-agent architectures for conversational systems is promising.
 
