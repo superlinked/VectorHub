@@ -10,11 +10,11 @@
 
 “Software is eating the world,” penned Marc Andreessen back in 2011. Now, more than a decade later, there’s a new guest at the table, and “AI is eating software.” More products and processes, including the creation of software itself, are being powered by advanced Machine Learning.
 
-But it’s not an all-you-can-eat buffet. ML can’t just ingest anything it wants, whenever it wants. Building a good ML-powered system involves overcoming two common problems: _organizing_ your data in a way lets you quickly retrieve relevant information, and, relatedly, _representing_ your data in a way that makes it easy to feed into your ML models.
+But it’s not an all-you-can-eat buffet. ML can’t just ingest anything it wants, whenever it wants. Building a good ML-powered system involves overcoming two common problems: **organizing** your data in a way lets you quickly retrieve relevant information, and, relatedly, **representing** your data in a way that makes it easy to feed into your ML models.
 
 <!-- IMAGE 1 GOES HERE -->
 
-These two problems are related. Indeed, they converge as parts of what is in essence _the_ defining challenge of many ML systems: turning your data into vector embeddings – that is, connecting your [Data Sources](https://hub.superlinked.com/data-sources) to your [Vector Search & Management](https://hub.superlinked.com/vector-search) system.
+These two problems are related. Indeed, they converge as parts of what is in essence **the** defining challenge of many ML systems: turning your data into vector embeddings – that is, connecting your [Data Sources](https://hub.superlinked.com/data-sources) to your [Vector Search & Management](https://hub.superlinked.com/vector-search) system.
 
 We call this the Vector Compute problem and this article explores how to build & use systems that solve it.
 
@@ -30,11 +30,11 @@ The role Vector Compute fills for your information retrieval system is similar t
 
 There are, however, 2 important distinctions between ETL and Vector Compute:
 
-1) Your _ETL_ system has to interact with dozens of data sources - loading data from all kinds of messy places, focus on cleaning it up, set and validate a schema, and keep everything as simple as possible while the data landscape of your company changes, over time.
-In contrast, the data sources that feed into your _Vector Compute_ stack are likely those used as destinations by your ETL systems, like the data warehouse, your core database, or message queue solution. This means that in Vector Compute there can be fewer sources and they are likely of higher quality.
+1) Your **ETL** system has to interact with dozens of data sources - loading data from all kinds of messy places, focus on cleaning it up, set and validate a schema, and keep everything as simple as possible while the data landscape of your company changes, over time.
+In contrast, the data sources that feed into your **Vector Compute** stack are likely those used as destinations by your ETL systems, like the data warehouse, your core database, or message queue solution. This means that in Vector Compute there can be fewer sources and they are likely of higher quality.
 
-2) Often,the Transform step in _ETL_ contains just a simple aggregation, a join, or it fills in a missing value from a default. These operations are easy to express in SQL, making it easy to test whether they work.
-In _Vector Compute_, on the other hand, we convert a diverse set of data into vector embeddings, which is a machine learning problem rather than a pure data engineering problem. This means that Vector Compute takes much longer to build than a simple ETL pipeline, more resources to run because you’re using ML models, and is more difficult to test – ML models don’t follow a simple “if A then B” logic, but instead operate within a spectrum of evaluation that is variable and task-specific.
+2) Often,the Transform step in **ETL** contains just a simple aggregation, a join, or it fills in a missing value from a default. These operations are easy to express in SQL, making it easy to test whether they work.
+In **Vector Compute**, on the other hand, we convert a diverse set of data into vector embeddings, which is a machine learning problem rather than a pure data engineering problem. This means that Vector Compute takes much longer to build than a simple ETL pipeline, more resources to run because you’re using ML models, and is more difficult to test – ML models don’t follow a simple “if A then B” logic, but instead operate within a spectrum of evaluation that is variable and task-specific.
 
 In short, Vector Compute uses the data delivered by the ETL stack as input, and transforms it into vector embeddings, which are then used to organize it and extract insight from it. 
 
@@ -48,9 +48,9 @@ Embedding models turn features extracted from high-dimensional data, with large 
 
 The mathematical vector representations that result from the vector embedding conversion process are readily amenable to processing by machine learning algorithms.
 
-_Word_ embeddings, for example, capture nuanced linguistic similarities between terms that would be opaque to computers operating on just raw text strings. 
+**Word** embeddings, for example, capture nuanced linguistic similarities between terms that would be opaque to computers operating on just raw text strings. 
 
-_Image_ embeddings (vector representations of images) can be fed, along with metadata, like labels, into traditional deep learning models to train them for tasks like image classification. Without image embedding, feeding images into deep learning models requires a specialized feature extraction step and specific model architecture – like a [convolutional neural network or a restricted Boltzmann machine](https://www.hindawi.com/journals/am/2022/3351256/). Using image embedding, you can work on computer vision tasks yourself; you don’t need specialized computer vision engineers to get started.
+**Image** embeddings (vector representations of images) can be fed, along with metadata, like labels, into traditional deep learning models to train them for tasks like image classification. Without image embedding, feeding images into deep learning models requires a specialized feature extraction step and specific model architecture – like a [convolutional neural network or a restricted Boltzmann machine](https://www.hindawi.com/journals/am/2022/3351256/). Using image embedding, you can work on computer vision tasks yourself; you don’t need specialized computer vision engineers to get started.
 
 Furthermore, compared to complex raw data, vectors have far fewer dimensions, making them more efficient for tasks like storage, transfer, and retrieval. A low dimensional vector (i.e., array of numerical values) such as [102, 000, 241, 317, 004], for instance, encodes a wealth of semantic features and relationships. The continuity of the embedding space enables gradient-based optimization, which is central to Machine Learning modeling.
 
@@ -70,7 +70,7 @@ If, for example, your vector space represented restaurant reviews, these could b
 
 Until the early to mid-2010s, embedding was handled exclusively by ML teams building custom models from scratch. Custom models rely heavily on large volumes of task-specific data and require expert data scientists doing development and refinement for months.
 
-Recent advances in [transfer learning](https://ai.plainenglish.io/transfer-learning-in-deep-learning-leveraging-pretrained-models-for-improved-performance-b4c49f2cd644) research have enabled _another_ kind of model, pre-trained on large more broad datasets, using more computational power than 99.9% of companies have available. Custom models continue to play a crucial role in Vector Compute, excelling at some tasks. But pre-trained models have performed better than custom models on others – in particular, text, image, and audio embedding. And, importantly, compared to building your own models, pre-trained models make it easier and faster to get to a working solution for your use case.
+Recent advances in [transfer learning](https://ai.plainenglish.io/transfer-learning-in-deep-learning-leveraging-pretrained-models-for-improved-performance-b4c49f2cd644) research have enabled **another** kind of model, pre-trained on large more broad datasets, using more computational power than 99.9% of companies have available. Custom models continue to play a crucial role in Vector Compute, excelling at some tasks. But pre-trained models have performed better than custom models on others – in particular, text, image, and audio embedding. And, importantly, compared to building your own models, pre-trained models make it easier and faster to get to a working solution for your use case.
 
 Let’s look at some examples:
 
@@ -80,9 +80,9 @@ Another example is OpenAI, which leverages ELMo and GPT for unsupervised pre-tra
 
 Besides Llama-2 and OpenAI, there are other prominent embedding models, ones that specialize in specific data types:
 
-For _images_, there are breakthrough model architectures like [ResNet](https://arxiv.org/abs/1512.03385) (Residual Neural Network) that utilize skip connections to enable training extremely deep convolutional neural networks, and Google’s [Inception](https://arxiv.org/abs/1409.4842), which achieves human-level accuracy on image classification by pre-training on large labeled datasets like [ImageNet](https://www.image-net.org). By employing advanced techniques (including skip connections and concatenated convolutions), these approaches effectively learn visual features that can be transferred to downstream tasks.
+For **images**, there are breakthrough model architectures like [ResNet](https://arxiv.org/abs/1512.03385) (Residual Neural Network) that utilize skip connections to enable training extremely deep convolutional neural networks, and Google’s [Inception](https://arxiv.org/abs/1409.4842), which achieves human-level accuracy on image classification by pre-training on large labeled datasets like [ImageNet](https://www.image-net.org). By employing advanced techniques (including skip connections and concatenated convolutions), these approaches effectively learn visual features that can be transferred to downstream tasks.
 
-In the _audio_ domain, [DeepSpeech](https://arxiv.org/abs/1412.5567) and [Wav2Vec](https://arxiv.org/abs/1904.05862) have demonstrated strong speech recognition and audio understanding through pre-training on thousands of hours of speech data. Models like Wav2Vec can generate embeddings directly from raw audio input.
+In the **audio** domain, [DeepSpeech](https://arxiv.org/abs/1412.5567) and [Wav2Vec](https://arxiv.org/abs/1904.05862) have demonstrated strong speech recognition and audio understanding through pre-training on thousands of hours of speech data. Models like Wav2Vec can generate embeddings directly from raw audio input.
 
 For the purpose of generating vector embeddings, the top scoring models on Huggingface’s [Massive Text Embedding Benchmark (MTEB) Leaderboard](https://huggingface.co/spaces/mteb/leaderboard) are pre-trained encoder transformer models.
 
@@ -98,7 +98,7 @@ Your task's unique requirements dictate whether you should use a custom or a pre
 
 <!-- IMAGE 4 GOES HERE -->
 
-Whereas _pre-trained models_ shine in domains such as text, image, and audio processing by leveraging large, generic datasets to enhance performance and efficiency, _custom models_ are essential in areas like graph embeddings, time series, and categorical data processing, where specific patterns and characteristics require tailored solutions, for example, [Time2Vec](https://towardsdatascience.com/time2vec-for-time-series-features-encoding-a03a4f3f937e) or [GraphSAGE](https://github.com/williamleif/GraphSAGE). 
+Whereas **pre-trained models** shine in domains such as text, image, and audio processing by leveraging large, generic datasets to enhance performance and efficiency, **custom models** are essential in areas like graph embeddings, time series, and categorical data processing, where specific patterns and characteristics require tailored solutions, for example, [Time2Vec](https://towardsdatascience.com/time2vec-for-time-series-features-encoding-a03a4f3f937e) or [GraphSAGE](https://github.com/williamleif/GraphSAGE). 
 
 Graph Embeddings, such as [Node2Vec](https://snap.stanford.edu/node2vec/), have a variety of use cases, including recommender systems. [Graph embedding models](https://towardsdatascience.com/knowledge-graph-embeddings-101-2cc1ca5db44f) learn the relationships between entities in a knowledge graph using low-dimensional embeddings, making it more efficient to compute various similarity and inference tasks. 
 
@@ -107,9 +107,9 @@ There has been much debate on the use of transformer models for time series data
 Custom models are more useful and perform better than pre-trained models where data is atypical, structured and or proprietary. Pre-trained models, on the other hand, are typically designed for general applications and may not perfectly align with specific downstream tasks. 
 
 
-So, is there a way of preserving the efficiency and performance advantages of a pre-trained model, permitting a faster go-to-market, but _also_ align it with specific downstream tasks?
+So, is there a way of preserving the efficiency and performance advantages of a pre-trained model, permitting a faster go-to-market, but **also** align it with specific downstream tasks?
 
-One approach is _fine-tuning_.
+One approach is **fine-tuning**.
 
 |Aspect|Custom Models|Pre-Trained Models|
 |---|---|---|
@@ -143,15 +143,15 @@ To fine-tune a pre-trained model, you first need to obtain a quality dataset rel
 
 For example, let's take a look at some illustrative input/output pairs from the [IMDB movie reviews dataset](https://paperswithcode.com/dataset/imdb-movie-reviews), which can be employed to fine-tune a pre-trained model designed for sentiment analysis:
 
-_Input_: "Absolutely loved this movie! The acting was superb, and the storyline kept me engaged from start to finish. Highly recommended!"
+**Input**: "Absolutely loved this movie! The acting was superb, and the storyline kept me engaged from start to finish. Highly recommended!"
 
-_Output_: Positive sentiment
+**Output**: Positive sentiment
 
-_Input_: "This film turned out to be a significant disappointment. The plot left me puzzled, the acting was merely average, and I struggled to maintain interest. Not worth watching."
+**Input**: "This film turned out to be a significant disappointment. The plot left me puzzled, the acting was merely average, and I struggled to maintain interest. Not worth watching."
 
-_Output_: Negative sentiment
+**Output**: Negative sentiment
 
-For _proprietary_ applications, companies invest in human annotation to create labeled datasets reflecting their custom use cases and data. For successful fine-tuning, it’s key to possess a sufficient volume and variety of examples so the pre-trained model can adapt its knowledge to the new domain.
+For **proprietary** applications, companies invest in human annotation to create labeled datasets reflecting their custom use cases and data. For successful fine-tuning, it’s key to possess a sufficient volume and variety of examples so the pre-trained model can adapt its knowledge to the new domain.
 
 #### The fine-tuning cycle: training, hyperparameter tuning, performance measurement
 
@@ -159,19 +159,19 @@ The fine-tuning procedure involves repeatedly training the model on the downstre
 
 This cycle of training, hyperparameter tuning, and performance measurement is repeated until the model plateaus and stops showing significant gains on your particular dataset. The goal is to maximize metrics like accuracy and F1-score, to reach acceptable performance levels for your specific use case and data.
 
-Libraries like [Hugging Face's Transformers](https://huggingface.co/docs/transformers/index) and [spaCy](https://spacy.io) _simplify_ this experimentation process. They provide optimized implementations of impressive pre-trained models, along with tools to rapidly run training iterations and fine-tune hyperparameters.
+Libraries like [Hugging Face's Transformers](https://huggingface.co/docs/transformers/index) and [spaCy](https://spacy.io) **simplify** this experimentation process. They provide optimized implementations of impressive pre-trained models, along with tools to rapidly run training iterations and fine-tune hyperparameters.
 
 Fine-tuning, therefore, can adapt pre-trained models to perform more successfully on specific downstream tasks. However, even fine-tuned pre-trained models have limitations.
 
 #### The limits of fine-tuning
 
-Fine-tuning works well when the fine-tuning data is of the same type and modality as the pre-trained model's _initial_ training data – for example, fine-tuning on a language model using text. A fine-tuned LLM is the right solution for a straightforward language task like sentiment classification.
+Fine-tuning works well when the fine-tuning data is of the same type and modality as the pre-trained model's **initial** training data – for example, fine-tuning on a language model using text. A fine-tuned LLM is the right solution for a straightforward language task like sentiment classification.
 
 But on its own a fine-tuned LLM can’t properly solve broader use-cases involving more context, like product recommendations or fraud detection. 
 
-To make a good product recommendation, for example, you need to input a variety of data of different types and modalities – including product imagery, recency (when it was launched), user preferences, and product description. To combine these factors in a way that maps to your task requirements and does it efficiently, your solution has to include _both_ a model trained to define recency – i.e., a _custom_ model – and a model that can understand relevant details from the product description and initial search query – i.e., a _pre-trained_ model (such as GPT-4). 
+To make a good product recommendation, for example, you need to input a variety of data of different types and modalities – including product imagery, recency (when it was launched), user preferences, and product description. To combine these factors in a way that maps to your task requirements and does it efficiently, your solution has to include **both** a model trained to define recency – i.e., a **custom** model – and a model that can understand relevant details from the product description and initial search query – i.e., a **pre-trained** model (such as GPT-4). 
 
-In other words, to get Vector Compute right, you need to develop both intricate custom models to integrate and harmonize diverse data types, _and_ pre-trained models that, with high-quality in-domain data, perform better on some in-domain tasks. Because they use general-purpose or fine-tuned representations from vast datasets, re-trained models also reduce startup costs and improve computational efficiency.
+In other words, to get Vector Compute right, you need to develop both intricate custom models to integrate and harmonize diverse data types, **and** pre-trained models that, with high-quality in-domain data, perform better on some in-domain tasks. Because they use general-purpose or fine-tuned representations from vast datasets, re-trained models also reduce startup costs and improve computational efficiency.
 
 An effective vector retrieval stack is a single, unified system that assigns, coordinates, and configures custom models and pre-trained models respectively, or in combination, to handle the tasks they are designed for. Such robust homegrown solutions will be increasingly important given the broad and ever expanding application of Vector Compute to solve real world problems in a spectrum of domains, partially enumerated below.
 
