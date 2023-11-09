@@ -34,7 +34,7 @@ Below is an overview of the data & ML stack Pinterest uses to convert all this d
 1. **Event Streaming Platform**:
     - Pinterest relies on an **event streaming platform**, [Flink](https://medium.com/pinterest-engineering/unified-flink-source-at-pinterest-streaming-data-processing-c9d4e89f2ed6#:~:text=To%20best%20serve%20Pinners%2C%20creators,as%20its%20stream%20processing%20engine), to collect real-time event data. This platform allows them to easily collect, enrich, and transform event attributes.
     - In practice, the event streaming system handles real-time data ingestion, ensuring that events from user interactions, content uploads, and other actions are captured efficiently. 
-    - These events can be considered **semi-structured**, as they follow a specific format (e.g., JSON) but may vary in content.
+    - These events can be considered **semi-structured** – they follow a specific format (e.g., JSON) but may vary in content.
 
 2. **Data Storage and Querying**:
     - For **persistent storage**, Pinterest utilizes technologies like **DynamoDB** (a NoSQL database service by AWS). DynamoDB provides scalability, reliability, and security for Pinterest’s massive dataset.
@@ -57,7 +57,8 @@ For precise details about Pinterest’s specific data types and components, chec
 The choice of data processing velocity is pivotal in determining the kind of data retrieval and vector compute tasks you can perform. Different velocities offer distinct advantages and make different use cases possible. Here's a breakdown of the three primary velocity categories:
 
 ### 1. **Batch Processing**
-- **Technologies**: Open source tools like Apache Spark, or proprietary batch pipeline systems in Google BigQuery, AWS Batch or Snowflake. 
+
+- **Technologies**: Open source tools like Apache Spark, or proprietary batch pipeline systems in Google BigQuery, AWS Batch, or Snowflake. 
 - **Example Data**: Historical sales data, customer records, monthly financial reports. 
 - **Properties**: Batch processing involves processing data in fixed-size chunks or batches, typically scheduled at specific intervals (e.g., daily, weekly, or monthly). It provides the ability to handle large volumes of data efficiently but lacks real-time responsiveness. For instance, a product recommendation system for an online store email newsletter might opt for batch updates. Updating recommendations once per week may suffice, given that the email is also sent just once a week.
 - **Data Formats**: Common formats include CSV, Parquet, Avro, or any format that suits the specific data source.
@@ -65,17 +66,19 @@ The choice of data processing velocity is pivotal in determining the kind of dat
 - **ETL-Able Systems:** Systems like Magento for e-commerce or MailChimp for marketing are typical sources for batch accessed and processed data in your retrieval stack.
 
 ### 2. **Micro-Batch Processing**
+
 - **Technologies**: Apache Spark Structured Streaming, Apache Flink, Apache Beam.
 - **Example Data**: Social media posts, IoT sensor data, small-scale e-commerce transactions.
 - **Properties**: Micro-batch processing is a compromise between batch and stream. It processes data in smaller, more frequent batches, allowing for near-real-time updates. It's suitable for use cases that require a balance between real-time processing and resource efficiency.
-- **Formats**: Often similar to batch processing with data structured in formats like JSON or Avro.
+- **Formats**: Often similar to batch processing, with data structured in formats like JSON or Avro.
 
 ### 3. **Stream Processing**
+
 - **Technologies**: Apache Kafka, Apache Storm, Amazon Kinesis, [hazelcast](https://hazelcast.com/), [bytewax](https://github.com/bytewax/bytewax), [quix](https://quix.io/), [streamkap](https://streamkap.com/), [decodable](https://www.decodable.co/).
 - **Example Data**: Social media feeds, stock market transactions, sensor readings, clickstream data, ad requests and responses. A credit card company aiming to detect fraudulent transactions in real-time benefits from streaming data. Real-time detection can prevent financial losses and protect customers from fraudulent activities.
 - **Properties**: Stream processing handles data in real-time, making it highly dynamic. It's designed to support immediate updates and changes, making it ideal for use cases that require up-to-the-second insights.
 - **Formats**: Data in stream processing is often in Protobuf, Avro, or other formats optimized for small footprint and fast serialization.
-- **Databases:** Real-time databases include [Clickhouse](https://clickhouse.com/), [Redis](https://redis.com/) and [RethinkDB](https://rethinkdb.com/). There are also in-memory databases, such as [DuckDB](https://duckdb.org/) and [KuzuDB](https://kuzudb.com/), which can be used to create real-time dashboards. However, keep in mind that, depending on the deployment strategy chosen, these databases may lose the data once the application is terminated. 
+- **Databases:** Real-time databases include [Clickhouse](https://clickhouse.com/), [Redis](https://redis.com/), and [RethinkDB](https://rethinkdb.com/). There are also in-memory databases, such as [DuckDB](https://duckdb.org/) and [KuzuDB](https://kuzudb.com/), which can be used to create real-time dashboards. However, keep in mind that, depending on the deployment strategy chosen, these databases may lose the data once the application is terminated.
 
 Most systems deployed in production at scale combine stream and batch processing. This enables you to leverage both the immediacy of real-time updates and the depth of historical data. But reconciling stream and batch processes in a single system introduces trade-off decisions – trade-off decisions you must make in order to keep your data consistent across systems and across time.
 
@@ -87,11 +90,11 @@ When choosing and configuring the data sources for a vector retrieval system, it
 
 ### Velocity vs Complexity Tradeoff
 
-Different data sources impact how the data is then ingested and processed by your data & ML infrastructure. For a deep dive on how your choice of data sources affects the downstream systems in your information retrieval stack see our article on [Vector Compute](https://hub.superlinked.com/vector-compute). However, for the purposes of this discussion you can think about data source choice in terms of a tradeoff between data velocity, retrieval quality, and engineering complexity.
+Different data sources impact how the data is then ingested and processed by your data & ML infrastructure. For a deep dive on how your choice of data sources affects the downstream systems in your information retrieval stack, see our article on [Vector Compute](https://hub.superlinked.com/vector-compute). For the purposes of this discussion, you can think about data source choice in terms of a tradeoff between data velocity, retrieval quality, and engineering complexity.
 
-- **Streaming data**: This option allows for real-time vector computations but comes with constraints on model complexity due to latency concerns. Streaming data may require simpler embeddings or lookups.
-- **Batch data**: As opposed to streaming data, batch data enables complex models, including large transformers. However, with batch data, updates are less frequent, making it suitable for asynchronous needs.
-- **Hybrid Approaches**: These merge streaming filters or lookups with batch retraining, offering responsiveness along with in-depth analysis.
+- **Streaming data**: This option allows for real-time vector computations but, due to latency concerns, comes with constraints on model complexity. Streaming data may require simpler embeddings or lookups.
+- **Batch data**: As opposed to streaming data, batch data enables complex models, including large transformers. But with batch data, updates are less frequent, making it suitable for asynchronous needs.
+- **Hybrid Approaches**: These merge streaming filters or lookups with batch retraining, offering responsiveness alongside in-depth analysis.
 
 | **Aspect** | **Streaming Data** | **Batch Data** | **Hybrid Approaches**|
 |------------------------|------------------------|------------------------|------------------------|
@@ -140,14 +143,14 @@ Besides the velocity-complexity and model size-response time tradeoffs above, th
 - **Model Accuracy Requirements**: Consider your precise model accuracy requirements and whether your infrastructure can handle the chosen model sizes effectively.
 - **Data Value**: Recognize the value of processed data, as high-value data holds critical information that can lead to valuable insights and informed decision-making.
 
-In short, keeping these key considerations in mind while you balance velocity with complexity, and model size with response times will help ensure that you configure your specific vector retrieval system optimally.
+In short, keeping these key considerations in mind while you balance velocity with complexity, and model size with response times, will help ensure that you configure your specific vector retrieval system optimally.
 
 
 ### Kappa vs. Lambda:
 
 In the context of real-time data processing, the choice between Kappa and Lambda architectures involves evaluating trade-offs between velocity, complexity, and data value:
 
-- **Kappa Architecture**: Emphasizes real-time processing. Data is ingested as a continuous stream and processed in real-time to support immediate decisions. This approach is well-suited for use cases with high velocity, such as fraud detection systems in financial institutions.
+- **Kappa Architecture**: Emphasizes real-time processing. Data is ingested as a continuous stream and processed in real-time to support immediate decisions. This approach is well-suited to use cases with high velocity, such as fraud detection systems in financial institutions.
 
 - **Lambda Architecture**: Combines batch and real-time processing. Data is ingested both as a stream and in batch mode. This approach offers the advantage of capturing high-velocity data while maintaining the value of historical data. It's suitable when there's a need for comprehensive insights that take into account both real-time and historical data.
 
@@ -162,9 +165,11 @@ In the context of real-time data processing, the choice between Kappa and Lambda
 | *Use Cases* | Ideal for use cases with high velocity, such as real-time monitoring, fraud detection, and sensor data processing. | Suitable for applications where historical data analysis, complex event processing, and reconciling real-time and batch views are required. |
 
 ## Data Modality / Type
+
 Whether your data is structured, unstructured, or a hybrid is a crucial consideration when evaluating data sources. The nature of the data source your vector retrieval system uses shapes how that data should be managed and processed.
 
 ### Unstructured Data
+
 Unstructured data encompasses a wide variety of information that doesn't adhere to a fixed structure or definition. This type of data is often characterized by its raw, unordered, and noisy nature. Examples of unstructured data include natural language text data, image data, audio data, and video data. Let's take a closer look at each type:
 
 **Text Data:**
@@ -205,13 +210,13 @@ You want to standardize your evaluation results by running your system against a
 
 Let’s look at a couple of evaluation dataset examples for language models:
 
-
 GLUE (General Language Understanding Evaluation) and SuperGLUE (Super General Language Understanding Evaluation) are multi-task benchmark datasets designed to assess model performance across various NLP tasks.
 
 1. **GLUE**
     - Description: GLUE contains diverse NLP tasks like sentiment analysis, text classification, and textual entailment. These tasks rely on semi-structured text input-output pairs rather than completely free-form text.
     - Format: JSON/CSV with text snippets and corresponding labels.
     - [Hugging Face GLUE Datasets](https://huggingface.co/datasets/glue)
+
 2. **SuperGLUE**
     - Description: SuperGLUE introduces more complex language tasks like question answering and coreference resolution, also based on semi-structured text.
     - Format: JSON/CSV with text inputs and labels.
@@ -219,8 +224,8 @@ GLUE (General Language Understanding Evaluation) and SuperGLUE (Super General La
 
 While GLUE and SuperGLUE are useful for benchmarking language models, it would be inaccurate to describe them solely as unstructured text datasets, since many of the tasks involve semi-structured input-output pairs.
 
-
 ### Structured Data
+
 All major enterprises today run on structured data. Structured data adheres to predefined formats, organized categories, and a fixed set of data fields, making it easier to start working with. But, beware, even structured datasets may be of poor quality, with many missing values or poor schema compliance.
 
 Here are some examples of structured data types, links to example datasets, typical formats, and considerations relevant to each type of structured data:
@@ -241,7 +246,7 @@ Here are some examples of structured data types, links to example datasets, typi
    - [Stanford Network Analysis Project (SNAP)](http://snap.stanford.edu/data/): Offers a collection of real-world network datasets.
    - [KONECT](http://konect.cc/networks/): Provides a variety of network datasets for research.
 - **Considerations:** In graph data, consider the types of nodes, edges, and their attributes. Pay attention to graph algorithms for traversing, analyzing, and extracting insights from the graph structure.
-- **Systems:** Graph data is often stored in graph databases like [Neo4j](https://neo4j.com/), [ArangoDB](https://github.com/arangodb/arangodb), [Apollo](https://www.apollographql.com/), but it can also be represented using traditional RDBMS with specific schemas for relations.
+- **Systems:** Graph data is often stored in graph databases like [Neo4j](https://neo4j.com/), [ArangoDB](https://github.com/arangodb/arangodb), or [Apollo](https://www.apollographql.com/), but it can also be represented using traditional RDBMS with specific schemas for relations.
 
 **Time Series Data:**
 - **Example Data:** Stock prices, weather measurements, sensor data.
@@ -249,7 +254,7 @@ Here are some examples of structured data types, links to example datasets, typi
 - **Datasets:**
    - [Federal Reserve Economic Data (FRED)](https://fred.stlouisfed.org/): Covers economic and research data from various countries, including the USA, Germany, and Japan.
    - [The Google Trends Dataset](https://trends.google.com/trends/?ref=hackernoon.com)
-- **Considerations:** Time series data requires dealing with temporal aspects, seasonality, trends, and handling irregularities. It may involve time-based feature engineering and modeling techniques like [ARIMA](https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average) or other sequential models like [LSTM](https://en.wikipedia.org/wiki/Long_short-term_memory).
+- **Considerations:** Time series data requires dealing with temporal aspects, seasonality, trends, and handling irregularities. It may involve time-based feature engineering and modeling techniques, like [ARIMA](https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average) or other sequential models, like [LSTM](https://en.wikipedia.org/wiki/Long_short-term_memory).
 - **Systems:** Time series data can be stored in specialized time-series databases (e.g., InfluxDB, TimescaleDB, [KX](https://kx.com/)) or traditional databases with timestamp columns.
 
 **Spatial Data:**
@@ -262,12 +267,12 @@ Here are some examples of structured data types, links to example datasets, typi
 - **Systems:** Spatial data can be stored in specialized Geographic Information Systems (GIS) or in databases with spatial extensions (e.g., PostGIS for PostgreSQL).
 
 **Logs Data**
-- **Example Data:** Some examples of different logs include: system event logs that monitor traffic to an application, detect issues, and record errors causing a system to crash or user behaviour logs, which track actions a user takes on a website or signed into a device.
+- **Example Data:** Some examples of different logs include: system event logs that monitor traffic to an application, detect issues, and record errors causing a system to crash, or user behaviour logs, which track actions a user takes on a website or when signed into a device.
 - **Typical Formats:** [CLF](https://en.wikipedia.org/wiki/Common_Log_Format) or a custom text or binary file that contains ordered (timestamp action) pairs.
 - **Datasets:** 
  - [loghub](https://github.com/logpai/loghub): A large collection of different system log datasets for AI-driven log analytics.
-- **Considerations:** How long you want to save the log interactions and what you want to use them for – i.e. understanding where errors occur, defining “typical” behaviour – are key considerations for processing this data. For further details on what to track and how, see this [Tracking Plan](https://segment.com/academy/collecting-data/how-to-create-a-tracking-plan/) course from Segment,
-- **Systems:** There are plenty of log management tools, for example [Better Stack](https://betterstack.com/logs), which has a pipeline set up for ClickHouse allowing real-time processing, or [Papertrail](https://www.papertrail.com/), which can ingest different syslogs txt log file formats from Apache, MySQL and Ruby.  
+- **Considerations:** How long you want to save the log interactions and what you want to use them for – i.e. understanding where errors occur, defining “typical” behaviour – are key considerations for processing this data. For further details on what to track and how, see this [Tracking Plan](https://segment.com/academy/collecting-data/how-to-create-a-tracking-plan/) course from Segment.
+- **Systems:** There are plenty of log management tools, for example [Better Stack](https://betterstack.com/logs), which has a pipeline set up for ClickHouse, allowing real-time processing, or [Papertrail](https://www.papertrail.com/), which can ingest different syslogs txt log file formats from Apache, MySQL, and Ruby.  
 
 
 Each of these structured data types comes with its own unique challenges and characteristics. In particular, it’s important to pay attention to data quality and pre-processing to make choices that are aligned with your vector retrieval system.
@@ -279,10 +284,10 @@ In any data retrieval system, a key requirement is ensuring the underlying repre
 
 One approach to updating your data is batch recomputation – periodically rebuilding all vectors from scratch as the new data piles up. But batch recomputation ignores incremental changes between batches.
 
-Change Data Capture (CDC) provides a more efficient alternative – capturing granular data changes as they occur and incrementally updating associated vectors. Using CDC, an e-commerce site, for example, can stream product catalog changes to rapidly update product vectors. Or, a real-time anomaly detection system can employ CDC to incorporate user account  changes to adapt its user vectors. As a result, CDC plays an integral role in keeping vectorized data aligned with changing realities.
+Change Data Capture (CDC) provides a more efficient alternative – capturing granular data changes as they occur and incrementally updating associated vectors. Using CDC, an e-commerce site, for example, can stream product catalog changes to rapidly update product vectors. Or, a real-time anomaly detection system can employ CDC to incorporate user account changes to adapt its user vectors. As a result, CDC plays an integral role in keeping vectorized data aligned with changing realities.
 
 
-The visualization below shows how CDC can be implemented within a streaming data retrieval system. A primary database emits CDC into a queue, which is then consumed like any other streaming data source:
+The visualization down below shows how CDC can be implemented within a streaming data retrieval system. A primary database emits CDC into a queue, which is then consumed like any other streaming data source:
 
 1. **Primary Database**:
     - The primary database, which can be MySQL, PostgreSQL, SQL Server, or other database management system, serves as the source of data changes.
@@ -306,7 +311,7 @@ The visualization below shows how CDC can be implemented within a streaming data
 
 Building an effective vector retrieval stack requires a deep understanding of its objectives,  available data sources, and how these interact in the context of your retrieval system.
 
-In this article we learned how to map out your data infrastructure and identify the key inputs to your vector retrieval stack. Only a careful mix of structured & unstructured data, delivered in batch and/or in real-time as needed, will enable you to reach your desired retrieval quality and latency while keeping your engineering complexity manageable.
+In this article, we learned how to map out your data infrastructure and identify the key inputs to your vector retrieval stack. Only a careful mix of structured & unstructured data, delivered in batch and/or in real-time as needed, will enable you to reach your desired retrieval quality and latency while keeping your engineering complexity manageable.
 
 Next, let’s dive into how [Vector Compute](https://hub.superlinked.com/vector-compute) connects your data to your [Vector Search](https://hub.superlinked.com/vector-search) systems.
 
