@@ -20,7 +20,7 @@ Where your data falls along these three dimensions (velocity, modality, source) 
 
 What you choose for your data and ML stack can make or break your whole product. Let’s look at an example of how your product strategy and use case can prescribe the kinds of decisions you make about your data and your ML Stack.
 
-Pinterest used a product-led growth strategy that relied upon a curated feed of recommended “Pins”. This strategy allowed Pinterest to raise [$564 million pre-revenue](https://www.entrepreneur.com/science-technology/no-revenue-no-problem-pinterest-raises-another-225/229597) due to the highly viral nature of the product, ultimately growing to over 72.8 million users. 
+Pinterest used a product-led growth strategy that relied upon a curated feed of recommended “Pins”. Due to the highly viral nature of the product, this strategy allowed Pinterest to raise [$564 million pre-revenue](https://www.entrepreneur.com/science-technology/no-revenue-no-problem-pinterest-raises-another-225/229597), ultimately growing to over 72.8 million users. 
 
 Pinterest uses diverse data types to improve the recommendation performance of its feed, including mechanisms to handle:
         - Structured data (e.g., user profiles): This includes well-defined attributes with specific formats.
