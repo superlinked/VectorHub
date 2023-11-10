@@ -76,7 +76,7 @@ import faiss
 ```
 
 Create dataset of 1 million 1000-dim vectors
-
+```
 num_vectors = 1000000
 vector_dim = 1000
 dataset = np.random.rand(num_vectors, vector_dim).astype('float32')
@@ -222,5 +222,6 @@ Tying this together with high-quality vector embeddings produces a modern, scala
 ---
 ## Contributors
 
-- [Your Name](you_social_handle.com)
-- [Co-author Name](their_social_handle.com)
+- [Daniel Svonava](https://www.linkedin.com/in/svonava/)
+- [Paolo Perrone](https://www.linkedin.com/in/paoloperrone/)
+- [Robert Turner, editor](https://robertturner.co/copyedit)
