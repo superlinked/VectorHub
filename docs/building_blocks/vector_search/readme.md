@@ -174,7 +174,7 @@ There are several types of technologies that allow dynamic vector access, each w
 
 4. **Search Tools (e.g., [Elasticsearch](https://www.elastic.co/))**: are primarily created to handle text search but also provide some Vector Search capabilities. Search tools like Elasticsearch are useful when you need to perform both text and Vector Search operations, without needing a fully featured database.
 
-Here's a simplified side by side comparison of each database type’s pros and cons:
+Here's a simplified side-by-side comparison of each database type’s pros and cons:
 
 | Type | Pros | Cons |
 | ---------------------------------- | ---------------------------------- | --------------------------------------- |
@@ -217,7 +217,7 @@ Second, the access pattern you use to perform nearest neighbor search. Your data
 
 Third, your use case will require its own particular prioritization of latency, throughput, and accuracy. You’ll need to balance latency, throughput, and accuracy concerns to optimize on your application’s objectives.
 
-Tying this together with high-quality vector embeddings produces a modern, scalable retrieval stack. Rich vectors encoding important relationships combined with performant search enabling responsive or large-scale analytics over these representations.
+Tying this together with high-quality vector embeddings produces a modern, scalable retrieval stack. Rich vectors encoding important relationships combined with performant search, enabling responsive or large-scale analytics over these representations.
 
 ---
 ## Contributors
