@@ -70,34 +70,34 @@ To select an ANN method appropriate to your application, you need to evaluate me
 
 Let’s take a look at some example code, demonstrating linear (full) scan and ANN search.
 
-```
+```python
 import numpy as np
 import faiss
 ```
 
 Create dataset of 1 million 1000-dim vectors
-```
+```python
 num_vectors = 1000000
 vector_dim = 1000
 dataset = np.random.rand(num_vectors, vector_dim).astype('float32')
 ```
 
 Define query vector
-```
+```python
 query_vector = np.random.rand(vector_dim).astype('float32')
 ```
 
 Create FAISS index
-```
+```python
 index = faiss.IndexFlatL2(vector_dim)
 ```
 Add vectors to index
-```
+```python
 index.add(dataset)
 ```
 
 Linear scan search
-```
+```python
 start = time.time()
 distances, indices = index.search(query_vector.reshape(1, vector_dim), 1)
 print("Linear scan time: ", time.time() - start)
@@ -105,7 +105,7 @@ print("Linear scan time: ", time.time() - start)
 
 Switch to IVFFlat index for approximate search
 
-```
+```python
 index = faiss.index_factory(vector_dim, "IVF1024,Flat")
 index.train(dataset)
 index.add(dataset)
