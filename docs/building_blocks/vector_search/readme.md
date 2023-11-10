@@ -73,8 +73,9 @@ Let’s take a look at some example code, demonstrating linear (full) scan and A
 ```
 import numpy as np
 import faiss
+```
 
-# Create dataset of 1 million 1000-dim vectors
+Create dataset of 1 million 1000-dim vectors
 
 num_vectors = 1000000
 vector_dim = 1000
