@@ -12,7 +12,7 @@ It’s important, therefore, to understand what different types and combinations
 
 ## The Data Map - A Mosaic of Data Types and Combinations
 
-An organization’s data is rarely uniform. Instead, the data landscape of any organization is a mosaic that can be characterized in terms of its **velocity** (ranging from stream to batch data), its modality / type (spanning structured to unstructured data), and its **sources** (originating from in-house systems and/or third-party providers).
+An organization’s data is rarely uniform. Instead, the data landscape of any organization is a mosaic that can be characterized in terms of its **velocity** (ranging from stream to batch data), its **modality** / type (spanning structured to unstructured data), and its **sources** (originating from in-house systems and/or third-party providers).
 
 Where your data falls along these three dimensions (velocity, modality, source) determines what you can do with it – that is, what use cases you can accommodate, and how you should configure your data retrieval stack to meet your objectives. In order to shape your data retrieval stack optimally, you need to build a mental model of your available data and understand its potential.
 
@@ -23,9 +23,9 @@ What you choose for your data and ML stack can make or break your whole product.
 Pinterest used a product-led growth strategy that relied upon a curated feed of recommended “Pins”. Due to the highly viral nature of the product, this strategy allowed Pinterest to raise [$564 million pre-revenue](https://www.entrepreneur.com/science-technology/no-revenue-no-problem-pinterest-raises-another-225/229597), ultimately growing to over 72.8 million users. 
 
 Pinterest uses diverse data types to improve the recommendation performance of its feed, including mechanisms to handle:
-- **Structured data** (e.g., user profiles): This includes well-defined attributes with specific formats.
-- **Semi-structured data** (e.g., event logs): These follow a general structure but may have varying fields or additional context.
-- **Unstructured data** (e.g., images): These are typically files without a fixed schema.
+    - **Structured data** (e.g., user profiles): This includes well-defined attributes with specific formats.
+    - **Semi-structured data** (e.g., event logs): These follow a general structure but may have varying fields or additional context.
+    - **Unstructured data** (e.g., images): These are typically files without a fixed schema.
 
 Below is an overview of the data & ML stack Pinterest uses to convert all this data (above) to product value.
 
@@ -52,7 +52,7 @@ Below is an overview of the data & ML stack Pinterest uses to convert all this d
 
 For precise details about Pinterest’s specific data types and components, check out their [engineering blog](https://medium.com/@Pinterest_Engineering).
 
-## Understanding Data Velocity
+## Data Velocity
 
 The choice of data processing velocity is pivotal in determining the kind of data retrieval and vector compute tasks you can perform. Different velocities offer distinct advantages and make different use cases possible. Here's a breakdown of the three primary velocity categories:
 
@@ -152,7 +152,7 @@ Besides the velocity-complexity and model size-response time tradeoffs above, th
 In short, keeping these key considerations in mind while you balance velocity with complexity, and model size with response times, will help ensure that you configure your specific vector retrieval system optimally.
 
 
-### Kappa vs. Lambda:
+### Kappa vs. Lambda
 
 In the context of real-time data processing, the choice between Kappa and Lambda architectures involves evaluating trade-offs between velocity, complexity, and data value:
 
@@ -218,14 +218,14 @@ Let’s look at a couple of evaluation dataset examples for language models:
 
 GLUE (General Language Understanding Evaluation) and SuperGLUE (Super General Language Understanding Evaluation) are multi-task benchmark datasets designed to assess model performance across various NLP tasks.
 
-1. **GLUE**
-    - Description: GLUE contains diverse NLP tasks like sentiment analysis, text classification, and textual entailment. These tasks rely on semi-structured text input-output pairs rather than completely free-form text.
-    - Format: JSON/CSV with text snippets and corresponding labels.
+1. **GLUE** (General Language Understanding Evaluation)
+    - **Description**: GLUE contains diverse NLP tasks like sentiment analysis, text classification, and textual entailment. These tasks rely on semi-structured text input-output pairs rather than completely free-form text.
+    - **Format**: JSON/CSV with text snippets and corresponding labels.
     - [Hugging Face GLUE Datasets](https://huggingface.co/datasets/glue)
 
-2. **SuperGLUE**
-    - Description: SuperGLUE introduces more complex language tasks like question answering and coreference resolution, which are also based on semi-structured text.
-    - Format: JSON/CSV with text inputs and labels.
+2. **SuperGLUE** (Super General Language Understanding Evaluation)
+    - **Description**: SuperGLUE introduces more complex language tasks like question answering and coreference resolution, which are also based on semi-structured text.
+    - **Format**: JSON/CSV with text inputs and labels.
     - [Hugging Face SuperGLUE Datasets](https://huggingface.co/datasets/super_glue)
 
 While GLUE and SuperGLUE are useful for benchmarking language models, it would be inaccurate to describe them solely as unstructured text datasets, since many tasks involve semi-structured input-output pairs.
@@ -275,8 +275,8 @@ Here are some examples of structured data types, links to example datasets, typi
 **Logs Data**
 - **Example Data:** Some examples of different logs include: system event logs that monitor traffic to an application, detect issues, and record errors causing a system to crash, or user behaviour logs, which track actions a user takes on a website or when signed into a device.
 - **Typical Formats:** [CLF](https://en.wikipedia.org/wiki/Common_Log_Format) or a custom text or binary file that contains ordered (timestamp action) pairs.
-- **Datasets:** 
- - [loghub](https://github.com/logpai/loghub): A large collection of different system log datasets for AI-driven log analytics.
+- **Datasets:**
+    - [loghub](https://github.com/logpai/loghub): A large collection of different system log datasets for AI-driven log analytics.
 - **Considerations:** How long you want to save the log interactions and what you want to use them for – i.e. understanding where errors occur, defining “typical” behaviour – are key considerations for processing this data. For further details on what to track and how, see this [Tracking Plan](https://segment.com/academy/collecting-data/how-to-create-a-tracking-plan/) course from Segment.
 - **Systems:** There are plenty of log management tools, for example [Better Stack](https://betterstack.com/logs), which has a pipeline set up for ClickHouse, allowing real-time processing, or [Papertrail](https://www.papertrail.com/), which can ingest different syslogs txt log file formats from Apache, MySQL, and Ruby.  
 
@@ -290,7 +290,7 @@ In any data retrieval system, a key requirement is ensuring the underlying repre
 
 One approach to updating your data is batch recomputation – periodically rebuilding all vectors from scratch as the new data piles up. But batch recomputation ignores incremental changes between batches.
 
-Change Data Capture (CDC) provides a more efficient alternative – capturing granular data changes as they occur and incrementally updating associated vectors. Using CDC, an e-commerce site, for example, can stream product catalog changes to update product vectors rapidly. Or, a real-time anomaly detection system can employ CDC to incorporate user account changes to adapt user vectors. As a result, CDC plays an integral role in keeping vectorized data aligned with changing realities.
+**Change Data Capture** (CDC) provides a more efficient alternative – capturing granular data changes as they occur and incrementally updating associated vectors. Using CDC, an e-commerce site, for example, can stream product catalog changes to update product vectors rapidly. Or, a real-time anomaly detection system can employ CDC to incorporate user account changes to adapt user vectors. As a result, CDC plays an integral role in keeping vectorized data aligned with changing realities.
 
 The visualization below shows how CDC can be implemented within a streaming data retrieval system. A primary database emits CDC into a queue, which is then consumed like any other streaming data source:
 
