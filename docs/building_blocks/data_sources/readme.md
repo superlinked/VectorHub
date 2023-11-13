@@ -29,7 +29,7 @@ Pinterest uses diverse data types to improve the recommendation performance of i
 
 Below is an overview of the data & ML stack Pinterest uses to convert all this data (above) to product value.
 
-<!---- ![](IMAGE NUMBER 1 GOES HERE) --->
+![Pinterest Tech Stack](assets/building_blocks/data_sources/bb1-1.png)
 
 1. **Event Streaming Platform**:
     - Pinterest relies on an **event streaming platform**, [Flink](https://medium.com/pinterest-engineering/unified-flink-source-at-pinterest-streaming-data-processing-c9d4e89f2ed6#:~:text=To%20best%20serve%20Pinners%2C%20creators,as%20its%20stream%20processing%20engine), to collect real-time event data. This platform allows them to easily collect, enrich, and transform event attributes.
@@ -86,7 +86,7 @@ Most systems deployed in production at scale combine stream and batch processing
 
 When choosing and configuring the data sources for a vector retrieval system, it’s important to consider tradeoffs between data velocity, complexity, and model size. 
 
-<!---- ![](IMAGE NUMBER 2 GOES HERE) --->
+![Velocity-complexity tradeoff](assets/building_blocks/data_sources/bb1-2.png)
 
 ### Velocity vs Complexity Tradeoff
 
@@ -305,7 +305,7 @@ The visualization down below shows how CDC can be implemented within a streaming
     - Streaming data consumers actively consume change events in real time, just as they would with any other streaming data source.
     - These consumers treat CDC data as a continuous flow of real-time data, making it readily available for processing and analysis.
 
-<!---- ![](IMAGE NUMBER 3 GOES HERE) --->
+![CDC with streaming data](assets/building_blocks/data_sources/bb1-3.png)
 
 ## Conclusion 
 
