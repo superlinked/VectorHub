@@ -2,17 +2,13 @@
 
 # Vector Compute
 
-<!-- TODO: Cover image: 
-1. You can create your own cover image and put it in the correct asset directory,
-2. or you can give an explanation on how it should be and we will help you create one. Please tag arunesh@superlinked.com or @AruneshSingh (GitHub) in this case. -->
-
 ## Introduction 
 
 “Software is eating the world,” penned Marc Andreessen back in 2011. Now, more than a decade later, there’s a new guest at the table, and “AI is eating software.” More products and processes, including the creation of software itself, are being powered by advanced Machine Learning.
 
 But it’s not an all-you-can-eat buffet. ML can’t just ingest anything it wants, whenever it wants. Building a good ML-powered system involves overcoming two common problems: **organizing** your data in a way lets you quickly retrieve relevant information, and, relatedly, **representing** your data in a way that makes it easy to feed into your ML models.
 
-<!-- IMAGE 1 GOES HERE -->
+![Meme](assets/building_blocks/vector_compute/bb2-1.png)
 
 These two problems are related. Indeed, they converge as parts of what is in essence **the** defining challenge of many ML systems: turning your data into vector embeddings – that is, connecting your [Data Sources](https://hub.superlinked.com/data-sources) to your [Vector Search & Management](https://hub.superlinked.com/vector-search) system.
 
@@ -24,7 +20,8 @@ In basic terms, Vector Compute is the infrastructure responsible for the trainin
 
 ## Vector Compute and ETL, not the same thing
 
-<!-- IMAGE 2 GOES HERE -->
+![How VC and ETL are analogous](assets/building_blocks/vector_compute/bb2-2.png)
+![How VC and ETL work together](assets/building_blocks/vector_compute/bb2-3.png)
 
 The role Vector Compute fills for your information retrieval system is similar to the role ETL tools like fivetran fill for your data warehouse. As in ETL, in Vector Compute you have to Extract the right information, Transform it into Vector Embeddings, and Load it into your Vector Search solution or cloud storage. 
 
@@ -54,6 +51,8 @@ The mathematical vector representations that result from the vector embedding co
 
 Furthermore, compared to complex raw data, vectors have far fewer dimensions, making them more efficient for tasks like storage, transfer, and retrieval. A low dimensional vector (i.e., array of numerical values) such as [102, 000, 241, 317, 004], for instance, encodes a wealth of semantic features and relationships. The continuity of the embedding space enables gradient-based optimization, which is central to Machine Learning modeling.
 
+![Image Embeddings](assets/building_blocks/vector_compute/bb2-4.png)
+
 In summary, embedding models can efficiently turn obscure raw data into structured vector representations that reveal otherwise hidden patterns – patterns that computers can effectively model using ML.
 
 But what does the embedding process look like?
@@ -62,7 +61,7 @@ But what does the embedding process look like?
 
 Embedding maps data onto a high-dimensional vector space, often between 500-2000 dimensions, depending on the complexity of the underlying data. However, for visualization purposes, popular dimensionality reduction techniques like [UMAP](https://umap-learn.readthedocs.io/en/latest/) (Uniform Manifold Approximation and Projection) or [t-SNE](https://lvdmaaten.github.io/tsne/) (t-Distributed Stochastic Neighbor Embedding) can be used to project these dense vectors into 2D scatterplots that approximate the relative distances and relationships between data points, as shown in [this embedding projector](https://projector.tensorflow.org).
 
-<!-- IMAGE 3 GOES HERE -->
+![Embedding process](assets/building_blocks/vector_compute/bb2-5.png)
 
 If, for example, your vector space represented restaurant reviews, these could be embedded based on ratings, food quality, and customer responses. Similar reviews would cluster together in the vector space, while dissimilar ones would be further apart. Reviews mentioning “good food” and “tasty dishes” would be close together, as their meaning is similar.
 
@@ -96,7 +95,7 @@ Still, pre-trained models have limitations; whether you should use a custom or p
 
 Your task's unique requirements dictate whether you should use a custom or a pre-trained model.
 
-<!-- IMAGE 4 GOES HERE -->
+![Things you have to do and build to turn your data into vectors](assets/building_blocks/vector_compute/bb2-6.png)
 
 Whereas **pre-trained models** shine in domains such as text, image, and audio processing by leveraging large, generic datasets to enhance performance and efficiency, **custom models** are essential in areas like graph embeddings, time series, and categorical data processing, where specific patterns and characteristics require tailored solutions, for example, [Time2Vec](https://towardsdatascience.com/time2vec-for-time-series-features-encoding-a03a4f3f937e) or [GraphSAGE](https://github.com/williamleif/GraphSAGE). 
 
@@ -134,7 +133,7 @@ Fine-tuning OpenAI on downstream NLP tasks has achieved [state-of-the-art result
 
 Instead of training all layers of the model from scratch, fine-tuning typically involves modifying and re-training just the last few layers of the model, specializing them for the given task. During fine-tuning, the main part of the pre-trained model remains unchanged. Fine-tuning requires only a fraction of the data that would be required to train the whole model from scratch, and it’s also computationally much cheaper.
 
-<!-- IMAGE 5 GOES HERE -->
+![Fine-tuning a model](assets/building_blocks/vector_compute/bb2-7.png)
 
 Fine-tuning helps avoid overfitting. Overfitting occurs when a model exposed to only small amounts of task-specific data memorizes inherent patterns, but can't generalize well. Overfitting leads to poor performance on real-world unseen data. By retraining only the last few layers of a pre-trained model, fine-tuning makes overfitting less likely, because the unchanged layers continue to provide generally useful features. In contrast, training an entire complex model on a small amount of data from scratch is very susceptible to overfitting.
 
