@@ -12,7 +12,7 @@ And _how_ have they done this? What's enabled these companies to harvest the inh
 
 The answer is vector embeddings. 
 
-Vector embeddings let you return more _relevant_ results to your search queries by: 1) querying the _meaning_ of the search terms, as opposed to just looking for search keyword _matches_; and 2) informing your search query with the _meaning_ of personal preference data, through the addition of a personal preference vector.
+Vector embeddings let you return more _relevant_ results to your search queries by: 1) querying the _meaning_ of the search terms, as opposed to just looking for search keyword _matches_; and 2) informing your search query with the meaning of personal preference data, through the addition of a personal preference vector.
 
 Let's look first at how vector embeddings improve the relevance of search query results generally, and then at how vector embeddings permit us to use the meaning of personal preferences to create truly personalized searches.
 
