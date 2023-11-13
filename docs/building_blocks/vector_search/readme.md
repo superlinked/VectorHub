@@ -168,11 +168,11 @@ specialized databases and search tools designed for managing and querying high-d
 
 There are several types of technologies that allow dynamic vector access, each with its own tradeoffs:
 
-1. **Vector-Native Vector Databases** (e.g., [Weaviate](https://weaviate.io/), [Pinecone](https://www.pinecone.io/), [Milvus](https://zilliz.com/what-is-milvus), [Vespa](https://vespa.ai/)): are designed specifically for vector data, and optimized for fast, efficient similarity searches on high-dimensional data. However, they may not be as versatile when it comes to traditional data operations.
+1. **Vector-Native Vector Databases** (e.g., **[Weaviate](https://weaviate.io/), [Pinecone](https://www.pinecone.io/), [Milvus](https://zilliz.com/what-is-milvus), [Vespa](https://vespa.ai/)): are designed specifically for vector data, and optimized for fast, efficient similarity searches on high-dimensional data. However, they may not be as versatile when it comes to traditional data operations.
 
 2. **Hybrid Databases** (e.g., [MongoDB](https://www.mongodb.com/), [PostgreSQL with pgvector](https://github.com/pgvector/pgvector/), [Redis with VSS module](https://redis.com/blog/rediscover-redis-for-vector-similarity-search/)): offer a combination of traditional and vector-based operations, providing greater flexibility in managing data. But hybrid databases may not perform vector searches at the same level or with the same vector-specific features as dedicated vector databases.
 
-3. **Search Tools** (e.g., [Elasticsearch](https://www.elastic.co/)): are primarily created to handle text search but also provide some Vector Search capabilities. Search tools like Elasticsearch are useful when you need to perform both text and Vector Search operations, without needing a fully featured database.
+3. **Search Tools** (e.g., [Elasticsearch](https://www.elastic.co/))**: are primarily created to handle text search but also provide some Vector Search capabilities. Search tools like Elasticsearch are useful when you need to perform both text and Vector Search operations, without needing a fully featured database.
 
 Here's a simplified side-by-side comparison of each database type’s pros and cons:
 
