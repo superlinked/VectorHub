@@ -28,13 +28,9 @@ The role Vector Compute fills for your information retrieval system is similar t
 
 There are, however, two important distinctions between ETL and Vector Compute:
 
-1) Your **ETL** system has to interact with dozens of data sources - loading data from all kinds of messy places, focusing on cleaning it up, setting and validating a schema, and keeping everything as simple as possible while the data landscape of your company changes, over time.
+1) Your **ETL** system has to interact with dozens of data sources - loading data from all kinds of messy places, focusing on cleaning it up, setting and validating a schema, and keeping everything as simple as possible while the data landscape of your company changes, over time. In contrast, the data sources that feed into your **Vector Compute** stack are likely those used as destinations by your ETL systems, like the data warehouse, your core database, or message queue solution. This means there can be fewer sources in Vector Compute and they are likely of higher quality.
 
-In contrast, the data sources that feed into your **Vector Compute** stack are likely those used as destinations by your ETL systems, like the data warehouse, your core database, or message queue solution. This means there can be fewer sources in Vector Compute and they are likely of higher quality.
-
-2) The transform step in **ETL** often contains just a simple aggregation or a join, or it fills in a missing value from a default. These operations are easy to express in SQL, making it easy to test whether they work.
-   
-In **Vector Compute**, on the other hand, we convert a diverse set of data into vector embeddings, which is a machine learning problem rather than a pure data engineering problem. This means that Vector Compute takes much longer to build than a simple ETL pipeline, more resources to run because you’re using ML models, and is more difficult to test – ML models don’t follow a simple “if A then B” logic, but instead operate within a spectrum of evaluation that is variable and task-specific.
+2) The transform step in **ETL** often contains just a simple aggregation or a join, or it fills in a missing value from a default. These operations are easy to express in SQL, making it easy to test whether they work. In **Vector Compute**, on the other hand, we convert a diverse set of data into vector embeddings, which is a machine learning problem rather than a pure data engineering problem. This means that Vector Compute takes much longer to build than a simple ETL pipeline, more resources to run because you’re using ML models, and is more difficult to test – ML models don’t follow a simple “if A then B” logic, but instead operate within a spectrum of evaluation that is variable and task-specific.
 
 In short, Vector Compute uses the data delivered by the ETL stack as input and transforms it into vector embeddings, which are then used to organize it and extract insight from it. 
 
