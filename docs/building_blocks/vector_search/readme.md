@@ -209,6 +209,7 @@ You have two primary choices for executing batch-processing tasks:
 
 
 In short, which storage technology, data serialization format, and execution environment you choose for your batch processing use case depends on various considerations. 
+
 These considerations include 
 - The size of your vector dataset,
 - Whether your data is static or dynamic,
