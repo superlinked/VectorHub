@@ -6,13 +6,13 @@
 1. You can create your own cover image and put it in the correct asset directory,
 2. or you can give an explanation on how it should be and we will help you create one. Please tag arunesh@superlinked.com or @AruneshSingh (GitHub) in this case. -->
 
-Imagine a world where your online searches return results that truly understand your needs, a world where you don't have to know the exact words to find what you're looking for. This isn't a vision of some distant possible future; it's happening now. Companies like Pinterest, Spotify, eBay, Airbnb, and Doordash have already taken advantage of the treasure trove of insights inherent in data – data that is [growing exponentially, and projected to surpass 175 zettabytes by 2025](https://www.forbes.com/sites/tomcoughlin/2018/11/27/175-zettabytes-by-2025) – to significantly improve user experience and engagement, conversion rates, and customer satisfaction. Spotify, for example, has been able to enhance its music recommendation system, leading to a more than 10% performance improvement in session and track recommendation tasks, and a sizeable boost in user engagement and satisfaction [(Hansen et al. 2020)](https://doi.org/10.1145/3383313.3412248).
+Imagine a world where your online searches return results that truly understand your needs, a world where you don't have to know the exact words to find what you're looking for. This isn't a vision of some distant possible future; it's happening now. Companies like Pinterest, Spotify, eBay, Airbnb, and Doordash have already taken advantage of the treasure trove of insights inherent in data – data that is [growing exponentially, and projected to surpass 175 zettabytes by 2025](https://www.forbes.com/sites/tomcoughlin/2018/11/27/175-zettabytes-by-2025) – to significantly improve user experience and engagement, conversion rates, and customer satisfaction. Spotify, for example, has been able to enhance its music recommendation system, leading to a more than 10% performance improvement in session and track recommendation tasks, and a [sizeable boost in user engagement and satisfaction](https://doi.org/10.1145/3383313.3412248).
 
 And _how_ have they done this? What's enabled these companies to harvest the inherent power of data to their benefit?
 
 The answer is vector embeddings. 
 
-Vector embeddings let you return more _relevant_ results to your search queries by 1) querying the _meaning_ of the search terms, as opposed to just looking for search keyword _matches_, and 2) informing your search query with the _meaning_ of personal preference data, through the addition of a personal preference vector.
+Vector embeddings let you return more _relevant_ results to your search queries by: 1) querying the _meaning_ of the search terms, as opposed to just looking for search keyword _matches_; and 2) informing your search query with the _meaning_ of personal preference data, through the addition of a personal preference vector.
 
 Let's look first at how vector embeddings improve the relevance of search query results generally, and then at how vector embeddings permit us to use the meaning of personal preferences to create truly personalized searches.
 
@@ -20,13 +20,13 @@ Let's look first at how vector embeddings improve the relevance of search query 
 
 ## Vector search vs. keyword-based search
 
-Vector embeddings are revolutionizing the way we search and retrieve information. They work by converting data into a numerical representation, known as a vector. Conversion into vectors allows the search system to consider the _semantics_ – the underlying meaning – of the data when performing a search.
+Vector embeddings are revolutionizing the way we search and retrieve information. They work by converting data into numerical representations, known as vectors. Conversion into vectors allows the search system to consider the _semantics_ – the underlying meaning – of the data when performing a search.
 
-Let's say you're searching for a book in an online store. With traditional keyword-based search, you would need to know the exact title or author's name. But with vector embeddings, you can simply describe the book's theme or plot, and the search system retrieves relevant results. This is because vector embeddings understand the _meaning_ of the query, rather than just matching on the keywords in your query.
+Imagine you're searching for a book in an online store. With traditional keyword-based search, you would need to know the exact title or author's name. But using vector embeddings, you can simply describe the book's theme or plot, and the search system retrieves relevant results. This is because vector embeddings understand the _meaning_ of the query, rather than just matching on the keywords in your query.
 
 ### How do vector embeddings return relevant results?
 
-The power of vector embeddings lies in their ability to quantify the similarity between vectors. This is done using a distance metric. One of the most commonly used distance metrics is cosine similarity, which measures how close one vectors is to another; the distance between them is a measure of how similar two pieces of data are. In this way, vector search is able to return relevant results even when the exact terms aren't present in the query.
+The power of vector embeddings lies in their ability to quantify similarity between vectors. This is done using a distance metric. One of the most commonly used distance metrics is cosine similarity, which measures how close one vector is to another; the distance between vectors is a measure of how similar the two pieces of data they represent are. In this way, vector search is able to return relevant results even when the exact terms aren't present in the query.
 
 ### Handling embedding model input limits
 
@@ -34,11 +34,11 @@ The embedding models used for vector search _do_ have maximum input length limit
 
 But we can handle this input size limitation by segmenting the data into smaller parts that fit the model's token constraints, or by adopting a sliding window technique. Segmenting involves cutting the text into smaller pieces that can be individually vectorized. The sliding window method processes the text in sections, with each new window overlapping the previous one, to maintain context between portions. These techniques adjust the data to the model's requirements, allowing for detailed vector representation of larger texts.
 
-Say, for example, you're searching for a specific article about a local festival in a newspaper's digital archive. The system identifies the lengthy Sunday edition where the piece appeared and then, to ensure a thorough search,  breaks the edition down, analyzing it article by article, much like going page by page, until it pinpoints your article about the local festival.
+Say, for example, you're searching for a specific article about a local festival in a newspaper's digital archive. The system identifies the lengthy Sunday edition where the piece appeared, and then, to ensure a thorough search, breaks the edition down, analyzing it article by article, much like going page by page, until it pinpoints the local festival article you're looking for.
 
 ### But it's not only text that you can search!
 
-The general-purpose nature of vector embeddings makes it possible to represent almost any form of data, from text to images to audio. In the bookstore example, we can represent each transaction as a vector. Each dimension of the vector represents a different attribute, such as the transaction amount, date, or product category. By comparing these transaction vectors, the search system can identify patterns or anomalies that would be difficult to spot with traditional search methods.
+The general-purpose nature of vector embeddings makes it possible to represent almost any form of data, from text to images to audio. Back in our bookstore, vector embeddings can handle more than just title searches. We can also represent a transaction as a vector. Each dimension of the vector represents a different attribute, such as the transaction amount, date, or product category. By comparing these transaction vectors, the search system can identify patterns or anomalies that would be difficult to spot with traditional search methods.
 
 ### Great! But what can I use to get started?
 
@@ -99,7 +99,7 @@ What are your thoughts on personalized search using vector embeddings? Have you 
 
 Stay Updated: Drop your email in the footer to stay up to date with new resources coming out of VectorHub and Superlinked.
 
-Your feedback shapes VectorHub! Found an Issue or Have a Suggestion? If you spot something off in the article or have a topic you want us to dive into, create a GitHub issue and we'll get on it!
+Your feedback shapes VectorHub! Found an Issue or Have a Suggestion? If you spot something off in an article or have a topic you want us to dive into, create a GitHub issue and we'll get on it!
 
 ---
 ## Contributors
