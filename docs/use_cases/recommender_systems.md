@@ -18,7 +18,7 @@ But not everyone has access to the kind or amount of metadata fashion retailers 
 
 Developers often disregard this side information because it is scarce. While CF (i.e., extrapolating user preferences via similarities of all users' browsing/purchasing history) works reasonably well in this use case, we can improve the recommendation quality (thereby increasing user engagement) of CF by adding available side information, even if it's scarce. 
 
-More precisely, there are libraries that allow us to "inject" side information ([LightFM](https://making.lyst.com/lightfm/docs/home.html), for example). Even the most efficient and effective collaborative filtering models, such as [ALS Matrix Factorization (MF)](http://yifanhu.net/PUB/cf.pdf) (the Python [‘implicit’](https://github.com/benfred/implicit) library) or [EASE] (https://arxiv.org/abs/1905.03375) (Embarrassingly Shallow Autoencoder), can be extended and improved using side information.
+More precisely, there are libraries that allow us to "inject" side information ([LightFM](https://making.lyst.com/lightfm/docs/home.html), for example). Even the most efficient and effective collaborative filtering models, such as [ALS Matrix Factorization (MF)](http://yifanhu.net/PUB/cf.pdf) (the Python ["implicit"](https://github.com/benfred/implicit) library) or [EASE] (https://arxiv.org/abs/1905.03375) (Embarrassingly Shallow Autoencoder), can be extended and improved using side information.
 
 ## Recommender systems as graphs
 
@@ -26,7 +26,7 @@ Matrix factorization is a common collaborative filtering approach. After a low-r
 
 We can represent this process using a graph, in which users and items are graph nodes, and predicted ratings are edge weights between them. The graph is bipartite: links appear only between nodes belonging to different groups. The list of recommendations made to a user correspond to the most likely new item-connections for this user-node. We can easily represent side info injection as graph nodes - for example, a "genre" node – that link related items.
 ​
-When understood from a graph perspective, it is easy to see how matrix factorization can be extended to include additional metadata. What we want is to somehow let the algorithm know about the new links, which help group similar items or users together. In other words, we want to "inject" new nodes – nodes that link nodes belonging to the same group. How do we do this? Have a look at the illustration below:
+When understood from a graph perspective, it is easy to see how matrix factorization can be extended to include additional metadata. What we want is to somehow let the algorithm know about the new links, which help group similar items or users together. In other words, we want to "inject" new nodes – nodes that link nodes belonging to the same group. How do we do this? Let's take a look at the illustration below:
 
 ![](assets/use_cases/recommender_systems/dummy_nodes.jpg)
 
@@ -34,7 +34,7 @@ There are three users: u1, u2 and u3; and four items: i1, i2, i3, i4. The user u
 
 **Adaptation**
 
-To enrich a CF approach, we need only add dummy data: when only item side information is available, add dummy users; when only user side information is available, add dummy items; when both user and item information are available, add both dummy users and dummy items. Obviously, the dummy nodes should not be included in the recommendations; these nodes are only there to help ‘inject’ some ‘commonality’ of the nodes belonging to a certain group.
+To enrich a CF approach, we need only add dummy data: when only item side information is available, add dummy users; when only user side information is available, add dummy items; when both user and item information are available, add both dummy users and dummy items. Obviously, the dummy nodes should not be included in the recommendations; these nodes are only there to help "inject" some "commonality" of the nodes belonging to a certain group.
 ​
 The same approach (as used above with MF) can be used with, for example, EASE, or with an explicitly graph-based approach for recommendations such as [PageRank](https://scikit-network.readthedocs.io/en/latest/use_cases/recommendation.html). In fact, with PageRank, the walks would include the dummy nodes.
 ​
@@ -96,7 +96,7 @@ recommended_items
 
 ## A real world use case
 
-We evaluated an ALS matrix factorization model with genre dummy users on an audio-on-demand platform with over 250k items (genres such as "comedy", "documentary", etc.). Compared to their production system, adding dummy nodes increased recommendation accuracy by over 10%. Obviously, the addition of dummy nodes increases computational and memory complexity, but in most cases this is a negligible compromise, given the scarcity of side information. Though the platform we evaluated had over 250K items in the catalog, there were only a few hundred item categories.
+We evaluated an ALS matrix factorization model with genre dummy users on an audio-on-demand platform with over 250k items (genres such as "comedy," "documentary," etc.). Compared to their production system, adding dummy nodes increased recommendation accuracy by over 10%. Obviously, the addition of dummy nodes increases computational and memory complexity, but in most cases this is a negligible compromise, given the scarcity of side information. Though the platform we evaluated had over 250K items in the catalog, there were only a few hundred item categories.
 
 ## Numerical data as side information
 
