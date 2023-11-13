@@ -2,7 +2,7 @@
 
 # A Recommender System: Collaborative Filtering with Sparse Metadata
 
-![](assets/use_cases/recommender_systems/recommender.png)
+![](docs/assets/use_cases/recommender_systems/recommender.png)
 
 Recommender Systems are increasingly important, given the plethora of products offered to users/customers. Beginning approximately twenty years ago, fashion retailers developed basic versions of content-based recommenders that increased user engagement (compared with a no-recommendations approach). 
 
