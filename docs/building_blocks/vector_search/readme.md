@@ -19,7 +19,7 @@ Vector Search & Management empower critical objectives:
 
 **Real-Time Retrieval**: In live systems, Vector Search is the foundation for real-time retrieval, powering functions like visual similarity search in online image search engines, streaming platforms as well as video, music, and news suggestions on news sites, content tagging and classification on, e.g., social media sites, online reverse image search, and voice search in voice assistants and search engines.
 
-How you use your Vector Search & Management to achieve these objectives depends on your use case requirements and constraints. Your specific implementation depends on how your use case fits a few Core Parameters, how you tailor Nearest Neighbor Search, and which Key Access Patterns you utilize. 
+How you use your Vector Search & Management to achieve these objectives depends on your use case requirements and constraints, where it fits in terms of a few Core Parameters, how you tailor Nearest Neighbor Search, and which Key Access Patterns you utilize. 
 
 Let’s look at each of these below.
 
