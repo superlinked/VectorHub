@@ -15,7 +15,7 @@ Vector Search & Management empower critical objectives:
 
 **Quality Evaluation**: Application success depends on your vector quality. You can use Vector Search to thoroughly assess and fine-tune the performance of embeddings of all types, including word, image, document, product, music & audio, face, tag, and features (in ML).
 
-**Model Training**: Vector representations are essential for training models in multiple domains, including transfer learning (e.g., language translation, image style transfer), reinforcement learning (e.g., autonomous driving, robotic control), content-based recommendation systems (e.g., e-commerce, music), anomaly detection (e.g., manufacturing quality control, network anomaly detection), active learning (e.g., image classification, text sentiment analysis), and embedding space analysis (e.g., document clustering, user behavior profiling).
+**Model Training**: Vector representations are essential for training models in multiple domains, including transfer learning (e.g., language translation, image style transfer), reinforcement learning (autonomous driving, robotic control), content-based recommendation systems (e-commerce, music), anomaly detection (manufacturing quality control, network anomaly detection), active learning (image classification, text sentiment analysis), and embedding space analysis (document clustering, user behavior profiling).
 
 **Real-Time Retrieval**: In live systems, Vector Search is the foundation for real-time retrieval, powering functions like visual similarity search in online image search engines, streaming platforms as well as video, music, and news suggestions on news sites, content tagging and classification on, e.g., social media sites, online reverse image search, and voice search in voice assistants and search engines.
 
@@ -48,12 +48,12 @@ An efficient and effective Vector Search & Management approach must carefully co
 
 ![Three core considerations of Vector Search](assets/building_blocks/vector_search/bb3-1.png)
 
-The key takeaway from the visual above is these three corners interact to determine the design of our system. Depending on our project, we may prioritize one corner over the others. For example, if we're building a recommendation system for an online store, we would emphasize "real-time" interactions and "speed" to offer customers instant, personalized recommendations.
+The key takeaway from the visual above is that these three corners interact to determine the design of our system. Depending on our project, we may prioritize one corner over the others. For example, if we're building a recommendation system for an online store, we would emphasize "real-time" interactions and "speed" to offer customers instant, personalized recommendations.
 
 
 ## Nearest Neighbor Search Algorithms:
 
-Scanning to calculate the similarity between vectors quickly is at Vector Search's heart. Vector similarity scores encoded by your embedding model/s store valuable feature or characteristic information about your data that can be used in various applications (e.g., content recommendation, clustering, data analysis). 
+Scanning to calculate the similarity between vectors quickly is at the heart of Vector Search. Vector similarity scores encoded by your embedding model/s store valuable feature or characteristic information about your data that can be used in various applications (e.g., content recommendation, clustering, data analysis).
 
 ### Full Scan
 
@@ -69,7 +69,7 @@ Approximate Nearest Neighbors (ANN) is a class of algorithms that expedite vecto
 
 ANN algorithms like locality-sensitive hashing (LSH) and hierarchical navigable small world (HNSW) can provide a tunable balance between precision and speed. HNSW and other similar methods permit very high recall, approaching brute force levels but at faster speeds.
 
-ANN provides a crucial advantage over brute force search for large, high-dimensional datasets. [ANN benchmarks’ “Benchmarking Results”](https://ann-benchmarks.com/) demonstrate that brute force algorithms provide the highest precision but at a tradeoff cost of fewer QPS (queries per second). Hybrid approaches combining ANN and exact search (i.e., full scan) can provide both speed and accuracy.
+ANN provides a crucial advantage over brute force search for large, high-dimensional datasets. [ANN-benchmarks’ “Benchmarking Results”](https://ann-benchmarks.com/) demonstrate that brute force algorithms provide the highest precision but at a tradeoff cost of fewer QPS (queries per second). Hybrid approaches combining ANN and exact search (i.e., full scan) can provide both speed and accuracy.
 
 To select an ANN method appropriate to your application, you need to evaluate metrics like recall and latency in relation to the dataset scale, dimensionality, and data distribution requirements of your use case. 
 
@@ -123,7 +123,7 @@ distances, indices = index.search(query_vector.reshape(1, vector_dim), 1)
 print("ANN time: ", time.time() - start)
 ```
 
-This code demonstrates how an ANN algorithm, like IVFFlat from the FAISS library, indexes the vectors, allowing quick narrowing of the search space. This lets you significantly speed up your scan, compared to a linear scan, especially as your data set becomes larger.
+The above code shows how an ANN algorithm, like IVFFlat from the FAISS library, indexes the vectors, allowing quick narrowing of the search space. This lets you significantly speed up your scan, compared to a linear scan, especially as your data set becomes larger.
 
 Different ANN implementations provide different optimization tradeoffs. Choosing the right ANN method requires benchmarking options like HNSW, IVF, and LSH on your dataset. 
 
