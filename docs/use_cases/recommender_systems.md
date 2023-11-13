@@ -22,7 +22,9 @@ More precisely, there are libraries that allow us to ‘inject’ side informati
 
 ## Recommender systems as graphs
 
-Matrix factorization is a common collaborative filtering approach. After a low-rank matrix approximation, we have two sets of vectors, one representing the users and the other representing the items. The inner product of a user and item vector estimates the rating a particular user gave to a particular item. We can represent this process using a graph, in which users and items are graph nodes, and predicted ratings are edge weights between them. The graph is bipartite: links appear only between nodes belonging to different groups. The list of recommendations made to a user correspond to the most likely new item-connections for this user-node. We can easily represent side info injection as graph nodes - for example, a "genre" node – that link related items.
+Matrix factorization is a common collaborative filtering approach. After a low-rank matrix approximation, we have two sets of vectors, one representing the users and the other representing the items. The inner product of a user and item vector estimates the rating a particular user gave to a particular item.
+
+We can represent this process using a graph, in which users and items are graph nodes, and predicted ratings are edge weights between them. The graph is bipartite: links appear only between nodes belonging to different groups. The list of recommendations made to a user correspond to the most likely new item-connections for this user-node. We can easily represent side info injection as graph nodes - for example, a "genre" node – that link related items.
 ​
 When understood from a graph perspective, it is easy to see how matrix factorization can be extended to include additional metadata. What we want is to somehow let the algorithm know about the new links, which help group similar items or users together. In other words, we want to "inject" new nodes – nodes that link nodes belonging to the same group. How do we do this? Have a look at the illustration below:
 
