@@ -38,7 +38,7 @@ The priorities of your particular application determine what matters most: minim
 
 An efficient and effective Vector Search & Management approach must carefully consider and quantify the retrieval system’s update frequency, access patterns, and priorities to meet the requirements of the intended use case, whether it’s providing instant e-commerce product recommendations, facilitating real-time decision-making, conducting in-depth data analysis, or something else entirely.
 
-<!-- TODO: Add image 1. -->
+![Three core considerations of Vector Search](assets/building_blocks/vector_search/bb3-1.png)
 
 Key takeaway from the viz: These three corners interact to determine the design of our system. Depending on our project, we may prioritize one corner over others. For example, if we're building a recommendation system for an online store, we would emphasize "real-time" interactions and "speed" to offer customers instant, personalized recommendations.
 
@@ -206,7 +206,7 @@ You have two primary choices for executing batch processing tasks:
 
 In short, which storage technology, data serialization format, and execution environment you choose for your batch processing use case depends on a variety of considerations, including: the size of your vector dataset, whether your data is static or dynamic, your workload scalability requirements, whether your dataset is stored across multiple servers, whether you require real-time querying, your integration needs (big data processing), your desired level of processing control, and your available resources and time for set up and maintenance. 
 
-<!-- TODO: Add image 2. -->
+![Choosing a batch processing setup](assets/building_blocks/vector_search/bb3-2.png)
 
 ## Conclusion
 At its core, Vector Search & Management provide the critical link between vectorized data and machine learning models that can extract insights and guide decisions. But designing and implementing your vector storage, indexing, and retrieval strategy to match the requirements of your use case involves several considerations:
