@@ -123,9 +123,9 @@ distances, indices = index.search(query_vector.reshape(1, vector_dim), 1)
 print("ANN time: ", time.time() - start)
 ```
 
-The above code shows how an ANN algorithm, like IVFFlat from the FAISS library, indexes the vectors, allowing quick narrowing of the search space. This lets you significantly speed up your scan, compared to a linear scan, especially as your data set becomes larger.
+The code snippet above shows how an ANN algorithm, like IVFFlat from the FAISS library, indexes the vectors, allowing quick narrowing of the search space. This lets you significantly speed up your scan, compared to a linear scan, especially as your data set becomes larger.
 
-Different ANN implementations provide different optimization tradeoffs. Choosing the right ANN method requires benchmarking options like HNSW, IVF, and LSH on your dataset. 
+Different ANN implementations provide different optimization tradeoffs. Choosing the right ANN method requires benchmarking options like HNSW, IVF, and LSH on your dataset.
 
 ### Quantization
 
@@ -167,16 +167,15 @@ But when the vector corpus grows substantially and is updated frequently, you’
 
 ### Dynamic Access 
 
-Dynamic access is particularly useful for managing larger datasets, typically exceeding one million vectors, and scenarios where vectors are subject to frequent updates – for example, sensor readings, user preferences, real-time analytics, and so on. Dynamic access relies on 
-specialized databases and search tools designed for managing and querying high-dimensional vector data; these databases and tools efficiently handle access to evolving vectors and can retrieve them in real-time, or near real-time.
+Dynamic access is particularly useful for managing larger datasets, typically exceeding one million vectors, and scenarios where vectors are subject to frequent updates – for example, sensor readings, user preferences, real-time analytics, and so on. Dynamic access relies on specialized databases and search tools designed for managing and querying high-dimensional vector data; these databases and tools efficiently handle access to evolving vectors and can retrieve them in real-time, or near real-time.
 
 Several types of technologies allow dynamic vector access, each with its own tradeoffs:
 
-1. **Vector-Native Vector Databases** (e.g., **[Weaviate](https://weaviate.io/), [Pinecone](https://www.pinecone.io/), [Milvus](https://zilliz.com/what-is-milvus), [Vespa](https://vespa.ai/)): are designed specifically for vector data, and optimized for fast, efficient similarity searches on high-dimensional data. However, they may not be as versatile when it comes to traditional data operations.
+1. **Vector-Native Vector Databases** (e.g., [Weaviate](https://weaviate.io/), [Pinecone](https://www.pinecone.io/), [Milvus](https://zilliz.com/what-is-milvus), [Vespa](https://vespa.ai/)): are designed specifically for vector data, and optimized for fast, efficient similarity searches on high-dimensional data. However, they may not be as versatile when it comes to traditional data operations.
 
-2. **Hybrid Databases** (e.g., [MongoDB](https://www.mongodb.com/), [PostgreSQL with pgvector](https://github.com/pgvector/pgvector/), [Redis with VSS module](https://redis.com/blog/rediscover-redis-for-vector-similarity-search/)): offer a combination of traditional and vector-based operations, providing greater flexibility in managing data. However hybrid databases may not perform vector searches at the same level or with the same vector-specific features as dedicated vector databases.
+2. **Hybrid Databases** (e.g., [MongoDB](https://www.mongodb.com/), [PostgreSQL with pgvector](https://github.com/pgvector/pgvector/), [Redis with VSS module](https://redis.com/blog/rediscover-redis-for-vector-similarity-search/)): offer a combination of traditional and vector-based operations, providing greater flexibility in managing data. However, hybrid databases may not perform vector searches at the same level or with the same vector-specific features as dedicated vector databases.
 
-3. **Search Tools** (e.g., [Elasticsearch](https://www.elastic.co/))**: are primarily created to handle text search but also provide some Vector Search capabilities. Search tools like Elasticsearch are useful when you need to perform both text and Vector Search operations, without needing a fully featured database.
+3. **Search Tools** (e.g., [Elasticsearch](https://www.elastic.co/)): are primarily created to handle text search but also provide some Vector Search capabilities. Search tools like Elasticsearch let you perform both text and Vector Search operations, without needing a fully featured database.
 
 Here's a simplified side-by-side comparison of each database type’s pros and cons:
 
@@ -216,7 +215,7 @@ These considerations include
 - Your workload scalability requirements,
 - Whether your dataset is stored across multiple servers,
 - Whether you require real-time querying,
-- Your integration needs (big data processing),
+- Whether your integration needs (big data processing),
 - Your desired level of processing control,
 - and your available resources and time for set up and maintenance. 
 
