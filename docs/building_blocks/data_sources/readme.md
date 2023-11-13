@@ -12,7 +12,7 @@ It’s important, therefore, to understand what different types and combinations
 
 ## The Data Map - A Mosaic of Data Types and Combinations
 
-An organization’s data is rarely uniform. Instead, the data landscape of any organization is a mosaic that can be characterized in terms of its velocity (ranging from stream to batch data), its modality / type (spanning structured to unstructured data), and its sources (originating from in-house systems and/or third-party providers).
+An organization’s data is rarely uniform. Instead, the data landscape of any organization is a mosaic that can be characterized in terms of its **velocity** (ranging from stream to batch data), its modality / type (spanning structured to unstructured data), and its **sources** (originating from in-house systems and/or third-party providers).
 
 Where your data falls along these three dimensions (velocity, modality, source) determines what you can do with it – that is, what use cases you can accommodate, and how you should configure your data retrieval stack to meet your objectives. In order to shape your data retrieval stack optimally, you need to build a mental model of your available data and understand its potential.
 
@@ -23,9 +23,9 @@ What you choose for your data and ML stack can make or break your whole product.
 Pinterest used a product-led growth strategy that relied upon a curated feed of recommended “Pins”. Due to the highly viral nature of the product, this strategy allowed Pinterest to raise [$564 million pre-revenue](https://www.entrepreneur.com/science-technology/no-revenue-no-problem-pinterest-raises-another-225/229597), ultimately growing to over 72.8 million users. 
 
 Pinterest uses diverse data types to improve the recommendation performance of its feed, including mechanisms to handle:
-        - Structured data (e.g., user profiles): This includes well-defined attributes with specific formats.
-        - Semi-structured data (e.g., event logs): These follow a general structure but may have varying fields or additional context.
-        - Unstructured data (e.g., images): These are typically files without a fixed schema.
+- **Structured data** (e.g., user profiles): This includes well-defined attributes with specific formats.
+- **Semi-structured data** (e.g., event logs): These follow a general structure but may have varying fields or additional context.
+- **Unstructured data** (e.g., images): These are typically files without a fixed schema.
 
 Below is an overview of the data & ML stack Pinterest uses to convert all this data (above) to product value.
 
@@ -46,39 +46,45 @@ Below is an overview of the data & ML stack Pinterest uses to convert all this d
             - Event logs (semi-structured data).
             - Images and other media (unstructured data).
 
-3. **DataAnalysis**:
+3. **Data Analysis**:
     - Pinterest’s engineers use [**Querybook**](https://medium.com/pinterest-engineering/open-sourcing-querybook-pinterests-collaborative-big-data-hub-ba2605558883), a collaborative big data hub that allows internal users to query and analyze data efficiently. Each **DataDoc** in Querybook consists of cells (text, query, or chart) that facilitate exploration and visualization.
     - The system supports complex queries for trend analysis, anomaly detection, recommendation algorithms, and personalized content delivery.
 
 For precise details about Pinterest’s specific data types and components, check out their [engineering blog](https://medium.com/@Pinterest_Engineering).
 
-## Understanding Velocity
+## Understanding Data Velocity
 
 The choice of data processing velocity is pivotal in determining the kind of data retrieval and vector compute tasks you can perform. Different velocities offer distinct advantages and make different use cases possible. Here's a breakdown of the three primary velocity categories:
 
 ### 1. **Batch Processing**
 
-- **Technologies**: Open source tools like Apache Spark, or proprietary batch pipeline systems in Google BigQuery, AWS Batch, or Snowflake. 
-- **Example Data**: Historical sales data, customer records, monthly financial reports. 
-- **Properties**: Batch processing involves processing data in fixed-size chunks or batches, typically scheduled at specific intervals (e.g., daily, weekly, or monthly). It can handle large volumes of data efficiently but lacks real-time responsiveness. For instance, a product recommendation system for an online store email newsletter might opt for batch updates. Updating recommendations once per week may suffice, given that the email is also sent once a week.
-- **Data Formats**: Common formats include CSV, Parquet, Avro, or any format that suits the specific data source.
-- **Databases**: Data storage systems like AWS S3 / Google Cloud Storage and document databases like MongoDB commonly store data that can be batch-processed for your retrieval system.
-- **ETL-Able Systems:** Systems like Magento for e-commerce or MailChimp for marketing are typical sources for batch accessed and processed data in your retrieval stack.
+| Overview | Example |
+| ---- | ------------- |
+|**Technologies**| Open source tools like Apache Spark, or proprietary batch pipeline systems in Google BigQuery, AWS Batch, or Snowflake.| 
+|**Example Data**| Historical sales data, customer records, monthly financial reports.|
+|**Properties**| Batch processing involves processing data in fixed-size chunks or batches, typically scheduled at specific intervals (e.g., daily, weekly, or monthly). It can handle large volumes of data efficiently but lacks real-time responsiveness. For instance, a product recommendation system for an online store email newsletter might opt for batch updates. Updating recommendations once per week may suffice, given that the email is also sent once a week.|
+|**Data Formats**|Common formats include CSV, Parquet, Avro, or any format that suits the specific data source.|
+|**Databases**| Data storage systems like AWS S3 / Google Cloud Storage and document databases like MongoDB commonly store data that can be batch-processed for your retrieval system.|
+|**ETL-Able Systems**| Systems like Magento for e-commerce or MailChimp for marketing are typical sources for batch accessed and processed data in your retrieval stack. |
 
 ### 2. **Micro-Batch Processing**
 
-- **Technologies**: Apache Spark Structured Streaming, Apache Flink, Apache Beam.
-- **Example Data**: Social media posts, IoT sensor data, small-scale e-commerce transactions.
-- **Properties**: Micro-batch processing compromises batch and stream. It processes data in smaller, more frequent batches, allowing for near-real-time updates. It's suitable for use cases that balance real-time processing and resource efficiency.
-- **Formats**: Often similar to batch processing, with data structured in formats like JSON or Avro.
+| Overview | Example |
+| ---- | ------------- |
+|**Technologies**| Apache Spark Structured Streaming, Apache Flink, Apache Beam.|
+|**Example Data**| Social media posts, IoT sensor data, small-scale e-commerce transactions.|
+|**Properties**| Micro-batch processing compromises batch and stream. It processes data in smaller, more frequent batches, allowing for near-real-time updates. It's suitable for use cases that balance real-time processing and resource efficiency.|
+|**Formats**| Often similar to batch processing, with data structured in formats like JSON or Avro.|
 
 ### 3. **Stream Processing**
 
-- **Technologies**: Apache Kafka, Apache Storm, Amazon Kinesis, [hazelcast](https://hazelcast.com/), [bytewax](https://github.com/bytewax/bytewax), [quix](https://quix.io/), [streamkap](https://streamkap.com/), [decodable](https://www.decodable.co/).
-- **Example Data**: Social media feeds, stock market transactions, sensor readings, clickstream data, ad requests and responses. A credit card company aiming to detect fraudulent transactions in real-time benefits from streaming data. Real-time detection can prevent financial losses and protect customers from fraudulent activities.
-- **Properties**: Stream processing handles data in real-time, making it highly dynamic. It's designed to support immediate updates and changes, making it ideal for use cases that require up-to-the-second insights.
-- **Formats**: Data in stream processing is often in Protobuf, Avro, or other formats optimized for small footprint and fast serialization.
-- **Databases:** Real-time databases include [Clickhouse](https://clickhouse.com/), [Redis](https://redis.com/), and [RethinkDB](https://rethinkdb.com/). There are also in-memory databases, such as [DuckDB](https://duckdb.org/) and [KuzuDB](https://kuzudb.com/), which can be used to create real-time dashboards. However, depending on the deployment strategy chosen, these databases may lose the data once the application is terminated.
+| Overview | Example |
+| ---- | ------------- |
+|**Technologies**| Apache Kafka, Apache Storm, Amazon Kinesis, [hazelcast](https://hazelcast.com/), [bytewax](https://github.com/bytewax/bytewax), [quix](https://quix.io/), [streamkap](https://streamkap.com/), [decodable](https://www.decodable.co/).|
+|**Example Data**| Social media feeds, stock market transactions, sensor readings, clickstream data, ad requests and responses. A credit card company aiming to detect fraudulent transactions in real-time benefits from streaming data. Real-time detection can prevent financial losses and protect customers from fraudulent activities.|
+|**Properties**| Stream processing handles data in real-time, making it highly dynamic. It's designed to support immediate updates and changes, making it ideal for use cases that require up-to-the-second insights.|
+|**Formats**| Data in stream processing is often in Protobuf, Avro, or other formats optimized for small footprint and fast serialization.|
+|**Databases**| Real-time databases include [Clickhouse](https://clickhouse.com/), [Redis](https://redis.com/), and [RethinkDB](https://rethinkdb.com/). There are also in-memory databases, such as [DuckDB](https://duckdb.org/) and [KuzuDB](https://kuzudb.com/), which can be used to create real-time dashboards. However, depending on the deployment strategy chosen, these databases may lose the data once the application is terminated.|
 
 Most systems deployed in production at scale combine stream and batch processing. This enables you to leverage the immediacy of real-time updates and the depth of historical data. But reconciling stream and batch processes in a single system introduces trade-off decisions – trade-off decisions you must make to keep your data consistent across systems and across time.
 
@@ -172,28 +178,28 @@ Whether your data is structured, unstructured, or hybrid is crucial when evaluat
 
 Unstructured data encompasses a wide variety of information that doesn't adhere to a fixed structure or definition. This data type is often characterized by its raw, unordered, and noisy nature. Examples of unstructured data include natural language text, image, audio, and video data. Let's take a closer look at each type:
 
-**Text Data:**
+**Text Data**
 - **Example Data:** Social media posts, news articles, chat transcripts, product reviews.
 - **Typical Formats:** Plain text, JSON, XML, HTML, PDF, CSV (for tabular text data).
 - **Datasets:**
     - Kaggle: [Sentiment Analysis on Movie Reviews](https://www.kaggle.com/c/sentiment-analysis-on-movie-reviews)
     - Hugging Face: [Text Classification](https://huggingface.co/datasets?task_categories=task_categories:text-classification&sort=trending)
 
-**Image Data:**
+**Image Data**
 - **Example Data:** Photographs, medical images, satellite imagery, generative AI-created images.
 - **Typical Formats:** JPEG, PNG, TIFF.
 - **Datasets:**
     - Kaggle: [CIFAR-10 - Object Recognition in Images](https://www.kaggle.com/c/cifar-10)
     - Github: [Unsplash 4.8M Photos, Keywords, Searches](https://github.com/unsplash/datasets)
 
-**Audio Data:**
+**Audio Data**
 - **Example Data:** Speech recordings, music, environmental sounds.
 - **Typical Formats:** WAV, MP3, FLAC.
 - **Datasets:**
     - Kaggle: [Urban Sound Classification](https://www.kaggle.com/datasets/chrisfilo/urbansound8k)
     - Hugging Face: [Audio Classification](https://huggingface.co/datasets?task_categories=task_categories:audio-classification&sort=trending)
 
-**Video Data:**
+**Video Data**
 - **Example Data:** Movie clips, surveillance footage, video streams.
 - **Typical Formats:** MP4, AVI, MOV.
 - **Datasets:**
