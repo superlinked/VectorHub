@@ -107,3 +107,4 @@ Overall, dummy nodes offer a transparent way to gain value from side data, with 
 ## Contributors
 
 - [Mirza Klimenta, PhD](https://www.linkedin.com/in/mirza-klimenta/)
+- [Robert Turner, editor](https://robertturner.co/copyedit)
