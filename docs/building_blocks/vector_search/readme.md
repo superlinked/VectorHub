@@ -7,7 +7,7 @@
 2. or you can give an explanation on how it should be and we will help you create one. Please tag arunesh@superlinked.com or @AruneshSingh (GitHub) in this case. -->
 
 ## Introduction
-You've unlocked a wealth of potential after transforming raw data into vector embeddings. These vectors encapsulate the essence of your data, but their full value isn't realized until you apply them in your Vector Search & Management.
+By transforming raw data into vector embeddings, you've unlocked a wealth of potential. These vectors encapsulate the essence of your data, but their full value isn't realized until you apply them in your Vector Search & Management.
 
 Vector Search & Management is the bridge between the latent, abstract mathematical representations of your data and their real-world applications. Your Vector Management stores, structures, and prepares your vector data for various machine learning tasks. Using Vector Search, you can perform efficient and relevant data retrieval from extensive data repositories. 
 
