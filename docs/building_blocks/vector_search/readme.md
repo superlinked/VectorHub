@@ -37,7 +37,7 @@ In contrast, in a static library of scientific articles, vector updates happen l
 **Access Patterns**:
 Access patterns – how vectors are queried and retrieved within the retrieval system – can vary widely, ranging from real-time, on-the-fly, queries for nearest neighbors of single vectors, to batch processing and integration with other data. Emergency response systems (e.g., 911 dispatch), for instance, rely on quick access real-time similarity searches to find the closest available emergency responders to a reported incident location. Here, low-latency access can mean the difference between life and death. 
 
-Whereas, a video processing pipeline handling large sets of video frames for analysis will mainly focus on batch processing. Access patterns play a critical role in determining the efficiency of vector retrieval, and therefore, whether real-time or batch processing is preferred.
+Whereas, a video processing pipeline handling large sets of video frames for analysis will mainly focus on batch processing. Access patterns play a critical role in determining the efficiency of vector retrieval, and, therefore, whether real-time or batch processing is preferred.
  
 **Priorities**:
 The priorities of your particular application determine what matters most: minimizing latency, maximizing throughput, or ensuring a high level of accuracy. For example, low-latency access to real-time data is paramount for making split-second decisions in a financial trading system. In contrast, a data analytics platform might prioritize high throughput to process large volumes of data quickly.
@@ -61,7 +61,7 @@ Let’s say we have a dataset of 1 million 1000-dimensional vectors and want to 
 
 A full scan is simple, easy to implement, suitable when your dataset has less than 1M vectors, and not constantly changing.
 
-But as your dataset grows past 1M vectors, full scan takes more and more time and becomes more resource-intensive. We can significantly expedite our scan using an approximate nearest neighbors (ANN) search.
+But as your dataset grows past 1M vectors, or is updated frequently, full scan takes more and more time and becomes more resource-intensive. We can significantly expedite our scan using an approximate nearest neighbors (ANN) search.
 
 ### ANN Algorithms
 
@@ -71,7 +71,7 @@ ANN algorithms like locality-sensitive hashing (LSH) and hierarchical navigable 
 
 ANN provides a crucial advantage over brute force search for large, high-dimensional datasets. [ANN-benchmarks’ “Benchmarking Results”](https://ann-benchmarks.com/) demonstrate that brute force algorithms provide the highest precision but at a tradeoff cost of fewer QPS (queries per second). Hybrid approaches combining ANN and exact search (i.e., full scan) can provide both speed and accuracy.
 
-To select an ANN method appropriate to your application, you need to evaluate metrics like recall and latency in relation to the dataset scale, dimensionality, and data distribution requirements of your use case. 
+To select an ANN method appropriate to your application, you need to evaluate metrics like recall and latency in relation to your dataset scale, dimensionality, and data distribution requirements. 
 
 
 #### Code example: full scan vs. ANN
