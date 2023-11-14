@@ -78,7 +78,7 @@ However, pre-trained models have performed better than custom models on others â
 
 Letâ€™s look at some examples:
 
-[Llama-2](https://ai.meta.com/llama/), developed by Meta, is a set of LLMs that have been pre-trained on a publically available corpus of data, with variants trained on 7B, 13B, 34B and 70B parameters. Llama-2 achieves highly impressive results on language tasks, but [as a decoder model](https://magazine.sebastianraschka.com/p/understanding-encoder-and-decoder) it is not well suited to vector embeddings.
+[Llama-2](https://ai.meta.com/llama/), developed by Meta, is a set of LLMs pre-trained on a publically available corpus of data, with variants trained on 7B, 13B, 34B and 70B parameters. Llama-2 achieves highly impressive results on language tasks, but [as a decoder model](https://magazine.sebastianraschka.com/p/understanding-encoder-and-decoder) it is not well suited to vector embeddings.
 
 Another example is OpenAI, which leverages ELMo and GPT for unsupervised pre-training to create robust general linguistic representations. Read how [OpenAI has improved language understanding with unsupervised learning](https://openai.com/blog/language-unsupervised/).
 
