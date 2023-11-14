@@ -41,6 +41,7 @@ Whereas, a video processing pipeline handling large sets of video frames for ana
 
 What you choose to prioritize affects your retrieval system's architecture and the trade-offs made during implementation.
 
+
 An efficient and effective Vector Search & Management approach must carefully consider and quantify the retrieval system’s update frequency, access patterns, and priorities to meet the requirements of the intended use case, whether it’s providing instant e-commerce product recommendations, facilitating real-time decision-making, conducting in-depth data analysis, or something else entirely.
 
 ![Three core considerations of Vector Search](assets/building_blocks/vector_search/bb3-1.png)
