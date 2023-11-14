@@ -50,7 +50,7 @@ The mathematical vector representations that result from the vector embedding co
 
 **Image** embeddings (vector representations of images) can be fed, along with metadata, like labels, into traditional deep learning models to train them for tasks like image classification. Without image embedding, feeding images into deep learning models requires a specialized feature extraction step and specific model architecture – like a [convolutional neural network or a restricted Boltzmann machine](https://www.hindawi.com/journals/am/2022/3351256/). 
 
-However, you can *use image embedding to work on computer vision tasks yourself*; you don’t need specialized computer vision engineers to get started.
+However, you can *use image embedding to work on computer vision tasks yourself* – you don’t need specialized computer vision engineers to get started.
 
 Furthermore, compared to complex raw data, vectors have far fewer dimensions, making them more efficient for tasks like storage, transfer, and retrieval. A low dimensional vector (i.e., an array of numerical values) such as [102, 000, 241, 317, 004] encodes a wealth of semantic features and relationships. **The continuity of the embedding space enables gradient-based optimization, which is central to Machine Learning modelling**.
 
