@@ -7,9 +7,9 @@ title: Home
 VectorHub is a free and open-sourced learning hub for people interested in adding vector retrieval to their ML stack. On VectorHub you will find practical resources to help you -
 
 * Create MVPs with easy-to-follow learning materials
-* Solve use-case specific challenges in vector retrieval
-* Get confident in taking their MVPs to production
-* Learn about different tools and vendors for their use-case
+* Solve use-case-specific challenges in vector retrieval
+* Get confident in taking your MVPs to production
+* Learn about different tools and vendors for your use-case
 
 Read more about our philosophy in our [Manifesto](manifesto.md).
 
@@ -25,13 +25,13 @@ Connecting and extracting data from multiple sources
 :::link-array-item{headerType="IMAGE" headerImage="https://uploads-ssl.webflow.com/64f9dd739f984c15f86e446e/65391220959a7238510c1c37_home_vector_compute.png"}
 [**2. Vector Compute**](building_blocks/vector_compute/readme.md)
 
-Turn your data into vector by running pipelines and models
+Turn your data into vectors by running pipelines and models
 :::
 
 :::link-array-item{headerType="IMAGE" headerImage="https://uploads-ssl.webflow.com/64f9dd739f984c15f86e446e/653912200a4e20cca55dd646_home_vector_search.png"}
 [**3. Vector Search**](building_blocks/vector_search/readme.md)
 
-Query and retrieve vectors for your use -case
+Query and retrieve vectors for your use case
 :::
 ::::
 
@@ -62,7 +62,7 @@ Here are some examples from the community, more coming soon!
 
 ## Toolbox
 
-Toolbox is a collection of benchmarks, code snippets, summaries & tricks that aid in deciding on what's best for you. These are the tools that we and our community use frequently. We curate them based on your input. Feel free to share some tools that you use often or have created recently that will help the community. You can do that by creating an issue [here](https://github.com/superlinked/VectorHub/issues/new).
+Toolbox is a collection of benchmarks, code snippets, summaries & tricks to help you decide what's best for your use case. These are tools that we and our community use frequently. We use your input to curate our toolbox. So, feel free to share some tools that you use often or have created recently that will help the community. You can do that by [creating an issue](https://github.com/superlinked/VectorHub/issues/new).
 
 ::::link-array
 :::link-array-item{headerImage headerColor}
@@ -73,5 +73,5 @@ Toolbox is a collection of benchmarks, code snippets, summaries & tricks that ai
 ***
 
 :::hint{type="info"}
-VectorHub is a free and open-sourced learning hub that is sponsored and curated by Superlinked. We enourage you to contribute and make a suggestion on our GitHub.
+VectorHub is a free and open-sourced learning hub that is sponsored and curated by Superlinked. We enourage you to contribute or make a suggestion on our GitHub.
 :::
