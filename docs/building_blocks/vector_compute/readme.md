@@ -72,7 +72,7 @@ If, for example, your vector space represented restaurant reviews, these could b
 
 Until the early to mid-2010s, embedding was handled exclusively by ML teams building custom models from scratch. Custom models rely heavily on large volumes of task-specific data and require expert data scientists to develop and refine for months.
 
-Recent advances in [transfer learning](https://ai.plainenglish.io/transfer-learning-in-deep-learning-leveraging-pretrained-models-for-improved-performance-b4c49f2cd644) research have enabled **another** kind of model, pre-trained on large more broad datasets, using more computational power than 99.9% of companies have available. Custom models continue to play a crucial role in Vector Compute, excelling at some tasks. 
+Recent advances in [transfer learning](https://ai.plainenglish.io/transfer-learning-in-deep-learning-leveraging-pretrained-models-for-improved-performance-b4c49f2cd644) research have enabled _another_ kind of model, pre-trained on large more broad datasets, using more computational power than 99.9% of companies have available. Custom models continue to play a crucial role in Vector Compute, excelling at some tasks. 
 
 However pre-trained models have performed better than custom models on others – in particular, text, image, and audio embedding. And, importantly, compared to building your own models, pre-trained models make it easier and faster to get to a working solution for your use case.
 
@@ -166,19 +166,19 @@ The fine-tuning procedure involves repeatedly training the model on the downstre
 
 This cycle of training, hyperparameter tuning, and performance measurement is repeated until the model plateaus and stops showing significant gains on your particular dataset. The goal is to maximize metrics like accuracy and F1-score, to reach acceptable performance levels for your specific use case and data.
 
-Libraries like [Hugging Face's Transformers](https://huggingface.co/docs/transformers/index) and [spaCy](https://spacy.io) **simplify** this experimentation process. They provide optimized implementations of impressive pre-trained models and tools to rapidly run training iterations and fine-tune hyperparameters.
+Libraries like [Hugging Face's Transformers](https://huggingface.co/docs/transformers/index) and [spaCy](https://spacy.io) _simplify_ this experimentation process. They provide optimized implementations of impressive pre-trained models and tools to rapidly run training iterations and fine-tune hyperparameters.
 
 Fine-tuning, therefore, can adapt pre-trained models to perform more successfully on specific downstream tasks. However, even fine-tuned pre-trained models have limitations.
 
 #### The limits of fine-tuning
 
-Fine-tuning works well when the fine-tuning data is of the same type and modality as the pre-trained model's **initial** training data – for example, fine-tuning on a language model using text. A fine-tuned LLM is the right solution for a straightforward language task like sentiment classification.
+Fine-tuning works well when the fine-tuning data is of the same type and modality as the pre-trained model's _initial_ training data – for example, fine-tuning on a language model using text. A fine-tuned LLM is the right solution for a straightforward language task like sentiment classification.
 
 But on its own, a fine-tuned LLM can’t properly solve broader use cases involving more context, like product recommendations or fraud detection. 
 
-To make a good product recommendation, for example, you need to input various data of different types and modalities – including product imagery, recency (when it was launched), user preferences, and product description. To combine these factors in a way that maps to your task requirements and does it efficiently, your solution has to include **both** a model trained to define recency – i.e., a **custom** model – and a model that can understand relevant details from the product description and initial search query – i.e., a **pre-trained** model (such as GPT-4). 
+To make a good product recommendation, for example, you need to input various data of different types and modalities – including product imagery, recency (when it was launched), user preferences, and product description. To combine these factors in a way that maps to your task requirements and does it efficiently, your solution has to include _both_ a model trained to define recency – i.e., a _custom_ model – and a model that can understand relevant details from the product description and initial search query – i.e., a _pre-trained_ model (such as GPT-4). 
 
-In other words, to get Vector Compute right, you need to develop both intricate custom models to integrate and harmonize diverse data types, **and** pre-trained models that, with high-quality in-domain data, perform better on some in-domain tasks. Because they use general-purpose or fine-tuned representations from vast datasets, re-trained models also reduce startup costs and improve computational efficiency.
+In other words, to get Vector Compute right, you need to develop both intricate custom models to integrate and harmonize diverse data types, _and_ pre-trained models that, with high-quality in-domain data, perform better on some in-domain tasks. Because they use general-purpose or fine-tuned representations from vast datasets, re-trained models also reduce startup costs and improve computational efficiency.
 
 An effective vector retrieval stack is a single, unified system that assigns, coordinates, and configures custom models and pre-trained models respectively, or in combination, to handle the tasks they are designed for. Such robust homegrown solutions will be increasingly important given the broad and ever-expanding application of Vector Compute to solve real-world problems in a spectrum of domains, partially enumerated below.
 
