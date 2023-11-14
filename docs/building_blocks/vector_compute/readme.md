@@ -106,7 +106,7 @@ Whereas **pre-trained models** shine in domains such as _text, image, and audio 
 
 Graph Embeddings, such as [Node2Vec](https://snap.stanford.edu/node2vec/), have a variety of use cases, including recommender systems. [Graph embedding models](https://towardsdatascience.com/knowledge-graph-embeddings-101-2cc1ca5db44f) learn the relationships between entities in a knowledge graph using low-dimensional embeddings, making it more efficient to compute various similarity and inference tasks. 
 
-Much debate has been focused on whether transformer models should be used for time series data embeddings. For example, after much initial hype over Zhou et al.’s transformer-based Informer model, unveiled in [a 2021 paper](https://arxiv.org/abs/2012.07436) that won an AAAI 2021 Outstanding Paper Award, subsequent research appeared to show that such transformer-based models were outperformed on time series forecasting tasks by simpler [linear algorithms](https://machine-learning-made-simple.medium.com/why-do-transformers-suck-at-time-series-forecasting-46ae3a4d6b11), including the DLinear model. 
+Much attention has been focused on whether transformer models should be used for time series data embeddings. For example, after  initial hype over Zhou et al.’s transformer-based Informer model, unveiled in [a 2021 paper](https://arxiv.org/abs/2012.07436) that won an AAAI 2021 Outstanding Paper Award, subsequent research appeared to show that such transformer-based models were outperformed on time series forecasting tasks by simpler [linear algorithms](https://machine-learning-made-simple.medium.com/why-do-transformers-suck-at-time-series-forecasting-46ae3a4d6b11), including the DLinear model. 
 
 This debate is still very much alive, with transformer-based proponents maintaining that [Autoformer custom models perform better](https://huggingface.co/blog/autoformer). Whichever side of this debate you stand on, the fact remains: **if you work with time series data, you need custom models**.
 
@@ -134,7 +134,9 @@ Some examples:
 
 Research has shown that fine-tuning Llama-2 to specific tasks can improve its performance significantly, particularly on the Llama-7b and Llama-13b parameter versions. [A case study fine-tuning the Llama-13b variant](https://www.anyscale.com/blog/fine-tuning-llama-2-a-comprehensive-case-study-for-tailoring-models-to-unique-applications) observed an increase in accuracy from 58% to 98% on functional representations, 42% to 89% on SQL generation, and 28% to 47% on GSM. Using fine-tuning on smaller models increases performance while managing the costs of running the models, ultimately making them more practical to implement into production.
 
-Fine-tuning OpenAI on downstream NLP tasks has achieved [state-of-the-art results in commonsense reasoning, semantic similarity, and reading comprehension](https://openai.com/blog/language-unsupervised/). Further research has demonstrated GPT-4 performance on certain tasks at a level comparable to a human. It would be premature, however, to conclude that this amounts to artificial general intelligence (AGI); there remain [several areas in which GPT-4 falls short of human-level performance](https://arxiv.org/pdf/2303.12712.pdf). For example, GPT-4 struggles to calibrate for confidence; it doesn’t know when it should be confident vs. when it's simply guessing. Also, the model’s context is extremely limited, it functions “statelessly” – once trained, the model is fixed; it can’t update itself with prior interactions or information, or adapt to a changing environment. In addition, the model regularly hallucinates, making up facts and figures, a problem compounded by its poor confidence calibration.
+Fine-tuning OpenAI on downstream NLP tasks has achieved [state-of-the-art results in commonsense reasoning, semantic similarity, and reading comprehension](https://openai.com/blog/language-unsupervised/). Further research has demonstrated GPT-4 performance on certain tasks at a level comparable to a human. It would be premature, however, to conclude that this amounts to artificial general intelligence (AGI); there remain [several areas in which GPT-4 falls short of human-level performance](https://arxiv.org/pdf/2303.12712.pdf).
+
+For example, GPT-4 struggles to calibrate for confidence; it doesn’t know when it should be confident vs. when it's simply guessing. Also, the model’s context is extremely limited, it functions “statelessly” – once trained, the model is fixed; it can’t update itself with prior interactions or information, or adapt to a changing environment. In addition, the model regularly hallucinates, making up facts and figures, a problem compounded by its poor confidence calibration.
 
 #### Fine-tuning adds layers and avoids overfitting
 
@@ -142,7 +144,7 @@ Instead of training all model layers from scratch, fine-tuning typically involve
 
 ![Fine-tuning a model](assets/building_blocks/vector_compute/bb2-7.png)
 
-Fine-tuning helps avoid overfitting. Overfitting occurs when a model exposed to only small amounts of task-specific data memorizes inherent patterns, but can't generalize well. Overfitting leads to poor performance on real-world unseen data. By retraining only the last few layers of a pre-trained model, fine-tuning makes overfitting less likely because the unchanged layers continue to provide useful features. In contrast, training an entire complex model on a small amount of data from scratch is very susceptible to overfitting.
+Fine-tuning helps avoid **overfitting**. Overfitting occurs when a model exposed to only small amounts of task-specific data memorizes inherent patterns, but can't generalize well. Overfitting leads to poor performance on real-world unseen data. By retraining only the last few layers of a pre-trained model, fine-tuning makes overfitting less likely because the unchanged layers continue to provide useful features. In contrast, training an entire complex model on a small amount of data from scratch is very susceptible to overfitting.
 
 
 To fine-tune a pre-trained model, you first need to **obtain a quality dataset** relevant to your specific problem. For common tasks like sentiment analysis, public benchmark datasets can be used.
@@ -157,7 +159,7 @@ For example, let's take a look at some illustrative input/output pairs from the 
 
   **Output**: Negative sentiment
 
-Companies invest in human annotation for **proprietary** applications to create labeled datasets reflecting their custom use cases and data. For successful fine-tuning, you need a sufficient volume and variety of examples to allow pre-trained model to adapt its knowledge to the new domain.
+Companies invest in human annotation for **proprietary** applications to create labeled datasets reflecting their custom use cases and data. For successful fine-tuning, you need a sufficient volume and variety of examples for a pre-trained model to adapt its knowledge to the new domain.
 
 #### The fine-tuning cycle: training, hyperparameter tuning, performance measurement
 
@@ -218,7 +220,7 @@ To build this kind of solution, you need the right combination and configuration
 
 While generic pre-trained models fail to capture the nuances of proprietary data, developing custom models from scratch is expensive and risky. Fine-tuned pre-trained models with some high-quality in-domain data can outperform large custom models while avoiding overfitting. 
 
-But even better optimization results from intricate, home-grown solutions that develop custom models and integrate them with (fine-tuned) pre-trained models into a single system – one that assigns each type of model alone, or in combination with the other, to tasks each is best suited to. The future of Vector Compute lies in developing this kind of solution.
+But even better optimization results from intricate, home-grown solutions that develop custom models and integrate them with (fine-tuned) pre-trained models into a **single system** – one that assigns each type of model alone, or in combination with the other, to tasks each is best suited to. The future of Vector Compute lies in developing this kind of solution.
 
 ---
 ## Contributors
