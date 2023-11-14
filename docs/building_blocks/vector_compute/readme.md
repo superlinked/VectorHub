@@ -4,19 +4,19 @@
 
 ## Introduction 
 
-“Software is eating the world,” penned Marc Andreessen back in 2011. Now, more than a decade later, there’s a new guest at the table, and “AI is eating software.” More products and processes, including the creation of software itself, are being powered by advanced Machine Learning.
+“Software is eating the world,” penned Marc Andreessen back in 2011. Now, more than a decade later, there’s a new guest at the table, and “**AI is eating software**.” More products and processes, including the creation of software itself, are being powered by advanced Machine Learning.
 
 But it’s not an all-you-can-eat buffet. ML can’t just ingest anything it wants, whenever it wants. Building a good ML-powered system involves overcoming two common problems: **organizing** your data in a way that lets you quickly retrieve relevant information, and, relatedly, **representing** your data in a way that makes it easy to feed into your ML models.
 
 ![Meme](assets/building_blocks/vector_compute/bb2-1.png)
 
-These two problems are related. Indeed, they converge as parts of what is, in essence, _the_ defining challenge of many ML systems: turning your data into vector embeddings – that is, connecting your [Data Sources](https://hub.superlinked.com/data-sources) to your [Vector Search & Management](https://hub.superlinked.com/vector-search) system.
+These two problems are related. Indeed, they converge as parts of what is, in essence, _the_ defining challenge of many ML systems: turning your data into vector embeddings – that is, **connecting** your [Data Sources](https://hub.superlinked.com/data-sources) to your [Vector Search & Management](https://hub.superlinked.com/vector-search) system.
 
 We call this the Vector Compute problem and this article explores how to build & use systems that solve it.
 
 ## What is Vector Compute?
 
-In basic terms, Vector Compute is the infrastructure responsible for the training and management of vector embedding models, and the application of these models to your data in order to produce vector embeddings. These vectors then power the information retrieval and other machine learning systems across your organization.
+In basic terms, Vector Compute is the infrastructure responsible for the **training and management** of vector embedding models, and the **application** of these models to your data in order to produce vector embeddings. These vectors then power the information retrieval and other machine learning systems across your organization.
 
 ## Vector Compute and ETL, not the same thing
 
@@ -26,13 +26,13 @@ The role Vector Compute fills for your information retrieval system is similar t
 
 ![How VC and ETL work together](assets/building_blocks/vector_compute/bb2-3.png)
 
-There are, however, two important distinctions between ETL and Vector Compute:
+There are, however, **two important distinctions** between ETL and Vector Compute:
 
 1) Your **ETL** system has to interact with dozens of data sources - loading data from all kinds of messy places, focusing on cleaning it up, setting and validating a schema, and keeping everything as simple as possible while the data landscape of your company changes, over time. In contrast, the data sources that feed into your **Vector Compute** stack are likely those used as destinations by your ETL systems, like the data warehouse, your core database, or message queue solution. This means there can be fewer sources in Vector Compute and they are likely of higher quality.
 
 2) The transform step in **ETL** often contains just a simple aggregation or a join, or it fills in a missing value from a default. These operations are easy to express in SQL, making it easy to test whether they work. In **Vector Compute**, on the other hand, we convert a diverse set of data into vector embeddings, which is a machine learning problem rather than a pure data engineering problem. This means that Vector Compute takes much longer to build than a simple ETL pipeline, more resources to run because you’re using ML models, and is more difficult to test – ML models don’t follow a simple “if A then B” logic, but instead operate within a spectrum of evaluation that is variable and task-specific.
 
-In short, Vector Compute uses the data delivered by the ETL stack as input and transforms it into vector embeddings, which are then used to organize it and extract insight from it. 
+In short, Vector Compute uses the data delivered by the ETL stack as input and transforms it into vector embeddings, which are then used to organize the data and extract insight from it. 
 
 Finally, the key challenge you will face when building a Vector Compute system is developing and configuring embedding models.
 
@@ -42,17 +42,17 @@ At the core of Vector Compute are embedding models – machine learning models a
 
 Embedding models turn features extracted from high-dimensional data, with large numbers of attributes or dimensions, like text, images, or audio, into lower-dimensional but dense mathematical representations – i.e., vectors. You can apply embedding models to structured data like tabular datasets or graphs. 
 
-An e-commerce company, for example, might ingest thousands of rows of user activity logs with features such as date, product viewed, purchase amount, and so on. Embedding models encode these heterogeneous features as embedding vectors, with 100s dimensions highlighting otherwise latent relationships and patterns, thereby enabling nearest neighbor search, clustering, or further modeling.
+An e-commerce company, for example, might ingest thousands of rows of user activity logs with features such as date, product viewed, purchase amount, and so on. Embedding models encode these heterogeneous features as embedding vectors, with 100s of dimensions highlighting otherwise latent relationships and patterns, thereby enabling nearest neighbor search, clustering, or further modeling.
 
-The mathematical vector representations that result from the vector embedding conversion process are readily amenable to processing by machine learning algorithms.
+The mathematical vector representations that result from the vector embedding conversion process are readily **amenable to processing by machine learning algorithms**.
 
 **Word** embeddings, for example, capture nuanced linguistic similarities between terms that would be opaque to computers operating on just raw text strings. 
 
 **Image** embeddings (vector representations of images) can be fed, along with metadata, like labels, into traditional deep learning models to train them for tasks like image classification. Without image embedding, feeding images into deep learning models requires a specialized feature extraction step and specific model architecture – like a [convolutional neural network or a restricted Boltzmann machine](https://www.hindawi.com/journals/am/2022/3351256/). 
 
-However, you can use image embedding to work on computer vision tasks yourself; you don’t need specialized computer vision engineers to get started.
+However, you can **use image embedding to work on computer vision tasks _yourself_**; you don’t need specialized computer vision engineers to get started.
 
-Furthermore, compared to complex raw data, vectors have far fewer dimensions, making them more efficient for tasks like storage, transfer, and retrieval. A low dimensional vector (i.e., an array of numerical values) such as [102, 000, 241, 317, 004], for instance, encodes a wealth of semantic features and relationships. The continuity of the embedding space enables gradient-based optimization, which is central to Machine Learning modelling.
+Furthermore, compared to complex raw data, vectors have far fewer dimensions, making them more efficient for tasks like storage, transfer, and retrieval. A low dimensional vector (i.e., an array of numerical values), such as [102, 000, 241, 317, 004], encodes a wealth of semantic features and relationships. **The continuity of the embedding space enables gradient-based optimization, which is central to Machine Learning modelling**.
 
 ![Image Embeddings](assets/building_blocks/vector_compute/bb2-4.png)
 
@@ -66,23 +66,23 @@ Embedding maps data onto a high-dimensional vector space, often between 500-2000
 
 ![Embedding process](assets/building_blocks/vector_compute/bb2-5.png)
 
-If, for example, your vector space represented restaurant reviews, these could be embedded based on ratings, food quality, and customer responses. Similar reviews would cluster together in the vector space, while dissimilar ones would be further apart. Reviews mentioning “good food” and “tasty dishes” would be close together, as their meaning is similar.
+If, for example, your vector space represented restaurant reviews, these could be embedded based on ratings, food quality, and customer responses. **Similar reviews would cluster together in the vector space, while dissimilar ones would be further apart**. Reviews mentioning “good food” and “tasty dishes” would be close together, as their meaning is similar.
 
 ### A new kind of model: Pre-trained Embedding
 
 Until the early to mid-2010s, embedding was handled exclusively by ML teams building custom models from scratch. Custom models rely heavily on large volumes of task-specific data and require expert data scientists to develop and refine for months.
 
-Recent advances in [transfer learning](https://ai.plainenglish.io/transfer-learning-in-deep-learning-leveraging-pretrained-models-for-improved-performance-b4c49f2cd644) research have enabled _another_ kind of model, pre-trained on large more broad datasets, using more computational power than 99.9% of companies have available. Custom models continue to play a crucial role in Vector Compute, excelling at some tasks. 
+Recent advances in [transfer learning](https://ai.plainenglish.io/transfer-learning-in-deep-learning-leveraging-pretrained-models-for-improved-performance-b4c49f2cd644) research have enabled _another_ kind of model, pre-trained on large, broad datasets, using more computational power than 99.9% of companies have available. Custom models continue to play a crucial role in Vector Compute, excelling at some tasks. 
 
-However pre-trained models have performed better than custom models on others – in particular, text, image, and audio embedding. And, importantly, compared to building your own models, pre-trained models make it easier and faster to get to a working solution for your use case.
+However, pre-trained models have performed better than custom models on others – in particular, text, image, and audio embedding. And, importantly, compared to building your own models, pre-trained models make it **easier and faster** to get to a working solution for your use case.
 
 Let’s look at some examples:
 
-[Llama-2](https://ai.meta.com/llama/), developed by Meta, is a set of LLMs that have been pre-trained on a publically available corpus of data, with variants trained on 7B, 13B, 34B and 70B parameters. Llama-2 achieves highly impressive results on language tasks, but [as a decoder model](https://magazine.sebastianraschka.com/p/understanding-encoder-and-decoder), it is not well suited for vector embeddings.
+[Llama-2](https://ai.meta.com/llama/), developed by Meta, is a set of LLMs that have been pre-trained on a publically available corpus of data, with variants trained on 7B, 13B, 34B and 70B parameters. Llama-2 achieves highly impressive results on language tasks, but [as a decoder model](https://magazine.sebastianraschka.com/p/understanding-encoder-and-decoder) it is not well suited to vector embeddings.
 
 Another example is OpenAI, which leverages ELMo and GPT for unsupervised pre-training to create robust general linguistic representations. Read how [OpenAI has improved language understanding with unsupervised learning](https://openai.com/blog/language-unsupervised/).
 
-Besides Llama-2 and OpenAI, there are other prominent embedding models, ones that specialize in specific data types:
+Besides Llama-2 and OpenAI, there are **other prominent embedding models**, ones that **specialize in specific data types**:
 
 For **images**, there are breakthrough model architectures like [ResNet](https://arxiv.org/abs/1512.03385) (Residual Neural Network) that utilize skip connections to enable training extremely deep convolutional neural networks, and Google’s [Inception](https://arxiv.org/abs/1409.4842), which achieves human-level accuracy on image classification by pre-training on large labeled datasets like [ImageNet](https://www.image-net.org). By employing advanced techniques (including skip connections and concatenated convolutions), these approaches effectively learn visual features that can be transferred to downstream tasks.
 
@@ -90,19 +90,19 @@ In the **audio** domain, [DeepSpeech](https://arxiv.org/abs/1412.5567) and [Wav2
 
 To generate vector embeddings, the top-scoring models on Huggingface’s [Massive Text Embedding Benchmark (MTEB) Leaderboard](https://huggingface.co/spaces/mteb/leaderboard) are pre-trained encoder transformer models.
 
-The primary advantage of pre-trained models is their ability to learn powerful general-purpose representations from vast datasets – for example, [CommonCrawl](https://commoncrawl.org/), which contains billions of web pages and is an ideal data source for training.
+The **primary advantage of pre-trained models is their ability to learn powerful general-purpose representations from vast datasets** – for example, [CommonCrawl](https://commoncrawl.org/), which contains billions of web pages and is an ideal data source for training.
 
-Leveraging pre-trained models as a starting point offers remarkable computational efficiency and enhanced performance, especially in scenarios where task-specific data is limited.
+Leveraging pre-trained models as a starting point offers remarkable computational efficiency and enhanced performance, **especially in scenarios where task-specific data is limited**.
 
 Still, pre-trained models have limitations; whether you should use a custom or pre-trained model depends on your task requirements.
 
 ## Pre-trained and Custom models: when to use which?
 
-Your task's unique requirements dictate using a custom or a pre-trained model.
+Your task's unique requirements will dictate when you should use a custom model, and when you should use a pre-trained model.
 
 ![Things you have to do and build to turn your data into vectors](assets/building_blocks/vector_compute/bb2-6.png)
 
-Whereas **pre-trained models** shine in domains such as text, image, and audio processing by leveraging large, generic datasets to enhance performance and efficiency, **custom models** are essential in areas like graph embeddings, time series, and categorical data processing, where specific patterns and characteristics require tailored solutions, for example, [Time2Vec](https://towardsdatascience.com/time2vec-for-time-series-features-encoding-a03a4f3f937e) or [GraphSAGE](https://github.com/williamleif/GraphSAGE). 
+Whereas **pre-trained models** shine in domains such as _text, image, and audio processing by leveraging large, generic datasets to enhance performance and efficiency_, **custom models** are essential in areas like _graph embeddings, time series, and categorical data processing, where specific patterns and characteristics require tailored solutions_, for example, [Time2Vec](https://towardsdatascience.com/time2vec-for-time-series-features-encoding-a03a4f3f937e) or [GraphSAGE](https://github.com/williamleif/GraphSAGE). 
 
 Graph Embeddings, such as [Node2Vec](https://snap.stanford.edu/node2vec/), have a variety of use cases, including recommender systems. [Graph embedding models](https://towardsdatascience.com/knowledge-graph-embeddings-101-2cc1ca5db44f) learn the relationships between entities in a knowledge graph using low-dimensional embeddings, making it more efficient to compute various similarity and inference tasks. 
 
