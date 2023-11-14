@@ -112,10 +112,6 @@ This debate is still very much alive, with transformer-based proponents maintain
 
 _Custom models_ are more useful and perform better than pre-trained models where data is atypical, structured, and/or proprietary. _Pre-trained models_, on the other hand, are typically designed for general applications and may not perfectly align with specific downstream tasks. 
 
-So, is there a way of preserving a pre-trained model's efficiency and performance advantages, permitting a faster go-to-market, but **also** align it with specific downstream tasks?
-
-One approach is **fine-tuning**.
-
 |Aspect|Custom Models|Pre-Trained Models|
 |---|---|---|
 |Purpose|Tailored to specific tasks or domains|Trained on large generic datasets, then fine-tuned for specific tasks|
@@ -125,44 +121,47 @@ One approach is **fine-tuning**.
 |Use Cases|Essential in areas with distinct patterns and specialized needs|Effective in domains like text, image, and audio processing where large, generic datasets enhance performance|
 |Balancing Act|Achieving superior results by finding a balance between custom and pre-trained models|Recognizing that customization and fine-tuning are often necessary, even when using pre-trained models|
 
+
+So, is there a way of preserving a pre-trained model's efficiency and performance advantages, permitting a faster go-to-market, but **also** align it with specific downstream tasks?
+
+One approach is **fine-tuning**.
+
 ### Fine-tuning pre-trained models for specific tasks
 
 Adapting a pre-trained model to a given task is called fine-tuning. Fine-tuning leverages the wealth of knowledge already learned by the pre-trained model on large datasets, while specializing it for the problem at hand using small-task-specific data for a specific downstream requirement.
 
 Some examples:
 
-Research has shown that fine-tuning Llama-2 to specific tasks can improve its performance significantly, particularly on the Llama-7b & Llama-13b parameter versions. [A case study fine-tuning the Llama-13b variant](https://www.anyscale.com/blog/fine-tuning-llama-2-a-comprehensive-case-study-for-tailoring-models-to-unique-applications) observed an increase in accuracy from 58% to 98% on functional representations, 42% to 89% on SQL generation, and 28% to 47% on GSM. Using fine-tuning on smaller models increases performance while managing the costs of running the models, ultimately making them more practical to implement into production.
+Research has shown that fine-tuning Llama-2 to specific tasks can improve its performance significantly, particularly on the Llama-7b and Llama-13b parameter versions. [A case study fine-tuning the Llama-13b variant](https://www.anyscale.com/blog/fine-tuning-llama-2-a-comprehensive-case-study-for-tailoring-models-to-unique-applications) observed an increase in accuracy from 58% to 98% on functional representations, 42% to 89% on SQL generation, and 28% to 47% on GSM. Using fine-tuning on smaller models increases performance while managing the costs of running the models, ultimately making them more practical to implement into production.
 
-Fine-tuning OpenAI on downstream NLP tasks has achieved [state-of-the-art results in commonsense reasoning, semantic similarity, and reading comprehension](https://openai.com/blog/language-unsupervised/). Further research has demonstrated GPT-4 performance on certain tasks at a level comparable to a human. But before we conclude that this amounts to artificial general intelligence (AGI), it is worth pointing out that there remain [several areas in which GPT-4 falls short of human-level performance](https://arxiv.org/pdf/2303.12712.pdf). 
-
-For example, the model struggles to calibrate for confidence (i.e., it doesn’t know when it should be confident vs. simply guessing). Also, the model’s context is extremely limited, it functions “statelessly” – once it’s trained, the model is fixed; it can’t update itself with prior interactions or information or adapt to a changing environment. Another frequently observed challenge is that the model regularly hallucinates, making up facts and figures, a problem compounded by its poor confidence calibration.
+Fine-tuning OpenAI on downstream NLP tasks has achieved [state-of-the-art results in commonsense reasoning, semantic similarity, and reading comprehension](https://openai.com/blog/language-unsupervised/). Further research has demonstrated GPT-4 performance on certain tasks at a level comparable to a human. It would be premature, however, to conclude that this amounts to artificial general intelligence (AGI); there remain [several areas in which GPT-4 falls short of human-level performance](https://arxiv.org/pdf/2303.12712.pdf). For example, GPT-4 struggles to calibrate for confidence; it doesn’t know when it should be confident vs. when it's simply guessing. Also, the model’s context is extremely limited, it functions “statelessly” – once trained, the model is fixed; it can’t update itself with prior interactions or information, or adapt to a changing environment. In addition, the model regularly hallucinates, making up facts and figures, a problem compounded by its poor confidence calibration.
 
 #### Fine-tuning adds layers and avoids overfitting
 
-Instead of training all model layers from scratch, fine-tuning typically involves modifying and re-training just the last few layers of the model, specializing them for the given task. During fine-tuning, the main part of the pre-trained model remains unchanged. Fine-tuning requires only a fraction of the data required to train the whole model from scratch, and it’s also computationally much cheaper.
+Instead of training all model layers from scratch, fine-tuning typically involves modifying and re-training **just the last few layers** of the model, specializing them for the given task. During fine-tuning, the main part of the pre-trained model remains unchanged. Fine-tuning requires only a fraction of the data required to train the whole model from scratch, and it’s also computationally much cheaper.
 
 ![Fine-tuning a model](assets/building_blocks/vector_compute/bb2-7.png)
 
 Fine-tuning helps avoid overfitting. Overfitting occurs when a model exposed to only small amounts of task-specific data memorizes inherent patterns, but can't generalize well. Overfitting leads to poor performance on real-world unseen data. By retraining only the last few layers of a pre-trained model, fine-tuning makes overfitting less likely because the unchanged layers continue to provide useful features. In contrast, training an entire complex model on a small amount of data from scratch is very susceptible to overfitting.
 
 
-To fine-tune a pre-trained model, you first need to obtain a quality dataset relevant to your specific problem. For common tasks like sentiment analysis, public benchmark datasets can be used.
+To fine-tune a pre-trained model, you first need to **obtain a quality dataset** relevant to your specific problem. For common tasks like sentiment analysis, public benchmark datasets can be used.
 
 For example, let's take a look at some illustrative input/output pairs from the [IMDB movie reviews dataset](https://paperswithcode.com/dataset/imdb-movie-reviews), which can be employed to fine-tune a pre-trained model designed for sentiment analysis:
 
-**Input**: "Absolutely loved this movie! The acting was superb, and the storyline kept me engaged from start to finish. Highly recommended!"
+  **Input**: "Absolutely loved this movie! The acting was superb, and the storyline kept me engaged from start to finish. Highly recommended!"
 
-**Output**: Positive sentiment
+  **Output**: Positive sentiment
 
-**Input**: "This film turned out to be a significant disappointment. The plot left me puzzled, the acting was merely average, and I struggled to maintain interest. Not worth watching."
+  **Input**: "This film turned out to be a significant disappointment. The plot left me puzzled, the acting was merely average, and I struggled to maintain interest. Not worth watching."
 
-**Output**: Negative sentiment
+  **Output**: Negative sentiment
 
-Companies invest in human annotation for **proprietary** applications to create labeled datasets reflecting their custom use cases and data. For successful fine-tuning, possessing a sufficient volume and variety of examples is key so the pre-trained model can adapt its knowledge to the new domain.
+Companies invest in human annotation for **proprietary** applications to create labeled datasets reflecting their custom use cases and data. For successful fine-tuning, you need a sufficient volume and variety of examples to allow pre-trained model to adapt its knowledge to the new domain.
 
 #### The fine-tuning cycle: training, hyperparameter tuning, performance measurement
 
-The fine-tuning procedure involves repeatedly training the model on the downstream labeled data, adjusting key hyperparameters like learning rate and batch size, and evaluating performance on a held-out validation set after each iteration.
+The fine-tuning procedure involves repeatedly training the model on downstream labeled data, adjusting key hyperparameters like learning rate and batch size, and evaluating performance on a held-out validation set after each iteration.
 
 This cycle of training, hyperparameter tuning, and performance measurement is repeated until the model plateaus and stops showing significant gains on your particular dataset. The goal is to maximize metrics like accuracy and F1-score, to reach acceptable performance levels for your specific use case and data.
 
@@ -174,18 +173,18 @@ Fine-tuning, therefore, can adapt pre-trained models to perform more successfull
 
 Fine-tuning works well when the fine-tuning data is of the same type and modality as the pre-trained model's _initial_ training data – for example, fine-tuning on a language model using text. A fine-tuned LLM is the right solution for a straightforward language task like sentiment classification.
 
-But on its own, a fine-tuned LLM can’t properly solve broader use cases involving more context, like product recommendations or fraud detection. 
+But **on its own, a fine-tuned LLM can’t properly solve broader use cases involving more context**, like product recommendations or fraud detection. 
 
 To make a good product recommendation, for example, you need to input various data of different types and modalities – including product imagery, recency (when it was launched), user preferences, and product description. To combine these factors in a way that maps to your task requirements and does it efficiently, your solution has to include _both_ a model trained to define recency – i.e., a _custom_ model – and a model that can understand relevant details from the product description and initial search query – i.e., a _pre-trained_ model (such as GPT-4). 
 
-In other words, to get Vector Compute right, you need to develop both intricate custom models to integrate and harmonize diverse data types, _and_ pre-trained models that, with high-quality in-domain data, perform better on some in-domain tasks. Because they use general-purpose or fine-tuned representations from vast datasets, re-trained models also reduce startup costs and improve computational efficiency.
+In other words, to get Vector Compute right, you need to develop _both_ intricate custom models to integrate and harmonize diverse data types, _and_ pre-trained models that, with high-quality in-domain data, perform better on some in-domain tasks. Because they use general-purpose or fine-tuned representations from vast datasets, re-trained models also reduce startup costs and improve computational efficiency.
 
-An effective vector retrieval stack is a single, unified system that assigns, coordinates, and configures custom models and pre-trained models respectively, or in combination, to handle the tasks they are designed for. Such robust homegrown solutions will be increasingly important given the broad and ever-expanding application of Vector Compute to solve real-world problems in a spectrum of domains, partially enumerated below.
+**An effective vector retrieval stack is a single, unified system that assigns, coordinates, and configures custom models and pre-trained models respectively, or in combination, to handle the tasks they are designed for**. Such robust homegrown solutions will be increasingly important given the broad and ever-expanding application of Vector Compute to solve real-world problems in a spectrum of domains, partially enumerated below.
 
 ## Applications of Vector Compute
 
 **Personalized Search** 
-In e-commerce, Vector Compute fuels tailored product recommendations, taking into account user behavior and preferences, and ensuring a more personalized shopping experience.
+In e-commerce, Vector Compute fuels tailored product recommendations, taking into account user behavior and preferences, and ensuring a more personalized shopping experience. 
 For content-driven platforms, such as news websites, Vector Compute transforms content recommendations into a personalized journey, analyzing users' reading habits to suggest articles and topics that align with their interests.
 
 **Recommender Systems**
