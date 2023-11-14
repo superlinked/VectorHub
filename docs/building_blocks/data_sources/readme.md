@@ -218,15 +218,15 @@ Let’s look at a couple of evaluation dataset examples for language models:
 
 GLUE (General Language Understanding Evaluation) and SuperGLUE (Super General Language Understanding Evaluation) are multi-task benchmark datasets designed to assess model performance across various NLP tasks.
 
-1. **GLUE** (General Language Understanding Evaluation)
-    - **Description**: GLUE contains diverse NLP tasks like sentiment analysis, text classification, and textual entailment. These tasks rely on semi-structured text input-output pairs rather than completely free-form text.
-    - **Format**: JSON/CSV with text snippets and corresponding labels.
-    - [Hugging Face GLUE Datasets](https://huggingface.co/datasets/glue)  
+    1. **GLUE** (General Language Understanding Evaluation)
+        - **Description**: GLUE contains diverse NLP tasks like sentiment analysis, text classification, and textual entailment. These tasks rely on semi-structured text input-output pairs rather than completely free-form text.
+        - **Format**: JSON/CSV with text snippets and corresponding labels.
+        - [Hugging Face GLUE Datasets](https://huggingface.co/datasets/glue)  
   
-2. **SuperGLUE** (Super General Language Understanding Evaluation)
-    - **Description**: SuperGLUE introduces more complex language tasks like question answering and coreference resolution, which are also based on semi-structured text.
-    - **Format**: JSON/CSV with text inputs and labels.
-    - [Hugging Face SuperGLUE Datasets](https://huggingface.co/datasets/super_glue)
+    2. **SuperGLUE** (Super General Language Understanding Evaluation)
+        - **Description**: SuperGLUE introduces more complex language tasks like question answering and coreference resolution, which are also based on semi-structured text.
+        - **Format**: JSON/CSV with text inputs and labels.
+        - [Hugging Face SuperGLUE Datasets](https://huggingface.co/datasets/super_glue)
 
 While GLUE and SuperGLUE are useful for benchmarking language models, it would be inaccurate to describe them solely as unstructured text datasets, since many tasks involve semi-structured input-output pairs.
 
