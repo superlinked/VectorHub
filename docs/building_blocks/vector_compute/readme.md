@@ -10,7 +10,7 @@ But it’s not an all-you-can-eat buffet. ML can’t just ingest anything it wan
 
 ![Meme](assets/building_blocks/vector_compute/bb2-1.png)
 
-These two problems are related. Indeed, they converge as parts of what is, in essence, **the** defining challenge of many ML systems: turning your data into vector embeddings – that is, connecting your [Data Sources](https://hub.superlinked.com/data-sources) to your [Vector Search & Management](https://hub.superlinked.com/vector-search) system.
+These two problems are related. Indeed, they converge as parts of what is, in essence, _the_ defining challenge of many ML systems: turning your data into vector embeddings – that is, connecting your [Data Sources](https://hub.superlinked.com/data-sources) to your [Vector Search & Management](https://hub.superlinked.com/vector-search) system.
 
 We call this the Vector Compute problem and this article explores how to build & use systems that solve it.
 
