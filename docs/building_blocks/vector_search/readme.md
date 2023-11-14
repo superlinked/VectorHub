@@ -29,18 +29,15 @@ To understand Vector Search & Management and their role in retrieval systems, we
 
 Let's break down the retrieval system’s key defining parameters:
 
-**Update Frequency**:
-Vectors can remain static over time or undergo frequent updates. In many retrieval systems, vectors are used to represent evolving data that requires regular refreshing. For example, on e-commerce platforms, product recommendations must adapt as new products are added, and customer preferences change. 
+**Update Frequency**: Vectors can remain static over time or undergo frequent updates. In many retrieval systems, vectors are used to represent evolving data that requires regular refreshing. For example, on e-commerce platforms, product recommendations must adapt as new products are added, and customer preferences change. 
 
 In contrast, in a static library of scientific articles, vector updates happen less frequently. The frequency at which the vectors change crucially affects how they are managed and accessed.
 
-**Access Patterns**:
-Access patterns – how vectors are queried and retrieved within the retrieval system – can vary widely, ranging from real-time, on-the-fly, queries for nearest neighbors of single vectors, to batch processing and integration with other data. Emergency response systems (e.g., 911 dispatch), for instance, rely on quick access real-time similarity searches to find the closest available emergency responders to a reported incident location. Here, low-latency access can mean the difference between life and death. 
+**Access Patterns**: Access patterns – how vectors are queried and retrieved within the retrieval system – can vary widely, ranging from real-time, on-the-fly, queries for nearest neighbors of single vectors, to batch processing and integration with other data. Emergency response systems (e.g., 911 dispatch), for instance, rely on quick access real-time similarity searches to find the closest available emergency responders to a reported incident location. Here, low-latency access can mean the difference between life and death. 
 
 Whereas, a video processing pipeline handling large sets of video frames for analysis will mainly focus on batch processing. Access patterns play a critical role in determining the efficiency of vector retrieval, and, therefore, whether real-time or batch processing is preferred.
  
-**Priorities**:
-The priorities of your particular application determine what matters most: minimizing latency, maximizing throughput, or ensuring a high level of accuracy. For example, low-latency access to real-time data is paramount for making split-second decisions in a financial trading system. In contrast, a data analytics platform might prioritize high throughput to process large volumes of data quickly.
+**Priorities**: The priorities of your particular application determine what matters most: minimizing latency, maximizing throughput, or ensuring a high level of accuracy. For example, low-latency access to real-time data is paramount for making split-second decisions in a financial trading system. In contrast, a data analytics platform might prioritize high throughput to process large volumes of data quickly.
 
 What you choose to prioritize affects your retrieval system's architecture and the trade-offs made during implementation.
 
