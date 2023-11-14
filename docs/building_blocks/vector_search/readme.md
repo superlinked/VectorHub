@@ -46,7 +46,7 @@ An efficient and effective Vector Search & Management approach must carefully co
 
 ![Three core considerations of Vector Search](assets/building_blocks/vector_search/bb3-1.png)
 
-This visual's key takeaway: our three corners (priorities, update frequency, access patterns) interact to determine the design of our system. Depending on our project, we may privilege one or two corners over the other/s. For example, if we're building a recommendation system for an online store, we would emphasize "real-time" interactions and "speed" to offer customers instant, personalized recommendations.
+The above visual's key takeaway: Our three corners (priorities, update frequency, access patterns) interact to determine the design of our system. Depending on our project, we may privilege one or two corners over the other/s. For example, if we're building a recommendation system for an online store, we would emphasize "real-time" interactions and "speed" to offer customers instant, personalized recommendations.
 
 
 ## Nearest Neighbor Search Algorithms:
