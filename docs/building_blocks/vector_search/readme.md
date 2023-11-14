@@ -11,7 +11,7 @@ By transforming raw data into vector embeddings, you've unlocked a **wealth of p
 
 Vector Search & Management is the bridge between the latent, abstract mathematical representations of your data and their real-world applications. Your Vector Management stores, structures, and prepares your vector data for various machine learning tasks. Using Vector Search, you can perform efficient and relevant data retrieval from extensive data repositories. 
 
-**Vector Search & Management empower critical objectives**:
+Vector Search & Management **empower critical objectives**:
 
 **Quality Evaluation**: Application success depends on your vector quality. You can use Vector Search to thoroughly assess and fine-tune the performance of embeddings of all types, including word, image, document, product, music & audio, face, tag, and features (in ML).
 
