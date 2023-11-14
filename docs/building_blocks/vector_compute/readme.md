@@ -52,7 +52,7 @@ The mathematical vector representations that result from the vector embedding co
 
 However, you can *use image embedding to work on computer vision tasks yourself*; you don’t need specialized computer vision engineers to get started.
 
-Furthermore, compared to complex raw data, vectors have far fewer dimensions, making them more efficient for tasks like storage, transfer, and retrieval. A low dimensional vector (i.e., an array of numerical values), such as [102, 000, 241, 317, 004], encodes a wealth of semantic features and relationships. **The continuity of the embedding space enables gradient-based optimization, which is central to Machine Learning modelling**.
+Furthermore, compared to complex raw data, vectors have far fewer dimensions, making them more efficient for tasks like storage, transfer, and retrieval. A low dimensional vector (i.e., an array of numerical values) such as [102, 000, 241, 317, 004] encodes a wealth of semantic features and relationships. **The continuity of the embedding space enables gradient-based optimization, which is central to Machine Learning modelling**.
 
 ![Image Embeddings](assets/building_blocks/vector_compute/bb2-4.png)
 
