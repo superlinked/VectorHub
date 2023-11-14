@@ -7,6 +7,7 @@
 2. or you can give an explanation on how it should be and we will help you create one. Please tag arunesh@superlinked.com or @AruneshSingh (GitHub) in this case. -->
 
 ## Introduction
+
 By transforming raw data into vector embeddings, you've unlocked a **wealth of potential**. These vectors encapsulate the essence of your data, but their full value isn't realized until you apply them in your Vector Search & Management.
 
 Vector Search & Management is the bridge between the latent, abstract mathematical representations of your data and their real-world applications. Your Vector Management stores, structures, and prepares your vector data for various machine learning tasks. Using Vector Search, you can perform efficient and relevant data retrieval from extensive data repositories. 
@@ -121,7 +122,7 @@ distances, indices = index.search(query_vector.reshape(1, vector_dim), 1)
 print("ANN time: ", time.time() - start)
 ```
 
-The code snippet above shows how an ANN algorithm, like IVFFlat from the FAISS library, indexes the vectors, allowing quick narrowing of the search space. This lets you significantly speed up your scan, compared to a linear scan, especially as your data set becomes larger.
+The code snippet above shows how an ANN algorithm, like IVFFlat from the FAISS library, indexes the vectors, allowing **quick narrowing of the search space**. This lets you significantly speed up your scan, compared to a linear scan, especially as your data set becomes larger.
 
 Different ANN implementations provide different optimization tradeoffs. Choosing the right ANN method requires benchmarking options like HNSW, IVF, and LSH on your dataset.
 
@@ -129,7 +130,7 @@ Different ANN implementations provide different optimization tradeoffs. Choosing
 
 Search speed is not the only challenge when handling datasets with more than 1 million vectors. Once a dataset is too large to fit into the RAM of a single machine, you may be forced to shard the index to multiple machines. This is costly and increases system complexity. Fortunately, you can use quantization to **reduce the index size, without substantially reducing retrieval quality**.
 
-Quantization reduces the memory required to store vectors by compressing the data but preserving relevant information. There are three types of vector quantization: scalar, binary, and product.
+Quantization reduces the memory required to store vectors by compressing the data but preserving relevant information. There are **three types** of vector quantization: scalar, binary, and product.
 
 **Scalar** quantization reduces the dimensionality of your data by representing each vector component with fewer bits, reducing the amount of memory required for vector storage and speeding up the search process. Scalar quantization achieves a good balance of compression, accuracy, and speed, and is used widely.
 
