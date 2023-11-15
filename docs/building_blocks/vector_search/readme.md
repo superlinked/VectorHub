@@ -50,7 +50,7 @@ An efficient and effective Vector Search & Management approach must carefully co
 The above visual's key takeaway: Our three corners (priorities, update frequency, access patterns) interact to determine the design of our system. Depending on our project, we may privilege one or two corners over the other/s. For example, if we're building a recommendation system for an online store, we would emphasize "real-time" interactions and "speed" to offer customers instant, personalized recommendations.
 
 
-## Nearest Neighbor Search Algorithms:
+## Nearest Neighbor Search Algorithms
 
 **Scanning to calculate the similarity between vectors quickly** is at the heart of Vector Search. Vector similarity scores encoded by your embedding model/s store valuable feature or characteristic information about your data that can be used in various applications (e.g., content recommendation, clustering, data analysis). There are several ways to perform nearest neighbor search.
 
