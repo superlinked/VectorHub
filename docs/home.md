@@ -41,6 +41,8 @@ Query and retrieve vectors for your use case
 
 Here are some examples from the community, more coming soon!
 
+Subscribe to be updated when new ones come out & check the blog section.
+
 ::::link-array
 :::link-array-item{headerType="IMAGE" headerImage="https://uploads-ssl.webflow.com/64f9dd739f984c15f86e446e/65390fbbd5b9e7f28bd94e1e_personalized_search.png"}
 [Personalized Search](use_cases/personalized_search.md)
