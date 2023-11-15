@@ -1,4 +1,4 @@
-## Subscribe to VectorHub & join the waitlist for early access to Superlinked!
+## Subscribe to VectorHub!
 
 Get weekly updates, case studies, and practical step-by-step guides from practitioners in the vector retrieval space.
 
