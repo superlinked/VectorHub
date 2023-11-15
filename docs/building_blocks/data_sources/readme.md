@@ -236,7 +236,7 @@ All major enterprises today run on structured data. Structured data adheres to p
 
 Here are some examples of structured data types, links to example datasets, typical formats, and considerations relevant to each type of structured data:
 
-**Tabular Data:**
+**Tabular Data**
 - **Example Data:** Sales records, customer information, financial statements.
 - **Typical Formats:** CSV, Excel spreadsheets, SQL databases.
 - **Datasets:**
@@ -245,7 +245,7 @@ Here are some examples of structured data types, links to example datasets, typi
 - **Considerations:** When working with tabular data, consider data quality, missing values, and the choice of columns or features relevant to your analysis. You may need to preprocess data and address issues such as normalization and encoding of categorical variables.
 - **Systems:** Structured data often lives in relational database management systems (RDBMS) like MySQL, PostgreSQL, or cloud-based solutions like AWS RDS.
 
-**Graph Data:**
+**Graph Data**
 - **Example Data:** Social networks, organizational hierarchies, knowledge graphs.
 - **Typical Formats:** Graph databases (e.g., Neo4j), edge-list or adjacency matrix representation.
 - **Datasets:**
@@ -254,7 +254,7 @@ Here are some examples of structured data types, links to example datasets, typi
 - **Considerations:** In graph data, consider the types of nodes, edges, and their attributes. Pay attention to graph algorithms for traversing, analyzing, and extracting insights from the graph structure.
 - **Systems:** Graph data is often stored in graph databases like [Neo4j](https://neo4j.com/), [ArangoDB](https://github.com/arangodb/arangodb), or [Apollo](https://www.apollographql.com/), but it can also be represented using traditional RDBMS with specific schemas for relations.
 
-**Time Series Data:**
+**Time Series Data**
 - **Example Data:** Stock prices, weather measurements, sensor data.
 - **Typical Formats:** CSV, JSON, time-series databases (e.g., InfluxDB).
 - **Datasets:**
@@ -263,7 +263,7 @@ Here are some examples of structured data types, links to example datasets, typi
 - **Considerations:** Time series data requires dealing with temporal aspects, seasonality, trends, and handling irregularities. It may involve time-based feature engineering and modeling techniques, like [ARIMA](https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average) or other sequential models, like [LSTM](https://en.wikipedia.org/wiki/Long_short-term_memory).
 - **Systems:** Time series data can be stored in specialized time-series databases (e.g., InfluxDB, TimescaleDB, [KX](https://kx.com/)) or traditional databases with timestamp columns.
 
-**Spatial Data:**
+**Spatial Data**
 - **Example Data:** Geographic information, maps, GPS coordinates.
 - **Typical Formats:** Shapefiles (SHP), GeoJSON, GPS coordinates in CSV.
 - **Datasets:**
