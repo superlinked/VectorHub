@@ -20,7 +20,7 @@ VectorHub's content is organized into three major areas:
 
 We constantly release bounties looking for content contributions. Keep an eye out for items with bounty labels on our GitHub.
 
-### Other ways you can get involved:
+### Other ways you can get involved
 
 ::::link-array
 :::link-array-item{headerImage headerColor}
