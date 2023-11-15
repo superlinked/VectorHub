@@ -1,4 +1,4 @@
-# Blog
+# Use Cases
 
 There are many different use cases for how you can employ information retrieval and vector powered retrieval systems in your products. 
 
