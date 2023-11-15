@@ -10,9 +10,9 @@ Our use cases include:
 In the blog section, we collate examples of these use cases and case studies from our contributors discussing how they use and improve information retrieval systems to solve real-world problems.  
 
 ## Contents
-- [Personalized Search](use_cases/personalized_search.md)
-- [Recommender Systems](use_cases/recommender_systems.md)
-- [Retrieval Augmented Generation](use_cases/retrieval_augmented_generation.md)
+- [Personalized Search](https://hub.superlinked.com/personalized-search-harnessing-the-power-of-vector-embeddings)
+- [Recommender Systems](https://hub.superlinked.com/a-recommender-system-collaborative-filtering-with-sparse-metadata)
+- [Retrieval Augmented Generation](https://hub.superlinked.com/retrieval-augmented-generation)
 
 
 We are always looking to expand our Use Cases and share the latest thinking. So if you've been working on something and would like to share your experiences with the community, you [get in touch and contribute](https://github.com/superlinked/VectorHub).
