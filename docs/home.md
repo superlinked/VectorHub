@@ -29,7 +29,7 @@ Turn your data into vectors by running pipelines and models
 :::
 
 :::link-array-item{headerType="IMAGE" headerImage="https://uploads-ssl.webflow.com/64f9dd739f984c15f86e446e/653912200a4e20cca55dd646_home_vector_search.png"}
-[**3. Vector Search**](building_blocks/vector_search/readme.md)
+[**3. Vector Search & Management**](building_blocks/vector_search/readme.md)
 
 Query and retrieve vectors for your use case
 :::
