@@ -9,4 +9,4 @@ Building blocks are the atomic units of creating a vector retrieval stack. If yo
 ## Contents
 - [Data Sources](https://hub.superlinked.com/data-sources)
 - [Vector Compute](https://hub.superlinked.com/vector-compute)
-- [Vector Search](https://hub.superlinked.com/vector-search)
+- [Vector Search & Management](https://hub.superlinked.com/vector-search)
