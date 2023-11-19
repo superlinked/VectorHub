@@ -1,10 +1,18 @@
-# Use Cases
+# Blog
 
-There are many different use cases for how you can employ information retrieval and vector powered retrieval systems in your products. 
+There are a wide variety and many different use cases for information retrieval and vector-powered retrieval systems.  
 
-In this section, you can find
-- Different examples of problems you can solve using vector retrieval in your ML Stack to improve performance
-- Case studies written by practioners sharing their experiences working with these systems
-- Deep dives into specific parts of the ML pipeline to highlight important things to be aware of when moving vector driven outputs and experiments into production
+Our use cases include:
+- Different examples of problems you can solve using vector retrieval, improving performance in your ML Stack
+- Case studies written by practitioners sharing their experiences working with these systems
+- Deep dives into specific parts of the ML pipeline, highlighting key considerations when moving vector-driven outputs and experiments into production
 
-We are always looking to expand the use cases and share the latest thinking. So if you have been working on something and would like to share your experiences with the community, you can contribute [here](https://github.com/superlinked/VectorHub).
+In the blog section, we collate examples of these use cases and case studies from our contributors discussing how they use and improve information retrieval systems to solve real-world problems.  
+
+## Contents
+- [Personalized Search](https://hub.superlinked.com/personalized-search-harnessing-the-power-of-vector-embeddings)
+- [Recommender Systems](https://hub.superlinked.com/a-recommender-system-collaborative-filtering-with-sparse-metadata)
+- [Retrieval Augmented Generation](https://hub.superlinked.com/retrieval-augmented-generation)
+
+
+We are always looking to expand our Use Cases and share the latest thinking. So if you've been working on something and would like to share your experiences with the community, you [get in touch and contribute](https://github.com/superlinked/VectorHub).
