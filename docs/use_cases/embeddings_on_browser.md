@@ -11,11 +11,11 @@
 ---
 ## Vector Embeddings, just for specialists?
 
-Let's say you want to create an intuitive semantic search application. We know a little about what we need: vector embeddings, maybe some retrieval augmented generation. But how do operationalize this rough, conceptual understanding of vector embeddings in a real-world application? Don't we need a substantial hardware setup or expensive cloud APIs? Even if we had the requisite backend resources, who's going to develop and configure them? Don't we also need highly specialized machine learning engineers or data scientists even to get started?
+Let's say you want to create an intuitive semantic search application. You know a little about what we need: vector embeddings, maybe some retrieval augmented generation. But how do you operationalize this rough, conceptual understanding of vector embeddings in a real-world application? Don't you need a substantial hardware setup or expensive cloud APIs? Even if you had the requisite backend resources, who's going to develop and configure them? Don't you also need highly specialized machine learning engineers or data scientists even to get started?
 
 Happily, the answer to all of these concerns is No. 
 
-You don't require high-end equipment, powerful GPUs, or ML and data science experts. Thanks to pre-trained machine learning models, it's possible for any web technologist to create an intuitive semantic search application right within your browser, on a local machine, tailored to your data. You also don't need library installations or complex configurations for end-users. And you can start immediately. 
+You don't require high-end equipment, powerful GPUs, or ML and data science experts. Thanks to pre-trained machine learning models, you can create an intuitive semantic search application right within your browser, on a local machine, tailored to your data. You also don't need library installations or complex configurations for end-users. And you can start immediately.
 
 The following tutorial in creating a small-scale AI application demonstrates just how straightforward and efficient the process can be in a specific practical instance. But it's also more generally an illustration of how you can operationalize vector embeddings for practical use cases.
 
@@ -33,10 +33,10 @@ Let's take a closer look at the steps.
 
 1. We import all necessary dependencies: React, Material-UI components, TensorFlow.js, and D3 (for color interpolation).
 2. Our code defines a React functional component named **`EmbeddingGenerator`**. This component represents the user interface for generating sentence embeddings and visualizing their similarity matrix.
-3. We declare various state variables using the **`useState`** hook to manage user input, loading states, and results.
-4. The **`handleSimilarityMatrix`** function toggles the display of the similarity matrix and calculates it when necessary.
+3. We declare various state variables using the **`useState`** hook, in order to manage user input, loading states, and results.
+4. The **`handleSimilarityMatrix`** function toggles the display of the similarity matrix, and calculates it when necessary.
 5. The **`handleGenerateEmbedding`** function is responsible for starting the sentence embedding generation process. It splits the input sentences into individual sentences and triggers the **`embeddingGenerator`** function.
-6. The **`calculateSimilarityMatrix`** function is a *memoized* function using the **`useCallback`** hook. It calculates the similarity matrix based on sentence embeddings.
+6. The **`calculateSimilarityMatrix`** function is marked as a *memoized* function using the **`useCallback`** hook. It calculates the similarity matrix based on sentence embeddings.
 7. The **`embeddingGenerator`** function is an asynchronous function that loads the Universal Sentence Encoder model and generates sentence embeddings.
 8. We use the **`useEffect`** hook to render the similarity matrix as a colorful canvas when **`similarityMatrix`** changes.
 9. The component's return statement defines the user interface, including input fields, buttons, and result displays.
