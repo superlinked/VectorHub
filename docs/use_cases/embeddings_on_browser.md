@@ -9,11 +9,14 @@
 ![Visual Summary of our Tutorial](../assets/use_cases/embeddings_on_browser/embeddings-browser-animation)
 
 ---
-# Our motivation
+## Our motivation
 
-We often encounter terms like vector embeddings, RAGs, and other technical jargon, but it's challenging to grasp how these concepts work in real-world applications. Additionally, delving into these areas often appears cost-prohibitive, involving substantial investments in hardware or the expense of utilizing cloud APIs. It might lead to the assumption that you'd need highly specialized machine learning engineers or data scientists to make any headway.
+Let's say you want to create an intuitive semantic search application. We know a little about what we need: vector embeddings, maybe retrieval augmented generation. But how do operationalize our understanding in a real-world application? Don't we need a substantial hardware setup or expensive cloud APIs? Even if we had the requisite backend resources, who's going to set this up? Don't we also need highly specialized machine learning engineers or data scientists even to get started?
 
-However, today, we'll discover that this isn't the case. Working with vector embeddings can be accessible to anyone involved in web technologies, thanks to the capabilities of pre-trained machine learning models. What's more, our tutorial can be executed entirely on a local machine without the need for library installations or complex configurations for end-users. The best part is that you don't require high-end equipment or powerful GPUs.
+Happily, we're here to tell you that the answer to all of these concerns is No. 
+
+You don't require high-end equipment or powerful GPUs. Thanks to pre-trained machine learning models, it's possible for any web technologist to create an intuitive semantic search application right within your browser, on a local machine, tailored to your data, without the need for library installations or complex configurations for end-users, starting immediately. 
+
 
 This tutorial not only guides us in creating a practical, small-scale AI application but also enhances our understanding of vector embeddings in practical scenarios.
 
