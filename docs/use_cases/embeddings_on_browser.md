@@ -1,4 +1,4 @@
-<!-- TODO: Replace this text with a summary of article for SEO -->
+<!-- TODO: Replace this text with a summary of article for SEO  test -->
 
 # Vector Embeddings in the browser
 
