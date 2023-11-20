@@ -1,6 +1,6 @@
 # Blog
 
-There are a wide variety and many different use cases for information retrieval and vector-powered retrieval systems.  
+There are a wide variety of different use cases for information retrieval and vector-powered retrieval systems.  
 
 Our use cases include:
 - Different examples of problems you can solve using vector retrieval, improving performance in your ML Stack
