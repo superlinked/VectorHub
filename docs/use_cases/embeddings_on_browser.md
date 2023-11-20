@@ -27,9 +27,9 @@ Our component is an intuitive semantic search application you can build right wi
 
 We will take a user input text, split it into sentences, and generate vector embeddings for each sentence using TensorFlow.js. To assess the quality of our embeddings, we will generate a similarity matrix mapping the similarity between all our vector pairs as as a colorful heatmap. Our component enables this by managing all the necessary state and UI logic.
 
-Let's take a closer look at the steps.
+Let's take a closer look at the parts of our component.
 
-## Specific steps
+## Specific parts of our application
 
 1. We import all necessary dependencies: React, Material-UI components, TensorFlow.js, and D3 (for color interpolation).
 2. Our code defines a React functional component named **`EmbeddingGenerator`**. This component represents the user interface for generating sentence embeddings and visualizing their similarity matrix.
@@ -46,15 +46,17 @@ Let's take a closer look at the steps.
 13. The code handles loading and model-loaded states, displaying loading indicators or model-loaded messages.
 14. The similarity matrix section displays the colorful similarity matrix as a canvas when the user chooses to show it.
 
-# Running a language model in the browser
 
-The [Universal Sentence Encoder](https://arxiv.org/pdf/1803.11175.pdf) (Cer., et al., 2018) is a pre-trained machine learning model that converts text into vector representations. It takes sentences or paragraphs of text as input and produces fixed-length numeric vectors as output. These vectors effectively capture the meaning of the text, making them valuable for various natural language processing (NLP) tasks. For instance, we can gauge the similarity between two sentences by assessing the distance between their vector representations.
+## Running a language model in the browser
 
-In our case, we'll utilize the 'Lite' version of this model, a scaled-down and faster variant of the full model. Despite its reduced size, it maintains strong performance while demanding less computational power. This feature makes it ideal for deployment in client-side code, mobile devices, or even directly within web browsers, eliminating the need for complex installations. Furthermore, it doesn't require a dedicated GPU, making it accessible to a broader range of users.
+The [Universal Sentence Encoder](https://arxiv.org/pdf/1803.11175.pdf) (Cer et al., 2018) is a pre-trained machine learning model that converts text into vector representations. It takes sentences or paragraphs of text as input and produces fixed-length numeric vectors as output. These vectors effectively capture the meaning of the text, making them valuable for various natural language processing (NLP) tasks. For instance, by assessing the distance between two sentences' vector representations we can gauge the similarity between them.
 
-The rationale behind such models is straightforward. In many NLP applications, obtaining ample training data is a challenging endeavor. Data-hungry deep learning models are often infeasible due to this limitation, and annotating more supervised training data is an expensive solution. Consequently, most NLP projects in research and industry contexts can only access relatively small training datasets.
+For our purposes, we'll utilize a scaled-down and faster 'Lite' variant of the full model. Despite its reduced size, the Lite model maintains strong performance while demanding less computational power, making it ideal for deployment in client-side code, mobile devices, or even directly within web browsers. The Lite variant doesn't require any kind of complex installation or a dedicated GPU. This makes it accessible to a broader range of users.
 
-To address this constraint, many models employ pre-trained word embeddings like word2vec or GloVe, which transform individual words into vectors. However, recent developments have shown that pre-trained sentence-level embeddings can deliver impressive performance.
+The rationale behind pre-trained models is straightforward. Most NLP projects in research and industry contexts only have access to relatively small training datasets. This limitation makes many data-hungry deep learning models infeasible, and annotating more supervised training data is often prohibitively expensive.
+
+To address this constraint, many models employ pre-trained word embeddings like word2vec or GloVe, which transform individual words into vectors. However, recent developments have shown that pre-trained sentence-level embeddings can 
+capture higher level semantics and deliver impressive performance.
 
 The Universal Sentence Encoder excels at generating embeddings for complete English sentences. When you input an English string, it generates a fixed-length vector embedding representing the entire sentence. These sentence embeddings are highly effective for computing semantic similarity between sentences and have demonstrated excellent performance in various semantic textual similarity benchmarks.
 
