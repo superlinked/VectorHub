@@ -15,12 +15,11 @@ Let's say you want to create an intuitive semantic search application. We know a
 
 Happily, we're here to tell you that the answer to all of these concerns is No. 
 
-You don't require high-end equipment or powerful GPUs. Thanks to pre-trained machine learning models, it's possible for any web technologist to create an intuitive semantic search application right within your browser, on a local machine, tailored to your data, without the need for library installations or complex configurations for end-users, starting immediately. 
+You don't require high-end equipment or powerful GPUs. Thanks to pre-trained machine learning models, it's possible for any web technologist to create an intuitive semantic search application right within your browser, on a local machine, tailored to your data, without needing library installations or complex configurations for end-users. And you can start immediately. 
 
+The following tutorial in creating a small-scale AI application demonstrates just how straightforward and efficient the process can be in a specific practical instance, but also more generally how you can operationalize vector embeddings for practical use cases.
 
-This tutorial not only guides us in creating a practical, small-scale AI application but also enhances our understanding of vector embeddings in practical scenarios.
-
-Intrigued? Let's dive in and explore how to make it happen!
+Intrigued? Let's dive in!
 
 # What we will be building
 
