@@ -479,7 +479,7 @@ When we input these sentences to our model and generate the similarity matrix, w
 
 ![Similarity Matrix for seven sentences from two documents](../assets/use_cases/embeddings_on_browser/ embeddings-browser-similarity-matrix.png)
 
-Pairs of sentences from the same paragraphs that are similar to each other are marked by a dark green hue. Our similarity matrix also lets you see how pairs of sentences from the same paragraph cluster together, so that two distinct squares appear, one for each paragraph. Conversely, pairs of sentences from different paragraphs display little similarity, represented by a light green color.
+Same paragraph pairs of sentences that are similar to each other are marked by a dark green hue. Our similarity matrix also lets you see how same paragraph pairs of sentences cluster together, so that two distinct squares appear, one for each paragraph. Conversely, pairs of sentences from different paragraphs display little similarity, represented by a light green color.
 
 ## A real-world-ready semantic search application
 
