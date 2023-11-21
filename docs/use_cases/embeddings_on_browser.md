@@ -485,7 +485,7 @@ Pairs of sentences from the same paragraphs that are similar to each other are m
 
 And that's it! Our tutorial demonstrates how you can rapidly construct a low cost, intuitive, ready-to-deploy, in-browser vector embedding generator you can apply to real-world tasks.
 
-By using a pre-trained embedding generator, and configuring with Typescript, we were able to - in short order - set up our seamless, semantic search app without any cloud models, expensive hardware, or specialized engineering knowledge.
+By using a pre-trained embedding generator, and configuring with Typescript, we were able to - in short order - set up a functioning, seamlessly in-browser, semantic search app without any cloud models, expensive hardware, or specialized engineering knowledge.
 
 
 ## Contributors
