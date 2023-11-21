@@ -128,7 +128,7 @@ We use the **`useState`** hook in a React functional component to manage user in
 
 ### Function to toggle the display of the similarity matrix
 
-The **`handleSimilarityMatrix`** function is called in response to user input by toggling the display of a similarity matrix in the user interface by changing the **`showSimilarityMatrix`** state variable. If the matrix was previously shown, the **`handleSimilarityMatrix`** hides it by setting it to **`null`**. If the matrix wasn't shown, the **`handleSimilarityMatrix`** calculates the matrix and sets it to be displayed in the UI.
+The **`handleSimilarityMatrix`** function is called in response to user input, toggling the display of a UI similarity matrix - by changing the **`showSimilarityMatrix`** state variable. If the matrix was previously shown, the **`handleSimilarityMatrix`** hides it by setting it to **`null`**. If the matrix wasn't shown, the **`handleSimilarityMatrix`** calculates the matrix and sets it to display in the UI.
 
 ```tsx
 // Toggles display of similarity matrix 
@@ -171,9 +171,9 @@ The **`handleGenerateEmbedding`** function, called when a user clicks the "Gener
 
 ### Function to calculate the similarity matrix for sentence embeddings
 
-In summary, the **`calculateSimilarityMatrix`** function computes a similarity matrix for a set of sentences by comparing the embeddings of each sentence with all other sentences. The matrix contains similarity scores for all possible sentence pairs and is used for further visualization or analysis.
+The **`calculateSimilarityMatrix`** function computes a similarity matrix for a set of sentences by comparing the embeddings of each sentence with all other sentence embeddings. The matrix contains similarity scores for all possible sentence pairs. You can use it to perform further visualization and analysis. 
 
-This code snippet defines a JavaScript function named **`calculateSimilarityMatrix`**. This function is memoized using the **`useCallback`** hook, indicating that its behavior will remain consistent across renders unless its dependencies change.
+This function is memoized using the **`useCallback`** hook, which ensures that its behavior will remain consistent across renders unless its dependencies change.
 
 ```tsx
  // Calculates similarity matrix for sentence embeddings
@@ -221,7 +221,7 @@ This code snippet defines a JavaScript function named **`calculateSimilarityMatr
 
 ### Function to generate sentence embeddings using the Universal Sentence Encoder
 
-The **`embeddingGenerator`** function loads the Universal Sentence Encoder model, generates sentence embeddings for a list of sentences, and updates the component's state with the results. It also handles potential errors during the process. This function is typically called when a user triggers the embedding generation process, such as by clicking a "Generate Embedding" button.
+The **`embeddingGenerator`** function is called when the user clicks a "Generate Embedding" button, and loads the Universal Sentence Encoder model, generates sentence embeddings for a list of sentences, and updates the component's state with the results. It also handles potential errors.
 
 ```tsx
   // Generate embeddings using Universal Sentence Encoder (Cer., et al., 2018)
@@ -275,7 +275,7 @@ The **`embeddingGenerator`** function loads the Universal Sentence Encoder model
 
 ### useEffect hook to render the similarity matrix as a colorful canvas
 
-This **`useEffect`** is triggered when the **`similarityMatrix`** or **`canvasSize`** changes. It draws a similarity matrix on an HTML canvas element. The matrix is represented as a grid of colored cells, with each color determined by the similarity value among sentences. This effect renders the visual representation of the similarity between sentences and is a dynamic part of the user interface.
+**`useEffect`** is triggered when the **`similarityMatrix`** or **`canvasSize`** changes. **`useEffect`** draws a similarity matrix on an HTML canvas element. The matrix is represented as a grid of colored cells, with each color determined by the similarity value among sentences. The resulting visualization is a dynamic part of the user interface.
 
 ```tsx
 // Render similarity matrix as colored canvas
@@ -345,7 +345,8 @@ This code represents a part of the user interface where users can input multiple
 
 ### Embeddings Output Section
 
-A part of the user interface where generated sentence embeddings are displayed. It includes a label, a multiline text output field, and the ability to control and update the displayed content through React state management. The generated embeddings, stored in the **`embeddings`** state variable, are displayed to the user in this section.
+The UI embeddings output section displays the embeddings stored in the **`embeddings`** state variable, including a label, a multiline text output field. Through the embeddings output section you can control and update the displayed content using React state management.
+
 
 ```tsx
       {/* Embeddings Output Section */}
@@ -369,7 +370,7 @@ A part of the user interface where generated sentence embeddings are displayed. 
 
 ### Generate Embedding Button
 
-This code represents a button in the user interface that users can click to trigger the generation of sentence embeddings. The button is styled as a raised, solid button, and it is initially disabled if there are no input sentences (**`!sentences`**) or if the model is currently loading (**`modelLoading`**). When clicked, it invokes the **`handleGenerateEmbedding`** function to initiate the embedding generation process.
+The following code represents a raised, solid button in the UI that triggers the **`handleGenerateEmbedding`** function to initiate the embedding generation process. The generate embedding button is initially disabled if there are no input sentences (**`!sentences`**) or if the model is currently loading (**`modelLoading`**).
 
 ```tsx
       {/* Generate Embedding Button */}
@@ -417,7 +418,9 @@ This code controls what is displayed in the user interface based on the values o
 ```
 
 ### Similarity Matrix
-This code controls the rendering of the similarity matrix section of the user interface based on the value of the **`showSimilarityMatrix`** state variable. If it is **`true`**, a section containing the similarity matrix is displayed. The section includes a title, "Similarity Matrix," and a canvas element for rendering the matrix. If **`false`**, nothing is rendered in this section, providing a way to show or hide the similarity matrix in the user interface.
+
+This code controls the rendering of the similarity matrix section of the user interface
+The following code displays the similarity matrix if the **`showSimilarityMatrix`** state variable is **`true`**. This section of the UI includes a title, "Similarity Matrix," and a canvas element for rendering the matrix. If **`false`**, the similarity matrix is hidden.
 
 ```tsx
 {/* Similarity Matrix Section  */}
