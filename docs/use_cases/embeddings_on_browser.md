@@ -17,15 +17,15 @@ Happily, the answer to all of these concerns is No.
 
 You don't require high-end equipment, powerful GPUs, or ML and data science experts. Thanks to pre-trained machine learning models, you can create an intuitive semantic search application right within your browser, on a local machine, tailored to your data. You also don't need library installations or complex configurations for end-users. And you can start immediately.
 
-The following tutorial in creating a small-scale AI application demonstrates just how straightforward and efficient the process can be in a specific practical instance. But it's also more generally an illustration of how you can operationalize vector embeddings for practical use cases.
+The following tutorial in creating a small-scale AI application demonstrates just how straightforward and efficient the process can be in a specific instance. But it's also more generally an illustration of how you can operationalize vector embeddings for practical use cases.
 
 Intrigued? Ready to start building?
 
 ## Let's build an intuitive semantic search app!
 
-Our component is an intuitive semantic search application you can build right within your web browser, and tailored to your data. It combines React, TensorFlow.js, and Material-UI, and provides a user-friendly interface for generating and visualizing sentence embeddings. 
+Our component is an intuitive semantic search application you can build right within your web browser, and tailored to your data. It produces and visualizes sentence embeddings in a user-friendly interface.
 
-We will take a user input text, split it into sentences, and generate vector embeddings for each sentence using TensorFlow.js. To assess the quality of our embeddings, we will generate a similarity matrix mapping the similarity between all our vector pairs as as a colorful heatmap. Our component enables this by managing all the necessary state and UI logic.
+We will take a user input text, split it into sentences, and derive vector embeddings for each sentence using TensorFlow.js. To assess the quality of our embeddings, we will generate a similarity matrix mapping the similarity between all our vector pairs as as a colorful heatmap. Our component enables this by managing all the necessary state and UI logic.
 
 Let's take a closer look at the parts of our component.
 
@@ -36,8 +36,8 @@ Let's take a closer look at the parts of our component.
 3. We declare various state variables using the **`useState`** hook, in order to manage user input, loading states, and results.
 4. The **`handleSimilarityMatrix`** function toggles the display of the similarity matrix, and calculates it when necessary.
 5. The **`handleGenerateEmbedding`** function is responsible for starting the sentence embedding generation process. It splits the input sentences into individual sentences and triggers the **`embeddingGenerator`** function.
-6. The **`calculateSimilarityMatrix`** function is marked as a *memoized* function using the **`useCallback`** hook. It calculates the similarity matrix based on sentence embeddings.
-7. The **`embeddingGenerator`** function is an asynchronous function that loads the Universal Sentence Encoder model and generates sentence embeddings.
+6. The **`calculateSimilarityMatrix`** is marked as a *memoized* function using the **`useCallback`** hook. It calculates the similarity matrix based on sentence embeddings.
+7. The **`embeddingGenerator`** is an asynchronous function that loads the Universal Sentence Encoder model and generates sentence embeddings.
 8. We use the **`useEffect`** hook to render the similarity matrix as a colorful canvas when **`similarityMatrix`** changes.
 9. The component's return statement defines the user interface, including input fields, buttons, and result displays.
 10. The user input section includes a text area where the user can input sentences.
@@ -47,30 +47,30 @@ Let's take a closer look at the parts of our component.
 14. The similarity matrix section displays the colorful similarity matrix as a canvas when the user chooses to show it.
 
 
-## Running a language model in the browser
+## Our encoder
 
-The [Universal Sentence Encoder](https://arxiv.org/pdf/1803.11175.pdf) (Cer et al., 2018) is a pre-trained machine learning model that converts text into vector representations. It takes sentences or paragraphs of text as input and produces fixed-length numeric vectors as output. These vectors effectively capture the meaning of the text, making them valuable for various natural language processing (NLP) tasks. For instance, by assessing the distance between two sentences' vector representations we can gauge the similarity between them.
+The [Universal Sentence Encoder](https://arxiv.org/pdf/1803.11175.pdf) is a pre-trained machine learning model built on the transformer architecture. It leverages creates context-aware representations for each word in a sentence, using the attention mechanism - i.e., carefully considering the order and identity of all other words. The Encoder combines employs element-wise summation to combine these word representations into a fixed-length sentence vector. To normalize these vectors, the Encoder then  divides them by the square root of the sentence length - to prevent shorter sentences from dominating solely due to their brevity.
 
-For our purposes, we'll utilize a scaled-down and faster 'Lite' variant of the full model. Despite its reduced size, the Lite model maintains strong performance while demanding less computational power, making it ideal for deployment in client-side code, mobile devices, or even directly within web browsers. The Lite variant doesn't require any kind of complex installation or a dedicated GPU. This makes it accessible to a broader range of users.
+The Encoder takes sentences or paragraphs of text as input and outputs vectors that effectively capture the meaning of the text. This lets us assess vector similarity (distance), for use in a wide variety of natural language processing (NLP) tasks, including ours.
 
-The rationale behind pre-trained models is straightforward. Most NLP projects in research and industry contexts only have access to relatively small training datasets. This limitation makes many data-hungry deep learning models infeasible, and annotating more supervised training data is often prohibitively expensive.
+### Encoder, Lite
 
-To address this constraint, many models employ pre-trained word embeddings like word2vec or GloVe, which transform individual words into vectors. However, recent developments have shown that pre-trained sentence-level embeddings can 
-capture higher level semantics and deliver impressive performance.
+For our application, we'll utilize a scaled-down and faster 'Lite' variant of the full model. The Lite model maintains strong performance while demanding less computational power, making it ideal for deployment in client-side code, mobile devices, or even directly within web browsers. The Lite variant doesn't require any kind of complex installation or a dedicated GPU, making it accessible to a broader range of users.
 
-The Universal Sentence Encoder excels at generating embeddings for complete English sentences. When you input an English string, it generates a fixed-length vector embedding representing the entire sentence. These sentence embeddings are highly effective for computing semantic similarity between sentences and have demonstrated excellent performance in various semantic textual similarity benchmarks.
+### Why a pre-trained model
 
-Moreover, these sentence embeddings are flexible and can be fine-tuned for specific tasks. Even with minimal task-specific training data, they can achieve surprisingly good results.
+The rationale behind pre-trained models is straightforward. Most NLP projects in research and industry contexts only have access to relatively small training datasets. It's not feasible, then, to use data-hungry deep learning models. And annotating more supervised training data is often prohibitively expensive. Here, **pre-trained models can fill the data gap**.
 
-The model is built upon the transformer architecture, leveraging the attention mechanism to create context-aware representations for each word in a sentence. It carefully considers the order and identity of all other terms. These word representations are then combined into a fixed-length sentence vector. This combination is achieved by element-wise summation, followed by division by the square root of the sentence length. This normalization process prevents shorter sentences from dominating solely due to their brevity.
+Many NLP projects employ pre-trained word embeddings like word2vec or GloVe, which transform individual words into vectors. However, recent developments have shown that, on many tasks, **pre-trained sentence-level embeddings excel at capturing higher level semantics** than word embeddings can. The Universal Sentence Encoder's fixed-length vector embeddings are extremely effective for computing semantic similarity between sentences, with high scores in various semantic textual similarity benchmarks.
 
-The primary objective is to create the encoder as a versatile tool suitable for various tasks. The model achieves this through multi-task learning, training a single model to support multiple downstream tasks.
+Though our Encoder's sentence embeddings are pre-trained, they can also be fine-tuned for specific tasks, even when there isn't much task-specific training data. To ensure that the encoder is a versatile tool supporting multiple downstream tasks, it can be trained using multi-task learning.
 
-In summary, the Universal Sentence Encoder excels at generating embeddings that represent the holistic meaning of sentences, even when dealing with limited training data, making it a valuable resource for NLP tasks.
 
-# Our step-by-step tutorial
+Okay, let's get started.
 
-## Import modules
+## Our step-by-step tutorial
+
+### Import modules
 ```tsx
 import React, { FC, useState, useEffect, useCallback } from 'react';
 import {
@@ -91,11 +91,9 @@ import * as tf from '@tensorflow/tfjs-core';
 import { interpolateGreens } from 'd3-scale-chromatic';
 ```
 
-## State variables to manage user input, loading state, and results
+### State variables to manage user input, loading state, and results
 
-These state variables are essential for managing user input, tracking loading states of machine learning models, and updating the user interface with the results, including the similarity matrix visualization.
-
-Here, we define a series of state variables using the **`useState`** hook in a React functional component. These state variables are used to manage various aspects of the component's behavior and user interface.
+We use the **`useState`** hook in a React functional component to manage user input, track loading states of machine learning models, and update the user interface with the results, including the similarity matrix visualization.
 
 ```tsx
 // State variables to manage user input, loading state, and results
@@ -128,7 +126,7 @@ Here, we define a series of state variables using the **`useState`** hook in a R
   const [similarityMatrix, setSimilarityMatrix] = useState<number[][] | null>(null);
 ```
 
-## Function to toggle the display of the similarity matrix
+### Function to toggle the display of the similarity matrix
 
 The **`handleSimilarityMatrix`** function toggles the display of a similarity matrix in the user interface by changing the **`showSimilarityMatrix`** state variable. If the matrix was previously shown, it hides it by setting it to **`null`**. If it wasn't shown, it calculates the matrix and sets it to be displayed in the user interface. This function is typically called when a user clicks a button or performs an action to show or hide the similarity matrix.
 
@@ -150,7 +148,7 @@ The **`handleSimilarityMatrix`** function toggles the display of a similarity ma
   };
 ```
 
-## Function to generate sentence embeddings and populate state
+### Function to generate sentence embeddings and populate state
 
 The **`handleGenerateEmbedding`** function is responsible for initiating the process of generating sentence embeddings. It sets the **`modelComputing`** state variable to **`true`** to indicate that the model is working, splits the user's input into individual sentences, updates the **`sentencesList`** state variable with these sentences, and then calls the **`embeddingGenerator`** function to start generating embeddings based on the individual sentences. This function is typically called when a user triggers the process, such as by clicking a "Generate Embedding" button. 
 
@@ -171,7 +169,7 @@ The **`handleGenerateEmbedding`** function is responsible for initiating the pro
   };
 ```
 
-## Function to calculate the similarity matrix for sentence embeddings
+### Function to calculate the similarity matrix for sentence embeddings
 
 In summary, the **`calculateSimilarityMatrix`** function computes a similarity matrix for a set of sentences by comparing the embeddings of each sentence with all other sentences. The matrix contains similarity scores for all possible sentence pairs and is used for further visualization or analysis.
 
@@ -221,7 +219,7 @@ This code snippet defines a JavaScript function named **`calculateSimilarityMatr
   );
 ```
 
-## Function to generate sentence embeddings using the Universal Sentence Encoder
+### Function to generate sentence embeddings using the Universal Sentence Encoder
 
 The **`embeddingGenerator`** function loads the Universal Sentence Encoder model, generates sentence embeddings for a list of sentences, and updates the component's state with the results. It also handles potential errors during the process. This function is typically called when a user triggers the embedding generation process, such as by clicking a "Generate Embedding" button.
 
@@ -275,7 +273,7 @@ The **`embeddingGenerator`** function loads the Universal Sentence Encoder model
   }, [modelLoading]);
 ```
 
-## useEffect hook to render the similarity matrix as a colorful canvas
+### useEffect hook to render the similarity matrix as a colorful canvas
 
 This **`useEffect`** is triggered when the **`similarityMatrix`** or **`canvasSize`** changes. It draws a similarity matrix on an HTML canvas element. The matrix is represented as a grid of colored cells, with each color determined by the similarity value among sentences. This effect renders the visual representation of the similarity between sentences and is a dynamic part of the user interface.
 
@@ -321,7 +319,7 @@ This **`useEffect`** is triggered when the **`similarityMatrix`** or **`canvasSi
   }, [similarityMatrix, canvasSize]);
 ```
 
-## User Input Section
+### User Input Section
 
 This code represents a part of the user interface where users can input multiple sentences. It includes a label, a multiline text input field, and the ability to control and update the input through React state management. The user's entered sentences are stored in the **`sentences`** state variable and can be used for further processing in the component.
 
@@ -345,7 +343,7 @@ This code represents a part of the user interface where users can input multiple
       </Grid>
 ```
 
-## Embeddings Output Section
+### Embeddings Output Section
 
 A part of the user interface where generated sentence embeddings are displayed. It includes a label, a multiline text output field, and the ability to control and update the displayed content through React state management. The generated embeddings, stored in the **`embeddings`** state variable, are displayed to the user in this section.
 
@@ -369,7 +367,7 @@ A part of the user interface where generated sentence embeddings are displayed. 
       </Grid>
 ```
 
-## Generate Embedding Button
+### Generate Embedding Button
 
 This code represents a button in the user interface that users can click to trigger the generation of sentence embeddings. The button is styled as a raised, solid button, and it is initially disabled if there are no input sentences (**`!sentences`**) or if the model is currently loading (**`modelLoading`**). When clicked, it invokes the **`handleGenerateEmbedding`** function to initiate the embedding generation process.
 
@@ -387,7 +385,7 @@ This code represents a button in the user interface that users can click to trig
       </Grid>
 ```
 
-## Model Indicator
+### Model Indicator
 
 This code controls what is displayed in the user interface based on the values of the **`modelComputing`** and **`modelLoading`** state variables. If  is **`true`**, it first checks if . If it is, a loading indicator is displayed. If **`false`**, a message indicating that the model is loaded is shown. If , nothing is rendered in this section. This conditional rendering allows the user to see either a loading indicator or a model loaded message based on the status of model loading and computing.
 
@@ -418,7 +416,7 @@ This code controls what is displayed in the user interface based on the values o
       ) : null}
 ```
 
-## Similarity Matrix
+### Similarity Matrix
 This code controls the rendering of the similarity matrix section of the user interface based on the value of the **`showSimilarityMatrix`** state variable. If it is **`true`**, a section containing the similarity matrix is displayed. The section includes a title, "Similarity Matrix," and a canvas element for rendering the matrix. If **`false`**, nothing is rendered in this section, providing a way to show or hide the similarity matrix in the user interface.
 
 ```tsx
@@ -449,6 +447,7 @@ This code controls the rendering of the similarity matrix section of the user in
   );
 };
 ```
+
 
 ## Taking our component for a ride
 
