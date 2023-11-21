@@ -128,7 +128,7 @@ We use the **`useState`** hook in a React functional component to manage user in
 
 ### Function to toggle the display of the similarity matrix
 
-The **`handleSimilarityMatrix`** function toggles the display of a similarity matrix in the user interface by changing the **`showSimilarityMatrix`** state variable. If the matrix was previously shown, it hides it by setting it to **`null`**. If it wasn't shown, it calculates the matrix and sets it to be displayed in the user interface. This function is typically called when a user clicks a button or performs an action to show or hide the similarity matrix.
+The **`handleSimilarityMatrix`** function is called in response to user input by toggling the display of a similarity matrix in the user interface by changing the **`showSimilarityMatrix`** state variable. If the matrix was previously shown, the **`handleSimilarityMatrix`** hides it by setting it to **`null`**. If the matrix wasn't shown, the **`handleSimilarityMatrix`** calculates the matrix and sets it to be displayed in the UI.
 
 ```tsx
 // Toggles display of similarity matrix 
@@ -150,7 +150,7 @@ The **`handleSimilarityMatrix`** function toggles the display of a similarity ma
 
 ### Function to generate sentence embeddings and populate state
 
-The **`handleGenerateEmbedding`** function is responsible for initiating the process of generating sentence embeddings. It sets the **`modelComputing`** state variable to **`true`** to indicate that the model is working, splits the user's input into individual sentences, updates the **`sentencesList`** state variable with these sentences, and then calls the **`embeddingGenerator`** function to start generating embeddings based on the individual sentences. This function is typically called when a user triggers the process, such as by clicking a "Generate Embedding" button. 
+The **`handleGenerateEmbedding`** function, called when a user clicks the "Generate Embedding" button, initiates the process of generating sentence embeddings. It sets the **`modelComputing`** state variable to **`true`** to indicate that the model is working, splits the user's input into individual sentences, updates the **`sentencesList`** state variable with these sentences, and then calls the **`embeddingGenerator`** function to start generating embeddings based on the individual sentences.
 
 ```tsx
 // Generate embeddings for input sentences 
