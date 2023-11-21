@@ -66,7 +66,8 @@ Many NLP projects employ pre-trained word embeddings like word2vec or GloVe, whi
 Though our Encoder's sentence embeddings are pre-trained, they can also be fine-tuned for specific tasks, even when there isn't much task-specific training data. To ensure that the encoder is a versatile tool supporting multiple downstream tasks, it can be trained using multi-task learning.
 
 
-Okay, let's get started.
+Okay, let's get started. 
+(Unless otherwise indicated, we'll be using Typescript.)
 
 ## Our step-by-step tutorial
 
@@ -452,35 +453,42 @@ The following code displays the similarity matrix if the **`showSimilarityMatrix
 ```
 
 
-## Taking our component for a ride
+## The test drive: functionality & embedding quality
 
-How can we determine the effectiveness of our component and the quality of our model's vector embeddings? Evaluating the component's functionality is straightforward – we run and test it. However, assessing the quality of the embeddings is a bit more complex, as we are dealing with arrays of 512 elements. It begs the question of how to gauge their effectiveness. Here is where the similarity matrix comes into play.
-We employ the dot product between vectors for each pair of sentences to discern their proximity or dissimilarity. To illustrate this, let's take two random pages from Wikipedia, each containing different paragraphs. They will provide us with a total of seven sentences for comparison.
+Before we launch our intuitive semantic search application into production, we should test it. Let's check its functionality, and the quality of our model's vector embeddings.
 
-[Los Angeles Herald](https://en.wikipedia.org/wiki/Los_Angeles_Herald)
+Functionality is easy. We just run and test it. Checking embedding quality is a bit more complex. We are dealing with arrays of 512 elements. How do we gauge their effectiveness? 
 
-[The quick brown fox jumps over the lazy dog](https://en.wikipedia.org/wiki/The_quick_brown_fox_jumps_over_the_lazy_dog)
+Here is where our **similarity matrix** comes into play. We employ the dot product between vectors for each pair of sentences to discern their proximity or dissimilarity. To illustrate this, let's take two random pages from Wikipedia, each containing different paragraphs. These two pages will provide us with a total of seven sentences for comparison.
 
-### Paragraph 1
+1) [The quick brown fox jumps over the lazy dog](https://en.wikipedia.org/wiki/The_quick_brown_fox_jumps_over_the_lazy_dog)
+
+2) [Los Angeles Herald](https://en.wikipedia.org/wiki/Los_Angeles_Herald)
+
+### Paragraph 1 input
 
 > "The quick brown fox jumps over the lazy dog" is an English-language pangram – a sentence that contains all the letters of the alphabet. The phrase is commonly used for touch-typing practice, testing typewriters and computer keyboards, displaying examples of fonts, and other applications involving text where the use of all letters in the alphabet is desired.
 > 
 
-### Paragraph 2
+### Paragraph 2 input
 
 > The Los Angeles Herald or the Evening Herald was a newspaper published in Los Angeles in the late 19th and early 20th centuries. Founded in 1873 by Charles A. Storke, the newspaper was acquired by William Randolph Hearst in 1931. It merged with the Los Angeles Express and became an evening newspaper known as the Los Angeles Herald-Express. A 1962 combination with Hearst's morning Los Angeles Examiner resulted in its final incarnation as the evening Los Angeles Herald-Examiner.
 > 
 
-Once we input these sentences into our model and generate the similarity matrix, something remarkable happens. Sentences from the same paragraphs exhibit a close resemblance, marked by a dark green hue. You can even observe how they cluster together, forming two distinct squares. Conversely, sentences from different paragraphs display little similarity, represented by a light green color. 
-
-This process allows us to rapidly construct an in-browser vector embedding generator that we can readily apply to real-world tasks. 
-
-What's even more remarkable is that we don't need to rely on cloud models or expensive hardware. Everything operates seamlessly within the browser, thanks to web development libraries and our programming language, TypeScript.
-
-## Similarity Matrix for our sentences
+When we input these sentences to our model and generate the similarity matrix, we can observe some remarkable patterns. 
 
 ![Similarity Matrix for seven sentences from two documents](../assets/use_cases/embeddings_on_browser/ embeddings-browser-similarity-matrix.png)
+
+Pairs of sentences from the same paragraphs that are similar to each other are marked by a dark green hue. Our similarity matrix also lets you see how pairs of sentences from the same paragraph cluster together, so that two distinct squares appear, one for each paragraph. Conversely, pairs of sentences from different paragraphs display little similarity, represented by a light green color.
+
+## A real-world-ready semantic search application
+
+And that's it! Our tutorial demonstrates how you can rapidly construct a low cost, intuitive, ready-to-deploy, in-browser vector embedding generator you can apply to real-world tasks.
+
+By using a pre-trained embedding generator, and configuring with Typescript, we were able to - in short order - set up our seamless, semantic search app without any cloud models, expensive hardware, or specialized engineering knowledge.
+
 
 ## Contributors
 
 - [Rod Rivera](http://twitter.com/rorcde)
+- [Robert Turner, editor](https://robertturner.co/copyedit)
