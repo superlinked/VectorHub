@@ -24,7 +24,7 @@ In basic terms, Vector Compute is the infrastructure responsible for the **train
 
 The role Vector Compute fills for your information retrieval system is similar to the role ETL tools like fivetran fill for your data warehouse. As in ETL, in Vector Compute you have to Extract the right information, Transform it into Vector Embeddings, and Load it into your Vector Search solution or cloud storage. 
 
-![How VC and ETL work together](assets/building_blocks/vector_compute/bb2-3.png)
+![How VC and ETL work together](assets/building_blocks/vector_compute/bb2-3-2.png)
 
 There are, however, **two important distinctions** between ETL and Vector Compute:
 
