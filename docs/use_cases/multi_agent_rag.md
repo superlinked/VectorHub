@@ -109,6 +109,14 @@ llm_config = {
     "adjust_weighting": mock_adjust_weighting,
 }
 
+boss = autogen.UserProxyAgent(
+    name="Boss",
+    is_termination_msg=termination_msg,
+    human_input_mode="TERMINATE",
+    system_message="The boss who ask questions and give tasks.",
+    code_execution_config=False,  # we don't want to execute code in this case.
+)
+
 # QueryUnderstandingAgent
 query_understanding_agent = autogen.AssistantAgent(
     name="query_understanding_agent",
