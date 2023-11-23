@@ -5,7 +5,7 @@
 
 <!-- TODO: Cover image -->
 
-## Enhancing RAG with a Multi-Agent System
+## Multi-Agent RAG
 
 Retrieval-augmented generation (RAG) has shown great promise for powering conversational AI. However, in most RAG systems today, a single model handles the full workflow of query analysis, passage retrieval, contextual ranking, summarization, and prompt augmentation. This results in suboptimal relevance, latency, and coherence. A multi-agent architecture that factors responsibilities across specialized retrieval, ranking, reading, and orchestration agents, operating asynchronously, allows each agent to focus on its specialized capability using custom models and data. Multi-agent RAG is thus able to improve relevance, latency, and coherence overall. 
 
@@ -51,9 +51,9 @@ These benefits of multi-agent over single-agent RAG have been demonstrated in ex
 
 Let's look at an implementation of multi-agent RAG, and then look under the hood of the agents that make up multi-agent RAG, examining their logic, sequence, and possible optimizations.
 
-## Example with Autogen library: https://github.com/microsoft/autogen
+## Example with AutoGen library
 
-Before going into the code snippet below, some term explanation:
+Before going into the code snippet below from the [Microsoft AutoGen library](https://github.com/microsoft/autogen), some explanation of terms:
 
 1. AssistantAgent: The AssistantAgent is given a name, a system message, and a configuration object (llm_config). The system message is a string that describes the role of the agent. The llm_config object is a dictionary that contains functions for the agent to perform its role.
 
