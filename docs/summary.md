@@ -11,6 +11,7 @@
   - [Personalized Search](use_cases/personalized_search.md)
   - [Recommender Systems](use_cases/recommender_systems.md)
   - [Retrieval Augmented Generation](use_cases/retrieval_augmented_generation.md)
+  - [Enhancing RAG with multiple agents](use_cases/multi_agent_rag.md)
 
 
 - [Toolbox](tools/readme.md)
