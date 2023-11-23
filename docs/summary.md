@@ -1,12 +1,13 @@
 - [Home](home.md)
 - [Manifesto](manifesto.md)
+- [Subscribe](subscribe.md)
 
 - [Building Blocks](building_blocks/readme.md)
   - [Data Sources](building_blocks/data_sources/readme.md)
   - [Vector Compute](building_blocks/vector_compute/readme.md)
   - [Vector Search](building_blocks/vector_search/readme.md)
 
-- [Use Cases](use_cases/readme.md)
+- [Blog](use_cases/readme.md)
   - [Personalized Search](use_cases/personalized_search.md)
   - [Recommender Systems](use_cases/recommender_systems.md)
   - [Retrieval Augmented Generation](use_cases/retrieval_augmented_generation.md)
