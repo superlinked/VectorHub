@@ -58,8 +58,8 @@ There are 2 key things to bear in mind when thinking about how to manage data so
 
 We deep dive them both in the following linked articles:
 
-## 1. [Data Velocity](
-## 2. [Data Modality](
+## 1. [Data Velocity](https://hub.superlinked.com/data-velocity)
+## 2. [Data Modality](https://hub.superlinked.com/data-modality)
 
 ## Conclusion 
 
