@@ -52,7 +52,13 @@ Below is an overview of the data & ML stack Pinterest uses to convert all this d
 
 For precise details about Pinterest’s specific data types and components, check out their [engineering blog](https://medium.com/@Pinterest_Engineering).
 
-## Data Velocity
+There are 2 key things to bear in mind when thinking about how to manage data sources:
+1. Data Velocity
+2. Data Modality
+
+We deep dive them both in the following linked articles:
+
+## 1/ [Data Velocity] 
 
 The choice of data processing velocity is pivotal in determining the kind of data retrieval and vector compute tasks you can perform. Different velocities offer distinct advantages and make different use cases possible. Here's a breakdown of the three primary velocity categories:
 
