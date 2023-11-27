@@ -1,6 +1,6 @@
 <!-- TODO: Replace this text with a summary of article for SEO -->
 
-## 1.0 Data Sources - Introduction
+## Introduction
 
 A robust vector retrieval system relies on a thoughtful selection of data sources that align with the system’s objectives. Different use cases demand different kinds and combinations of data. 
 
