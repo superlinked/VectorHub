@@ -1,4 +1,4 @@
-## 3.3 Conclusions
+## 3.3 Conclusion
 
 At its core, Vector Search & Management provide the critical link between vectorized data and machine learning models that can extract insights and guide decisions. But designing and implementing your vector storage, indexing, and retrieval strategy to match the requirements of your use case involves several considerations:
 
