@@ -3,7 +3,7 @@
 
 # Enhancing RAG with a Multi-Agent System
 
-![](assets/use_cases/multi_agent_rag/cover.png)
+![Multi agent RAG cover](assets/use_cases/multi_agent_rag/cover.png)
 
 ## Multi-Agent RAG
 
