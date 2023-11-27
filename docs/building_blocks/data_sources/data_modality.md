@@ -1,6 +1,6 @@
 # 1.2 Data Modality
 
-## Data Modality / Type
+## Understanding the different Data Modality / Types
 
 Whether your data is structured, unstructured, or hybrid is crucial when evaluating data sources. The nature of the data source your vector retrieval system uses shapes how that data should be managed and processed.
 
