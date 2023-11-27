@@ -49,188 +49,22 @@ An efficient and effective Vector Search & Management approach must carefully co
 
 The above visual's key takeaway: Our three corners (priorities, update frequency, access patterns) interact to determine the design of our system. Depending on our project, we may privilege one or two corners over the other/s. For example, if we're building a recommendation system for an online store, we would emphasize "real-time" interactions and "speed" to offer customers instant, personalized recommendations.
 
+Now let's dive into the details. 
 
-## Nearest Neighbor Search Algorithms
+### **3.1 Nearest Neighbor Search Algorithms**
+Scanning to calculate the similarity between vectors quickly is at the heart of Vector Search. Vector similarity scores encoded by your embedding model/s store valuable feature or characteristic information about your data that can be used in various applications (e.g., content recommendation, clustering, data analysis). There are several ways to perform nearest neighbor search.
 
-**Scanning to calculate the similarity between vectors quickly** is at the heart of Vector Search. Vector similarity scores encoded by your embedding model/s store valuable feature or characteristic information about your data that can be used in various applications (e.g., content recommendation, clustering, data analysis). There are several ways to perform nearest neighbor search.
+[Read more about different vector search algorithms, here](https://hub.superlinked.com/31-nearest-neighbor-search-algorithms)
 
-### Full Scan
-
-Let’s say we have a dataset of 1 million 1000-dimensional vectors and want to quickly find similar vectors for a given query. Naively, this would require 1 billion operations per query – a full scan nearest neighbor search. Full scan is an **exhaustive, brute force approach** to nearest neighbor search. It sequentially checks every record or data block of the dataset. 
-
-A full scan is simple, easy to implement, suitable when your dataset has less than 1M vectors, and not constantly changing.
-
-But as your dataset grows past 1M vectors, or is updated frequently, full scan takes more and more time and becomes more resource-intensive. We can significantly expedite our scan using an approximate nearest neighbors (ANN) search.
-
-### ANN Algorithms
-
-Approximate Nearest Neighbors (ANN) is a class of algorithms that **expedite** vector similarity search through approximations, avoiding the high computational cost of exhaustive brute force (full scan) search.
-
-ANN algorithms like locality-sensitive hashing (LSH) and hierarchical navigable small world (HNSW) can provide a tunable balance between precision and speed. HNSW and other similar methods permit very high recall, approaching brute force levels but at faster speeds.
-
-ANN provides a crucial advantage over brute force search for large, high-dimensional datasets. [ANN-benchmarks’ “Benchmarking Results”](https://ann-benchmarks.com/) demonstrate that brute force algorithms provide the highest precision but at a tradeoff cost of fewer QPS (queries per second). **Hybrid** approaches combining ANN and exact search (i.e., full scan) can provide both speed and accuracy.
-
-To select an ANN method appropriate to your application, you need to evaluate metrics like recall and latency in relation to your dataset scale, dimensionality, and data distribution requirements. 
-
-
-#### Code example: full scan vs. ANN
-
-Let’s look at some example code, demonstrating linear (full) scan and ANN search.
-
-```python
-import numpy as np
-import faiss
-```
-
-Create dataset of 1 million 1000-dim vectors
-```python
-num_vectors = 1000000
-vector_dim = 1000
-dataset = np.random.rand(num_vectors, vector_dim).astype('float32')
-```
-
-Define query vector
-```python
-query_vector = np.random.rand(vector_dim).astype('float32')
-```
-
-Create FAISS index
-```python
-index = faiss.IndexFlatL2(vector_dim)
-```
-Add vectors to index
-```python
-index.add(dataset)
-```
-
-Linear scan search
-```python
-start = time.time()
-distances, indices = index.search(query_vector.reshape(1, vector_dim), 1)
-print("Linear scan time: ", time.time() - start)
-```
-
-Switch to IVFFlat index for approximate search
-
-```python
-index = faiss.index_factory(vector_dim, "IVF1024,Flat")
-index.train(dataset)
-index.add(dataset)
-
-start = time.time()
-distances, indices = index.search(query_vector.reshape(1, vector_dim), 1) 
-print("ANN time: ", time.time() - start)
-```
-
-The code snippet above shows how an ANN algorithm, like IVFFlat from the FAISS library, indexes the vectors, allowing **quick narrowing of the search space**. This lets you significantly speed up your scan, compared to a linear scan, especially as your data set becomes larger.
-
-Different ANN implementations provide different optimization tradeoffs. Choosing the right ANN method requires benchmarking options like HNSW, IVF, and LSH on your dataset.
-
-### Quantization
-
-Search speed is not the only challenge when handling datasets with more than 1 million vectors. Once a dataset is too large to fit into the RAM of a single machine, you may be forced to shard the index to multiple machines. This is costly and increases system complexity. Fortunately, you can use quantization to **reduce the index size, without substantially reducing retrieval quality**.
-
-Quantization reduces the memory required to store vectors by compressing the data but preserving relevant information. There are **three types** of vector quantization: scalar, binary, and product.
-
-**Scalar** quantization reduces the dimensionality of your data by representing each vector component with fewer bits, reducing the amount of memory required for vector storage and speeding up the search process. Scalar quantization achieves a good balance of compression, accuracy, and speed, and is used widely.
-
-**Binary** quantization represents each vector component as binary codes. Binary is the fastest quantization method. But it’s only efficient for high dimensional vectors and a centered distribution of vector components. As a result, binary quantization should only be used with tested models.
-
-**Product** quantization splits the vector dimensions into smaller subvectors, each independently quantized into an index using the subvector’s set of codewords, representing data point clusters, and then combined into a single index representing the original high-dimensional vector. Product quantization provides better compression (minimal memory footprint) but is slower and less accurate than scalar quantization.
-
-ANN search can be combined with quantization to enable running high-performance [Vector Search] pipelines on huge datasets.
-
-
-## Key Access Patterns
-
+### **3.2 Key Access Patterns** 
 The access patterns deployed in Vector Search significantly impact storage, query efficiency, and infrastructure alignment, which are consequential in optimizing your retrieval system for your intended application.
 
-### Static In-Memory Access
+[Read more about the different access patterns, here](https://hub.superlinked.com/32-access-patterns)
 
-The static in-memory access pattern is ideal when working with a relatively small set of vectors, typically fewer than one million, that don't change frequently.
+**1.3 Conclusions & Next Steps**
+So what does this all mean? 
 
-In this pattern, the entire vector set is loaded into your application's memory, enabling quick and efficient retrieval, without external databases or storage. This setup ensures blazing-fast access times, making it perfect for low data scenarios requiring real-time retrieval.
-
-#### Static Access Implementation
-
-You can use libraries like NumPy and Facebook AI Similarity Search (FAISS) to implement static access in Python. These tools allow direct cosine similarity queries on your in-memory vectors.
-
-For smaller vector sets (less than 100,000 vectors), NumPy may be efficient, especially for simple cosine similarity queries. However, if the vector corpus grows substantially or the query requirements become more complex, an "in-process vector database" like LanceDB or Chroma is better.
-
-#### Service Restart Considerations
-
-During service restarts or shutdowns, static in-memory access requires you to reload the entire vector set into memory. This costs time and resources and affects the system's overall performance during the initialization phase.
-
-In sum, static in-memory access is **suitable for compact vector sets that remain static**. It offers fast and efficient real-time access directly from memory. 
-
-But when the vector corpus grows substantially and is updated frequently, you’ll need a different access pattern: dynamic access.
-
-### Dynamic Access 
-
-Dynamic access is particularly useful for managing larger datasets, typically exceeding one million vectors, and scenarios where vectors are subject to frequent updates – for example, sensor readings, user preferences, real-time analytics, and so on. Dynamic access relies on specialized databases and search tools designed for managing and querying high-dimensional vector data; these databases and tools efficiently handle access to evolving vectors and can retrieve them in real-time, or near real-time.
-
-Several types of technologies allow dynamic vector access, each with its own tradeoffs:
-
-1. **Vector-Native Vector Databases** (e.g., [Weaviate](https://weaviate.io/), [Pinecone](https://www.pinecone.io/), [Milvus](https://zilliz.com/what-is-milvus), [Vespa](https://vespa.ai/), [Qdrant](https://qdrant.tech/)): are designed specifically for vector data, and optimized for fast, efficient similarity searches on high-dimensional data. However, they may not be as versatile when it comes to traditional data operations.  
-
-2. **Hybrid Databases** (e.g., [MongoDB](https://www.mongodb.com/), [PostgreSQL with pgvector](https://github.com/pgvector/pgvector/), [Redis with VSS module](https://redis.com/blog/rediscover-redis-for-vector-similarity-search/)): offer a combination of traditional and vector-based operations, providing greater flexibility in managing data. However, hybrid databases may not perform vector searches at the same level or with the same vector-specific features as dedicated vector databases.  
-
-3. **Search Tools** (e.g., [Elasticsearch](https://www.elastic.co/)): are primarily created to handle text search but also provide some Vector Search capabilities. Search tools like Elasticsearch let you perform both text and Vector Search operations, without needing a fully featured database.  
-
-Here's a simplified side-by-side comparison of each database type’s pros and cons:
-
-| Type | Pros | Cons |
-| ---------------------------------- | ---------------------------------- | --------------------------------------- |
-| *Vector-Native Vector Databases* | High performance for vector search tasks | May not be as versatile for traditional data operations |
-| *Hybrid Databases* | Support for both traditional and vector operations | Slightly lower efficiency in handling vector tasks |
-| *Search Tools* | Accommodate both text and vector search tasks | May not provide the highest efficiency in vector tasks |
-
-### Batch Access
-
-Batch processing is an optimal approach when working with **large vector sets, typically exceeding one million, that require collective, non-real-time processing**. This pattern is particularly useful for Vector Management tasks such as **model training** or **precomputing nearest neighbors**, which are crucial steps in building Vector Search services.
-
-To be sure your batch processing setup fits your application, you need to keep the following **key considerations** in mind:
-
-**1. Storage Technologies**:
-You need scalable, reliable storage to house your vectors during the batch pipeline. Various technologies offer different levels of efficiency:
-- **Object Storage (e.g., Amazon S3, Google Cloud Storage, Azure Blob Storage)**: These solutions are cost-effective for storing static data, including substantial vector sets. They scale well and integrate with various cloud-based data processing engines. However, these solutions may not facilitate rapid, real-time communication because they're designed for data at rest.
-- **Distributed File Systems (e.g., HDFS, GlusterFS)**: Designed for storing vast amounts of data across multiple servers, distributed file systems offer redundancy and high-throughput access. They seamlessly integrate with big data processing tools like Hadoop or Spark. However, setting up and maintaining them can be complex, especially in cloud environments.
-
-**2. Data Serialization Formats**:
-For storing vectors efficiently, you need compact data formats that conserve space and support fast read operations:
- - **Avro and Parquet**: These data serialization formats work well with big data tools like Hadoop or Spark. They effectively compress data, support schema evolution, and integrate smoothly with cloud-based storage. Avro is suitable for write-heavy loads, while Parquet optimizes read-heavy operations.
- - **Compressed NumPy Arrays**: For simpler use cases, you can serialize and compress NumPy arrays that hold vectors. This straightforward approach integrates well with Python-based processing pipelines but is probably not ideal for very large-scale or non-Python environments.
-
-**3. Execution Environment**:
-You have two primary options for executing batch-processing tasks:
- - **On-Premise Execution**: If you have to process large volumes of data on your infrastructure, tools like Hadoop and Apache Spark offer complete control over the processing environment but may require complex setup and maintenance.
- - **Cloud Services**: Cloud platforms like Amazon EMR (Elastic MapReduce) provide convenient and scalable batch processing solutions. They manage processing clusters, making scaling resources up or down according to your requirements easier .
-
-
-In short, which storage technology, data serialization format, and execution environment you choose for your batch processing use case depends on various considerations, including:
-
-- The size of your vector dataset,
-- Whether your data is static or dynamic,
-- Your workload scalability requirements,
-- Whether your dataset is stored across multiple servers,
-- Whether you require real-time querying,
-- Your integration needs (i.e., big data processing),
-- Your desired level of processing control,
-- and your available resources and time for set up and maintenance. 
-
-![Choosing a batch processing setup](assets/building_blocks/vector_search/bb3-2.png)
-
-## Conclusion
-
-At its core, Vector Search & Management provide the critical link between vectorized data and machine learning models that can extract insights and guide decisions. But designing and implementing your vector storage, indexing, and retrieval strategy to match the requirements of your use case involves several considerations:
-
-First, the **update frequency** of your vector embeddings. Your use case may warrant an architecture optimized for real-time streaming data or higher-latency batch processing. 
-
-Second, the **access pattern** you use to perform nearest neighbor search. Whether it’s responsive user queries or scheduled large batch analysis - your data pipelines and query patterns must be structured to match your access needs. 
-
-Third, your use case will require its own particular **prioritization of latency, throughput, and accuracy**. To optimise your application's objectives, you must balance latency, throughput, and accuracy concerns.
-
-Tying your Vector Search & Management together with high-quality vector embeddings produces a modern, scalable retrieval stack. Rich vectors encode important relationships. Combined with performant Search & Management, enabling responsivity and large-scale analytics – a wealth of latent value.
+[Read our conclusions and recommended next steps, here](https://hub.superlinked.com/33-conclusions)
 
 ---
 ## Contributors
