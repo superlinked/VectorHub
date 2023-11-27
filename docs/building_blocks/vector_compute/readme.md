@@ -51,7 +51,7 @@ Your task's unique requirements will dictate when you should use a custom model,
 [Read more about how to choose the right type of model for your use case, here](https://hub.superlinked.com/22-pre-trained-vs-custom-models)
 
 ### **2.3 Applications of Vector Compute**
-So what does this all mean? Such robust homegrown solutions will be increasingly important given the broad and ever-expanding application of Vector Compute to solve real-world problems in a spectrum of domains, [partially discussed here](https://hub.superlinked.com/23-applications).
+So what does this all mean? Such robust homegrown solutions will be increasingly important given the broad and ever-expanding application of Vector Compute to solve real-world problems in a spectrum of domains, [partially discussed here](https://hub.superlinked.com/23-applications-of-vector-compute).
 
 ---
 ## Contributors
