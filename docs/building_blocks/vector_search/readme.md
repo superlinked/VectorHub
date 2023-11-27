@@ -59,12 +59,12 @@ Scanning to calculate the similarity between vectors quickly is at the heart of 
 ### **3.2 Key Access Patterns** 
 The access patterns deployed in Vector Search significantly impact storage, query efficiency, and infrastructure alignment, which are consequential in optimizing your retrieval system for your intended application.
 
-[Read more about the different access patterns, here](https://hub.superlinked.com/32-access-patterns)
+[Read more about the different access patterns, here](https://hub.superlinked.com/32-key-access-patterns)
 
 **1.3 Conclusions & Next Steps**
 So what does this all mean? 
 
-[Read our conclusions and recommended next steps, here](https://hub.superlinked.com/33-conclusions)
+[Read our conclusions and recommended next steps, here](https://hub.superlinked.com/33-conclusion)
 
 ---
 ## Contributors
