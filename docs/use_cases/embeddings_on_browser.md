@@ -32,7 +32,7 @@ Let's take a closer look at the parts of our component.
 ## Specific parts of our application
 
 1. We import all necessary dependencies: React, Material-UI components, TensorFlow.js, and D3 (for color interpolation).
-2. Our code defines a React functional component named **`EmbeddingGenerator`**. This component represents the user interface for generating sentence embeddings and visualizing their similarity matrix.
+2. Our code defines a React functional component that generates sentence embeddings and visualizes their similarity matrix in a user interface.
 3. We declare various state variables using the **`useState`** hook, in order to manage user input, loading states, and results.
 4. The **`handleSimilarityMatrix`** function toggles the display of the similarity matrix, and calculates it when necessary.
 5. The **`handleGenerateEmbedding`** function is responsible for starting the sentence embedding generation process. It splits the input sentences into individual sentences and triggers the **`embeddingGenerator`** function.
