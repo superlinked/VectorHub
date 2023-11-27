@@ -1,5 +1,3 @@
-## Key Access Patterns
-
 The access patterns deployed in Vector Search significantly impact storage, query efficiency, and infrastructure alignment, which are consequential in optimizing your retrieval system for your intended application.
 
 ### Static In-Memory Access
