@@ -1,4 +1,4 @@
-## Applications of Vector Compute
+## Introduction
 
 Such robust homegrown solutions will be increasingly important given the broad and ever-expanding application of Vector Compute to solve real-world problems in a spectrum of domains, partially enumerated below.
 
