@@ -11,9 +11,9 @@
 ---
 ## Vector Embeddings, just for specialists?
 
-Let's say you want to create an intuitive semantic search application. You know a little about what we need: vector embeddings, maybe some retrieval augmented generation. But how do you operationalize this rough, conceptual understanding of vector embeddings in a real-world application? Don't you need a substantial hardware setup or expensive cloud APIs? Even if you had the requisite backend resources, who's going to develop and configure them? Don't you also need highly specialized machine learning engineers or data scientists even to get started?
+Let's say you want to create an intuitive semantic search application. You know a little about what you'll need: vector embeddings, maybe some retrieval augmented generation. But how do you operationalize this rough, conceptual understanding of vector embeddings in a real-world application? Don't you require a substantial hardware setup or expensive cloud APIs? Even if you had the requisite backend resources, who's going to develop and configure them? Don't you also need highly specialized machine learning engineers or data scientists even to get started?
 
-Happily, the answer to all of these concerns is No. 
+Happily, the answer to all of these concerns is No.
 
 You don't require high-end equipment, powerful GPUs, or ML and data science experts. Thanks to pre-trained machine learning models, you can create an intuitive semantic search application right within your browser, on a local machine, tailored to your data. You also don't need library installations or complex configurations for end-users. And you can start immediately.
 
@@ -63,7 +63,7 @@ The rationale behind pre-trained models is straightforward. Most NLP projects in
 
 Many NLP projects employ pre-trained word embeddings like word2vec or GloVe, which transform individual words into vectors. However, recent developments have shown that, on many tasks, **pre-trained sentence-level embeddings excel at capturing higher level semantics** than word embeddings can. The Universal Sentence Encoder's fixed-length vector embeddings are extremely effective for computing semantic similarity between sentences, with high scores in various semantic textual similarity benchmarks.
 
-Though our Encoder's sentence embeddings are pre-trained, they can also be fine-tuned for specific tasks, even when there isn't much task-specific training data. If we needed, we could even make the encoder to support _multiple_ downstream tasks, by training it with multi-task learning.
+Though our Encoder's sentence embeddings are pre-trained, they can also be fine-tuned for specific tasks, even when there isn't much task-specific training data. (If we needed, we could even make the encoder more versatile, supporting _multiple_ downstream tasks, by training it with multi-task learning.)
 
 
 Okay, let's get started. 
@@ -389,7 +389,7 @@ The following code represents a raised, solid button in the UI that triggers the
 
 ### Model Indicator
 
-This code controls what is displayed in the user interface based on the values of the **`modelComputing`** and **`modelLoading`** state variables. If  is **`true`**, it first checks if . If it is, a loading indicator is displayed. If **`false`**, a message indicating that the model is loaded is shown. If , nothing is rendered in this section. This conditional rendering allows the user to see either a loading indicator or a model loaded message based on the status of model loading and computing.
+This code controls what is displayed in the user interface based on the values of the **`modelComputing`** and **`modelLoading`** state variables. If **`modelComputing`** and **`modelLoading`** are **`true`**, a loading indicator is displayed. If **`modelLoading`**  is **`false`**, then the model is already loaded and we display a message indicating this. This conditional rendering allows the user to see either a loading indicator or a model loaded message based on the status of model loading and computing.
 
 ```tsx
       {/* Display model loading or loaded message */}
@@ -479,13 +479,15 @@ When we input these sentences to our model and generate the similarity matrix, w
 
 ![Similarity Matrix for seven sentences from two documents](../assets/use_cases/embeddings_on_browser/ embeddings-browser-similarity-matrix.png)
 
-Same paragraph pairs of sentences that are similar to each other are marked by a dark green hue. Our similarity matrix also lets you see how same paragraph pairs of sentences cluster together, so that two distinct squares appear, one for each paragraph. Conversely, pairs of sentences from different paragraphs display little similarity, represented by a light green color.
+Same paragraph pairs of sentences that are similar to each other are marked by a dark green hue. 
+
+Our similarity matrix also lets you see how same paragraph pairs of sentences cluster together, so that two distinct squares appear, one for each paragraph. Conversely, pairs of sentences from different paragraphs display little similarity, represented by a light green color.
 
 ## A real-world-ready semantic search application
 
 And that's it! Our tutorial demonstrates how you can rapidly construct a low cost, intuitive, ready-to-deploy, in-browser vector embedding generator you can apply to real-world tasks.
 
-By using a pre-trained embedding generator, and configuring with Typescript, we were able to - in short order - set up a functioning, seamlessly in-browser, semantic search app without any cloud models, expensive hardware, or specialized engineering knowledge.
+By using a pre-trained embedding generator (configured with Typescript), we were able to - in short order - set up a functioning, seamlessly in-browser, semantic search app without any cloud models, expensive hardware, or specialized engineering knowledge.
 
 
 ## Contributors
