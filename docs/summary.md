@@ -13,7 +13,7 @@
     - [2.3 Applications of Vector Compute](building_blocks/vector_compute/applications.md)
   - [3.0 Vector Search](building_blocks/vector_search/readme.md)
     - [3.1 Nearest Neighbor Search Algorithms](building_blocks/vector_search/nearest-neighbor.md)
-    - [3.2 Access Patterns](building_blocks/vector_search/access_patterns.md)
+    - [3.2 Key Access Patterns](building_blocks/vector_search/access_patterns.md)
     - [3.3 Conclusion](building_blocks/vector_search/conclusion.md)
    
 - [Blog](use_cases/readme.md)
