@@ -7,7 +7,10 @@
     - [1.1 Data Velocity](building_blocks/data_sources/data_velocity.md)
     - [1.2 Data Velocity](building_blocks/data_sources/data_modality.md)
     - [1.3 Conclusion](building_blocks/data_sources/conclusion.md)
-  - [Vector Compute](building_blocks/vector_compute/readme.md)
+  - [2.0 Vector Compute](building_blocks/vector_compute/readme.md)
+    - [2.1 Embedding Models](building_blocks/vector_compute/embedding_models.md)
+    - [2.2 Pre-Trained vs Custom Models](docs/building_blocks/vector_compute/pre-train-custom.md)
+    - [2.3 Applications](building_blocks/vector_compute/applications.md)
   - [Vector Search](building_blocks/vector_search/readme.md)
 
 - [Blog](use_cases/readme.md)
