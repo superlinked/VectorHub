@@ -1,5 +1,3 @@
-## 3.3 Conclusion
-
 At its core, Vector Search & Management provide the critical link between vectorized data and machine learning models that can extract insights and guide decisions. But designing and implementing your vector storage, indexing, and retrieval strategy to match the requirements of your use case involves several considerations:
 
 First, the **update frequency** of your vector embeddings. Your use case may warrant an architecture optimized for real-time streaming data or higher-latency batch processing. 
