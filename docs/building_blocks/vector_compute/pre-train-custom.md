@@ -1,4 +1,4 @@
-## 2.2 Pre-trained and Custom models: when to use which?
+## Pre-trained and Custom models: when to use which?
 
 Your task's unique requirements will dictate when you should use a custom model, and when you should use a pre-trained model.
 
