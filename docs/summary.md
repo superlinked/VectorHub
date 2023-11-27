@@ -10,11 +10,11 @@
   - [2.0 Vector Compute](building_blocks/vector_compute/readme.md)
     - [2.1 Embedding Models](building_blocks/vector_compute/embedding_models.md)
     - [2.2 Pre-Trained vs Custom Models](building_blocks/vector_compute/pre-train-custom.md)
-    - [2.3 Applications](building_blocks/vector_compute/applications.md)
+    - [2.3 Applications of Vector Compute](building_blocks/vector_compute/applications.md)
   - [3.0 Vector Search](building_blocks/vector_search/readme.md)
     - [3.1 Nearest Neighbor Search Algorithms](building_blocks/vector_search/nearest-neighbor.md)
     - [3.2 Access Patterns](building_blocks/vector_search/access_patterns.md)
-    - [3.3 Conclusions](building_blocks/vector_search/conclusions.md)
+    - [3.3 Conclusion](building_blocks/vector_search/conclusions.md)
    
 - [Blog](use_cases/readme.md)
   - [Personalized Search](use_cases/personalized_search.md)
