@@ -63,7 +63,7 @@ The rationale behind pre-trained models is straightforward. Most NLP projects in
 
 Many NLP projects employ pre-trained word embeddings like word2vec or GloVe, which transform individual words into vectors. However, recent developments have shown that, on many tasks, **pre-trained sentence-level embeddings excel at capturing higher level semantics** than word embeddings can. The Universal Sentence Encoder's fixed-length vector embeddings are extremely effective for computing semantic similarity between sentences, with high scores in various semantic textual similarity benchmarks.
 
-Though our Encoder's sentence embeddings are pre-trained, they can also be fine-tuned for specific tasks, even when there isn't much task-specific training data. To ensure that the encoder is a versatile tool supporting multiple downstream tasks, it can be trained using multi-task learning.
+Though our Encoder's sentence embeddings are pre-trained, they can also be fine-tuned for specific tasks, even when there isn't much task-specific training data. If we needed, we could even make the encoder to support _multiple_ downstream tasks, by training it with multi-task learning.
 
 
 Okay, let's get started. 
