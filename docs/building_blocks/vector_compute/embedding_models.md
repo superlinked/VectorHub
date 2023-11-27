@@ -1,5 +1,3 @@
-## Introduction
-
 At the core of Vector Compute are embedding models – machine learning models applied to raw data to generate vector embeddings.
 
 Embedding models turn features extracted from high-dimensional data, with large numbers of attributes or dimensions, like text, images, or audio, into lower-dimensional but dense mathematical representations – i.e., vectors. You can apply embedding models to structured data like tabular datasets or graphs. 
