@@ -4,6 +4,8 @@
 
 - [Building Blocks](building_blocks/readme.md)
   - [Data Sources](building_blocks/data_sources/readme.md)
+    - [Data Velocity](building_blocks/data_sources/data_velocity.md)
+    - 
   - [Vector Compute](building_blocks/vector_compute/readme.md)
   - [Vector Search](building_blocks/vector_search/readme.md)
 
