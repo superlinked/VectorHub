@@ -1,4 +1,4 @@
-# Data Modality
+# 1.2 Data Modality
 
 ## Data Modality / Type
 
