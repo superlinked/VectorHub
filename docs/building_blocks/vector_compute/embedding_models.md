@@ -1,4 +1,4 @@
-## 2.1 Embedding Models, the heart of Vector Compute
+## Embedding Models, the heart of Vector Compute
 
 At the core of Vector Compute are embedding models – machine learning models applied to raw data to generate vector embeddings.
 
