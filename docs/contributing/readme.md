@@ -21,6 +21,11 @@ To summarise:
 2. Push all commits to your fork in the appropriate section for your content
 3. Open a PR to merge content from their fork to the remote repo (superlinked/vectorhub)
 
+When contributing an article please include the following at the start:
+1) One sentence to explain their topic / use case
+2) One-two sentences on why your use case is valuable to the reader
+3) A brief outline of what each section will discuss (can be bulletpointed)
+
 ## Get involved
 
 We constantly release bounties looking for content contributions. Keep an eye out for items with bounty labels on our GitHub.
