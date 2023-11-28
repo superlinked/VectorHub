@@ -479,9 +479,13 @@ When we input these sentences to our model and generate the similarity matrix, w
 
 ![Similarity Matrix for seven sentences from two documents](../assets/use_cases/embeddings_on_browser/ embeddings-browser-similarity-matrix.png)
 
-Our similarity matrix also lets you see how same-paragraph pairs of sentences cluster together, so that two distinct groups of squares appear, one for each paragraph. Conversely, pairs of sentences from different paragraphs display little similarity, represented by a light green color.
+Our similarity matrix also lets you see how same-paragraph pairs of sentences cluster together, so that two distinct groups of squares appear, one for each paragraph. Conversely, pairs of sentences from different paragraphs display little similarity, represented by a light green color. (Note: the 7x7 matrix represents seven sentences; Paragraph 2's second sentence breaks at the "A." of "Charles A. Storke." The third sentence begins with "Storke.")
 
-Same-paragraph pairs of sentences that are similar to each other are marked by a dark green hue. For example, pairings of Paragraph 1's first sentence ("The quick brown fox...") and second sentence ("The phrase is commonly...") display darkest when they are compared with themselves (i.e., identical) - [1,1] and [2,2] but also relatively dark when compared with each other - [1,2] and [2,1]...
+The darker the hue of green, the more similar (i.e., less distant in semantic meaning) the vectors. Same-paragraph sentence pairs that are similar to each other are dark green. For example, comparison (pairing) of Paragraph 1's first sentence ("The quick brown fox...") and second sentence ("The phrase is commonly...") display as relatively dark green - [1,2] and [2,1]. The darkest green squares are identical pairings - [1,1] and [2,2]. Similarly, comparison pairs of Paragraph 2's first ("The Los Angeles Herald...") and second ("Founded in 1873...") sentences display as relatively dark green - [3,4] and [4,3].
+
+![Numbered Similarity Matrix for seven sentences from two docs](../assets/use_cases/embeddings_on_browser/ embeddings-browser-numbered-similarity-matrix.png)
+
+Conversely, the less similar a sentence pair is, the lighter the square - for example, pairings of Paragraph 1's first sentence [1] and Paragraph 2's first sentence [3] are much lighter green (i.e., more distant in meaning) - [1,3] and [3,1].
 
 ## A real-world-ready semantic search application
 
