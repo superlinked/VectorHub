@@ -8,13 +8,18 @@ VectorHub's content is organized into three major areas:
 
 1. Building Blocks: These cover the broad field of vector creation and retrieval. We take a step by step approach to creating a vector stack: Data Sources -> Vector Compute -> Vector Search & Management.
 
-2. Use cases: We have 7 use cases that map out how the vector retrieval can be utilized in production apps.
+2. Blog: This is where contributors can share examples of things they have been working on, research and solutions to problems they have encountered while working on Information Retrieval problems
 
-3. Tools: These are interesting apps, links, videos, tips, & tricks that aid in vector creation and retrieval.
+3. Toolkit (coming soon): These are interesting apps, links, videos, tips, & tricks that aid in vector creation and retrieval.
 
 ## How to contribute
 
 [This loom](https://www.loom.com/share/aae75e4746f24453af0f3ae276f9ac56?sid=28db5254-f95f-48ae-8bf9-e13ed201bbce) explains how to set up your contributing workflow.
+
+To summarise:
+1. Fork the VectorHub repo
+2. Push all commits to your fork in the appropriate section for your content
+3. Open a PR to merge content from their fork to the remote repo (superlinked/vectorhub)
 
 ## Get involved
 
