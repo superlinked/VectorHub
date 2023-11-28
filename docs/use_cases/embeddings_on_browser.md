@@ -479,9 +479,9 @@ When we input these sentences to our model and generate the similarity matrix, w
 
 ![Similarity Matrix for seven sentences from two documents](../assets/use_cases/embeddings_on_browser/ embeddings-browser-similarity-matrix.png)
 
-Same paragraph pairs of sentences that are similar to each other are marked by a dark green hue. 
+Our similarity matrix also lets you see how same-paragraph pairs of sentences cluster together, so that two distinct groups of squares appear, one for each paragraph. Conversely, pairs of sentences from different paragraphs display little similarity, represented by a light green color.
 
-Our similarity matrix also lets you see how same paragraph pairs of sentences cluster together, so that two distinct squares appear, one for each paragraph. Conversely, pairs of sentences from different paragraphs display little similarity, represented by a light green color.
+Same-paragraph pairs of sentences that are similar to each other are marked by a dark green hue. For example, pairings of Paragraph 1's first sentence ("The quick brown fox...") and second sentence ("The phrase is commonly...") display darkest when they are compared with themselves (i.e., identical) - [1,1] and [2,2] but also relatively dark when compared with each other - [1,2] and [2,1]...
 
 ## A real-world-ready semantic search application
 
