@@ -480,13 +480,12 @@ When we input these sentences to our model and generate the similarity matrix, w
 ![Similarity Matrix for seven sentences from two documents](../assets/use_cases/embeddings_on_browser/ embeddings-browser-similarity-matrix.png)
 (Note: the 7x7 matrix represents seven sentences; Paragraph 2's second sentence breaks at the "A." of "Charles A. Storke." The third sentence begins with "Storke.")
 
-Our similarity matrix demonstrates how within-paragraph pairs of sentences are more similar than between-paragraph pairs. Within-paragraph sentence pairs display as significantly darker groups (as seen in the matrix above), one for each paragraph. Between-paragraph sentence pairs are less similar; visually, they are distinctively lighter and lie outside our two same-paragraph sentence pair groups. 
-
-The darker the hue of green, the more similar (i.e., less distant in semantic meaning) the vectors. Same-paragraph sentence pairs that are similar to each other are dark green. For example, comparison (pairing) of Paragraph 1's first sentence ("The quick brown fox...") and second sentence ("The phrase is commonly...") display as relatively dark green - [1,2] and [2,1]. The darkest green squares are identical pairings - [1,1] and [2,2]. Similarly, comparison pairs of Paragraph 2's first ("The Los Angeles Herald...") and second ("Founded in 1873...") sentences display as relatively dark green - [3,4] and [4,3].
+Our similarity matrix demonstrates how same-paragraph sentence pairs are more similar than different-paragraph sentence pairs. Same-paragraph sentence pairs display as significantly darker squares, in our matrix, above. The darker the hue of green, the more similar the vectors - i.e., the less distant they are in semantic meaning. For example, the square (dot product) pairing Paragraph 1's first sentence ("The quick brown fox...") and second sentence ("The phrase is commonly...") displays as relatively dark green - [1,2] and [2,1]. Similarly, pairing Paragraph 2's first ("The Los Angeles Herald...") and second ("Founded in 1873...") sentences displays as relatively dark green - [3,4] and [4,3]. The darkest green squares represent dot products of identical pairs - [1,1], [2,2] [3,3], and so on.
 
 INSERT embeddings-browser-numbered-similarity-matrix.png here.
 
-Conversely, the less similar a sentence pair is, the lighter the square - for example, pairings of Paragraph 1's first sentence [1] and Paragraph 2's first sentence [3] are much lighter green (i.e., more distant in meaning) - [1,3] and [3,1].
+As a result, each paragraph's same-paragraph sentence pairs form their own relatively dark regions within the larger matrix above. Conversely, different-paragraph sentence pairs are less similar, and therefore display as lighter green squares. For example, pairings of Paragraph 1's first sentence [1] and Paragraph 2's first sentence [3] are distinctively lighter green (i.e., more distant in meaning) - [1,3] and [3,1], and lie outside our two same-paragraph sentence pair groups.
+
 
 ## A real-world-ready semantic search application
 
