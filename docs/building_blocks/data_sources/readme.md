@@ -29,8 +29,6 @@ Pinterest uses diverse data types to improve the recommendation performance of i
 
 Below is an overview of the data & ML stack Pinterest uses to convert all this data (above) to product value.
 
-![Pinterest Tech Stack](assets/building_blocks/data_sources/bb1-1.png)
-
 <img src=assets/building_blocks/data_sources/bb1-1.png alt="Pinterest Tech Stack" data-size="100" />
 
 1. **Event Streaming Platform**:
