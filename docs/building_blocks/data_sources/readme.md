@@ -31,6 +31,8 @@ Below is an overview of the data & ML stack Pinterest uses to convert all this d
 
 ![Pinterest Tech Stack](assets/building_blocks/data_sources/bb1-1.png)
 
+<img src=assets/building_blocks/data_sources/bb1-1.png alt="Pinterest Tech Stack" data-size="100" />
+
 1. **Event Streaming Platform**:
     - Pinterest relies on an **event streaming platform**, [Flink](https://medium.com/pinterest-engineering/unified-flink-source-at-pinterest-streaming-data-processing-c9d4e89f2ed6#:~:text=To%20best%20serve%20Pinners%2C%20creators,as%20its%20stream%20processing%20engine), to collect real-time event data. This platform allows them to easily collect, enrich, and transform event attributes.
     - In practice, the event streaming system handles real-time data ingestion, ensuring that events from user interactions, content uploads, and other actions are captured efficiently. 
