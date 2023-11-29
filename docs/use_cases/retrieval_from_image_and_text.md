@@ -1,4 +1,4 @@
-# Retrieval and Ranking from Image and Text Modalities
+# Retrieval from Image and Text Modalities
 
 ## Problem statement
 
@@ -52,8 +52,8 @@ A young kid with head phones on using a computer.
 ## Scenarios
 
 In each scenario, we vectorize/embed either the COCO images and their captions, or both modalities. In cases 
-where both are used, the embeddings are concatenated. After embedding the entire dataset and normalizing each 
-vector to unit length, we assess the quality of the embedding vectors through Retrieval and Ranking processes. 
+where both are used, the embeddings are concatenated. After embedding the entire dataset and normalizing each vector to 
+unit length, we assess the quality of the embedding vectors through retrieval and by calculating ranking metrics.
 This evaluation involves iterating over the vector space and, for each vector, retrieving its **_k (=10)_** nearest 
 neighbors based on [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity). Cosine similarity, which 
 measures the angle between two vectors, simplifies to a [dot product](https://en.wikipedia.org/wiki/Dot_product) 
@@ -182,6 +182,25 @@ The largest CLIP-based model, boasting around 427.6M parameters, reached MRR and
 An MRR score close to 0.5 implies that, on average, we can retrieve a matching object set in the 2nd position out of k = 10 options 
 from the embedding space for a given query. However, it's noteworthy that the best result from scenario 1. is only 3% lower in terms 
 of its MRR. This emphasizes yet again the effectiveness of the AI-generated captions.
+
+We should also take into account the inference time and GPU demands for each scenario. These metrics were gathered using 
+an [RTX 3080 16 GB GPU](https://www.techpowerup.com/gpu-specs/geforce-rtx-3080.c3621), capable of 29.77 TFLOPS on FP32. 
+When processing the merged COCO training and validation dataset, containing 103,429 data samples post-preprocessing, we noted the 
+following inference times and resource allocations. It's important to note that GPU utilization was always maximized through 
+parallelized data loading to ensure efficiency.
+
+- Embedding captions with "all-mpnet-base-v2" takes approximately 5 minutes and uses about 2.8 GB of GPU memory for batches of 128.
+- Generating captions with "Salesforce/blip-image-captioning-base" spans around 3 hours and requires close to 15.5 GB of GPU memory, 
+also with batches of 128.
+- Embedding images with "tf_efficientnetv2_s.in21k_ft_in1k" similarly takes about 3 hours and consumes 15 GB of GPU memory for batch 
+sizes of 128.
+- Embedding both captions and images using the OpenCLIP "ViT-L-14_datacomp_xl_s13b_b90k" model can be completed in about 50 minutes when 
+processing with a batch size of 512, requiring 14.5 GB of GPU memory.
+
+Indeed, if high-quality image captions are already in hand, employing Sentence Transformers for embedding proves to be highly efficient. 
+This method offers a balance of speed and effectiveness. On the other hand, if only images are available and captions need to be 
+generated, the process can be time-consuming, which could be a significant factor when deciding on the method for a given application 
+or project.
 
 ## Open Questions
 
