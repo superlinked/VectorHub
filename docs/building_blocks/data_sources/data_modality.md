@@ -140,4 +140,4 @@ The visualization below shows how CDC can be implemented within a streaming data
     - Streaming data consumers actively consume change events in real-time, just as they would with any other streaming data source.
     - These consumers treat CDC data as a continuous flow of real-time data, making it readily available for processing and analysis.
 
-![CDC with streaming data](assets/building_blocks/data_sources/bb1-3.png)
+<img src=assets/building_blocks/data_sources/bb1-3.png alt="CDC with streaming data" data-size="100" />
