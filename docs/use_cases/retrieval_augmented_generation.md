@@ -2,7 +2,7 @@
 
 # Retrieval Augmented Generation
 
-![](assets/use_cases/retrieval_augmented_generation/cover.png)
+<img src=assets/use_cases/retrieval_augmented_generation/cover.png alt="RAG cover" data-size="100" />
 
 ## The case for Retrieval-augmented Generation
 
