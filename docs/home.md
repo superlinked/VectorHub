@@ -75,5 +75,5 @@ Toolbox is a collection of benchmarks, code snippets, summaries, and tricks to h
 ***
 
 :::hint{type="info"}
-VectorHub is a free and open-sourced learning hub that is sponsored and curated by Superlinked. We enourage you to contribute or make a suggestion on our GitHub.
+VectorHub is a free and open-sourced learning hub that is sponsored and curated by Superlinked. We encourage you to contribute or make a suggestion on our GitHub.
 :::
