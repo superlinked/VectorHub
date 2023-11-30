@@ -3,15 +3,24 @@
 - [Subscribe](subscribe.md)
 
 - [Building Blocks](building_blocks/readme.md)
-  - [Data Sources](building_blocks/data_sources/readme.md)
-  - [Vector Compute](building_blocks/vector_compute/readme.md)
-  - [Vector Search](building_blocks/vector_search/readme.md)
-
+  - [1.0 Data Sources](building_blocks/data_sources/readme.md)
+    - [1.1 Data Velocity](building_blocks/data_sources/data_velocity.md)
+    - [1.2 Data Velocity](building_blocks/data_sources/data_modality.md)
+    - [1.3 Conclusion](building_blocks/data_sources/conclusion.md)
+  - [2.0 Vector Compute](building_blocks/vector_compute/readme.md)
+    - [2.1 Embedding Models](building_blocks/vector_compute/embedding_models.md)
+    - [2.2 Pre-Trained vs Custom Models](building_blocks/vector_compute/pre-train-custom.md)
+    - [2.3 Applications of Vector Compute](building_blocks/vector_compute/applications.md)
+  - [3.0 Vector Search](building_blocks/vector_search/readme.md)
+    - [3.1 Nearest Neighbor Search Algorithms](building_blocks/vector_search/nearest-neighbor.md)
+    - [3.2 Key Access Patterns](building_blocks/vector_search/access_patterns.md)
+    - [3.3 Conclusion](building_blocks/vector_search/conclusion.md)
+   
 - [Blog](use_cases/readme.md)
   - [Personalized Search](use_cases/personalized_search.md)
   - [Recommender Systems](use_cases/recommender_systems.md)
   - [Retrieval Augmented Generation](use_cases/retrieval_augmented_generation.md)
-
+  - [Enhancing RAG with multiple agents](use_cases/multi_agent_rag.md)
 
 - [Toolbox](tools/readme.md)
 
