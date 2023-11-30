@@ -11,19 +11,19 @@
 ---
 ## Vector Embeddings, just for specialists?
 
-Let's say you want to create an intuitive semantic search application. You know a little about what you'll need: vector embeddings, maybe some retrieval augmented generation. But how do you operationalize this rough, conceptual understanding of vector embeddings in a real-world application? Don't you require a substantial hardware setup or expensive cloud APIs? Even if you had the requisite backend resources, who's going to develop and configure them? Don't you also need highly specialized machine learning engineers or data scientists even to get started?
+Let's say you want to create an intuitive app for comparing vector embeddings of some content. You know a little about what you'll need: first, obviously, a way of creating vector embeddings, maybe also some retrieval augmented generation. But how do you operationalize your idea into a real-world application? Don't you require a substantial hardware setup or expensive cloud APIs? Even if you had the requisite backend resources, who's going to develop and configure them? Don't you also need highly specialized machine learning engineers or data scientists even to get started?
 
 Happily, the answer to all of these concerns is No.
 
-You don't require high-end equipment, powerful GPUs, or ML and data science experts. Thanks to pre-trained machine learning models, you can create an intuitive semantic search application right within your browser, on a local machine, tailored to your data. You also don't need library installations or complex configurations for end-users. And you can start immediately.
+You don't require high-end equipment, powerful GPUs, or ML and data science experts. Thanks to pre-trained machine learning models, you can create an intuitive component that creates and compares vector embeddings right within your browser, on a local machine, tailored to your data. You also don't need library installations or complex configurations for end-users. And you can start immediately.
 
 The following tutorial in creating a small-scale AI application demonstrates just how straightforward and efficient the process can be in a specific instance. But it's also more generally an illustration of how you can operationalize vector embeddings for practical use cases.
 
 Intrigued? Ready to start building?
 
-## Let's build an intuitive semantic search app!
+## Let's build an user-friendly app that compares vector embeddings!
 
-Our component is an intuitive semantic search application you can build right within your web browser, and tailored to your data. It produces and visualizes sentence embeddings in a user-friendly interface.
+Our component is an intuitive component for assessing vector embeddings similarity that you can build right within your web browser, and tailored to your data. It produces and visualizes sentence embeddings in a user-friendly interface.
 
 We will take a user input text, split it into sentences, and derive vector embeddings for each sentence using TensorFlow.js. To assess the quality of our embeddings, we will generate a similarity matrix mapping the similarity between all our vector pairs as as a colorful heatmap. Our component enables this by managing all the necessary state and UI logic.
 
