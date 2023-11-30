@@ -11,13 +11,13 @@
 ---
 ## Vector Embeddings, just for specialists?
 
-Let's say you want to build an app that assesses the similarity of content using vector embeddings. You know a little about what you'll need: first, obviously, a way of creating vector embeddings, maybe also some retrieval augmented generation. But how do you operationalize your idea into a real-world application? Don't you require a substantial hardware setup or expensive cloud APIs? Even if you had the requisite backend resources, who's going to develop and configure them? Don't you also need highly specialized machine learning engineers or data scientists even to get started? Don't you need to at least know Python?
+Let's say you want to build an app that assesses the similarity of content using vector embeddings. You know a little about what you'll need: first, obviously, a way of creating vector embeddings, maybe also some retrieval augmented generation. But how do you operationalize your idea into a real-world application? Don't you require a substantial hardware setup or expensive cloud APIs? Even if you had the requisite backend resources, who's going to develop and configure them? Don't you also need highly specialized machine learning engineers or data scientists even to get started? Don't you have to at least know Python?
 
 Happily, the answer to all of these concerns is No.
 
 **You can start building AI apps without having to learn a new programming language or adopt an entirely new set of skills**.
 
-You don't require high-end equipment, or powerful GPUs. You _don't_ need ML and data science experts. Thanks to pre-trained machine learning models, **you can create an intuitive component that generates and compares vector embeddings right within your browser, on a local machine, tailored to your data**. You also don't need library installations or complex configurations for end-users. You don't need to know Python; you can do it directly in TypeScript. And you can start immediately.
+You don't require high-end equipment, or powerful GPUs. You _don't_ need ML and data science experts. Thanks to pre-trained machine learning models, **you can create an intuitive component that generates and compares vector embeddings right within your browser, on a local machine, tailored to your data**. You also don't require library installations or complex configurations for end-users. You don't have to know Python; you can do it directly in TypeScript. And you can start immediately.
 
 The following tutorial in creating a small-scale AI application demonstrates just how straightforward and efficient the process can be. Though our component is a very specific use case, you can apply its basic approach to operationalizing vector embeddings for all kinds of practial applications.
 
@@ -27,7 +27,7 @@ Intrigued? Ready to start building?
 
 Our component takes input content, produces vector embeddings from it, assesses its parts - in our case, sentences - and provides a user-friendly visual display of the results. And you can build it right within your web browser.
 
-In our tutorial, we will take a user input text, split it into sentences, and derive vector embeddings for each sentence using TensorFlow.js. To assess the quality of our embeddings, we will generate a similarity matrix mapping the distance between vectors as a colorful heatmap. Our component enables this by managing all the necessary state and UI logic.
+In our tutorial, we will take some user input text, split it into sentences, and derive vector embeddings for each sentence using TensorFlow.js. To assess the quality of our embeddings, we will generate a similarity matrix mapping the distance between vectors as a colorful heatmap. Our component enables this by managing all the necessary state and UI logic.
 
 Let's take a closer look at the our component's parts.
 
@@ -467,7 +467,7 @@ Here is where our **similarity matrix** comes into play. We employ the dot produ
 
 ### Paragraph 1 input
 
-> "The quick brown fox jumps over the lazy dog" is an English-language pangram – a sentence that contains all the letters of the alphabet. The phrase is commonly used for touch-typing practice, testing typewriters and computer keyboards, displaying examples of fonts, and other applications involving text where the use of all letters in the alphabet is desired.
+> "The quick brown fox jumps over the lazy dog" is an English-language pangram – a sentence that contains all the letters of the alphabet at least once. The phrase is commonly used for touch-typing practice, testing typewriters and computer keyboards, displaying examples of fonts, and other applications involving text where the use of all letters in the alphabet is desired.
 > 
 
 ### Paragraph 2 input
@@ -480,18 +480,20 @@ When we input these sentences to our model and generate the similarity matrix, w
 ![Similarity Matrix for seven sentences from two documents](../assets/use_cases/embeddings_on_browser/embeddings-browser-similarity-matrix.png)
 (Note: the 7x7 matrix represents seven sentences; Paragraph 2's second sentence breaks at the "A." of "Charles A. Storke." The third sentence begins with "Storke.")
 
-Our similarity matrix demonstrates how same-paragraph sentence pairs are more similar than different-paragraph sentence pairs. Same-paragraph sentence pairs display as significantly darker squares, in our matrix, above. The darker the hue of green, the more similar the vectors - i.e., the less distant they are in semantic meaning. For example, the square pairing Paragraph 1's first sentence ("The quick brown fox...") and second sentence ("The phrase is commonly...") displays as relatively dark green - [1,2] and [2,1]. Similarly, pairing Paragraph 2's first ("The Los Angeles Herald...") and second ("Founded in 1873...") sentences displays as relatively dark green - [3,4] and [4,3]. (The darkest green squares represent the dot product values of identical pairs - [1,1], [2,2] [3,3], and so on.)
+Our similarity matrix uses color hue to illustrate that same-paragraph sentence pairs are more similar (darker green) than different-paragraph sentence pairs (lighter green). The darker the hue of green, the more similar the vectors representing the sentences are - i.e., the closer they are in semantic meaning. For example, pairing Paragraph 1's first sentence ("The quick brown fox...") and second sentence ("The phrase is commonly...") displays as medium green squares - [1,2] and [2,1]. So does pairing Paragraph 2's first ("The Los Angeles Herald...") and second ("Founded in 1873...") - [3,4] and [4,3]. The darkest green squares represent the dot product values of identical pairs - [1,1], [2,2] [3,3], and so on.
 
 ![Numbered sentence pairs in similarity matrix](../assets/use_cases/embeddings_on_browser/embeddings-browser-numbered-similarity-matrix.png)
 
-As a result, each paragraph's same-paragraph sentence pairs form their own relatively dark regions within the larger matrix above. Conversely, different-paragraph sentence pairs are less similar, and therefore display as lighter green squares. For example, pairings of Paragraph 1's first sentence [1] and Paragraph 2's first sentence [3] are distinctively lighter green (i.e., more distant in meaning) - [1,3] and [3,1], and lie outside our two same-paragraph sentence pair groups.
+As a result, each paragraph's same-paragraph sentence pairs form their own notably darker regions within the larger matrix above. Conversely, different-paragraph sentence pairs are less similar, and therefore display as lighter green squares. For example, pairings of Paragraph 1's first sentence [1] and Paragraph 2's first sentence [3] are distinctively lighter green (i.e., more distant in meaning) - [1,3] and [3,1], and lie outside our two same-paragraph sentence pair regions.
 
 
 ## A real-world-ready semantic search application
 
-And that's it! Our low cost, intuitive, ready-to-deploy, in-browser vector embedding generator and visualizer is ready for you to deploy on real-world tasks.
+And that's it!
 
-This tutorial walked us through just one example of the kind of AI apps any developer can build, using pre-trained models configured with TypeScript, and without any cloud models, expensive hardware, or specialized engineering knowledge.
+You can now build our low cost, intuitive, ready-to-deploy, in-browser vector embedding generator and visualizer in your own browser, and use it for your own real-world applications.
+
+This is just one example of the kind of AI apps any developer can build, using pre-trained models configured with TypeScript, and without any cloud models, expensive hardware, or specialized engineering knowledge.
 
 
 ## Contributors
