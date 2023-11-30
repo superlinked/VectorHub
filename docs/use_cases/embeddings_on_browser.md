@@ -11,23 +11,23 @@
 ---
 ## Vector Embeddings, just for specialists?
 
-Let's say you want to create an intuitive app for comparing vector embeddings of some content. You know a little about what you'll need: first, obviously, a way of creating vector embeddings, maybe also some retrieval augmented generation. But how do you operationalize your idea into a real-world application? Don't you require a substantial hardware setup or expensive cloud APIs? Even if you had the requisite backend resources, who's going to develop and configure them? Don't you also need highly specialized machine learning engineers or data scientists even to get started?
+Let's say you want to build an app that assesses the similarity of content using vector embeddings. You know a little about what you'll need: first, obviously, a way of creating vector embeddings, maybe also some retrieval augmented generation. But how do you operationalize your idea into a real-world application? Don't you require a substantial hardware setup or expensive cloud APIs? Even if you had the requisite backend resources, who's going to develop and configure them? Don't you also need highly specialized machine learning engineers or data scientists even to get started? Don't you need to at least know Python?
 
 Happily, the answer to all of these concerns is No.
 
-You don't require high-end equipment, powerful GPUs, or ML and data science experts. Thanks to pre-trained machine learning models, you can create an intuitive component that creates and compares vector embeddings right within your browser, on a local machine, tailored to your data. You also don't need library installations or complex configurations for end-users. And you can start immediately.
+You _don't_ require high-end equipment, or powerful GPUs. You _don't_ need ML and data science experts. Thanks to pre-trained machine learning models, you can create an intuitive component that creates and compares vector embeddings right within your browser, on a local machine, tailored to your data. You also _don't_ need library installations or complex configurations for end-users. You can start immediately. And you _don't_ need Python; you can do it directly in Typescript.
 
-The following tutorial in creating a small-scale AI application demonstrates just how straightforward and efficient the process can be in a specific instance. But it's also more generally an illustration of how you can operationalize vector embeddings for practical use cases.
+The following tutorial in creating a small-scale AI application demonstrates just how straightforward and efficient the process can be. Though our component is a very specific use case, you can apply its basic approach to operationalizing vector embeddings to achieve all kinds of practial applications.
 
 Intrigued? Ready to start building?
 
-## Let's build an user-friendly app that compares vector embeddings!
+## An app that generates, compares, and visualizes vector embeddings in your browser!
 
-Our component is an intuitive component for assessing vector embeddings similarity that you can build right within your web browser, and tailored to your data. It produces and visualizes sentence embeddings in a user-friendly interface.
+Our component takes input content, produces vector embeddings from it, assesses its parts - in our case, sentences - and provides a user-friendly visual display of the results. And you can build it right within your web browser.
 
-We will take a user input text, split it into sentences, and derive vector embeddings for each sentence using TensorFlow.js. To assess the quality of our embeddings, we will generate a similarity matrix mapping the similarity between all our vector pairs as as a colorful heatmap. Our component enables this by managing all the necessary state and UI logic.
+In our tutorial, we will take a user input text, split it into sentences, and derive vector embeddings for each sentence using TensorFlow.js. To assess the quality of our embeddings, we will generate a similarity matrix mapping the distance between vector pairs all together as a colorful heatmap. Our component enables this by managing all the necessary state and UI logic.
 
-Let's take a closer look at the parts of our component.
+Let's take a closer look at the our component's parts.
 
 ## Specific parts of our application
 
@@ -49,9 +49,9 @@ Let's take a closer look at the parts of our component.
 
 ## Our encoder
 
-The [Universal Sentence Encoder](https://arxiv.org/pdf/1803.11175.pdf) is a pre-trained machine learning model built on the transformer architecture. It leverages creates context-aware representations for each word in a sentence, using the attention mechanism - i.e., carefully considering the order and identity of all other words. The Encoder combines employs element-wise summation to combine these word representations into a fixed-length sentence vector. To normalize these vectors, the Encoder then  divides them by the square root of the sentence length - to prevent shorter sentences from dominating solely due to their brevity.
+The [Universal Sentence Encoder](https://arxiv.org/pdf/1803.11175.pdf) is a pre-trained machine learning model built on the transformer architecture. It creates context-aware representations for each word in a sentence, using the attention mechanism - i.e., carefully considering the order and identity of all other words. The Encoder employs element-wise summation to combine these word representations into a fixed-length sentence vector. To normalize these vectors, the Encoder then divides them by the square root of the sentence length - to prevent shorter sentences from dominating solely due to their brevity.
 
-The Encoder takes sentences or paragraphs of text as input and outputs vectors that effectively capture the meaning of the text. This lets us assess vector similarity (distance), for use in a wide variety of natural language processing (NLP) tasks, including ours.
+The Encoder takes sentences or paragraphs of text as input, and outputs vectors that effectively capture the meaning of the text. This lets us assess vector similarity (distance) - a result you can use in a wide variety of natural language processing (NLP) tasks, including ours.
 
 ### Encoder, Lite
 
@@ -66,8 +66,7 @@ Many NLP projects employ pre-trained word embeddings like word2vec or GloVe, whi
 Though our Encoder's sentence embeddings are pre-trained, they can also be fine-tuned for specific tasks, even when there isn't much task-specific training data. (If we needed, we could even make the encoder more versatile, supporting _multiple_ downstream tasks, by training it with multi-task learning.)
 
 
-Okay, let's get started. 
-(Unless otherwise indicated, we'll be using Typescript.)
+Okay, let's get started, using Typescript.
 
 ## Our step-by-step tutorial
 
@@ -491,7 +490,7 @@ As a result, each paragraph's same-paragraph sentence pairs form their own relat
 
 And that's it! Our tutorial demonstrates how you can rapidly construct a low cost, intuitive, ready-to-deploy, in-browser vector embedding generator you can apply to real-world tasks.
 
-By using a pre-trained embedding generator (configured with Typescript), we were able to - in short order - set up a functioning, seamlessly in-browser, semantic search app without any cloud models, expensive hardware, or specialized engineering knowledge.
+By using a pre-trained embedding generator, configured with Typescript, we were able to - in short order - set up a functioning, seamlessly in-browser, semantic search app without any cloud models, expensive hardware, or specialized engineering knowledge.
 
 
 ## Contributors
