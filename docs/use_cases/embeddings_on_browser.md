@@ -15,9 +15,11 @@ Let's say you want to build an app that assesses the similarity of content using
 
 Happily, the answer to all of these concerns is No.
 
-You _don't_ require high-end equipment, or powerful GPUs. You _don't_ need ML and data science experts. Thanks to pre-trained machine learning models, you can create an intuitive component that creates and compares vector embeddings right within your browser, on a local machine, tailored to your data. You also _don't_ need library installations or complex configurations for end-users. You can start immediately. And you _don't_ need Python; you can do it directly in Typescript.
+**You can start building AI apps without having to learn a new programming language or adopt an entirely new set of skills**.
 
-The following tutorial in creating a small-scale AI application demonstrates just how straightforward and efficient the process can be. Though our component is a very specific use case, you can apply its basic approach to operationalizing vector embeddings to achieve all kinds of practial applications.
+You don't require high-end equipment, or powerful GPUs. You _don't_ need ML and data science experts. Thanks to pre-trained machine learning models, **you can create an intuitive component that generates and compares vector embeddings right within your browser, on a local machine, tailored to your data**. You also don't need library installations or complex configurations for end-users. You don't need to know Python; you can do it directly in TypeScript. And you can start immediately.
+
+The following tutorial in creating a small-scale AI application demonstrates just how straightforward and efficient the process can be. Though our component is a very specific use case, you can apply its basic approach to operationalizing vector embeddings for all kinds of practial applications.
 
 Intrigued? Ready to start building?
 
@@ -25,7 +27,7 @@ Intrigued? Ready to start building?
 
 Our component takes input content, produces vector embeddings from it, assesses its parts - in our case, sentences - and provides a user-friendly visual display of the results. And you can build it right within your web browser.
 
-In our tutorial, we will take a user input text, split it into sentences, and derive vector embeddings for each sentence using TensorFlow.js. To assess the quality of our embeddings, we will generate a similarity matrix mapping the distance between vector pairs all together as a colorful heatmap. Our component enables this by managing all the necessary state and UI logic.
+In our tutorial, we will take a user input text, split it into sentences, and derive vector embeddings for each sentence using TensorFlow.js. To assess the quality of our embeddings, we will generate a similarity matrix mapping the distance between vectors as a colorful heatmap. Our component enables this by managing all the necessary state and UI logic.
 
 Let's take a closer look at the our component's parts.
 
@@ -51,11 +53,11 @@ Let's take a closer look at the our component's parts.
 
 The [Universal Sentence Encoder](https://arxiv.org/pdf/1803.11175.pdf) is a pre-trained machine learning model built on the transformer architecture. It creates context-aware representations for each word in a sentence, using the attention mechanism - i.e., carefully considering the order and identity of all other words. The Encoder employs element-wise summation to combine these word representations into a fixed-length sentence vector. To normalize these vectors, the Encoder then divides them by the square root of the sentence length - to prevent shorter sentences from dominating solely due to their brevity.
 
-The Encoder takes sentences or paragraphs of text as input, and outputs vectors that effectively capture the meaning of the text. This lets us assess vector similarity (distance) - a result you can use in a wide variety of natural language processing (NLP) tasks, including ours.
+The Encoder takes sentences or paragraphs of text as input, and outputs vectors that effectively capture the meaning of the text. This lets us assess vector similarity (i.e., distance) - a result you can use in a wide variety of natural language processing (NLP) tasks, including ours.
 
 ### Encoder, Lite
 
-For our application, we'll utilize a scaled-down and faster 'Lite' variant of the full model. The Lite model maintains strong performance while demanding less computational power, making it ideal for deployment in client-side code, mobile devices, or even directly within web browsers. The Lite variant doesn't require any kind of complex installation or a dedicated GPU, making it accessible to a broader range of users.
+For our application, we'll utilize a scaled-down and faster 'Lite' variant of the full model. The Lite model maintains strong performance while demanding less computational power, making it ideal for deployment in client-side code, mobile devices, or even directly within web browsers. And because the Lite variant doesn't require any kind of complex installation or a dedicated GPU, it's more accessible to a broader range of users.
 
 ### Why a pre-trained model
 
@@ -66,7 +68,7 @@ Many NLP projects employ pre-trained word embeddings like word2vec or GloVe, whi
 Though our Encoder's sentence embeddings are pre-trained, they can also be fine-tuned for specific tasks, even when there isn't much task-specific training data. (If we needed, we could even make the encoder more versatile, supporting _multiple_ downstream tasks, by training it with multi-task learning.)
 
 
-Okay, let's get started, using Typescript.
+Okay, let's get started, using TypeScript.
 
 ## Our step-by-step tutorial
 
@@ -221,7 +223,7 @@ This function is memoized using the **`useCallback`** hook, which ensures that i
 
 ### Function to generate sentence embeddings using the Universal Sentence Encoder
 
-The **`embeddingGenerator`** function is called when the user clicks a "Generate Embedding" button, and loads the Universal Sentence Encoder model, generates sentence embeddings for a list of sentences, and updates the component's state with the results. It also handles potential errors.
+The **`embeddingGenerator`** function is called when the user clicks a "Generate Embedding" button. It loads the Universal Sentence Encoder model, generates sentence embeddings for a list of sentences, and updates the component's state with the results. It also handles potential errors.
 
 ```tsx
   // Generate embeddings using Universal Sentence Encoder (Cer., et al., 2018)
@@ -275,7 +277,7 @@ The **`embeddingGenerator`** function is called when the user clicks a "Generate
 
 ### useEffect hook to render the similarity matrix as a colorful canvas
 
-**`useEffect`** is triggered when the **`similarityMatrix`** or **`canvasSize`** changes. **`useEffect`** draws a similarity matrix on an HTML canvas element. The matrix is represented as a grid of colored cells, with each color determined by the similarity value among sentences. The resulting visualization is a dynamic part of the user interface.
+**`useEffect`** is triggered when the **`similarityMatrix`** or **`canvasSize`** changes. **`useEffect`** draws a similarity matrix on an HTML canvas element. The matrix is represented as a grid of colored cells, with each color (hue) determined by the similarity value among sentences. The resulting visualization is a dynamic part of the user interface.
 
 ```tsx
 // Render similarity matrix as colored canvas
@@ -321,7 +323,7 @@ The **`embeddingGenerator`** function is called when the user clicks a "Generate
 
 ### User Input Section
 
-This code represents a part of the user interface where users can input multiple sentences. It includes a label, a multiline text input field, and the ability to control and update the input through React state management. The user's entered sentences are stored in the **`sentences`** state variable and can be used for further processing in the component.
+This code represents UI fields where users can input multiple sentences. It includes a label, a multiline text input field, and React state management to control and update the input, storing user-entered sentences in the **`sentences`** state variable for further processing in the component.
 
 ```tsx
 {/* User Input Section */}
@@ -345,7 +347,7 @@ This code represents a part of the user interface where users can input multiple
 
 ### Embeddings Output Section
 
-The UI embeddings output section displays the embeddings stored in the **`embeddings`** state variable, including a label, a multiline text output field. Through the embeddings output section you can control and update the displayed content using React state management.
+The UI embeddings output section displays the embeddings stored in the **`embeddings`** state variable, including a label, and a multiline text output field. React state management lets you control and update the displayed content.
 
 
 ```tsx
@@ -388,7 +390,7 @@ The following code represents a raised, solid button in the UI that triggers the
 
 ### Model Indicator
 
-This code controls what is displayed in the user interface based on the values of the **`modelComputing`** and **`modelLoading`** state variables. If **`modelComputing`** and **`modelLoading`** are **`true`**, a loading indicator is displayed. If **`modelLoading`**  is **`false`**, then the model is already loaded and we display a message indicating this. This conditional rendering allows the user to see either a loading indicator or a model loaded message based on the status of model loading and computing.
+This code deploys the values of the **`modelComputing`** and **`modelLoading`** state variables to control what's displayed in the user interface. If **`modelComputing`** and **`modelLoading`** are **`true`**, a loading indicator is displayed. If **`modelLoading`**  is **`false`**, then the model is already loaded and we display a message indicating this. This conditional rendering shows the user either a loading indicator or a model loaded message based on the status of model loading and computing.
 
 ```tsx
       {/* Display model loading or loaded message */}
@@ -419,8 +421,7 @@ This code controls what is displayed in the user interface based on the values o
 
 ### Similarity Matrix
 
-This code controls the rendering of the similarity matrix section of the user interface
-The following code displays the similarity matrix if the **`showSimilarityMatrix`** state variable is **`true`**. This section of the UI includes a title, "Similarity Matrix," and a canvas element for rendering the matrix. If **`false`**, the similarity matrix is hidden.
+The following code displays the similarity matrix in the user interface if the **`showSimilarityMatrix`** state variable is **`true`**. This section of the UI includes a title, "Similarity Matrix," and a canvas element for rendering the matrix. If **`false`**, the similarity matrix is hidden.
 
 ```tsx
 {/* Similarity Matrix Section  */}
@@ -456,7 +457,7 @@ The following code displays the similarity matrix if the **`showSimilarityMatrix
 
 Before we launch our intuitive semantic search application into production, we should test it. Let's check its functionality, and the quality of our model's vector embeddings.
 
-Functionality is easy. We just run and test it. Checking embedding quality is a bit more complex. We are dealing with arrays of 512 elements. How do we gauge their effectiveness? 
+Functionality is easy. We just run and test it. Checking embedding quality is a bit more complex. We are dealing with arrays of 512 elements. How do we gauge their effectiveness?
 
 Here is where our **similarity matrix** comes into play. We employ the dot product between vectors for each pair of sentences to discern their proximity or dissimilarity. To illustrate this, let's take two random pages from Wikipedia, each containing different paragraphs. These two pages will provide us with a total of seven sentences for comparison.
 
@@ -479,7 +480,7 @@ When we input these sentences to our model and generate the similarity matrix, w
 ![Similarity Matrix for seven sentences from two documents](../assets/use_cases/embeddings_on_browser/embeddings-browser-similarity-matrix.png)
 (Note: the 7x7 matrix represents seven sentences; Paragraph 2's second sentence breaks at the "A." of "Charles A. Storke." The third sentence begins with "Storke.")
 
-Our similarity matrix demonstrates how same-paragraph sentence pairs are more similar than different-paragraph sentence pairs. Same-paragraph sentence pairs display as significantly darker squares, in our matrix, above. The darker the hue of green, the more similar the vectors - i.e., the less distant they are in semantic meaning. For example, the square (dot product) pairing Paragraph 1's first sentence ("The quick brown fox...") and second sentence ("The phrase is commonly...") displays as relatively dark green - [1,2] and [2,1]. Similarly, pairing Paragraph 2's first ("The Los Angeles Herald...") and second ("Founded in 1873...") sentences displays as relatively dark green - [3,4] and [4,3]. The darkest green squares represent dot products of identical pairs - [1,1], [2,2] [3,3], and so on.
+Our similarity matrix demonstrates how same-paragraph sentence pairs are more similar than different-paragraph sentence pairs. Same-paragraph sentence pairs display as significantly darker squares, in our matrix, above. The darker the hue of green, the more similar the vectors - i.e., the less distant they are in semantic meaning. For example, the square pairing Paragraph 1's first sentence ("The quick brown fox...") and second sentence ("The phrase is commonly...") displays as relatively dark green - [1,2] and [2,1]. Similarly, pairing Paragraph 2's first ("The Los Angeles Herald...") and second ("Founded in 1873...") sentences displays as relatively dark green - [3,4] and [4,3]. (The darkest green squares represent the dot product values of identical pairs - [1,1], [2,2] [3,3], and so on.)
 
 ![Numbered sentence pairs in similarity matrix](../assets/use_cases/embeddings_on_browser/embeddings-browser-numbered-similarity-matrix.png)
 
@@ -488,9 +489,9 @@ As a result, each paragraph's same-paragraph sentence pairs form their own relat
 
 ## A real-world-ready semantic search application
 
-And that's it! Our tutorial demonstrates how you can rapidly construct a low cost, intuitive, ready-to-deploy, in-browser vector embedding generator you can apply to real-world tasks.
+And that's it! Our low cost, intuitive, ready-to-deploy, in-browser vector embedding generator and visualizer is ready for you to deploy on real-world tasks.
 
-By using a pre-trained embedding generator, configured with Typescript, we were able to - in short order - set up a functioning, seamlessly in-browser, semantic search app without any cloud models, expensive hardware, or specialized engineering knowledge.
+This tutorial walked us through just one example of the kind of AI apps any developer can build, using pre-trained models configured with TypeScript, and without any cloud models, expensive hardware, or specialized engineering knowledge.
 
 
 ## Contributors
