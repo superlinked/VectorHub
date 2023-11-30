@@ -476,7 +476,7 @@ Here is where our **similarity matrix** comes into play. We employ the dot produ
 
 When we input these sentences to our model and generate the similarity matrix, we can observe some remarkable patterns. 
 
-![Similarity Matrix for seven sentences from two documents](../assets/use_cases/embeddings_on_browser/ embeddings-browser-similarity-matrix.png)
+![Similarity Matrix for seven sentences from two documents](../assets/use_cases/embeddings_on_browser/embeddings-browser-similarity-matrix.png)
 (Note: the 7x7 matrix represents seven sentences; Paragraph 2's second sentence breaks at the "A." of "Charles A. Storke." The third sentence begins with "Storke.")
 
 Our similarity matrix demonstrates how same-paragraph sentence pairs are more similar than different-paragraph sentence pairs. Same-paragraph sentence pairs display as significantly darker squares, in our matrix, above. The darker the hue of green, the more similar the vectors - i.e., the less distant they are in semantic meaning. For example, the square (dot product) pairing Paragraph 1's first sentence ("The quick brown fox...") and second sentence ("The phrase is commonly...") displays as relatively dark green - [1,2] and [2,1]. Similarly, pairing Paragraph 2's first ("The Los Angeles Herald...") and second ("Founded in 1873...") sentences displays as relatively dark green - [3,4] and [4,3]. The darkest green squares represent dot products of identical pairs - [1,1], [2,2] [3,3], and so on.
