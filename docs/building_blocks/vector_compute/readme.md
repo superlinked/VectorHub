@@ -6,7 +6,7 @@
 
 Back in 2011, Marc Andreessen told us “Software is eating the world.” Now, more than a decade later, there’s a new guest at the table, and “**AI is eating software**.” More products and processes, including the creation of software itself, are being powered by advanced Machine Learning.
 
-But Machine Learning shouldn't just ingest and create haphazardly. To build a good ML-powered system, you have to overcome two common problems: **organize** your data in a way that lets you quickly retrieve relevant information, and, relatedly, **represent** your data in a way that makes it easy to feed into your ML models.
+But Machine Learning shouldn't just ingest and create haphazardly. To build a good ML-powered system, you have to overcome two common problems: **organizing** your data in a way that lets you quickly retrieve relevant information, and, relatedly, **representing** your data in a way that makes it easy to feed into your ML models.
 
 <img src=assets/building_blocks/vector_compute/bb2-1.png alt="Meme" data-size="100" />
 
