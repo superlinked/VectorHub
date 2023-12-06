@@ -25,17 +25,6 @@ In addition, current RAG systems fail to appropriately weight the original promp
 
 Specialized agents with divided responsibilities can help address the challenges that plague single-agent architectures, and unlock RAG's full potential. By factoring RAG into separable subtasks executed concurrently by collaborative and specialized query understanding, retriever, ranker, reader, and orchestrator agents, multi-agent RAG can mitigate single-agent RAG's relevance, scalability, and latency limitations. This allows RAG to scale efficiently to enterprise workloads.
 
-```python
-# Create a group chat with all agents
-chat = GroupChat(
-  agents = [user, retriever_agent, ranker_agent, reader_agent, orchestrator_agent]
-)
-
-# Run the chat
-manager = GroupChatManager(chat)
-manager.run()
-```
-
 Let's break multi-agent RAG into its parts:
 
 First, a query understanding / parsing agent comprehends the query, breaking it down and describing in different sub queries.
@@ -55,8 +44,6 @@ Finally, the orchestrator agent dynamically adjusts the relevance weighting and 
 - Salient extraction and abstraction techniques achieve _better summarization_. Reader agents condense complex information from retrieved passages into concise, coherent, highly informative summaries.
 - Prompt hybridization achieves _optimized prompting_. Orchestrator agents balance prompt and ranked context data for more coherent outcome prompts.
 - Flexible, modular architecture _enables easy horizontal scaling_ and optional _incorporation of new data sources_. You can enhance iteratively over time by adding more agents (e.g., a visualizer agent to inspect system behavior), or substituting alternative implementations of any agent.
-
-These benefits of multi-agent over single-agent RAG have been demonstrated in experiments [any examples?].
 
 
 Let's look at an implementation of multi-agent RAG, and then look under the hood of the agents that make up multi-agent RAG, examining their logic, sequence, and possible optimizations.
@@ -237,6 +224,20 @@ The OrchestratorAgent can leverage structured knowledge and symbolic methods to 
 7. Analyze past answer reasoning patterns to identify common anomalies, biases, and fallacies, to continuously fine-tune the LLM reasoning, and improve final answer quality.
 8. Codify appropriate levels of answer certainty and entailment for different query types based on knowledge graph data analysis.
 9. Maintain provenance of answer generations to incrementally improve reasoning over time via knowledge graph and LLM feedback.
+
+
+Finally, to facilitate communication and interactions among the participating agents, you create a group chat:
+
+```python
+# Create a group chat with all agents
+chat = GroupChat(
+  agents = [user, retriever_agent, ranker_agent, reader_agent, orchestrator_agent]
+)
+
+# Run the chat
+manager = GroupChatManager(chat)
+manager.run()
+```
 
 
 ### Benefits of Specialized Agents
