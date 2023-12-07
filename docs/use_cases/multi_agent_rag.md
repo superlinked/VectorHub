@@ -240,7 +240,7 @@ manager.run()
 ```
 
 
-### Benefits of Specialized Agents
+## Benefits of Specialized Agents
 
 The proposed multi-agent RAG architecture delivers significant benefits in conversational AI, compared to single-agent RAG systems:
 
