@@ -27,7 +27,7 @@ Specialized agents with divided responsibilities can help address the challenges
 
 Let's break multi-agent RAG into its parts:
 
-First, a query understanding / parsing agent comprehends the query, breaking it down and describing in different sub queries.
+First, a query understanding / parsing agent comprehends the query, breaking it down and describing it in different sub-queries.
 
 Then x number of retriever agents, each utilizing optimized vector indices, focus solely on efficient passage retrieval from the document corpus, based on the sub-queries. These retriever agents employ vector similarity search or knowledge graph retrieval-based searches to quickly find potentially relevant passages, minimizing latency even when document corpora are large.
 
