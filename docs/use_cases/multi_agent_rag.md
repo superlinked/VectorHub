@@ -33,7 +33,7 @@ Then x number of retriever agents, each utilizing optimized vector indices, focu
 
 The ranker agent evaluates the relevance of the retrieved passages using additional ranking signals like source credibility, passage specificity, and lexical overlap. This provides a relevance-based filtering step. This agent might be using ontology, for example, as a way to rerank retrieved information. 
 
-The reader agent summarizes lengthy retrieved passages to succinct snippets containing only the most salient information. This distills the context down to key facts.
+The reader agent summarizes lengthy retrieved passages into succinct snippets containing only the most salient information. This distills the context down to key facts.
 
 Finally, the orchestrator agent dynamically adjusts the relevance weighting and integration of the prompt and filtered, ranked context passages (i.e., prompt hybridization) to maximize coherence in the final augmented prompt.
 
@@ -94,9 +94,9 @@ query_understanding_agent = autogen.AssistantAgent(
 )
 ```
 
-The goal of the QueryUnderstandingAgent is to check each subquery and determine which retriever agent is best suited to handle it based on the database schema matching. For example, some subqueries may be better served by a vector database while others by a knowledge graph database.
+The goal of the QueryUnderstandingAgent is to check each subquery and determine which retriever agent is best suited to handle it based on the database schema matching. For example, some subqueries may be better served by a vector database, and others by a knowledge graph database.
 
-To implement this, we can create a SubqueryRouter component, which takes in two retriever agents — a VectorRetrieverAgent and a KnowledgeGraphRetrieverAgent.
+To implement the QueryUnderstandingAgent, we can create a SubqueryRouter component, which takes in two retriever agents — a VectorRetrieverAgent and a KnowledgeGraphRetrieverAgent.
 
 When a subquery needs to be routed, the SubqueryRouter will check to see if the subquery matches the schema of the vector database using some keyword or metadata matching logic. If there is a match, it will return the VectorRetrieverAgent to handle the subquery. If there is no match for the vector database, the SubqueryRouter will next check if the subquery matches the schema of the knowledge graph database. If so, it will return the KnowledgeGraphRetrieverAgent instead.
 
@@ -167,7 +167,7 @@ The ranker agents in a multi-agent retrieval system can be specialized using dif
 * Employ dense encoding models like DPR to leverage dual-encoder search through the vector space when ranking a large set of candidates.
 * For efficiency, use approximate nearest neighbor algorithms like HNSW when finding top candidates from a large corpus.
 * Apply re-ranking with cross-encoders after initial fast dense retrieval – for greater accuracy in ranking the top results.
-* Exploit metadata like document freshness, author credibility, keywords etc. to customize ranking based on query context.
+* Exploit metadata like document freshness, author credibility, keywords, etc. to customize ranking based on query context.
 * Use learned models like LambdaRank to optimize the ideal combination of ranking signals.
 * Specialize different ranker agents, respectively, on particular types of queries where they perform best, selected dynamically.
 * Implement ensemble ranking approaches to combine multiple underlying rankers/signals efficiently.
@@ -187,12 +187,14 @@ To optimize accuracy, speed, and customization in your ranker agents, you need t
 
 To optimize your reader agent, we recommend that you:
 
-* Use Claude 2 as the base model for the ReaderAgent; leverage its long context abilities for summarization. Fine-tune Claude further on domain specific summarization data.
-* Implement a ToolComponent that wraps access to a knowledge graph (KG) containing summarization methodologies — things like identifying key entities, events, detecting redundancy, etc.
-* The ReaderAgent’s run method takes the lengthy passage as input.
-* The ReaderAgent generates a prompt for Claude 2, combining the passage and a methodology retrieval call to the KG tool, to arrive at the optimal approach for summarizing the content.
+* Use Claude 2 as the base model for the ReaderAgent; leverage its long context abilities for summarization. Fine-tune Claude 2 further on domain-specific summarization data.
+* Implement a ToolComponent that wraps access to a knowledge graph containing summarization methodologies — things like identifying key entities, events, detecting redundancy, etc.
+
+By taking the above steps, you can ensure that:
+
+* When the ReaderAgent’s run method takes the lengthy passage as input, the ReaderAgent generates a prompt for Claude 2, combining the passage and a methodology retrieval call to the KG tool, to arrive at the optimal approach for summarizing the content.
 * Claude 2 processes this augmented prompt to produce a concise summary, extracting the key information.
-* The summary is returned.
+* As a final step, the summary is returned.
 
 ```python
 # ReaderAgent
@@ -218,7 +220,7 @@ The OrchestratorAgent can leverage structured knowledge and symbolic methods to 
 
 1. Maintain a knowledge graph containing key entities, relations, and facts extracted from the documents. Use this to verify the factual accuracy of answers.
 2. Implement logic to check the final answer against known facts and rules in the knowledge graph. Flag inconsistencies for the LLMs to re-reason.
-3. Enable the OrchestratorAgent ask clarifying questions to the ReaderAgent (i.e., solicit additional context) in the event that answers contradict the knowledge graph.
+3. Enable the OrchestratorAgent to ask clarifying questions to the ReaderAgent (i.e., solicit additional context) in the event that answers contradict the knowledge graph.
 4. Use the knowledge graph to identify and add additional context (entities and events) related to concepts in the user query and final answer.
 5. Generate concise explanations to justify the reasoning alongside (in parallel to) the final answer, using knowledge graph relations and LLM semantics.
 7. Analyze past answer reasoning patterns to identify common anomalies, biases, and fallacies, to continuously fine-tune the LLM reasoning, and improve final answer quality.
@@ -226,7 +228,7 @@ The OrchestratorAgent can leverage structured knowledge and symbolic methods to 
 9. Maintain provenance of answer generations to incrementally improve reasoning over time via knowledge graph and LLM feedback.
 
 
-Finally, to facilitate communication and interactions among the participating agents, you create a group chat:
+Finally, to facilitate communication and interactions among the participating agents, you need to create a group chat:
 
 ```python
 # Create a group chat with all agents
