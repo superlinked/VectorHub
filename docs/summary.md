@@ -24,7 +24,7 @@
   - [Embeddings on browser](use_cases/embeddings_on_browser.md)
 
 - [Toolbox](tools/readme.md)
-  - [Test](tools/test.md)
+  - [TestPage](tools/testpage.md)
 
 - [Contributing](contributing/readme.md)
   - [Markdown Formatting](contributing/markdown_formatting.md)
