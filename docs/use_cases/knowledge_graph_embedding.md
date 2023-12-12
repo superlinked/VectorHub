@@ -1,6 +1,6 @@
-# KGE vs LLM
+# Learning Scemantic Representations for Knowledge Graphs
 
-In today's world, Large Language Models (LLMs) are everywhere, doing all sorts of language-related tasks really well. They're the go-to solution for understanding and using text in many different ways.
+In today's world, LLMs (Large Language Models) are everywhere, doing all sorts of language-related tasks really well. They're the go-to solution for understanding and using text in many different ways.
 
 However, in some specific areas, there are other more specialized approaches that might give better results for specific tasks. 
 
@@ -8,7 +8,7 @@ This post digs into when these popular language models might not be the best cho
 
 # What are Knowledge Graphs?
 
-Now, let's zoom in on KGs (Knowledge Graphs). We use KGs to describe how different entities, like people, places, or more generally "things", relate to each other. For example a KG can show us how a famous scientist is linked to their discoveries or how a city is connected to its historical events.
+Now, let's zoom in on KGs (Knowledge Graphs). We use KGs to describe how different entities, like people, places, or more generally "things", relate to each other. For example a KG can show us how a famous writer is linked to their books or how a book is connected to its received awards:
 
 <img src=assets/use_cases/knowledge_graph_embedding/small_kg.png alt="Knowledge Graph example" data-size="100" />
 
@@ -16,11 +16,9 @@ In certain areas where understanding these specific connections is crucial - lik
 
 # What is Knowledge Graph Embedding (KGE)?
 
-KGE algorithms take this tangled complex web of connections and turn it into something AI systems can understand better: vectors. These algorithms operate on a very crucial concept: learning the mapping in a way that not only contains information about the structure of nodes and relations, but also grasp their semantic meaning. 
+KGE algorithms take this tangled complex web of connections and turn it into something AI systems can understand better: vectors. This might raise a question - if we already have knowledge of the connections between nodes and their relations, then why do we need to take the effort to learn embeddings?
 
-This might raise a question - if we already have knowledge of the connections between nodes and their relations, then why do we need to take the effort to learn these embeddings?
-
-The challenge with KGs is that they are not always complete. Incompleteness means that there might be some edges that should ideally be present but are missing. These missing links could be the result of inaccuracies in the data collection process, or it could simply be a reflection of the imperfect nature of our data source. According to this article [REF], in large open-source knowledge bases we can observe a significant amount of incompleteness: 
+The challenge with KGs is that they are usually incomplete. This means that there might be some edges that should ideally be present but are missing. These missing links could be the result of inaccuracies in the data collection process, or it could simply be a reflection of the imperfect nature of our data source. According to [this article](https://towardsdatascience.com/neural-graph-databases-cc35c9e1d04f), in large open-source knowledge bases we can observe a significant amount of incompleteness: 
 
 “… in Freebase, 93.8% of people have no place of birth and [78.5% have no nationality](https://aclanthology.org/P09-1113.pdf), about 68% of people [do not have any profession](https://dl.acm.org/doi/abs/10.1145/2566486.2568032), while in Wikidata, about [50% of artists have no date of birth](https://arxiv.org/abs/2207.00143), and only [0.4% of known buildings have information about height](https://dl.acm.org/doi/abs/10.1145/3485447.3511932).”
 
@@ -32,20 +30,23 @@ In general, KGE algorithms work by defining a similarity function in the embeddi
 
 The simplest approach is to consider nodes that are connected by an edge as similar. Then, the task of learning node embeddings can be defined as a classification task. Given the embeddings of two nodes and a relation, the task is to determine how likely it is that they are similar (connected).
 
-For our demo, we've opted for the DistMult KGE algorithm. It works by representing the likelihood of relationships between entities (the similarity function) as a bilinear function. Essentially, it assumes that the score of a given triple (comprising a head entity, a relationship, and a tail entity) can be computed as $h^T diag(r) t$. The model parameters are learned by minimizing the cross entropy between real and corrupted triplets. This process allows the model to learn the intricate relationships within the KG.
+For our demo, we've opted for the DistMult KGE algorithm. It works by representing the likelihood of relationships between entities (the similarity function) as a bilinear function. Essentially, it assumes that the score of a given triple (comprising a head entity $h$, a relationship $r$, and a tail entity $t$) can be computed as $h^T \text{diag}(r) t$. 
 
 <img src=assets/use_cases/knowledge_graph_embedding/distmult.png alt="DistMult bilinear similarity" data-size="100" />
 
-[https://data.dgl.ai/asset/image/ke/distmult.png](https://data.dgl.ai/asset/image/ke/distmult.png)
+[Image source](https://data.dgl.ai/asset/image/ke/distmult.png)
+
+The model parameters are learned by minimizing the cross entropy between real and corrupted triplets. This process allows the model to learn the intricate relationships within the KG.
 
 In the following two sections we will walk through how you can:
 
 1. Build and train a DistMult model.
 2. Use the model to answer questions.
 
-## 1. Build and Train a DistMult model
+# Build and Train a KGE model
 
 In our demo, we'll use a subgraph of the Freebase Knowledge Graph, a database of general facts (now transferred to Wikidata after its 2014 shutdown).
+This graph contains 14541 different entities, 237 different relation types and 310116 edges in total. 
 
 You can load the graph as follows:
 
@@ -53,11 +54,6 @@ You can load the graph as follows:
 from torch_geometric.datasets import FB15k_237
 train_data = FB15k_237("./data", split='train')[0]
 ```
-
-This graph contains 14541 different entities, 237 different relation types and 310116 edges in total. Here you can see a small sample of the graph:
-
-[EDGE EXAMPLES]
-
 We will use PyTorch Geometric, a library built on top of PyTorch, to construct and train the model. This library is specifically designed for building machine learning models on graph-structured data.
 
 The implementation of the DistMult algorithm lies under the `torch_geometric.nn` package. To create the model, we need to specify the following three parameters:
@@ -136,33 +132,25 @@ tail_entities = torch.tensor([burgundy, riodj, bnc], dtype=torch.long)
 # Score triples using the model
 scores = model(head_entities, relationships, tail_entities)
 print(scores.tolist())
->>> [3.71, 2.43, -1.89] 
+>>> [3.890, 2.069, -2.666]
+
 # Burgundy gets the highest score
 # Bonnie and Clyde gets the lowest (negative) score
 ```
 
-## 2. Answering questions with the model
+# Answering questions with the model
 
-Next, we'll demonstrate how we can use the trained model to answer questions. For instance, let's take the following question: *What is the profession of Guy Ritchie?*
-
-*It's important to note that Guy Ritchie's actual profession wasn't included in the training graph. Let's see if our model can still answer this question.
-
-To answer the question we first have to find the embedding vectors of “Guy Ritchie” and the relation “profession”. 
-
+Next, we'll show how we can apply the trained model to answer questions. Let's consider this question: "What is Guy Ritchie's profession?"
+To answer this question, we start by finding the embedding vectors of "Guy Ritchie" and the relation "profession."
 ```python
-# Get node and relation IDs
-guy_ritchie = nodes["Guy Ritchie"]
-profession = edges["/people/person/profession"]
-
 # Accessing node and relation embeddings
 node_embeddings = model.node_emb.weight
 relation_embeddings = model.rel_emb.weight
 
 # Accessing embeddings for specific entities and relations
-guy_ritchie = node_embeddings[guy_ritchie]
-profession = relation_embeddings[profession]
+guy_ritchie = node_embeddings[nodes["Guy Ritchie"]]
+profession = relation_embeddings[edges["/people/person/profession"]]
 ```
-
 Remember, the DistMult algorithm models connections as a bilinear function of the (head, relation, tail) triplet, so we can express our question as: <Guy Ritchie, profession, ?>. Whichever node maximizes this expression will be the answer of the model.
 
 ```python
@@ -184,7 +172,7 @@ top_5_scores = scores[sorted_indices]
  ('artist', 2.522)]
 ```
 
-Remarkably, the model managed to correctly answer the question, despite the actual fact not being present in the Knowledge Graph. This impressive feat indicates the model's ability to interpret and infer information that isn't explicitly included in the graph (incompleteness).
+Remarkably, the model managed to correctly answer the question, despite the actual fact not being present in the training graph. This impressive feat indicates the model's ability to interpret and infer information that isn't explicitly included in the graph (incompleteness).
 
 Furthermore, an interesting observation can be made in relation to the top five relevant entities identified by the model. All of these were professions, which suggests that the model has successfully learned and understood the concept of a "profession". This understanding goes beyond merely recognizing the term "profession"; the model has evidently grasped the broader context and implications associated with the concept.
 
@@ -192,11 +180,13 @@ Moreover, a deeper look into these five professions reveals an intriguing patter
 
 In conclusion, the model's performance in this scenario demonstrates its potential in understanding concepts, interpreting context, and extracting semantic meaning.
 
+You can find all the code for this demonstration in [this](https://drive.google.com/file/d/1G3tJ6Nn_6hKZ8HZGpx8OHpWwGqp_sQtF/view?usp=sharing) notebook.
+
 # Comparing KGE with LLM performance on a large Knowledge Graph
 
 In this section, we're comparing the performance of Knowledge Graph Embeddings (KGE) and Language Models (LLMs) on a dataset called ogbl-wikikg2. This dataset is drawn from Wikidata and includes 2.5 million unique entities, 535 types of relations, and 17.1 million fact triplets. We'll evaluate their performance using hit rates (the ratio of correct answers), following the guidelines provided [here](https://ogb.stanford.edu/docs/linkprop/#ogbl-wikikg2).
 
-Our approach involved creating textual representations for each node within the graph. We did this by crafting sentences that describe their connections, like this: "[node] [relation1] [neighbor1], [neighbor2]. [node] [relation2] [neighbor3], [neighbor4]. ..." These textual representations were then fed into a LLM – specifically, `the BAAI/bge-base-en-v1.5` model available on HuggingFace. The resulting embeddings from this process served as our node embeddings.
+Our approach involved creating textual representations for each node within the graph. We did this by crafting sentences that describe their connections, like this: "[node] [relation1] [neighbor1], [neighbor2]. [node] [relation2] [neighbor3], [neighbor4]. ..." These textual representations were then fed into a LLM – specifically, the `BAAI/bge-base-en-v1.5` model available on [HuggingFace](https://huggingface.co/BAAI/bge-base-en-v1.5). The resulting embeddings from this process served as our node embeddings.
 
 For queries, we took a similar textual representation approach, creating descriptions of the query but omitting the specific entity in question. With these representations in hand, we utilized a dot product similarity to find and rank relevant answers.
 
@@ -219,14 +209,10 @@ These results strongly support that KGE is more suitable than LLMs for tasks whe
 # Limitations
 
 While DistMult stands as a simple but powerful tool for embedding KGs, it does come with limitations:
-1. Cold start problem: When the graph evolves or changes over time, DistMult struggles to accommodate new nodes introduced later on.
-2. Inadequacy for complex questions: While it excels in straightforward question-answering scenarios, the DistMult model falls short when faced with complex questions that demand a deeper comprehension extending beyond immediate connections. Other KGE algorithms better suit such tasks.
-3. Limited handling of complex relation patterns: DistMult struggles with more intricate relation patterns like transitivity and inversion. This restricts its applicability in scenarios where these complex relations are prevalent. Other Knowledge Graph Embedding (KGE) algorithms might be better suited for handling such situations.
+1. Cold start problem: When the graph evolves or changes over time, DistMult can't represent new nodes introduced later on, or can't model the effect of new connections introduced to the graph.
+2. It struggles with complex questions: While it excels in straightforward question-answering scenarios, the DistMult model falls short when faced with complex questions that demand a deeper comprehension extending beyond immediate connections. Other KGE algorithms better suit such tasks.
 
 One reason why the LLM approach might struggle with performance is due to the formulation used, where each node is mapped to a sequence of sentences describing its connections. This method tends to overload the input text with an extensive amount of information for a single node. LLMs are typically not trained to handle such broad and diverse information within a single context; their strength lies in processing more focused and specific textual information.
-
-
-# Read More
 
 ---
 ## Contributors
