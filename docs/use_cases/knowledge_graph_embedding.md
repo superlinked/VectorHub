@@ -66,7 +66,7 @@ The implementation of the DistMult algorithm lies under the `torch_geometric.nn`
 - `num_relations`: The number of distinct relations in the graph (in our case, 237)
 - `hidden_channels`: The dimensionality of the embedding space (for this, we'll use 64)
 
-For additional configuration of the model, please refer to the documentation [LINK [https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.nn.kge.DistMult.html](https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.nn.kge.DistMult.html)].
+For additional configuration of the model, please refer to the [documentation](https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.nn.kge.DistMult.html).
 
 ```python
 from torch_geometric.nn import DistMult
@@ -218,10 +218,17 @@ These results strongly support that KGE is more suitable than LLMs for tasks whe
 
 # Limitations
 
-One explanation for the LLMs poor performance could be …
+While DistMult stands as a simple but powerful tool for embedding KGs, it does come with limitations:
+1. Cold start problem: When the graph evolves or changes over time, DistMult struggles to accommodate new nodes introduced later on.
+2. Inadequacy for complex questions: While it excels in straightforward question-answering scenarios, the DistMult model falls short when faced with complex questions that demand a deeper comprehension extending beyond immediate connections. Other KGE algorithms better suit such tasks.
+3. Limited handling of complex relation patterns: DistMult struggles with more intricate relation patterns like transitivity and inversion. This restricts its applicability in scenarios where these complex relations are prevalent. Other Knowledge Graph Embedding (KGE) algorithms might be better suited for handling such situations.
 
-…
+One reason why the LLM approach might struggle with performance is due to the formulation used, where each node is mapped to a sequence of sentences describing its connections. This method tends to overload the input text with an extensive amount of information for a single node. LLMs are typically not trained to handle such broad and diverse information within a single context; their strength lies in processing more focused and specific textual information.
+
 
 # Read More
 
-…
+---
+## Contributors
+
+- [Richárd Kiss, author](https://www.linkedin.com/in/richard-kiss-3209a1186/)
