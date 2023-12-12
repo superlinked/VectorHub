@@ -1,4 +1,10 @@
+<!-- SEO: Introduction to Knowledge Graphs. Introduction to Knowledge Graph Embedding. Introduction to the DistMult algorithm. Example code for training KGE model. Example code for evaluating KGE model. Example code for answering questions with a KGE model. KGE and LLM comparison on QA task.  -->
+
 # Learning Scemantic Representations for Knowledge Graphs
+
+<!-- TODO: Cover image: 
+1. You can create your own cover image and put it in the correct asset directory,
+2. or you can give an explanation on how it should be and we will help you create one. Please tag arunesh@superlinked.com or @AruneshSingh (GitHub) in this case. -->
 
 In today's world, LLMs (Large Language Models) are everywhere, doing all sorts of language-related tasks really well. They're the go-to solution for understanding and using text in many different ways.
 
@@ -6,15 +12,15 @@ However, in some specific areas, there are other more specialized approaches tha
 
 This post digs into when these popular language models might not be the best choice. We'll see how specialized methods, like KGE (Knowledge Graph Embedding) algorithms, could actually be better for certain tasks.
 
-# What are Knowledge Graphs?
+## What are Knowledge Graphs?
 
 Now, let's zoom in on KGs (Knowledge Graphs). We use KGs to describe how different entities, like people, places, or more generally "things", relate to each other. For example a KG can show us how a famous writer is linked to their books or how a book is connected to its received awards:
 
-<img src=assets/use_cases/knowledge_graph_embedding/small_kg.png alt="Knowledge Graph example" data-size="100" />
+![Knowledge Graph example](../assets/use_cases/knowledge_graph_embedding/small_kg.png)
 
 In certain areas where understanding these specific connections is crucial - like recommendation systems, search engines, information retrieval, etc. - KGs step in as specialized tools. They help computers grasp the detailed relationships between things.
 
-# What is Knowledge Graph Embedding (KGE)?
+## What is Knowledge Graph Embedding (KGE)?
 
 KGE algorithms take this tangled complex web of connections and turn it into something AI systems can understand better: vectors. This might raise a question - if we already have knowledge of the connections between nodes and their relations, then why do we need to take the effort to learn embeddings?
 
@@ -24,7 +30,7 @@ The challenge with KGs is that they are usually incomplete. This means that ther
 
 These imperfections, whether minor or major, can pose significant difficulties if we solely rely on the graph for information. In such a scenario, KGE algorithms prove to be extremely beneficial. They allow us to retrieve the missing data by utilizing the learned semantic meaning of nodes and links.
 
-## How KGE algorithms work?
+### How KGE algorithms work?
 
 In general, KGE algorithms work by defining a similarity function in the embedding space, and learn the model by minimizing a loss function that penalizes the discrepancy between this similarity function and some notion of similarity in the graph. KGE algorithms can differ in the choice of the similarity function and the definition of node similarity in the graph.
 
@@ -32,9 +38,9 @@ The simplest approach is to consider nodes that are connected by an edge as simi
 
 For our demo, we've opted for the DistMult KGE algorithm. It works by representing the likelihood of relationships between entities (the similarity function) as a bilinear function. Essentially, it assumes that the score of a given triple (comprising a head entity $h$, a relationship $r$, and a tail entity $t$) can be computed as $h^T \text{diag}(r) t$. 
 
-<img src=assets/use_cases/knowledge_graph_embedding/distmult.png alt="DistMult bilinear similarity" data-size="100" />
+![DistMult similarity function](../assets/use_cases/knowledge_graph_embedding/distmult.png)
 
-[Image source](https://data.dgl.ai/asset/image/ke/distmult.png)
+[(Image source)](https://data.dgl.ai/asset/image/ke/distmult.png)
 
 The model parameters are learned by minimizing the cross entropy between real and corrupted triplets. This process allows the model to learn the intricate relationships within the KG.
 
@@ -43,7 +49,7 @@ In the following two sections we will walk through how you can:
 1. Build and train a DistMult model.
 2. Use the model to answer questions.
 
-# Build and Train a KGE model
+## Build and Train a KGE model
 
 In our demo, we'll use a subgraph of the Freebase Knowledge Graph, a database of general facts (now transferred to Wikidata after its 2014 shutdown).
 This graph contains 14541 different entities, 237 different relation types and 310116 edges in total. 
@@ -138,7 +144,7 @@ print(scores.tolist())
 # Bonnie and Clyde gets the lowest (negative) score
 ```
 
-# Answering questions with the model
+## Answering questions with the model
 
 Next, we'll show how we can apply the trained model to answer questions. Let's consider this question: "What is Guy Ritchie's profession?"
 To answer this question, we start by finding the embedding vectors of "Guy Ritchie" and the relation "profession."
@@ -182,7 +188,7 @@ In conclusion, the model's performance in this scenario demonstrates its potenti
 
 You can find all the code for this demonstration in [this](https://drive.google.com/file/d/1G3tJ6Nn_6hKZ8HZGpx8OHpWwGqp_sQtF/view?usp=sharing) notebook.
 
-# Comparing KGE with LLM performance on a large Knowledge Graph
+## Comparing KGE with LLM performance on a large Knowledge Graph
 
 In this section, we're comparing the performance of Knowledge Graph Embeddings (KGE) and Language Models (LLMs) on a dataset called ogbl-wikikg2. This dataset is drawn from Wikidata and includes 2.5 million unique entities, 535 types of relations, and 17.1 million fact triplets. We'll evaluate their performance using hit rates (the ratio of correct answers), following the guidelines provided [here](https://ogb.stanford.edu/docs/linkprop/#ogbl-wikikg2).
 
@@ -206,7 +212,7 @@ The table above clearly shows that LLM performs three times better than the meth
 
 These results strongly support that KGE is more suitable than LLMs for tasks where relational information is super important.
 
-# Limitations
+## Limitations
 
 One reason why the LLM approach might struggle with performance is due to the formulation used, where each node is mapped to a sequence of sentences describing its connections. This method tends to overload the input text with an extensive amount of information for a single node. LLMs are typically not trained to handle such broad and diverse information within a single context; their strength lies in processing more focused and specific textual information.
 
