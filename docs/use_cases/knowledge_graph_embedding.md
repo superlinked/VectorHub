@@ -122,16 +122,16 @@ Now that we have a trained model, we can do some experiments to see how well the
 3. France contains Bonnie and Clyde (which does not make sense at all)
 ```python
 # Get node and relation IDs
-node_france = node_names["France"]
-rel_contains = edge_names["/location/location/contains"]
-node_burgundy = node_names["Burgundy"]
-node_rdj = node_names["Rio de Janeiro"]
-node_bnc = node_names["Bonnie and Clyde"]
+france = nodes["France"]
+rel = edges["/location/location/contains"]
+burgundy = nodes["Burgundy"]
+riodj = nodes["Rio de Janeiro"]
+bnc = nodes["Bonnie and Clyde"]
 
 # Define triples
-head_entities = torch.tensor([node_france, node_france, node_france], dtype=torch.long)
-relationships = torch.tensor([rel_contains, rel_contains, rel_contains], dtype=torch.long)
-tail_entities = torch.tensor([node_burgundy, node_rdj, node_bnc], dtype=torch.long)
+head_entities = torch.tensor([france, france, france], dtype=torch.long)
+relationships = torch.tensor([rel, rel, rel], dtype=torch.long)
+tail_entities = torch.tensor([burgundy, riodj, bnc], dtype=torch.long)
 
 # Score triples using the model
 scores = model(head_entities, relationships, tail_entities)
@@ -151,16 +151,16 @@ To answer the question we first have to find the embedding vectors of “Guy Rit
 
 ```python
 # Get node and relation IDs
-node_guy_ritchie = node_names["Guy Ritchie"]
-rel_profession = edge_names["/people/person/profession"]
+guy_ritchie = nodes["Guy Ritchie"]
+profession = edges["/people/person/profession"]
 
 # Accessing node and relation embeddings
 node_embeddings = model.node_emb.weight
 relation_embeddings = model.rel_emb.weight
 
-# Selecting specific entities and relations
-guy_ritchie = node_embeddings[node_guy_ritchie]  # entity: Guy Ritchie
-profession = relation_embeddings[rel_profession]  # relation: profession
+# Accessing embeddings for specific entities and relations
+guy_ritchie = node_embeddings[guy_ritchie]
+profession = relation_embeddings[profession]
 ```
 
 Remember, the DistMult algorithm models connections as a bilinear function of the (head, relation, tail) triplet, so we can express our question as: <Guy Ritchie, profession, ?>. Whichever node maximizes this expression will be the answer of the model.
@@ -172,15 +172,16 @@ query = guy_ritchie * profession
 # Calculating scores using vector operations
 scores = node_embeddings @ query
 
-# Retrieving top 5 scores and their indices in descending order
+# Find the index for the top 5 scores
 sorted_indices = scores.argsort().tolist()[-5:][::-1]
+# Get the score for the top 5 index
 top_5_scores = scores[sorted_indices]
 
->>> [('film producer', 3.44), # Correct
- ('film director', 3.30),
- ('screenwriter', 2.77),
- ('actor', 2.61),
- ('musician', 2.53)]
+>>> [('film producer', 3.171), # Correct answer
+ ('author', 2.923),
+ ('film director', 2.676),
+ ('writer', 2.557),
+ ('artist', 2.522)]
 ```
 
 Remarkably, the model managed to correctly answer the question, despite the actual fact not being present in the Knowledge Graph. This impressive feat indicates the model's ability to interpret and infer information that isn't explicitly included in the graph (incompleteness).
