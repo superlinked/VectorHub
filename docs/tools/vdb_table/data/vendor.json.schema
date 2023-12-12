@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12",
+  "$id": "vdb_table/schema/vendor",
+  "type": "object",
+
+  "properties": {
+    "name": { "type": "string" },
+    "website_url": { "type": "string" },
+    "docs_url": { "type": "string" },
+    "logo_url": { "type": "string" },
+    "point_of_contact_email": { "type": "string", "format": "email" },
+
+    "oss": { "allOf": [{"$ref": "#/$defs/feature"}], "property_comment": "Open source & free to self-host" },
+    "managed_cloud": { "allOf": [{"$ref": "#/$defs/feature"}], "property_comment": "Managed Cloud Offering" },
+    "disk_index": { "allOf": [{"$ref": "#/$defs/feature"}], "property_comment": "Disk-based Index" },
+
+    "doc_size_limit": { "allOf": [{"$ref": "#/$defs/integerWithUnits"}], "property_comment": "Metadata/Doc size limit" },
+    "vector_dimensions_max": { "allOf": [{"$ref": "#/$defs/integer"}], "property_comment": "Maximum integer of vector dimensions" },
+
+    "license": { "allOf": [{"$ref": "#/$defs/string"}], "property_comment": "OSS license for the core product" }
+  },
+
+  "$defs": {
+    "feature": {
+      "$id": "feature",
+      "type": "object",
+      "properties": {
+        "support": { "enum": ["none", "partial", "full"]},
+        "source_level": {"enum": ["", "claimed", "documented"]},
+        "source_url": {"type": "string"},
+        "comment": {"type": "string"}
+      }
+    },
+    "string": {
+      "$id": "string",
+      "type": "object",
+      "properties": {
+        "value": {"type": "string"},
+        "source_level": {"enum": ["", "claimed", "documented"]},
+        "source_url": {"type": "string"},
+        "comment": {"type": "string"}
+      }
+    },
+    "integer": {
+      "$id": "integer",
+      "type": "object",
+      "properties": {
+        "value": {"type": "integer"},
+        "source_level": {"enum": ["", "claimed", "documented"]},
+        "source_url": {"type": "string"},
+        "comment": {"type":"string"}
+      }
+    },
+    "integerWithUnits": {
+      "$id": "integerWithUnits",
+      "type": "object",
+      "properties": {
+        "value": {"type": "integer"},
+        "unit": {"type": "string"},
+        "source_level": {"enum": ["", "claimed", "documented"]},
+        "source_url": {"type": "string"},
+        "comment": {"type": "string"}
+      }
+    }
+  }
+}
