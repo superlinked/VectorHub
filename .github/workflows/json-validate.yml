@@ -1,0 +1,21 @@
+name: Validate vendor JSON files
+on:
+  pull_request:
+    branches:
+    - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate JSON
+        uses: GrantBirki/json-yaml-validate@v2.4.0
+        with:
+          base_dir: docs/tools/vdb_table/data
+          json_schema: docs/tools/vdb_table/data/vendor.schema.json
