@@ -10,6 +10,7 @@ This post digs into when these popular language models might not be the best cho
 
 Now, let's zoom in on KGs (Knowledge Graphs). We use KGs to describe how different entities, like people, places, or more generally "things", relate to each other. For example a KG can show us how a famous scientist is linked to their discoveries or how a city is connected to its historical events.
 
+<img src=assets/use_cases/knowledge_graph_embedding/small_kg.png alt="Knowledge Graph example" data-size="100" />
 
 In certain areas where understanding these specific connections is crucial - like recommendation systems, search engines, information retrieval, etc. - KGs step in as specialized tools. They help computers grasp the detailed relationships between things.
 
