@@ -10,14 +10,14 @@
     "logo_url": { "type": "string" },
     "point_of_contact_email": { "type": "string", "format": "email" },
 
-    "oss": { "allOf": [{"$ref": "#/$defs/feature"}], "property_comment": "Open source & free to self-host" },
-    "managed_cloud": { "allOf": [{"$ref": "#/$defs/feature"}], "property_comment": "Managed Cloud Offering" },
-    "disk_index": { "allOf": [{"$ref": "#/$defs/feature"}], "property_comment": "Disk-based Index" },
+    "oss": { "allOf": [{"$ref": "#/$defs/feature"}], "comment": "Open source & free to self-host" },
+    "managed_cloud": { "allOf": [{"$ref": "#/$defs/feature"}], "comment": "Managed Cloud Offering" },
+    "disk_index": { "allOf": [{"$ref": "#/$defs/feature"}], "comment": "Disk-based Index" },
 
-    "doc_size_limit": { "allOf": [{"$ref": "#/$defs/integerWithUnits"}], "property_comment": "Metadata/Doc size limit" },
-    "vector_dimensions_max": { "allOf": [{"$ref": "#/$defs/integer"}], "property_comment": "Maximum integer of vector dimensions" },
+    "doc_size_limit": { "allOf": [{"$ref": "#/$defs/integerWithUnits"}], "comment": "Metadata/Doc size limit" },
+    "vector_dimensions_max": { "allOf": [{"$ref": "#/$defs/integer"}], "comment": "Maximum integer of vector dimensions" },
 
-    "license": { "allOf": [{"$ref": "#/$defs/string"}], "property_comment": "OSS license for the core product" }
+    "license": { "allOf": [{"$ref": "#/$defs/string"}], "comment": "OSS license for the core product" }
   },
 
   "$defs": {
