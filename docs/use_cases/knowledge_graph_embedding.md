@@ -208,11 +208,13 @@ These results strongly support that KGE is more suitable than LLMs for tasks whe
 
 # Limitations
 
+One reason why the LLM approach might struggle with performance is due to the formulation used, where each node is mapped to a sequence of sentences describing its connections. This method tends to overload the input text with an extensive amount of information for a single node. LLMs are typically not trained to handle such broad and diverse information within a single context; their strength lies in processing more focused and specific textual information.
+
 While DistMult stands as a simple but powerful tool for embedding KGs, it does come with limitations:
 1. Cold start problem: When the graph evolves or changes over time, DistMult can't represent new nodes introduced later on, or can't model the effect of new connections introduced to the graph.
 2. It struggles with complex questions: While it excels in straightforward question-answering scenarios, the DistMult model falls short when faced with complex questions that demand a deeper comprehension extending beyond immediate connections. Other KGE algorithms better suit such tasks.
 
-One reason why the LLM approach might struggle with performance is due to the formulation used, where each node is mapped to a sequence of sentences describing its connections. This method tends to overload the input text with an extensive amount of information for a single node. LLMs are typically not trained to handle such broad and diverse information within a single context; their strength lies in processing more focused and specific textual information.
+
 
 ---
 ## Contributors
