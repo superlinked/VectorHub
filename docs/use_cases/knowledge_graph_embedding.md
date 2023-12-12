@@ -10,7 +10,6 @@ This post digs into when these popular language models might not be the best cho
 
 Now, let's zoom in on KGs (Knowledge Graphs). We use KGs to describe how different entities, like people, places, or more generally "things", relate to each other. For example a KG can show us how a famous scientist is linked to their discoveries or how a city is connected to its historical events.
 
-[IMAGE OF SMALL KG]
 
 In certain areas where understanding these specific connections is crucial - like recommendation systems, search engines, information retrieval, etc. - KGs step in as specialized tools. They help computers grasp the detailed relationships between things.
 
@@ -205,11 +204,11 @@ For the KGE algorithm, we employed DistMult with a 250-dimensional embedding spa
 ### Results
 You can see the results on the Open Graph Benchmark query set in the table below:
 
-| metric/model |  | Random (theoretical) | LLM | DistMult|
-| --- | --- | --- | --- | --- | --- |
-| HitRate@1 |  | 0.001 | 0.0055 | 0.065 |
-| HitRate@3 |  | 0.003 | 0.0154 | 0.150 |
-| HitRate@10 |  | 0.010 | 0.0436 | 0.307 |
+| metric/model  | Random | LLM | DistMult|
+| --- | --- | --- | --- |
+| HitRate@1 |  0.001 | 0.0055 | **0.065** |
+| HitRate@3 |  0.003 | 0.0154 | **0.150** |
+| HitRate@10 |  0.010 | 0.0436 | **0.307** |
 
 The table above clearly shows that LLM performs three times better than the method of randomly ordering nodes. It is also clear that KGE significantly outperforms LLM, with hit rates almost ten times higher. Notably, DistMult can find the correct answer on its first attempt more frequently than LLM can in ten attempts. It's important to point out that we used only 250-dimensional embeddings with DistMult, while LLM outputs 768-dimensional vectors, which makes the performance difference even more noticeable.
 
