@@ -2,13 +2,7 @@
 
 # Learning Scemantic Representations for Knowledge Graphs
 
-<!-- TODO: Cover image: 
-1. You can create your own cover image and put it in the correct asset directory,
-2. or you can give an explanation on how it should be and we will help you create one. Please tag arunesh@superlinked.com or @AruneshSingh (GitHub) in this case. -->
-
-In today's world, LLMs (Large Language Models) are everywhere, doing all sorts of language-related tasks really well. They're the go-to solution for understanding and using text in many different ways.
-
-However, in some specific areas, there are other more specialized approaches that might give better results for specific tasks. 
+In today's world, LLMs (Large Language Models) are everywhere, doing all sorts of language-related tasks really well. They're the go-to solution for understanding and using text in many different ways. However, in specific domains involving alternative data representations, LLMs might not offer the same level of performance as they do with text-centric tasks.
 
 This post digs into when these popular language models might not be the best choice. We'll see how specialized methods, like KGE (Knowledge Graph Embedding) algorithms, could actually be better for certain tasks.
 
@@ -28,11 +22,11 @@ The challenge with KGs is that they are usually incomplete. This means that ther
 
 “… in Freebase, 93.8% of people have no place of birth and [78.5% have no nationality](https://aclanthology.org/P09-1113.pdf), about 68% of people [do not have any profession](https://dl.acm.org/doi/abs/10.1145/2566486.2568032), while in Wikidata, about [50% of artists have no date of birth](https://arxiv.org/abs/2207.00143), and only [0.4% of known buildings have information about height](https://dl.acm.org/doi/abs/10.1145/3485447.3511932).”
 
-These imperfections, whether minor or major, can pose significant difficulties if we solely rely on the graph for information. In such a scenario, KGE algorithms prove to be extremely beneficial. They allow us to retrieve the missing data by utilizing the learned semantic meaning of nodes and links.
+These imperfections, whether minor or major, can pose significant difficulties if we solely rely on the graph for information. In such a scenario, KGE algorithms prove to be extremely beneficial. Once trained, the model can generalize and predict missing edges by calculating the likelihood between entities for potential connections. 
 
 ### How KGE algorithms work?
 
-In general, KGE algorithms work by defining a similarity function in the embedding space, and learn the model by minimizing a loss function that penalizes the discrepancy between this similarity function and some notion of similarity in the graph. KGE algorithms can differ in the choice of the similarity function and the definition of node similarity in the graph.
+In general, KGE algorithms work by defining a similarity function in the embedding space. The model is learned by minimizing a loss function that penalizes the discrepancy between embedding similarity and some notion of similarity in the graph. KGE algorithms can differ in the choice of the similarity function and the definition of node similarity in the graph.
 
 The simplest approach is to consider nodes that are connected by an edge as similar. Then, the task of learning node embeddings can be defined as a classification task. Given the embeddings of two nodes and a relation, the task is to determine how likely it is that they are similar (connected).
 
@@ -214,7 +208,7 @@ These results strongly support that KGE is more suitable than LLMs for tasks whe
 
 ## Limitations
 
-One reason why the LLM approach might struggle with performance is due to the formulation used, where each node is mapped to a sequence of sentences describing its connections. This method tends to overload the input text with an extensive amount of information for a single node. LLMs are typically not trained to handle such broad and diverse information within a single context; their strength lies in processing more focused and specific textual information.
+One reason why the LLM approach might struggle with performance is because it is really hard to encode intricate relation structures with LLMs. The approach of creating a string representation of a nodes connections tends to overload the LLMs input with an extensive amount of information. LLMs are typically not trained to handle such broad and diverse information within a single context; their strength lies in processing more focused and specific textual information. For this reason we should use other approaches instead that were specifically designed to handle relational data, like KGE algorithms.
 
 While DistMult stands as a simple but powerful tool for embedding KGs, it does come with limitations:
 1. Cold start problem: When the graph evolves or changes over time, DistMult can't represent new nodes introduced later on, or can't model the effect of new connections introduced to the graph.
