@@ -19,3 +19,4 @@ jobs:
         with:
           base_dir: docs/tools/vdb_table/data
           json_schema: docs/tools/vdb_table/data/vendor.schema.json
+          json_schema_version: "draft-2020-12"
