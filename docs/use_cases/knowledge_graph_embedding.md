@@ -26,9 +26,9 @@ These imperfections, whether minor or major, can pose significant difficulties i
 
 ### How KGE algorithms work?
 
-In general, KGE algorithms work by defining a similarity function in the embedding space. The model is learned by minimizing a loss function that penalizes the discrepancy between embedding similarity and some notion of similarity in the graph. KGE algorithms can differ in the choice of the similarity function and the definition of node similarity in the graph.
+In general, KGE algorithms work by defining a similarity function in the embedding space. Then the model is learned by trying to make the similarities between embedding vectors match up similarities of corresponding nodes in the graph. This is achieved by defining a loss function that measures the discrepancy between embedding similarity and node similarity in the graph. If the loss is minimal that means that similar nodes in the graph have similar embeddings.
 
-The simplest approach is to consider nodes that are connected by an edge as similar. Then, the task of learning node embeddings can be defined as a classification task. Given the embeddings of two nodes and a relation, the task is to determine how likely it is that they are similar (connected).
+KGE algorithms can differ in the choice of the similarity function and the definition of node similarity in the graph. A simple approach is to consider nodes that are connected by an edge as similar. Then, the task of learning node embeddings can be defined as a classification task. Given the embeddings of two nodes and a relation, the task is to determine how likely it is that they are similar (connected).
 
 For our demo, we've opted for the DistMult KGE algorithm. It works by representing the likelihood of relationships between entities (the similarity function) as a bilinear function. Essentially, it assumes that the score of a given triple (comprising a head entity $h$, a relationship $r$, and a tail entity $t$) can be computed as $h^T \text{diag}(r) t$. 
 
