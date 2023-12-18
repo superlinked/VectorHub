@@ -244,18 +244,23 @@ The results are slightly worse (3%) than the results we got by combining Node2Ve
 
 ## Conclusion
 
-Pro con
-
-SAGE pro: inductive
-SAGE con: quality of node features
-
-N2V pro: high quality node representations (network structure)
-N2V con: transductive
-
 | Embedding | BoW | Node2Vec | Combined | GraphSAGE |
 | --- | --- | --- | --- | --- |
-| Accuracy | 0.735 | 0.818 | 0.859 | 0.834 |
-| F1 (macro) | 0.697 | 0.799 | 0.836 | 0.818 |
+| Accuracy | 0.735 | 0.818 | **0.859** | 0.834 |
+| F1 (macro) | 0.697 | 0.799 | **0.836** | 0.818 |
+
+So in conclusion we can say that both node embedding algorithms were able to significantly improve classification performance compared to solely relying on the BoW features. The Node2Vec representations combined with the BoW features resulted in slightly better performance in both considered metrics.
+
+Finally, we included some pros and cons for both node representation learning algorithms:
+
+| Aspect | Node2Vec | GraphSAGE|
+| --- | --- | --- |
+| Generalizing to new nodes | No | Yes |
+| Inference time | Constant | We have control over the inference time |
+| Accomodating different graph types and objectives | By setting the $p$ and $q$ parameters we can adapt the representations to our fit | Limited control | 
+| Combining with other representations | Concatenation | By design the model learns to map node representations to embeddings |
+| Dependency on additional representations | Relies solely on graph data |Relies on quality and availability of node representations; impacts model performance if lacking |
+| Embedding flexibility | Very flexible node representations | Neighboring nodes can't have much variation in their representations
 
 ---
 ## Contributors
