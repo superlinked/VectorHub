@@ -1,4 +1,4 @@
-# POST2 Leveraging Relational Information
+# Representation Learning on Graph Structured Data
 
 ## Introduction
 
