@@ -1,0 +1,38 @@
+Rich text - Open-source & free to self-host	
+Rich text - Managed Cloud Offering	
+Rich text - Disk-based Index	
+Rich text - Multi-tenancy Support	
+Rich text - In-built Text Embeddings creation(Bring-your-own-model)	
+Rich text - In-built Image Embedding creation	
+Rich text - Metadata Filtering	
+Rich text - Embeddable	
+Rich text - Multiple vectors per point	
+Rich text - Langchain integration	
+Rich text - Llama index integration	
+Rich text - Hybrid Search	
+Rich text - BM25 support	
+Rich text - Sparse Vectors Support	
+Rich text - Full-text Search Engine	
+Rich text - Facets (Aggregations with Count)	
+Rich text - GeoSearch Support	
+Multiple select - Metadata/Doc size limit	
+Single select - Max Dimensions	
+Rich text - Ephemeral Index support(without server)	
+Rich text - Sharding	
+Multiple select - License	
+Multiple select - Development Language	
+Number - Github Stars	
+Single select - First Release of Vector Search	
+Rich text - Pricing	
+Rich text - Calls LLM internally for RAG	
+Rich text - Recommendations API	
+Rich text - Personalization	
+Rich text - User events (clickstream)
+
+
+Inputs required
+
+Rich text = string
+Single select = string (string should be one of the already created ones, otherwise it'll create a new option)
+Multiple select = list of strings (string should be one of the already created ones, otherwise it'll create a new option)
+Number = integer
