@@ -252,11 +252,10 @@ SAGE con: quality of node features
 N2V pro: high quality node representations (network structure)
 N2V con: transductive
 
-
-| Embedding | Text Based | Node2Vec | Combined | GraphSAGE |
+| Embedding | BoW | Node2Vec | Combined | GraphSAGE |
 | --- | --- | --- | --- | --- |
-| F1 (macro) |  ... | ... | ... | ... |
-| Accuracy |  ... | ... | ... | ... |
+| Accuracy | 0.735 | 0.818 | 0.859 | 0.834 |
+| F1 (macro) | 0.697 | 0.799 | 0.836 | 0.818 |
 
 ---
 ## Contributors
