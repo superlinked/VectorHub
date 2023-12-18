@@ -2,9 +2,9 @@
 
 ## Introduction
 
-Different types of information, like words, pictures, and connections between things, show us different sides of the world. Relationships, especially, are interesting because they show how things interact and create networks. In this article, we'll talk about how we can use these relationships to understand and describe things in a network better.
+Different types of information, like words, pictures, and connections between things, show us different sides of the world. Relationships, especially, are interesting because they show how things interact and create networks. In this post, we'll talk about how we can use these relationships to understand and describe things in a network better.
 
-We're diving into a real-life example to explain how entities can be turned into vectors using their connections, a common practice in machine learning. The dataset we're going to work with is the a subset of the Cora citation network. It comprises 2708 scientific papers (nodes) and the connections indicate citations between them. Each paper has a BoW (Bag-of-Words) descriptor. The challenge at hand involves predicting the specific scientific category to which each paper belongs to, selecting from a pool of seven distinct categories.
+We're diving into a real-life example to explain how entities can be turned into vectors using their connections, a common practice in machine learning. The dataset we're going to work with is the a subset of the Cora citation network. It comprises 2708 scientific papers (nodes) and the connections indicate citations between them. Each paper has a BoW (Bag-of-Words) descriptor containing 1433 words. The challenge at hand involves predicting the specific scientific category to which each paper belongs to, selecting from a pool of seven distinct categories.
 
 The dataset can be loaded as follows:
 
@@ -30,7 +30,7 @@ def evaluate(x,y):
     print("F1 macro", f1_score(y_test, y_pred, average="macro"))
 ```
 
-First, we'll see how the BoW representations can be used to solve the classification problem:
+First, we'll see how the well the BoW representations can be used to solve the classification problem:
 
 ```python
 evaluate(ds.x, ds.y)
@@ -38,7 +38,7 @@ evaluate(ds.x, ds.y)
 >>> F1 macro 0.697
 ```
 
-This is not bad, let’s see if we can do better by utilizing relational information.
+This is not bad, let’s see if we can do better by utilizing the available relational information.
 
 ## Learning node embeddings with Node2Vec
 
@@ -46,16 +46,18 @@ Before delving into the details, let's briefly understand node embeddings. These
 
 Node2Vec is an algorithm that employs the Skip-Gram method to learn node representations. It operates by modeling the conditional probability of encountering a context node given a source node in node sequences (random walks):
 
-`P(context∣source) ~ exp(⟨w[context],w[source]⟩)`
+$P(\text{context}|\text{source}) = \frac{1}{Z}\exp(w_{c}^Tw_s) $
 
-The embeddings (`w`) are learned by maximizing the co-occurance probability for (source,context) pairs drawn from the true data distribution (positive pairs), and at the same time minimizing for pairs that are drawn from a synthetic noise distribution. This process ensures that the embedding vectors of similar nodes are close in the embedding space, while dissimilar nodes are further apart (w.r.t. dot product).
+Here $w_c$ and $w_s$ are the embeddings of the context node $c$ and source node $s$ respectively. The variable $Z$ serves as a normalization constant, which, for computational efficiency, is never explicitly computed.
 
-The random walks are sampled according to a policy, which is guided by 2 parameters: return `p`, and in-out `q`.
+The embeddings are learned by maximizing the co-occurance probability for (source,context) pairs drawn from the true data distribution (positive pairs), and at the same time minimizing for pairs that are drawn from a synthetic noise distribution. This process ensures that the embedding vectors of similar nodes are close in the embedding space, while dissimilar nodes are further apart (w.r.t. dot product).
 
-- The return parameter `p` impacts the likelihood of returning to the previous node. A higher p leads to more locally focused walks.
-- The in-out parameter `q` affects the likelihood of visiting nodes in the same or different neighborhood. A higher q encourages Depth First Search, while a lower q promotes Breadth First Search.
+The random walks are sampled according to a policy, which is guided by 2 parameters: return $p$, and in-out $q$.
 
-These parameters provide a balance between neighborhood exploration and local context. Adjusting p and q can be used to capture different characteristics of the graph.
+- The return parameter $p$ impacts the likelihood of returning to the previous node. A higher p leads to more locally focused walks.
+- The in-out parameter $q$ affects the likelihood of visiting nodes in the same or different neighborhood. A higher q encourages Depth First Search, while a lower q promotes Breadth First Search.
+
+These parameters provide a balance between neighborhood exploration and local context. Adjusting $p$ and $q$ can be used to capture different characteristics of the graph.
 
 ### Node2Vec embeddings
 
@@ -78,9 +80,9 @@ n2v = Node2Vec(
 ).to(device)
 ```
 
-The next steps include initializing the data loader and the optimizer. The role of the data loader is to generate training batches. In our case, it will sample the random walks, create skip-gram pairs, and generate corrupted pairs.
+The next steps include initializing the data loader and the optimizer. The role of the data loader is to generate training batches. In our case, it will sample the random walks, create skip-gram pairs, and generate corrupted pairs by replacing either the head or tail of the edge from the noise distribution.
 
-The optimizer is used to update the model weights to minimize the loss (cross entropy). In our case, we are using the sparse variant of the Adam optimizer.
+The optimizer is used to update the model weights to minimize the loss. In our case, we are using the sparse variant of the Adam optimizer.
 
 ```python
 loader = n2v.loader(batch_size=128, shuffle=True, num_workers=4)
@@ -119,7 +121,7 @@ A straightforward method to combine embeddings from different sources is by conc
 
 ![L2 norm distribution of text based and Node2Vec embeddings](../assets/use_cases/node2vec/l2_norm.png)
 
-From the plot, it's clear that the scales of the embedding vector lengths differ. When we want to use them together, the one with the larger magnitude will overshadow the smaller one. To mitigate this, we'll equalize their lengths by dividing each one by its average length. However, this still not necessarily yields the best performance. To optimally combine the two embeddings, we'll introduce a weighting factor: `x = torch.cat((alpha * v_n2v, v_bow), dim=1)`. To determine the appropriate value for `alpha`, we'll employ a 1D grid search approach. The results are displayed in the subsequent graph.
+From the plot, it's clear that the scales of the embedding vector lengths differ. When we want to use them together, the one with the larger magnitude will overshadow the smaller one. To mitigate this, we'll equalize their lengths by dividing each one by its average length. However, this still not necessarily yields the best performance. To optimally combine the two embeddings, we'll introduce a weighting factor: `x = torch.cat((alpha * v_n2v, v_bow), dim=1)`. To determine the appropriate value for `alpha`, we'll employ a 1D grid search approach. The results are displayed in the following graph.
 
 ![Grid search for alpha](../assets/use_cases/node2vec/grid_search_alpha.png)
 
@@ -144,9 +146,9 @@ For dynamic networks, where entities evolve or new ones emerge, inductive approa
 
 ## Learning inductive node embedding with GraphSAGE
 
-GraphSAGE is an inductive representation learning algorithm that leverages GNNs (Graph Neural Networks) to create node embeddings. Instead of learning static node embeddings, it learns an aggregation function on node features that outputs node representations. This also means that in this model combines node features with network structure, so we don't have to manually combine the two information sources later on.
+GraphSAGE is an inductive representation learning algorithm that leverages GNNs (Graph Neural Networks) to create node embeddings. Instead of learning static node embeddings for each node, it learns an aggregation function on node features that outputs node representations. This also means that in this model combines node features with network structure, so we don't have to manually combine the two information sources later on. 
 
-One GraphSAGE layer is defined as follows:
+The GraphSAGE layer is defined as follows:
 
 $h_i^{(k)} = \sigma(W (h_i^{(k-1)} + \underset{j \in \mathcal{N}(i)}{\Sigma}h_j^{(k-1)}))$
 
@@ -154,10 +156,10 @@ Here $\sigma$ is a nonlinear activation function, $W^{(k)}$ is a learnable param
 
 To learn the model parameters, the authors suggest two approaches:
 1. If we are dealing with a supervised setting, we can train the network similarly, how we train a conventional NN for the supervised task (for example using Cross Entropy for classification or Mean Squared Error for regression)
-2. If we only have access to the graph itself, we can approach model training as an unsupervised task, where the goal is to predict the presence of the edges in the graph based on the node embeddings. In this case the link probabilities are defined as $P(j \in \mathcal{N}(i)) \approx \sigma(h_i^Th_j)$. The loss function is the Negative Log Likelihood of the presence of the edge and $P(j \in \mathcal{N}(i))$.
+2. If we only have access to the graph itself, we can approach model training as an unsupervised task, where the goal is to predict the presence of the edges in the graph based on the node embeddings. In this case the link probabilities are defined as $P(j \in \mathcal{N}(i)) \approx \sigma(h_i^Th_j)$. The loss function is the Negative Log Likelihood of the presence of the edge and $P$.
 
 It is also possible to combine the two approaches by using a linear combination of the two loss functions.
-However, in this example we are going stick with the unsupervised approach.
+However, in this example we are going stick with the unsupervised version.
 
 ### GraphSAGE embeddings
 
@@ -170,16 +172,16 @@ sage = GraphSAGE(
 ).to(device)
 ```
 
-The optimizer is constructed in the usual PyTorch fashion, we'll use `Adam`:
+The optimizer is constructed in the usual PyTorch fashion. Once again, we'll use `Adam`:
 
 ```python
 optimizer = torch.optim.Adam(sage.parameters(), lr=0.01)
 ```
 
 Next the data loader is constructed, this will generate training batches for us. As we are using the unsupervised objective, this loader will:
-1. Select a batch of nodes which are connected by the edge (positive samples).
-2. Sample negative examples by either modifying the head or tail of the positive samples. The amount of negative samples per edge is defined by the `neg_sampling_ratio` parameter, which we set to 1. This means for each positive sample we'll have one negative sample.
-3. For the selected nodes (both positive and negative) sample neighbors for a depth of 2. In this sampling process, we won't take into consideration all of the neighbors, instead we'll only sample a fixed size of neighbors, defined by the `num_neighbors` parameter. This is particularly useful, since limiting the considered neighbors will decouple computational complexity from the actual node degree.
+1. Select a batch of node pairs which are connected by an edge (positive samples).
+2. Sample negative examples by either modifying the head or tail of the positive samples. The amount of negative samples per edge is defined by the `neg_sampling_ratio` parameter, which we set to 1. This means for each positive sample we'll have exactly one negative sample.
+3. We sample neighbors for a depth of 2 for each selected node. In this sampling process, we won't take into consideration all of the neighbors, instead we'll only sample a fixed size of neighbors, defined by the `num_neighbors` parameter. So in this case in the first hop we are sampling 15 neighbors while only 10 in the second layer. This is particularly useful, since limiting the considered neighbors will decouple computational complexity from the actual node degree.
 
 ```python
 from torch_geometric.loader import LinkNeighborLoader
@@ -200,7 +202,7 @@ Here we can see how a batch, returned by the loader actually looks like:
 print(next(iter(loader)))
 >>> Data(x=[2646, 1433], edge_index=[2, 8642], edge_label_index=[2, 2048], edge_label=[2048], ...)
 ```
-Here `x` contains the BoW node features, the `edge_label_index` tensor contains the head and tail node indices for the positive and negative samples, `edge_label` is the binary target for these pairs (1 for positive 0 for negative samples). The `edge_index` tensor holds the adjacency list for the current batch of nodes. 
+In the `Data` object `x` contains the BoW node features, the `edge_label_index` tensor contains the head and tail node indices for the positive and negative samples, `edge_label` is the binary target for these pairs (1 for positive 0 for negative samples). The `edge_index` tensor holds the adjacency list for the current batch of nodes. 
 
 Now we can train our model as follows:
 ```python
@@ -222,10 +224,9 @@ def train():
         loss.backward()
         optimizer.step()
         total_loss += float(loss) * pred.size(0)
-
     return total_loss / ds.num_nodes
 
-for epoch in range(1, 200):
+for epoch in range(200):
     loss = train()
     print(f'Epoch: {epoch:03d}, Loss: {loss:.4f}')
 ```
