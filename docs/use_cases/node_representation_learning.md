@@ -119,11 +119,11 @@ This is better than the BoW representations! Let’s see if we can improve by co
 
 A straightforward method to combine embeddings from different sources is by concatenating them dimension-wise. We have BoW features `v_bow` and Node2Vec embeddings `v_n2v`. The fused representation would then be `v_fused = torch.cat((v_n2v, v_bow), dim=1)`. However, before combining the two representations, let’s look at the L2 norm distribution of both embeddings:
 
-![L2 norm distribution of text based and Node2Vec embeddings](../assets/use_cases/node2vec/l2_norm.png)
+![L2 norm distribution of text based and Node2Vec embeddings](../assets/use_cases/node_representation_learning/l2_norm.png)
 
 From the plot, it's clear that the scales of the embedding vector lengths differ. When we want to use them together, the one with the larger magnitude will overshadow the smaller one. To mitigate this, we'll equalize their lengths by dividing each one by its average length. However, this still not necessarily yields the best performance. To optimally combine the two embeddings, we'll introduce a weighting factor: `x = torch.cat((alpha * v_n2v, v_bow), dim=1)`. To determine the appropriate value for `alpha`, we'll employ a 1D grid search approach. The results are displayed in the following graph.
 
-![Grid search for alpha](../assets/use_cases/node2vec/grid_search_alpha.png)
+![Grid search for alpha](../assets/use_cases/node_representation_learning/grid_search_alpha.png)
 
 Now, we can evaluate the combined representation using the value of alpha that we've obtained (0.517).
 
@@ -243,13 +243,14 @@ evaluate(embeddings, ds.y)
 The results are slightly worse (3%) than the results we got by combining Node2Vec with BoW features however, remember that with this model we can embed completely new nodes too. If our scenario requires inductiveness, GraphSAGE might be a better solution however, if we had a transductive setting, Node2Vec would give us a better solution.
 
 ## Conclusion
+In the following table you can find the results of all the models we tried in this post:
 
 | Embedding | BoW | Node2Vec | Combined | GraphSAGE |
 | --- | --- | --- | --- | --- |
 | Accuracy | 0.735 | 0.818 | **0.859** | 0.834 |
 | F1 (macro) | 0.697 | 0.799 | **0.836** | 0.818 |
 
-So in conclusion we can say that both node embedding algorithms were able to significantly improve classification performance compared to solely relying on the BoW features. The Node2Vec representations combined with the BoW features resulted in slightly better performance in both considered metrics.
+In conclusion we can say that both node embedding algorithms were able to significantly improve classification performance compared to solely relying on the BoW features. The Node2Vec representations combined with the BoW features resulted in slightly better performance in both considered metrics.
 
 Finally, we included some pros and cons for both node representation learning algorithms:
 
