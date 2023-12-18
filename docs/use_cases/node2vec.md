@@ -136,6 +136,11 @@ evaluate(x, ds.y)
 ```
 The results show that by combining the representations obtained from solely the network structure and text of the paper can improve performance. Specifically, in our case, this fusion contributed to a 5% improvement from the Node2Vec only and 17% from the BoW only classifiers.
 
+This sounds really good however, what if we are given new papers to classify? 
+Unlike BoW, which can be generated easily, Node2Vec features require retraining the entire model. Even if we initiate from prior embeddings, adapting these for new entities proves inconvenient. Node2Vec's limitation lies in its inability to generate embeddings for entities not present during its training phase. However, this doesn't mean that Node2Vec is useless. In scenarios where the graph is static, it is still a very robust and powerful tool.
+
+For dynamic networks, where entities evolve or new ones emerge, inductive approaches like GraphSAGE come into play. GraphSAGE accommodates the dynamic nature of graphs, offering an inductive framework to generalize and embed unseen entities.
+
 ---
 
 [ SAGE DRAFT FROM HERE ]
