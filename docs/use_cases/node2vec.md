@@ -91,7 +91,7 @@ In the code block below, we conduct the actual model training: We iterate over t
 
 ```python
 n2v.train()
-for epoch in range(100):
+for epoch in range(200):
     total_loss = 0
     for pos_rw, neg_rw in loader:
         optimizer.zero_grad()
@@ -107,8 +107,8 @@ Finally, now that we have a fully trained model, we can evaluate the learned emb
 ```python
 embeddings = n2v().detach().cpu() # Access node embeddings
 evaluate(embeddings, ds.y)
->>> Accuracy: 0.822
->>> F1 macro: 0.800
+>>> Accuracy: 0.818
+>>> F1 macro: 0.799
 ```
 
 This is better than the BoW representations! Let’s see if we can improve by combining the two embeddings.
@@ -123,7 +123,7 @@ From the plot, it's clear that the scales of the embedding vector lengths differ
 
 ![Grid search for alpha](../assets/use_cases/node2vec/grid_search_alpha.png)
 
-Now, we can evaluate the combined representation using the score of alpha that we've obtained (0.569).
+Now, we can evaluate the combined representation using the score of alpha that we've obtained (0.517).
 
 ```python
 v_n2v = normalize(n2v().detach().cpu())
@@ -131,10 +131,10 @@ v_bow = normalize(ds.x)
 
 x = np.concatenate((best_alpha*v_n2v,v_bow), axis=1)
 evaluate(x, ds.y)
->>> Accuracy 0.856
->>> F1 macro 0.829
+>>> Accuracy 0.859
+>>> F1 macro 0.836
 ```
-The results show that by combining the representations obtained from solely the network structure and text of the paper can improve performance. Specifically, in our case, this fusion contributed to a 4% improvement.
+The results show that by combining the representations obtained from solely the network structure and text of the paper can improve performance. Specifically, in our case, this fusion contributed to a 5% improvement from the Node2Vec only and 17% from the BoW only classifiers.
 
 ---
 
