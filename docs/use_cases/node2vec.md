@@ -111,7 +111,7 @@ evaluate(embeddings, ds.y)
 >>> F1 macro: 0.799
 ```
 
-This is better than the BoW representations! Let’s see if we can improve by combining the two embeddings.
+This is better than the BoW representations! Let’s see if we can improve by combining the two information sources, relations and textual features.
 
 ### Node2Vec + Text based embeddings
 
@@ -119,11 +119,11 @@ A straightforward method to combine embeddings from different sources is by conc
 
 ![L2 norm distribution of text based and Node2Vec embeddings](../assets/use_cases/node2vec/l2_norm.png)
 
-From the plot, it's clear that the scales of the embedding vector lengths differ. When we want to use them together, the one with the larger magnitude will overshadow the smaller one. To mitigate this, we'll equalize their lengths by dividing each one by its average length. However, this still not necessarily yields the best performance. To optimally combine the two embeddings, we'll introduce a weighting factor: `x = torch.cat((alpha * v_n2v, v_bow), dim=1)`. To determine the appropriate value for `alpha`, we'll employ a 1D grid search approach. The results of this approach are displayed in the subsequent graph.
+From the plot, it's clear that the scales of the embedding vector lengths differ. When we want to use them together, the one with the larger magnitude will overshadow the smaller one. To mitigate this, we'll equalize their lengths by dividing each one by its average length. However, this still not necessarily yields the best performance. To optimally combine the two embeddings, we'll introduce a weighting factor: `x = torch.cat((alpha * v_n2v, v_bow), dim=1)`. To determine the appropriate value for `alpha`, we'll employ a 1D grid search approach. The results are displayed in the subsequent graph.
 
 ![Grid search for alpha](../assets/use_cases/node2vec/grid_search_alpha.png)
 
-Now, we can evaluate the combined representation using the score of alpha that we've obtained (0.517).
+Now, we can evaluate the combined representation using the value of alpha that we've obtained (0.517).
 
 ```python
 v_n2v = normalize(n2v().detach().cpu())
@@ -141,21 +141,23 @@ Unlike BoW, which can be generated easily, Node2Vec features require retraining 
 
 For dynamic networks, where entities evolve or new ones emerge, inductive approaches like GraphSAGE come into play. GraphSAGE accommodates the dynamic nature of graphs, offering an inductive framework to generalize and embed unseen entities.
 
----
-
-[ SAGE DRAFT FROM HERE ]
 
 ## Learning node embeddings with GraphSAGE
 
-GraphSAGE, unlike transductive methods such as Node2Vec, creates node embeddings by incorporating features from neighboring nodes. This approach is beneficial as it enables the embedding of nodes that were not present during training.
+GraphSAGE is an inductive representation learning algorithm that leverages GNNs (Graph Neural Networks) to create node embeddings. Instead of learning static node embeddings, it learns an aggregation function on node features that outputs node representations. This also means that in this model combines node features with network structure, so we don't have to manually combine the two information sources later on.
 
-This inductive behaviour is achieved by using a particular type of Neural Network designed specifically for graph-structured data, known as Graph Neural Networks (GNN). The central concept behind GNN layers is to build the hidden representation by combining the node's features with the aggregated features of its neighboring nodes, as illustrated in the picture below.
+One GraphSAGE layer is defined as follows:
 
-[GNN image]
+$h_i^{(k)} = \sigma(W (h_i^{(k-1)} + \underset{j \in \mathcal{N}(i)}{\Sigma}h_j^{(k-1)}))$
 
-Here [https://distill.pub/2021/gnn-intro/](https://distill.pub/2021/gnn-intro/) you can learn more about GNNs.
+Here $\sigma$ is a nonlinear activation function, $W^{(k)}$ is a learnable parameter of layer $k$, and $\mathcal{N}(i)$ is the set of neighboring nodes of node $i$. As in traditional Neural Networks, we can stack multiple GNN layers. The resulting multi layer GNN will have wider receptive field, i.e. it will be able to consider information from bigger distances thanks to the recursive neighborhood aggregation.
 
-The model learns weights by minimizing the cross-entropy in the link prediction task, which involves predicting if an edge exists between two nodes in the graph. The link probability is modeled in a similar way to how Node2Vec models co-occurrence probability, with a slight difference: instead of learning static embeddings for each node, we use a GNN to construct the embeddings: $sigma(<GNN(x1), GNN(x2)>)$
+To learn the model parameters, the authors suggest two approaches:
+1. If we are dealing with a supervised setting, we can train the network similarly, how we train a conventional NN for the supervised task (for example using Cross Entropy for classification or Mean Squared Error for regression)
+2. If we only have access to the graph itself, we can approach model training as an unsupervised task, where the goal is to predict the presence of the edges in the graph based on the node embeddings. In this case the link probabilities are defined as $P(j \in \mathcal{N}(i)) \approx \sigma(h_i^Th_j)$. The loss function is the Negative Log Likelihood of the presence of the edge and $P(j \in \mathcal{N}(i))$.
+
+It is also possible to combine the two approaches by using a linear combination of the two loss functions.
+However, in this example we are going stick with the unsupervised approach.
 
 ### GraphSAGE embeddings
 
