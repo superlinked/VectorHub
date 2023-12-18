@@ -2,18 +2,18 @@
 
 ## Introduction
 
-Information comes in various forms such as text, images, relations and more, each capturing a different perspective of the world. Relations are particularly interesting because they capture the interactions between different entities and can provide insights into the structure and dynamics of the network they form. In this post, we will focus on how we can leverage relational information to learn meaningful representations of entities in a network. 
+Different types of information, like words, pictures, and connections between things, show us different sides of the world. Relationships, especially, are interesting because they show how things interact and create networks. In this article, we'll talk about how we can use these relationships to understand and describe things in a network better.
 
-We will introduce two node representation learning techniques, Node2Vec trough an example dataset. This dataset is …
+We're diving into a real-life example to explain how entities can be turned into vectors using their connections, a common practice in machine learning. The dataset we're going to work with is the a subset of the Cora citation network. It comprises 2708 scientific papers (nodes) and the connections indicate citations between them. Each paper has a BoW (Bag-of-Words) descriptor. The challenge at hand involves predicting the specific scientific category to which each paper belongs to, selecting from a pool of seven distinct categories.
 
-We can load the dataset as follows:
+The dataset can be loaded as follows:
 
 ```python
-from torch_geometric.datasets import AttributedGraphDataset
-ds = AttributedGraphDataset("./data", "wiki")[0]
+from torch_geometric.datasets import Planetoid
+ds = Planetoid("./data", "Cora")[0]
 ```
 
-We will evaluate representations by measuring classification performance on this dataset. A KNN classifier will be used with 15 neighbors and cosine similarity as the similarity metric. Accuracy and Macro F1 scores will be computed to measure the classification performance.
+We will evaluate representations by measuring the classification performance (Accuracy and macro F1). We'll use a KNN (K-Nearest Neighbors) classifier with 15 neighbors and cosine similarity as the similarity metric:
 
 ```python
 from sklearn.neighbors import KNeighborsClassifier
@@ -30,41 +30,41 @@ def evaluate(x,y):
     print("F1 macro", f1_score(y_test, y_pred, average="macro"))
 ```
 
-First, we will explore how text-based representations can be used to solve the classification problem:
+First, we'll see how the BoW representations can be used to solve the classification problem:
 
 ```python
 evaluate(ds.x, ds.y)
->>> Accuracy 0.849
->>> F1 macro 0.849
+>>> Accuracy 0.735
+>>> F1 macro 0.697
 ```
 
 This is not bad, let’s see if we can do better by utilizing relational information.
 
 ## Learning node embeddings with Node2Vec
 
-Before delving into the details, let's briefly understand node embeddings. These are vector representations of nodes in a network, similar to how we convert words into vectors, such as Word2Vec. Essentially, these representations capture the structural role and properties of the nodes in the network.
+Before delving into the details, let's briefly understand node embeddings. These are vector representations of nodes in a network. Essentially, these representations capture the structural role and properties of the nodes in the network.
 
 Node2Vec is an algorithm that employs the Skip-Gram method to learn node representations. It operates by modeling the conditional probability of encountering a context node given a source node in node sequences (random walks):
 
 `P(context∣source) ~ exp(⟨w[context],w[source]⟩)`
 
-The embeddings (`w`) are learned by maximizing the co-occurance probability for (source,context) pairs drawn from the true data distribution (positive pairs), and at the same time minimizing pairs that are drawn from a synthetic noise distribution. This process ensures that the embedding vectors of similar nodes are close in the embedding space, while dissimilar nodes are further apart.
+The embeddings (`w`) are learned by maximizing the co-occurance probability for (source,context) pairs drawn from the true data distribution (positive pairs), and at the same time minimizing for pairs that are drawn from a synthetic noise distribution. This process ensures that the embedding vectors of similar nodes are close in the embedding space, while dissimilar nodes are further apart (w.r.t. dot product).
 
-The random walks are sampled according to a policy, which is guided by 2 parameters: return (p), and in-out (q).
+The random walks are sampled according to a policy, which is guided by 2 parameters: return `p`, and in-out `q`.
 
-- The return parameter (p) impacts the likelihood of returning to the previous node. A higher p leads to more locally focused walks.
-- The in-out parameter (q) affects the likelihood of visiting nodes in the same or different neighborhood. A higher q encourages Depth First Search, while a lower q promotes Breadth First Search.
+- The return parameter `p` impacts the likelihood of returning to the previous node. A higher p leads to more locally focused walks.
+- The in-out parameter `q` affects the likelihood of visiting nodes in the same or different neighborhood. A higher q encourages Depth First Search, while a lower q promotes Breadth First Search.
 
 These parameters provide a balance between neighborhood exploration and local context. Adjusting p and q can be used to capture different characteristics of the graph.
 
 ### Node2Vec embeddings
 
-In our example, we use the `torch_geometric` implementation. We initialize the model by specifying the following attributes:
+In our example, we use the `torch_geometric` implementation of the Node2Vec algorithm. We initialize the model by specifying the following attributes:
 
-- `edge_index`: This is a tensor containing the graph's edges in an edge list format.
-- `embedding_dim`: This denotes the number of dimensional embeddings we desire.
+- `edge_index`: a tensor containing the graph's edges in an edge list format.
+- `embedding_dim`: specifies the dimensionality of the embedding vectors.
 
-By default, the `p` and `q` parameters are set to 1, resulting in ordinary random walks.
+By default, the `p` and `q` parameters are set to 1, resulting in ordinary random walks. For additional configuration of the model, please refer to the [documentation](https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.nn.models.Node2Vec.html).
 
 ```python
 from torch_geometric.nn import Node2Vec
@@ -87,7 +87,7 @@ loader = n2v.loader(batch_size=128, shuffle=True, num_workers=4)
 optimizer = torch.optim.SparseAdam(n2v.parameters(), lr=0.01)
 ```
 
-In the block below, we conduct the actual model training: We iterate over the training batches, calculate the loss, and apply gradient steps.
+In the code block below, we conduct the actual model training: We iterate over the training batches, calculate the loss, and apply gradient steps.
 
 ```python
 n2v.train()
@@ -107,46 +107,34 @@ Finally, now that we have a fully trained model, we can evaluate the learned emb
 ```python
 embeddings = n2v().detach().cpu() # Access node embeddings
 evaluate(embeddings, ds.y)
->>> Accuracy: 0.628
->>> F1 macro: 0.617
+>>> Accuracy: 0.822
+>>> F1 macro: 0.800
 ```
 
-This is worse than the text based embeddings, but remember, this graph describes our entities from an other perspective - this is not the same information as the text based embeddings. Let’s see if we can improve by combining the two embeddings.
+This is better than the BoW representations! Let’s see if we can improve by combining the two embeddings.
 
 ### Node2Vec + Text based embeddings
 
-A straightforward method to combine embeddings from different sources is by concatenating them dimension-wise. For instance, suppose we have text-based embeddings `v_text` and Node2Vec embeddings `v_n2v`. The fused representation would then be `v_fused = torch.cat((v_n2v, v_text), dim=1)`. If these new embeddings are input into a KNN algorithm that uses dot product similarity, the resulting scores would equate to the sum of the individual text-based and Node2Vec scores. However, before combining the two representations, let’s look at the L2 norm distribution of both embeddings:
+A straightforward method to combine embeddings from different sources is by concatenating them dimension-wise. We have BoW features `v_bow` and Node2Vec embeddings `v_n2v`. The fused representation would then be `v_fused = torch.cat((v_n2v, v_bow), dim=1)`. However, before combining the two representations, let’s look at the L2 norm distribution of both embeddings:
 
 ![L2 norm distribution of text based and Node2Vec embeddings](../assets/use_cases/node2vec/l2_norm.png)
 
-From the plot, it's evident that the scales of the embedding vector lengths differ. When we want to use them together, the one with the larger magnitude will overshadow the smaller one. To mitigate this, we'll equalize their lengths by dividing each one by its average length. However, this still not necessarily yields the best performance. To optimally combine the two embeddings, we'll introduce a weighting factor: `x = torch.cat((alpha * v_n2v, v_text), dim=1)`. To determine the appropriate `alpha` value, we'll employ a 1D grid search approach. The results of this approach are displayed in the subsequent graph.
+From the plot, it's clear that the scales of the embedding vector lengths differ. When we want to use them together, the one with the larger magnitude will overshadow the smaller one. To mitigate this, we'll equalize their lengths by dividing each one by its average length. However, this still not necessarily yields the best performance. To optimally combine the two embeddings, we'll introduce a weighting factor: `x = torch.cat((alpha * v_n2v, v_bow), dim=1)`. To determine the appropriate value for `alpha`, we'll employ a 1D grid search approach. The results of this approach are displayed in the subsequent graph.
 
 ![Grid search for alpha](../assets/use_cases/node2vec/grid_search_alpha.png)
 
-Now, we can evaluate the combined representation using the score of alpha that we've obtained (0.388).
+Now, we can evaluate the combined representation using the score of alpha that we've obtained (0.569).
 
 ```python
 v_n2v = normalize(n2v().detach().cpu())
-v_text = normalize(ds.x)
+v_bow = normalize(ds.x)
 
-x = np.concatenate((best_alpha*v_n2v,v_text), axis=1)
+x = np.concatenate((best_alpha*v_n2v,v_bow), axis=1)
 evaluate(x, ds.y)
->>> Accuracy 0.901
->>> F1 macro 0.900
+>>> Accuracy 0.856
+>>> F1 macro 0.829
 ```
-
-## Conclusion
-
-
-| Embedding | Text Based | Node2Vec | Combined |
-| --- | --- | --- | --- |
-| F1 (macro) |  0.001 | 0.0055 | **0.065** |
-| Accuracy |  0.003 | 0.0154 | **0.150** |
-
----
-## Contributors
-
-- [Richárd Kiss, author](https://www.linkedin.com/in/richard-kiss-3209a1186/)
+The results show that by combining the representations obtained from solely the network structure and text of the paper can improve performance. Specifically, in our case, this fusion contributed to a 4% improvement.
 
 ---
 
@@ -224,3 +212,17 @@ for epoch in range(1, 50):
     loss = train()
     print(f'Epoch: {epoch:03d}, Loss: {loss:.4f}')
 ```
+
+
+## Conclusion
+
+
+| Embedding | Text Based | Node2Vec | Combined |
+| --- | --- | --- | --- |
+| F1 (macro) |  0.849 | 0.617 | **0.900** |
+| Accuracy |  0.849 | 0.628 | **0.901** |
+
+---
+## Contributors
+
+- [Richárd Kiss, author](https://www.linkedin.com/in/richard-kiss-3209a1186/)
