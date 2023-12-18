@@ -208,7 +208,7 @@ def train():
 
     return total_loss / ds.num_nodes
 
-for epoch in range(1, 50):
+for epoch in range(1, 200):
     loss = train()
     print(f'Epoch: {epoch:03d}, Loss: {loss:.4f}')
 ```
@@ -217,10 +217,10 @@ for epoch in range(1, 50):
 ## Conclusion
 
 
-| Embedding | Text Based | Node2Vec | Combined |
-| --- | --- | --- | --- |
-| F1 (macro) |  0.849 | 0.617 | **0.900** |
-| Accuracy |  0.849 | 0.628 | **0.901** |
+| Embedding | Text Based | Node2Vec | Combined | GraphSAGE |
+| --- | --- | --- | --- | --- |
+| F1 (macro) |  ... | ... | ... | ... |
+| Accuracy |  ... | ... | ... | ... |
 
 ---
 ## Contributors
