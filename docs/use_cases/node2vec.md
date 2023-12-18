@@ -142,7 +142,7 @@ Unlike BoW, which can be generated easily, Node2Vec features require retraining 
 For dynamic networks, where entities evolve or new ones emerge, inductive approaches like GraphSAGE come into play. GraphSAGE accommodates the dynamic nature of graphs, offering an inductive framework to generalize and embed unseen entities.
 
 
-## Learning node embeddings with GraphSAGE
+## Learning inductive node embedding with GraphSAGE
 
 GraphSAGE is an inductive representation learning algorithm that leverages GNNs (Graph Neural Networks) to create node embeddings. Instead of learning static node embeddings, it learns an aggregation function on node features that outputs node representations. This also means that in this model combines node features with network structure, so we don't have to manually combine the two information sources later on.
 
@@ -161,7 +161,7 @@ However, in this example we are going stick with the unsupervised approach.
 
 ### GraphSAGE embeddings
 
-Here we are using the `torch_geometric` implementation of the GraphSAGE algorithm, similarly as before. First we create the model by initializing a `GraphSAGE` object:
+Here we are using the `torch_geometric` implementation of the GraphSAGE algorithm, similarly as before. First we create the model by initializing a `GraphSAGE` object. We are using a 2 layer GNN, meaning that our model will receive node features from a distance of at most 2. We will have 256 hidden and 128 output dimensions.
 
 ```python
 from torch_geometric.nn import GraphSAGE
@@ -170,7 +170,16 @@ sage = GraphSAGE(
 ).to(device)
 ```
 
-…
+The optimizer is constructed in the usual PyTorch fashion, we'll use `Adam`:
+
+```python
+optimizer = torch.optim.Adam(sage.parameters(), lr=0.01)
+```
+
+Next the data loader is constructed, this will generate training batches for us. As we are using the unsupervised objective, this loader will:
+1. Select a batch of nodes which are connected by the edge (positive samples).
+2. Sample negative examples by either modifying the head or tail of the positive samples. The amount of negative samples per edge is defined by the `neg_sampling_ratio` parameter, which we set to 1. This means for each positive sample we'll have one negative sample.
+3. For the selected nodes (both positive and negative) sample neighbors for a depth of 2. In this sampling process, we won't take into consideration all of the neighbors, instead we'll only sample a fixed size of neighbors, defined by the `num_neighbors` parameter. This is particularly useful, since limiting the considered neighbors will decouple computational complexity from the actual node degree.
 
 ```python
 from torch_geometric.loader import LinkNeighborLoader
@@ -185,14 +194,15 @@ loader = LinkNeighborLoader(
 )
 ```
 
-…
+Here we can see how a batch, returned by the loader actually looks like:
 
 ```python
-optimizer = torch.optim.Adam(sage.parameters(), lr=0.01)
+print(next(iter(loader)))
+>>> Data(x=[2646, 1433], edge_index=[2, 8642], edge_label_index=[2, 2048], edge_label=[2048], ...)
 ```
+Here `x` contains the BoW node features, the `edge_label_index` tensor contains the head and tail node indices for the positive and negative samples, `edge_label` is the binary target for these pairs (1 for positive 0 for negative samples). The `edge_index` tensor holds the adjacency list for the current batch of nodes. 
 
-…
-
+Now we can train our model as follows:
 ```python
 def train():
     sage.train()
@@ -220,8 +230,26 @@ for epoch in range(1, 200):
     print(f'Epoch: {epoch:03d}, Loss: {loss:.4f}')
 ```
 
+Now that we have the trained model, we can embed nodes and evaluate the embeddings on the classification task:
+
+```python
+embeddings = sage(normalize(ds.x), ds.edge_index).detach().cpu()
+evaluate(embeddings, ds.y)
+>>> Accuracy 0.834
+>>> F1 macro 0.818
+```
+
+The results are slightly worse (3%) than the results we got by combining Node2Vec with BoW features however, remember that with this model we can embed completely new nodes too. If our scenario requires inductiveness, GraphSAGE might be a better solution however, if we had a transductive setting, Node2Vec would give us a better solution.
 
 ## Conclusion
+
+Pro con
+
+SAGE pro: inductive
+SAGE con: quality of node features
+
+N2V pro: high quality node representations (network structure)
+N2V con: transductive
 
 
 | Embedding | Text Based | Node2Vec | Combined | GraphSAGE |
