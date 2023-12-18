@@ -185,7 +185,7 @@ Next the data loader is constructed, this will generate training batches for us.
 from torch_geometric.loader import LinkNeighborLoader
 loader = LinkNeighborLoader(
     ds,
-    batch_size=512,
+    batch_size=1024,
     shuffle=True,
     neg_sampling_ratio=1.0,
     num_neighbors=[15,10],
