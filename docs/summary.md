@@ -23,6 +23,8 @@
   - [Enhancing RAG with multiple agents](use_cases/multi_agent_rag.md)
   - [Embeddings on browser](use_cases/embeddings_on_browser.md)
 
+- [Test page](https://www.superlinked.com)
+
 - [Toolbox](tools/readme.md)
   - [Test page](https://www.superlinked.com)
   <!-- - [TestPage](tools/testpage.md) -->
