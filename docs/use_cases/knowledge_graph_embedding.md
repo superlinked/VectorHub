@@ -4,9 +4,9 @@
 
 Large Language Models (LLMs) are everywhere, achieving impressive results in all sorts of language-related tasks. However, in specific domains involving non-text data representations, LLMs may not offer the same level of performance as they do with text-centric tasks.
 
-We look at how Knowledge Graph Embedding (KGE) algorithms can improve performance on tasks that LLMs have difficulty with, exploring some example code for training and evaluating a KGE model, and using it to answer questions. We also compare KGE and LLM performance on a QA task. Let's get started.
+We look at how Knowledge Graph Embedding (KGE) algorithms can improve performance on tasks that LLMs have difficulty with, explore some example code for training and evaluating a KGE model, and use the KGE model to perform Q&A tasks. We also compare KGE and LLM performance on a Q&A task. Let's get started.
 
-## Knowledge Graphs and their shortcomings
+## Knowledge Graphs and missing edges
 
 We use Knowledge Graphs (KGs) to describe how different entities, like people, places, or more generally "things," relate to each other. For example, a KG can show us how a writer is linked to their books or how a book is connected to its awards:
 
@@ -18,19 +18,17 @@ The challenge with KGs is that they are usually incomplete. Edges that should be
 
 “… in Freebase, 93.8% of people have no place of birth and [78.5% have no nationality](https://aclanthology.org/P09-1113.pdf), [about 68% of people do not have any profession](https://dl.acm.org/doi/abs/10.1145/2566486.2568032), while, in Wikidata, [about 50% of artists have no date of birth](https://arxiv.org/abs/2207.00143), and only [0.4% of known buildings have information about height](https://dl.acm.org/doi/abs/10.1145/3485447.3511932).”
 
-These imperfections, whether minor or major, can pose significant difficulties if we rely solely on the graph for information.
+These imperfections, whether minor or major, can pose significant difficulties if we rely solely on the graph for information. Knowledge Graph Embeddings can help.
 
-## What is Knowledge Graph Embedding?
+## Knowledge Graph Embeddings and how they work
 
-KGE algorithms take tangled complex webs of connections between entites and turn them into something AI systems can understand better: vectors (or embeddings).
+Trained KGE algorithms can generalize and predict missing edges by calculating the likelihood of connections between entities. 
 
-Once trained, the model can generalize and predict missing edges by calculating the likelihood between entities for potential connections. 
+KGE algorithms do this by taking tangled complex webs of connections between entities and turn them into something AI systems can understand: vectors. Embedding entities in a vector space allows KGE algorithms to define a loss function that measures the discrepancy between embedding similarity and node similarity in the graph. If the loss is minimal that means that similar nodes in the graph have similar embeddings.
 
-### How KGE algorithms work?
+The KGE model is trained by trying to make the similarities between embedding vectors match up to similarities of corresponding nodes in the graph.
 
-In general, KGE algorithms work by defining a similarity function in the embedding space. Then the model is learned by trying to make the similarities between embedding vectors match up similarities of corresponding nodes in the graph. This is achieved by defining a loss function that measures the discrepancy between embedding similarity and node similarity in the graph. If the loss is minimal that means that similar nodes in the graph have similar embeddings.
-
-KGE algorithms can differ in the choice of the similarity function and the definition of node similarity in the graph. A simple approach is to consider nodes that are connected by an edge as similar. Then, the task of learning node embeddings can be defined as a classification task. Given the embeddings of two nodes and a relation, the task is to determine how likely it is that they are similar (connected).
+KGE algorithms can differ in their choice of similarity function and their definition of node similarity in the graph. A simple approach is to consider nodes that are connected by an edge as similar. Using this definition, we can define the learning of node embeddings as a classification task. Given the embeddings of two nodes and a relation, the task is to determine how likely it is that they are similar (connected).
 
 For our demo, we've opted for the DistMult KGE algorithm. It works by representing the likelihood of relationships between entities (the similarity function) as a bilinear function. Essentially, it assumes that the score of a given triple (comprising a head entity $h$, a relationship $r$, and a tail entity $t$) can be computed as $h^T \text{diag}(r) t$. 
 
