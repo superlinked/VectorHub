@@ -1,22 +1,22 @@
 <!-- SEO: Introduction to Knowledge Graphs. Introduction to Knowledge Graph Embedding. Introduction to the DistMult algorithm. Example code for training KGE model. Example code for evaluating KGE model. Example code for answering questions with a KGE model. KGE and LLM comparison on QA task.  -->
 
-# Learning Scemantic Representations for Knowledge Graphs
+# Learning Semantic Representations for Knowledge Graphs
 
-In today's world, LLMs (Large Language Models) are everywhere, doing all sorts of language-related tasks really well. They're the go-to solution for understanding and using text in many different ways. However, in specific domains involving alternative data representations, LLMs might not offer the same level of performance as they do with text-centric tasks.
+Large Language Models (LLMs) are everywhere, achieving impressive results in all sorts of language-related tasks. However, in specific domains involving non-text data representations, LLMs might not offer the same level of performance as they do with text-centric tasks.
 
-This post digs into when these popular language models might not be the best choice. We'll see how specialized methods, like KGE (Knowledge Graph Embedding) algorithms, could actually be better for certain tasks.
+We look at how specialized methods, in particular Knowledge Graph Embedding (KGE) algorithms, may actually perform better on certain tasks.
 
 ## What are Knowledge Graphs?
 
-Now, let's zoom in on KGs (Knowledge Graphs). We use KGs to describe how different entities, like people, places, or more generally "things", relate to each other. For example a KG can show us how a famous writer is linked to their books or how a book is connected to its received awards:
+We use Knowledge Graphs (KGs) to describe how different entities, like people, places, or more generally "things," relate to each other. For example, a KG can show us how a writer is linked to their books or how a book is connected to its received awards:
 
 ![Knowledge Graph example](../assets/use_cases/knowledge_graph_embedding/small_kg.png)
 
-In certain areas where understanding these specific connections is crucial - like recommendation systems, search engines, information retrieval, etc. - KGs step in as specialized tools. They help computers grasp the detailed relationships between things.
+In domains where understanding these specific connections is crucial - like recommendation systems, search engines, or information retrieval - KGs specialize in helping computers grasp the detailed relationships between things.
 
-## What is Knowledge Graph Embedding (KGE)?
+## What is Knowledge Graph Embedding?
 
-KGE algorithms take this tangled complex web of connections and turn it into something AI systems can understand better: vectors. This might raise a question - if we already have knowledge of the connections between nodes and their relations, then why do we need to take the effort to learn embeddings?
+KGE algorithms take tangled complex webs of connections between entites and turn them into something AI systems can understand better: vectors (or embeddings). Why are vectors necessary? If we already understand the connections and relationships between nodes, then what function do embeddings fulfill?
 
 The challenge with KGs is that they are usually incomplete. This means that there might be some edges that should ideally be present but are missing. These missing links could be the result of inaccuracies in the data collection process, or it could simply be a reflection of the imperfect nature of our data source. According to [this article](https://towardsdatascience.com/neural-graph-databases-cc35c9e1d04f), in large open-source knowledge bases we can observe a significant amount of incompleteness: 
 
