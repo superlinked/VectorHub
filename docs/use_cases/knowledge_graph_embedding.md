@@ -2,27 +2,29 @@
 
 # Learning Semantic Representations for Knowledge Graphs
 
-Large Language Models (LLMs) are everywhere, achieving impressive results in all sorts of language-related tasks. However, in specific domains involving non-text data representations, LLMs might not offer the same level of performance as they do with text-centric tasks.
+Large Language Models (LLMs) are everywhere, achieving impressive results in all sorts of language-related tasks. However, in specific domains involving non-text data representations, LLMs may not offer the same level of performance as they do with text-centric tasks.
 
-We look at how specialized methods, in particular Knowledge Graph Embedding (KGE) algorithms, may actually perform better on certain tasks.
+We look at how Knowledge Graph Embedding (KGE) algorithms can improve performance on tasks that LLMs have difficulty with, exploring some example code for training and evaluating a KGE model, and using it to answer questions. We also compare KGE and LLM performance on a QA task. Let's get started.
 
-## What are Knowledge Graphs?
+## Knowledge Graphs and their shortcomings
 
-We use Knowledge Graphs (KGs) to describe how different entities, like people, places, or more generally "things," relate to each other. For example, a KG can show us how a writer is linked to their books or how a book is connected to its received awards:
+We use Knowledge Graphs (KGs) to describe how different entities, like people, places, or more generally "things," relate to each other. For example, a KG can show us how a writer is linked to their books or how a book is connected to its awards:
 
 ![Knowledge Graph example](../assets/use_cases/knowledge_graph_embedding/small_kg.png)
 
 In domains where understanding these specific connections is crucial - like recommendation systems, search engines, or information retrieval - KGs specialize in helping computers grasp the detailed relationships between things.
 
+The challenge with KGs is that they are usually incomplete. Edges that should be present are missing. These missing links can result from inaccuracies in the data collection process, or simply reflect that our data source is imperfect. In large open-source knowledge bases, [we can observe a significant amount of incompleteness](https://towardsdatascience.com/neural-graph-databases-cc35c9e1d04f):
+
+“… in Freebase, 93.8% of people have no place of birth and [78.5% have no nationality](https://aclanthology.org/P09-1113.pdf), [about 68% of people do not have any profession](https://dl.acm.org/doi/abs/10.1145/2566486.2568032), while, in Wikidata, [about 50% of artists have no date of birth](https://arxiv.org/abs/2207.00143), and only [0.4% of known buildings have information about height](https://dl.acm.org/doi/abs/10.1145/3485447.3511932).”
+
+These imperfections, whether minor or major, can pose significant difficulties if we rely solely on the graph for information.
+
 ## What is Knowledge Graph Embedding?
 
-KGE algorithms take tangled complex webs of connections between entites and turn them into something AI systems can understand better: vectors (or embeddings). Why are vectors necessary? If we already understand the connections and relationships between nodes, then what function do embeddings fulfill?
+KGE algorithms take tangled complex webs of connections between entites and turn them into something AI systems can understand better: vectors (or embeddings).
 
-The challenge with KGs is that they are usually incomplete. This means that there might be some edges that should ideally be present but are missing. These missing links could be the result of inaccuracies in the data collection process, or it could simply be a reflection of the imperfect nature of our data source. According to [this article](https://towardsdatascience.com/neural-graph-databases-cc35c9e1d04f), in large open-source knowledge bases we can observe a significant amount of incompleteness: 
-
-“… in Freebase, 93.8% of people have no place of birth and [78.5% have no nationality](https://aclanthology.org/P09-1113.pdf), about 68% of people [do not have any profession](https://dl.acm.org/doi/abs/10.1145/2566486.2568032), while in Wikidata, about [50% of artists have no date of birth](https://arxiv.org/abs/2207.00143), and only [0.4% of known buildings have information about height](https://dl.acm.org/doi/abs/10.1145/3485447.3511932).”
-
-These imperfections, whether minor or major, can pose significant difficulties if we solely rely on the graph for information. In such a scenario, KGE algorithms prove to be extremely beneficial. Once trained, the model can generalize and predict missing edges by calculating the likelihood between entities for potential connections. 
+Once trained, the model can generalize and predict missing edges by calculating the likelihood between entities for potential connections. 
 
 ### How KGE algorithms work?
 
