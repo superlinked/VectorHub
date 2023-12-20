@@ -8,15 +8,7 @@ Different types of information, like words, pictures, and connections between th
 
 We're diving into a real-life example to explain how entities can be turned into vectors using their connections, a common practice in machine learning. The dataset we're going to work with is the a subset of the Cora citation network. It comprises 2708 scientific papers (nodes) and the connections indicate citations between them. Each paper has a BoW (Bag-of-Words) descriptor containing 1433 words. 
 
-Additionally, we wanted to see if citations show up in the BoW features. So, we made a plot that compares connected and not connected pairs of papers based on how similar their BoW features are.
-
-![BoW cosine similarity edge counts](../assets/use_cases/node_representation_learning/bins.png)
-
-In this plot, we divided the groups (shown on the y-axis) to have about the same number of pairs in each. The only exception was the 0-0.04 group, where lots of pairs had no similar words - they couldn't be split into smaller groups.
-
-From the plot, it's clear that connected nodes usually have higher cosine similarities. This means papers that cite each other often use similar words. But when we ignore zero similarities, papers that have note cited each other seem to have a wide range of common words.
-
-The papers in the dataset are also divided into 7 different topics, each paper belongs to exactly one of them. In this article we are going to explore how well we can predict tha topic of a paper using different information sources.
+The papers in the dataset are also divided into 7 different topics, each paper belongs to exactly one of them. In this article we are going to explore how well we can predict the topic of a paper using different information sources.
 
 The dataset can be loaded as follows:
 
@@ -50,7 +42,15 @@ evaluate(ds.x, ds.y)
 >>> F1 macro 0.697
 ```
 
-This is not bad, let’s see if we can do better by utilizing the available relational information.
+Additionally, we wanted to see if citations show up in the BoW features. So, we made a plot that compares connected and not connected pairs of papers based on how similar their BoW features are.
+
+![BoW cosine similarity edge counts](../assets/use_cases/node_representation_learning/bins_bow.png)
+
+In this plot, we divided the groups (shown on the y-axis) to have about the same number of pairs in each. The only exception was the 0-0.04 group, where lots of pairs had no similar words - they couldn't be split into smaller groups.
+
+From the plot, it's clear that connected nodes usually have higher cosine similarities. This means papers that cite each other often use similar words. But when we ignore zero similarities, papers that have note cited each other seem to have a wide range of common words.
+
+Even though some information about the connectivity is present in the BoW features, it is not sufficient to reconstruct the citation graph accurately. This might be problematic if the network structure contains additional information necessary for solving the paper classification problem. If we could extract that supplementary information, theoretically, we might be able to build a more accurate classifier. In the following sections, we will look at two methods for learning node representations that capture node connectivity more accurately.
 
 ## Learning node embeddings with Node2Vec
 
@@ -125,7 +125,15 @@ evaluate(embeddings, ds.y)
 >>> F1 macro: 0.799
 ```
 
-This is better than the BoW representations! Let’s see if we can improve by combining the two information sources, relations and textual features.
+These results are better than using BoW representations! 
+
+As previously with BoW features, let's look at how well conencted nodes separate by cosine similarity from not connected node pairs using the learned Node2Vec embeddings.
+
+![N2V cosine similarity edge counts](../assets/use_cases/node_representation_learning/bins_n2v.png)
+
+This time we can see a well defined separation between connected and not connected nodes, meaning that these embeddings capture the connectivity of the graph much better.
+
+Let’s see if we can further improve classification performance by combining the two information sources, relations and textual features.
 
 ### Node2Vec + Text based embeddings
 
