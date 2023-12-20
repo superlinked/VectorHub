@@ -6,7 +6,17 @@
 
 Different types of information, like words, pictures, and connections between things, show us different sides of the world. Relationships, especially, are interesting because they show how things interact and create networks. In this post, we'll talk about how we can use these relationships to understand and describe things in a network better.
 
-We're diving into a real-life example to explain how entities can be turned into vectors using their connections, a common practice in machine learning. The dataset we're going to work with is the a subset of the Cora citation network. It comprises 2708 scientific papers (nodes) and the connections indicate citations between them. Each paper has a BoW (Bag-of-Words) descriptor containing 1433 words. The challenge at hand involves predicting the specific scientific category to which each paper belongs to, selecting from a pool of seven distinct categories.
+We're diving into a real-life example to explain how entities can be turned into vectors using their connections, a common practice in machine learning. The dataset we're going to work with is the a subset of the Cora citation network. It comprises 2708 scientific papers (nodes) and the connections indicate citations between them. Each paper has a BoW (Bag-of-Words) descriptor containing 1433 words. 
+
+Additionally, we wanted to see if citations show up in the BoW features. So, we made a plot that compares connected and not connected pairs of papers based on how similar their BoW features are.
+
+![BoW cosine similarity edge counts](../assets/use_cases/node_representation_learning/bins.png)
+
+In this plot, we divided the groups (shown on the y-axis) to have about the same number of pairs in each. The only exception was the 0-0.04 group, where lots of pairs had no similar words - they couldn't be split into smaller groups.
+
+From the plot, it's clear that connected nodes usually have higher cosine similarities. This means papers that cite each other often use similar words. But when we ignore zero similarities, papers that have note cited each other seem to have a wide range of common words.
+
+The papers in the dataset are also divided into 7 different topics, each paper belongs to exactly one of them. In this article we are going to explore how well we can predict tha topic of a paper using different information sources.
 
 The dataset can be loaded as follows:
 
