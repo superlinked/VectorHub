@@ -2,7 +2,7 @@
 
 # Learning Semantic Representations for Knowledge Graphs
 
-Large Language Models (LLMs) are everywhere, achieving impressive results in all sorts of language-related tasks. However, in specific domains involving non-text data representations, LLMs may not offer the same level of performance as they do with text-centric tasks.
+Large Language Models (LLMs) are everywhere, achieving impressive results in all sorts of language-related tasks. However, in specific domains involving non-text data representations - like Q&A tasks, in which the model needs to understand the context in order to respond accurately, LLMs may not offer the same level of performance.
 
 We look at how Knowledge Graph Embedding (KGE) algorithms can improve performance on tasks that LLMs have difficulty with, explore some example code for training and evaluating a KGE model, and use the KGE model to perform Q&A tasks. We also compare KGE and LLM performance on a Q&A task. Let's get started.
 
@@ -18,7 +18,10 @@ The problem with KGs is that they are usually incomplete. Edges that should be p
 
 “… in Freebase, 93.8% of people have no place of birth and [78.5% have no nationality](https://aclanthology.org/P09-1113.pdf), [about 68% of people do not have any profession](https://dl.acm.org/doi/abs/10.1145/2566486.2568032), while, in Wikidata, [about 50% of artists have no date of birth](https://arxiv.org/abs/2207.00143), and only [0.4% of known buildings have information about height](https://dl.acm.org/doi/abs/10.1145/3485447.3511932).”
 
-These imperfections, whether minor or major, can pose significant difficulties if we rely solely on the graph for information. Knowledge Graph Embeddings can help.
+These imperfections, whether minor or major, can pose significant difficulties if we rely solely on the graph for information. 
+// if for example we don't have explicitly in the graph where I was born, we can't answer any question that needs this information with traditional Graph DB-s. For example: how many historical events are linked to the place where I was born. Since we don't have the link "was born", we won't be able to answer the question, even if we have all the historical events linked. If we have good quality node representations, we can infer my birth place (if sufficient information is in the graph).//
+
+Knowledge Graph Embeddings can help.
 
 ## Knowledge Graph Embeddings and how they work
 
