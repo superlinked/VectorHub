@@ -18,10 +18,9 @@ The problem with KGs is that they are usually incomplete. Edges that should be p
 
 “… in Freebase, 93.8% of people have no place of birth and [78.5% have no nationality](https://aclanthology.org/P09-1113.pdf), [about 68% of people do not have any profession](https://dl.acm.org/doi/abs/10.1145/2566486.2568032), while, in Wikidata, [about 50% of artists have no date of birth](https://arxiv.org/abs/2207.00143), and only [0.4% of known buildings have information about height](https://dl.acm.org/doi/abs/10.1145/3485447.3511932).”
 
-These imperfections, whether minor or major, can pose significant difficulties if we rely solely on the graph for information. 
-// if for example we don't have explicitly in the graph where I was born, we can't answer any question that needs this information with traditional Graph DB-s. For example: how many historical events are linked to the place where I was born. Since we don't have the link "was born", we won't be able to answer the question, even if we have all the historical events linked. If we have good quality node representations, we can infer my birth place (if sufficient information is in the graph).//
+The imperfections of KGs can have negative outcomes. For example in recommendations systems, KG incompleteness can lead to limited or biased recommendations; on Q&A tasks, KG incompleteness can result in substantively and contextually incomplete or inaccurate answers to queries. 
 
-Knowledge Graph Embeddings can help.
+Fortunately, KGEs can help solve the problems faced by KGs.
 
 ## Knowledge Graph Embeddings and how they work
 
