@@ -276,10 +276,10 @@ We explored LLM-based embeddings, which excel in capturing semantic meaning more
 
 
 ## Conclusion
-From the results we can draw the following conclusions (on this dataset):
-1. LLM feature beat BoW features in all scenarios
-2. Combining the text based representations with network structure results in an increased classification performance
-3. We achieved the best results using Node2Vec with LLM features
+From all of the results we can draw the following conclusions (on this dataset):
+1. LLM features beat BoW features in all scenarios.
+2. Combining the text based representations with network structure results in an increased classification performance.
+3. We achieved the best results using Node2Vec with LLM features.
 
 Finally, we included some pros and cons for both node representation learning algorithms:
 
