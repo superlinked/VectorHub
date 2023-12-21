@@ -92,7 +92,9 @@ n2v = Node2Vec(
 ).to(device)
 ```
 
-The next steps include initializing the data loader and the optimizer. The role of the data loader is to generate training batches. In our case, it will sample the random walks, create skip-gram pairs, and generate corrupted pairs by replacing either the head or tail of the edge from the noise distribution.
+The next steps include initializing the data loader and the optimizer. 
+
+The role of the data loader is to generate training batches. In our case, it will sample the random walks, create skip-gram pairs, and generate corrupted pairs by replacing either the head or tail of the edge from the noise distribution.
 
 The optimizer is used to update the model weights to minimize the loss. In our case, we are using the sparse variant of the Adam optimizer.
 
@@ -127,21 +129,21 @@ evaluate(embeddings, ds.y)
 
 These results are better than using BoW representations! 
 
-As previously with BoW features, let's look at how well conencted nodes separate by cosine similarity from not connected node pairs using the learned Node2Vec embeddings.
+As previously with BoW features, let's look at if conencted nodes separate by cosine similarity from not connected node pairs.
 
 ![N2V cosine similarity edge counts](../assets/use_cases/node_representation_learning/bins_n2v.png)
 
-This time we can see a well defined separation between connected and not connected nodes, meaning that these embeddings capture the connectivity of the graph much better.
+This time we can see a well defined separation, meaning that these embeddings capture the connectivity of the graph much better.
 
 Let’s see if we can further improve classification performance by combining the two information sources, relations and textual features.
 
 ### Node2Vec + Text based embeddings
 
-A straightforward method to combine embeddings from different sources is by concatenating them dimension-wise. We have BoW features `v_bow` and Node2Vec embeddings `v_n2v`. The fused representation would then be `v_fused = torch.cat((v_n2v, v_bow), dim=1)`. However, before combining the two representations, let’s look at the L2 norm distribution of both embeddings:
+A straightforward approach for combining embeddings from different sources is by concatenating them dimension-wise. We have BoW features `v_bow` and Node2Vec embeddings `v_n2v`. The fused representation would then be `v_fused = torch.cat((v_n2v, v_bow), dim=1)`. However, before combining the two representations, let’s look at the L2 norm distribution of both embeddings:
 
 ![L2 norm distribution of text based and Node2Vec embeddings](../assets/use_cases/node_representation_learning/l2_norm.png)
 
-From the plot, it's clear that the scales of the embedding vector lengths differ. When we want to use them together, the one with the larger magnitude will overshadow the smaller one. To mitigate this, we'll equalize their lengths by dividing each one by its average length. However, this still not necessarily yields the best performance. To optimally combine the two embeddings, we'll introduce a weighting factor: `x = torch.cat((alpha * v_n2v, v_bow), dim=1)`. To determine the appropriate value for `alpha`, we'll employ a 1D grid search approach. The results are displayed in the following graph.
+From the plot, it's clear that the scales of the embedding vector lengths differ. When we want to use them together, the one with the larger magnitude will overshadow the smaller one. To mitigate this, we'll  divide each embedding vector by their average length. However, this still not necessarily yields the best performance. To optimally combine the two embeddings, we'll introduce a weighting factor ($\alpha$). The combined representations are constructed as `x = torch.cat((alpha * v_n2v, v_bow), dim=1)`. To determine the appropriate value for $\alpha$, we'll employ a 1D grid search approach. The results are displayed in the following plot.
 
 ![Grid search for alpha](../assets/use_cases/node_representation_learning/grid_search_alpha_bow.png)
 
@@ -156,13 +158,12 @@ evaluate(x, ds.y)
 >>> Accuracy 0.852
 >>> F1 macro 0.831
 ```
-The results show that by combining the representations obtained from solely the network structure and text of the paper can improve performance. Specifically, in our case, this fusion contributed to a [X] improvement from the Node2Vec only and [X] from the BoW only classifiers.
+The results show that by combining the representations obtained from solely the network structure and text of the paper can improve performance. Specifically, in our case, this fusion contributed to a 3.6% improvement from the Node2Vec only and 15.4% from the BoW only classifiers.
 
 This sounds really good however, what if we are given new papers to classify? 
 Unlike BoW, which can be generated easily, Node2Vec features require retraining the entire model. Even if we initiate from prior embeddings, adapting these for new entities proves inconvenient. Node2Vec's limitation lies in its inability to generate embeddings for entities not present during its training phase. However, this doesn't mean that Node2Vec is useless. In scenarios where the graph is static, it is still a very robust and powerful tool.
 
-For dynamic networks, where entities evolve or new ones emerge, inductive approaches like GraphSAGE come into play. GraphSAGE accommodates the dynamic nature of graphs, offering an inductive framework to generalize and embed unseen entities.
-
+For dynamic networks, where entities evolve or new ones emerge, inductive approaches like GraphSAGE come into play.
 
 ## Learning inductive node embedding with GraphSAGE
 
@@ -179,16 +180,16 @@ To learn the model parameters, the authors suggest two approaches:
 2. If we only have access to the graph itself, we can approach model training as an unsupervised task, where the goal is to predict the presence of the edges in the graph based on the node embeddings. In this case the link probabilities are defined as $P(j \in \mathcal{N}(i)) \approx \sigma(h_i^Th_j)$. The loss function is the Negative Log Likelihood of the presence of the edge and $P$.
 
 It is also possible to combine the two approaches by using a linear combination of the two loss functions.
-However, in this example we are going stick with the unsupervised version.
+However, in this example we are going stick with the unsupervised variant.
 
 ### GraphSAGE embeddings
 
-Here we are using the `torch_geometric` implementation of the GraphSAGE algorithm, similarly as before. First we create the model by initializing a `GraphSAGE` object. We are using a 2 layer GNN, meaning that our model will receive node features from a distance of at most 2. We will have 256 hidden and 128 output dimensions.
+Here we are using the `torch_geometric` implementation of the GraphSAGE algorithm, similarly as before. First we create the model by initializing a `GraphSAGE` object. We are using a 1 layer GNN, meaning that our model will receive node features from a distance of at most 1. We will have 256 hidden and 128 output dimensions.
 
 ```python
 from torch_geometric.nn import GraphSAGE
 sage = GraphSAGE(
-    ds.num_node_features, hidden_channels=256, out_channels=128, num_layers=2
+    ds.num_node_features, hidden_channels=256, out_channels=128, num_layers=1
 ).to(device)
 ```
 
@@ -201,7 +202,7 @@ optimizer = torch.optim.Adam(sage.parameters(), lr=0.01)
 Next the data loader is constructed, this will generate training batches for us. As we are using the unsupervised objective, this loader will:
 1. Select a batch of node pairs which are connected by an edge (positive samples).
 2. Sample negative examples by either modifying the head or tail of the positive samples. The amount of negative samples per edge is defined by the `neg_sampling_ratio` parameter, which we set to 1. This means for each positive sample we'll have exactly one negative sample.
-3. We sample neighbors for a depth of 2 for each selected node. In this sampling process, we won't take into consideration all of the neighbors, instead we'll only sample a fixed size of neighbors, defined by the `num_neighbors` parameter. So in this case in the first hop we are sampling 15 neighbors while only 10 in the second layer. This is particularly useful, since limiting the considered neighbors will decouple computational complexity from the actual node degree.
+3. We sample neighbors for a depth of 1 for each selected node. The `num_neighbors` parameter allows us to specify the number of sampled neighbors in each depth. This is particuarly useful when we are dealing with dense graphs and/or multi layer GNNs. Limiting the considered neighbors will decouple computational complexity from the actual node degree. However, in our particular case we set the number to `-1` indicating that we want to sample all of the neighbors.
 
 ```python
 from torch_geometric.loader import LinkNeighborLoader
@@ -210,7 +211,7 @@ loader = LinkNeighborLoader(
     batch_size=1024,
     shuffle=True,
     neg_sampling_ratio=1.0,
-    num_neighbors=[15,10],
+    num_neighbors=[-1],
     transform=T.NormalizeFeatures(),
     num_workers=4
 )
@@ -251,7 +252,7 @@ for epoch in range(100):
     print(f'Epoch: {epoch:03d}, Loss: {loss:.4f}')
 ```
 
-Now that we have the trained model, we can embed nodes and evaluate the embeddings on the classification task:
+Next, we can embed nodes and evaluate the embeddings on the classification task:
 
 ```python
 embeddings = sage(normalize(ds.x), ds.edge_index).detach().cpu()
@@ -260,12 +261,12 @@ evaluate(embeddings, ds.y)
 >>> F1 macro 0.820
 ```
 
-The results are slightly worse than the results we got by combining Node2Vec with BoW features. However, remember that with this model we can embed completely new nodes too. If our scenario requires inductiveness, GraphSAGE might be a better solution however, if we had a transductive setting, Node2Vec would give us a better solution.
+The results are slightly worse than the results we got by combining Node2Vec with BoW features. However, remember that with this model we can embed completely new nodes too. If our scenario requires inductiveness, GraphSAGE might be a better choice.
 
 ## Using better node representations
 The Bag-of-Word representation is a simple way for embedding textual documents. However, it has limitations, such as losing the order of specific words and it is not necessarily good in capturing semantic meaning.
 
-Additionally, we explored LLM-based embeddings, which excel in capturing semantic meaning more effectively. We used the `all-mpnet-base-v2` model available on [Hugging Face](https://huggingface.co/sentence-transformers/all-mpnet-base-v2) for embedding the title and abstract of each paper. The results obtained with LLM only, Node2Vec combined with LLM and GraphSAGE trained on LLM features can be fund in the following table along with the relative improvement compared to using the BoW features:
+We explored LLM-based embeddings, which excel in capturing semantic meaning more effectively. We used the `all-mpnet-base-v2` model available on [Hugging Face](https://huggingface.co/sentence-transformers/all-mpnet-base-v2) for embedding the title and abstract of each paper. The results obtained with LLM only, Node2Vec combined with LLM and GraphSAGE trained on LLM features can be fund in the following table along with the relative improvement compared to using the BoW features:
 
 | Metric  | LLM | Node2Vec |  GraphSAGE |
 | --- | --- | --- | --- |
