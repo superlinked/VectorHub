@@ -48,7 +48,7 @@ Additionally, we wanted to see if citations show up in the BoW features. So, we 
 
 In this plot, we divided the groups (shown on the y-axis) to have about the same number of pairs in each. The only exception was the 0-0.04 group, where lots of pairs had no similar words - they couldn't be split into smaller groups.
 
-From the plot, it's clear that connected nodes usually have higher cosine similarities. This means papers that cite each other often use similar words. But when we ignore zero similarities, papers that have note cited each other seem to have a wide range of common words.
+From the plot, it's clear that connected nodes usually have higher cosine similarities. This means papers that cite each other often use similar words. But when we ignore zero similarities, papers that have not cited each other seem to have a wide range of common words.
 
 Even though some information about the connectivity is present in the BoW features, it is not sufficient to reconstruct the citation graph accurately. This might be problematic if the network structure contains additional information necessary for solving the paper classification problem. If we could extract that supplementary information, theoretically, we might be able to build a more accurate classifier. In the following sections, we will look at two methods for learning node representations that capture node connectivity more accurately.
 
