@@ -266,7 +266,7 @@ The results are slightly worse than the results we got by combining Node2Vec wit
 ## Using better node representations
 The Bag-of-Word representation is a simple way for embedding textual documents. However, it has limitations, such as losing the order of specific words and it is not necessarily good in capturing semantic meaning.
 
-We explored LLM-based embeddings, which excel in capturing semantic meaning more effectively. We used the `all-mpnet-base-v2` model available on [Hugging Face](https://huggingface.co/sentence-transformers/all-mpnet-base-v2) for embedding the title and abstract of each paper. The results obtained with LLM only, Node2Vec combined with LLM and GraphSAGE trained on LLM features can be fund in the following table along with the relative improvement compared to using the BoW features:
+We explored LLM-based embeddings, which excel in capturing semantic meaning more effectively. We used the `all-mpnet-base-v2` model available on [Hugging Face](https://huggingface.co/sentence-transformers/all-mpnet-base-v2) for embedding the title and abstract of each paper. The results obtained with LLM only, Node2Vec combined with LLM and GraphSAGE trained on LLM features can be found in the following table along with the relative improvement compared to using the BoW features:
 
 | Metric  | LLM | Node2Vec |  GraphSAGE |
 | --- | --- | --- | --- |
