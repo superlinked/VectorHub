@@ -66,10 +66,10 @@ The embeddings are learned by maximizing the co-occurance probability for (sourc
 
 The random walks are sampled according to a policy, which is guided by 2 parameters: return $p$, and in-out $q$.
 
-- The return parameter $p$ impacts the likelihood of returning to the previous node. A higher p leads to more locally focused walks.
-- The in-out parameter $q$ affects the likelihood of visiting nodes in the same or different neighborhood. A higher q encourages Depth First Search, while a lower q promotes Breadth First Search.
+- The return parameter $p$ affects the likelihood of immediately returning to the previous node. A higher $p$ leads to more locally focused walks.
+- The in-out parameter $q$ affects the likelihood of visiting nodes in the same or different neighborhood. A higher $q$ encourages Depth First Search, while a lower $q$ promotes Breadth First Search like exploration.
 
-These parameters provide a balance between neighborhood exploration and local context. Adjusting $p$ and $q$ can be used to capture different characteristics of the graph.
+These parameters are particularly useful for accomodating different networks and tasks. Adjusting the values of $p$ and $q$ captures different characteristics of the graph in the sampled walks. BFS like exploration is useful for learning local patterns. On the other hand, using DFS like sampling is useful for capturing patterns from a bigger scale, like structural roles.
 
 ### Node2Vec embeddings
 
