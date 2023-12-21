@@ -38,8 +38,8 @@ First, we'll see how the well the BoW representations can be used to solve the c
 
 ```python
 evaluate(ds.x, ds.y)
->>> Accuracy 0.735
->>> F1 macro 0.697
+>>> Accuracy 0.738
+>>> F1 macro 0.701
 ```
 
 Additionally, we wanted to see if citations show up in the BoW features. So, we made a plot that compares connected and not connected pairs of papers based on how similar their BoW features are.
@@ -121,8 +121,8 @@ Finally, now that we have a fully trained model, we can evaluate the learned emb
 ```python
 embeddings = n2v().detach().cpu() # Access node embeddings
 evaluate(embeddings, ds.y)
->>> Accuracy: 0.818
->>> F1 macro: 0.799
+>>> Accuracy: 0.822
+>>> F1 macro: 0.803
 ```
 
 These results are better than using BoW representations! 
@@ -143,7 +143,7 @@ A straightforward method to combine embeddings from different sources is by conc
 
 From the plot, it's clear that the scales of the embedding vector lengths differ. When we want to use them together, the one with the larger magnitude will overshadow the smaller one. To mitigate this, we'll equalize their lengths by dividing each one by its average length. However, this still not necessarily yields the best performance. To optimally combine the two embeddings, we'll introduce a weighting factor: `x = torch.cat((alpha * v_n2v, v_bow), dim=1)`. To determine the appropriate value for `alpha`, we'll employ a 1D grid search approach. The results are displayed in the following graph.
 
-![Grid search for alpha](../assets/use_cases/node_representation_learning/grid_search_alpha.png)
+![Grid search for alpha](../assets/use_cases/node_representation_learning/grid_search_alpha_bow.png)
 
 Now, we can evaluate the combined representation using the value of alpha that we've obtained (0.517).
 
@@ -153,10 +153,10 @@ v_bow = normalize(ds.x)
 
 x = np.concatenate((best_alpha*v_n2v,v_bow), axis=1)
 evaluate(x, ds.y)
->>> Accuracy 0.859
->>> F1 macro 0.836
+>>> Accuracy 0.852
+>>> F1 macro 0.831
 ```
-The results show that by combining the representations obtained from solely the network structure and text of the paper can improve performance. Specifically, in our case, this fusion contributed to a 5% improvement from the Node2Vec only and 17% from the BoW only classifiers.
+The results show that by combining the representations obtained from solely the network structure and text of the paper can improve performance. Specifically, in our case, this fusion contributed to a [X] improvement from the Node2Vec only and [X] from the BoW only classifiers.
 
 This sounds really good however, what if we are given new papers to classify? 
 Unlike BoW, which can be generated easily, Node2Vec features require retraining the entire model. Even if we initiate from prior embeddings, adapting these for new entities proves inconvenient. Node2Vec's limitation lies in its inability to generate embeddings for entities not present during its training phase. However, this doesn't mean that Node2Vec is useless. In scenarios where the graph is static, it is still a very robust and powerful tool.
@@ -246,7 +246,7 @@ def train():
         total_loss += float(loss) * pred.size(0)
     return total_loss / ds.num_nodes
 
-for epoch in range(200):
+for epoch in range(100):
     loss = train()
     print(f'Epoch: {epoch:03d}, Loss: {loss:.4f}')
 ```
@@ -256,21 +256,29 @@ Now that we have the trained model, we can embed nodes and evaluate the embeddin
 ```python
 embeddings = sage(normalize(ds.x), ds.edge_index).detach().cpu()
 evaluate(embeddings, ds.y)
->>> Accuracy 0.834
->>> F1 macro 0.818
+>>> Accuracy 0.844
+>>> F1 macro 0.820
 ```
 
-The results are slightly worse (3%) than the results we got by combining Node2Vec with BoW features however, remember that with this model we can embed completely new nodes too. If our scenario requires inductiveness, GraphSAGE might be a better solution however, if we had a transductive setting, Node2Vec would give us a better solution.
+The results are slightly worse than the results we got by combining Node2Vec with BoW features. However, remember that with this model we can embed completely new nodes too. If our scenario requires inductiveness, GraphSAGE might be a better solution however, if we had a transductive setting, Node2Vec would give us a better solution.
+
+## Using better node representations
+The Bag-of-Word representation is a simple way for embedding textual documents. However, it has limitations, such as losing the order of specific words and it is not necessarily good in capturing semantic meaning.
+
+Additionally, we explored LLM-based embeddings, which excel in capturing semantic meaning more effectively. We used the `all-mpnet-base-v2` model available on [Hugging Face](https://huggingface.co/sentence-transformers/all-mpnet-base-v2) for embedding the title and abstract of each paper. The results obtained with LLM only, Node2Vec combined with LLM and GraphSAGE trained on LLM features can be fund in the following table along with the relative improvement compared to using the BoW features:
+
+| Metric  | LLM | Node2Vec |  GraphSAGE |
+| --- | --- | --- | --- |
+| Accuracy  | 0.816 (+10%) | **0.867** (+1.7%) |  0.852 (+0.9%) |
+| F1 (macro)  | 0.779 (+11%) | **0.840** (+1%) | 0.831 (+1.3%) |
+
+
 
 ## Conclusion
-In the following table you can find the results of all the models we tried in this post:
-
-| Embedding | BoW | Node2Vec | Combined | GraphSAGE |
-| --- | --- | --- | --- | --- |
-| Accuracy | 0.735 | 0.818 | **0.859** | 0.834 |
-| F1 (macro) | 0.697 | 0.799 | **0.836** | 0.818 |
-
-In conclusion we can say that both node embedding algorithms were able to significantly improve classification performance compared to solely relying on the BoW features. The Node2Vec representations combined with the BoW features resulted in slightly better performance in both considered metrics.
+From the results we can draw the following conclusions (on this dataset):
+1. LLM feature beat BoW features in all scenarios
+2. Combining the text based representations with network structure results in an increased classification performance
+3. We achieved the best results using Node2Vec with LLM features
 
 Finally, we included some pros and cons for both node representation learning algorithms:
 
