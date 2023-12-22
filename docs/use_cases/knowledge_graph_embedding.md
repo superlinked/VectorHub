@@ -2,7 +2,7 @@
 
 # Learning Semantic Representations for Knowledge Graphs
 
-Large Language Models (LLMs) are everywhere, achieving impressive results in all sorts of language-related tasks - language understanding, sentiment analysis, text completion, language generation, and so on. But in specific domains involving relational data (often stored in Knowledge Graphs), LLMs don't always perform as well. For use cases that require you to capture semantic relationships - like relation extraction and link prediction, specialized approaches that _embed_ relational data can perform much better than LLMs.
+Large Language Models (LLMs) are everywhere, achieving impressive results in all sorts of language-related tasks - language understanding, sentiment analysis, text completion, and so on. But in some domains, including those involving relational data (often stored in Knowledge Graphs), LLMs don't always perform as well. For use cases that require you to capture semantic relationships - like relation extraction and link prediction, specialized approaches that _embed_ relational data can perform much better than LLMs.
 
 We look at how Knowledge Graph Embedding (KGE) algorithms can improve performance on some tasks that LLMs have difficulty with, explore some example code for training and evaluating a KGE model, and use the KGE model to perform Q&A tasks. We also compare KGE and LLM performance on a Q&A task.
 
@@ -229,7 +229,7 @@ While DistMult stands out as a simple but powerful tool for embedding KGs, it do
 
 ## KGEs for relational data
 
-Because LLMs have trouble encoding intricate relation structures, their performance suffers when dealing with relational information. Creating a string representation of a node's connections tends to overload the LLM's input. Instead, their strength lies in processing more focused and specific textual information; LLMs are typically not trained to handle broad and diverse information within a single context. KGE algorithms, on the other hand, are specifically designed to handle relational data.
+Because LLMs have trouble encoding intricate relation structures, their performance suffers when dealing with relational information. Creating a string representation of a node's connections tends to overload the LLM's input. Instead, their strength lies in processing more focused and specific textual information; LLMs are typically not trained to handle broad and diverse information within a single context. KGE algorithms, on the other hand, are specifically designed to handle relational data, and can be further customized to fit the specific needs of many use cases.
 
 
 ---
