@@ -22,7 +22,7 @@ The problem with KGs is that they are usually incomplete. Edges that should be p
 
 The imperfections of KGs can lead to negative outcomes. For example, in recommendations systems, KG incompleteness can result in limited or biased recommendations; on Q&A tasks, KG incompleteness can result in substantively and contextually incomplete or inaccurate answers to queries. 
 
-Fortunately, KGEs can help solve the problems faced by KGs.
+Fortunately, KGEs can help solve the problems that plague KGs.
 
 ## Knowledge Graph Embeddings and how they work
 
@@ -30,7 +30,7 @@ Trained KGE algorithms can generalize and predict missing edges by calculating t
 
 KGE algorithms do this by taking tangled complex webs of connections between entities and turning them into something AI systems can understand: vectors. Embedding entities in a vector space allows KGE algorithms to define a loss function that measures the discrepancy between embedding similarity and node similarity in the graph. If the loss is minimal, similar nodes in the graph have similar embeddings.
 
-The KGE model is trained by trying to align the similarities between embedding vectors align with the similarities of corresponding nodes in the graph. The model adjusts its parameters during training to ensure that entities that are similar in the KG have similar embeddings. This ensures that vector representations capture the structural and relational aspects of entities in the graph.
+The KGE model is trained by trying to make the similarities between embedding vectors align with the similarities of corresponding nodes in the graph. The model adjusts its parameters during training to ensure that entities that are similar in the KG have similar embeddings. This ensures that vector representations capture the structural and relational aspects of entities in the graph.
 
 KGE algorithms vary in the similarity functions they employ and how they define node similarity within a graph. A simple approach is to consider nodes that are connected by an edge as similar. Using this definition, learning node embeddings can be framed as a classification task. In this task, the goal is to determine how likely it is that any given pair of nodes have a specific type of relationship (i.e., share a specific edge), given their embeddings.
 
@@ -82,7 +82,7 @@ For additional configuration of the model, please refer to the [PyTorch Geometri
 
 The process of **model training** in PyTorch follows a standard set of steps:
 
-The first step is **initialization of an optimizer**. The optimizer is a fundamental part of machine learning model training; it adjusts the parameters of the model to reduce loss. In our demo, we use the [`Adam`](LINK) optimizer.
+The first step is **initialization of an optimizer**. The optimizer is a fundamental part of machine learning model training; it adjusts the parameters of the model to reduce loss. In our demo, we use the [`Adam`](https://pytorch.org/docs/stable/generated/torch.optim.Adam.html) optimizer.
 
 ```python
 import torch.optim as optim
