@@ -18,11 +18,11 @@ In domains where understanding these specific connections is crucial - like reco
 
 The problem with KGs is that they are usually incomplete. Edges that should be present are missing. These missing links can result from inaccuracies in the data collection process, or simply reflect that our data source is imperfect. In large open-source knowledge bases, [we can observe a _significant_ amount of incompleteness](https://towardsdatascience.com/neural-graph-databases-cc35c9e1d04f):
 
-“… in Freebase, 93.8% of people have no place of birth, and [78.5% have no nationality](https://aclanthology.org/P09-1113.pdf), [about 68% of people do not have any profession](https://dl.acm.org/doi/abs/10.1145/2566486.2568032), while, in Wikidata, [about 50% of artists have no date of birth](https://arxiv.org/abs/2207.00143), and only [0.4% of known buildings have information about height](https://dl.acm.org/doi/abs/10.1145/3485447.3511932).”
+> … in Freebase, 93.8% of people have no place of birth, and [78.5% have no nationality](https://aclanthology.org/P09-1113.pdf), [about 68% of people do not have any profession](https://dl.acm.org/doi/abs/10.1145/2566486.2568032), while, in Wikidata, [about 50% of artists have no date of birth](https://arxiv.org/abs/2207.00143), and only [0.4% of known buildings have information about height](https://dl.acm.org/doi/abs/10.1145/3485447.3511932).
 
-The imperfections of KGs can lead to negative outcomes. For example, in recommendations systems, KG incompleteness can result in limited or biased recommendations; on Q&A tasks, KG incompleteness can result in substantively and contextually incomplete or inaccurate answers to queries. 
+The imperfections of KGs can lead to negative outcomes. For example, in recommendations systems, KG incompleteness can result in limited or biased recommendations; on Q&A tasks, KG incompleteness can yield substantively and contextually incomplete or inaccurate answers to queries.
 
-Fortunately, KGEs can help solve the problems that plague KGs.
+Fortunately, KGEs can help solve problems that plague KGs.
 
 ## Knowledge Graph Embeddings and how they work
 
@@ -32,7 +32,7 @@ KGE algorithms do this by taking tangled complex webs of connections between ent
 
 The KGE model is trained by trying to make the similarities between embedding vectors align with the similarities of corresponding nodes in the graph. The model adjusts its parameters during training to ensure that entities that are similar in the KG have similar embeddings. This ensures that vector representations capture the structural and relational aspects of entities in the graph.
 
-KGE algorithms vary in the similarity functions they employ and how they define node similarity within a graph. A simple approach is to consider nodes that are connected by an edge as similar. Using this definition, learning node embeddings can be framed as a classification task. In this task, the goal is to determine how likely it is that any given pair of nodes have a specific type of relationship (i.e., share a specific edge), given their embeddings.
+KGE algorithms vary in the similarity functions they employ, and how they define node similarity within a graph. A simple approach is to consider nodes that are connected by an edge as similar. Using this definition, learning node embeddings can be framed as a classification task. In this task, the goal is to determine how likely it is that any given pair of nodes have a specific type of relationship (i.e., share a specific edge), given their embeddings.
 
 ## Demo using DistMult KGE
 
@@ -151,7 +151,7 @@ print(scores.tolist())
 
 ### Answering questions with our model
 
-Next, we'll demo how to apply the trained model to answer questions. To answer the question, "What is Guy Ritchie's profession?" we start by finding the embedding vectors of "Guy Ritchie" and the relation "profession."
+Next, we'll demo how to apply the trained model to answer questions. To answer the question, "What is Guy Ritchie's profession?" we start by finding the embedding vectors of the node "Guy Ritchie" and the relation "profession."
 
 ```python
 # Accessing node and relation embeddings
@@ -203,7 +203,7 @@ First, we create textual representations for each node within the graph by craft
 
 For queries, we take a similar textual representation approach, creating descriptions of the query but omitting the specific entity in question. With these representations in hand, we utilize dot product similarity to find and rank relevant answers.
 
-For the KGE algorithm, we employed DistMult with a 250-dimensional embedding space.
+For the KGE algorithm, we employ DistMult with a 250-dimensional embedding space.
 
 
 ### Results
@@ -216,22 +216,20 @@ You can see the results on the Open Graph Benchmark query set in the table below
 | HitRate@3 |  0.003 | 0.0154 | **0.150** |
 | HitRate@10 |  0.010 | 0.0436 | **0.307** |
 
-While the LLM performs three times better than when the nodes are randomly ordered, KGE really stands out as the superior option, with hit rates almost ten times higher than the LLM. In addition, DistMult finds the correct answer on its first try more frequently than LLM does in ten attempts. DisMult's performance is even more remarkable when considering that it outperforms LLM even though we used lower-dimensional (250) embeddings with DisMult than the LLM, which outputs 768-dimensional embeddings.
+While the LLM performs three times better than when the nodes are randomly ordered, it's KGE that really stands out as the superior option, with hit rates almost ten times higher than the LLM. In addition, DistMult finds the correct answer on its first try more frequently than LLM does in ten attempts. DisMult's performance is all the more remarkable when considering that it outperforms LLM even though we used lower-dimensional (250) embeddings with DisMult than the LLM, which outputs 768-dimensional embeddings.
 
-Our results unequivocally demonstrate KGE's superior suitability compared with LLMs for tasks where relational information is important.
+Our results unequivocally demonstrate KGE's clear advantage over LLMs for tasks where relational information is important.
 
-
-## Not a panacea (limitations)
-
-Because LLMs have trouble encoding intricate relation structures, their performance suffers when dealing with relational information. Creating a string representation of a node's connections tends to overload the LLM's input. LLMs' strength lies in processing more focused and specific textual information; they are typically not trained to handle broad and diverse information within a single context. 
-
-KGE algorithms, on the other hand, are specifically designed to handle relational data.
+### DisMult limitations
 
 While DistMult stands out as a simple but powerful tool for embedding KGs, it does have limitations. It struggles with:
-
 1. cold starts: When the graph evolves or changes over time, DistMult can't represent new nodes introduced later on, or can't model the effect of new connections introduced to the graph.
 2. complex questions: While it excels in straightforward question-answering scenarios, the DistMult model falls short when faced with complex questions that demand a deeper comprehension, extending beyond immediate connections. Other KGE algorithms better suit such tasks.
 
+
+## KGEs for relational data
+
+Because LLMs have trouble encoding intricate relation structures, their performance suffers when dealing with relational information. Creating a string representation of a node's connections tends to overload the LLM's input. Instead, their strength lies in processing more focused and specific textual information; LLMs are typically not trained to handle broad and diverse information within a single context. KGE algorithms, on the other hand, are specifically designed to handle relational data.
 
 
 ---
