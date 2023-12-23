@@ -1,8 +1,6 @@
 <!-- SEO: Introduction to Knowledge Graphs. Introduction to Knowledge Graph Embedding. Introduction to the DistMult algorithm. Example code for training KGE model. Example code for evaluating KGE model. Example code for answering questions with a KGE model. KGE and LLM comparison on QA task.  -->
 
-# Knowledge Graph Embeddings
-
-## Learning Semantic Representations for Knowledge Graphs
+# Knowledge Graph Embeddings and Relational Data
 
 Large Language Models (LLMs) are everywhere, achieving impressive results in all sorts of language-related tasks - language understanding, sentiment analysis, text completion, and so on. But in some domains, including those involving relational data (often stored in Knowledge Graphs), LLMs don't always perform as well. For use cases that require you to capture semantic relationships - like relation extraction and link prediction, specialized approaches that _embed_ relational data can perform much better than LLMs.
 
