@@ -16,9 +16,9 @@ We use Knowledge Graphs (KGs) to describe how different entities, like people, p
 
 In domains where understanding these specific connections is crucial - like recommendation systems, search engines, or information retrieval - KGs specialize in helping computers grasp the detailed relationships between things.
 
-The problem with KGs is that they are usually incomplete. Edges that should be present are missing. These missing links can result from inaccuracies in the data collection process, or simply reflect that our data source is imperfect. In large open-source knowledge bases, [we can observe a _significant_ amount of incompleteness](https://towardsdatascience.com/neural-graph-databases-cc35c9e1d04f){:target="_blank"}:
+The problem with KGs is that they are usually incomplete. Edges that should be present are missing. These missing links can result from inaccuracies in the data collection process, or simply reflect that our data source is imperfect. In large open-source knowledge bases, [we can observe a _significant_ amount of incompleteness](https://towardsdatascience.com/neural-graph-databases-cc35c9e1d04f):
 
-> … in Freebase, 93.8% of people have no place of birth, and [78.5% have no nationality](https://aclanthology.org/P09-1113.pdf){:target="_blank"}, [about 68% of people do not have any profession](https://dl.acm.org/doi/abs/10.1145/2566486.2568032){:target="_blank"}, while, in Wikidata, [about 50% of artists have no date of birth](https://arxiv.org/abs/2207.00143){:target="_blank"}, and only [0.4% of known buildings have information about height](https://dl.acm.org/doi/abs/10.1145/3485447.3511932){:target="_blank"}.
+> … in Freebase, 93.8% of people have no place of birth, and [78.5% have no nationality](https://aclanthology.org/P09-1113.pdf), [about 68% of people do not have any profession](https://dl.acm.org/doi/abs/10.1145/2566486.2568032), while, in Wikidata, [about 50% of artists have no date of birth](https://arxiv.org/abs/2207.00143), and only [0.4% of known buildings have information about height](https://dl.acm.org/doi/abs/10.1145/3485447.3511932).
 
 The imperfections of KGs can lead to negative outcomes. For example, in recommendations systems, KG incompleteness can result in **limited or biased recommendations**; on Q&A tasks, KG incompleteness can yield **substantively and contextually incomplete or inaccurate answers to queries**.
 
@@ -77,12 +77,12 @@ model = DistMult(
 )
 ```
 
-For additional configuration of the model, please refer to the [PyTorch Geometric documentation](https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.nn.kge.DistMult.html){:target="_blank"}.
+For additional configuration of the model, please refer to the [PyTorch Geometric documentation](https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.nn.kge.DistMult.html).
 
 
 The process of **model training in PyTorch** follows a standard set of steps:
 
-The first step is **initialization of an optimizer**. The optimizer is a fundamental part of machine learning model training; it adjusts the parameters of the model to reduce loss. In our demo, we use the [`Adam`](https://pytorch.org/docs/stable/generated/torch.optim.Adam.html){:target="_blank"} optimizer.
+The first step is **initialization of an optimizer**. The optimizer is a fundamental part of machine learning model training; it adjusts the parameters of the model to reduce loss. In our demo, we use the [`Adam`](https://pytorch.org/docs/stable/generated/torch.optim.Adam.html) optimizer.
 
 ```python
 import torch.optim as optim
@@ -192,16 +192,16 @@ Moreover, these five professions are all closely related to the film industry, s
 
 In sum, the model's performance in this scenario demonstrates its potential for **understanding concepts**, **interpreting context**, and **extracting semantic meaning**.
 
-Here is the [complete code for this demo](https://drive.google.com/file/d/1G3tJ6Nn_6hKZ8HZGpx8OHpWwGqp_sQtF/view?usp=sharing){:target="_blank"}.
+Here is the [complete code for this demo](https://drive.google.com/file/d/1G3tJ6Nn_6hKZ8HZGpx8OHpWwGqp_sQtF/view?usp=sharing).
 
 
 ## Comparing KGE with LLM performance on a large Knowledge Graph
 
-Next, let's compare the performance of KGE and LLMs on the ogbl-wikikg2 dataset, drawn from Wikidata. This dataset includes 2.5 million unique entities, 535 types of relations, and 17.1 million fact triplets. We'll evaluate their performance using hit rates (ratio of correct answers), following the guidelines provided in [Stanford's Open Graph Benchmark](https://ogb.stanford.edu/docs/linkprop/#ogbl-wikikg2){:target="_blank"}.
+Next, let's compare the performance of KGE and LLMs on the ogbl-wikikg2 dataset, drawn from Wikidata. This dataset includes 2.5 million unique entities, 535 types of relations, and 17.1 million fact triplets. We'll evaluate their performance using hit rates (ratio of correct answers), following the guidelines provided in [Stanford's Open Graph Benchmark](https://ogb.stanford.edu/docs/linkprop/#ogbl-wikikg2).
 
 First, we create textual representations for each node within the graph by crafting sentences that describe their connections, like this: "[node] [relation1] [neighbor1], [neighbor2]. [node] [relation2] [neighbor3], [neighbor4]. ..." 
 
-We then feed these textual representations into a LLM – specifically, the `BAAI/bge-base-en-v1.5` model available on [HuggingFace](https://huggingface.co/BAAI/bge-base-en-v1.5){:target="_blank"}. The embeddings that result from this process serve as our node embeddings.
+We then feed these textual representations into a LLM – specifically, the `BAAI/bge-base-en-v1.5` model available on [HuggingFace](https://huggingface.co/BAAI/bge-base-en-v1.5). The embeddings that result from this process serve as our node embeddings.
 
 For queries, we take a similar textual representation approach, creating descriptions of the query but omitting the specific entity in question. With these representations in hand, we utilize dot product similarity to find and rank relevant answers.
 
@@ -237,5 +237,5 @@ Because LLMs have trouble encoding intricate relation structures, their performa
 ---
 ## Contributors
 
-- [Richárd Kiss, author](https://www.linkedin.com/in/richard-kiss-3209a1186/){:target="_blank"}
-- [Robert Turner, editor](https://robertturner.co/copyedit){:target="_blank"}
+- [Richárd Kiss, author](https://www.linkedin.com/in/richard-kiss-3209a1186/)
+- [Robert Turner, editor](https://robertturner.co/copyedit)
