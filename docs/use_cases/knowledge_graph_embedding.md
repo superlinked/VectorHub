@@ -10,15 +10,15 @@ Let's get started.
 
 ## Knowledge Graphs and missing edges
 
-We use Knowledge Graphs (KGs) to describe how different entities, like people, places, or more generally "things," relate to each other. For example, a KG can show us how a writer is linked to their books or how a book is connected to its awards:
+We use Knowledge Graphs (KGs) to describe how different entities, like people, places, or more generally "things," relate to each other. For example, a KG can show us how a writer is linked to their books, or how a book is connected to its awards:
 
 ![Knowledge Graph example](../assets/use_cases/knowledge_graph_embedding/small_kg.png)
 
 In domains where understanding these specific connections is crucial - like recommendation systems, search engines, or information retrieval - KGs specialize in helping computers grasp the detailed relationships between things.
 
-The problem with KGs is that they are usually incomplete. Edges that should be present are missing. These missing links can result from inaccuracies in the data collection process, or simply reflect that our data source is imperfect. In large open-source knowledge bases, [we can observe a _significant_ amount of incompleteness](https://towardsdatascience.com/neural-graph-databases-cc35c9e1d04f):
+The problem with KGs is that they are usually incomplete. Edges that should be present are missing. These missing links can result from inaccuracies in the data collection process, or simply reflect that our data source is imperfect. In large open-source knowledge bases, [we can observe a _significant_ amount of incompleteness](https://towardsdatascience.com/neural-graph-databases-cc35c9e1d04f){:target="_blank"}:
 
-> … in Freebase, 93.8% of people have no place of birth, and [78.5% have no nationality](https://aclanthology.org/P09-1113.pdf), [about 68% of people do not have any profession](https://dl.acm.org/doi/abs/10.1145/2566486.2568032), while, in Wikidata, [about 50% of artists have no date of birth](https://arxiv.org/abs/2207.00143), and only [0.4% of known buildings have information about height](https://dl.acm.org/doi/abs/10.1145/3485447.3511932).
+> … in Freebase, 93.8% of people have no place of birth, and [78.5% have no nationality](https://aclanthology.org/P09-1113.pdf){:target="_blank"}, [about 68% of people do not have any profession](https://dl.acm.org/doi/abs/10.1145/2566486.2568032){:target="_blank"}, while, in Wikidata, [about 50% of artists have no date of birth](https://arxiv.org/abs/2207.00143){:target="_blank"}, and only [0.4% of known buildings have information about height](https://dl.acm.org/doi/abs/10.1145/3485447.3511932){:target="_blank"}.
 
 The imperfections of KGs can lead to negative outcomes. For example, in recommendations systems, KG incompleteness can result in limited or biased recommendations; on Q&A tasks, KG incompleteness can yield substantively and contextually incomplete or inaccurate answers to queries.
 
@@ -28,21 +28,21 @@ Fortunately, KGEs can help solve problems that plague KGs.
 
 Trained KGE algorithms can generalize and predict missing edges by calculating the likelihood of connections between entities. 
 
-KGE algorithms do this by taking tangled complex webs of connections between entities and turning them into something AI systems can understand: vectors. Embedding entities in a vector space allows KGE algorithms to define a loss function that measures the discrepancy between embedding similarity and node similarity in the graph. If the loss is minimal, similar nodes in the graph have similar embeddings.
+KGE algorithms do this by taking tangled complex webs of connections between entities and turning them into something AI systems can understand: _vectors_. Embedding entities in a vector space allows KGE algorithms to define a _loss function_ that measures the discrepancy between embedding similarity and node similarity in the graph. If the loss is minimal, similar nodes in the graph have similar embeddings.
 
-The KGE model is trained by trying to make the similarities between embedding vectors align with the similarities of corresponding nodes in the graph. The model adjusts its parameters during training to ensure that entities that are similar in the KG have similar embeddings. This ensures that vector representations capture the structural and relational aspects of entities in the graph.
+The KGE model is _trained_ by trying to make the similarities between embedding vectors align with the similarities of corresponding nodes in the graph. The model adjusts its parameters during training to ensure that entities that are similar in the KG have similar embeddings. This ensures that vector representations capture the structural and relational aspects of entities in the graph.
 
-KGE algorithms vary in the similarity functions they employ, and how they define node similarity within a graph. A simple approach is to consider nodes that are connected by an edge as similar. Using this definition, learning node embeddings can be framed as a classification task. In this task, the goal is to determine how likely it is that any given pair of nodes have a specific type of relationship (i.e., share a specific edge), given their embeddings.
+KGE algorithms vary in the similarity functions they employ, and how they define node similarity within a graph. A _simple approach_ is to consider nodes that are connected by an edge as similar. Using this definition, learning node embeddings can be framed as a classification task. In this task, the goal is to determine how likely it is that any given pair of nodes have a specific type of relationship (i.e., share a specific edge), given their embeddings.
 
 ## Demo using DistMult KGE
 
-For our KGE model demo, we opted for the DistMult KGE algorithm. It works by representing the likelihood of relationships between entities (i.e., similarity) as a bilinear function. Essentially, DisMult KGE assumes that the score of a given triple (comprised of a head entity $h$, a relationship $r$, and a tail entity $t$) can be computed as $h^T \text{diag}(r) t$. 
+For our KGE model demo, we opted for the DistMult KGE algorithm. It works by representing the likelihood of relationships between entities (i.e., similarity) as a _bilinear_ function. Essentially, DisMult KGE assumes that the score of a given triple (comprised of a head entity $h$, a relationship $r$, and a tail entity $t$) can be computed as: $h^T \text{diag}(r) t$. 
 
 ![DistMult similarity function](../assets/use_cases/knowledge_graph_embedding/distmult.png)
 
 [(Image source)](https://data.dgl.ai/asset/image/ke/distmult.png)
 
-The model parameters are learned (internalizing the intricate relationships within the KG) by minimizing cross entropy between real and corrupted triplets.
+The model parameters are learned (internalizing the intricate relationships within the KG) by _minimizing cross entropy between real and corrupted triplets_.
 
 In the following two sections we'll walk you through:
 
@@ -77,12 +77,12 @@ model = DistMult(
 )
 ```
 
-For additional configuration of the model, please refer to the [PyTorch Geometric documentation](https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.nn.kge.DistMult.html).
+For additional configuration of the model, please refer to the [PyTorch Geometric documentation](https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.nn.kge.DistMult.html){:target="_blank"}.
 
 
-The process of **model training** in PyTorch follows a standard set of steps:
+The process of **model training in PyTorch** follows a standard set of steps:
 
-The first step is **initialization of an optimizer**. The optimizer is a fundamental part of machine learning model training; it adjusts the parameters of the model to reduce loss. In our demo, we use the [`Adam`](https://pytorch.org/docs/stable/generated/torch.optim.Adam.html) optimizer.
+The first step is **initialization of an optimizer**. The optimizer is a fundamental part of machine learning model training; it adjusts the parameters of the model to reduce loss. In our demo, we use the [`Adam`](https://pytorch.org/docs/stable/generated/torch.optim.Adam.html){:target="_blank"} optimizer.
 
 ```python
 import torch.optim as optim
@@ -188,18 +188,20 @@ Impressively, the model correctly interprets and infers information that isn't e
 
 Furthermore, the fact that the top five relevant entities identified by the model are all professions suggests that the model has successfully learned and understood the concept of a "profession" - that is, the model has grasped the _broader context and implications_ of "profession," rather than just recognizing the term itself.
 
-Moreover, these five professions are all closely related to the film industry, suggesting that the model has _not only_ understood the concept of a profession but _also_ narrowed this category to film industry professions specifically; that is, KGE has managed to capture the semantic meaning of the combination of the two query terms: the head entity (Guy Ritchie) and the relation entity (profession), and therefore was able to link the general concept of a profession to the specific context of the film industry, a testament to its ability to capture and interpret semantic meaning.
+Moreover, these five professions are all closely related to the film industry, suggesting that the model has _not only_ understood the concept of a profession but _also_ narrowed this category to film industry professions specifically; that is, KGE has managed to _capture the semantic meaning_ of the combination of the two query terms: the head entity (Guy Ritchie) and the relation entity (profession), and therefore was able to link the general concept of a profession to the specific context of the film industry, a testament to its ability to capture and interpret semantic meaning.
 
 In sum, the model's performance in this scenario demonstrates its potential for understanding concepts, interpreting context, and extracting semantic meaning.
 
-Here is the [complete code for this demo](https://drive.google.com/file/d/1G3tJ6Nn_6hKZ8HZGpx8OHpWwGqp_sQtF/view?usp=sharing).
+Here is the [complete code for this demo](https://drive.google.com/file/d/1G3tJ6Nn_6hKZ8HZGpx8OHpWwGqp_sQtF/view?usp=sharing){:target="_blank"}.
 
 
 ## Comparing KGE with LLM performance on a large Knowledge Graph
 
-Next, let's compare the performance of KGE and LLMs on the ogbl-wikikg2 dataset, drawn from Wikidata. This dataset includes 2.5 million unique entities, 535 types of relations, and 17.1 million fact triplets. We'll evaluate their performance using hit rates (ratio of correct answers), following the guidelines provided in [Stanford's Open Graph Benchmark](https://ogb.stanford.edu/docs/linkprop/#ogbl-wikikg2).
+Next, let's compare the performance of KGE and LLMs on the ogbl-wikikg2 dataset, drawn from Wikidata. This dataset includes 2.5 million unique entities, 535 types of relations, and 17.1 million fact triplets. We'll evaluate their performance using hit rates (ratio of correct answers), following the guidelines provided in [Stanford's Open Graph Benchmark](https://ogb.stanford.edu/docs/linkprop/#ogbl-wikikg2){:target="_blank"}.
 
-First, we create textual representations for each node within the graph by crafting sentences that describe their connections, like this: "[node] [relation1] [neighbor1], [neighbor2]. [node] [relation2] [neighbor3], [neighbor4]. ..." We then feed these textual representations into a LLM – specifically, the `BAAI/bge-base-en-v1.5` model available on [HuggingFace](https://huggingface.co/BAAI/bge-base-en-v1.5). The embeddings that result from this process serve as our node embeddings.
+First, we create textual representations for each node within the graph by crafting sentences that describe their connections, like this: "[node] [relation1] [neighbor1], [neighbor2]. [node] [relation2] [neighbor3], [neighbor4]. ..." 
+
+We then feed these textual representations into a LLM – specifically, the `BAAI/bge-base-en-v1.5` model available on [HuggingFace](https://huggingface.co/BAAI/bge-base-en-v1.5){:target="_blank"}. The embeddings that result from this process serve as our node embeddings.
 
 For queries, we take a similar textual representation approach, creating descriptions of the query but omitting the specific entity in question. With these representations in hand, we utilize dot product similarity to find and rank relevant answers.
 
@@ -216,9 +218,9 @@ You can see the results on the Open Graph Benchmark query set in the table below
 | HitRate@3 |  0.003 | 0.0154 | **0.150** |
 | HitRate@10 |  0.010 | 0.0436 | **0.307** |
 
-While the LLM performs three times better than when the nodes are randomly ordered, it's KGE that really stands out as the superior option, with hit rates almost ten times higher than the LLM. In addition, DistMult finds the correct answer on its first try more frequently than LLM does in ten attempts. DisMult's performance is all the more remarkable when considering that it outperforms LLM even though we used lower-dimensional (250) embeddings with DisMult than the LLM, which outputs 768-dimensional embeddings.
+While the LLM performs three times better than when the nodes are randomly ordered, it's KGE that really stands out as the superior option, with _hit rates almost ten times higher than the LLM_. In addition, DistMult finds the correct answer on its first try more frequently than LLM does in ten attempts. DisMult's performance is all the more remarkable when considering that it outperforms LLM even though we used lower-dimensional (250) embeddings with DisMult than the LLM, which outputs 768-dimensional embeddings.
 
-Our results unequivocally demonstrate KGE's clear advantage over LLMs for tasks where relational information is important.
+Our results unequivocally demonstrate _KGE's clear advantage over LLMs for tasks where relational information is important_.
 
 ### DisMult limitations
 
@@ -229,11 +231,11 @@ While DistMult stands out as a simple but powerful tool for embedding KGs, it do
 
 ## KGEs for relational data
 
-Because LLMs have trouble encoding intricate relation structures, their performance suffers when dealing with relational information. Creating a string representation of a node's connections tends to overload the LLM's input. Instead, their strength lies in processing more focused and specific textual information; LLMs are typically not trained to handle broad and diverse information within a single context. KGE algorithms, on the other hand, are specifically designed to handle relational data, and can be further customized to fit the specific needs of many use cases.
+Because LLMs have trouble encoding intricate relation structures, their performance suffers when dealing with relational information. Creating a string representation of a node's connections tends to overload the LLM's input. Instead, their strength lies in processing more focused and specific textual information; LLMs are typically not trained to handle broad and diverse information within a single context. KGE algorithms, on the other hand, are specifically designed to handle relational data, and can be further customized to fit the specific needs of a wide variety of use cases.
 
 
 ---
 ## Contributors
 
-- [Richárd Kiss, author](https://www.linkedin.com/in/richard-kiss-3209a1186/)
-- [Robert Turner, editor](https://robertturner.co/copyedit)
+- [Richárd Kiss, author](https://www.linkedin.com/in/richard-kiss-3209a1186/){:target="_blank"}
+- [Robert Turner, editor](https://robertturner.co/copyedit){:target="_blank"}
