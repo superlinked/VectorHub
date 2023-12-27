@@ -20,7 +20,7 @@ The problem with KGs is that they are usually incomplete. Edges that should be p
 
 > … in Freebase, 93.8% of people have no place of birth, and [78.5% have no nationality](https://aclanthology.org/P09-1113.pdf){:target="_blank"}, [about 68% of people do not have any profession](https://dl.acm.org/doi/abs/10.1145/2566486.2568032){:target="_blank"}, while, in Wikidata, [about 50% of artists have no date of birth](https://arxiv.org/abs/2207.00143){:target="_blank"}, and only [0.4% of known buildings have information about height](https://dl.acm.org/doi/abs/10.1145/3485447.3511932){:target="_blank"}.
 
-The imperfections of KGs can lead to negative outcomes. For example, in recommendations systems, KG incompleteness can result in limited or biased recommendations; on Q&A tasks, KG incompleteness can yield substantively and contextually incomplete or inaccurate answers to queries.
+The imperfections of KGs can lead to negative outcomes. For example, in recommendations systems, KG incompleteness can result in **limited or biased recommendations**; on Q&A tasks, KG incompleteness can yield **substantively and contextually incomplete or inaccurate answers to queries**.
 
 Fortunately, KGEs can help solve problems that plague KGs.
 
@@ -28,11 +28,11 @@ Fortunately, KGEs can help solve problems that plague KGs.
 
 Trained KGE algorithms can generalize and predict missing edges by calculating the likelihood of connections between entities. 
 
-KGE algorithms do this by taking tangled complex webs of connections between entities and turning them into something AI systems can understand: _vectors_. Embedding entities in a vector space allows KGE algorithms to define a _loss function_ that measures the discrepancy between embedding similarity and node similarity in the graph. If the loss is minimal, similar nodes in the graph have similar embeddings.
+KGE algorithms do this by taking tangled complex webs of connections between entities and turning them into something AI systems can understand: **vectors**. Embedding entities in a vector space allows KGE algorithms to define a **loss function** that measures the discrepancy between embedding similarity and node similarity in the graph. _If the loss is minimal, similar nodes in the graph have similar embeddings_.
 
-The KGE model is _trained_ by trying to make the similarities between embedding vectors align with the similarities of corresponding nodes in the graph. The model adjusts its parameters during training to ensure that entities that are similar in the KG have similar embeddings. This ensures that vector representations capture the structural and relational aspects of entities in the graph.
+The KGE model is **trained** by trying to make the similarities between embedding vectors align with the similarities of corresponding nodes in the graph. The model adjusts its parameters during training to ensure that entities that are similar in the KG have similar embeddings. This ensures that vector representations capture the structural and relational aspects of entities in the graph.
 
-KGE algorithms vary in the similarity functions they employ, and how they define node similarity within a graph. A _simple approach_ is to consider nodes that are connected by an edge as similar. Using this definition, learning node embeddings can be framed as a classification task. In this task, the goal is to determine how likely it is that any given pair of nodes have a specific type of relationship (i.e., share a specific edge), given their embeddings.
+KGE algorithms vary in the similarity functions they employ, and how they define node similarity within a graph. A **simple approach** is to consider nodes that are connected by an edge as similar. Using this definition, learning node embeddings can be framed as a classification task. In this task, the goal is to determine how likely it is that any given pair of nodes have a specific type of relationship (i.e., share a specific edge), given their embeddings.
 
 ## Demo using DistMult KGE
 
@@ -186,11 +186,11 @@ top_5_scores = scores[sorted_indices]
 
 Impressively, the model correctly interprets and infers information that isn't explicitly included in the graph, and provides the right answer to our question. Our model aptly demonstrates KGE's ability to make up for graph incompleteness.
 
-Furthermore, the fact that the top five relevant entities identified by the model are all professions suggests that the model has successfully learned and understood the concept of a "profession" - that is, the model has grasped the _broader context and implications_ of "profession," rather than just recognizing the term itself.
+Furthermore, the fact that the top five relevant entities identified by the model are all professions suggests that the model has successfully learned and understood the concept of a "profession" - that is, the model has grasped the **broader context and implications** of "profession," rather than just recognizing the term itself.
 
-Moreover, these five professions are all closely related to the film industry, suggesting that the model has _not only_ understood the concept of a profession but _also_ narrowed this category to film industry professions specifically; that is, KGE has managed to _capture the semantic meaning_ of the combination of the two query terms: the head entity (Guy Ritchie) and the relation entity (profession), and therefore was able to link the general concept of a profession to the specific context of the film industry, a testament to its ability to capture and interpret semantic meaning.
+Moreover, these five professions are all closely related to the film industry, suggesting that the model has _not only_ understood the concept of a profession but _also_ narrowed this category to film industry professions specifically; that is, KGE has managed to capture **the semantic meaning** of the combination of the two query terms: the head entity (Guy Ritchie) and the relation entity (profession), and therefore was able to link the general concept of a profession to the specific context of the film industry, a testament to its ability to capture and interpret semantic meaning.
 
-In sum, the model's performance in this scenario demonstrates its potential for understanding concepts, interpreting context, and extracting semantic meaning.
+In sum, the model's performance in this scenario demonstrates its potential for **understanding concepts**, **interpreting context**, and **extracting semantic meaning**.
 
 Here is the [complete code for this demo](https://drive.google.com/file/d/1G3tJ6Nn_6hKZ8HZGpx8OHpWwGqp_sQtF/view?usp=sharing){:target="_blank"}.
 
@@ -218,9 +218,9 @@ You can see the results on the Open Graph Benchmark query set in the table below
 | HitRate@3 |  0.003 | 0.0154 | **0.150** |
 | HitRate@10 |  0.010 | 0.0436 | **0.307** |
 
-While the LLM performs three times better than when the nodes are randomly ordered, it's KGE that really stands out as the superior option, with _hit rates almost ten times higher than the LLM_. In addition, DistMult finds the correct answer on its first try more frequently than LLM does in ten attempts. DisMult's performance is all the more remarkable when considering that it outperforms LLM even though we used lower-dimensional (250) embeddings with DisMult than the LLM, which outputs 768-dimensional embeddings.
+While the LLM performs three times better than when the nodes are randomly ordered, it's KGE that really stands out as the superior option, with **hit rates almost ten times higher than the LLM**. In addition, DistMult finds the **correct answer on its first try more frequently** than LLM does in ten attempts. DisMult's performance is all the more remarkable when considering that it outperforms LLM even though we used lower-dimensional (250) embeddings with DisMult than the LLM, which outputs 768-dimensional embeddings.
 
-Our results unequivocally demonstrate _KGE's clear advantage over LLMs for tasks where relational information is important_.
+Our results unequivocally demonstrate **KGE's clear advantage over LLMs for tasks where relational information is important**.
 
 ### DisMult limitations
 
