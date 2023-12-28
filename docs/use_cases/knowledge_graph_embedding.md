@@ -184,11 +184,11 @@ top_5_scores = scores[sorted_indices]
  ('artist', 2.522)]
 ```
 
-Impressively, the model correctly interprets and infers information that isn't explicitly included in the graph, and provides the right answer to our question. Our model aptly demonstrates KGE's ability to make up for graph incompleteness.
+Impressively, the model **correctly interprets and infers information that isn't explicitly included in the graph**, and provides the right answer to our question. Our model aptly demonstrates KGE's ability to make up for graph incompleteness.
 
-Furthermore, the fact that the top five relevant entities identified by the model are all professions suggests that the model has successfully learned and understood the concept of a "profession" - that is, the model has grasped the **broader context and implications** of "profession," rather than just recognizing the term itself.
+Furthermore, the fact that the top five relevant entities identified by the model are all professions suggests that the model has successfully learned and understood the concept of a "profession" - that is, the model has **grasped the broader context and implications** of "profession," rather than just recognizing the term itself.
 
-Moreover, these five professions are all closely related to the film industry, suggesting that the model has _not only_ understood the concept of a profession but _also_ narrowed this category to film industry professions specifically; that is, KGE has managed to capture **the semantic meaning** of the combination of the two query terms: the head entity (Guy Ritchie) and the relation entity (profession), and therefore was able to link the general concept of a profession to the specific context of the film industry, a testament to its ability to capture and interpret semantic meaning.
+Moreover, these five professions are all closely related to the film industry, suggesting that the model has _not only_ understood the concept of a profession but _also_ narrowed this category to film industry professions specifically; that is, KGE has managed to **grasp the semantic meaning** of the combination of the two query terms: the head entity (Guy Ritchie) and the relation entity (profession), and therefore was able to link the general concept of a profession to the specific context of the film industry, a testament to its ability to capture and interpret semantic meaning.
 
 In sum, the model's performance in this scenario demonstrates its potential for **understanding concepts**, **interpreting context**, and **extracting semantic meaning**.
 
