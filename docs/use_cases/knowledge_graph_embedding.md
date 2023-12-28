@@ -14,7 +14,7 @@ We use Knowledge Graphs (KGs) to describe how different entities, like people, p
 
 ![Knowledge Graph example](../assets/use_cases/knowledge_graph_embedding/small_kg.png)
 
-In domains where understanding these specific connections is crucial - like recommendation systems, search engines, or information retrieval - KGs specialize in helping computers grasp the detailed relationships between things.
+In domains where understanding these specific connections is crucial - like recommendation systems, search engines, or information retrieval - KGs specialize in helping computers understand the detailed relationships between things.
 
 The problem with KGs is that they are usually incomplete. Edges that should be present are missing. These missing links can result from inaccuracies in the data collection process, or simply reflect that our data source is imperfect. In large open-source knowledge bases, [we can observe a _significant_ amount of incompleteness](https://towardsdatascience.com/neural-graph-databases-cc35c9e1d04f):
 
@@ -186,7 +186,7 @@ top_5_scores = scores[sorted_indices]
 
 Impressively, the model **correctly interprets and infers information that isn't explicitly included in the graph**, and provides the right answer to our question. Our model aptly demonstrates KGE's ability to make up for graph incompleteness.
 
-Furthermore, the fact that the top five relevant entities identified by the model are all professions suggests that the model has successfully learned and understood the concept of a "profession" - that is, the model has **grasped the broader context and implications** of "profession," rather than just recognizing the term itself.
+Furthermore, the fact that the top five relevant entities identified by the model are all professions suggests that the model has successfully learned and understood the concept of a "profession" - that is, the model has **discerned the broader context and implications** of "profession," rather than just recognizing the term itself.
 
 Moreover, these five professions are all closely related to the film industry, suggesting that the model has _not only_ understood the concept of a profession but _also_ narrowed this category to film industry professions specifically; that is, KGE has managed to **grasp the semantic meaning** of the combination of the two query terms: the head entity (Guy Ritchie) and the relation entity (profession), and therefore was able to link the general concept of a profession to the specific context of the film industry, a testament to its ability to capture and interpret semantic meaning.
 
