@@ -4,21 +4,17 @@
 
 ## Introduction
 
-Of the different types of information - words, pictures, and connections between things - relationships in particular are interesting; they show how things interact and create networks. 
-BoW approach
-Using vectors, we can take advantage of relationship data to understand and describe things that exist in networks better.
+Of the various types of information - words, pictures, and connections between things - relationships are especially interesting; they show how things interact and create networks. But not all ways of representing these relationships are the same. In machine learning, how we do vector represention of relationships is consequential for performance on a wide range of tasks.
 
-Let's examine ...
-a real-life example of how entities can be turned into vectors using their connections, a common practice in machine learning, to perform a classification problem...
-using a dataset of scientific papers, each with a Bag-of-Words descriptor
-measure classification performance to evaluate how well BoW descriptors represent their respective papers (...citation pairs)
-(How well can we predict the topic of a paper using different information sources?)
+We compare a Bag-of-Words approach to representing relationship data vs. Node2Vec and GraphSAGE representations for their performance in a real-life classification and similarity tasks on a dataset of scientific papers, to see which approach better understands and describes things that exist in networks.
+
+Specifically, evaluate how well BoW descriptors vs. Node2Vec and GraphSAGE approaches represent academic articles, by measuring their performance on classification and citation tasks. 
 not sufficient to accurately reconstruct the citation graph..
-2 other methods that take advantage of vector representation.. to achieve more accurate node representations and perform classification tasks better..
+2 other methods of vector representation.. to achieve more accurate node representations and perform classification tasks better..
 
 
 **Our dataset**
-We're going to work with a subset of the Cora citation network. It comprises 2708 scientific papers (nodes) and the connections indicate citations between them. Each paper has a BoW (Bag-of-Words) descriptor containing 1433 words. 
+We're going to work with a subset of the Cora citation network. This subset comprises 2708 scientific papers (nodes) and connections indicating citations between them. Each paper has a BoW (Bag-of-Words) descriptor containing 1433 words. 
 The papers in the dataset are also divided into 7 different topics, each paper belongs to exactly one of them. 
 
 **Loading the dataset**
@@ -29,7 +25,7 @@ from torch_geometric.datasets import Planetoid
 ds = Planetoid("./data", "Cora")[0]
 ```
 
-We will evaluate representations by measuring the classification performance (Accuracy and macro F1). We'll use a KNN (K-Nearest Neighbors) classifier with 15 neighbors and cosine similarity as the similarity metric:
+We will evaluate representations by measuring the classification performance (Accuracy and macro F1). We'll use a KNN (K-Nearest Neighbors) classifier with 15 neighbors, and cosine similarity as the similarity metric:
 
 ```python
 from sklearn.neighbors import KNeighborsClassifier
@@ -62,7 +58,9 @@ In this plot, we divided the groups (shown on the y-axis) to have about the same
 
 From the plot, it's clear that connected nodes usually have higher cosine similarities. This means papers that cite each other often use similar words. But when we ignore zero similarities, papers that have not cited each other also seem to have a wide range of common words.
 
-Though some information about the connectivity is present in the BoW features, it is not sufficient to reconstruct the citation graph accurately. The BoW representation may miss additional information contained in the network structure that can be used to solve the paper classification problem. If we could extract that information, we may be able to build a more accurate classifier. In the following sections, we look at two methods for learning node representations that capture node connectivity more accurately.
+Though some information about the connectivity is present in the BoW features, it is not sufficient to reconstruct the citation graph accurately. 
+(BoW does not capture the semantic meaning of words, and this can lead to similarity scores based on word co-occurrence without considering the context or meaning... doesn't capture the semantic relationships between words or the context in which they are used. BoW treats documents as unordered sets of words and may not differentiate between important terms and common words..)
+The BoW representation may miss additional information contained in the network structure that can be used to solve the paper classification problem. If we could extract that information, we may be able to build a more accurate classifier. In the following sections, we look at two methods for learning node representations that capture node connectivity more accurately.
 
 ## Learning node embeddings with Node2Vec
 
@@ -141,7 +139,7 @@ evaluate(embeddings, ds.y)
 
 These results are better than using BoW representations! 
 
-As previously with BoW features, let's look at if conencted nodes separate by cosine similarity from not connected node pairs.
+As previously with BoW features, let's look at if connected nodes separate by cosine similarity from not connected node pairs.
 
 ![N2V cosine similarity edge counts](../assets/use_cases/node_representation_learning/bins_n2v.png)
 
