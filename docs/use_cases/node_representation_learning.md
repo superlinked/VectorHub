@@ -4,12 +4,22 @@
 
 ## Introduction
 
-Different types of information, like words, pictures, and connections between things, show us different sides of the world. Relationships, especially, are interesting because they show how things interact and create networks. In this post, we'll talk about how we can use these relationships to understand and describe things in a network better.
+Of the different types of information - words, pictures, and connections between things - relationships in particular are interesting because they show how things interact and create networks. Using vectors, we can take advantage of relationship data to understand and describe things that exist in networks better.
 
-We're diving into a real-life example to explain how entities can be turned into vectors using their connections, a common practice in machine learning. The dataset we're going to work with is the a subset of the Cora citation network. It comprises 2708 scientific papers (nodes) and the connections indicate citations between them. Each paper has a BoW (Bag-of-Words) descriptor containing 1433 words. 
+Let's examine ...
+a real-life example of how entities can be turned into vectors using their connections, a common practice in machine learning, to perform a classification problem...
+using a dataset of scientific papers, each with a Bag-of-Words descriptor
+measure classification performance to evaluate how well BoW descriptors represent their respective papers (...citation pairs)
+(How well can we predict the topic of a paper using different information sources?)
+not sufficient to accurately reconstruct the citation graph..
+2 other methods that take advantage of vector representation.. to achieve more accurate node representations and perform classification tasks better..
 
-The papers in the dataset are also divided into 7 different topics, each paper belongs to exactly one of them. In this article we are going to explore how well we can predict the topic of a paper using different information sources.
 
+**Our dataset**
+We're going to work with a subset of the Cora citation network. It comprises 2708 scientific papers (nodes) and the connections indicate citations between them. Each paper has a BoW (Bag-of-Words) descriptor containing 1433 words. 
+The papers in the dataset are also divided into 7 different topics, each paper belongs to exactly one of them. 
+
+**Loading the dataset**
 The dataset can be loaded as follows:
 
 ```python
@@ -296,3 +306,4 @@ Finally, we included some pros and cons for both node representation learning al
 ## Contributors
 
 - [Richárd Kiss, author](https://www.linkedin.com/in/richard-kiss-3209a1186/)
+- [Robert Turner, editor](https://robertturner.co/copyedit)
