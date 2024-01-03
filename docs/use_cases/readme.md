@@ -15,6 +15,7 @@ In the blog section, we collate examples of these use cases and case studies fro
 - [Retrieval Augmented Generation](https://hub.superlinked.com/retrieval-augmented-generation)
 - [Enhancing RAG With A Multi-Agent System](https://hub.superlinked.com/enhancing-rag-with-a-multi-agent-system)
 - [Vector Embeddings In The Browser](https://hub.superlinked.com/vector-embeddings-in-the-browser)
+- [Answering Questions with Knowledge Embeddings](https://hub.superlinked.com/answering-questions-with-knowledge-graph-embeddings)
 
 
 We are always looking to expand our Use Cases and share the latest thinking. So if you've been working on something and would like to share your experiences with the community, you [get in touch and contribute](https://github.com/superlinked/VectorHub).
