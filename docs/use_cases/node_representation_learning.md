@@ -13,7 +13,7 @@ We go through how to set up a Bag-of-Words (BoW) approach to representing relati
 
 
 **Our dataset: Cora**
-We work with a subset of the Cora citation network. This subset comprises 2708 scientific papers (nodes) and connections that indicate citations between them. Each paper has a BoW descriptor containing 1433 words. The papers in the dataset are also divided into 7 different topics. Each paper belongs to exactly one of them.
+We work with a subset of the Cora citation network. This subset comprises 2708 scientific papers (nodes) and connections that indicate citations between them. Each paper has a BoW descriptor containing 1433 words. The papers in the dataset are also divided into 7 different topics (classes). Each paper belongs to exactly one of them.
 
 **Loading the dataset**
 We load the dataset as follows:
@@ -23,7 +23,8 @@ from torch_geometric.datasets import Planetoid
 ds = Planetoid("./data", "Cora")[0]
 ```
 
-We can evaluate how well the BoW descriptors represent the articles and their citations by measuring classification performance (Accuracy and macro F1). We use a KNN (K-Nearest Neighbors) classifier with 15 neighbors, and cosine similarity as the similarity metric:
+**Evaluating BoW on a classification task**
+We can evaluate how well the BoW descriptors represent the articles by measuring classification performance (Accuracy and macro F1). We use a KNN (K-Nearest Neighbors) classifier with 15 neighbors, and cosine similarity as the similarity metric:
 
 ```python
 from sklearn.neighbors import KNeighborsClassifier
@@ -40,7 +41,7 @@ def evaluate(x,y):
     print("F1 macro", f1_score(y_test, y_pred, average="macro"))
 ```
 
-First, we'll see how the well the BoW representations solve the classification problem:
+Let's see how the well the BoW representations solve the classification problem:
 
 ```python
 evaluate(ds.x, ds.y)
@@ -48,13 +49,16 @@ evaluate(ds.x, ds.y)
 >>> F1 macro 0.701
 ```
 
-Additionally, we want to see if citations show up in the BoW features. To do this, we make a plot comparing connected and not connected pairs of papers based on how similar their BoW features are.
+(statement summarizing BoW classification result)
+
+**BoW representation of citation pair similarity**
+But we also want to see how well BoW captures the relationships between articles. To examine how citation pairs show up in the BoW features, we make a plot comparing connected and not connected pairs of papers based on how similar their BoW features are.
 
 ![BoW cosine similarity edge counts](../assets/use_cases/node_representation_learning/bins_bow.png)
 
 In this plot, we divide the groups (shown on the y-axis) so that they have about the same number of pairs in each. The only exception is the 0-0.04 group, where lots of pairs have no similar words - they can't be split into smaller groups.
 
-From the plot, it's clear that connected nodes usually have higher cosine similarities. This means papers that cite each other often use similar words. But when we ignore zero similarities, papers that have not cited each other also seem to have a wide range of common words.
+From the plot, it's clear that connected nodes usually have higher cosine similarities. This means papers that cite each other often use similar words. But when we ignore paper pairs with zero similarities, papers that have not cited each other also seem to have a wide range of common words.
 
 Though some information about article connectivity is represented in the BoW features, it is not sufficient to reconstruct the citation graph accurately. 
 (BoW does not capture the semantic meaning of words, and this can lead to similarity scores based on word co-occurrence without considering the context or meaning... doesn't capture the semantic relationships between words or the context in which they are used. BoW treats documents as unordered sets of words and may not differentiate between important terms and common words..)
