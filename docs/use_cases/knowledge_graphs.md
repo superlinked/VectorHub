@@ -1,6 +1,6 @@
 ## Embeddings + Knowledge Graphs: The Ultimate Tools for RAG Systems
 
-The advent of large language models (LLMs) , trained on vast amounts of text data, has been one of the most significant breakthroughs in natural language processing. The ability of these models to generate remarkably fluent and coherent text with just a short prompt has opened up new possibilities for conversational AI, creative writing, and a wide array of other applications.
+The advent of large language models (LLMs), trained on vast amounts of text data, has been one of the most significant breakthroughs in natural language processing. The ability of these models to generate remarkably fluent and coherent text with just a short prompt has opened up new possibilities for conversational AI, creative writing, and a wide array of other applications.
 
 However, despite their eloquence, LLMs have some key limitations. Their knowledge is restricted to patterns discerned from the training data, which means they lack true understanding of the world.
 
