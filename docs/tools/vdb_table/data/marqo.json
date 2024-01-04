@@ -135,8 +135,9 @@
     "docs": "https://docs.marqo.ai/",
     "github": "https://github.com/marqo-ai/marqo",
     "website": "http://marqo.ai/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/33",
-    "poc_github": "https://github.com/OwenPendrighElliott"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/OwenPendrighElliott",
+    "slug": "marqo"
   },
   "embeddings_structured": {
     "support": "none",

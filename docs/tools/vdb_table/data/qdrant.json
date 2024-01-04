@@ -135,8 +135,9 @@
     "docs": "https://qdrant.tech/documentation/",
     "github": "https://github.com/qdrant/qdrant",
     "website": "https://qdrant.tech/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/27",
-    "poc_github": "https://github.com/atarora"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/atarora",
+    "slug": "qdrant"
   },
   "embeddings_structured": {
     "support": "none",

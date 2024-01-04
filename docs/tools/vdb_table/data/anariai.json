@@ -1,5 +1,5 @@
 {
-  "name": "Redis Search",
+  "name": "Anari AI",
   "oss": {
     "support": "none",
     "source_url": "",
@@ -13,42 +13,42 @@
   "disk_index": {
     "support": "none",
     "source_url": "",
-    "comment": ""
+    "comment": "None"
   },
   "multi_tenancy": {
-    "support": "full",
-    "source_url": "https://redis.com/blog/multi-tenancy-redis-enterprise/",
-    "comment": "https://redis.com/blog/multi-tenancy-redis-enterprise/"
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
   },
   "embeddings_text": {
     "support": "none",
     "source_url": "",
-    "comment": ""
+    "comment": "None"
   },
   "metadata_filter": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
-    "comment": ""
+    "comment": "None"
   },
   "in_process": {
     "support": "none",
     "source_url": "",
-    "comment": ""
+    "comment": "None"
   },
   "multi_vec": {
-    "support": "full",
-    "source_url": "https://redis.io/docs/interact/search-and-query/advanced-concepts/vectors/",
-    "comment": "https://redis.io/docs/interact/search-and-query/advanced-concepts/vectors/#storing-vectors-in-json"
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
   },
   "langchain": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
-    "comment": ""
+    "comment": "None"
   },
   "llamaindex": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
-    "comment": ""
+    "comment": "None"
   },
   "hybrid_search": {
     "support": "none",
@@ -56,29 +56,29 @@
     "comment": "None"
   },
   "bm25": {
-    "support": "full",
-    "source_url": "https://redis.io/docs/interact/search-and-query/advanced-concepts/scoring/",
-    "comment": "https://redis.io/docs/interact/search-and-query/advanced-concepts/scoring/"
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
   },
   "sparse_vectors": {
     "support": "none",
     "source_url": "",
-    "comment": ""
+    "comment": "None"
   },
   "full_text": {
     "support": "none",
     "source_url": "",
-    "comment": ""
+    "comment": "None"
   },
   "facets": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
-    "comment": ""
+    "comment": "None"
   },
   "geo_search": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
-    "comment": ""
+    "comment": "None"
   },
   "doc_size": {
     "bytes": 0,
@@ -88,7 +88,7 @@
   },
   "vector_dims": {
     "value": 0,
-    "unlimited": true,
+    "unlimited": false,
     "source_url": "",
     "comment": ""
   },
@@ -98,24 +98,24 @@
     "comment": "None"
   },
   "sharding": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
-    "comment": ""
+    "comment": "None"
   },
   "license": {
-    "value": "(i) Redis Source Available License 2.0 (RSALv2) or (ii) the Server Side Public License v1 (SSPLv1)",
+    "value": "Proprietary",
     "source_url": "",
     "comment": ""
   },
   "dev_languages": {
     "value": [
-      "c"
+      "none"
     ],
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 62400,
-  "vector_launch_year": "2021",
+  "github_stars": 0,
+  "vector_launch_year": "None",
   "pricing": {
     "value": "None",
     "source_url": "",
@@ -132,11 +132,12 @@
     "comment": "None"
   },
   "links": {
-    "docs": "https://redis.io/docs/get-started/vector-database/",
-    "github": "https://github.com/RedisAI/VectorSimilarity",
-    "website": "https://redis.com/solutions/use-cases/vector-database/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/40",
-    "poc_github": "https://github.com/tylerhutcherson"
+    "docs": "",
+    "github": "https://github.com/Anari-AI",
+    "website": "https://anari.ai/vector-acceleration-engine/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/jovan-stojanovic",
+    "slug": "anariai"
   },
   "embeddings_structured": {
     "support": "none",

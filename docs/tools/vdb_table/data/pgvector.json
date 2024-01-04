@@ -135,8 +135,9 @@
     "docs": "",
     "github": "https://github.com/pgvector/pgvector",
     "website": "https://github.com/pgvector/pgvector",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/29",
-    "poc_github": "https://github.com/jkatz"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/jkatz",
+    "slug": "pgvector"
   },
   "embeddings_structured": {
     "support": "none",

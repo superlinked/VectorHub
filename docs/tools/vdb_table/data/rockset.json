@@ -135,8 +135,9 @@
     "docs": "https://docs.rockset.com/documentation/docs/vector-search",
     "github": "https://github.com/rockset",
     "website": "https://rockset.com/vector-search/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/61",
-    "poc_github": "https://github.com/brencon"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/brencon",
+    "slug": "rockset"
   },
   "embeddings_structured": {
     "support": "none",

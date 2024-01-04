@@ -135,8 +135,9 @@
     "docs": "https://neo4j.com/docs/cypher-manual/current/indexes-for-vector-search/",
     "github": "https://github.com/neo4j",
     "website": "https://neo4j.com/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/55",
-    "poc_github": "https://github.com/akollegger"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/akollegger",
+    "slug": "neo4j"
   },
   "embeddings_structured": {
     "support": "none",

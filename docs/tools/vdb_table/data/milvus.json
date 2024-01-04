@@ -136,8 +136,9 @@
     "docs": "https://milvus.io/docs",
     "github": "https://github.com/milvus-io/milvus",
     "website": "http://milvus.io/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/31",
-    "poc_github": "https://github.com/Enwei%20Jiao"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/Enwei%20Jiao",
+    "slug": "milvus"
   },
   "embeddings_structured": {
     "support": "none",

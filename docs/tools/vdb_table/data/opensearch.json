@@ -135,8 +135,9 @@
     "docs": "https://opensearch.org/docs/latest/search-plugins/knn/index/",
     "github": "https://github.com/opensearch-project/OpenSearch",
     "website": "https://opensearch.org/platform/search/vector-database.html",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/36",
-    "poc_github": "https://github.com/dtaivpp"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/dtaivpp",
+    "slug": "opensearch"
   },
   "embeddings_structured": {
     "support": "none",

@@ -135,8 +135,9 @@
     "docs": "https://solr.apache.org/guide/solr/latest/query-guide/dense-vector-search.html",
     "github": "https://github.com/apache/solr",
     "website": "https://solr.apache.org/guide/solr/latest/query-guide/dense-vector-search.html#usage-as-re-ranking-query",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/37",
-    "poc_github": "https://github.com/alessandrobenedetti"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/alessandrobenedetti",
+    "slug": "apachesolr"
   },
   "embeddings_structured": {
     "support": "none",

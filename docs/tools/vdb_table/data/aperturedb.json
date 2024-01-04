@@ -135,8 +135,9 @@
     "docs": "https://docs.aperturedata.io/",
     "github": "https://github.com/aperture-data",
     "website": "https://www.aperturedata.io/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/54",
-    "poc_github": "https://github.com/luisremis"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/luisremis",
+    "slug": "aperturedb"
   },
   "embeddings_structured": {
     "support": "none",

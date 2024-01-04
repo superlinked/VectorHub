@@ -133,10 +133,11 @@
   },
   "links": {
     "docs": "https://neuml.github.io/txtai/",
-    "github": "https://github.com/neuml/txtai",
+    "github": "https://neuml.github.io/txtai/",
     "website": "https://neuml.github.io/txtai/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/45",
-    "poc_github": "https://github.com/davidmezzetti"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/davidmezzetti",
+    "slug": "txtai"
   },
   "embeddings_structured": {
     "support": "none",

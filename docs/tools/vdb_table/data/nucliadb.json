@@ -1,24 +1,24 @@
 {
-  "name": "Apache Cassandra",
+  "name": "Nuclia DB",
   "oss": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "managed_cloud": {
     "support": "none",
     "source_url": "",
     "comment": "None"
   },
-  "disk_index": {
-    "support": "full",
-    "source_url": "https://cassandra.apache.org/doc/latest/cassandra/developing/cql/indexing/sai/sai-faq.html",
-    "comment": "SAI index"
-  },
-  "multi_tenancy": {
+  "managed_cloud": {
     "support": "full",
     "source_url": "",
-    "comment": "via keyspaces and tables"
+    "comment": ""
+  },
+  "disk_index": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "multi_tenancy": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
   },
   "embeddings_text": {
     "support": "none",
@@ -26,9 +26,9 @@
     "comment": "None"
   },
   "metadata_filter": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
-    "comment": "via CassIO"
+    "comment": "None"
   },
   "in_process": {
     "support": "none",
@@ -51,9 +51,9 @@
     "comment": "None"
   },
   "hybrid_search": {
-    "support": "full",
-    "source_url": "https://cassio.org/",
-    "comment": "via CassIO"
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
   },
   "bm25": {
     "support": "none",
@@ -63,12 +63,12 @@
   "sparse_vectors": {
     "support": "none",
     "source_url": "",
-    "comment": ""
+    "comment": "None"
   },
   "full_text": {
     "support": "none",
     "source_url": "",
-    "comment": ""
+    "comment": "None"
   },
   "facets": {
     "support": "none",
@@ -88,7 +88,7 @@
   },
   "vector_dims": {
     "value": 0,
-    "unlimited": true,
+    "unlimited": false,
     "source_url": "",
     "comment": ""
   },
@@ -103,19 +103,20 @@
     "comment": "None"
   },
   "license": {
-    "value": "Apache-2.0",
+    "value": "AGPLv3",
     "source_url": "",
     "comment": ""
   },
   "dev_languages": {
     "value": [
-      "java"
+      "rust",
+      "python"
     ],
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 8400,
-  "vector_launch_year": "2023",
+  "github_stars": 497,
+  "vector_launch_year": "None",
   "pricing": {
     "value": "None",
     "source_url": "",
@@ -132,11 +133,12 @@
     "comment": "None"
   },
   "links": {
-    "docs": "https://cassandra.apache.org/doc/latest/cassandra/vector-search/overview.html",
-    "github": "https://github.com/apache/cassandra",
-    "website": "https://cassandra.apache.org/_/Apache-Cassandra-5.0-Moving-Toward-an-AI-Driven-Future.html",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/43",
-    "poc_github": "https://github.com/"
+    "docs": "https://docs.nuclia.dev/docs/",
+    "github": "https://github.com/nuclia/nucliadb",
+    "website": "https://nuclia.com/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/clayrisse",
+    "slug": "nucliadb"
   },
   "embeddings_structured": {
     "support": "none",

@@ -135,8 +135,9 @@
     "docs": "https://clickhouse.com/docs/knowledgebase/vector-search",
     "github": "https://github.com/ClickHouse/ClickHouse",
     "website": "https://clickhouse.com/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/59",
-    "poc_github": "https://github.com/cwurm"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/cwurm",
+    "slug": "clickhouse"
   },
   "embeddings_structured": {
     "support": "none",

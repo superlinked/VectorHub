@@ -1,27 +1,27 @@
 {
-  "name": "DataStax Astra DB",
+  "name": "Redis Search",
   "oss": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "managed_cloud": {
     "support": "full",
-    "source_url": "https://www.datastax.com/products/datastax-astra",
-    "comment": "https://www.datastax.com/products/datastax-astra"
-  },
-  "disk_index": {
-    "support": "full",
-    "source_url": "https://cassandra.apache.org/doc/latest/cassandra/developing/cql/indexing/sai/sai-faq.html",
-    "comment": "SAI index"
-  },
-  "multi_tenancy": {
-    "support": "full",
     "source_url": "",
     "comment": ""
   },
-  "embeddings_text": {
+  "disk_index": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_tenancy": {
     "support": "full",
+    "source_url": "https://redis.com/blog/multi-tenancy-redis-enterprise/",
+    "comment": "https://redis.com/blog/multi-tenancy-redis-enterprise/"
+  },
+  "embeddings_text": {
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
@@ -36,9 +36,9 @@
     "comment": ""
   },
   "multi_vec": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://redis.io/docs/interact/search-and-query/advanced-concepts/vectors/",
+    "comment": "https://redis.io/docs/interact/search-and-query/advanced-concepts/vectors/#storing-vectors-in-json"
   },
   "langchain": {
     "support": "full",
@@ -51,14 +51,14 @@
     "comment": ""
   },
   "hybrid_search": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "bm25": {
     "support": "none",
     "source_url": "",
-    "comment": ""
+    "comment": "None"
+  },
+  "bm25": {
+    "support": "full",
+    "source_url": "https://redis.io/docs/interact/search-and-query/advanced-concepts/scoring/",
+    "comment": "https://redis.io/docs/interact/search-and-query/advanced-concepts/scoring/"
   },
   "sparse_vectors": {
     "support": "none",
@@ -66,7 +66,7 @@
     "comment": ""
   },
   "full_text": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
@@ -81,21 +81,21 @@
     "comment": ""
   },
   "doc_size": {
-    "bytes": 250000000,
+    "bytes": 0,
     "unlimited": false,
     "source_url": "",
     "comment": ""
   },
   "vector_dims": {
-    "value": 8192,
-    "unlimited": false,
+    "value": 0,
+    "unlimited": true,
     "source_url": "",
     "comment": ""
   },
   "ephemeral": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
-    "comment": ""
+    "comment": "None"
   },
   "sharding": {
     "support": "full",
@@ -103,40 +103,41 @@
     "comment": ""
   },
   "license": {
-    "value": "Proprietary",
+    "value": "(i) Redis Source Available License 2.0 (RSALv2) or (ii) the Server Side Public License v1 (SSPLv1)",
     "source_url": "",
     "comment": ""
   },
   "dev_languages": {
     "value": [
-      "java"
+      "c"
     ],
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 0,
-  "vector_launch_year": "2023",
+  "github_stars": 62400,
+  "vector_launch_year": "2021",
   "pricing": {
-    "value": "https://www.datastax.com/pricing/astra-db",
-    "source_url": "https://www.datastax.com/pricing/astra-db",
+    "value": "None",
+    "source_url": "",
     "comment": ""
   },
   "rag": {
-    "support": "full",
-    "source_url": "https://www.datastax.com/products/ragstack",
-    "comment": "https://www.datastax.com/products/ragstack"
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
   },
   "recsys": {
     "support": "none",
     "source_url": "",
-    "comment": "?"
+    "comment": "None"
   },
   "links": {
-    "docs": "https://docs.datastax.com/en/astra-serverless/docs/vector-search/overview.html",
-    "github": "https://github.com/datastax/",
-    "website": "https://www.datastax.com/products/datastax-astra",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/44",
-    "poc_github": "https://github.com/Erick%20Ramirez"
+    "docs": "https://redis.io/docs/get-started/vector-database/",
+    "github": "https://github.com/RedisAI/VectorSimilarity",
+    "website": "https://redis.com/solutions/use-cases/vector-database/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/tylerhutcherson",
+    "slug": "redis"
   },
   "embeddings_structured": {
     "support": "none",

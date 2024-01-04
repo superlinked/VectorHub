@@ -111,7 +111,8 @@ class JsonValueFactory():
             "github": url_normalize(link_list[1]),
             "website": url_normalize(link_list[2]),
             "vendor_discussion": url_normalize(link_list[3]),
-            "poc_github": url_normalize("https://github.com/%s"%(link_list[4]))
+            "poc_github": url_normalize("https://github.com/%s"%(link_list[4])),
+            "slug": link_list[5]
         }
 
     def string(value, _hyperlink):
@@ -208,8 +209,9 @@ class XLSXWrapper():
                 header_row = row
             else:
                 print("Processing", row[0].value)
-                with open(os.path.join(output_dir, row[0].value.lower()+".json"), "w") as output_file:
-                    json.dump(self.row_to_json(header_row, row), output_file, indent=2)
+                output_obj = self.row_to_json(header_row, row)
+                with open(os.path.join(output_dir, output_obj["links"]["slug"]+".json"), "w") as output_file:
+                    json.dump(output_obj, output_file, indent=2)
 
 class CLI():
     # Use XLSX instead of CSV to preserve the hyperlinks in the original data.

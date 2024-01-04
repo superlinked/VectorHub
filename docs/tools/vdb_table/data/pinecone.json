@@ -136,7 +136,8 @@
     "github": "https://github.com/pinecone-io",
     "website": "https://www.pinecone.io/",
     "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
-    "poc_github": "https://github.com/jamescalam"
+    "poc_github": "https://github.com/jamescalam",
+    "slug": "pinecone"
   },
   "embeddings_structured": {
     "support": "none",

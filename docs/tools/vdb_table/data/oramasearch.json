@@ -135,8 +135,9 @@
     "docs": "https://docs.oramasearch.com/open-source/",
     "github": "https://github.com/oramasearch/orama",
     "website": "http://oramasearch.com/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/41",
-    "poc_github": "https://github.com/MicheleRiva"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/MicheleRiva",
+    "slug": "oramasearch"
   },
   "embeddings_structured": {
     "support": "none",

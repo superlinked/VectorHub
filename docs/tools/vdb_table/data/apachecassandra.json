@@ -1,24 +1,24 @@
 {
-  "name": "Anari AI",
+  "name": "Apache Cassandra",
   "oss": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "managed_cloud": {
     "support": "full",
     "source_url": "",
     "comment": ""
   },
-  "disk_index": {
+  "managed_cloud": {
     "support": "none",
     "source_url": "",
     "comment": "None"
   },
+  "disk_index": {
+    "support": "full",
+    "source_url": "https://cassandra.apache.org/doc/latest/cassandra/developing/cql/indexing/sai/sai-faq.html",
+    "comment": "SAI index"
+  },
   "multi_tenancy": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
-    "comment": "None"
+    "comment": "via keyspaces and tables"
   },
   "embeddings_text": {
     "support": "none",
@@ -26,14 +26,14 @@
     "comment": "None"
   },
   "metadata_filter": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
-    "comment": "None"
+    "comment": "via CassIO"
   },
   "in_process": {
     "support": "none",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "multi_vec": {
     "support": "none",
@@ -51,9 +51,9 @@
     "comment": "None"
   },
   "hybrid_search": {
-    "support": "none",
-    "source_url": "",
-    "comment": "None"
+    "support": "full",
+    "source_url": "https://cassio.org/",
+    "comment": "via CassIO"
   },
   "bm25": {
     "support": "none",
@@ -63,12 +63,12 @@
   "sparse_vectors": {
     "support": "none",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "full_text": {
     "support": "none",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "facets": {
     "support": "none",
@@ -88,7 +88,7 @@
   },
   "vector_dims": {
     "value": 0,
-    "unlimited": false,
+    "unlimited": true,
     "source_url": "",
     "comment": ""
   },
@@ -103,19 +103,19 @@
     "comment": "None"
   },
   "license": {
-    "value": "Proprietary",
+    "value": "Apache-2.0",
     "source_url": "",
     "comment": ""
   },
   "dev_languages": {
     "value": [
-      "none"
+      "java"
     ],
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 0,
-  "vector_launch_year": "None",
+  "github_stars": 8400,
+  "vector_launch_year": "2023",
   "pricing": {
     "value": "None",
     "source_url": "",
@@ -132,11 +132,12 @@
     "comment": "None"
   },
   "links": {
-    "docs": "",
-    "github": "https://github.com/Anari-AI",
-    "website": "https://anari.ai/vector-acceleration-engine/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/58",
-    "poc_github": "https://github.com/jovan-stojanovic"
+    "docs": "https://cassandra.apache.org/doc/latest/cassandra/vector-search/overview.html",
+    "github": "https://github.com/apache/cassandra",
+    "website": "https://cassandra.apache.org/_/Apache-Cassandra-5.0-Moving-Toward-an-AI-Driven-Future.html",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/jbellis",
+    "slug": "apachecassandra"
   },
   "embeddings_structured": {
     "support": "none",

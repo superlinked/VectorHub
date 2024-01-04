@@ -135,8 +135,9 @@
     "docs": "https://epsilla-inc.gitbook.io/epsilladb/",
     "github": "https://github.com/epsilla-cloud/vectordb",
     "website": "https://epsilla.com/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/48",
-    "poc_github": "https://github.com/richard-epsilla"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/richard-epsilla",
+    "slug": "epsilla"
   },
   "embeddings_structured": {
     "support": "none",

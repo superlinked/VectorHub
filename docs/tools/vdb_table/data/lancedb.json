@@ -135,8 +135,9 @@
     "docs": "https://lancedb.github.io/lancedb/",
     "github": "https://github.com/lancedb/lancedb",
     "website": "https://lancedb.com/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/46",
-    "poc_github": "https://github.com/changhiskhan"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/changhiskhan",
+    "slug": "lancedb"
   },
   "embeddings_structured": {
     "support": "none",

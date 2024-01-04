@@ -135,8 +135,9 @@
     "docs": "https://docs.vectara.com/docs/",
     "github": "https://github.com/vectara",
     "website": "http://vectara.com/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/34",
-    "poc_github": "https://github.com/ofermend"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/ofermend",
+    "slug": "vectara"
   },
   "embeddings_structured": {
     "support": "none",

@@ -135,8 +135,9 @@
     "docs": "https://turbopuffer.com/docs",
     "github": "https://github.com/sirupsen",
     "website": "http://turbopuffer.com/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/51",
-    "poc_github": "https://github.com/sirupsen"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/sirupsen",
+    "slug": "turbopuffer"
   },
   "embeddings_structured": {
     "support": "none",

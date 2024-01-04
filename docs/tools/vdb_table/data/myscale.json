@@ -135,8 +135,9 @@
     "docs": "https://myscale.com/docs/en/vector-search/",
     "github": "https://github.com/myscale",
     "website": "https://myscale.com/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/60",
-    "poc_github": "https://github.com/lqhl"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/lqhl",
+    "slug": "myscale"
   },
   "embeddings_structured": {
     "support": "none",

@@ -47,7 +47,8 @@
         "github": {"type": "string"},
         "website": {"type": "string"},
         "vendor_discussion": {"type": "string"},
-        "poc_github": {"type": "string"}
+        "poc_github": {"type": "string"},
+        "slug": {"type": "string"}
       }
     },
     "featureWithSource": {

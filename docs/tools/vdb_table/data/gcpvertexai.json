@@ -1,14 +1,14 @@
 {
-  "name": "KDB.AI",
+  "name": "GCP Vertex AI Vector Search",
   "oss": {
     "support": "none",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "managed_cloud": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "disk_index": {
     "support": "none",
@@ -23,52 +23,52 @@
   "embeddings_text": {
     "support": "none",
     "source_url": "",
-    "comment": "None"
+    "comment": "(Vertex embeddings only)"
   },
   "metadata_filter": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "in_process": {
     "support": "none",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "multi_vec": {
     "support": "none",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "langchain": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "llamaindex": {
     "support": "none",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "hybrid_search": {
     "support": "none",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "bm25": {
     "support": "none",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "sparse_vectors": {
     "support": "none",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "full_text": {
     "support": "none",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "facets": {
     "support": "none",
@@ -88,7 +88,7 @@
   },
   "vector_dims": {
     "value": 0,
-    "unlimited": false,
+    "unlimited": true,
     "source_url": "",
     "comment": ""
   },
@@ -115,7 +115,7 @@
     "comment": ""
   },
   "github_stars": 0,
-  "vector_launch_year": "None",
+  "vector_launch_year": "2021",
   "pricing": {
     "value": "None",
     "source_url": "",
@@ -132,11 +132,12 @@
     "comment": "None"
   },
   "links": {
-    "docs": "https://code.kx.com/kdbai/",
-    "github": "https://github.com/KxSystems",
-    "website": "http://kdb.ai/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/62",
-    "poc_github": "https://github.com/"
+    "docs": "https://cloud.google.com/vertex-ai/docs/vector-search/overview",
+    "github": "https://github.com/GoogleCloudPlatform",
+    "website": "https://cloud.google.com/blog/products/ai-machine-learning/vertex-matching-engine-blazing-fast-and-massively-scalable-nearest-neighbor-search",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/kazunori279",
+    "slug": "gcpvertexai"
   },
   "embeddings_structured": {
     "support": "none",

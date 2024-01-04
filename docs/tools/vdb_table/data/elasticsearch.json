@@ -135,8 +135,9 @@
     "docs": "https://www.elastic.co/guide/en/elasticsearch/reference/current/knn-search.html",
     "github": "https://github.com/elastic/elasticsearch",
     "website": "https://www.elastic.co/enterprise-search/vector-search",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/35",
-    "poc_github": "https://github.com/m-adams"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/m-adams",
+    "slug": "elasticsearch"
   },
   "embeddings_structured": {
     "support": "none",

@@ -135,8 +135,9 @@
     "docs": "https://typesense.org/docs/",
     "github": "https://github.com/typesense/typesense",
     "website": "https://typesense.org/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/53",
-    "poc_github": "https://github.com/jasonbosco"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/jasonbosco",
+    "slug": "typesense"
   },
   "embeddings_structured": {
     "support": "none",

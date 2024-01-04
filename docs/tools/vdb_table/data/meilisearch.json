@@ -135,8 +135,9 @@
     "docs": "https://www.meilisearch.com/docs",
     "github": "https://github.com/meilisearch/meilisearch",
     "website": "https://www.meilisearch.com/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/52",
-    "poc_github": "https://github.com/gmourier"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/gmourier",
+    "slug": "meilisearch"
   },
   "embeddings_structured": {
     "support": "none",

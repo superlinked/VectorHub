@@ -135,8 +135,9 @@
     "docs": "https://unum-cloud.github.io/usearch/",
     "github": "https://github.com/unum-cloud/usearch",
     "website": "https://unum-cloud.github.io/usearch/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/50",
-    "poc_github": "https://github.com/ashvardanian"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/ashvardanian",
+    "slug": "usearch"
   },
   "embeddings_structured": {
     "support": "none",

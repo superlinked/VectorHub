@@ -135,8 +135,9 @@
     "docs": "https://docs.activeloop.ai/",
     "github": "https://github.com/activeloopai/deeplake",
     "website": "https://www.activeloop.ai/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/56",
-    "poc_github": "https://github.com/davidbuniat"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/davidbuniat",
+    "slug": "activeloop"
   },
   "embeddings_structured": {
     "support": "none",

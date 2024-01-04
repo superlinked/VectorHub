@@ -135,8 +135,9 @@
     "docs": "https://learn.microsoft.com/en-us/azure/search/",
     "github": "https://github.com/Azure",
     "website": "https://azure.microsoft.com/en-us/products/ai-services/ai-search/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/47",
-    "poc_github": "https://github.com/farzad528"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/farzad528",
+    "slug": "azureai"
   },
   "embeddings_structured": {
     "support": "none",

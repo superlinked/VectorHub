@@ -1,9 +1,9 @@
 {
-  "name": "Nuclia DB",
+  "name": "MongoDB Atlas",
   "oss": {
     "support": "none",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "managed_cloud": {
     "support": "full",
@@ -16,19 +16,19 @@
     "comment": "None"
   },
   "multi_tenancy": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
-    "comment": "None"
+    "comment": "via logical partitioning or metadata"
   },
   "embeddings_text": {
     "support": "none",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "metadata_filter": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "in_process": {
     "support": "none",
@@ -36,52 +36,52 @@
     "comment": ""
   },
   "multi_vec": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "langchain": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "llamaindex": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "hybrid_search": {
-    "support": "none",
-    "source_url": "",
-    "comment": "None"
+    "support": "full",
+    "source_url": "https://gist.github.com/hweller1/d6dbd5036ae4366108b534a0f1662a20",
+    "comment": "https://gist.github.com/hweller1/d6dbd5036ae4366108b534a0f1662a20"
   },
   "bm25": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "sparse_vectors": {
     "support": "none",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "full_text": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "facets": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "geo_search": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "doc_size": {
-    "bytes": 0,
+    "bytes": 16000000,
     "unlimited": false,
     "source_url": "",
     "comment": ""
@@ -95,31 +95,31 @@
   "ephemeral": {
     "support": "none",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "sharding": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "license": {
-    "value": "AGPLv3",
+    "value": "GNU AGPL v3.0",
     "source_url": "",
     "comment": ""
   },
   "dev_languages": {
     "value": [
-      "rust",
-      "python"
+      "c++",
+      "java"
     ],
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 497,
-  "vector_launch_year": "None",
+  "github_stars": 0,
+  "vector_launch_year": "2023",
   "pricing": {
-    "value": "None",
-    "source_url": "",
+    "value": "MongoDB Pricing",
+    "source_url": "https://www.mongodb.com/pricing",
     "comment": ""
   },
   "rag": {
@@ -133,11 +133,12 @@
     "comment": "None"
   },
   "links": {
-    "docs": "https://docs.nuclia.dev/docs/",
-    "github": "https://github.com/nuclia/nucliadb",
-    "website": "https://nuclia.com/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/49",
-    "poc_github": "https://github.com/clayrisse"
+    "docs": "https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-overview/",
+    "github": "https://github.com/mongodb",
+    "website": "https://www.mongodb.com/products/platform/atlas-vector-search",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/dvsander",
+    "slug": "mongo"
   },
   "embeddings_structured": {
     "support": "none",

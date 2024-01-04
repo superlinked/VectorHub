@@ -135,8 +135,9 @@
     "docs": "https://docs.trychroma.com/",
     "github": "https://github.com/chroma-core/chroma",
     "website": "https://www.trychroma.com/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/38",
-    "poc_github": "https://github.com/jeffchuber"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/jeffchuber",
+    "slug": "chroma"
   },
   "embeddings_structured": {
     "support": "none",

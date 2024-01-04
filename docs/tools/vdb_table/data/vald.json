@@ -135,8 +135,9 @@
     "docs": "https://vald.vdaas.org/docs/",
     "github": "https://github.com/vdaas/vald",
     "website": "http://github.com/vdaas/vald",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/39",
-    "poc_github": "https://github.com/"
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/kpango",
+    "slug": "vald"
   },
   "embeddings_structured": {
     "support": "none",
