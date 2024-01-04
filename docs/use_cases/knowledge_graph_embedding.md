@@ -40,8 +40,6 @@ For our KGE model demo, we opted for the DistMult KGE algorithm. It works by rep
 
 ![DistMult similarity function](../assets/use_cases/knowledge_graph_embedding/distmult.png)
 
-[(Image source)](https://data.dgl.ai/asset/image/ke/distmult.png)
-
 The model parameters are learned (internalizing the intricate relationships within the KG) by _minimizing cross entropy between real and corrupted triplets_.
 
 In the following two sections we'll walk you through:
