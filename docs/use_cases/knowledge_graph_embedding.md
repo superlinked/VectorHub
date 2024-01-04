@@ -62,11 +62,11 @@ train_data = FB15k_237("./data", split='train')[0]
 
 We'll use PyTorch Geometric, a library built on top of PyTorch, to construct and train the model. PyTorch Geometric is specifically designed for building machine learning models on graph-structured data.
 
-The implementation of the DistMult algorithm lies under the `torch_geometric.nn` package. To create the model, we need to specify the following three parameters:
+The implementation of the DistMult algorithm lies under the **torch_geometric.nn** package. To create the model, we need to specify the following three parameters:
 
-- `num_nodes`: The number of distinct entities in the graph (in our case, 14541)
-- `num_relations`: The number of distinct relations in the graph (in our case, 237)
-- `hidden_channels`: The dimensionality of the embedding space (for this, we'll use 64)
+- **num_nodes**: The number of distinct entities in the graph (in our case, 14541)
+- **num_relations**: The number of distinct relations in the graph (in our case, 237)
+- **hidden_channels**: The dimensionality of the embedding space (for this, we'll use 64)
 
 ```python
 from torch_geometric.nn import DistMult
@@ -82,7 +82,7 @@ For additional configuration of the model, please refer to the [PyTorch Geometri
 
 The process of **model training in PyTorch** follows a standard set of steps:
 
-The first step is **initialization of an optimizer**. The optimizer is a fundamental part of machine learning model training; it adjusts the parameters of the model to reduce loss. In our demo, we use the [`Adam`](https://pytorch.org/docs/stable/generated/torch.optim.Adam.html) optimizer.
+The first step is **initialization of an optimizer**. The optimizer is a fundamental part of machine learning model training; it adjusts the parameters of the model to reduce loss. In our demo, we use the [Adam](https://pytorch.org/docs/stable/generated/torch.optim.Adam.html) optimizer.
 
 ```python
 import torch.optim as optim
@@ -201,7 +201,7 @@ Next, let's compare the performance of KGE and LLMs on the ogbl-wikikg2 dataset,
 
 First, we create textual representations for each node within the graph by crafting sentences that describe their connections, like this: "[node] [relation1] [neighbor1], [neighbor2]. [node] [relation2] [neighbor3], [neighbor4]. ..." 
 
-We then feed these textual representations into a LLM – specifically, the `BAAI/bge-base-en-v1.5` model available on [HuggingFace](https://huggingface.co/BAAI/bge-base-en-v1.5). The embeddings that result from this process serve as our node embeddings.
+We then feed these textual representations into a LLM – specifically, the **BAAI/bge-base-en-v1.5** model available on [HuggingFace](https://huggingface.co/BAAI/bge-base-en-v1.5). The embeddings that result from this process serve as our node embeddings.
 
 For queries, we take a similar textual representation approach, creating descriptions of the query but omitting the specific entity in question. With these representations in hand, we utilize dot product similarity to find and rank relevant answers.
 
