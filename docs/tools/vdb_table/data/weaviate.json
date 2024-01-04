@@ -1,0 +1,146 @@
+{
+  "name": "Weaviate",
+  "oss": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "disk_index": {
+    "support": "full",
+    "source_url": "https://weaviate.io/developers/weaviate/concepts/vector-index",
+    "comment": "https://weaviate.io/developers/weaviate/concepts/vector-index#flat-index"
+  },
+  "multi_tenancy": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_text": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "metadata_filter": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "in_process": {
+    "support": "full",
+    "source_url": "https://weaviate.io/developers/weaviate/installation/embedded",
+    "comment": "https://weaviate.io/developers/weaviate/installation/embedded"
+  },
+  "multi_vec": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "langchain": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "llamaindex": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "hybrid_search": {
+    "support": "full",
+    "source_url": "",
+    "comment": "Reciprocal Rank Fusion (RRF) and Relative Score Fusion (RSF)"
+  },
+  "bm25": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "sparse_vectors": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "full_text": {
+    "support": "full",
+    "source_url": "https://weaviate.io/developers/weaviate/concepts/indexing",
+    "comment": "https://weaviate.io/developers/weaviate/concepts/indexing#introduction"
+  },
+  "facets": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "geo_search": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "doc_size": {
+    "bytes": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 65535,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "ephemeral": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "sharding": {
+    "support": "full",
+    "source_url": "https://weaviate.io/developers/weaviate/concepts/cluster",
+    "comment": "https://weaviate.io/developers/weaviate/concepts/cluster https://weaviate.io/developers/weaviate/concepts/replication-architecture"
+  },
+  "license": {
+    "value": "BSD",
+    "source_url": "",
+    "comment": ""
+  },
+  "dev_languages": {
+    "value": [
+      "go"
+    ],
+    "source_url": "",
+    "comment": ""
+  },
+  "github_stars": 8300,
+  "vector_launch_year": "2019",
+  "pricing": {
+    "value": "None",
+    "source_url": "",
+    "comment": ""
+  },
+  "rag": {
+    "support": "full",
+    "source_url": "https://weaviate.io/developers/weaviate/modules/reader-generator-modules/generative-openai",
+    "comment": "Generative Search - OpenAI | Weaviate - vector databaseweaviate/modules/reader-generator-modules/generative-openai"
+  },
+  "recsys": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "links": {
+    "docs": "https://weaviate.io/developers/weaviate",
+    "github": "https://github.com/weaviate/weaviate",
+    "website": "http://weaviate.io/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/28",
+    "poc_github": "https://github.com/StefanBogdan"
+  },
+  "embeddings_structured": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  }
+}

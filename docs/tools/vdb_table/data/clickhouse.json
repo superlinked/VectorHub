@@ -1,0 +1,146 @@
+{
+  "name": "ClickHouse",
+  "oss": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "disk_index": {
+    "support": "full",
+    "source_url": "https://clickhouse.com/docs/en/engines/table-engines/mergetree-family/annindexes",
+    "comment": "Via Usearch"
+  },
+  "multi_tenancy": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "embeddings_text": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "metadata_filter": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "in_process": {
+    "support": "none",
+    "source_url": "https://github.com/chdb-io/chdb",
+    "comment": "possible via https://github.com/chdb-io/chdb"
+  },
+  "multi_vec": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "langchain": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "llamaindex": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "hybrid_search": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "bm25": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "sparse_vectors": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "full_text": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "facets": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "geo_search": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "doc_size": {
+    "bytes": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
+  },
+  "ephemeral": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "sharding": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "license": {
+    "value": "Apache 2.0",
+    "source_url": "",
+    "comment": ""
+  },
+  "dev_languages": {
+    "value": [
+      "c++"
+    ],
+    "source_url": "",
+    "comment": ""
+  },
+  "github_stars": 32000,
+  "vector_launch_year": "2022",
+  "pricing": {
+    "value": "Clickhouse Pricing",
+    "source_url": "https://clickhouse.com/pricing",
+    "comment": ""
+  },
+  "rag": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "recsys": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "links": {
+    "docs": "https://clickhouse.com/docs/knowledgebase/vector-search",
+    "github": "https://github.com/ClickHouse/ClickHouse",
+    "website": "https://clickhouse.com/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/59",
+    "poc_github": "https://github.com/cwurm"
+  },
+  "embeddings_structured": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "name": "USearch",
+  "oss": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "disk_index": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "multi_tenancy": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "embeddings_text": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "metadata_filter": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "in_process": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_vec": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "langchain": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "llamaindex": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "hybrid_search": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "bm25": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "sparse_vectors": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "full_text": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "facets": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "geo_search": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "doc_size": {
+    "bytes": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
+  },
+  "ephemeral": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "sharding": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "license": {
+    "value": "Apache-2.0",
+    "source_url": "",
+    "comment": ""
+  },
+  "dev_languages": {
+    "value": [
+      "c++"
+    ],
+    "source_url": "",
+    "comment": ""
+  },
+  "github_stars": 1061,
+  "vector_launch_year": "2023",
+  "pricing": {
+    "value": "None",
+    "source_url": "",
+    "comment": ""
+  },
+  "rag": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "recsys": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "links": {
+    "docs": "https://unum-cloud.github.io/usearch/",
+    "github": "https://github.com/unum-cloud/usearch",
+    "website": "https://unum-cloud.github.io/usearch/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/50",
+    "poc_github": "https://github.com/ashvardanian"
+  },
+  "embeddings_structured": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "name": "Apache Solr",
+  "oss": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "full",
+    "source_url": "https://www.searchstax.com/lp/managed-solr-search",
+    "comment": "via https://www.searchstax.com/lp/managed-solr-search and https://bonsai.io"
+  },
+  "disk_index": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "multi_tenancy": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_text": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "metadata_filter": {
+    "support": "full",
+    "source_url": "https://solr.apache.org/guide/solr/latest/query-guide/dense-vector-search.html",
+    "comment": "https://solr.apache.org/guide/solr/latest/query-guide/dense-vector-search.html#usage-with-filter-queries"
+  },
+  "in_process": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_vec": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "langchain": {
+    "support": "none",
+    "source_url": "https://pypi.org/project/eurelis-langchain-solr-vectorstore/",
+    "comment": "https://pypi.org/project/eurelis-langchain-solr-vectorstore/"
+  },
+  "llamaindex": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "hybrid_search": {
+    "support": "full",
+    "source_url": "https://sease.io/2023/10/apache-lucene-solr-ai-roadmap-do-you-want-to-make-it-happen.html",
+    "comment": "https://sease.io/2023/10/apache-lucene-solr-ai-roadmap-do-you-want-to-make-it-happen.html linear combination implemented"
+  },
+  "bm25": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "sparse_vectors": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "full_text": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "facets": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "geo_search": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "doc_size": {
+    "bytes": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 0,
+    "unlimited": true,
+    "source_url": "https://issues.apache.org/jira/browse/SOLR-16836",
+    "comment": ""
+  },
+  "ephemeral": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "sharding": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "license": {
+    "value": "Apache-2.0",
+    "source_url": "",
+    "comment": ""
+  },
+  "dev_languages": {
+    "value": [
+      "java"
+    ],
+    "source_url": "",
+    "comment": ""
+  },
+  "github_stars": 905,
+  "vector_launch_year": "2022",
+  "pricing": {
+    "value": "None",
+    "source_url": "",
+    "comment": ""
+  },
+  "rag": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "recsys": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "links": {
+    "docs": "https://solr.apache.org/guide/solr/latest/query-guide/dense-vector-search.html",
+    "github": "https://github.com/apache/solr",
+    "website": "https://solr.apache.org/guide/solr/latest/query-guide/dense-vector-search.html#usage-as-re-ranking-query",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/37",
+    "poc_github": "https://github.com/alessandrobenedetti"
+  },
+  "embeddings_structured": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  }
+}

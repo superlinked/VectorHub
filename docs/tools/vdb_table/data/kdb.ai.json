@@ -1,0 +1,146 @@
+{
+  "name": "KDB.AI",
+  "oss": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "managed_cloud": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "disk_index": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "multi_tenancy": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "embeddings_text": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "metadata_filter": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "in_process": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "multi_vec": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "langchain": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "llamaindex": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "hybrid_search": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "bm25": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "sparse_vectors": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "full_text": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "facets": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "geo_search": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "doc_size": {
+    "bytes": 0,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "ephemeral": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "sharding": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "license": {
+    "value": "None",
+    "source_url": "",
+    "comment": ""
+  },
+  "dev_languages": {
+    "value": [
+      "none"
+    ],
+    "source_url": "",
+    "comment": ""
+  },
+  "github_stars": 0,
+  "vector_launch_year": "None",
+  "pricing": {
+    "value": "None",
+    "source_url": "",
+    "comment": ""
+  },
+  "rag": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "recsys": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "links": {
+    "docs": "https://code.kx.com/kdbai/",
+    "github": "https://github.com/KxSystems",
+    "website": "http://kdb.ai/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/62",
+    "poc_github": "https://github.com/"
+  },
+  "embeddings_structured": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  }
+}

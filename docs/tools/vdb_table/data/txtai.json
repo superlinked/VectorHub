@@ -1,0 +1,146 @@
+{
+  "name": "txtai",
+  "oss": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "disk_index": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "multi_tenancy": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "embeddings_text": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "metadata_filter": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "in_process": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_vec": {
+    "support": "full",
+    "source_url": "https://neuml.hashnode.dev/whats-new-in-txtai-60",
+    "comment": "https://neuml.hashnode.dev/whats-new-in-txtai-60#heading-subindexes"
+  },
+  "langchain": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "llamaindex": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "hybrid_search": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "bm25": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "sparse_vectors": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "full_text": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "facets": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "geo_search": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "doc_size": {
+    "bytes": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
+  },
+  "ephemeral": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "sharding": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "license": {
+    "value": "Apache-2.0",
+    "source_url": "",
+    "comment": ""
+  },
+  "dev_languages": {
+    "value": [
+      "python"
+    ],
+    "source_url": "",
+    "comment": ""
+  },
+  "github_stars": 5500,
+  "vector_launch_year": "2020",
+  "pricing": {
+    "value": "None",
+    "source_url": "",
+    "comment": ""
+  },
+  "rag": {
+    "support": "full",
+    "source_url": "https://neuml.hashnode.dev/build-rag-pipelines-with-txtai",
+    "comment": "https://neuml.hashnode.dev/build-rag-pipelines-with-txtai"
+  },
+  "recsys": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "links": {
+    "docs": "https://neuml.github.io/txtai/",
+    "github": "https://github.com/neuml/txtai",
+    "website": "https://neuml.github.io/txtai/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/45",
+    "poc_github": "https://github.com/davidmezzetti"
+  },
+  "embeddings_structured": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "name": "Milvus",
+  "oss": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "disk_index": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_tenancy": {
+    "support": "full",
+    "source_url": "https://milvus.io/docs/multi_tenancy.md",
+    "comment": "https://milvus.io/docs/multi_tenancy.md"
+  },
+  "embeddings_text": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "metadata_filter": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "in_process": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_vec": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "langchain": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "llamaindex": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "hybrid_search": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "bm25": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "sparse_vectors": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "full_text": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "facets": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "geo_search": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "doc_size": {
+    "bytes": 0,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 32768,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "ephemeral": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "sharding": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "license": {
+    "value": "Apache-2.0",
+    "source_url": "",
+    "comment": ""
+  },
+  "dev_languages": {
+    "value": [
+      "go",
+      "c++"
+    ],
+    "source_url": "",
+    "comment": ""
+  },
+  "github_stars": 24300,
+  "vector_launch_year": "2019",
+  "pricing": {
+    "value": "None",
+    "source_url": "",
+    "comment": ""
+  },
+  "rag": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "recsys": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "links": {
+    "docs": "https://milvus.io/docs",
+    "github": "https://github.com/milvus-io/milvus",
+    "website": "http://milvus.io/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/31",
+    "poc_github": "https://github.com/Enwei%20Jiao"
+  },
+  "embeddings_structured": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  }
+}

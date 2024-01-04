@@ -1,0 +1,147 @@
+{
+  "name": "MongoDB Atlas",
+  "oss": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "disk_index": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "multi_tenancy": {
+    "support": "full",
+    "source_url": "",
+    "comment": "via logical partitioning or metadata"
+  },
+  "embeddings_text": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "metadata_filter": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "in_process": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_vec": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "langchain": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "llamaindex": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "hybrid_search": {
+    "support": "full",
+    "source_url": "https://gist.github.com/hweller1/d6dbd5036ae4366108b534a0f1662a20",
+    "comment": "https://gist.github.com/hweller1/d6dbd5036ae4366108b534a0f1662a20"
+  },
+  "bm25": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "sparse_vectors": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "full_text": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "facets": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "geo_search": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "doc_size": {
+    "bytes": 16000000,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "ephemeral": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "sharding": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "license": {
+    "value": "GNU AGPL v3.0",
+    "source_url": "",
+    "comment": ""
+  },
+  "dev_languages": {
+    "value": [
+      "c++",
+      "java"
+    ],
+    "source_url": "",
+    "comment": ""
+  },
+  "github_stars": 0,
+  "vector_launch_year": "2023",
+  "pricing": {
+    "value": "MongoDB Pricing",
+    "source_url": "https://www.mongodb.com/pricing",
+    "comment": ""
+  },
+  "rag": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "recsys": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  },
+  "links": {
+    "docs": "https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-overview/",
+    "github": "https://github.com/mongodb",
+    "website": "https://www.mongodb.com/products/platform/atlas-vector-search",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/32",
+    "poc_github": "https://github.com/dvsander"
+  },
+  "embeddings_structured": {
+    "support": "none",
+    "source_url": "",
+    "comment": "None"
+  }
+}
