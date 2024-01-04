@@ -62,7 +62,7 @@ Subscribe to be updated when new ones come out & check the blog section.
 
 ***
 
-## Toolbox
+<!-- ## Toolbox
 
 Toolbox is a collection of benchmarks, code snippets, summaries, and tricks to help you decide what's best for your use case. These are tools that we and our community use frequently. We use your input to curate our toolbox. So, feel free to share some tools that you use often or have created recently that will help the community. You can do that by [creating an issue](https://github.com/superlinked/VectorHub/issues/new).
 
@@ -72,7 +72,7 @@ Toolbox is a collection of benchmarks, code snippets, summaries, and tricks to h
 :::
 ::::
 
-***
+*** -->
 
 :::hint{type="info"}
 VectorHub is a free and open-sourced learning hub that is sponsored and curated by Superlinked. We encourage you to contribute or make a suggestion on our GitHub.
