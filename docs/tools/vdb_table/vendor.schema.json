@@ -50,7 +50,7 @@
         "poc_github": {"type": "string"}
       }
     },
-    "feature": {
+    "featureWithSource": {
       "$id": "featureWithSource",
       "type": "object",
       "properties": {
@@ -59,7 +59,7 @@
         "comment": {"type": "string"}
       }
     },
-    "string": {
+    "stringWithSource": {
       "$id": "stringWithSource",
       "type": "object",
       "properties": {
@@ -68,7 +68,7 @@
         "comment": {"type": "string"}
       }
     },
-    "stringList": {
+    "stringListWithSource": {
       "$id": "stringListWithSource",
       "type": "object",
       "properties": {
@@ -82,7 +82,7 @@
         "comment": {"type": "string"}
       }
     },
-    "integer": {
+    "integerWithSource": {
       "$id": "integerWithSource",
       "type": "object",
       "properties": {
@@ -92,7 +92,7 @@
         "comment": {"type":"string"}
       }
     },
-    "bytes": {
+    "bytesWithSource": {
       "$id": "bytesWithSource",
       "type": "object",
       "properties": {

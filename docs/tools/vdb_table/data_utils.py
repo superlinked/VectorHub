@@ -4,6 +4,8 @@ import argparse
 import openpyxl
 import re
 import humanfriendly
+import glob
+from jsonschema import validate
 from url_normalize import url_normalize
 
 class JsonProp():
@@ -215,6 +217,20 @@ class CLI():
         table_schema = JsonSchemaWrapper(json.load(open(path_to_schema, "r")))
         xlsx = XLSXWrapper(path_to_xlsx, xlsx_sheet, table_schema)
         xlsx.to_json(output_dir)
+    
+    def json_to_bundle(self, data_glob):
+        obj_list = []
+        for name in glob.glob(data_glob):  
+            obj_list.append(json.load(open(name, "r")))
+        with open("bundle.json", "w") as output_file:
+            json.dump(obj_list, output_file, indent=2)
+    
+    def json_validate(self, path_to_schema, data_glob):
+        schema_obj = json.load(open(path_to_schema, "r"))
+        for name in glob.glob(data_glob):  
+            vendor_obj = json.load(open(name, "r"))
+            validate(instance=vendor_obj, schema=schema_obj)
+
 
 # Executes when your script is called from the command-line:
 if __name__ == "__main__":
@@ -223,7 +239,8 @@ if __name__ == "__main__":
     parser.add_argument('-sp','--schema_path', help='Path to the schema.json file.')
     parser.add_argument('-xp','--xlsx_path', help='Path to the legacy XSLX file.')
     parser.add_argument('-xs','--xlsx_sheet', help='Sheet to use in the XLSX file.')
-    parser.add_argument('-od','--output_dir', help='Directory for the vendor JSONs.')
+    parser.add_argument('-od','--output_dir', help='Output directory for the vendor JSONs.')
+    parser.add_argument('-dd','--data_glob', help='Glob pattern for the vendor JSON data.')
 
     args = parser.parse_args()
     
@@ -231,4 +248,9 @@ if __name__ == "__main__":
     if args.command == 'xlsx_to_json':
         cli.xlsx_to_json(args.schema_path, args.output_dir, args.xlsx_path, args.xlsx_sheet)
 
+    if args.command == 'json_to_bundle':
+        cli.json_to_bundle(args.data_glob)
+    
+    if args.command == 'json_validate':
+        cli.json_validate(args.schema_path, args.data_glob)
 
