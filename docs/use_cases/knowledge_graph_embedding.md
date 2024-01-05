@@ -36,7 +36,7 @@ KGE algorithms vary in the similarity functions they employ, and how they define
 
 ## Demo using DistMult KGE
 
-For our KGE model demo, we opted for the DistMult KGE algorithm. It works by representing the likelihood of relationships between entities (i.e., similarity) as a _bilinear_ function. Essentially, DisMult KGE assumes that the score of a given triple (comprised of a head entity \mathnormal{h}, a relationship \varUpsilon, and a tail entity \mathnormal{t}) can be computed as: \mathnormal{h}^{T} \diag(\varUpsilon) \mathnormal{t}. 
+For our KGE model demo, we opted for the DistMult KGE algorithm. It works by representing the likelihood of relationships between entities (i.e., similarity) as a _bilinear_ function. Essentially, DisMult KGE assumes that the score of a given triple (comprised of a head entity $h$, a relationship $r$, and a tail entity $t$) can be computed as: $h^T \text{diag}(r) t$. 
 
 ![DistMult similarity function](../assets/use_cases/knowledge_graph_embedding/distmult.png)
 
