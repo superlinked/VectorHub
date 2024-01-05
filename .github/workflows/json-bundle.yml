@@ -1,6 +1,6 @@
 name: Bundle JSON files
 on:
-  push:
+  pull_request:
     branches:
     - main
 
