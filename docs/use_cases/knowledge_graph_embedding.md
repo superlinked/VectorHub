@@ -39,6 +39,7 @@ KGE algorithms vary in the similarity functions they employ, and how they define
 For our KGE model demo, we opted for the DistMult KGE algorithm. It works by representing the likelihood of relationships between entities (i.e., similarity) as a _bilinear_ function. Essentially, DisMult KGE assumes that the score of a given triple (comprised of a head entity $h$, a relationship $r$, and a tail entity $t$) can be computed as: $h^T \text{diag}(r) t$. 
 
 ![DistMult similarity function](../assets/use_cases/knowledge_graph_embedding/distmult.png)
+
 source: [dglke](https://dglke.dgl.ai/doc/kg.html)
 
 The model parameters are learned (internalizing the intricate relationships within the KG) by _minimizing cross entropy between real and corrupted triplets_.
