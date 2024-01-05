@@ -46,7 +46,7 @@
     "comment": ""
   },
   "llamaindex": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -61,7 +61,7 @@
     "comment": ""
   },
   "sparse_vectors": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -98,7 +98,7 @@
     "comment": ""
   },
   "sharding": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -122,12 +122,12 @@
     "comment": ""
   },
   "rag": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "recsys": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -140,7 +140,7 @@
     "slug": "typesense"
   },
   "embeddings_structured": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   }

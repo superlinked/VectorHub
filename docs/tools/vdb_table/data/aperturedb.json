@@ -1,32 +1,32 @@
 {
   "name": "ApertureDB",
   "oss": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "managed_cloud": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "disk_index": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "multi_tenancy": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "embeddings_text": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "metadata_filter": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -36,47 +36,47 @@
     "comment": ""
   },
   "multi_vec": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "langchain": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "llamaindex": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "hybrid_search": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "bm25": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "sparse_vectors": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "full_text": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "facets": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "geo_search": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -93,12 +93,12 @@
     "comment": ""
   },
   "ephemeral": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "sharding": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -122,12 +122,12 @@
     "comment": ""
   },
   "rag": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "recsys": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -140,7 +140,7 @@
     "slug": "aperturedb"
   },
   "embeddings_structured": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   }

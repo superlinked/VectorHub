@@ -51,7 +51,7 @@
     "comment": ""
   },
   "hybrid_search": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -93,7 +93,7 @@
     "comment": ""
   },
   "ephemeral": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -122,12 +122,12 @@
     "comment": ""
   },
   "rag": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "recsys": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -140,7 +140,7 @@
     "slug": "redis"
   },
   "embeddings_structured": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   }

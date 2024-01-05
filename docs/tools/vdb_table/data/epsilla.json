@@ -11,7 +11,7 @@
     "comment": ""
   },
   "disk_index": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -51,12 +51,12 @@
     "comment": ""
   },
   "hybrid_search": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "bm25": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -66,17 +66,17 @@
     "comment": "Epsilla supports sparse vector retrieval: https://epsilla-inc.gitbook.io/epsilladb/vector-database/dense-vector-vs.-sparse-vector"
   },
   "full_text": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "facets": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "geo_search": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -93,7 +93,7 @@
     "comment": ""
   },
   "ephemeral": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -122,12 +122,12 @@
     "comment": ""
   },
   "rag": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "recsys": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -140,7 +140,7 @@
     "slug": "epsilla"
   },
   "embeddings_structured": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   }

@@ -127,7 +127,7 @@
     "comment": "Generative Search - OpenAI | Weaviate - vector databaseweaviate/modules/reader-generator-modules/generative-openai"
   },
   "recsys": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -140,7 +140,7 @@
     "slug": "weaviate"
   },
   "embeddings_structured": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   }

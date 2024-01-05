@@ -16,12 +16,12 @@
     "comment": "Via Usearch"
   },
   "multi_tenancy": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "embeddings_text": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -36,7 +36,7 @@
     "comment": "possible via https://github.com/chdb-io/chdb"
   },
   "multi_vec": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -71,7 +71,7 @@
     "comment": ""
   },
   "facets": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -98,7 +98,7 @@
     "comment": ""
   },
   "sharding": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -140,7 +140,7 @@
     "slug": "clickhouse"
   },
   "embeddings_structured": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   }

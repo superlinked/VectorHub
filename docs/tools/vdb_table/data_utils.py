@@ -76,14 +76,14 @@ class JsonValueFactory():
         }
 
     def featureWithSource(value, hyperlink):
-        support = "none"
+        support = ""
         if "✅" in value: support = "full"
         if "🟨" in value: support = "partial"
         if "❌" in value: support = "none"
         return {
             "support": support,
             "source_url": JsonValueFactory.backfillLinkFromValue(value, hyperlink),
-            "comment": value.translate({ord(x): '' for x in ["✅","❌"]}).strip()
+            "comment": value.translate({ord(x): '' for x in ["✅","❌","🟨"]}).strip()
         }
 
     def integer(value, _hyperlink):

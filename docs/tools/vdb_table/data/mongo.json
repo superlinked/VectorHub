@@ -11,7 +11,7 @@
     "comment": ""
   },
   "disk_index": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -123,12 +123,12 @@
     "comment": ""
   },
   "rag": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "recsys": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -141,7 +141,7 @@
     "slug": "mongo"
   },
   "embeddings_structured": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   }

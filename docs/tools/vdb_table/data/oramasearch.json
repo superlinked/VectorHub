@@ -11,7 +11,7 @@
     "comment": ""
   },
   "disk_index": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -98,7 +98,7 @@
     "comment": ""
   },
   "sharding": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "Cloud solution only"
   },
@@ -122,12 +122,12 @@
     "comment": ""
   },
   "rag": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "recsys": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -140,7 +140,7 @@
     "slug": "oramasearch"
   },
   "embeddings_structured": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   }

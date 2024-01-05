@@ -11,7 +11,7 @@
     "comment": "via https://www.searchstax.com/lp/managed-solr-search and https://bonsai.io"
   },
   "disk_index": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -41,7 +41,7 @@
     "comment": ""
   },
   "langchain": {
-    "support": "none",
+    "support": "",
     "source_url": "https://pypi.org/project/eurelis-langchain-solr-vectorstore/",
     "comment": "https://pypi.org/project/eurelis-langchain-solr-vectorstore/"
   },
@@ -61,7 +61,7 @@
     "comment": ""
   },
   "sparse_vectors": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -140,7 +140,7 @@
     "slug": "apachesolr"
   },
   "embeddings_structured": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   }

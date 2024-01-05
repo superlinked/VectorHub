@@ -55,7 +55,7 @@
       "$id": "featureWithSource",
       "type": "object",
       "properties": {
-        "support": {"enum": ["none", "partial", "full"]},
+        "support": {"enum": ["", "none", "partial", "full"]},
         "source_url": {"type": "string"},
         "comment": {"type": "string"}
       }

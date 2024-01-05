@@ -6,17 +6,17 @@
     "comment": ""
   },
   "managed_cloud": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "disk_index": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "multi_tenancy": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -41,12 +41,12 @@
     "comment": "https://neuml.hashnode.dev/whats-new-in-txtai-60#heading-subindexes"
   },
   "langchain": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "llamaindex": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -66,17 +66,17 @@
     "comment": ""
   },
   "full_text": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "facets": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
   "geo_search": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -127,7 +127,7 @@
     "comment": "https://neuml.hashnode.dev/build-rag-pipelines-with-txtai"
   },
   "recsys": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   },
@@ -140,7 +140,7 @@
     "slug": "txtai"
   },
   "embeddings_structured": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": "None"
   }
