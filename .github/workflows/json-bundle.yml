@@ -22,7 +22,7 @@ jobs:
           python-version: '3.12'
           cache-dependency-path: |
             docs/tool/vdb_table/requirements.txt 
-          install-cmd: pip install -r docs/tool/vdb_table/requirements.txt 
+          install-cmd: pip install -r docs/tools/vdb_table/requirements.txt 
 
       - name: Generate bundle
         id: bundle
