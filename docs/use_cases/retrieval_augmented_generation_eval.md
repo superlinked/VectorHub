@@ -12,7 +12,7 @@ RAG stands for Retrieval Augmented Generation and it probably is the most useful
 It is the technique that combines the strengths of both retrieval and generation models. The retrieval is usually based on dense vector search, in combination with a text generation model like GPT.
 RAG has received significant attention due to its ability to enhance content generation by leveraging existing information effectively. Its capacity to amalgamate specific, relevant details from multiple sources and generate accurate and relevant content has a lot of potential in various domains like content creation, question & answer application, and information synthesis.
 
-Read more: https://hub.superlinked.com/retrieval-augmented-generation
+Read more: [here]("https://hub.superlinked.com/retrieval-augmented-generation")
 
 ## Why do we need RAG?
 
@@ -66,8 +66,23 @@ The benchmark above leverages different public/private datasets to evaluate the 
 If your business domain is niche there is a good chance that you may have to put together a dataset for this step and it will be worthwhile.
 We could either leverage the results here (provided our model belongs to this list) or run relevant ‘tasks’ for our custom model (instructions provided in the link)
 
-TODO: Script examples
-.
+```python
+import logging
+
+from mteb import MTEB
+from sentence_transformers import SentenceTransformer
+
+
+logging.basicConfig(level=logging.INFO)
+
+
+model_name = "average_word_embeddings_komninos"
+model = SentenceTransformer(model_name)
+evaluation = MTEB(task_langs=["en"])
+evaluation.run(model, output_folder=f"results/{model_name}", eval_splits=["test"])
+
+print("--DONE--")
+```
 
 ### Data Ingestion Evaluation
 
@@ -81,11 +96,13 @@ With evaluation on this end - we mean to focus on variables that affect the data
 
 * chunking/text splitting strategy - represents the process of data splitting and further treatment as mentioned above.
 
+A [utility]("https://chunkviz.up.railway.app/") like this seem very useful to visualise your apparent chunks.
 
 ### Semantic Retrieval Evaluation
 
 This stage of evaluation goes into iteration with the other 2 previous stages as it puts them to a litmus test.
 We may have to go back and forth frequently.
+
 
 
 ### End-to-End Evaluation
