@@ -40,7 +40,7 @@ For our KGE model demo, we opted for the DistMult KGE algorithm. It works by rep
 
 ![DistMult similarity function](../assets/use_cases/knowledge_graph_embedding/distmult.png)
 
-[(Image source)](https://data.dgl.ai/asset/image/ke/distmult.png)
+diagram source: [dglke](https://dglke.dgl.ai/doc/kg.html)
 
 The model parameters are learned (internalizing the intricate relationships within the KG) by _minimizing cross entropy between real and corrupted triplets_.
 
@@ -82,7 +82,7 @@ For additional configuration of the model, please refer to the [PyTorch Geometri
 
 The process of **model training in PyTorch** follows a standard set of steps:
 
-The first step is **initialization of an optimizer**. The optimizer is a fundamental part of machine learning model training; it adjusts the parameters of the model to reduce loss. In our demo, we use the [`Adam`](https://pytorch.org/docs/stable/generated/torch.optim.Adam.html) optimizer.
+The first step is **initialization of an optimizer**. The optimizer is a fundamental part of machine learning model training; it adjusts the parameters of the model to reduce loss. In our demo, we use the [Adam](https://pytorch.org/docs/stable/generated/torch.optim.Adam.html) optimizer.
 
 ```python
 import torch.optim as optim
@@ -201,7 +201,7 @@ Next, let's compare the performance of KGE and LLMs on the ogbl-wikikg2 dataset,
 
 First, we create textual representations for each node within the graph by crafting sentences that describe their connections, like this: "[node] [relation1] [neighbor1], [neighbor2]. [node] [relation2] [neighbor3], [neighbor4]. ..." 
 
-We then feed these textual representations into a LLM – specifically, the `BAAI/bge-base-en-v1.5` model available on [HuggingFace](https://huggingface.co/BAAI/bge-base-en-v1.5). The embeddings that result from this process serve as our node embeddings.
+We then feed these textual representations into a LLM – specifically, the **BAAI/bge-base-en-v1.5** model available on [HuggingFace](https://huggingface.co/BAAI/bge-base-en-v1.5). The embeddings that result from this process serve as our node embeddings.
 
 For queries, we take a similar textual representation approach, creating descriptions of the query but omitting the specific entity in question. With these representations in hand, we utilize dot product similarity to find and rank relevant answers.
 
