@@ -1,4 +1,4 @@
-## Embeddings + Knowledge Graphs: The Ultimate Tools for RAG Systems
+# Embeddings + Knowledge Graphs: The Ultimate Tools for RAG Systems
 
 The advent of large language models (LLMs), trained on vast amounts of text data, has been one of the most significant breakthroughs in natural language processing. The ability of these models to generate remarkably fluent and coherent text with just a short prompt has opened up new possibilities for conversational AI, creative writing, and a wide array of other applications.
 
@@ -27,18 +27,20 @@ We then elucidate how knowledge graphs and embeddings can complement each othe
 Introduction
 
 Most RAG systems rely on a vector search process over passages from a document collection to find relevant context for the LLM. This process has several key steps:
-- **Text Encoding**: The system encodes passages of text from the corpus into vector representations using embedding models like BERT. Each passage gets condensed into a dense vector capturing semantic meaning.
-- **Indexing**: These passage vectors get indexed in a high-dimensional vector space to enable fast similarity search. Popular methods include ANNOY, Faiss, and Pinecone.
-- **Query Encoding**: When a user query comes in, it also gets encoded into a vector representation using the same embedding model.
-- **Similarity Retrieval**: A similarity search is run over the indexed passages to find those closest to the query vector based on distance metrics like cosine similarity.
-- **Passage Return**: The most similar passage vectors are returned, and the original text is extracted to provide context for the LLM.
+
+- 1. **Text Encoding**: The system encodes passages of text from the corpus into vector representations using embedding models like BERT. Each passage gets condensed into a dense vector capturing semantic meaning.
+- 2. **Indexing**: These passage vectors get indexed in a high-dimensional vector space to enable fast similarity search. Popular methods include ANNOY, Faiss, and Pinecone.
+- 3. **Query Encoding**: When a user query comes in, it also gets encoded into a vector representation using the same embedding model.
+- 4. **Similarity Retrieval**: A similarity search is run over the indexed passages to find those closest to the query vector based on distance metrics like cosine similarity.
+- 5. **Passage Return**: The most similar passage vectors are returned, and the original text is extracted to provide context for the LLM.
   
 This pipeline has several key limitations:
-1. The passage vectors may not fully capture the semantic intent of the query. Important context ends up overlooked because embeddings fail to represent certain inferential connections.
-2. Nuances get lost in condensing entire passages to single vectors. Key relevant details embedded across sentences get obscured.
-3. Matching is done independently for each passage. There is no joint analysis across different passages to connect facts and derive answers requiring aggregation.
-4. The ranking and matching process is opaque, providing no transparency into why certain passages are deemed more relevant.
-5. Only semantic similarity is encoded, with no representations of relationships, structure, rules and other diverse connections between content.
+
+- The passage vectors may not fully capture the semantic intent of the query. Important context ends up overlooked because embeddings fail to represent certain inferential connections.
+- Nuances get lost in condensing entire passages to single vectors. Key relevant details embedded across sentences get obscured.
+- Matching is done independently for each passage. There is no joint analysis across different passages to connect facts and derive answers requiring aggregation.
+- The ranking and matching process is opaque, providing no transparency into why certain passages are deemed more relevant.
+- Only semantic similarity is encoded, with no representations of relationships, structure, rules and other diverse connections between content.
    
 The singular focus on semantic vector similarity results in retrieval that lacks true comprehension. As queries get more complex, these limitations become increasingly apparent in the inability to reason across retrieved content.
 
@@ -47,13 +49,13 @@ The singular focus on semantic vector similarity results in retrieval that lacks
 Knowledge graphs represent information in an interconnected network of entities and relationships, enabling more complex reasoning across content.
 
 Here’s how they augment retrieval:
-- **Explicit Facts** — Facts are directly captured as nodes and edges instead of condensed into opaque vectors. This preserves key details.
-- **Contextual Details** — Entities contain rich attributes like descriptions, aliases, and metadata that provide crucial context.
-- **Network Structure** — Relationships model real-world connections between entities, capturing rules, hierarchies, timelines, etc.
-- **Multi-Hop Reasoning** — Queries can traverse relationships to connect facts from diverse sources. Answers requiring inference across multiple steps can be derived.
-- **Joint Reasoning** — Entity Resolution links references to the same real-world object, allowing collective analysis.
-- **Explainable Relevance** — Graph topology provides transparency into why certain facts are relevant based on their connections.
-- **Personalization** — User attributes, context, and historical interactions are captured to tailor results.
+- 1. **Explicit Facts** — Facts are directly captured as nodes and edges instead of condensed into opaque vectors. This preserves key details.
+- 2. **Contextual Details** — Entities contain rich attributes like descriptions, aliases, and metadata that provide crucial context.
+- 3. **Network Structure** — Relationships model real-world connections between entities, capturing rules, hierarchies, timelines, etc.
+- 4. **Multi-Hop Reasoning** — Queries can traverse relationships to connect facts from diverse sources. Answers requiring inference across multiple steps can be derived.
+- 5. **Joint Reasoning** — Entity Resolution links references to the same real-world object, allowing collective analysis.
+- 6. **Explainable Relevance** — Graph topology provides transparency into why certain facts are relevant based on their connections.
+- 7. **Personalization** — User attributes, context, and historical interactions are captured to tailor results.
 
 Rather than isolated matching, knowledge graphs enable a graph traversal process to gather interconnected contextual facts relevant to the query. Explainable rankings are possible based on topology. The rich knowledge representation empowers more complex reasoning.
 
@@ -61,35 +63,34 @@ Knowledge graphs augment retrieval by encoding structured facts, relationships a
 
 ## Incorporating Knowledge Graphs with Embeddings & Constraints
 
-Improving Knowledge Graph Embedding Using Simple Constraints
+**Improving Knowledge Graph Embedding Using Simple Constraints**
 
 Embedding knowledge graphs (KGs) into continuous vector spaces is a focus of current research. Early works performed…
 arxiv.org
 
 Knowledge graphs represent entities and relationships as vector embeddings to enable mathematical operations. Additional constraints can make the representations more optimal:
-- **Non-Negativity Constraints** — Restricting entity embeddings to positive values between 0 and 1 induces sparsity. This models only their positive properties explicitly and improves interpretability.
-- **Entailment Constraints** — Encoding expected logic rules like symmetry, inversion, composition directly as constraints on relation embeddings enforces those patterns.
-- **Confidence Modeling** — Soft constraints with slack variables can encode varying confidence levels of logic rules based on evidence.
-- **Regularization** — Constraints impose useful inductive biases without making optimization significantly more complex. Only a projection step is added.
-- **Explainability** — The structured constraints provide transparency into the patterns learned by the model. This explains the reasoning process.
-- **Accuracy** — Constraints improve generalization by reducing the hypothesis space to compliant representations. This improves accuracy on unseen queries.
+
+- 1. **Non-Negativity Constraints** — Restricting entity embeddings to positive values between 0 and 1 induces sparsity. This models only their positive properties explicitly and improves interpretability.
+- 2. **Entailment Constraints** — Encoding expected logic rules like symmetry, inversion, composition directly as constraints on relation embeddings enforces those patterns.
+- 3. **Confidence Modeling** — Soft constraints with slack variables can encode varying confidence levels of logic rules based on evidence.
+- 4. **Regularization** — Constraints impose useful inductive biases without making optimization significantly more complex. Only a projection step is added.
+- 5. **Explainability** — The structured constraints provide transparency into the patterns learned by the model. This explains the reasoning process.
+- 6. **Accuracy** — Constraints improve generalization by reducing the hypothesis space to compliant representations. This improves accuracy on unseen queries.
 
 Adding simple but universal constraints augments knowledge graph embeddings to produce more optimized, explainable, and logically compliant representations. The embeddings gain inductive biases that mimic real-world structures and rules. This results in more accurate and interpretable reasoning without much additional complexity.
 
 ## Integrating Diverse Reasoning Frameworks
 
-Papers with Code - Graph Agent: Explicit Reasoning Agent for Graphs
-
-paperswithcode.com
+**Papers with Code - Graph Agent: Explicit Reasoning Agent for Graphs**
 
 Knowledge graphs require reasoning to derive new facts, answer queries, and make predictions. Different techniques have complementary strengths:
-- **Logical Rules** — Express knowledge as logical axioms and ontologies. Sound and complete reasoning through theorem proving. Limited uncertainty handling.
-- **Graph Embeddings** — Embed knowledge graph structure for vector space operations. Handle uncertainty but lack expressivity.
-- **Neural Provers** — Differentiable theorem proving modules combined with vector lookups. Adaptive but opaque reasoning.
-- **Rule Learners** — Induce rules by statistical analysis of graph structure and data. Automates rule creation but uncertain quality.
-- **Hybrid Pipeline** — Logical rules encode unambiguous constraints. Embeddings provide vector space operations. Neural provers fuse benefits through joint training.
-- **Explainable Modeling** — Use case-based, fuzzy, or probabilistic logic to add transparency. Express uncertainty and confidence in rules.
-- **Iterative Enrichment** — Expand knowledge by materializing inferred facts and learned rules back into the graph. Provides a feedback loop.
+- 1. **Logical Rules** — Express knowledge as logical axioms and ontologies. Sound and complete reasoning through theorem proving. Limited uncertainty handling.
+- 2. **Graph Embeddings** — Embed knowledge graph structure for vector space operations. Handle uncertainty but lack expressivity.
+- 3. **Neural Provers** — Differentiable theorem proving modules combined with vector lookups. Adaptive but opaque reasoning.
+- 4. **Rule Learners** — Induce rules by statistical analysis of graph structure and data. Automates rule creation but uncertain quality.
+- 5. **Hybrid Pipeline** — Logical rules encode unambiguous constraints. Embeddings provide vector space operations. Neural provers fuse benefits through joint training.
+- 6. **Explainable Modeling** — Use case-based, fuzzy, or probabilistic logic to add transparency. Express uncertainty and confidence in rules.
+- 7. **Iterative Enrichment** — Expand knowledge by materializing inferred facts and learned rules back into the graph. Provides a feedback loop.
   
 The key is identifying the types of reasoning required and mapping them to appropriate techniques. A composable pipeline combining logical formalisms, vector representations, and neural components provides both robustness and explainability.
 
@@ -109,8 +110,7 @@ The goal is to optimise the relevance, context, structure and explicitness of th
 ## Unlocking Reasoning Capabilities
 
 Knowledge graphs and embeddings each have strengths that overcome the other’s weaknesses when combined:
-Knowledge Graphs — Provide structured representation of entities and relationships. Empower complex reasoning through graph traversals. Handle multi-hop inferences.
-
+- **Knowledge Graphs** — Provide structured representation of entities and relationships. Empower complex reasoning through graph traversals. Handle multi-hop inferences.
 - **Embeddings** — Encode information in vector space for similarity-based operations. Enable efficient approximate search at scale. Surface latent patterns.
 - **Joint Encoding** — Embeddings are generated for entities and relationships in the knowledge graph. This distills statistical patterns.
 - **Neural Networks** — Graph neural networks operate on the graph structure and embedded elements through differentiable message passing. This fuses benefits.
@@ -123,41 +123,42 @@ The partnership enables structured knowledge representation and reasoning augmen
 ## Improving Search with Collaborative Filtering
 
 Collaborative filtering leverages connections between entities to enhance search:
-- **Knowledge Graph** — Construct a knowledge graph with nodes representing entities and edges representing relationships.
-- **Node Embeddings** — Generate an embedding vector for certain key node properties like title, description etc.
-- **Vector Index** — Build a vector similarity index on the node embeddings.
-- **Similarity Search** — For a search query, find nodes with most similar embeddings.
-- **Collaborative Adjustment** — Based on a node’s connections, propagate and adjust similarity scores using algorithms like PageRank.
-- **Edge Weighting** — Weight adjustments based on edge types, strengths, confidence levels etc.
-- **Score Normalization** — Normalize adjusted scores to maintain relative rankings.
-- **Result Reranking** — Rerank initial results based on adjusted collaborative scores.
-- **User Context** — Further adapt based on user profile, history and preferences.
+
+- 1. **Knowledge Graph** — Construct a knowledge graph with nodes representing entities and edges representing relationships.
+- 2. **Node Embeddings** — Generate an embedding vector for certain key node properties like title, description etc.
+- 3. **Vector Index** — Build a vector similarity index on the node embeddings.
+- 4. **Similarity Search** — For a search query, find nodes with most similar embeddings.
+- 5. **Collaborative Adjustment** — Based on a node’s connections, propagate and adjust similarity scores using algorithms like PageRank.
+- 6. **Edge Weighting** — Weight adjustments based on edge types, strengths, confidence levels etc.
+- 7. **Score Normalization** — Normalize adjusted scores to maintain relative rankings.
+- 8. **Result Reranking** — Rerank initial results based on adjusted collaborative scores.
+- 9. **User Context** — Further adapt based on user profile, history and preferences.
 
 ## Fueling Knowledge Graphs with Flywheel Learning
 
-Fueling the RAG Engine : The Data Flywheel
+### Fueling the RAG Engine : The Data Flywheel
 
 Building a high-performing retrieval-augmented generation (RAG) system that continuously improves requires implementing…
 ai.plainenglish.io
 
-Knowledge graphs unlocked new reasoning capabilities for language models by providing structured world knowledge. But constructing high-quality graphs remains challenging. This is where flywheel learning comes in — continuously improving the knowledge graph by analyzing system interactions.
+Knowledge graphs unlocked new reasoning capabilities for language models by providing structured world knowledge. But constructing high-quality graphs remains challenging This is where flywheel learning comes in — continuously improving the knowledge graph by analyzing system interactions.
 
 ### The Knowledge Graph Flywheel
-**Instrumentation** — Log all system queries, responses, scores, user actions etc. Provide visibility into how the knowledge graph is being used.
-**Analysis** — Aggregate usage data to surface poor responses. Cluster and analyze these responses to identify patterns indicating knowledge gaps.
-**Curation** — Manually review problematic responses and trace issues back to missing or incorrect facts in the graph.
-**Remediation** — Directly modify the graph to add missing facts, improve structure, increase clarity etc. Fix the underlying data issues.
-**Iteration** — Continuously loop through the steps above. Each iteration further enhances the knowledge graph.
-Streaming Data Ingestion
+1. **Instrumentation** — Log all system queries, responses, scores, user actions etc. Provide visibility into how the knowledge graph is being used.
+2. **Analysis** — Aggregate usage data to surface poor responses. Cluster and analyze these responses to identify patterns indicating knowledge gaps.
+3. **Curation** — Manually review problematic responses and trace issues back to missing or incorrect facts in the graph.
+4. **Remediation** — Directly modify the graph to add missing facts, improve structure, increase clarity etc. Fix the underlying data issues.
+5. **Iteration** — Continuously loop through the steps above. Each iteration further enhances the knowledge graph.
 
-Streaming live data sources like news and social media provides a constant flow of new information to keep the knowledge graph current.
+### Streaming Data Ingestion
 
-Specialized infrastructure handles high-volume ingestion into the graph.
+- Streaming live data sources like news and social media provides a constant flow of new information to keep the knowledge graph current.
+- Specialized infrastructure handles high-volume ingestion into the graph.
 
 ### Active Learning
 
-Use query generation to identify and fill critical knowledge gaps, beyond what streaming provides.
-Discover holes in the graph, formulate questions, retrieve missing facts, and add them.
+- Use query generation to identify and fill critical knowledge gaps, beyond what streaming provides.
+- Discover holes in the graph, formulate questions, retrieve missing facts, and add them.
 
 ### The Flywheel Effect
 
