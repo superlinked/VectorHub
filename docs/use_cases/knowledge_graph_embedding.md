@@ -60,7 +60,7 @@ train_data = FB15k_237("./data", split='train')[0]
 
 We'll use PyTorch Geometric, a library built on top of PyTorch, to construct and train the model. PyTorch Geometric is specifically designed for building machine learning models on graph-structured data.
 
-The implementation of the DistMult algorithm lies under the **torch_geometric.nn** package. To create the model, we need to specify the following three parameters:
+The implementation of the DistMult algorithm lies under the `torch_geometric.nn` package. To create the model, we need to specify the following three parameters:
 
 - **num_nodes**: The number of distinct entities in the graph (in our case, 14541)
 - **num_relations**: The number of distinct relations in the graph (in our case, 237)
