@@ -62,9 +62,9 @@ We'll use PyTorch Geometric, a library built on top of PyTorch, to construct and
 
 The implementation of the DistMult algorithm lies under the `torch_geometric.nn` package. To create the model, we need to specify the following three parameters:
 
-- **num_nodes**: The number of distinct entities in the graph (in our case, 14541)
-- **num_relations**: The number of distinct relations in the graph (in our case, 237)
-- **hidden_channels**: The dimensionality of the embedding space (for this, we'll use 64)
+- `num_nodes`: The number of distinct entities in the graph (in our case, 14541)
+- `num_relations`: The number of distinct relations in the graph (in our case, 237)
+- `hidden_channels`: The dimensionality of the embedding space (for this, we'll use 64)
 
 ```python
 from torch_geometric.nn import DistMult
