@@ -188,9 +188,9 @@ The GraphSAGE layer is defined as follows:
 
 $h_i^{(k)} = \sigma(W (h_i^{(k-1)} + \underset{j \in \mathcal{N}(i)}{\Sigma}h_j^{(k-1)}))$
 
-Here $\sigma$ is a nonlinear activation function, $W^{(k)}$ is a learnable parameter of layer $k$, and $\mathcal{N}(i)$ is the set of neighboring nodes of node $i$. As in traditional Neural Networks, we can stack multiple GNN layers. The resulting multi-layer GNN will have a wider receptive field. That is, it will be able to consider information from bigger distances thanks to the recursive neighborhood aggregation.
+Here $\sigma$ is a nonlinear activation function, $W^{(k)}$ is a learnable parameter of layer $k$, and $\mathcal{N}(i)$ is the set of neighboring nodes of node $i$. As in traditional Neural Networks, we can stack multiple GNN layers. The resulting multi-layer GNN will have a wider receptive field. That is, it will be able to consider information from bigger distances, thanks to the recursive neighborhood aggregation.
 
-To **learn the model parameters**, the authors suggest two approaches:
+To **learn the model parameters**, the [GraphSAGE authors](https://proceedings.neurips.cc/paper_files/paper/2017/file/5dd9db5e033da9c6fb5ba83c7a7ebea9-Paper.pdf) suggest two approaches:
 1. If we are dealing with a supervised setting, we can train the network similar to how we train a conventional NN for the supervised task (for example, using Cross Entropy for classification or Mean Squared Error for regression).
 2. If we only have access to the graph itself, we can approach model training as an unsupervised task, where the goal is to predict the presence of the edges in the graph based on the node embeddings. In this case, the link probabilities are defined as $P(j \in \mathcal{N}(i)) \approx \sigma(h_i^Th_j)$. The loss function is the Negative Log Likelihood of the presence of the edge and $P$.
 
@@ -199,7 +199,7 @@ However, in this example we stick with the unsupervised variant.
 
 ### GraphSAGE embeddings
 
-Here we use the `torch_geometric` implementation of the GraphSAGE algorithm, similarly as before. 
+Here we use the `torch_geometric` implementation of the GraphSAGE algorithm, just as we did when training the Node2Vec model. 
 
 First, we create the model by initializing a `GraphSAGE` object. We are using a 1-layer GNN, meaning that our model will receive node features from a distance of at most 1. We will have 256 hidden and 128 output dimensions.
 
@@ -282,11 +282,19 @@ evaluate(embeddings, ds.y)
 
 The results are slightly worse than the results we got by combining Node2Vec with BoW features. But the reason we are evaluating GraphSAGE is that Node2Vec's inability to easily accommodate to dynamic networks. GraphSAGE embeddings perform well on our classification task _and_ is able to embed completely new nodes as well. When your use case involves new nodes or nodes that evolve, an induction model like GraphSAGE may be a better choice.
 
-## Using better node representations
+## Using better node representations: LLM
 
 Bag-of-Words representation is a simple and easy way of embedding text documents, but it comes with limitations: because it treats words as contextless, it doesn't capture semantic meaning, and therefore performs less well (on classification and ) article relatedness...
+Here is a summary of what we've found so far using BoW representations of our citation network.
 
-We explored LLM-based embeddings, which excel in capturing semantic meaning more effectively. We used the `all-mpnet-base-v2` model available on [Hugging Face](https://huggingface.co/sentence-transformers/all-mpnet-base-v2) for embedding the title and abstract of each paper. 
+| Metric | BoW | Node2Vec | Node2Vec+BoW | GraphSAGE+BoW(?) |
+| --- | --- | --- | --- | --- |
+| Accuracy  | 0.738 | 0.822 | 0.852 |  0.844 |
+| F1 (macro)  | 0.701 | 0.803 | 0.831 | 0.820 |
+
+(...All of the improvements we experienced above, BoW alone, Node2Vec + BoW, and GraphSAGE (+ BoW) can be improved further using LLM embeddings, because they excel in capturing semantic meaning...
+
+We used the `all-mpnet-base-v2` model available on [Hugging Face](https://huggingface.co/sentence-transformers/all-mpnet-base-v2) for embedding the title and abstract of each paper. 
 The results obtained with LLM only, Node2Vec combined with LLM and GraphSAGE trained on LLM features can be found in the following table along with the relative improvement compared to using the BoW features:
 
 | Metric  | LLM | Node2Vec |  GraphSAGE |
