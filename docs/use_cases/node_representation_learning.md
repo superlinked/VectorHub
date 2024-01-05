@@ -6,10 +6,7 @@
 
 Of the various types of information - words, pictures, and connections between things - relationships are especially interesting; they show how things interact and create networks. But not all ways of representing these relationships are the same. In machine learning, how we do vector represention of relationships is consequential for performance on a wide range of tasks. 
 
-We go through how to set up a Bag-of-Words (BoW) approach to representing relationship data, and then two other approaches, using Node2Vec and GraphSAGE. We compare and evaluate how well each approach represents academic articles in the Cora citation network, by measuring their performance on real-life classification and similarity tasks.
-
-(not sufficient to accurately reconstruct the citation graph..
-2 other methods of vector representation.. to achieve more accurate node representations and perform classification tasks better..)
+We go through how to set up a Bag-of-Words (BoW) approach to representing relationship data, and then two other approaches - Node2Vec and GraphSAGE. We compare and evaluate how well each approach represents academic articles in the Cora citation network, by measuring their performance on real-life classification and similarity tasks.
 
 
 **Our dataset: Cora**
@@ -41,7 +38,7 @@ def evaluate(x,y):
     print("F1 macro", f1_score(y_test, y_pred, average="macro"))
 ```
 
-Let's see how the well the BoW representations solve the classification problem:
+Let's see how well the BoW representations solve the classification problem:
 
 ```python
 evaluate(ds.x, ds.y)
@@ -49,20 +46,20 @@ evaluate(ds.x, ds.y)
 >>> F1 macro 0.701
 ```
 
-(statement summarizing BoW classification result)
+BoW's accuracy and F1 macro scores leave a lot of room for improvement. It fails to correctly classify papers more than 25% of the time. And on average across classes BoW is inaccurate nearly 30% of the time.
 
 **BoW representation of citation pair similarity**
-But we also want to see how well BoW captures the relationships between articles. To examine how citation pairs show up in the BoW features, we make a plot comparing connected and not connected pairs of papers based on how similar their BoW features are.
+But we also want to see how well BoW representations capture the relationships between articles. To examine how well citation pairs show up in BoW features, we can make a plot comparing connected and not connected pairs of papers based on how similar their respective BoW features are.
 
 ![BoW cosine similarity edge counts](../assets/use_cases/node_representation_learning/bins_bow.png)
 
-In this plot, we divide the groups (shown on the y-axis) so that they have about the same number of pairs in each. The only exception is the 0-0.04 group, where lots of pairs have _no_ similar words - they can't be split into smaller groups.
+In this plot, we define groups (shown on the y-axis) so that each group has about the same number of pairs as the other groups. The only exception is the 0.00-0.05 group, where lots of pairs have _no_ similar words - they can't be split into smaller groups.
 
-From the plot, it's clear that connected nodes usually have higher cosine similarities. This means papers that cite each other often use similar words. But when we ignore paper pairs with zero similarities, papers that have not cited each other also seem to have a wide range of common words.  (cosine similarities even where there's no edge)
+The plot demonstrates how connected nodes usually have higher cosine similarities. Papers that cite each other often use similar words. But if we ignore paper pairs with zero similarities (the 0.00-0.00 group), papers that have _not_ cited each other also seem to have a wide range of common words.
 
-Though some information about article connectivity is represented in the BoW features, it is not sufficient to reconstruct the actual citation graph accurately. More specifically, because BoW looks just as word co-occurrence between article pairs, it seems to miss additional information contained in the network structure - namely the semantic relationships and context of words - information that can be used to more accurately represent citation data, and classify articles better. (?)
+Though BoW representations embody _some_ information about article connectivity, BoW features don't contain enough citation pair information to accurately reconstruct the actual citation graph. More specifically, because BoW looks exclusively at word co-occurrence between article pairs, it misses additional information contained in the network structure - namely the semantic relationships and context of words - information that can be used to more accurately represent citation data, and classify articles better. (Because articles that cite each other tend to belong to the same topic, we could achieve improvements in both citation graph reproduction and article classification by representing both citation information and textual information contained in our network.)
 
-If BoW is insufficient, what methods might be better at extracting the data inherent but still latent in our dataset?
+If BoW is not sufficient, what methods might be better at extracting the data inherent but still latent in our dataset?
 Let's look at two methods for learning node representations that capture nodes and node connectivity more accurately.
 
 ## Learning node embeddings with Node2Vec
