@@ -1,6 +1,6 @@
 name: Bundle JSON files
 on:
-  pull_request:
+  push:
     branches:
     - main
 
@@ -10,7 +10,7 @@ jobs:
     permissions:
       contents: 'read'
       id-token: 'write'
-      
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
