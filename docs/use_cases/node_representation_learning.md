@@ -4,14 +4,15 @@
 
 ## Introduction
 
-Of the various types of information - words, pictures, and connections between things, relationships are especially interesting; they show how things interact and create networks. But not all ways of representing relationships are the same. In machine learning, _how_ we do vector represention of relationships affects performance on a wide range of tasks.
+Of the various types of information - words, pictures, and connections between things - **relationships** are especially interesting. Relationships show how things interact and create networks. But not all ways of representing relationships are the same. In machine learning, **how we do vector represention of relationships affects performance** on a wide range of tasks.
 
-We evaluate several approaches to vector representation on their ability using a real-life use case: how well they classify academic articles and replicate a citation graph using Cora citation network. We look first at Bag-of-Words. Because BoW doesn't represent the network structure, we examine Node2Vec...(improvement, but static) and GraphSAGE (for dynamic networks).
-Finally, BoW has another weakness. It also fails to capture semantic meaning. LLM embeddings, on the other hand, are designed to represent semantic meaning. We look at how LLM-only, and then Node2Vec + LLM, and GraphSAGE trained on LLM compared to our first set of approaches: BoW alone, Node2Vec + BoW, and GraphSAGE trained on BoW.
+Below, we evaluate several approaches to vector representation on a real-life use case: how well they classify academic articles and replicate a citation graph using Cora citation network. 
+
+We look first at Bag-of-Words. Because BoW doesn't represent the network structure, we turn to solutions that can help BoW's performance: Node2Vec and GraphSAGE. We also look for a solution to BoW's other shortcoming; its inability to capture semantic meaning. We evaluate LLM embeddings, first on their own, then combined with Node2Vec, and finally LLM-trained GraphSAGE trained on LLM.
 
 
 **Our dataset: Cora**
-We work with a subset of the Cora citation network. This subset comprises 2708 scientific papers (nodes) and connections that indicate citations between them. Each paper has a BoW descriptor containing 1433 words. The papers in the dataset are also divided into 7 different topics (classes). Each paper belongs to exactly one of them.
+Our use case is a subset of the Cora citation network. This subset comprises 2708 scientific papers (nodes) and connections that indicate citations between them. Each paper has a BoW descriptor containing 1433 words. The papers in the dataset are also divided into 7 different topics (classes). Each paper belongs to exactly one of them.
 
 **Loading the dataset**
 We load the dataset as follows:
@@ -50,7 +51,7 @@ evaluate(ds.x, ds.y)
 BoW's accuracy and F1 macro scores leave a lot of room for improvement. It fails to correctly classify papers more than 25% of the time. And on average across classes BoW is inaccurate nearly 30% of the time.
 
 **BoW representation of citation pair similarity**
-But we also want to see how well BoW representations capture the relationships between articles. To examine how well citation pairs show up in BoW features, we can make a plot comparing connected and not connected pairs of papers based on how similar their respective BoW features are.
+But we also want to see whether BoW representations accurately capture the relationships between articles. To examine how well citation pairs show up in BoW features, we can make a plot comparing connected and not connected pairs of papers based on how similar their respective BoW features are.
 
 ![BoW cosine similarity edge counts](../assets/use_cases/node_representation_learning/bins_bow.png)
 
@@ -58,7 +59,7 @@ In this plot, we define groups (shown on the y-axis) so that each group has abou
 
 The plot demonstrates how connected nodes usually have higher cosine similarities. Papers that cite each other often use similar words. But if we ignore paper pairs with zero similarities (the 0.00-0.00 group), papers that have _not_ cited each other also seem to have a wide range of common words.
 
-Though BoW representations embody _some_ information about article connectivity, BoW features don't contain enough citation pair information to accurately reconstruct the actual citation graph. More specifically, BoW represents documents as unordered sets of words; it ignores word order, and instead treats each word independently, evaluating their frequency. Because BoW looks exclusively at word co-occurrence between article pairs, it misses word context data contained in the network structure - data that can be used to more accurately represent citation data, and classify articles better. (Because articles that cite each other tend to belong to the same topic, we can achieve improvements in both citation graph reproduction and article classification if we can represent _both_ citation _and_ textual data contained in our network.)
+Though BoW representations embody _some_ information about article connectivity, BoW features don't contain enough citation pair information to accurately reconstruct the actual citation graph. More specifically, BoW represents documents as unordered sets of words; it ignores word order, and instead treats each word independently, evaluating their frequency. Because BoW looks exclusively at word co-occurrence between article pairs, it misses word context data contained in the network structure - data that can be used to more accurately represent citation data, and classify articles better. (Since articles that cite each other tend to belong to the same topic, we can achieve improvements in both citation graph reproduction and article classification if we can represent _both_ citation _and_ textual data contained in our network.)
 
 Can we make up for BoW's inability to represent the citation network's structure? Are their methods that capture node and node connectivity data better?
 
