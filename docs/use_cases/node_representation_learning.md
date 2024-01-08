@@ -287,7 +287,7 @@ The results are slightly worse than the results we got by combining Node2Vec wit
 
 ## Using better node representations than BoW: LLM
 
-In addition to not being able to represent network structure, BoW vectors - because they treat words as contextless occurrences, merely in terms of their frequency - can't capture semantic meaning, and therefore performs less well (on classification and ) article relatedness... tasks than approaches that can do semantic embedding. Let's summarize the classification performance results we obtained above using BoW features.
+In addition to not being able to represent network structure, BoW vectors - because they treat words as contextless occurrences, merely in terms of their frequency - can't capture semantic meaning, and therefore don't perform as well on classification and citation graph tasks as approaches that can do semantic embedding. Let's summarize the classification performance results we obtained above using BoW features.
 
 | Metric | BoW | Node2Vec | Node2Vec+BoW | GraphSAGE(BoW-trained) |
 | --- | --- | --- | --- | --- |
