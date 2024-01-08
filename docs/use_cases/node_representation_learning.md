@@ -12,10 +12,12 @@ We look first at Bag-of-Words (BoW), a standard approach to vectorizing text dat
 
 ## Leading our dataset, evaluating BoW
 
-**Our dataset: Cora**
+**Our dataset: Cora** 
+
 Our use case is a subset of the Cora citation network. This subset comprises 2708 scientific papers (nodes) and connections that indicate citations between them. Each paper has a BoW descriptor containing 1433 words. The papers in the dataset are also divided into 7 different topics (classes). Each paper belongs to exactly one of them.
 
 **Loading the dataset**
+
 We load the dataset as follows:
 
 ```python
@@ -24,6 +26,7 @@ ds = Planetoid("./data", "Cora")[0]
 ```
 
 **Evaluating BoW on a classification task**
+
 We can evaluate how well the BoW descriptors represent the articles by measuring classification performance (Accuracy and macro F1). We use a KNN (K-Nearest Neighbors) classifier with 15 neighbors, and cosine similarity as the similarity metric:
 
 ```python
@@ -71,7 +74,8 @@ The plot demonstrates how connected nodes usually have higher cosine similaritie
 
 Though BoW representations embody _some_ information about article connectivity, BoW features don't contain enough citation pair information to accurately reconstruct the actual citation graph. BoW looks exclusively at word co-occurrence between article pairs, and therefore misses word context data contained in the network structure.
 
-**Can we make up for BoW's inability to represent the citation network's structure?** Are there methods that capture node connectivity data better?
+**Can we make up for BoW's inability to represent the citation network's structure?** 
+Are there methods that capture node connectivity data better?
 
 Node2Vec is built to do precisely this, for static networks. So is GraphSAGE, for dynamic ones. 
 Let's look at Node2Vec first.
@@ -157,7 +161,7 @@ Let's also see if Node2Vec does a better job of **representing citation data** t
 
 Using Node2Vec, we can see a well defined separation; these embeddings capture the connectivity of the graph much better than BoW did.
 
-**But can we _further_ improve classification performance?**
+**But can we _further_ improve classification performance?** 
 What if we _combine_ the two information sources - relationship (Node2Vec) embeddings and textual (BoW) features?
 
 ### Node2Vec embeddings + text-based (BoW) features
@@ -230,7 +234,7 @@ The **optimizer** is constructed in the usual PyTorch fashion. Once again, we'll
 optimizer = torch.optim.Adam(sage.parameters(), lr=0.01)
 ```
 
-Next, we construct the **data loader**. This will generate training batches for us. We're aiming at an unsupervised approach, so the loader will:
+Next, we construct the **data loader**. This will generate training batches for us. We're aiming at an unsupervised approach, so the loader will: 
 1. Select a batch of node pairs that are connected by an edge (positive samples).
 2. Create negative samples by either modifying the head or tail of the positive samples. The number of negative samples per edge is defined by the `neg_sampling_ratio` parameter, which we set to 1. This means that for each positive sample we'll have exactly one negative sample, for use in training.
 3. We sample neighbors at a depth of 1 for each selected node. The `num_neighbors` parameter allows us to specify the number of sampled neighbors at each depth. This is particuarly useful when we are dealing with dense graphs and/or multi layer GNNs. Limiting the considered neighbors will decouple computational complexity from the actual node degree. However, in our particular case, we set the number to `-1` indicating that we want to sample all of the neighbors.
