@@ -2,7 +2,7 @@
 
 # Representation Learning on Graph Structured Data
 
-## Introduction
+## Introduction: how to represent relationships
 
 Of the various types of information - words, pictures, and connections between things - **relationships** are especially interesting. Relationships show how things interact and create networks. But not all ways of representing relationships are the same. In machine learning, **how we do vector represention of relationships affects performance** on a wide range of tasks.
 
