@@ -13,7 +13,6 @@ We look first at Bag-of-Words (BoW), a standard approach to vectorizing text dat
 ## Leading our dataset, evaluating BoW
 
 **Our dataset: Cora** 
-
 Our use case is a subset of the Cora citation network. This subset comprises 2708 scientific papers (nodes) and connections that indicate citations between them. Each paper has a BoW descriptor containing 1433 words. The papers in the dataset are also divided into 7 different topics (classes). Each paper belongs to exactly one of them.
 
 **Loading the dataset**
