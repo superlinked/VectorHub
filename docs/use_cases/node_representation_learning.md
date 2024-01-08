@@ -4,7 +4,7 @@
 
 ## Introduction
 
-Of the various types of information - words, pictures, and connections between things - relationships are especially interesting; they show how things interact and create networks. But not all ways of representing these relationships are the same. In machine learning, how we do vector represention of relationships is consequential for performance on a wide range of tasks. 
+Of the various types of information - words, pictures, and connections between things, relationships are especially interesting; they show how things interact and create networks. But not all ways of representing relationships are the same. In machine learning, _how_ we do vector represention of relationships affects performance on a wide range of tasks.
 
 We evaluate several approaches to vector representation on their ability using a real-life use case: how well they classify academic articles and replicate a citation graph using Cora citation network. We look first at Bag-of-Words. Because BoW doesn't represent the network structure, we examine Node2Vec...(improvement, but static) and GraphSAGE (for dynamic networks).
 Finally, BoW has another weakness. It also fails to capture semantic meaning. LLM embeddings, on the other hand, are designed to represent semantic meaning. We look at how LLM-only, and then Node2Vec + LLM, and GraphSAGE trained on LLM compared to our first set of approaches: BoW alone, Node2Vec + BoW, and GraphSAGE trained on BoW.
@@ -58,9 +58,9 @@ In this plot, we define groups (shown on the y-axis) so that each group has abou
 
 The plot demonstrates how connected nodes usually have higher cosine similarities. Papers that cite each other often use similar words. But if we ignore paper pairs with zero similarities (the 0.00-0.00 group), papers that have _not_ cited each other also seem to have a wide range of common words.
 
-Though BoW representations embody _some_ information about article connectivity, BoW features don't contain enough citation pair information to accurately reconstruct the actual citation graph. More specifically, BoW represents documents as unordered sets of words; it ignores word order, and instead treats each word independently. BoW vectors basically represent the frequency of words in a document. Because BoW looks exclusively at word co-occurrence between article pairs, it misses word context data contained in the network structure - data that can be used to more accurately represent citation data, and classify articles better. (Because articles that cite each other tend to belong to the same topic, we can achieve improvements in both citation graph reproduction and article classification by representing both citation information and textual information contained in our network.)
+Though BoW representations embody _some_ information about article connectivity, BoW features don't contain enough citation pair information to accurately reconstruct the actual citation graph. More specifically, BoW represents documents as unordered sets of words; it ignores word order, and instead treats each word independently, evaluating their frequency. Because BoW looks exclusively at word co-occurrence between article pairs, it misses word context data contained in the network structure - data that can be used to more accurately represent citation data, and classify articles better. (Because articles that cite each other tend to belong to the same topic, we can achieve improvements in both citation graph reproduction and article classification if we can represent _both_ citation _and_ textual data contained in our network.)
 
-Can we make up for BoW's inability to represent the citation network's structure? What methods might be better at capturing node and node connectivity data better? 
+Can we make up for BoW's inability to represent the citation network's structure? Are their methods that capture node and node connectivity data better?
 
 Node2Vec is built to do precisely this. So is GraphSAGE. First, let's look at Node2Vec.
 
@@ -70,14 +70,14 @@ As opposed to BoW vectors, node embeddings are vector representations that captu
 
 $P(\text{context}|\text{source}) = \frac{1}{Z}\exp(w_{c}^Tw_s) $
 
-Here $w_c$ and $w_s$ are the embeddings of the context node $c$ and source node $s$ respectively. The variable $Z$ serves as a normalization constant, which, for computational efficiency, is never explicitly computed.
+Here, $w_c$ and $w_s$ are the embeddings of the context node $c$ and source node $s$ respectively. The variable $Z$ serves as a normalization constant, which, for computational efficiency, is never explicitly computed.
 
 The embeddings are learned by maximizing the co-occurance probability for (source,context) pairs drawn from the true data distribution (positive pairs), and at the same time minimizing for pairs that are drawn from a synthetic noise distribution. This process ensures that the embedding vectors of similar nodes are close in the embedding space, while dissimilar nodes are further apart (with respect to the dot product).
 
 The random walks are sampled according to a policy, which is guided by 2 parameters: return $p$, and in-out $q$.
 
 - The return parameter $p$ affects the likelihood of immediately returning to the previous node. A higher $p$ leads to more locally focused walks.
-- The in-out parameter $q$ affects the likelihood of visiting nodes in the same or a different neighborhood. A higher $q$ encourages Depth First Search, while a lower $q$ promotes Breadth-First-Search-like exploration.
+- The in-out parameter $q$ affects the likelihood of visiting nodes in the same or a different neighborhood. A higher $q$ encourages Depth First Search (DFS), while a lower $q$ promotes Breadth-First-Search-like (BFS) exploration.
 
 These parameters are particularly useful for accommodating different networks and tasks. Adjusting the values of $p$ and $q$ captures different characteristics of the graph in the sampled walks. BFS-like exploration is useful for learning local patterns. On the other hand, using DFS-like sampling is useful for capturing patterns on a bigger scale, like structural roles.
 
@@ -139,17 +139,18 @@ evaluate(embeddings, ds.y)
 
 Using Node2Vec embeddings, we get **better classification results** than when we used BoW representations.
 
-Let's also see if Node2Vec also does a better job of **representing citation data** than BoW. We'll examine - as we did with BoW above - whether connected nodes separate from not connected node pairs when comparing on cosine similarity.
+Let's also see if Node2Vec does a better job of **representing citation data** than BoW. We'll examine - as we did with BoW above - whether connected nodes separate from not connected node pairs when comparing on cosine similarity.
 
 ![N2V cosine similarity edge counts](../assets/use_cases/node_representation_learning/bins_n2v.png)
 
-This time, using Node2Vec we can see a well defined separation; these embeddings capture the connectivity of the graph much better than BoW.
+This time, using Node2Vec we can see a well defined separation; these embeddings capture the connectivity of the graph much better than BoW did.
 
-But can we further improve classification performance by _combining_ the two information sources, relations (Node2Vec) embeddings and textual (BoW) features?
+But can we _further_ improve classification performance? 
+One approach is _combining_ the two information sources, relations (Node2Vec) embeddings and textual (BoW) features.
 
-### Node2Vec + Text-based (BoW) embeddings
+### Node2Vec embeddings + text-based (BoW) features
 
-A straightforward approach for combining embeddings from different sources is to concatenate them dimension-wise. We have BoW features `v_bow` and Node2Vec embeddings `v_n2v`. The fused representation would then be `v_fused = torch.cat((v_n2v, v_bow), dim=1)`. Before combining them, we should examine the L2 norm distribution of both embeddings, to ensure that one kind of representations will not dominate the other:
+A straightforward approach for combining vectors from different sources is to concatenate them dimension-wise. We have BoW features `v_bow` and Node2Vec embeddings `v_n2v`. The fused representation would then be `v_fused = torch.cat((v_n2v, v_bow), dim=1)`. Before combining them, we should examine the L2 norm distribution of both embeddings, to ensure that one kind of representations will not dominate the other:
 
 ![L2 norm distribution of text based and Node2Vec embeddings](../assets/use_cases/node_representation_learning/l2_norm.png)
 
@@ -283,17 +284,16 @@ The results are slightly worse than the results we got by combining Node2Vec wit
 
 ## Using better node representations than BoW: LLM
 
-In addition to not being able to represent network structure, BoW vectors - because they treat words as contextless occurrences, merely in terms of their frequency - can't capture semantic meaning, and therefore performs less well (on classification and ) article relatedness... tasks than approaches that can do semantic embedding.
-Here is a summary of what we've found so far using BoW representations of our citation network.
+In addition to not being able to represent network structure, BoW vectors - because they treat words as contextless occurrences, merely in terms of their frequency - can't capture semantic meaning, and therefore performs less well (on classification and ) article relatedness... tasks than approaches that can do semantic embedding. Let's summarize the classification performance results we obtained above using BoW features.
 
-| Metric | BoW | Node2Vec | Node2Vec+BoW | GraphSAGE+BoW(?) |
+| Metric | BoW | Node2Vec | Node2Vec+BoW | GraphSAGE+BoW |
 | --- | --- | --- | --- | --- |
 | Accuracy  | 0.738 | 0.822 | 0.852 |  0.844 |
 | F1 (macro)  | 0.701 | 0.803 | 0.831 | 0.820 |
 
-(...All of the improvements we experienced above, BoW alone, Node2Vec + BoW, and GraphSAGE (+ BoW) can be improved further using LLM embeddings, because they excel in capturing semantic meaning...
+These article classification results **can be improved further using LLM embeddings**, because LLM embeddings excel in capturing semantic meaning.
 
-We used the `all-mpnet-base-v2` model available on [Hugging Face](https://huggingface.co/sentence-transformers/all-mpnet-base-v2) for embedding the title and abstract of each paper. 
+To do this, we used the `all-mpnet-base-v2` model available on [Hugging Face](https://huggingface.co/sentence-transformers/all-mpnet-base-v2) for embedding the title and abstract of each paper. 
 ...everything is done in exactly the same way as with the BoW features, we just simply replace them with the LLM features..
 
 The results obtained with LLM only, Node2Vec combined with LLM and GraphSAGE trained on LLM features can be found in the following table along with the relative improvement compared to using the BoW features:
