@@ -1,0 +1,52 @@
+name: Bundle JSON files
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.12'
+
+      - uses: getsentry/action-setup-venv@v1.0.4
+        id: venv
+        with:
+          python-version: '3.12'
+          cache-dependency-path: |
+            docs/tool/vdb_table/requirements.txt 
+          install-cmd: pip install -r docs/tools/vdb_table/requirements.txt 
+
+      - name: Generate bundle
+        id: bundle
+        run: |
+          python docs/tools/vdb_table/data_utils.py json_to_bundle -dd "docs/tools/vdb_table/data/*"
+
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v2'
+        with:
+          workload_identity_provider: 'projects/903342166386/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
+          service_account: 'github-actions-sa@superlinked-vectorhub.iam.gserviceaccount.com'
+    
+      - id: 'upload-bundle'
+        uses: 'google-github-actions/upload-cloud-storage@v2'
+        with:
+          path: './bundle.json'
+          destination: 'vectorhub-bundle/vectorhub-bundle'
+
+      - id: 'upload-schema'
+        uses: 'google-github-actions/upload-cloud-storage@v2'
+        with:
+          path: 'docs/tools/vdb_table/vendor.schema.json'
+          destination: 'vectorhub-bundle/vendor.schema.json'

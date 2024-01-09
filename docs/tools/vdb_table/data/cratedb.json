@@ -1,0 +1,147 @@
+{
+  "name": "CrateDB",
+  "oss": {
+    "support": "full",
+    "source_url": "https://github.com/crate/crate",
+    "comment": "https://github.com/crate/crate"
+  },
+  "managed_cloud": {
+    "support": "full",
+    "source_url": "https://console.cratedb.cloud/",
+    "comment": "https://console.cratedb.cloud/"
+  },
+  "disk_index": {
+    "support": "",
+    "source_url": "",
+    "comment": "None"
+  },
+  "multi_tenancy": {
+    "support": "",
+    "source_url": "",
+    "comment": "None"
+  },
+  "embeddings_text": {
+    "support": "",
+    "source_url": "",
+    "comment": "None"
+  },
+  "metadata_filter": {
+    "support": "",
+    "source_url": "",
+    "comment": "None"
+  },
+  "in_process": {
+    "support": "",
+    "source_url": "",
+    "comment": "None"
+  },
+  "multi_vec": {
+    "support": "",
+    "source_url": "",
+    "comment": "None"
+  },
+  "langchain": {
+    "support": "",
+    "source_url": "",
+    "comment": "None"
+  },
+  "llamaindex": {
+    "support": "",
+    "source_url": "",
+    "comment": "None"
+  },
+  "hybrid_search": {
+    "support": "",
+    "source_url": "",
+    "comment": "None"
+  },
+  "bm25": {
+    "support": "",
+    "source_url": "",
+    "comment": "None"
+  },
+  "sparse_vectors": {
+    "support": "",
+    "source_url": "",
+    "comment": "None"
+  },
+  "full_text": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "facets": {
+    "support": "",
+    "source_url": "",
+    "comment": "None"
+  },
+  "geo_search": {
+    "support": "",
+    "source_url": "",
+    "comment": "None"
+  },
+  "doc_size": {
+    "bytes": 0,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "ephemeral": {
+    "support": "",
+    "source_url": "",
+    "comment": "None"
+  },
+  "sharding": {
+    "support": "",
+    "source_url": "",
+    "comment": "None"
+  },
+  "license": {
+    "value": "Apache 2.0",
+    "source_url": "",
+    "comment": ""
+  },
+  "dev_languages": {
+    "value": [
+      "java"
+    ],
+    "source_url": "",
+    "comment": ""
+  },
+  "github_stars": 3800,
+  "vector_launch_year": "2023",
+  "pricing": {
+    "value": "CrateDB Pricing https://console.cratedb.cloud/",
+    "source_url": "https://cratedb.com/product/pricing",
+    "comment": ""
+  },
+  "rag": {
+    "support": "",
+    "source_url": "",
+    "comment": "None"
+  },
+  "recsys": {
+    "support": "",
+    "source_url": "",
+    "comment": "None"
+  },
+  "links": {
+    "docs": "https://cratedb.com/solutions/vector-database",
+    "github": "https://github.com/crate/crate",
+    "website": "http://www.cratedb.com/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
+    "poc_github": "https://github.com/marijaselakovic",
+    "slug": "cratedb"
+  },
+  "embeddings_structured": {
+    "support": "",
+    "source_url": "",
+    "comment": "None"
+  }
+}
