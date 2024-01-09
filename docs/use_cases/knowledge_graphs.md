@@ -1,16 +1,26 @@
-# Embeddings + Knowledge Graphs: The Ultimate Tools for RAG Systems
+# Using KGs + Embeddings to Further Augment RAG Systems
 
-The advent of large language models (LLMs), trained on vast amounts of text data, has been one of the most significant breakthroughs in natural language processing. The ability of these models to generate remarkably fluent and coherent text with just a short prompt has opened up new possibilities for conversational AI, creative writing, and a wide array of other applications.
+...We discuss the limitations of both LLMs and RAG solutions to LLM knowledge and reasoning gaps, examining KGs combined with graph embeddings as a solution...
+
+Large Language Models (LLMs) mark a watershed moment in natural language processing, creating new abilities in conversational AI, creative writing, and a broad range of other applications. But they have limitations. While LLMs can generate remarkably fluent and coherent text from nothing more than a short prompt, LLM knowledge is not real-world but rather restricted to patterns learned from training data. In addition, LLMs can't do logical inference or synthesize facts from multiple sources; as queries become more complex and open-ended, LLM responses become contradictory or nonsense.
+
+Retrieval Augmented Generation (RAG) systems have filled some of the LLM gaps by surfacing relevant external source data using semantic similarity on vector embeddings. Still, because RAG systems don't have access to network structure data, they struggle to achieve true relevance, aggregate facts, and do chains of reasoning.
+
+==
 
 However, despite their eloquence, LLMs have some key limitations. Their knowledge is restricted to patterns discerned from the training data, which means they lack true understanding of the world.
 
 Their reasoning ability is also limited — they cannot perform logical inferences or synthesize facts from multiple sources. The responses become nonsensical or contradictory as we ask more complex, open-ended questions.
+
+### RAG can help, but also limited
 
 There has been growing interest in retrieval-augmented generation (RAG) systems to address these gaps. The key idea is to retrieve relevant knowledge from external sources to provide context for the LLM to make more informed responses.
 
 Most existing systems retrieve passages using semantic similarity of vector embeddings. However, this approach has its own drawbacks like lack of true relevance, inability to aggregate facts, and no chain of reasoning.
 
 This is where knowledge graphs come into the picture. 
+
+## Connecting to the real world: Knowledge Graphs
 
 Knowledge graphs are structured representations of real-world entities and relationships. They overcome the deficiencies of pure vector search by encoding interconnections between contextual facts. Traversing knowledge graphs enables complex multi-hop reasoning across diverse information sources.
 
@@ -21,10 +31,6 @@ We first explore the inherent weaknesses of relying solely on vector search in i
 We then elucidate how knowledge graphs and embeddings can complement each other, with neither technique alone being sufficient.
 
 ## The Limits of Raw Vector Search
-
-### Vector Search Is Not All You Need
-
-Introduction
 
 Most RAG systems rely on a vector search process over passages from a document collection to find relevant context for the LLM. This process has several key steps:
 
@@ -63,11 +69,6 @@ Knowledge graphs augment retrieval by encoding structured facts, relationships a
 
 ## Incorporating Knowledge Graphs with Embeddings & Constraints
 
-**Improving Knowledge Graph Embedding Using Simple Constraints**
-
-Embedding knowledge graphs (KGs) into continuous vector spaces is a focus of current research. Early works performed…
-arxiv.org
-
 Knowledge graphs represent entities and relationships as vector embeddings to enable mathematical operations. Additional constraints can make the representations more optimal:
 
 - 1. **Non-Negativity Constraints** — Restricting entity embeddings to positive values between 0 and 1 induces sparsity. This models only their positive properties explicitly and improves interpretability.
@@ -80,8 +81,6 @@ Knowledge graphs represent entities and relationships as vector embeddings to en
 Adding simple but universal constraints augments knowledge graph embeddings to produce more optimized, explainable, and logically compliant representations. The embeddings gain inductive biases that mimic real-world structures and rules. This results in more accurate and interpretable reasoning without much additional complexity.
 
 ## Integrating Diverse Reasoning Frameworks
-
-**Papers with Code - Graph Agent: Explicit Reasoning Agent for Graphs**
 
 Knowledge graphs require reasoning to derive new facts, answer queries, and make predictions. Different techniques have complementary strengths:
 - 1. **Logical Rules** — Express knowledge as logical axioms and ontologies. Sound and complete reasoning through theorem proving. Limited uncertainty handling.
@@ -135,11 +134,6 @@ Collaborative filtering leverages connections between entities to enhance search
 - 9. **User Context** — Further adapt based on user profile, history and preferences.
 
 ## Fueling Knowledge Graphs with Flywheel Learning
-
-### Fueling the RAG Engine : The Data Flywheel
-
-Building a high-performing retrieval-augmented generation (RAG) system that continuously improves requires implementing…
-ai.plainenglish.io
 
 Knowledge graphs unlocked new reasoning capabilities for language models by providing structured world knowledge. But constructing high-quality graphs remains challenging This is where flywheel learning comes in — continuously improving the knowledge graph by analyzing system interactions.
 
