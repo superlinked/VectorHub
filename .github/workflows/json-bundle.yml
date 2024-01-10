@@ -43,7 +43,7 @@ jobs:
         uses: 'google-github-actions/upload-cloud-storage@v2'
         with:
           path: './bundle.json'
-          destination: 'vectorhub-bundle/vectorhub-bundle'
+          destination: 'vectorhub-bundle/bundle.json'
 
       - id: 'upload-schema'
         uses: 'google-github-actions/upload-cloud-storage@v2'
