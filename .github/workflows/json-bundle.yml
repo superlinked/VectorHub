@@ -37,7 +37,7 @@ jobs:
         uses: 'google-github-actions/auth@v2'
         with:
           workload_identity_provider: 'projects/903342166386/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
-          service_account: 'github-actions-sa@superlinked-vectorhub.iam.gserviceaccount.com'
+          service_account: 'vectorhub-github-action-sa@superlinked-vectorhub.iam.gserviceaccount.com'
     
       - id: 'upload-bundle'
         uses: 'google-github-actions/upload-cloud-storage@v2'
