@@ -43,10 +43,10 @@ jobs:
         uses: 'google-github-actions/upload-cloud-storage@v2'
         with:
           path: './bundle.json'
-          destination: 'vectorhub-bundle/bundle.json'
+          destination: 'vectorhub-bundle'
 
       - id: 'upload-schema'
         uses: 'google-github-actions/upload-cloud-storage@v2'
         with:
           path: 'docs/tools/vdb_table/vendor.schema.json'
-          destination: 'vectorhub-bundle/vendor.schema.json'
+          destination: 'vectorhub-bundle'
