@@ -1,106 +1,17 @@
 {
   "name": "ClickHouse",
+  "links": {
+    "docs": "https://clickhouse.com/docs/knowledgebase/vector-search",
+    "github": "https://github.com/ClickHouse/ClickHouse",
+    "website": "https://clickhouse.com/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/100",
+    "poc_github": "https://github.com/cwurm",
+    "slug": "clickhouse"
+  },
   "oss": {
     "support": "full",
     "source_url": "",
     "comment": ""
-  },
-  "managed_cloud": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "disk_index": {
-    "support": "full",
-    "source_url": "https://clickhouse.com/docs/en/engines/table-engines/mergetree-family/annindexes",
-    "comment": "Via Usearch"
-  },
-  "multi_tenancy": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "embeddings_text": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "metadata_filter": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "in_process": {
-    "support": "none",
-    "source_url": "https://github.com/chdb-io/chdb",
-    "comment": "possible via https://github.com/chdb-io/chdb"
-  },
-  "multi_vec": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "langchain": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "llamaindex": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "hybrid_search": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "bm25": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "sparse_vectors": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "full_text": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "facets": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "geo_search": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "doc_size": {
-    "bytes": 0,
-    "unlimited": true,
-    "source_url": "",
-    "comment": ""
-  },
-  "vector_dims": {
-    "value": 0,
-    "unlimited": true,
-    "source_url": "",
-    "comment": ""
-  },
-  "ephemeral": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "sharding": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
   },
   "license": {
     "value": "Apache 2.0",
@@ -115,10 +26,60 @@
     "comment": ""
   },
   "github_stars": 32000,
-  "vector_launch_year": "2022",
-  "pricing": {
-    "value": "Clickhouse Pricing",
-    "source_url": "https://clickhouse.com/pricing",
+  "vector_launch_year": 2022,
+  "metadata_filter": {
+    "support": "full",
+    "source_url": "https://clickhouse.com/use-cases/machine-learning-and-data-science",
+    "comment": ""
+  },
+  "hybrid_search": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "facets": {
+    "support": "full",
+    "source_url": "https://clickhouse.com/docs/knowledgebase/filtered-aggregates",
+    "comment": "You can filter on a distance and aggregate or yes you can segment using If combinators."
+  },
+  "geo_search": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_vec": {
+    "support": "full",
+    "source_url": "",
+    "comment": "easily done by adding them as separate columns for each. e.g. CREATE TABLE titleVec Array(Float32), contentVec Array(Float32), title String, contentString ENGINE=MergeTree ORDER BY tuple()"
+  },
+  "sparse_vectors": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "bm25": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "full_text": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_text": {
+    "support": "partial",
+    "source_url": "https://clickhouse.com/docs/en/sql-reference/functions/udf",
+    "comment": "possible to load an embedding model as a UDF"
+  },
+  "embeddings_image": {
+    "support": "partial",
+    "source_url": "",
+    "comment": "possible to load an embedding model as a UDF"
+  },
+  "embeddings_structured": {
+    "support": "",
+    "source_url": "",
     "comment": ""
   },
   "rag": {
@@ -131,17 +92,61 @@
     "source_url": "",
     "comment": ""
   },
-  "links": {
-    "docs": "https://clickhouse.com/docs/knowledgebase/vector-search",
-    "github": "https://github.com/ClickHouse/ClickHouse",
-    "website": "https://clickhouse.com/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
-    "poc_github": "https://github.com/cwurm",
-    "slug": "clickhouse"
-  },
-  "embeddings_structured": {
-    "support": "",
+  "langchain": {
+    "support": "full",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
+  },
+  "llamaindex": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "pricing": {
+    "value": "Clickhouse Pricing",
+    "source_url": "https://clickhouse.com/pricing",
+    "comment": ""
+  },
+  "in_process": {
+    "support": "none",
+    "source_url": "https://github.com/chdb-io/chdb",
+    "comment": "possible via https://github.com/chdb-io/chdb"
+  },
+  "multi_tenancy": {
+    "support": "full",
+    "source_url": "https://clickhouse.com/docs/en/operations/access-rights",
+    "comment": "with RBAC and row-level security"
+  },
+  "disk_index": {
+    "support": "full",
+    "source_url": "https://clickhouse.com/docs/en/engines/table-engines/mergetree-family/annindexes",
+    "comment": "Via Usearch"
+  },
+  "ephemeral": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "sharding": {
+    "support": "full",
+    "source_url": "",
+    "comment": "sharding applicable to both vector and index storage"
+  },
+  "doc_size": {
+    "bytes": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
   }
 }

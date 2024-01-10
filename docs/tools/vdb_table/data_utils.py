@@ -7,6 +7,7 @@ import humanfriendly
 import glob
 from jsonschema import validate
 from url_normalize import url_normalize
+from collections import OrderedDict
 
 class JsonProp():
     def __init__(self, prop) -> None:
@@ -83,7 +84,7 @@ class JsonValueFactory():
         return {
             "support": support,
             "source_url": JsonValueFactory.backfillLinkFromValue(value, hyperlink),
-            "comment": value.translate({ord(x): '' for x in ["✅","❌","🟨"]}).strip()
+            "comment": "" if not value else value.translate({ord(x): '' for x in ["✅","❌","🟨"]}).strip()
         }
 
     def integer(value, _hyperlink):
@@ -154,7 +155,7 @@ class XLSXWrapper():
         "BM25 support": "bm25",
         "Full-text Search Engine": "full_text",
         "In-built Text Embeddings creation (Bring-your-own-model)": "embeddings_text",
-        "In-built Image Embedding creation ": "embeddings_image",
+        "In-built Image Embedding creation": "embeddings_image",
         "In-built Structured Data Embedding creation": "embeddings_structured",
         "Calls LLM internally for RAG": "rag",
         "Recommendations API": "recsys",
@@ -182,7 +183,9 @@ class XLSXWrapper():
     
     def value_to_json(self, value, schema):
         val = value.value
-        if isinstance(val, float):
+        if not val:
+            val = None
+        elif isinstance(val, float):
             val = str(int(val))
         else:
             val = str(val)
@@ -192,11 +195,17 @@ class XLSXWrapper():
             "" if not value.hyperlink else value.hyperlink.target)
 
     def row_to_json(self, header, row):
-        result = {}
+        # Collect the properties from the row.
+        data = {}
         for i, value in enumerate(row):
             key = self.HEADER_TO_SCHEMA_ID.get(header[i].value, None)
             if key: 
-                result[key] = self.value_to_json(value, self.table_schema.prop_by_id(key))
+                data[key] = self.value_to_json(value, self.table_schema.prop_by_id(key))
+        # Order the properties according to the schema.
+        result = OrderedDict()
+        for prop in self.table_schema.props():
+            result[prop.id()] = data[prop.id()]
+
         return result
     
     def to_json(self, output_dir):
@@ -223,7 +232,7 @@ class CLI():
     def json_to_bundle(self, data_glob):
         obj_list = []
         for name in glob.glob(data_glob):  
-            obj_list.append(json.load(open(name, "r")))
+            obj_list.append(json.load(open(name, "r"), object_pairs_hook=OrderedDict))
         with open("bundle.json", "w") as output_file:
             json.dump(obj_list, output_file, indent=2)
     

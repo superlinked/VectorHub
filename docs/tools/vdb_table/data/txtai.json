@@ -1,103 +1,14 @@
 {
   "name": "txtai",
+  "links": {
+    "docs": "https://neuml.github.io/txtai/",
+    "github": "https://neuml.github.io/txtai/",
+    "website": "https://neuml.github.io/txtai/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/86",
+    "poc_github": "https://github.com/davidmezzetti",
+    "slug": "txtai"
+  },
   "oss": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "managed_cloud": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "disk_index": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "multi_tenancy": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "embeddings_text": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "metadata_filter": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "in_process": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "multi_vec": {
-    "support": "full",
-    "source_url": "https://neuml.hashnode.dev/whats-new-in-txtai-60",
-    "comment": "https://neuml.hashnode.dev/whats-new-in-txtai-60#heading-subindexes"
-  },
-  "langchain": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "llamaindex": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "hybrid_search": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "bm25": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "sparse_vectors": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "full_text": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "facets": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "geo_search": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "doc_size": {
-    "bytes": 0,
-    "unlimited": true,
-    "source_url": "",
-    "comment": ""
-  },
-  "vector_dims": {
-    "value": 0,
-    "unlimited": true,
-    "source_url": "",
-    "comment": ""
-  },
-  "ephemeral": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "sharding": {
     "support": "full",
     "source_url": "",
     "comment": ""
@@ -115,9 +26,59 @@
     "comment": ""
   },
   "github_stars": 5500,
-  "vector_launch_year": "2020",
-  "pricing": {
-    "value": "None",
+  "vector_launch_year": 2020,
+  "metadata_filter": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "hybrid_search": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "facets": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "geo_search": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_vec": {
+    "support": "full",
+    "source_url": "https://neuml.hashnode.dev/whats-new-in-txtai-60",
+    "comment": "https://neuml.hashnode.dev/whats-new-in-txtai-60#heading-subindexes"
+  },
+  "sparse_vectors": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "bm25": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "full_text": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_text": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_image": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_structured": {
+    "support": "",
     "source_url": "",
     "comment": ""
   },
@@ -129,19 +90,63 @@
   "recsys": {
     "support": "",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
-  "links": {
-    "docs": "https://neuml.github.io/txtai/",
-    "github": "https://neuml.github.io/txtai/",
-    "website": "https://neuml.github.io/txtai/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
-    "poc_github": "https://github.com/davidmezzetti",
-    "slug": "txtai"
-  },
-  "embeddings_structured": {
+  "langchain": {
     "support": "",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
+  },
+  "llamaindex": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "pricing": {
+    "value": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "in_process": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_tenancy": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "disk_index": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "ephemeral": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "sharding": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "doc_size": {
+    "bytes": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
   }
 }

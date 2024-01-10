@@ -1,21 +1,68 @@
 {
   "name": "Neo4j",
+  "links": {
+    "docs": "https://neo4j.com/docs/cypher-manual/current/indexes-for-vector-search/",
+    "github": "https://github.com/neo4j",
+    "website": "https://neo4j.com/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/96",
+    "poc_github": "https://github.com/akollegger",
+    "slug": "neo4j"
+  },
   "oss": {
     "support": "none",
     "source_url": "",
     "comment": ""
   },
-  "managed_cloud": {
+  "license": {
+    "value": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "dev_languages": {
+    "value": [
+      ""
+    ],
+    "source_url": "",
+    "comment": ""
+  },
+  "github_stars": 0,
+  "vector_launch_year": 0,
+  "metadata_filter": {
     "support": "full",
     "source_url": "",
     "comment": ""
   },
-  "disk_index": {
+  "hybrid_search": {
     "support": "none",
     "source_url": "",
     "comment": ""
   },
-  "multi_tenancy": {
+  "facets": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "geo_search": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_vec": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "sparse_vectors": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "bm25": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "full_text": {
     "support": "full",
     "source_url": "",
     "comment": ""
@@ -25,18 +72,23 @@
     "source_url": "",
     "comment": ""
   },
-  "metadata_filter": {
-    "support": "full",
+  "embeddings_image": {
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
-  "in_process": {
-    "support": "full",
+  "embeddings_structured": {
+    "support": "",
     "source_url": "",
-    "comment": "Java apps only"
+    "comment": ""
   },
-  "multi_vec": {
-    "support": "none",
+  "rag": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "recsys": {
+    "support": "",
     "source_url": "",
     "comment": ""
   },
@@ -50,33 +102,38 @@
     "source_url": "",
     "comment": ""
   },
-  "hybrid_search": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "bm25": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "sparse_vectors": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "full_text": {
+  "managed_cloud": {
     "support": "full",
     "source_url": "",
     "comment": ""
   },
-  "facets": {
+  "pricing": {
+    "value": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "in_process": {
+    "support": "full",
+    "source_url": "",
+    "comment": "Java apps only"
+  },
+  "multi_tenancy": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "disk_index": {
     "support": "none",
     "source_url": "",
     "comment": ""
   },
-  "geo_search": {
-    "support": "full",
+  "ephemeral": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "sharding": {
+    "support": "",
     "source_url": "",
     "comment": ""
   },
@@ -91,57 +148,5 @@
     "unlimited": false,
     "source_url": "",
     "comment": ""
-  },
-  "ephemeral": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "sharding": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "license": {
-    "value": "None",
-    "source_url": "",
-    "comment": ""
-  },
-  "dev_languages": {
-    "value": [
-      "none"
-    ],
-    "source_url": "",
-    "comment": ""
-  },
-  "github_stars": 0,
-  "vector_launch_year": "None",
-  "pricing": {
-    "value": "None",
-    "source_url": "",
-    "comment": ""
-  },
-  "rag": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "recsys": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "links": {
-    "docs": "https://neo4j.com/docs/cypher-manual/current/indexes-for-vector-search/",
-    "github": "https://github.com/neo4j",
-    "website": "https://neo4j.com/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
-    "poc_github": "https://github.com/akollegger",
-    "slug": "neo4j"
-  },
-  "embeddings_structured": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
   }
 }

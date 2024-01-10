@@ -1,42 +1,94 @@
 {
   "name": "GCP Vertex AI Vector Search",
+  "links": {
+    "docs": "https://cloud.google.com/vertex-ai/docs/vector-search/overview",
+    "github": "https://github.com/GoogleCloudPlatform",
+    "website": "https://cloud.google.com/blog/products/ai-machine-learning/vertex-matching-engine-blazing-fast-and-massively-scalable-nearest-neighbor-search",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/83",
+    "poc_github": "https://github.com/kazunori279",
+    "slug": "gcpvertexai"
+  },
   "oss": {
     "support": "none",
     "source_url": "",
     "comment": ""
   },
-  "managed_cloud": {
+  "license": {
+    "value": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "dev_languages": {
+    "value": [
+      ""
+    ],
+    "source_url": "",
+    "comment": ""
+  },
+  "github_stars": 0,
+  "vector_launch_year": 2021,
+  "metadata_filter": {
     "support": "full",
     "source_url": "",
     "comment": ""
   },
-  "disk_index": {
-    "support": "",
+  "hybrid_search": {
+    "support": "none",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
-  "multi_tenancy": {
+  "facets": {
     "support": "",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
+  },
+  "geo_search": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_vec": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "sparse_vectors": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "bm25": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "full_text": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
   },
   "embeddings_text": {
     "support": "none",
     "source_url": "",
     "comment": "(Vertex embeddings only)"
   },
-  "metadata_filter": {
-    "support": "full",
+  "embeddings_image": {
+    "support": "",
     "source_url": "",
     "comment": ""
   },
-  "in_process": {
-    "support": "none",
+  "embeddings_structured": {
+    "support": "",
     "source_url": "",
     "comment": ""
   },
-  "multi_vec": {
-    "support": "none",
+  "rag": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "recsys": {
+    "support": "",
     "source_url": "",
     "comment": ""
   },
@@ -50,35 +102,40 @@
     "source_url": "",
     "comment": ""
   },
-  "hybrid_search": {
+  "managed_cloud": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "pricing": {
+    "value": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "in_process": {
     "support": "none",
     "source_url": "",
     "comment": ""
   },
-  "bm25": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "sparse_vectors": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "full_text": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "facets": {
+  "multi_tenancy": {
     "support": "",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
-  "geo_search": {
+  "disk_index": {
     "support": "",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
+  },
+  "ephemeral": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "sharding": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
   },
   "doc_size": {
     "bytes": 0,
@@ -91,57 +148,5 @@
     "unlimited": true,
     "source_url": "",
     "comment": ""
-  },
-  "ephemeral": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "sharding": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "license": {
-    "value": "None",
-    "source_url": "",
-    "comment": ""
-  },
-  "dev_languages": {
-    "value": [
-      "none"
-    ],
-    "source_url": "",
-    "comment": ""
-  },
-  "github_stars": 0,
-  "vector_launch_year": "2021",
-  "pricing": {
-    "value": "None",
-    "source_url": "",
-    "comment": ""
-  },
-  "rag": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "recsys": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "links": {
-    "docs": "https://cloud.google.com/vertex-ai/docs/vector-search/overview",
-    "github": "https://github.com/GoogleCloudPlatform",
-    "website": "https://cloud.google.com/blog/products/ai-machine-learning/vertex-matching-engine-blazing-fast-and-massively-scalable-nearest-neighbor-search",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
-    "poc_github": "https://github.com/kazunori279",
-    "slug": "gcpvertexai"
-  },
-  "embeddings_structured": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
   }
 }

@@ -1,51 +1,33 @@
 {
   "name": "Azure AI Search",
+  "links": {
+    "docs": "https://learn.microsoft.com/en-us/azure/search/",
+    "github": "https://github.com/Azure",
+    "website": "https://azure.microsoft.com/en-us/products/ai-services/ai-search/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/88",
+    "poc_github": "https://github.com/farzad528",
+    "slug": "azureai"
+  },
   "oss": {
     "support": "none",
     "source_url": "",
     "comment": ""
   },
-  "managed_cloud": {
-    "support": "full",
+  "license": {
+    "value": "Proprietary",
     "source_url": "",
     "comment": ""
   },
-  "disk_index": {
-    "support": "",
+  "dev_languages": {
+    "value": [
+      ""
+    ],
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
-  "multi_tenancy": {
-    "support": "full",
-    "source_url": "https://learn.microsoft.com/en-us/azure/search/search-modeling-multitenant-saas-applications",
-    "comment": "https://learn.microsoft.com/en-us/azure/search/search-modeling-multitenant-saas-applications"
-  },
-  "embeddings_text": {
-    "support": "full",
-    "source_url": "https://learn.microsoft.com/en-us/azure/search/cognitive-search-custom-skill-web-api",
-    "comment": "Custom Web API skill in skillsets - Azure AI Search | Microsoft Learn https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/announcing-the-public-preview-of-integrated-vectorization-in/ba-p/3960809"
-  },
+  "github_stars": 0,
+  "vector_launch_year": 2023,
   "metadata_filter": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "in_process": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "multi_vec": {
-    "support": "full",
-    "source_url": "https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-query?tabs=query-2023-11-01%2Cfilter-2023-11-01",
-    "comment": "https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-query?tabs=query-2023-11-01%2Cfilter-2023-11-01#vector-query-request"
-  },
-  "langchain": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "llamaindex": {
     "support": "full",
     "source_url": "",
     "comment": ""
@@ -54,21 +36,6 @@
     "support": "full",
     "source_url": "https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview",
     "comment": "https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview"
-  },
-  "bm25": {
-    "support": "full",
-    "source_url": "https://learn.microsoft.com/en-us/azure/search/index-ranking-similarity",
-    "comment": "https://learn.microsoft.com/en-us/azure/search/index-ranking-similarity"
-  },
-  "sparse_vectors": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "full_text": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
   },
   "facets": {
     "support": "full",
@@ -80,15 +47,83 @@
     "source_url": "https://learn.microsoft.com/en-us/azure/search/search-query-odata-geo-spatial-functions",
     "comment": "https://learn.microsoft.com/en-us/azure/search/search-query-odata-geo-spatial-functions"
   },
-  "doc_size": {
-    "bytes": 0,
-    "unlimited": true,
+  "multi_vec": {
+    "support": "full",
+    "source_url": "https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-query?tabs=query-2023-11-01%2Cfilter-2023-11-01",
+    "comment": "https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-query?tabs=query-2023-11-01%2Cfilter-2023-11-01#vector-query-request"
+  },
+  "sparse_vectors": {
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
-  "vector_dims": {
-    "value": 2048,
-    "unlimited": false,
+  "bm25": {
+    "support": "full",
+    "source_url": "https://learn.microsoft.com/en-us/azure/search/index-ranking-similarity",
+    "comment": "https://learn.microsoft.com/en-us/azure/search/index-ranking-similarity"
+  },
+  "full_text": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_text": {
+    "support": "full",
+    "source_url": "https://learn.microsoft.com/en-us/azure/search/cognitive-search-custom-skill-web-api",
+    "comment": "Custom Web API skill in skillsets - Azure AI Search | Microsoft Learn https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/announcing-the-public-preview-of-integrated-vectorization-in/ba-p/3960809"
+  },
+  "embeddings_image": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_structured": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "rag": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "recsys": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "langchain": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "llamaindex": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "pricing": {
+    "value": "Pricing - Azure Cognitive Search",
+    "source_url": "https://azure.microsoft.com/en-us/pricing/details/search/",
+    "comment": ""
+  },
+  "in_process": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_tenancy": {
+    "support": "full",
+    "source_url": "https://learn.microsoft.com/en-us/azure/search/search-modeling-multitenant-saas-applications",
+    "comment": "https://learn.microsoft.com/en-us/azure/search/search-modeling-multitenant-saas-applications"
+  },
+  "disk_index": {
+    "support": "",
     "source_url": "",
     "comment": ""
   },
@@ -102,46 +137,16 @@
     "source_url": "https://learn.microsoft.com/en-us/azure/search/search-capacity-planning",
     "comment": "https://learn.microsoft.com/en-us/azure/search/search-capacity-planning#concepts-search-units-replicas-partitions-shards"
   },
-  "license": {
-    "value": "Proprietary",
+  "doc_size": {
+    "bytes": 0,
+    "unlimited": true,
     "source_url": "",
     "comment": ""
   },
-  "dev_languages": {
-    "value": [
-      "none"
-    ],
+  "vector_dims": {
+    "value": 2048,
+    "unlimited": false,
     "source_url": "",
     "comment": ""
-  },
-  "github_stars": 0,
-  "vector_launch_year": "2023",
-  "pricing": {
-    "value": "Pricing - Azure Cognitive Search",
-    "source_url": "https://azure.microsoft.com/en-us/pricing/details/search/",
-    "comment": ""
-  },
-  "rag": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "recsys": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "links": {
-    "docs": "https://learn.microsoft.com/en-us/azure/search/",
-    "github": "https://github.com/Azure",
-    "website": "https://azure.microsoft.com/en-us/products/ai-services/ai-search/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
-    "poc_github": "https://github.com/farzad528",
-    "slug": "azureai"
-  },
-  "embeddings_structured": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
   }
 }

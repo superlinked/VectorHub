@@ -1,103 +1,14 @@
 {
   "name": "DataStax Astra DB",
+  "links": {
+    "docs": "https://docs.datastax.com/en/astra-serverless/docs/vector-search/overview.html",
+    "github": "https://github.com/datastax/",
+    "website": "https://www.datastax.com/products/datastax-astra",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/85",
+    "poc_github": "https://github.com/Erick%20Ramirez",
+    "slug": "datastaxastra"
+  },
   "oss": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "managed_cloud": {
-    "support": "full",
-    "source_url": "https://www.datastax.com/products/datastax-astra",
-    "comment": "https://www.datastax.com/products/datastax-astra"
-  },
-  "disk_index": {
-    "support": "full",
-    "source_url": "https://cassandra.apache.org/doc/latest/cassandra/developing/cql/indexing/sai/sai-faq.html",
-    "comment": "SAI index"
-  },
-  "multi_tenancy": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "embeddings_text": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "metadata_filter": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "in_process": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "multi_vec": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "langchain": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "llamaindex": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "hybrid_search": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "bm25": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "sparse_vectors": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "full_text": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "facets": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "geo_search": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "doc_size": {
-    "bytes": 250000000,
-    "unlimited": false,
-    "source_url": "",
-    "comment": ""
-  },
-  "vector_dims": {
-    "value": 8192,
-    "unlimited": false,
-    "source_url": "",
-    "comment": ""
-  },
-  "ephemeral": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "sharding": {
     "support": "full",
     "source_url": "",
     "comment": ""
@@ -115,10 +26,60 @@
     "comment": ""
   },
   "github_stars": 0,
-  "vector_launch_year": "2023",
-  "pricing": {
-    "value": "https://www.datastax.com/pricing/astra-db",
-    "source_url": "https://www.datastax.com/pricing/astra-db",
+  "vector_launch_year": 2023,
+  "metadata_filter": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "hybrid_search": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "facets": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "geo_search": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_vec": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "sparse_vectors": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "bm25": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "full_text": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_text": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_image": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_structured": {
+    "support": "",
+    "source_url": "",
     "comment": ""
   },
   "rag": {
@@ -131,17 +92,61 @@
     "source_url": "",
     "comment": "?"
   },
-  "links": {
-    "docs": "https://docs.datastax.com/en/astra-serverless/docs/vector-search/overview.html",
-    "github": "https://github.com/datastax/",
-    "website": "https://www.datastax.com/products/datastax-astra",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
-    "poc_github": "https://github.com/Erick%20Ramirez",
-    "slug": "datastaxastra"
-  },
-  "embeddings_structured": {
-    "support": "",
+  "langchain": {
+    "support": "full",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
+  },
+  "llamaindex": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "full",
+    "source_url": "https://www.datastax.com/products/datastax-astra",
+    "comment": "https://www.datastax.com/products/datastax-astra"
+  },
+  "pricing": {
+    "value": "https://www.datastax.com/pricing/astra-db",
+    "source_url": "https://www.datastax.com/pricing/astra-db",
+    "comment": ""
+  },
+  "in_process": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_tenancy": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "disk_index": {
+    "support": "full",
+    "source_url": "https://cassandra.apache.org/doc/latest/cassandra/developing/cql/indexing/sai/sai-faq.html",
+    "comment": "SAI index"
+  },
+  "ephemeral": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "sharding": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "doc_size": {
+    "bytes": 250000000,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 8192,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
   }
 }

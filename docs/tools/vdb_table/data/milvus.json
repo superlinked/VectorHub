@@ -1,106 +1,17 @@
 {
   "name": "Milvus",
+  "links": {
+    "docs": "https://milvus.io/docs",
+    "github": "https://github.com/milvus-io/milvus",
+    "website": "http://milvus.io/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/71",
+    "poc_github": "https://github.com/Enwei%20Jiao",
+    "slug": "milvus"
+  },
   "oss": {
     "support": "full",
     "source_url": "",
     "comment": ""
-  },
-  "managed_cloud": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "disk_index": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "multi_tenancy": {
-    "support": "full",
-    "source_url": "https://milvus.io/docs/multi_tenancy.md",
-    "comment": "https://milvus.io/docs/multi_tenancy.md"
-  },
-  "embeddings_text": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "metadata_filter": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "in_process": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "multi_vec": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "langchain": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "llamaindex": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "hybrid_search": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "bm25": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "sparse_vectors": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "full_text": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "facets": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "geo_search": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "doc_size": {
-    "bytes": 0,
-    "unlimited": false,
-    "source_url": "",
-    "comment": ""
-  },
-  "vector_dims": {
-    "value": 32768,
-    "unlimited": false,
-    "source_url": "",
-    "comment": ""
-  },
-  "ephemeral": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "sharding": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
   },
   "license": {
     "value": "Apache-2.0",
@@ -116,33 +27,127 @@
     "comment": ""
   },
   "github_stars": 24300,
-  "vector_launch_year": "2019",
-  "pricing": {
-    "value": "None",
+  "vector_launch_year": 2019,
+  "metadata_filter": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "hybrid_search": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "facets": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "geo_search": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_vec": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "sparse_vectors": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "bm25": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "full_text": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_text": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_image": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_structured": {
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "rag": {
     "support": "",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "recsys": {
     "support": "",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
-  "links": {
-    "docs": "https://milvus.io/docs",
-    "github": "https://github.com/milvus-io/milvus",
-    "website": "http://milvus.io/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
-    "poc_github": "https://github.com/Enwei%20Jiao",
-    "slug": "milvus"
+  "langchain": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
   },
-  "embeddings_structured": {
+  "llamaindex": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "pricing": {
+    "value": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "in_process": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_tenancy": {
+    "support": "full",
+    "source_url": "https://milvus.io/docs/multi_tenancy.md",
+    "comment": "https://milvus.io/docs/multi_tenancy.md"
+  },
+  "disk_index": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "ephemeral": {
     "support": "",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
+  },
+  "sharding": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "doc_size": {
+    "bytes": 0,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 32768,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
   }
 }

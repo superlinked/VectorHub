@@ -1,106 +1,17 @@
 {
   "name": "Qdrant",
+  "links": {
+    "docs": "https://qdrant.tech/documentation/",
+    "github": "https://github.com/qdrant/qdrant",
+    "website": "https://qdrant.tech/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/66",
+    "poc_github": "https://github.com/atarora",
+    "slug": "qdrant"
+  },
   "oss": {
     "support": "full",
     "source_url": "",
     "comment": ""
-  },
-  "managed_cloud": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "disk_index": {
-    "support": "full",
-    "source_url": "https://qdrant.tech/documentation/concepts/storage/",
-    "comment": "https://qdrant.tech/documentation/concepts/storage/#configuring-memmap-storage"
-  },
-  "multi_tenancy": {
-    "support": "full",
-    "source_url": "",
-    "comment": "via collections/metadata"
-  },
-  "embeddings_text": {
-    "support": "full",
-    "source_url": "https://qdrant.github.io/fastembed/examples/Supported_Models/",
-    "comment": "via FastEmbed (Supported models: https://qdrant.github.io/fastembed/examples/Supported_Models/)"
-  },
-  "metadata_filter": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "in_process": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "multi_vec": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "langchain": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "llamaindex": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "hybrid_search": {
-    "support": "none",
-    "source_url": "https://qdrant.tech/articles/sparse-vectors/",
-    "comment": "https://qdrant.tech/articles/sparse-vectors/#hybrid-search-combining-sparse-and-dense-vectors"
-  },
-  "bm25": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "sparse_vectors": {
-    "support": "full",
-    "source_url": "https://qdrant.tech/articles/sparse-vectors",
-    "comment": "https://qdrant.tech/articles/sparse-vectors"
-  },
-  "full_text": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "facets": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "geo_search": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "doc_size": {
-    "bytes": 0,
-    "unlimited": true,
-    "source_url": "",
-    "comment": ""
-  },
-  "vector_dims": {
-    "value": 0,
-    "unlimited": true,
-    "source_url": "",
-    "comment": ""
-  },
-  "ephemeral": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "sharding": {
-    "support": "full",
-    "source_url": "https://qdrant.tech/documentation/guides/distributed_deployment/",
-    "comment": "https://qdrant.tech/documentation/guides/distributed_deployment/#user-defined-sharding"
   },
   "license": {
     "value": "Apache-2.0",
@@ -115,33 +26,127 @@
     "comment": ""
   },
   "github_stars": 14700,
-  "vector_launch_year": "2021",
-  "pricing": {
-    "value": "None",
+  "vector_launch_year": 2021,
+  "metadata_filter": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "hybrid_search": {
+    "support": "none",
+    "source_url": "https://qdrant.tech/articles/sparse-vectors/",
+    "comment": "https://qdrant.tech/articles/sparse-vectors/#hybrid-search-combining-sparse-and-dense-vectors"
+  },
+  "facets": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "geo_search": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_vec": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "sparse_vectors": {
+    "support": "full",
+    "source_url": "https://qdrant.tech/articles/sparse-vectors",
+    "comment": "https://qdrant.tech/articles/sparse-vectors"
+  },
+  "bm25": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "full_text": {
+    "support": "full",
+    "source_url": "https://qdrant.tech/documentation/concepts/indexing/",
+    "comment": "https://qdrant.tech/documentation/concepts/indexing/#full-text-index"
+  },
+  "embeddings_text": {
+    "support": "full",
+    "source_url": "https://qdrant.github.io/fastembed/examples/Supported_Models/",
+    "comment": "via FastEmbed (Supported models: https://qdrant.github.io/fastembed/examples/Supported_Models/)"
+  },
+  "embeddings_image": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_structured": {
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "rag": {
     "support": "",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "recsys": {
     "support": "full",
     "source_url": "",
     "comment": ""
   },
-  "links": {
-    "docs": "https://qdrant.tech/documentation/",
-    "github": "https://github.com/qdrant/qdrant",
-    "website": "https://qdrant.tech/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
-    "poc_github": "https://github.com/atarora",
-    "slug": "qdrant"
-  },
-  "embeddings_structured": {
-    "support": "",
+  "langchain": {
+    "support": "full",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
+  },
+  "llamaindex": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "pricing": {
+    "value": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "in_process": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_tenancy": {
+    "support": "full",
+    "source_url": "",
+    "comment": "via collections/metadata"
+  },
+  "disk_index": {
+    "support": "full",
+    "source_url": "https://qdrant.tech/documentation/concepts/storage/",
+    "comment": "https://qdrant.tech/documentation/concepts/storage/#configuring-memmap-storage"
+  },
+  "ephemeral": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "sharding": {
+    "support": "full",
+    "source_url": "https://qdrant.tech/documentation/guides/distributed_deployment/",
+    "comment": "https://qdrant.tech/documentation/guides/distributed_deployment/#user-defined-sharding"
+  },
+  "doc_size": {
+    "bytes": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
   }
 }

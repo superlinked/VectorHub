@@ -1,106 +1,17 @@
 {
   "name": "LanceDB",
+  "links": {
+    "docs": "https://lancedb.github.io/lancedb/",
+    "github": "https://github.com/lancedb/lancedb",
+    "website": "https://lancedb.com/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/87",
+    "poc_github": "https://github.com/changhiskhan",
+    "slug": "lancedb"
+  },
   "oss": {
     "support": "full",
     "source_url": "",
     "comment": ""
-  },
-  "managed_cloud": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "disk_index": {
-    "support": "full",
-    "source_url": "https://github.com/lancedb/lance/blob/main/rust/lance/src/index/vector/diskann.rs",
-    "comment": "Experimental DiskANN"
-  },
-  "multi_tenancy": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "embeddings_text": {
-    "support": "full",
-    "source_url": "https://lancedb.github.io/lancedb/embeddings/embedding_functions/",
-    "comment": "Embeddings from any provider can be run as a background process so that the user doesn't need to manually ingest them.\nhttps://lancedb.github.io/lancedb/embeddings/embedding_functions/"
-  },
-  "metadata_filter": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "in_process": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "multi_vec": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "langchain": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "llamaindex": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "hybrid_search": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "bm25": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "sparse_vectors": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "full_text": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "facets": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "geo_search": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "doc_size": {
-    "bytes": 0,
-    "unlimited": false,
-    "source_url": "",
-    "comment": ""
-  },
-  "vector_dims": {
-    "value": 0,
-    "unlimited": false,
-    "source_url": "",
-    "comment": ""
-  },
-  "ephemeral": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
-  },
-  "sharding": {
-    "support": "",
-    "source_url": "",
-    "comment": "None"
   },
   "license": {
     "value": "Apache-2.0",
@@ -114,34 +25,128 @@
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 1600,
-  "vector_launch_year": "2023",
-  "pricing": {
-    "value": "None",
+  "github_stars": 1900,
+  "vector_launch_year": 2023,
+  "metadata_filter": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "hybrid_search": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "facets": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "geo_search": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_vec": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "sparse_vectors": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "bm25": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "full_text": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_text": {
+    "support": "full",
+    "source_url": "https://lancedb.github.io/lancedb/embeddings/embedding_functions/",
+    "comment": "Embeddings from any provider can be run as a background process so that the user doesn't need to manually ingest them.\nhttps://lancedb.github.io/lancedb/embeddings/embedding_functions/"
+  },
+  "embeddings_image": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_structured": {
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "rag": {
     "support": "",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
   "recsys": {
     "support": "",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
   },
-  "links": {
-    "docs": "https://lancedb.github.io/lancedb/",
-    "github": "https://github.com/lancedb/lancedb",
-    "website": "https://lancedb.com/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/26",
-    "poc_github": "https://github.com/changhiskhan",
-    "slug": "lancedb"
+  "langchain": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
   },
-  "embeddings_structured": {
+  "llamaindex": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "pricing": {
+    "value": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "in_process": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_tenancy": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "disk_index": {
+    "support": "full",
+    "source_url": "https://github.com/lancedb/lance/blob/main/rust/lance/src/index/vector/diskann.rs",
+    "comment": "Experimental DiskANN"
+  },
+  "ephemeral": {
     "support": "",
     "source_url": "",
-    "comment": "None"
+    "comment": ""
+  },
+  "sharding": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "doc_size": {
+    "bytes": 0,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 2048,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
   }
 }
