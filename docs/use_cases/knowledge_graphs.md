@@ -1,49 +1,33 @@
-# Using KGs + Embeddings to Further Augment RAG Systems
+# Using Knowledge Graphs + Embeddings to Further Augment RAG Systems
 
-...We discuss the limitations of both LLMs and RAG solutions to LLM knowledge and reasoning gaps, examining KGs combined with graph embeddings as a solution...
+We look at the limitations of not just LLMs but also standard RAG solutions to LLM's knowledge and reasoning gaps, and examine the ways KGs with vector embeddings can fill these gaps and lay the foundation of future progress - through careful incorporation, judicious choice of reasoning techniques, collaborative filtering, and flywheel learning. 
+
 
 Large Language Models (LLMs) mark a watershed moment in natural language processing, creating new abilities in conversational AI, creative writing, and a broad range of other applications. But they have limitations. While LLMs can generate remarkably fluent and coherent text from nothing more than a short prompt, LLM knowledge is not real-world but rather restricted to patterns learned from training data. In addition, LLMs can't do logical inference or synthesize facts from multiple sources; as queries become more complex and open-ended, LLM responses become contradictory or nonsense.
 
-Retrieval Augmented Generation (RAG) systems have filled some of the LLM gaps by surfacing relevant external source data using semantic similarity on vector embeddings. Still, because RAG systems don't have access to network structure data, they struggle to achieve true relevance, aggregate facts, and do chains of reasoning.
+Retrieval Augmented Generation (RAG) systems have filled some of the LLM gaps by surfacing external source data using semantic similarity search on vector embeddings. Still, because RAG systems don't have access to network structure data - the interconnections between contextual facts, they struggle to achieve true relevance, aggregate facts, and perform chains of reasoning.
 
-==
+Knowledge Graphs (KGs), by encoding real-world entities and their connections, overcome the above deficiencies of pure vector search. KGs enable complex, multi-hop reasoning, across diverse data sources, thereby representing a more comprehensive understanding of the knowledge space. 
 
-However, despite their eloquence, LLMs have some key limitations. Their knowledge is restricted to patterns discerned from the training data, which means they lack true understanding of the world.
+Let's take a closer look at how we can combine vector embeddings and knowledge graphs, fusing surface-level semantics, structured knowledge, and logic to unlock new levels of reasoning, accuracy and explanatory ability in LLMs. 
 
-Their reasoning ability is also limited — they cannot perform logical inferences or synthesize facts from multiple sources. The responses become nonsensical or contradictory as we ask more complex, open-ended questions.
+We start by exploring the inherent weaknesses of relying on vector search in isolation, and then show how to combine knowledge graphs and embeddings complementarily, to overcome the limitations of each.
 
-### RAG can help, but also limited
 
-There has been growing interest in retrieval-augmented generation (RAG) systems to address these gaps. The key idea is to retrieve relevant knowledge from external sources to provide context for the LLM to make more informed responses.
+## RAG Vector Search: process and limits
 
-Most existing systems retrieve passages using semantic similarity of vector embeddings. However, this approach has its own drawbacks like lack of true relevance, inability to aggregate facts, and no chain of reasoning.
+Most RAG systems employ vector search on a document collection to surface relevant context for the LLM. This process has **several key steps**:
 
-This is where knowledge graphs come into the picture. 
-
-## Connecting to the real world: Knowledge Graphs
-
-Knowledge graphs are structured representations of real-world entities and relationships. They overcome the deficiencies of pure vector search by encoding interconnections between contextual facts. Traversing knowledge graphs enables complex multi-hop reasoning across diverse information sources.
-
-In this article, we dive deep on how combining vector embeddings and knowledge graphs can unlock new levels of reasoning, accuracy and explanatory ability in LLMs. This partnership provides the perfect blend of surface-level semantics, structured knowledge, and logic.
-
-Like our own minds, LLMs need both statistical learning and symbolic representations.
-We first explore the inherent weaknesses of relying solely on vector search in isolation.
-We then elucidate how knowledge graphs and embeddings can complement each other, with neither technique alone being sufficient.
-
-## The Limits of Raw Vector Search
-
-Most RAG systems rely on a vector search process over passages from a document collection to find relevant context for the LLM. This process has several key steps:
-
-- 1. **Text Encoding**: The system encodes passages of text from the corpus into vector representations using embedding models like BERT. Each passage gets condensed into a dense vector capturing semantic meaning.
-- 2. **Indexing**: These passage vectors get indexed in a high-dimensional vector space to enable fast similarity search. Popular methods include ANNOY, Faiss, and Pinecone.
-- 3. **Query Encoding**: When a user query comes in, it also gets encoded into a vector representation using the same embedding model.
-- 4. **Similarity Retrieval**: A similarity search is run over the indexed passages to find those closest to the query vector based on distance metrics like cosine similarity.
-- 5. **Passage Return**: The most similar passage vectors are returned, and the original text is extracted to provide context for the LLM.
+- 1. **Text Encoding**: Using embedding models, like BERT, the RAG system encodes and condenses passages of text from the corpus as dense vector representations, capturing semantic meaning.
+- 2. **Indexing**: To enable rapid similarity seach, these passage vectors are indexed within a high-dimensional vector space. Popular methods include ANNOY, Faiss, and Pinecone.
+- 3. **Query Encoding**: An incoming user query is encoded as a vector representation, using the same embedding model.
+- 4. **Similarity Retrieval**: Using distance metrics like cosine similarity, the system runs a search over the indexed passages to find closest neighbors to the query vector.
+- 5. **Passage Return**: The system returns the most similar passage vectors, and extracts the corresponding original text to provide context for the LLM.
   
-This pipeline has several key limitations:
+This RAG Vector Search pipeline has **several key limitations**:
 
-- The passage vectors may not fully capture the semantic intent of the query. Important context ends up overlooked because embeddings fail to represent certain inferential connections.
-- Nuances get lost in condensing entire passages to single vectors. Key relevant details embedded across sentences get obscured.
+- Passage vectors can't represent inferential connections (context), and therefore often fail to encode the query's full semantic intent.
+- Key relevant details embedded in passages (across sentences) are lost in the process of condensing entire passages to single vectors.
 - Matching is done independently for each passage. There is no joint analysis across different passages to connect facts and derive answers requiring aggregation.
 - The ranking and matching process is opaque, providing no transparency into why certain passages are deemed more relevant.
 - Only semantic similarity is encoded, with no representations of relationships, structure, rules and other diverse connections between content.
