@@ -73,6 +73,7 @@ In short, applying some simple constraints can augment knowledge graph embedding
 Knowledge Graphs require reasoning to derive new facts, answer queries, and make predictions. But there are a diverse range of reasoning techniques, whose respective strengths can be combined to match specific use cases.
 
 | Reasoning framework | Method | Pros | Cons |
+| ---- | ---- | ---- | ---- |
 | **Logical Rules** | Express knowledge as logical axioms and ontologies | Sound and complete reasoning through theorem proving | Limited uncertainty handling |
 | **Graph Embeddings** | Embed knowledge graph structure for vector space operations | Handle uncertainty | Lack expressivity |
 | **Neural Provers** | Differentiable theorem proving modules combined with vector lookups | Adaptive | Opaque reasoning |
