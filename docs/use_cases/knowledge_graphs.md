@@ -53,7 +53,7 @@ a graph traversal search and retrieval of interconnected contextual, query-relev
 
 But KG retrieval can be optimized further by applying certain constraints.
 
-## Optimizing Embeddings from Knowledge Graphs Using Constraints
+## Using Constraints to Optimize Embeddings from Knowledge Graphs
 
 Knowledge Graphs represent entities and relationships that can be vector embedded to enable mathematical operations. These representations and retrieval results can be improved further by adding some **simple but universal constraints**:
 
@@ -159,17 +159,12 @@ Streaming data pipelines, while continuously updating the KG, will not necessari
 
 Each loop of the flywheel analyzes current usage patterns and remediates more data issues, incrementally improving the quality of the knowledge graph. The flywheel process thus enables the KG and language model to co-evolve and improve in accordance with feedback from real-world system operation. Flywheel learning provides a scaffolding for continuous, automated improvement of the knowledge graph, tailoring it to fit the language model's needs. This powers the accuracy, relevance, and adaptability of the language model.
 
+## Conclusion:
 
-## Conclusion :
+To achieve human-level performance, language AI requires augmenting by retrieving external knowledge and reasoning. Whereas LLMs and RAG struggle with representing the context and relationships between real-world entities, knowledge graphs excel. The Knowledge Graph's structured representations permit complex, multi-hop, logical reasoning over interconnected facts. 
 
-To reach human-level intelligence, language AI needs to incorporate external knowledge and reasoning. This is where knowledge graphs come into the picture. Knowledge graphs provide structured representations of real-world entities and relationships, encoding facts about the world and connections between them. This allows complex logical reasoning across multiple steps by traversing interconnected facts.
+While KGs provide previously missing information to language models, KGs can't surface latent patterns the way that language models working on vector embeddings can. Together, KGs and embeddings provide a highly productive blend of knowledge representation, logical reasoning, and statistical learning. And embedding of KGs can be optimized by applying some simple constraints.
 
-However, knowledge graphs have their own limitations like sparsity and lack of uncertainty handling. This is where graph embeddings help — by encoding knowledge graph elements in a vector space, embeddings allow statistical learning from large corpora to surface latent patterns. They also enable efficient similarity-based operations.
+Finally, KG's aren't perfect; they have knowledge gaps and need updating. Flywheel Learning can make up for KG knowledge gaps through live system analysis, and handle continuous, large volume data updates to keep the KG current. Flywheel learning thus enables co-evolution of KGs and LLMs to achieve better reasoning, accuracy, and relevance.
 
-Neither knowledge graphs nor embeddings on their own are sufficient for human-like language intelligence. But together, they provide the perfect blend of structured knowledge representation, logical reasoning, and statistical learning. Knowledge graphs overlay symbolic logic and relationships on top of the pattern recognition capability of neural networks.
-
-Techniques like graph neural networks further unify these approaches via differentiable message passing over graph structure and embeddings. The symbiosis enables systems that leverage both statistical learning as well as symbolic logic — combining the strengths of neural networks and structured knowledge representation.
-
-This partnership provides building blocks for the next generation of AI that moves beyond just eloquence to true comprehension — conversational agents that understand context and history, recommendation engines that discern nuanced preferences, search systems that synthesize answers by connecting facts.
-
-Challenges still remain in constructing high-quality knowledge graphs, benchmarking, noise handling, and more. But the future is bright for hybrid techniques spanning symbolic and neural approaches. As knowledge graphs and language models continue advancing, their integration will unlock new frontiers in explainable, intelligent language AI.
+The partnership of KGs and embeddings provides the building blocks moving language AI to true comprehension — conversation agents that understand context and history, recommendation engines that discern subtle preferences, and search systems that synthesize accurate answers by connecting facts. As we continue to improve in our solutions to the challenges of constructing high-quality knowledge graphs, benchmarking, noise handling, and more, a key role will no doubt be played by hybrid techniques combining symbolic and neural approaches. 
