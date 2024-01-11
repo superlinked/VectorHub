@@ -26,54 +26,60 @@ Most RAG systems employ vector search on a document collection to surface releva
   
 This RAG Vector Search pipeline has **several key limitations**:
 
-- Passage vectors can't represent inferential connections (context), and therefore often fail to encode the query's full semantic intent.
-- Key relevant details embedded in passages (across sentences) are lost in the process of condensing entire passages to single vectors.
-- Matching is done independently for each passage. There is no joint analysis across different passages to connect facts and derive answers requiring aggregation.
-- The ranking and matching process is opaque, providing no transparency into why certain passages are deemed more relevant.
-- Only semantic similarity is encoded, with no representations of relationships, structure, rules and other diverse connections between content.
-   
-The singular focus on semantic vector similarity results in retrieval that lacks true comprehension. As queries get more complex, these limitations become increasingly apparent in the inability to reason across retrieved content.
+- Passage vectors can't represent inferential connections (i.e., context), and therefore often fail to encode the query's full semantic intent.
+- Key relevant details embedded in passages (across sentences) are lost in the process of condensing entire passages into single vectors.
+- Each passage is matched independently, so facts can't be connected or aggregated.
+- The ranking and matching process for determining relevancy remains opaque; we can't see why the system prefers certain passages to others.
+- No encoding of relationships, structure, rules, or any other connections between content.
+
+RAG, because it focuses only on semantic similarity, is unable to reason across content, so it fails to really understand both queries and the data RAG retrieves. The more complex the query, the poorer RAG's results become.
 
 ## Incorporating Knowledge Graphs
 
-Knowledge graphs represent information in an interconnected network of entities and relationships, enabling more complex reasoning across content.
+Knowledge graphs, on the other hand, represent information in an interconnected network of entities and relationships, enabling more complex reasoning across content.
 
-Here’s how they augment retrieval:
-- 1. **Explicit Facts** — Facts are directly captured as nodes and edges instead of condensed into opaque vectors. This preserves key details.
-- 2. **Contextual Details** — Entities contain rich attributes like descriptions, aliases, and metadata that provide crucial context.
-- 3. **Network Structure** — Relationships model real-world connections between entities, capturing rules, hierarchies, timelines, etc.
-- 4. **Multi-Hop Reasoning** — Queries can traverse relationships to connect facts from diverse sources. Answers requiring inference across multiple steps can be derived.
-- 5. **Joint Reasoning** — Entity Resolution links references to the same real-world object, allowing collective analysis.
-- 6. **Explainable Relevance** — Graph topology provides transparency into why certain facts are relevant based on their connections.
-- 7. **Personalization** — User attributes, context, and historical interactions are captured to tailor results.
+How do KGs augment retrieval?
 
-Rather than isolated matching, knowledge graphs enable a graph traversal process to gather interconnected contextual facts relevant to the query. Explainable rankings are possible based on topology. The rich knowledge representation empowers more complex reasoning.
+- 1. **Explicit Facts** — KGs preserves key details by capturing facts directly as nodes and edges instead of condensed into opaque vectors.
+- 2. **Contextual Details** — KG entities possess rich attributes like descriptions, aliases, and metadata that provide crucial context.
+- 3. **Network Structure** — KGs capture real-world relationships - rules, hierarchies, timelines, and other connections - between entities.
+- 4. **Multi-Hop Reasoning** — Queries can traverse relationships, and infer across multiple steps, to connect and derive facts from diverse sources.
+- 5. **Joint Reasoning** — Entity Resolution can ID and link references that pertain to the same real-world object, enabling collective analysis.
+- 6. **Explainable Relevance** — Graph topology lets us transparently analyze the connections and relationships that determine why certain facts are retrieved as relevant.
+- 7. **Personalization** — KGs capture and tailor query results according to user attributes, context, and historical interactions.
 
-Knowledge graphs augment retrieval by encoding structured facts, relationships and context to enable precise, multi-step reasoning. This provides greater relevance and explanatory power compared to pure vector search.
+In sum, whereas RAG performs matching on disconnected nodes, knowledge graphs enable: 
+a graph traversal search and retrieval of interconnected contextual, query-relevant facts, make the ranking process transparent, encode structured facts, relationships, and context to enable complex, precise, multi-step reasoning. As a result, compared to pure vector search, KGs can improve relevance and explanatory power.
 
-## Incorporating Knowledge Graphs with Embeddings & Constraints
+But KG retrieval can be optimized further by applying certain constraints.
 
-Knowledge graphs represent entities and relationships as vector embeddings to enable mathematical operations. Additional constraints can make the representations more optimal:
+## Optimizing Knowledge Graph Embeddings Using Constraints
 
-- 1. **Non-Negativity Constraints** — Restricting entity embeddings to positive values between 0 and 1 induces sparsity. This models only their positive properties explicitly and improves interpretability.
-- 2. **Entailment Constraints** — Encoding expected logic rules like symmetry, inversion, composition directly as constraints on relation embeddings enforces those patterns.
-- 3. **Confidence Modeling** — Soft constraints with slack variables can encode varying confidence levels of logic rules based on evidence.
-- 4. **Regularization** — Constraints impose useful inductive biases without making optimization significantly more complex. Only a projection step is added.
-- 5. **Explainability** — The structured constraints provide transparency into the patterns learned by the model. This explains the reasoning process.
-- 6. **Accuracy** — Constraints improve generalization by reducing the hypothesis space to compliant representations. This improves accuracy on unseen queries.
+Knowledge graphs represent entities and relationships as vector embeddings to enable mathematical operations. These representations and retrieval results can be improved further by adding some simply but universal constraints:
 
-Adding simple but universal constraints augments knowledge graph embeddings to produce more optimized, explainable, and logically compliant representations. The embeddings gain inductive biases that mimic real-world structures and rules. This results in more accurate and interpretable reasoning without much additional complexity.
+- 1. **Non-Negativity Constraints** — Restricting entity embeddings to values between 0 and 1 ensures focus on entities' positive properties only, and thereby improves interpretability.
+- 2. **Entailment Constraints** — Encoding expected logic rules like symmetry, inversion, and composition directly as constraints on relation embeddings ensures incorporation of those patterns into the representations.
+- 3. **Confidence Modeling** — Soft constraints using slack variables can encode different confidence levels of logic rules depending on evidence.
+- 4. **Regularization** — Introduces constraints that impose useful inductive biases to help pattern learning, without making optimization significantly more complex; only a projection step is added.
 
-## Integrating Diverse Reasoning Frameworks
+In addition to **improving interpretability**, **ensuring expected logic rules**, **permitting evidence-based rule confidence levels**, and **improving pattern learning**, constraints can _also_:
+- **improve explainability** of the reasoning process; structured constraints make visible the patterns learned by the model; and
+- **improve accuracy** of unseen queries; constraints improve generalization by restricting the hypothesis space to compliant representations.
 
-Knowledge graphs require reasoning to derive new facts, answer queries, and make predictions. Different techniques have complementary strengths:
-- 1. **Logical Rules** — Express knowledge as logical axioms and ontologies. Sound and complete reasoning through theorem proving. Limited uncertainty handling.
-- 2. **Graph Embeddings** — Embed knowledge graph structure for vector space operations. Handle uncertainty but lack expressivity.
-- 3. **Neural Provers** — Differentiable theorem proving modules combined with vector lookups. Adaptive but opaque reasoning.
-- 4. **Rule Learners** — Induce rules by statistical analysis of graph structure and data. Automates rule creation but uncertain quality.
-- 5. **Hybrid Pipeline** — Logical rules encode unambiguous constraints. Embeddings provide vector space operations. Neural provers fuse benefits through joint training.
-- 6. **Explainable Modeling** — Use case-based, fuzzy, or probabilistic logic to add transparency. Express uncertainty and confidence in rules.
-- 7. **Iterative Enrichment** — Expand knowledge by materializing inferred facts and learned rules back into the graph. Provides a feedback loop.
+In short, applying some simple constraints can augment knowledge graph embeddings to produce more optimized, explainable, and logically compliant representations, with inductive biases that mimic real-world structures and rules, resulting in more accurate and interpretable reasoning, without much additional complexity.
+
+## Choosing a reasoning framework that matches your use case
+
+Knowledge Graphs require reasoning to derive new facts, answer queries, and make predictions. But there are a diverse range of reasoning techniques, whose respective strengths can be combined to match specific use cases.
+
+| Reasoning framework | Method | Pros | Cons |
+| **Logical Rules** | Express knowledge as logical axioms and ontologies | Sound and complete reasoning through theorem proving | Limited uncertainty handling |
+| **Graph Embeddings** | Embed knowledge graph structure for vector space operations | Handle uncertainty | Lack expressivity |
+| **Neural Provers** | Differentiable theorem proving modules combined with vector lookups | Adaptive | Opaque reasoning |
+| **Rule Learners** | Induce rules by statistical analysis of graph structure and data | Automate rule creation | Uncertain quality |
+| **Hybrid Pipeline** | Logical rules encode unambiguous constraints | Embeddings provide vector space operations. Neural provers fuse benefits through joint training. | |
+| **Explainable Modeling** | Use case-based, fuzzy, or probabilistic logic to add transparency | Can express degrees uncertainty and confidence in rules | |
+| **Iterative Enrichment** | Expand knowledge by materializing inferred facts and learned rules back into the graph | Provides a feedback loop | |
   
 The key is identifying the types of reasoning required and mapping them to appropriate techniques. A composable pipeline combining logical formalisms, vector representations, and neural components provides both robustness and explainability.
 
