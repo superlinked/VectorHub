@@ -1,0 +1,152 @@
+{
+  "name": "Marqo",
+  "links": {
+    "docs": "https://docs.marqo.ai/",
+    "github": "https://github.com/marqo-ai/marqo",
+    "website": "http://marqo.ai/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/73",
+    "poc_github": "https://github.com/OwenPendrighElliott",
+    "slug": "marqo"
+  },
+  "oss": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "license": {
+    "value": "Apache-2.0",
+    "source_url": "",
+    "comment": ""
+  },
+  "dev_languages": {
+    "value": [
+      "python"
+    ],
+    "source_url": "",
+    "comment": ""
+  },
+  "github_stars": 3700,
+  "vector_launch_year": 2022,
+  "metadata_filter": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "hybrid_search": {
+    "support": "full",
+    "source_url": "",
+    "comment": "via weights"
+  },
+  "facets": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "geo_search": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_vec": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "sparse_vectors": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "bm25": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "full_text": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_text": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_image": {
+    "support": "full",
+    "source_url": "",
+    "comment": "supports CLIP, OpenCLIP and Multilingual CLIP (as well as BYO models for these APIs)"
+  },
+  "embeddings_structured": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "rag": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "recsys": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "langchain": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "llamaindex": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "pricing": {
+    "value": "Pricing - Marqo Cloud",
+    "source_url": "https://www.marqo.ai/pricing",
+    "comment": ""
+  },
+  "in_process": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_tenancy": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "disk_index": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "ephemeral": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "sharding": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "doc_size": {
+    "bytes": 0,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  }
+}
