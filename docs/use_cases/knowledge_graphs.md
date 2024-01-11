@@ -10,9 +10,9 @@ Retrieval Augmented Generation (RAG) systems have filled some of the LLM gaps by
 
 Knowledge Graphs (KGs), by encoding real-world entities and their connections, overcome the above deficiencies of pure vector search. KGs enable complex, multi-hop reasoning, across diverse data sources, thereby representing a more comprehensive understanding of the knowledge space. 
 
-Let's take a closer look at how we can combine vector embeddings and knowledge graphs, fusing surface-level semantics, structured knowledge, and logic to unlock new levels of reasoning, accuracy, and explanatory ability in LLMs. 
+Let's take a closer look at how we can combine vector embeddings and KGs, fusing surface-level semantics, structured knowledge, and logic to unlock new levels of reasoning, accuracy, and explanatory ability in LLMs. 
 
-We start by exploring the inherent weaknesses of relying on vector search in isolation, and then show how to combine knowledge graphs and embeddings complementarily, to overcome the limitations of each.
+We start by exploring the inherent weaknesses of relying on vector search in isolation, and then show how to combine KGs and embeddings complementarily, to overcome the limitations of each.
 
 
 ## RAG Vector Search: process and limits
@@ -37,7 +37,7 @@ RAG, because it focuses only on semantic similarity, is unable to reason across 
 
 ## Incorporating Knowledge Graphs
 
-Knowledge graphs, on the other hand, represent information in an interconnected network of entities and relationships, enabling more complex reasoning across content.
+Knowledge Graphs, on the other hand, represent information in an interconnected network of entities and relationships, enabling more complex reasoning across content.
 
 How do KGs augment retrieval?
 
@@ -49,7 +49,7 @@ How do KGs augment retrieval?
 - 6. **Explainable Relevance** — Graph topology lets us transparently analyze the connections and relationships that determine why certain facts are retrieved as relevant.
 - 7. **Personalization** — KGs capture and tailor query results according to user attributes, context, and historical interactions.
 
-In sum, whereas RAG performs matching on disconnected nodes, knowledge graphs enable graph traversal search and retrieval of interconnected contextual, search for query-relevant facts, make the ranking process transparent, and encode structured facts, relationships, and context to enable complex, precise, multi-step reasoning. As a result, compared to pure vector search, KGs can improve relevance and explanatory power.
+In sum, whereas RAG performs matching on disconnected nodes, KGs enable graph traversal search and retrieval of interconnected contextual, search for query-relevant facts, make the ranking process transparent, and encode structured facts, relationships, and context to enable complex, precise, multi-step reasoning. As a result, compared to pure vector search, KGs can improve relevance and explanatory power.
 
 But KG retrieval can be optimized further by applying certain constraints.
 
@@ -66,7 +66,7 @@ In addition to **improving interpretability**, **ensuring expected logic rules**
 - **improve explainability** of the reasoning process; structured constraints make visible the patterns learned by the model; and
 - **improve accuracy** of unseen queries; constraints improve generalization by restricting the hypothesis space to compliant representations.
 
-In short, applying some simple constraints can augment knowledge graph embeddings to produce more optimized, explainable, and logically compliant representations, with inductive biases that mimic real-world structures and rules, resulting in more accurate and interpretable reasoning, without much additional complexity.
+In short, applying some simple constraints can augment Knowledge Graph embeddings to produce more optimized, explainable, and logically compliant representations, with inductive biases that mimic real-world structures and rules, resulting in more accurate and interpretable reasoning, without much additional complexity.
 
 ## Choosing a reasoning framework that matches your use case
 
@@ -75,7 +75,7 @@ Knowledge Graphs require reasoning to derive new facts, answer queries, and make
 | Reasoning framework | Method | Pros | Cons |
 | ---- | ---- | ---- | ---- |
 | **Logical Rules** | Express knowledge as logical axioms and ontologies | Sound and complete reasoning through theorem proving | Limited uncertainty handling |
-| **Graph Embeddings** | Embed knowledge graph structure for vector space operations | Handle uncertainty | Lack expressivity |
+| **Graph Embeddings** | Embed KG structure for vector space operations | Handle uncertainty | Lack expressivity |
 | **Neural Provers** | Differentiable theorem proving modules combined with vector lookups | Adaptive | Opaque reasoning |
 | **Rule Learners** | Induce rules by statistical analysis of graph structure and data | Automate rule creation | Uncertain quality |
 | **Hybrid Pipeline** | Logical rules encode unambiguous constraints | Embeddings provide vector space operations. Neural provers fuse benefits through joint training. | |
@@ -86,13 +86,13 @@ The key to creating a suitable pipeline is identifying the types of reasoning re
 
 ## Preserving Quality Information Flow to the LLM
 
-Retrieving knowledge graph facts for the LLM introduces information bottlenecks. Careful design can mitigate these bottlenecks by ensuring relevance. Here are some methods for doing that:
+Retrieving knowledge Graph facts for the LLM introduces information bottlenecks. Careful design can mitigate these bottlenecks by ensuring relevance. Here are some methods for doing that:
 
 - **Chunking** — Splitting content into small chunks improves isolation. But it loses surrounding context, hindering reasoning across chunks.
 - **Summarization** — Generating summaries of chunks condenses key details, highlighting their significance. This makes context more concise.
 - **Metadata** — Attaching summaries, titles, tags, etc. preserves the source content's context.
 - **Query Rewriting** — Rewriting a more detailed version of the original query better tailors retrieval to the LLM’s needs.
-- **Relationship Modeling** — Knowledge graph traversals preserve connections between facts, maintaining context.
+- **Relationship Modeling** — KG traversals preserve connections between facts, maintaining context.
 - **Information Ordering** — Ordering facts chronologically or by relevance optimizes information structure.
 - **Explicit Statements** — Converting implicit knowledge into explicit facts facilitates reasoning.
 
@@ -106,9 +106,9 @@ To preserve quality information flow to the LLM to maximize its reasoning abilit
 
 - **Joint Encoding** — Embeddings are generated for both KG entities and KG relationships. This distills statistical patterns in the embeddings.
 - **Neural Networks** — Graph neural networks (GNNs) operate on the graph structure and embedded elements through differentiable message passing. This fuses the benefits of both KGs and embeddings.
-- **Reasoning Flow** — Knowledge graph traversals gather structured knowledge. Then, embeddings focus the search and retrieve related content at scale.
-- **Explainability** — Explicit knowledge graph relationships help make the reasoning process transparent. Embeddings lend interpretability.
-- **Iterative Improvement** — Inferred knowledge can expand the knowledge graph. GNNs provide continuous representation learning.
+- **Reasoning Flow** — KG traversals gather structured knowledge. Then, embeddings focus the search and retrieve related content at scale.
+- **Explainability** — Explicit KG relationships help make the reasoning process transparent. Embeddings lend interpretability.
+- **Iterative Improvement** — Inferred knowledge can expand the KG. GNNs provide continuous representation learning.
 
 While KGs enable structured knowledge representation and reasoning, embeddings provide the pattern recognition capability and scalability of neural networks, augmenting reasoning capabilities in the kinds of language AI that require both statistical learning and symbolic logic.
 
@@ -116,7 +116,7 @@ While KGs enable structured knowledge representation and reasoning, embeddings p
 
 You can use collaborative filtering's ability to leverage connections between entities to enhance search, by taking the following steps:
 
-- 1. **Knowledge Graph** — Construct a knowledge graph with nodes representing entities and edges representing relationships.
+- 1. **Knowledge Graph** — Construct a KG with nodes representing entities and edges representing relationships.
 - 2. **Node Embedding** — Generate an embedding vector for certain key node properties like title, description, and so on.
 - 3. **Vector Index** — Build a vector similarity index on the node embeddings.
 - 4. **Similarity Search** — For a given search query, find the nodes with the most similar embeddings.
@@ -128,7 +128,7 @@ You can use collaborative filtering's ability to leverage connections between en
 
 ## Fueling Knowledge Graphs with Flywheel Learning
 
-Knowledge graphs unlock new reasoning capabilities for language models by providing structured real-world knowledge. But KGs aren't perfect. They contain knowledge gaps, and have to update to remain current. Flywheel Learning can help remediate these problems, improving KG quality by continuously analyzing system interactions and ingesting new data.
+Knowledge Graphs unlock new reasoning capabilities for language models by providing structured real-world knowledge. But KGs aren't perfect. They contain knowledge gaps, and have to update to remain current. Flywheel Learning can help remediate these problems, improving KG quality by continuously analyzing system interactions and ingesting new data.
 
 ### Building the Knowledge Graph Flywheel
 
@@ -140,7 +140,7 @@ Building an effective KG flywheel requires:
 4. **Remediation** — directly modifying the graph to add missing facts, improve structure, increase clarity, etc., and fixing the underlying data issues.
 5. **Iteration** — continuously looping through the above steps.
 
-Each iteration through the loop further enhances the knowledge graph.
+Each iteration through the loop further enhances the Knowledge Graph.
 
 Flywheels can also handle high-volume ingestion of streamed live data.
 
@@ -157,7 +157,7 @@ Streaming data pipelines, while continuously updating the KG, will not necessari
 
 ### The Flywheel Effect
 
-Each loop of the flywheel analyzes current usage patterns and remediates more data issues, incrementally improving the quality of the knowledge graph. The flywheel process thus enables the KG and language model to co-evolve and improve in accordance with feedback from real-world system operation. Flywheel learning provides a scaffolding for continuous, automated improvement of the knowledge graph, tailoring it to fit the language model's needs. This powers the accuracy, relevance, and adaptability of the language model.
+Each loop of the flywheel analyzes current usage patterns and remediates more data issues, incrementally improving the quality of the Knowledge Graph. The flywheel process thus enables the KG and language model to co-evolve and improve in accordance with feedback from real-world system operation. Flywheel learning provides a scaffolding for continuous, automated improvement of the Knowledge Graph, tailoring it to fit the language model's needs. This powers the accuracy, relevance, and adaptability of the language model.
 
 ## Conclusion:
 
@@ -167,4 +167,4 @@ Still, while KGs provide previously missing information to language models, KGs 
 
 Finally, KG's aren't perfect; they have knowledge gaps and need updating. Flywheel Learning can make up for KG knowledge gaps through live system analysis, and handle continuous, large volume data updates to keep the KG current. Flywheel learning thus enables the co-evolution of KGs and LLMs to achieve better reasoning, accuracy, and relevance in language AI applications.
 
-The partnership of KGs and embeddings provides the building blocks moving language AI to true comprehension — conversation agents that understand context and history, recommendation engines that discern subtle preferences, and search systems that synthesize accurate answers by connecting facts. As we continue to improve our solutions to the challenges of constructing high-quality knowledge graphs, benchmarking, noise handling, and more, a key role will no doubt be played by hybrid techniques combining symbolic and neural approaches. 
+The partnership of KGs and embeddings provides the building blocks moving language AI to true comprehension — conversation agents that understand context and history, recommendation engines that discern subtle preferences, and search systems that synthesize accurate answers by connecting facts. As we continue to improve our solutions to the challenges of constructing high-quality Knowledge Graphs, benchmarking, noise handling, and more, a key role will no doubt be played by hybrid techniques combining symbolic and neural approaches. 
