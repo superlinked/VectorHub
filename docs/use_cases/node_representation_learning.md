@@ -8,7 +8,7 @@ Of the various types of information - words, pictures, and connections between t
 
 Below, we evaluate several approaches to vector representation on a real-life use case: how well each approach classifies academic articles in a subset of the Cora citation network.
 
-We look first at Bag-of-Words (BoW), a standard approach to vectorizing text data in ML. Because BoW can't represent the network structure, we turn to solutions that can help BoW's performance: Node2Vec and GraphSAGE. We also look for a solution to BoW's other shortcoming - its inability to capture semantic meaning. We evaluate LLM embeddings, first on their own, then combined with Node2Vec, and, finally, LLM-trained GraphSAGE.
+We look first at Bag-of-Words (BoW), a standard approach to vectorizing text data in ML. Because BoW can't represent the network structure well, we turn to solutions that can help BoW's performance: Node2Vec and GraphSAGE. We also look for a solution to BoW's other shortcoming - its inability to capture semantic meaning. We evaluate LLM embeddings, first on their own, then combined with Node2Vec, and, finally, GraphSAGE trained on LLM features.
 
 ## Loading our dataset, and evaluating BoW
  
@@ -52,7 +52,7 @@ BoW's accuracy and F1 macro scores are pretty good, but leave significant room f
 
 ## Taking advantage of citation graph data
 
-Can we improve on this? Our citation network contains not only text data but also relationship data - a citation graph. Any given article will tend to cite other articles that belong to the same topic that it belongs to. Therefore, representations that embed not just textual data but also citation data of articles contained in our network will probably classify articles more accurately.
+Can we improve on this? Our citation dataset contains not only text data but also relationship data - a citation graph. Any given article will tend to cite other articles that belong to the same topic that it belongs to. Therefore, representations that embed not just textual data but also citation data of articles contained in our network will probably classify articles more accurately.
 
 BoW features represent text data. But how well does BoW capture the relationships between articles?
 
@@ -257,7 +257,7 @@ print(next(iter(loader)))
 >>> Data(x=[2646, 1433], edge_index=[2, 8642], edge_label_index=[2, 2048], edge_label=[2048], ...)
 ```
 
-The `Data` object `x` contains the BoW node features. The `edge_label_index` tensor contains the head and tail node indices for the positive and negative samples. `edge_label` is the binary target for these pairs (1 for positive 0 for negative samples). The `edge_index` tensor holds the adjacency list for the current batch of nodes.
+In the `Data` object `x` contains the BoW node features. The `edge_label_index` tensor contains the head and tail node indices for the positive and negative samples. `edge_label` is the binary target for these pairs (1 for positive 0 for negative samples). The `edge_index` tensor holds the adjacency list for the current batch of nodes.
 
 Now we can **train** our model as follows:
 
@@ -298,7 +298,7 @@ evaluate(embeddings, ds.y)
 >>> F1 macro 0.820
 ```
 
-The results are only slightly worse than the results we got by combining Node2Vec with BoW features. But, remember, we're evaluating GraphSAGE because it can handle dynamic network data, whereas Node2Vec cannot. **GraphSAGE embeddings perform well on our classification task _and_ are able to embed completely new nodes as well**. When your use case involves new nodes or nodes that evolve, an induction model like GraphSAGE may be a better choice than Node2Vec.
+The results are only slightly worse than the results we got by combining Node2Vec with BoW features. But, remember, we're evaluating GraphSAGE because it can handle dynamic network data, whereas Node2Vec cannot. **GraphSAGE embeddings perform well on our classification task _and_ are able to embed completely new nodes as well**. When your use case involves new nodes or nodes that evolve, an inductive model like GraphSAGE may be a better choice than Node2Vec.
 
 ## Embedding semantics: LLM
 
@@ -337,10 +337,10 @@ As a final note, we've included a **pro vs con comparison** of our two node repr
 | --- | --- | --- |
 | Generalizing to new nodes | no | yes |
 | Inference time | constant | we can control inference time |
-| Accommodating different graph types and objectives | by setting $p$ and $q$ parameters, we can adapt representations to fit our needs | Limited control | 
-| Combining with other representations | concatenation | by design, the model learns to map node representations to embeddings |
+| Accommodating different graph types and objectives | by setting $p$ and $q$ parameters, we can adapt representations to fit our needs | limited control | 
+| Combining with other representations | concatenation | by design, the model learns to map node features to embeddings |
 | Dependency on additional representations | relies solely on graph data | depends on quality and availability of node representations; impacts model performance if lacking |
-| Embedding flexibility | very flexible node representations | neighboring nodes representations can't have much variation |
+| Embedding flexibility | very flexible node representations | representations of nodes with similar neighborhoods can't have much variation |
 
 ---
 ## Contributors
