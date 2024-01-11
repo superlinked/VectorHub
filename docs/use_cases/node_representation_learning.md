@@ -323,6 +323,12 @@ The results obtained with LLM only, Node2Vec combined with LLM, and GraphSAGE tr
 | F1 (macro)  | 0.779 (+7.8%) | **0.840** (+0.9%) | 0.831 (+1.1%) |
 
 
+Let's explore how good LLM vectors are at *representing citation data*.
+
+![LLM cosine similarity edge counts](../assets/use_cases/node_representation_learning/bins_llm.png)
+
+With LLM embeddings, nodes that are connected have a stronger similarity between their representations, much stronger than using Bag of Words (BoW) features. However, for pairs of nodes that aren't connected, there's still a wide range of similarity values. This makes it challenging to easily tell them apart from connected pairs - meaning that they are somewhere in between BoW and Node2Vec features in capturing the graph structure.
+
 ## Conclusion: LLM, Node2Vec, GraphSAGE better at learning node and node relationship data than BoW
 
 For classification tasks on our article citation dataset, we can conclude that:
