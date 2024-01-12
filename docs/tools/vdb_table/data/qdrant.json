@@ -73,9 +73,9 @@
     "comment": "via FastEmbed (Supported models: https://qdrant.github.io/fastembed/examples/Supported_Models/)"
   },
   "embeddings_image": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
-    "comment": "Bring-your-own-embeddings"
+    "comment": ""
   },
   "embeddings_structured": {
     "support": "",
@@ -83,8 +83,8 @@
     "comment": ""
   },
   "rag": {
-    "support": "full",
-    "source_url": "https://colab.research.google.com/github/qdrant/examples/blob/master/rag-openai-qdrant/rag-openai-qdrant.ipynb",
+    "support": "",
+    "source_url": "",
     "comment": ""
   },
   "recsys": {
@@ -113,7 +113,7 @@
     "comment": ""
   },
   "in_process": {
-    "support": "full",
+    "support": "partial",
     "source_url": "",
     "comment": "only in Python SDK in-memory mode"
   },
