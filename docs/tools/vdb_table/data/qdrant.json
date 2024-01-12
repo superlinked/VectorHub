@@ -25,7 +25,7 @@
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 14700,
+  "github_stars": 15400,
   "vector_launch_year": 2021,
   "metadata_filter": {
     "support": "full",
@@ -73,9 +73,9 @@
     "comment": "via FastEmbed (Supported models: https://qdrant.github.io/fastembed/examples/Supported_Models/)"
   },
   "embeddings_image": {
-    "support": "",
+    "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "Bring-your-own-embeddings"
   },
   "embeddings_structured": {
     "support": "",
@@ -83,8 +83,8 @@
     "comment": ""
   },
   "rag": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://colab.research.google.com/github/qdrant/examples/blob/master/rag-openai-qdrant/rag-openai-qdrant.ipynb",
     "comment": ""
   },
   "recsys": {
@@ -108,8 +108,8 @@
     "comment": ""
   },
   "pricing": {
-    "value": "",
-    "source_url": "",
+    "value": "Qdrant Pricing (free tier available)",
+    "source_url": "https://qdrant.tech/pricing/",
     "comment": ""
   },
   "in_process": {
