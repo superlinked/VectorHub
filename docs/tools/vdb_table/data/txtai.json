@@ -2,7 +2,7 @@
   "name": "txtai",
   "links": {
     "docs": "https://neuml.github.io/txtai/",
-    "github": "https://neuml.github.io/txtai/",
+    "github": "https://github.com/neuml/txtai",
     "website": "https://neuml.github.io/txtai/",
     "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/86",
     "poc_github": "https://github.com/davidmezzetti",
@@ -25,7 +25,7 @@
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 5500,
+  "github_stars": 5972,
   "vector_launch_year": 2020,
   "metadata_filter": {
     "support": "full",
@@ -113,9 +113,9 @@
     "comment": ""
   },
   "in_process": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "txtai embeddings indexes can be loaded and run directly in a Python application"
   },
   "multi_tenancy": {
     "support": "",
@@ -123,9 +123,9 @@
     "comment": ""
   },
   "disk_index": {
-    "support": "",
+    "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "txtai embeddings indexes can be saved to a directory, tar.gz file and/or to object storage such as S3"
   },
   "ephemeral": {
     "support": "full",
