@@ -263,7 +263,7 @@ print(next(iter(loader)))
 >>> Data(x=[2646, 1433], edge_index=[2, 8642], edge_label_index=[2, 2048], edge_label=[2048], ...)
 ```
 
-In the `Data` object `x` contains the BoW node features. The `edge_label_index` tensor contains the head and tail node indices for the positive and negative samples. `edge_label` is the binary target for these pairs (1 for positive 0 for negative samples). The `edge_index` tensor holds the adjacency list for the current batch of nodes.
+In the `Data` object, `x` contains the BoW node features. The `edge_label_index` tensor contains the head and tail node indices for the positive and negative samples. `edge_label` is the binary target for these pairs (1 for positive 0 for negative samples). The `edge_index` tensor holds the adjacency list for the current batch of nodes.
 
 Now we can **train** our model as follows:
 
@@ -329,11 +329,12 @@ The results obtained with LLM only, Node2Vec combined with LLM, and GraphSAGE tr
 | F1 (macro)  | 0.779 (+7.8%) | **0.840** (+0.9%) | 0.831 (+1.1%) |
 
 
-Let's explore how good LLM vectors are at *representing citation data*.
+Let's explore how well LLM vectors *represent citation data*.
 
 ![LLM cosine similarity edge counts](../assets/use_cases/node_representation_learning/bins_llm.png)
 
 With LLM embeddings, nodes that are connected have a stronger similarity between their representations, much stronger than using Bag of Words (BoW) features. However, for pairs of nodes that aren't connected, there's still a wide range of similarity values. This makes it challenging to easily tell them apart from connected pairs - meaning that they are somewhere in between BoW and Node2Vec features in capturing the graph structure.
+
 
 ## Conclusion: LLM, Node2Vec, GraphSAGE better at learning node and node relationship data than BoW
 
