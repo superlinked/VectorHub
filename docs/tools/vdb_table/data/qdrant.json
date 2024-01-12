@@ -113,9 +113,9 @@
     "comment": ""
   },
   "in_process": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "only in Python SDK in-memory mode"
   },
   "multi_tenancy": {
     "support": "full",
@@ -144,8 +144,8 @@
     "comment": ""
   },
   "vector_dims": {
-    "value": 0,
-    "unlimited": true,
+    "value": 65536,
+    "unlimited": false,
     "source_url": "",
     "comment": ""
   }
