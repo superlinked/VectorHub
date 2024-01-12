@@ -1,9 +1,9 @@
 {
   "name": "Azure AI Search",
   "links": {
-    "docs": "https://learn.microsoft.com//azure/search/",
+    "docs": "https://learn.microsoft.com/azure/search/",
     "github": "https://github.com/Azure",
-    "website": "https://azure.microsoft.com//products/ai-services/ai-search/",
+    "website": "https://azure.microsoft.com/products/ai-services/ai-search/",
     "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/88",
     "poc_github": "https://github.com/farzad528",
     "slug": "azureai"
@@ -65,13 +65,13 @@
     "comment": ""
   },
   "full_text": {
-    "support": "none",
+    "support": "full",
     "source_url": "https://learn.microsoft.com/azure/search/search-query-overview#types-of-queries",
     "comment": ""
   },
   "embeddings_text": {
     "support": "full",
-    "source_url": "https://learn.microsoft.com/azure/search/cognitive-search-custom-skill-web-api",
+    "source_url": "https://learn.microsoft.com/azure/search/vector-search-integrated-vectorization",
     "comment": "Built in Azure OpenAI embedding skill but welcome to use any embedding model via a custom web api skill."
   },
   "embeddings_image": {
