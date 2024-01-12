@@ -4,7 +4,7 @@
 
 ## Introduction: representing things and relationships between them
 
-Of the various types of information - words, pictures, and connections between things - **relationships** are especially interesting. Relationships show how things interact and create networks. But not all ways of representing relationships are the same. In machine learning, **how we do vector representation of things and the relationships between them affects performance** on a wide range of tasks.
+Of the various types of information - words, pictures, and connections between things - **relationships** are especially interesting. Relationships show how things interact and create networks. But not all ways of representing relationships are the same. In machine learning, **how we do vector representation of things and their relationships affects performance** on a wide range of tasks.
 
 Below, we evaluate several approaches to vector representation on a real-life use case: how well each approach classifies academic articles in a subset of the Cora citation network.
 
@@ -48,11 +48,11 @@ evaluate(ds.x, ds.y)
 >>> F1 macro 0.701
 ```
 
-BoW's accuracy and F1 macro scores are pretty good, but leave significant room for improvement. BoW falls short of correctly classify papers more than 25% of the time. And on average across classes BoW is inaccurate nearly 30% of the time.
+BoW's accuracy and F1 macro scores are pretty good, but leave significant room for improvement. BoW falls short of correctly classifying papers more than 25% of the time. And on average across classes BoW is inaccurate nearly 30% of the time.
 
 ## Taking advantage of citation graph data
 
-Can we improve on this? Our citation dataset contains not only text data but also relationship data - a citation graph. Any given article will tend to cite other articles that belong to the same topic that it belongs to. Therefore, representations that embed not just textual data but also citation data of articles contained in our network will probably classify articles more accurately.
+Can we improve on this? Our citation dataset contains not only text data but also relationship data - a citation graph. Any given article will tend to cite other articles that belong to the same topic that it belongs to. Therefore, representations that embed not just textual data but also citation data will probably classify articles more accurately.
 
 BoW features represent text data. But how well does BoW capture the relationships between articles?
 
@@ -329,11 +329,11 @@ The results obtained with LLM only, Node2Vec combined with LLM, and GraphSAGE tr
 | F1 (macro)  | 0.779 (+7.8%) | **0.840** (+0.9%) | 0.831 (+1.1%) |
 
 
-Let's explore how well LLM vectors *represent citation data*.
+Let's also see **how well LLM vectors represent citation data**, again plotting connected and not connected pairs in terms of cosine similarity. How well do citation pairs show up in LLM vectors compared with BoW and Node2Vec?
 
 ![LLM cosine similarity edge counts](../assets/use_cases/node_representation_learning/bins_llm.png)
 
-With LLM embeddings, nodes that are connected have a stronger similarity between their representations, much stronger than using Bag of Words (BoW) features. However, for pairs of nodes that aren't connected, there's still a wide range of similarity values. This makes it challenging to easily tell them apart from connected pairs - meaning that they are somewhere in between BoW and Node2Vec features in capturing the graph structure.
+In LLM embeddings, positive (connected) citation pairs have higher cosine similarity values relative to all pairs, thus representing an improvement over BoW features in identifying positive pairs. However, negative (unconnected) pairs in LLM embeddings have a wide range of cosine similarity scores, making it difficult to distinguish connected from unconnected pairs. While LLM embeddings do better over all than BoW features at capturing the citation graph structure, they do not do as well as Node2Vec.
 
 
 ## Conclusion: LLM, Node2Vec, GraphSAGE better at learning node and node relationship data than BoW
