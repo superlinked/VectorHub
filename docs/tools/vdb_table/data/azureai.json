@@ -125,9 +125,9 @@
     "comment": ""
   },
   "disk_index": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "Indexes are stored and managed on disk"
   },
   "ephemeral": {
     "support": "none",
