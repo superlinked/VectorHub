@@ -19,11 +19,11 @@ We start by exploring the inherent weaknesses of relying on vector search in iso
 
 Most RAG systems employ vector search on a document collection to surface relevant context for the LLM. This process has **several key steps**:
 
-- 1. **Text Encoding**: Using embedding models, like BERT, the RAG system encodes and condenses passages of text from the corpus as dense vector representations, capturing semantic meaning.
-- 2. **Indexing**: To enable rapid similarity search, these passage vectors are indexed within a high-dimensional vector space. Popular methods include ANNOY, Faiss, and Pinecone.
-- 3. **Query Encoding**: An incoming user query is encoded as a vector representation, using the same embedding model.
-- 4. **Similarity Retrieval**: Using distance metrics like cosine similarity, the system runs a search over the indexed passages to find closest neighbors to the query vector.
-- 5. **Passage Return**: The system returns the most similar passage vectors, and extracts the corresponding original text to provide context for the LLM.
+1. **Text Encoding**: Using embedding models, like BERT, the RAG system encodes and condenses passages of text from the corpus as dense vector representations, capturing semantic meaning.
+2. **Indexing**: To enable rapid similarity search, these passage vectors are indexed within a high-dimensional vector space. Popular methods include ANNOY, Faiss, and Pinecone.
+3. **Query Encoding**: An incoming user query is encoded as a vector representation, using the same embedding model.
+4. **Similarity Retrieval**: Using distance metrics like cosine similarity, the system runs a search over the indexed passages to find closest neighbors to the query vector.
+5. **Passage Return**: The system returns the most similar passage vectors, and extracts the corresponding original text to provide context for the LLM.
   
 This RAG Vector Search pipeline has **several key limitations**:
 
@@ -41,13 +41,13 @@ Knowledge Graphs, on the other hand, represent information in an interconnected 
 
 How do KGs augment retrieval?
 
-- 1. **Explicit Facts** — KGs preserve key details by capturing facts directly as nodes and edges, instead of condensed into opaque vectors.
-- 2. **Contextual Details** — KG entities possess rich attributes like descriptions, aliases, and metadata that provide crucial context.
-- 3. **Network Structure** — KGs capture real-world relationships - rules, hierarchies, timelines, and other connections - between entities.
-- 4. **Multi-Hop Reasoning** — Queries can traverse relationships, and infer across multiple steps, to connect and derive facts from diverse sources.
-- 5. **Joint Reasoning** — Entity Resolution can identify and link references that pertain to the same real-world object, enabling collective analysis.
-- 6. **Explainable Relevance** — Graph topology lets us transparently analyze the connections and relationships that determine why certain facts are retrieved as relevant.
-- 7. **Personalization** — KGs capture and tailor query results according to user attributes, context, and historical interactions.
+1. **Explicit Facts** — KGs preserve key details by capturing facts directly as nodes and edges, instead of condensed into opaque vectors.
+2. **Contextual Details** — KG entities possess rich attributes like descriptions, aliases, and metadata that provide crucial context.
+3. **Network Structure** — KGs capture real-world relationships - rules, hierarchies, timelines, and other connections - between entities.
+4. **Multi-Hop Reasoning** — Queries can traverse relationships, and infer across multiple steps, to connect and derive facts from diverse sources.
+5. **Joint Reasoning** — Entity Resolution can identify and link references that pertain to the same real-world object, enabling collective analysis.
+6. **Explainable Relevance** — Graph topology lets us transparently analyze the connections and relationships that determine why certain facts are retrieved as relevant.
+7. **Personalization** — KGs capture and tailor query results according to user attributes, context, and historical interactions.
 
 In sum, whereas RAG performs matching on disconnected nodes, KGs enable graph traversal search and retrieval of interconnected contextual, search for query-relevant facts, make the ranking process transparent, and encode structured facts, relationships, and context to enable complex, precise, multi-step reasoning. As a result, compared to pure vector search, KGs can improve relevance and explanatory power.
 
@@ -116,15 +116,15 @@ While KGs enable structured knowledge representation and reasoning, embeddings p
 
 You can use collaborative filtering's ability to leverage connections between entities to enhance search, by taking the following steps:
 
-- 1. **Knowledge Graph** — Construct a KG with nodes representing entities and edges representing relationships.
-- 2. **Node Embedding** — Generate an embedding vector for certain key node properties like title, description, and so on.
-- 3. **Vector Index** — Build a vector similarity index on the node embeddings.
-- 4. **Similarity Search** — For a given search query, find the nodes with the most similar embeddings.
-- 5. **Collaborative Adjustment** — Propagate and adjust similarity scores based on node connections, using algorithms like PageRank.
-- 6. **Edge Weighting** — Weight adjustments on the basis of edge types, strengths, confidence levels, etc.
-- 7. **Score Normalization** — Normalize adjusted scores to preserve relative rankings.
-- 8. **Result Reranking** — Reorder initial search results on the basis of adjusted collaborative scores.
-- 9. **User Context** — Further adapt search results based on user profile, history, and preferences.
+1. **Knowledge Graph** — Construct a KG with nodes representing entities and edges representing relationships.
+2. **Node Embedding** — Generate an embedding vector for certain key node properties like title, description, and so on.
+3. **Vector Index** — Build a vector similarity index on the node embeddings.
+4. **Similarity Search** — For a given search query, find the nodes with the most similar embeddings.
+5. **Collaborative Adjustment** — Propagate and adjust similarity scores based on node connections, using algorithms like PageRank.
+6. **Edge Weighting** — Weight adjustments on the basis of edge types, strengths, confidence levels, etc.
+7. **Score Normalization** — Normalize adjusted scores to preserve relative rankings.
+8. **Result Reranking** — Reorder initial search results on the basis of adjusted collaborative scores.
+9. **User Context** — Further adapt search results based on user profile, history, and preferences.
 
 ## Fueling Knowledge Graphs with Flywheel Learning
 
