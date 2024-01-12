@@ -333,7 +333,7 @@ Let's also see **how well LLM vectors represent citation data**, again plotting 
 
 ![LLM cosine similarity edge counts](../assets/use_cases/node_representation_learning/bins_llm.png)
 
-In LLM embeddings, representations of _connected_ nodes have higher cosine similarities than they do in BoW features, but lower than in Node2Vec embeddings. On _unconnected_ nodes, LLM embeddings (like BoW features) show a wide range of similarity values, making it difficult to easily differentiate unconnected from connected pairs. Thus, LLM embeddings on the whole are better at representing citation data than BoW, but not as good as Node2Vec, which reproduces the citation graph better for both connected and unconnected citation pairs.
+In LLM embeddings, positive (connected) citation pairs have higher cosine similarity values relative to all pairs, thus representing an improvement over BoW features in identifying positive pairs. However, negative (unconnected) pairs in LLM embeddings have a wide range of cosine similarity scores, making it difficult to distinguish connected from unconnected pairs. While LLM embeddings do better over all than BoW features at capturing the citation graph structure, they do not do as well as Node2Vec.
 
 
 ## Conclusion: LLM, Node2Vec, GraphSAGE better at learning node and node relationship data than BoW
