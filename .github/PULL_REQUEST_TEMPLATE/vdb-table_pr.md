@@ -1,3 +1,7 @@
+---
+labels: 'vdb comparison'
+---
+
 ## Describe your changes
 
 ## Link to relevant [discussion](https://github.com/superlinked/VectorHub/discussions/categories/vdb-comparison)
