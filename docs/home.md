@@ -49,6 +49,7 @@ Subscribe to be updated when new ones come out & check the blog section.
 - [Enhancing RAG With A Multi-Agent System](https://hub.superlinked.com/enhancing-rag-with-a-multi-agent-system)
 - [Vector Embeddings In The Browser](https://hub.superlinked.com/vector-embeddings-in-the-browser)
 - [Answering Questions with Knowledge Embeddings](https://hub.superlinked.com/answering-questions-with-knowledge-graph-embeddings)
+- [Representation Learning on Graph Structured Data](https://hub.superlinked.com/representation-learning-on-graph-structured-data)
 
 
 ***
