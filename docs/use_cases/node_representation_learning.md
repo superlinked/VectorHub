@@ -4,11 +4,11 @@
 
 ## Introduction: representing things and relationships between them
 
-Of the various types of information - words, pictures, and connections between things - **relationships** are especially interesting. Relationships show how things interact and create networks. But not all ways of representing relationships are the same. In machine learning, **how we do vector representation of things and the relationships between them affects performance** on a wide range of tasks.
+Of the various types of information - words, pictures, and connections between things - **relationships** are especially interesting. Relationships show how things interact and create networks. But not all ways of representing relationships are the same. In machine learning, **how we do vector representation of things and their relationships affects performance** on a wide range of tasks.
 
 Below, we evaluate several approaches to vector representation on a real-life use case: how well each approach classifies academic articles in a subset of the Cora citation network.
 
-We look first at Bag-of-Words (BoW), a standard approach to vectorizing text data in ML. Because BoW can't represent the network structure, we turn to solutions that can help BoW's performance: Node2Vec and GraphSAGE. We also look for a solution to BoW's other shortcoming - its inability to capture semantic meaning. We evaluate LLM embeddings, first on their own, then combined with Node2Vec, and, finally, LLM-trained GraphSAGE.
+We look first at Bag-of-Words (BoW), a standard approach to vectorizing text data in ML. Because BoW can't represent the network structure well, we turn to solutions that can help BoW's performance: Node2Vec and GraphSAGE. We also look for a solution to BoW's other shortcoming - its inability to capture semantic meaning. We evaluate LLM embeddings, first on their own, then combined with Node2Vec, and, finally, GraphSAGE trained on LLM features.
 
 ## Loading our dataset, and evaluating BoW
  
@@ -48,11 +48,11 @@ evaluate(ds.x, ds.y)
 >>> F1 macro 0.701
 ```
 
-BoW's accuracy and F1 macro scores are pretty good, but leave significant room for improvement. BoW falls short of correctly classify papers more than 25% of the time. And on average across classes BoW is inaccurate nearly 30% of the time.
+BoW's accuracy and F1 macro scores are pretty good, but leave significant room for improvement. BoW falls short of correctly classifying papers more than 25% of the time. And on average across classes BoW is inaccurate nearly 30% of the time.
 
 ## Taking advantage of citation graph data
 
-Can we improve on this? Our citation network contains not only text data but also relationship data - a citation graph. Any given article will tend to cite other articles that belong to the same topic that it belongs to. Therefore, representations that embed not just textual data but also citation data of articles contained in our network will probably classify articles more accurately.
+Can we improve on this? Our citation dataset contains not only text data but also relationship data - a citation graph. Any given article will tend to cite other articles that belong to the same topic that it belongs to. Therefore, representations that embed not just textual data but also citation data will probably classify articles more accurately.
 
 BoW features represent text data. But how well does BoW capture the relationships between articles?
 
@@ -80,18 +80,21 @@ Let's look at Node2Vec first.
 
 As opposed to BoW vectors, node embeddings are vector representations that capture the structural role and properties of nodes in a network. Node2Vec is an algorithm that learns node representations using the Skip-Gram method; it models the conditional probability of encountering a context node given a source node in node sequences (random walks):
 
-$P(\text{context}|\text{source}) = \frac{1}{Z}\exp(w_{c}^Tw_s) $
+<!--
+$P(\text{context}|\text{source}) = \frac{1}{Z}\exp(w_{c}^Tw_s)$
+-->
+![Node2Vec conditional probability](../assets/use_cases/node_representation_learning/context_proba.png)
 
-Here, $w_c$ and $w_s$ are the embeddings of the context node $c$ and source node $s$ respectively. The variable $Z$ serves as a normalization constant, which, for computational efficiency, is never explicitly computed.
+Here, *w_c* and *w_s* are the embeddings of the context node *c* and source node *s* respectively. The variable *Z* serves as a normalization constant, which, for computational efficiency, is never explicitly computed.
 
 The embeddings are learned by maximizing the co-occurence probability for (source,context) pairs drawn from the true data distribution (positive pairs), and at the same time minimizing for pairs drawn from a synthetic noise distribution. This process ensures that the embedding vectors of similar nodes are close in the embedding space, while dissimilar nodes are further apart (with respect to the dot product).
 
-The random walks are sampled according to a policy, which is guided by 2 parameters: return $p$, and in-out $q$.
+The random walks are sampled according to a policy, which is guided by 2 parameters: return *i*, and in-out *q*.
 
-- The return parameter $p$ affects the likelihood of immediately returning to the previous node. A higher $p$ leads to more locally focused walks.
-- The in-out parameter $q$ affects the likelihood of visiting nodes in the same or a different neighborhood. A higher $q$ encourages Depth First Search (DFS), while a lower $q$ promotes Breadth-First-Search-like (BFS) exploration.
+- The return parameter *p* affects the likelihood of immediately returning to the previous node. A higher *p* leads to more locally focused walks.
+- The in-out parameter *q* affects the likelihood of visiting nodes in the same or a different neighborhood. A higher *q* encourages Depth First Search (DFS), while a lower *q* promotes Breadth-First-Search-like (BFS) exploration.
 
-These parameters are particularly useful for accommodating different networks and tasks. Adjusting the values of $p$ and $q$ captures different characteristics of the graph in the sampled walks. BFS-like exploration is useful for learning local patterns. On the other hand, using DFS-like sampling is useful for capturing patterns on a bigger scale, like structural roles.
+These parameters are particularly useful for accommodating different networks and tasks. Adjusting the values of *p* and *q* captures different characteristics of the graph in the sampled walks. BFS-like exploration is useful for learning local patterns. On the other hand, using DFS-like sampling is useful for capturing patterns on a bigger scale, like structural roles.
 
 ### Node2Vec embedding process
 
@@ -170,7 +173,7 @@ A straightforward approach for combining vectors from different sources is to **
 
 From the plot above, it's clear that the scales of the embedding vector lengths differ. To avoid the larger magnitude Node2Vec vector overshadowing the BoW vector, we can divide each embedding vector by their average length. 
 
-But we can _further_ optimize performance by introducing a **weighting factor** ($\alpha$). The combined representations are constructed as `x = torch.cat((alpha * v_n2v, v_bow), dim=1)`. To determine the appropriate value for $\alpha$, we employ a 1D grid search approach. Our results are displayed in the following plot.
+But we can _further_ optimize performance by introducing a **weighting factor** (α). The combined representations are constructed as `x = torch.cat((alpha * v_n2v, v_bow), dim=1)`. To determine the appropriate value for α, we employ a 1D grid search approach. Our results are displayed in the following plot.
 
 ![Grid search for alpha](../assets/use_cases/node_representation_learning/grid_search_alpha_bow.png)
 
@@ -202,13 +205,16 @@ GraphSAGE is an inductive representation learning algorithm that leverages GNNs 
 
 The GraphSAGE layer is defined as follows:
 
+<!--
 $h_i^{(k)} = \sigma(W (h_i^{(k-1)} + \underset{j \in \mathcal{N}(i)}{\Sigma}h_j^{(k-1)}))$
+-->
+![GraphSAGE layer defintion](../assets/use_cases/node_representation_learning/sage_layer_eqn.png)
 
-Here $\sigma$ is a nonlinear activation function, $W^{(k)}$ is a learnable parameter of layer $k$, and $\mathcal{N}(i)$ is the set of nodes neighboring node $i$. As in traditional Neural Networks, we can stack multiple GNN layers. The resulting multi-layer GNN will have a wider receptive field. That is, it will be able to consider information from bigger distances, thanks to recursive neighborhood aggregation.
+Here σ is a nonlinear activation function, *W^k* is a learnable parameter of layer *k*, and *N(i)* is the set of nodes neighboring node *i*. As in traditional Neural Networks, we can stack multiple GNN layers. The resulting multi-layer GNN will have a wider receptive field. That is, it will be able to consider information from bigger distances, thanks to recursive neighborhood aggregation.
 
 To **learn the model parameters**, the [GraphSAGE authors](https://proceedings.neurips.cc/paper_files/paper/2017/file/5dd9db5e033da9c6fb5ba83c7a7ebea9-Paper.pdf) suggest two approaches:
 1. In a _supervised_ setting, we can train the network in the same way we train a conventional NN for a supervised task (for example, using Cross Entropy for classification or Mean Squared Error for regression).
-2. If we have access only to the graph itself, we can approach model training as an _unsupervised_ task, where the goal is to predict the presence of edges in the graph based on node embeddings. In this case, the link probabilities are defined as $P(j \in \mathcal{N}(i)) \approx \sigma(h_i^Th_j)$. The loss function is the Negative Log Likelihood of the presence of the edge and $P$.
+2. If we have access only to the graph itself, we can approach model training as an _unsupervised_ task, where the goal is to predict the presence of edges in the graph based on node embeddings. In this case, the link probabilities are defined as *P*[*j ∈ N*(*i*)] = *σ*(dot(*h_i, h_j*)). The loss function is the Negative Log Likelihood of the presence of the edge and *p*.
 
 It's also possible to combine the two approaches by using a linear combination of the two loss functions.
 But in this example we stick with the unsupervised variant.
@@ -257,7 +263,7 @@ print(next(iter(loader)))
 >>> Data(x=[2646, 1433], edge_index=[2, 8642], edge_label_index=[2, 2048], edge_label=[2048], ...)
 ```
 
-The `Data` object `x` contains the BoW node features. The `edge_label_index` tensor contains the head and tail node indices for the positive and negative samples. `edge_label` is the binary target for these pairs (1 for positive 0 for negative samples). The `edge_index` tensor holds the adjacency list for the current batch of nodes.
+In the `Data` object, `x` contains the BoW node features. The `edge_label_index` tensor contains the head and tail node indices for the positive and negative samples. `edge_label` is the binary target for these pairs (1 for positive 0 for negative samples). The `edge_index` tensor holds the adjacency list for the current batch of nodes.
 
 Now we can **train** our model as follows:
 
@@ -298,7 +304,7 @@ evaluate(embeddings, ds.y)
 >>> F1 macro 0.820
 ```
 
-The results are only slightly worse than the results we got by combining Node2Vec with BoW features. But, remember, we're evaluating GraphSAGE because it can handle dynamic network data, whereas Node2Vec cannot. **GraphSAGE embeddings perform well on our classification task _and_ are able to embed completely new nodes as well**. When your use case involves new nodes or nodes that evolve, an induction model like GraphSAGE may be a better choice than Node2Vec.
+The results are only slightly worse than the results we got by combining Node2Vec with BoW features. But, remember, we're evaluating GraphSAGE because it can handle dynamic network data, whereas Node2Vec cannot. **GraphSAGE embeddings perform well on our classification task _and_ are able to embed completely new nodes as well**. When your use case involves new nodes or nodes that evolve, an inductive model like GraphSAGE may be a better choice than Node2Vec.
 
 ## Embedding semantics: LLM
 
@@ -323,6 +329,13 @@ The results obtained with LLM only, Node2Vec combined with LLM, and GraphSAGE tr
 | F1 (macro)  | 0.779 (+7.8%) | **0.840** (+0.9%) | 0.831 (+1.1%) |
 
 
+Let's also see **how well LLM vectors represent citation data**, again plotting connected and not connected pairs in terms of cosine similarity. How well do citation pairs show up in LLM vectors compared with BoW and Node2Vec?
+
+![LLM cosine similarity edge counts](../assets/use_cases/node_representation_learning/bins_llm.png)
+
+In LLM embeddings, positive (connected) citation pairs have higher cosine similarity values relative to all pairs, thus representing an improvement over BoW features in identifying positive pairs. However, negative (unconnected) pairs in LLM embeddings have a wide range of cosine similarity scores, making it difficult to distinguish connected from unconnected pairs. While LLM embeddings do better over all than BoW features at capturing the citation graph structure, they do not do as well as Node2Vec.
+
+
 ## Conclusion: LLM, Node2Vec, GraphSAGE better at learning node and node relationship data than BoW
 
 For classification tasks on our article citation dataset, we can conclude that:
@@ -337,10 +350,10 @@ As a final note, we've included a **pro vs con comparison** of our two node repr
 | --- | --- | --- |
 | Generalizing to new nodes | no | yes |
 | Inference time | constant | we can control inference time |
-| Accommodating different graph types and objectives | by setting $p$ and $q$ parameters, we can adapt representations to fit our needs | Limited control | 
-| Combining with other representations | concatenation | by design, the model learns to map node representations to embeddings |
+| Accommodating different graph types and objectives | by setting *p* and *q* parameters, we can adapt representations to fit our needs | limited control | 
+| Combining with other representations | concatenation | by design, the model learns to map node features to embeddings |
 | Dependency on additional representations | relies solely on graph data | depends on quality and availability of node representations; impacts model performance if lacking |
-| Embedding flexibility | very flexible node representations | neighboring nodes representations can't have much variation |
+| Embedding flexibility | very flexible node representations | representations of nodes with similar neighborhoods can't have much variation |
 
 ---
 ## Contributors

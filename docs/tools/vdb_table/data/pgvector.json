@@ -1,0 +1,152 @@
+{
+  "name": "pgvector",
+  "links": {
+    "docs": "",
+    "github": "https://github.com/pgvector/pgvector",
+    "website": "https://github.com/pgvector/pgvector",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/69",
+    "poc_github": "https://github.com/jkatz",
+    "slug": "pgvector"
+  },
+  "oss": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "license": {
+    "value": "PostgreSQL Licence https://opensource.org/license/postgresql/",
+    "source_url": "https://opensource.org/license/postgresql/",
+    "comment": ""
+  },
+  "dev_languages": {
+    "value": [
+      "c"
+    ],
+    "source_url": "",
+    "comment": ""
+  },
+  "github_stars": 6900,
+  "vector_launch_year": 2021,
+  "metadata_filter": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "hybrid_search": {
+    "support": "full",
+    "source_url": "https://github.com/pgvector/pgvector",
+    "comment": "https://github.com/pgvector/pgvector#hybrid-search"
+  },
+  "facets": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "geo_search": {
+    "support": "full",
+    "source_url": "",
+    "comment": "Postgis"
+  },
+  "multi_vec": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "sparse_vectors": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "bm25": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "full_text": {
+    "support": "full",
+    "source_url": "https://www.postgresql.org/docs/current/textsearch.html",
+    "comment": "https://www.postgresql.org/docs/current/textsearch.html via GIST"
+  },
+  "embeddings_text": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_image": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_structured": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "rag": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "recsys": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "langchain": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "llamaindex": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "full",
+    "source_url": "",
+    "comment": "(supabase)"
+  },
+  "pricing": {
+    "value": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "in_process": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_tenancy": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "disk_index": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "ephemeral": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "sharding": {
+    "support": "none",
+    "source_url": "",
+    "comment": "While pgvector does not provide this natively, you can get this either from PostgreSQL functionality like \"postgres_fdw\" or from extensions. You can also choose to subdivide your index through partitioning."
+  },
+  "doc_size": {
+    "bytes": 0,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 2000,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  }
+}
