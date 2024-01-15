@@ -70,7 +70,11 @@ tools/
 
 
 Attributes inside vendorX.json has the following properties
-- `support`: Whose values can be `[ "", "none", "partial", "full" ]` indicating on confidence levels, for that attribute support.
+- `support`: Whose values can be `[ "", "none", "partial", "full" ]` indicating on confidence levels, for that attribute support. NOTE: Each change where a "support" claim is being added MUST include a reference to documentation or an example of the functionality being described.
+    - `""` means the cell will be blank. 
+    - `"none"` means the cell will have a ❌. 
+    - `"partial"` means the cell will have a 🟨.
+    - `"full"` means the cell will have a ✅.
 - `value`: `license` and `dev_languages` have this property to support values about license details and languages (as a list).
 - `source_url`: To provide documentation links, or evidence supporting the attribute values. It is shown as the 'external link' button in the cell.
 - `comment`: Any other useful information that will be shown on hover and with the info icon.
