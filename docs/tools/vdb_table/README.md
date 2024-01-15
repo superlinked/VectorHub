@@ -70,7 +70,7 @@ tools/
 
 
 Attributes inside vendorX.json has the following properties
-- `support`: Whose values can be `[ "", "none", "partial", "full" ]` indicating on confidence levels, for that attribute support. NOTE: Each change where a "support" claim is being added MUST include a reference to documentation or an example of the functionality being described.
+- `support`: Whose values can be `[ "", "none", "partial", "full" ]` indicating on confidence levels, for that attribute support. NOTE: Each change where a "support" claim is being added MUST include  either i) a reference to documentation, ii) an example of the functionality being described, or iii) a link to the actual code implementing the specific functionality.
     - `""` means the cell will be blank. 
     - `"none"` means the cell will have a ❌. 
     - `"partial"` means the cell will have a 🟨.
