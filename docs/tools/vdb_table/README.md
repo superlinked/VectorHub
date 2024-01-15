@@ -22,7 +22,7 @@ For this exercise, the collaborators have worked with points of contact from the
 **Maintainers:**
 - [Dhruv Anand](https://www.linkedin.com/in/dhruv-anand-ainorthstartech/)
 - [Prashanth Rao](https://www.linkedin.com/in/prrao87/)
-- [Ravi Harige](https://www.linkedin.com/in/ravindraharige/)
+- [Ravindra Harige](https://www.linkedin.com/in/ravindraharige/)
 - [Daniel Svonava](https://www.linkedin.com/in/svonava/)
 
 **Frontend:**
