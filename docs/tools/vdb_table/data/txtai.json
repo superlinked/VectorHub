@@ -123,9 +123,9 @@
     "comment": ""
   },
   "disk_index": {
-    "support": "full",
-    "source_url": "",
-    "comment": "txtai embeddings indexes can be saved to a directory, tar.gz file and/or to object storage such as S3"
+    "support": "partial",
+    "source_url": "https://neuml.github.io/txtai/embeddings/configuration/ann/#faiss",
+    "comment": "txtai embeddings indexes support on disk operations via mmap"
   },
   "ephemeral": {
     "support": "full",
