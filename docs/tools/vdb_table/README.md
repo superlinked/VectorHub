@@ -22,7 +22,7 @@ For this exercise, the collaborators have worked with points of contact from the
 **Maintainers:**
 - [Dhruv Anand](https://www.linkedin.com/in/dhruv-anand-ainorthstartech/)
 - [Prashanth Rao](https://www.linkedin.com/in/prrao87/)
-- [Ravi Harige](https://www.linkedin.com/in/ravindraharige/)
+- [Ravindra Harige](https://www.linkedin.com/in/ravindraharige/)
 - [Daniel Svonava](https://www.linkedin.com/in/svonava/)
 
 **Frontend:**
@@ -70,7 +70,11 @@ tools/
 
 
 Attributes inside vendorX.json has the following properties
-- `support`: Whose values can be `[ "", "none", "partial", "full" ]` indicating on confidence levels, for that attribute support.
+- `support`: Whose values can be `[ "", "none", "partial", "full" ]` indicating on confidence levels, for that attribute support. NOTE: Each change where a "support" claim is being added MUST include  either i) a reference to documentation, ii) an example of the functionality being described, or iii) a link to the actual code implementing the specific functionality.
+    - `""` means the cell will be blank. 
+    - `"none"` means the cell will have a ❌. 
+    - `"partial"` means the cell will have a 🟨.
+    - `"full"` means the cell will have a ✅.
 - `value`: `license` and `dev_languages` have this property to support values about license details and languages (as a list).
 - `source_url`: To provide documentation links, or evidence supporting the attribute values. It is shown as the 'external link' button in the cell.
 - `comment`: Any other useful information that will be shown on hover and with the info icon.
