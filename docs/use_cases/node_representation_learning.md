@@ -83,7 +83,7 @@ As opposed to BoW vectors, node embeddings are vector representations that captu
 <!--
 $P(\text{context}|\text{source}) = \frac{1}{Z}\exp(w_{c}^Tw_s)$
 -->
-![Node2Vec conditional probability](../assets/use_cases/node_representation_learning/context_proba.png)
+![Node2Vec conditional probability](../assets/use_cases/node_representation_learning/context_proba_v2.png)
 
 Here, *w_c* and *w_s* are the embeddings of the context node *c* and source node *s* respectively. The variable *Z* serves as a normalization constant, which, for computational efficiency, is never explicitly computed.
 
@@ -208,7 +208,7 @@ The GraphSAGE layer is defined as follows:
 <!--
 $h_i^{(k)} = \sigma(W (h_i^{(k-1)} + \underset{j \in \mathcal{N}(i)}{\Sigma}h_j^{(k-1)}))$
 -->
-![GraphSAGE layer defintion](../assets/use_cases/node_representation_learning/sage_layer_eqn.png)
+![GraphSAGE layer defintion](../assets/use_cases/node_representation_learning/sage_layer_eqn_v2.png)
 
 Here σ is a nonlinear activation function, *W^k* is a learnable parameter of layer *k*, and *N(i)* is the set of nodes neighboring node *i*. As in traditional Neural Networks, we can stack multiple GNN layers. The resulting multi-layer GNN will have a wider receptive field. That is, it will be able to consider information from bigger distances, thanks to recursive neighborhood aggregation.
 
