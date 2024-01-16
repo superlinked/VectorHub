@@ -26,11 +26,11 @@
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 7200,
+  "github_stars": 7375,
   "vector_launch_year": 2023,
   "metadata_filter": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.activeloop.ai/example-code/tutorials/vector-store/vector-search-options/deep-lake-vector-store-api#filter-search-using-udfs",
     "comment": ""
   },
   "hybrid_search": {
@@ -66,17 +66,17 @@
   "full_text": {
     "support": "partial",
     "source_url": "",
-    "comment": "you can search i.e. search keywords with TQL/SQL contains(...) function, but I assume you mean more than just text search, by full-text search engine"
+    "comment": "you can search keywords with TQL `contains(...)` function"
   },
   "embeddings_text": {
-    "support": "",
+    "support": "partial",
     "source_url": "https://docs.activeloop.ai/quickstart",
-    "comment": "https://docs.activeloop.ai/quickstart#creating-your-first-vector-store"
+    "comment": "possible to load an embedding model as a UDF with embedding_function argument"
   },
   "embeddings_image": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "partial",
+    "source_url": "https://docs.activeloop.ai/quickstart",
+    "comment": "possible to load an embedding model as a UDF with embedding_function argument"
   },
   "embeddings_structured": {
     "support": "",
@@ -109,7 +109,7 @@
     "comment": ""
   },
   "pricing": {
-    "value": "https://www.activeloop.ai/pricing/ Free up to 200GB, then $100 per 30M embeddings (200GB) https://www.activeloop.ai/resources/deep-lake-hnsw-index-rapidly-query-35-m-vectors-save-80/",
+    "value": "Free 200GB, then $100 per month per 30M embeddings (200GB)",
     "source_url": "https://www.activeloop.ai/pricing/",
     "comment": ""
   },
