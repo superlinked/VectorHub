@@ -30,7 +30,7 @@
     "pricing": {"allOf": [{"$ref": "#/$defs/stringWithSource"}], "$comment": "Ops | Pricing | The pricing models very widely, so this field is unstructured and ideally points to a pricing page." },
     "in_process": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | In-process | Ability to run embedded within the application process, which leads to a simpler deployment and management in situations when the whole workload fits into one machine." },
     "multi_tenancy": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | Multi-Tenant | Multi-tenancy - the ability to store multiple isolated indexes within one database instance." },
-    "disk_index": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | Disk Index | Ability to store the vector index state on disk." },
+    "disk_index": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | Disk Index | The vector search index can be held on disk while in use, as opposed to holding it in RAM, which makes the management of large indices more affordable." },
     "ephemeral": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | Ephemeral Index | Ephemeral index support without a server." },
     "sharding": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | Sharding | The search index is sharded across multiple machines." },
     "doc_size": {"allOf": [{"$ref": "#/$defs/bytesWithSource"}], "$comment": "Ops | Document Size | Maximum size of a stored document." },
