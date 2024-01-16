@@ -75,7 +75,7 @@
     "comment": "Built in Azure OpenAI embedding skill but welcome to use any embedding model via a custom web api skill."
   },
   "embeddings_image": {
-    "support": "full",
+    "support": "partial",
     "source_url": "https://learn.microsoft.com/azure/search/cognitive-search-custom-skill-web-api",
     "comment": ""
   },
