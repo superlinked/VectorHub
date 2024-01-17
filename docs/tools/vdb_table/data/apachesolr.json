@@ -113,8 +113,8 @@
     "comment": ""
   },
   "in_process": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://solr.apache.org/docs/9_4_0/core/org/apache/solr/client/solrj/embedded/EmbeddedSolrServer.html",
     "comment": ""
   },
   "multi_tenancy": {
