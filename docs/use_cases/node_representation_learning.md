@@ -85,6 +85,8 @@ $P(\text{context}|\text{source}) = \frac{1}{Z}\exp(w_{c}^Tw_s)$
 -->
 ![Node2Vec conditional probability](../assets/use_cases/node_representation_learning/context_proba_v3.png)
 
+<img src=assets/use_cases/node_representation_learning/context_proba_v3.png alt="Node2Vec conditional probability" data-size="55" />
+
 Here, *w_c* and *w_s* are the embeddings of the context node *c* and source node *s* respectively. The variable *Z* serves as a normalization constant, which, for computational efficiency, is never explicitly computed.
 
 The embeddings are learned by maximizing the co-occurence probability for (source,context) pairs drawn from the true data distribution (positive pairs), and at the same time minimizing for pairs drawn from a synthetic noise distribution. This process ensures that the embedding vectors of similar nodes are close in the embedding space, while dissimilar nodes are further apart (with respect to the dot product).
