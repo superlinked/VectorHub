@@ -14,26 +14,27 @@
     "comment": ""
   },
   "license": {
-    "value": "",
+    "value": "Proprietary",
     "source_url": "",
     "comment": ""
   },
   "dev_languages": {
     "value": [
-      ""
+      "Java",
+      "Scala"
     ],
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 0,
-  "vector_launch_year": 0,
+  "github_stars": 12200,
+  "vector_launch_year": 2023,
   "metadata_filter": {
     "support": "full",
     "source_url": "",
     "comment": ""
   },
   "hybrid_search": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
@@ -48,7 +49,7 @@
     "comment": ""
   },
   "multi_vec": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
@@ -78,13 +79,13 @@
     "comment": ""
   },
   "embeddings_structured": {
-    "support": "",
+    "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "Graphs are kinda our thing :)"
   },
   "rag": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://neo4j.com/labs/apoc/5/ml/openai/",
     "comment": ""
   },
   "recsys": {
@@ -94,22 +95,22 @@
   },
   "langchain": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://python.langchain.com/docs/integrations/providers/neo4j",
     "comment": ""
   },
   "llamaindex": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://docs.llamaindex.ai/en/stable/examples/index_structs/knowledge_graph/Neo4jKGIndexDemo.html",
     "comment": ""
   },
   "managed_cloud": {
     "support": "full",
-    "source_url": "",
-    "comment": ""
+    "source_url": "https://neo4j.com/cloud/platform/aura-graph-database/",
+    "comment": "Neo4j Aura"
   },
   "pricing": {
     "value": "",
-    "source_url": "",
+    "source_url": "https://neo4j.com/pricing/",
     "comment": ""
   },
   "in_process": {
@@ -123,30 +124,30 @@
     "comment": ""
   },
   "disk_index": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "ephemeral": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "sharding": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "doc_size": {
     "bytes": 0,
-    "unlimited": false,
+    "unlimited": true,
     "source_url": "",
     "comment": ""
   },
   "vector_dims": {
-    "value": 0,
+    "value": 2048,
     "unlimited": false,
     "source_url": "",
-    "comment": ""
+    "comment": "Expecting an increase to 4096"
   }
 }
