@@ -2,7 +2,7 @@
   "name": "Rockset",
   "links": {
     "docs": "https://docs.rockset.com/documentation/docs/vector-search",
-    "github": "https://github.com/rockset",
+    "github": "https://github.com/rockset/community/tree/master",
     "website": "https://rockset.com/vector-search/",
     "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/102",
     "poc_github": "https://github.com/brencon",
@@ -14,91 +14,91 @@
     "comment": ""
   },
   "license": {
-    "value": "",
+    "value": "Proprietary",
     "source_url": "",
     "comment": ""
   },
   "dev_languages": {
     "value": [
-      ""
+      "SQL"
     ],
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 0,
-  "vector_launch_year": 0,
+  "github_stars": "Proprietary",
+  "vector_launch_year": 2023,
   "metadata_filter": {
-    "support": "",
+    "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "Proprietary"
   },
   "hybrid_search": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "facets": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "geo_search": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "multi_vec": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "sparse_vectors": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "bm25": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "full_text": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "embeddings_text": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "embeddings_image": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "embeddings_structured": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "rag": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "recsys": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "langchain": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "llamaindex": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
@@ -109,42 +109,42 @@
   },
   "pricing": {
     "value": "",
-    "source_url": "",
+    "source_url": "https://rockset.com/pricing/",
     "comment": ""
   },
   "in_process": {
-    "support": "",
+    "support": "None",
     "source_url": "",
     "comment": ""
   },
   "multi_tenancy": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "disk_index": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "ephemeral": {
-    "support": "",
+    "support": "None",
     "source_url": "",
     "comment": ""
   },
   "sharding": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "doc_size": {
-    "bytes": 0,
+    "bytes": 41,943,040,
     "unlimited": false,
     "source_url": "",
     "comment": ""
   },
   "vector_dims": {
-    "value": 0,
+    "value": 200,000,
     "unlimited": false,
     "source_url": "",
     "comment": ""
