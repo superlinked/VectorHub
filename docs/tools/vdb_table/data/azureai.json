@@ -1,9 +1,9 @@
 {
   "name": "Azure AI Search",
   "links": {
-    "docs": "https://learn.microsoft.com/en-us/azure/search/",
+    "docs": "https://learn.microsoft.com/azure/search/",
     "github": "https://github.com/Azure",
-    "website": "https://azure.microsoft.com/en-us/products/ai-services/ai-search/",
+    "website": "https://azure.microsoft.com/products/ai-services/ai-search/",
     "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/88",
     "poc_github": "https://github.com/farzad528",
     "slug": "azureai"
@@ -20,7 +20,9 @@
   },
   "dev_languages": {
     "value": [
-      ""
+      "C#",
+      "C++",
+      "Java"
     ],
     "source_url": "",
     "comment": ""
@@ -34,23 +36,23 @@
   },
   "hybrid_search": {
     "support": "full",
-    "source_url": "https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview",
-    "comment": "https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview"
+    "source_url": "https://learn.microsoft.com/azure/search/hybrid-search-overview",
+    "comment": ""
   },
   "facets": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://learn.microsoft.com/azure/search/search-faceted-navigation",
     "comment": ""
   },
   "geo_search": {
     "support": "full",
-    "source_url": "https://learn.microsoft.com/en-us/azure/search/search-query-odata-geo-spatial-functions",
-    "comment": "https://learn.microsoft.com/en-us/azure/search/search-query-odata-geo-spatial-functions"
+    "source_url": "https://learn.microsoft.com/azure/search/search-query-odata-geo-spatial-functions",
+    "comment": ""
   },
   "multi_vec": {
     "support": "full",
-    "source_url": "https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-query?tabs=query-2023-11-01%2Cfilter-2023-11-01",
-    "comment": "https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-query?tabs=query-2023-11-01%2Cfilter-2023-11-01#vector-query-request"
+    "source_url": "https://learn.microsoft.com/azure/search/vector-search-how-to-query?tabs=query-2023-11-01%2Cfilter-2023-11-01#vector-query-request",
+    "comment": ""
   },
   "sparse_vectors": {
     "support": "none",
@@ -59,22 +61,22 @@
   },
   "bm25": {
     "support": "full",
-    "source_url": "https://learn.microsoft.com/en-us/azure/search/index-ranking-similarity",
-    "comment": "https://learn.microsoft.com/en-us/azure/search/index-ranking-similarity"
+    "source_url": "https://learn.microsoft.com/azure/search/index-ranking-similarity",
+    "comment": ""
   },
   "full_text": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://learn.microsoft.com/azure/search/search-query-overview#types-of-queries",
     "comment": ""
   },
   "embeddings_text": {
     "support": "full",
-    "source_url": "https://learn.microsoft.com/en-us/azure/search/cognitive-search-custom-skill-web-api",
-    "comment": "Custom Web API skill in skillsets - Azure AI Search | Microsoft Learn https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/announcing-the-public-preview-of-integrated-vectorization-in/ba-p/3960809"
+    "source_url": "https://learn.microsoft.com/azure/search/vector-search-integrated-vectorization",
+    "comment": "Built in Azure OpenAI embedding skill but welcome to use any embedding model via a custom web api skill."
   },
   "embeddings_image": {
-    "support": "none",
-    "source_url": "",
+    "support": "partial",
+    "source_url": "https://learn.microsoft.com/azure/search/cognitive-search-custom-skill-web-api",
     "comment": ""
   },
   "embeddings_structured": {
@@ -84,8 +86,8 @@
   },
   "rag": {
     "support": "full",
-    "source_url": "",
-    "comment": ""
+    "source_url": "https://learn.microsoft.com/azure/ai-services/openai/concepts/use-your-data?tabs=ai-search",
+    "comment": "https://learn.microsoft.com/azure/ai-services/openai/concepts/use-your-data?tabs=ai-search"
   },
   "recsys": {
     "support": "none",
@@ -94,22 +96,22 @@
   },
   "langchain": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://python.langchain.com/docs/integrations/vectorstores/azuresearch",
     "comment": ""
   },
   "llamaindex": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://docs.llamaindex.ai/en/latest/examples/vector_stores/CognitiveSearchIndexDemo.html",
     "comment": ""
   },
   "managed_cloud": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://azure.microsoft.com/products/ai-services/ai-search/",
     "comment": ""
   },
   "pricing": {
     "value": "Pricing - Azure Cognitive Search",
-    "source_url": "https://azure.microsoft.com/en-us/pricing/details/search/",
+    "source_url": "https://azure.microsoft.com/pricing/details/search/",
     "comment": ""
   },
   "in_process": {
@@ -119,11 +121,11 @@
   },
   "multi_tenancy": {
     "support": "full",
-    "source_url": "https://learn.microsoft.com/en-us/azure/search/search-modeling-multitenant-saas-applications",
-    "comment": "https://learn.microsoft.com/en-us/azure/search/search-modeling-multitenant-saas-applications"
+    "source_url": "https://learn.microsoft.com/azure/search/search-modeling-multitenant-saas-applications",
+    "comment": ""
   },
   "disk_index": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
@@ -134,19 +136,19 @@
   },
   "sharding": {
     "support": "full",
-    "source_url": "https://learn.microsoft.com/en-us/azure/search/search-capacity-planning",
-    "comment": "https://learn.microsoft.com/en-us/azure/search/search-capacity-planning#concepts-search-units-replicas-partitions-shards"
+    "source_url": "https://learn.microsoft.com//azure/search/search-capacity-planning#concepts-search-units-replicas-partitions-shards",
+    "comment": ""
   },
   "doc_size": {
-    "bytes": 0,
-    "unlimited": true,
-    "source_url": "",
-    "comment": ""
+    "bytes": 16000000,
+    "unlimited": false,
+    "source_url": "https://learn.microsoft.com/azure/search/search-limits-quotas-capacity",
+    "comment": "Limited by batch size. However, the maximum size of a document is 16 MB. There is no max document limit per index."
   },
   "vector_dims": {
     "value": 2048,
     "unlimited": false,
-    "source_url": "",
+    "source_url": "https://learn.microsoft.com/azure/search/vector-search-how-to-generate-embeddings",
     "comment": ""
   }
 }
