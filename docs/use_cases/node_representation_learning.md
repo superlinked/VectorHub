@@ -83,7 +83,7 @@ As opposed to BoW vectors, node embeddings are vector representations that captu
 <!--
 $P(\text{context}|\text{source}) = \frac{1}{Z}\exp(w_{c}^Tw_s)$
 -->
-![Node2Vec conditional probability](../assets/use_cases/node_representation_learning/context_proba.png)
+![Node2Vec conditional probability](../assets/use_cases/node_representation_learning/context_proba_v3.png)
 
 Here, *w_c* and *w_s* are the embeddings of the context node *c* and source node *s* respectively. The variable *Z* serves as a normalization constant, which, for computational efficiency, is never explicitly computed.
 
@@ -208,7 +208,7 @@ The GraphSAGE layer is defined as follows:
 <!--
 $h_i^{(k)} = \sigma(W (h_i^{(k-1)} + \underset{j \in \mathcal{N}(i)}{\Sigma}h_j^{(k-1)}))$
 -->
-![GraphSAGE layer defintion](../assets/use_cases/node_representation_learning/sage_layer_eqn.png)
+![GraphSAGE layer defintion](../assets/use_cases/node_representation_learning/sage_layer_eqn_v3.png)
 
 Here σ is a nonlinear activation function, *W^k* is a learnable parameter of layer *k*, and *N(i)* is the set of nodes neighboring node *i*. As in traditional Neural Networks, we can stack multiple GNN layers. The resulting multi-layer GNN will have a wider receptive field. That is, it will be able to consider information from bigger distances, thanks to recursive neighborhood aggregation.
 
@@ -333,7 +333,7 @@ Let's also see **how well LLM vectors represent citation data**, again plotting 
 
 ![LLM cosine similarity edge counts](../assets/use_cases/node_representation_learning/bins_llm.png)
 
-In LLM embeddings, representations of _connected_ nodes have higher cosine similarities than they do in BoW features, but lower than in Node2Vec embeddings. On _unconnected_ nodes, LLM embeddings (like BoW features) show a wide range of similarity values, making it difficult to easily differentiate unconnected from connected pairs. Thus, LLM embeddings on the whole are better at representing citation data than BoW, but not as good as Node2Vec, which reproduces the citation graph better for both connected and unconnected citation pairs.
+In LLM embeddings, positive (connected) citation pairs have higher cosine similarity values relative to all pairs, thus representing an improvement over BoW features in identifying positive pairs. However, negative (unconnected) pairs in LLM embeddings have a wide range of cosine similarity scores, making it difficult to distinguish connected from unconnected pairs. While LLM embeddings do better over all than BoW features at capturing the citation graph structure, they do not do as well as Node2Vec.
 
 
 ## Conclusion: LLM, Node2Vec, GraphSAGE better at learning node and node relationship data than BoW
