@@ -22,7 +22,8 @@
       "value": [
         "C#",
         "Python",
-        "Java"
+        "Java", 
+        "Node.js"
       ],
       "source_url": "",
       "comment": ""
@@ -35,13 +36,13 @@
       "comment": ""
     },
     "hybrid_search": {
-      "support": "full",
-      "source_url": "https://learn.microsoft.com/azure/search/hybrid-search-overview",
+      "support": "none",
+      "source_url": "",
       "comment": ""
     },
     "facets": {
-      "support": "full",
-      "source_url": "https://learn.microsoft.com/azure/search/search-faceted-navigation",
+      "support": "",
+      "source_url": "",
       "comment": ""
     },
     "geo_search": {
@@ -96,22 +97,22 @@
     },
     "langchain": {
       "support": "full",
-      "source_url": "https://python.langchain.com/docs/integrations/vectorstores/azuresearch",
+      "source_url": "https://python.langchain.com/docs/integrations/vectorstores/azure_cosmos_db",
       "comment": ""
     },
     "llamaindex": {
       "support": "full",
-      "source_url": "https://docs.llamaindex.ai/en/latest/examples/vector_stores/CognitiveSearchIndexDemo.html",
+      "source_url": "",
       "comment": ""
     },
     "managed_cloud": {
       "support": "full",
-      "source_url": "https://azure.microsoft.com/products/ai-services/ai-search/",
+      "source_url": "",
       "comment": ""
     },
     "pricing": {
-      "value": "Pricing - Azure Cognitive Search",
-      "source_url": "https://azure.microsoft.com/pricing/details/search/",
+      "value": "Pricing - Azure Cosmos DB for MongoDB vCore",
+      "source_url": "https://azure.microsoft.com/en-us/pricing/details/cosmos-db/mongodb/",
       "comment": ""
     },
     "in_process": {
