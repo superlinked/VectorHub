@@ -25,7 +25,7 @@
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 6700,
+  "github_stars": 7100,
   "vector_launch_year": 2022,
   "metadata_filter": {
     "support": "full",
@@ -33,7 +33,7 @@
     "comment": ""
   },
   "hybrid_search": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
@@ -48,7 +48,7 @@
     "comment": ""
   },
   "multi_vec": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
@@ -108,14 +108,14 @@
     "comment": ""
   },
   "pricing": {
-    "value": "free plan / $4.99 per month (pro)",
+    "value": "free plan / $29.99 per month (pro)",
     "source_url": "",
     "comment": ""
   },
   "in_process": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "Orama can work completely in-memory in your browser or server"
   },
   "multi_tenancy": {
     "support": "full",
@@ -123,9 +123,9 @@
     "comment": ""
   },
   "disk_index": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://github.com/oramasearch/orama/tree/main/packages/plugin-data-persistence",
+    "comment": "Available via the official Data Persistence plugin"
   },
   "ephemeral": {
     "support": "full",
