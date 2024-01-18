@@ -162,7 +162,7 @@ Streaming data pipelines, while continuously updating the KG, will not necessari
 
 Each loop of the flywheel analyzes current usage patterns and remediates more data issues, incrementally improving the quality of the Knowledge Graph. The flywheel process thus enables the KG and language model to co-evolve and improve in accordance with feedback from real-world system operation. Flywheel learning provides a scaffolding for continuous, automated improvement of the Knowledge Graph, tailoring it to fit the language model's needs. This powers the accuracy, relevance, and adaptability of the language model.
 
-## Conclusion:
+## Conclusion
 
 In sum, to achieve human-level performance, language AI must be augmented by retrieving external knowledge and reasoning. Where LLMs and RAG struggle with representing the context and relationships between real-world entities, Knowledge Graphs excel. The Knowledge Graph's structured representations permit complex, multi-hop, logical reasoning over interconnected facts. 
 
