@@ -113,7 +113,7 @@
     "comment": ""
   },
   "in_process": {
-    "support": "None",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
@@ -128,7 +128,7 @@
     "comment": ""
   },
   "ephemeral": {
-    "support": "None",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
