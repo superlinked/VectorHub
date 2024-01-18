@@ -20,12 +20,12 @@
   },
   "dev_languages": {
     "value": [
-      "SQL"
+      "C++"
     ],
     "source_url": "",
     "comment": ""
   },
-  "github_stars": "Proprietary",
+  "github_stars": 0,
   "vector_launch_year": 2023,
   "metadata_filter": {
     "support": "full",
@@ -34,8 +34,8 @@
   },
   "hybrid_search": {
     "support": "full",
-    "source_url": "",
-    "comment": ""
+    "source_url": "https://rockset.com/blog/introducing-vector-search-on-rockset/",
+    "comment": "A blog post about hybrid search: https://rockset.com/press/rockset-adds-vector-search-for-real-time-machine-learning-at-scale/"
   },
   "facets": {
     "support": "full",
@@ -138,13 +138,13 @@
     "comment": ""
   },
   "doc_size": {
-    "bytes": 41,943,040,
+    "bytes": 41943040,
     "unlimited": false,
     "source_url": "",
     "comment": ""
   },
   "vector_dims": {
-    "value": 200,000,
+    "value": 200000,
     "unlimited": false,
     "source_url": "",
     "comment": ""
