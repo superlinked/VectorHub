@@ -14,7 +14,6 @@ Let's take a closer look at how we can combine vector embeddings and KGs, fusin
 
 We start by exploring the inherent weaknesses of relying on vector search in isolation, and then show how to combine KGs and embeddings complementarily, to overcome the limitations of each.
 
-
 ## RAG Vector Search: process and limits
 
 Most RAG systems employ vector search on a document collection to surface relevant context for the LLM. This process has **several key steps**:
@@ -24,6 +23,8 @@ Most RAG systems employ vector search on a document collection to surface releva
 3. **Query Encoding**: An incoming user query is encoded as a vector representation, using the same embedding model.
 4. **Similarity Retrieval**: Using distance metrics like cosine similarity, the system runs a search over the indexed passages to find closest neighbors to the query vector.
 5. **Passage Return**: The system returns the most similar passage vectors, and extracts the corresponding original text to provide context for the LLM.
+
+![RAG](../assets/use_cases/knowledge_graphs/RAG.png)
   
 This RAG Vector Search pipeline has **several key limitations**:
 
@@ -48,6 +49,8 @@ How do KGs augment retrieval?
 5. **Joint Reasoning** — Entity Resolution can identify and link references that pertain to the same real-world object, enabling collective analysis.
 6. **Explainable Relevance** — Graph topology lets us transparently analyze the connections and relationships that determine why certain facts are retrieved as relevant.
 7. **Personalization** — KGs capture and tailor query results according to user attributes, context, and historical interactions.
+
+![RAG + Knowledge Graph](../assets/use_cases/knowledge_graphs/rag_kg.png)
 
 In sum, whereas RAG performs matching on disconnected nodes, KGs enable graph traversal search and retrieval of interconnected contextual, search for query-relevant facts, make the ranking process transparent, and encode structured facts, relationships, and context to enable complex, precise, multi-step reasoning. As a result, compared to pure vector search, KGs can improve relevance and explanatory power.
 
