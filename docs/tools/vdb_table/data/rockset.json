@@ -30,12 +30,12 @@
   "metadata_filter": {
     "support": "full",
     "source_url": "",
-    "comment": "Proprietary"
+    "comment": ""
   },
   "hybrid_search": {
     "support": "full",
-    "source_url": "https://rockset.com/blog/introducing-vector-search-on-rockset/",
-    "comment": "A blog post about hybrid search: https://rockset.com/press/rockset-adds-vector-search-for-real-time-machine-learning-at-scale/"
+    "source_url": "https://docs.rockset.com/documentation/docs/running-vector-search-with-rockset#querying-on-the-index",
+    "comment": "Hybrid search as easy as SQL WHERE clause: https://rockset.com/blog/vector-search-scale/"
   },
   "facets": {
     "support": "full",
