@@ -1,4 +1,5 @@
 - [Home](home.md)
+- [VDB Feature Matrix](tools/vdb_table/README.md)
 - [Manifesto](manifesto.md)
 - [Subscribe](subscribe.md)
 
