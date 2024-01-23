@@ -2,7 +2,7 @@
 
 Your task's unique requirements will dictate when you should use a custom model, and when you should use a pre-trained model.
 
-![Things you have to do and build to turn your data into vectors](assets/building_blocks/vector_compute/bb2-6.png)
+<img src=assets/building_blocks/vector_compute/bb2-6.png alt="Things you have to do and build to turn your data into vectors" data-size="100" />
 
 Whereas **pre-trained models** shine in domains such as _text, image, and audio processing by leveraging large, generic datasets to enhance performance and efficiency_, **custom models** are essential in areas like _graph embeddings, time series, and categorical data processing, where specific patterns and characteristics require tailored solutions_, for example, [Time2Vec](https://towardsdatascience.com/time2vec-for-time-series-features-encoding-a03a4f3f937e) or [GraphSAGE](https://github.com/williamleif/GraphSAGE). 
 
@@ -44,7 +44,7 @@ For example, GPT-4 struggles to calibrate for confidence; it doesn’t know when
 
 Instead of training all model layers from scratch, fine-tuning typically involves modifying and re-training **just the last few layers** of the model, specializing them for the given task. During fine-tuning, the main part of the pre-trained model remains unchanged. Fine-tuning requires only a fraction of the data required to train the whole model from scratch, and it’s also computationally much cheaper.
 
-![Fine-tuning a model](assets/building_blocks/vector_compute/bb2-7.png)
+<img src=assets/building_blocks/vector_compute/bb2-7.png alt="Fine-tuning a model" data-size="100" />
 
 Fine-tuning helps avoid **overfitting**. Overfitting occurs when a model exposed to only small amounts of task-specific data memorizes inherent patterns, but can't generalize well. Overfitting leads to poor performance on real-world unseen data. By retraining only the last few layers of a pre-trained model, fine-tuning makes overfitting less likely because the unchanged layers continue to provide useful features. In contrast, training an entire complex model on a small amount of data from scratch is very susceptible to overfitting.
 

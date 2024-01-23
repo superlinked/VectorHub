@@ -37,32 +37,23 @@ Query and retrieve vectors for your use case
 
 ***
 
-## Vector retrieval use-cases
+## VectorHub Content
 
 Here are some examples from the community, more coming soon!
 
 Subscribe to be updated when new ones come out & check the blog section.
 
-::::link-array
-:::link-array-item{headerType="IMAGE" headerImage="https://uploads-ssl.webflow.com/64f9dd739f984c15f86e446e/65390fbbd5b9e7f28bd94e1e_personalized_search.png"}
-[Personalized Search](use_cases/personalized_search.md)
+- [Personalized Search](https://hub.superlinked.com/personalized-search-harnessing-the-power-of-vector-embeddings)
+- [Recommender Systems](https://hub.superlinked.com/a-recommender-system-collaborative-filtering-with-sparse-metadata)
+- [Retrieval Augmented Generation](https://hub.superlinked.com/retrieval-augmented-generation)
+- [Enhancing RAG With A Multi-Agent System](https://hub.superlinked.com/enhancing-rag-with-a-multi-agent-system)
+- [Vector Embeddings In The Browser](https://hub.superlinked.com/vector-embeddings-in-the-browser)
+- [Answering Questions with Knowledge Embeddings](https://hub.superlinked.com/answering-questions-with-knowledge-graph-embeddings)
 
-:::
-
-:::link-array-item{headerType="IMAGE" headerImage="https://uploads-ssl.webflow.com/64f9dd739f984c15f86e446e/65390fbb48c6e5013090d6d4_recommender_systems.png"}
-[Recommender Systems](use_cases/recommender_systems.md)
-
-:::
-
-:::link-array-item{headerType="IMAGE" headerImage="https://uploads-ssl.webflow.com/64f9dd739f984c15f86e446e/65390fbb631557f00cf97689_rag.png"}
-[Retrieval Augmented Generation](use_cases/retrieval_augmented_generation.md)
-
-:::
-::::
 
 ***
 
-## Toolbox
+<!-- ## Toolbox
 
 Toolbox is a collection of benchmarks, code snippets, summaries, and tricks to help you decide what's best for your use case. These are tools that we and our community use frequently. We use your input to curate our toolbox. So, feel free to share some tools that you use often or have created recently that will help the community. You can do that by [creating an issue](https://github.com/superlinked/VectorHub/issues/new).
 
@@ -72,7 +63,7 @@ Toolbox is a collection of benchmarks, code snippets, summaries, and tricks to h
 :::
 ::::
 
-***
+*** -->
 
 :::hint{type="info"}
 VectorHub is a free and open-sourced learning hub that is sponsored and curated by Superlinked. We encourage you to contribute or make a suggestion on our GitHub.

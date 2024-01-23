@@ -1,0 +1,152 @@
+{
+  "name": "CrateDB",
+  "links": {
+    "docs": "https://cratedb.com/solutions/vector-database",
+    "github": "https://github.com/crate/crate",
+    "website": "http://www.cratedb.com/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/98",
+    "poc_github": "https://github.com/marijaselakovic",
+    "slug": "cratedb"
+  },
+  "oss": {
+    "support": "full",
+    "source_url": "https://github.com/crate/crate",
+    "comment": "https://github.com/crate/crate"
+  },
+  "license": {
+    "value": "Apache 2.0",
+    "source_url": "",
+    "comment": ""
+  },
+  "dev_languages": {
+    "value": [
+      "java"
+    ],
+    "source_url": "",
+    "comment": ""
+  },
+  "github_stars": 3800,
+  "vector_launch_year": 2023,
+  "metadata_filter": {
+    "support": "full",
+    "source_url": "https://cratedb.com/docs/crate/reference/en/5.5/general/builtins/scalar-functions.html",
+    "comment": "combine knn_match with other criteria"
+  },
+  "hybrid_search": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "facets": {
+    "support": "full",
+    "source_url": "https://cratedb.com/docs/crate/reference/en/5.5/general/builtins/aggregation.html",
+    "comment": ""
+  },
+  "geo_search": {
+    "support": "full",
+    "source_url": "https://cratedb.com/docs/crate/reference/en/5.5/general/dql/geo.html",
+    "comment": ""
+  },
+  "multi_vec": {
+    "support": "full",
+    "source_url": "https://cratedb.com/docs/crate/reference/en/5.5/general/ddl/data-types.html",
+    "comment": "add more columns of type knn_vector"
+  },
+  "sparse_vectors": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "bm25": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "full_text": {
+    "support": "full",
+    "source_url": "https://cratedb.com/docs/crate/reference/en/5.5/general/dql/fulltext.html",
+    "comment": "based on Apache Lucene"
+  },
+  "embeddings_text": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_image": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_structured": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "rag": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "recsys": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "langchain": {
+    "support": "full",
+    "source_url": "https://github.com/crate-workbench/langchain",
+    "comment": ""
+  },
+  "llamaindex": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "full",
+    "source_url": "https://console.cratedb.cloud/",
+    "comment": "https://console.cratedb.cloud/"
+  },
+  "pricing": {
+    "value": "CrateDB Pricing https://console.cratedb.cloud/",
+    "source_url": "https://cratedb.com/product/pricing",
+    "comment": ""
+  },
+  "in_process": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_tenancy": {
+    "support": "full",
+    "source_url": "https://cratedb.com/docs/crate/reference/en/5.5/admin/privileges.html",
+    "comment": "via Schemas, Tables"
+  },
+  "disk_index": {
+    "support": "full",
+    "source_url": "https://cratedb.com/blog/guide-to-write-operations-in-cratedb",
+    "comment": "all tables and columns in CrateDB are stored in lucene indexes/segments on disk. \nhttps://cratedb.com/blog/guide-to-write-operations-in-cratedb"
+  },
+  "ephemeral": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "sharding": {
+    "support": "full",
+    "source_url": "https://cratedb.com/docs/crate/reference/en/5.5/general/ddl/sharding.html",
+    "comment": ""
+  },
+  "doc_size": {
+    "bytes": 0,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 2048,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  }
+}

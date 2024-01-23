@@ -4,11 +4,11 @@
 
 ## Introduction 
 
-“Software is eating the world,” penned Marc Andreessen back in 2011. Now, more than a decade later, there’s a new guest at the table, and “**AI is eating software**.” More products and processes, including the creation of software itself, are being powered by advanced Machine Learning.
+Back in 2011, Marc Andreessen told us “Software is eating the world.” Now, more than a decade later, there’s a new guest at the table, and “**AI is eating software**.” More products and processes, including the creation of software itself, are being powered by advanced Machine Learning.
 
-But it’s not an all-you-can-eat buffet. ML can’t just ingest anything it wants, whenever it wants. Building a good ML-powered system involves overcoming two common problems: **organizing** your data in a way that lets you quickly retrieve relevant information, and, relatedly, **representing** your data in a way that makes it easy to feed into your ML models.
+But Machine Learning shouldn't just ingest and create haphazardly. To build a good ML-powered system, you have to overcome two common problems: **organizing** your data in a way that lets you quickly retrieve relevant information, and, relatedly, **representing** your data in a way that makes it easy to feed into your ML models.
 
-![Meme](assets/building_blocks/vector_compute/bb2-1.png)
+<img src=assets/building_blocks/vector_compute/bb2-1.png alt="Meme" data-size="100" />
 
 These two problems are related. Indeed, they converge as parts of what is, in essence, _the_ defining challenge of many ML systems: turning your data into vector embeddings – that is, **connecting** your [Data Sources](https://hub.superlinked.com/data-sources) to your [Vector Search & Management](https://hub.superlinked.com/vector-search) system.
 
@@ -20,11 +20,11 @@ In basic terms, Vector Compute is the infrastructure responsible for the **train
 
 ## Vector Compute and ETL, not the same thing
 
-![How VC and ETL are analogous](assets/building_blocks/vector_compute/bb2-2.png)
+<img src=assets/building_blocks/vector_compute/bb2-2-2.png alt="How Vector Compute and ETL are analogous" data-size="100" />
 
 The role Vector Compute fills for your information retrieval system is similar to the role ETL tools like fivetran fill for your data warehouse. As in ETL, in Vector Compute you have to Extract the right information, Transform it into Vector Embeddings, and Load it into your Vector Search solution or cloud storage. 
 
-![How VC and ETL work together](assets/building_blocks/vector_compute/bb2-3-2.png)
+<img src=assets/building_blocks/vector_compute/bb2-3-3.png alt="How Vector Compute and ETL work together" data-size="100" />
 
 There are, however, **two important distinctions** between ETL and Vector Compute:
 
