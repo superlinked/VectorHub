@@ -9,7 +9,7 @@
     "slug": "nucliadb"
   },
   "oss": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
@@ -27,79 +27,79 @@
     "comment": ""
   },
   "github_stars": 497,
-  "vector_launch_year": 0,
+  "vector_launch_year": 2021,
   "metadata_filter": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "hybrid_search": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "facets": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "geo_search": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "multi_vec": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "sparse_vectors": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "bm25": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "full_text": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "embeddings_text": {
-    "support": "",
+    "support": "partial",
     "source_url": "",
-    "comment": ""
+    "comment": "Done in the cloud"
   },
   "embeddings_image": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "embeddings_structured": {
-    "support": "",
+    "support": "partial",
     "source_url": "",
-    "comment": ""
+    "comment": "Graph. Done in the cloud"
   },
   "rag": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "recsys": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "langchain": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "llamaindex": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
@@ -110,8 +110,8 @@
   },
   "pricing": {
     "value": "",
-    "source_url": "",
-    "comment": ""
+    "source_url": "https://nuclia.com/pricing/",
+    "comment": "Pricing|Nuclia"
   },
   "in_process": {
     "support": "none",
@@ -119,34 +119,34 @@
     "comment": ""
   },
   "multi_tenancy": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "disk_index": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "ephemeral": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "sharding": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "doc_size": {
     "bytes": 0,
-    "unlimited": false,
+    "unlimited": true,
     "source_url": "",
-    "comment": ""
+    "comment": "Max vectors of 50K"
   },
   "vector_dims": {
-    "value": 0,
-    "unlimited": false,
+    "value": "",
+    "unlimited": true,
     "source_url": "",
     "comment": ""
   }
