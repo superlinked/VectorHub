@@ -1,0 +1,152 @@
+{
+  "name": "Pinecone",
+  "links": {
+    "docs": "https://docs.pinecone.io/",
+    "github": "https://github.com/pinecone-io",
+    "website": "https://www.pinecone.io/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/65",
+    "poc_github": "https://github.com/jamescalam",
+    "slug": "pinecone"
+  },
+  "oss": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "license": {
+    "value": "Proprietary",
+    "source_url": "",
+    "comment": ""
+  },
+  "dev_languages": {
+    "value": [
+      "rust"
+    ],
+    "source_url": "",
+    "comment": ""
+  },
+  "github_stars": 0,
+  "vector_launch_year": 2019,
+  "metadata_filter": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "hybrid_search": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "facets": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "geo_search": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_vec": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "sparse_vectors": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "bm25": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "full_text": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_text": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_image": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_structured": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "rag": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "recsys": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "langchain": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "llamaindex": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "pricing": {
+    "value": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "in_process": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_tenancy": {
+    "support": "full",
+    "source_url": "",
+    "comment": "via namespaces"
+  },
+  "disk_index": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "ephemeral": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "sharding": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "doc_size": {
+    "bytes": 40000,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 20000,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  }
+}

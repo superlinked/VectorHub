@@ -1,4 +1,5 @@
 - [Home](home.md)
+- [VDB Feature Matrix](tools/vdb_table/README.md)
 - [Manifesto](manifesto.md)
 - [Subscribe](subscribe.md)
 
@@ -21,8 +22,13 @@
   - [Recommender Systems](use_cases/recommender_systems.md)
   - [Retrieval Augmented Generation](use_cases/retrieval_augmented_generation.md)
   - [Enhancing RAG with multiple agents](use_cases/multi_agent_rag.md)
+  - [Embeddings on browser](use_cases/embeddings_on_browser.md)
+  - [Answering Questions with Knowledge Graph Embeddings](use_cases/knowledge_graph_embedding.md)
+  - [Representation Learning on Graph Structured Data](use_cases/node_representation_learning.md)
+  - [Improving RAG performance with Knowledge Graphs](use_cases/knowledge_graphs.md) 
 
-- [Toolbox](tools/readme.md)
+<!-- - [Toolbox](tools/readme.md)
+- [TestPage](tools/testpage.md) -->
 
 - [Contributing](contributing/readme.md)
   - [Markdown Formatting](contributing/markdown_formatting.md)

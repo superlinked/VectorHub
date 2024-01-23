@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "vdb_table/schema/vendor",
+  "type": "object",
+
+  "properties": {
+    "name": {"type": "string", "$comment": "About | Vendor | " },
+    "links": {"allOf": [{"$ref": "#/$defs/links"}], "$comment": "About | Links | " },
+    "oss": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "About | OSS | The code-base is open source and users can self-host it for free." },
+    "license": {"allOf": [{"$ref": "#/$defs/stringWithSource"}], "$comment": "About | License | The license the source code is released under." },
+    "dev_languages": {"allOf": [{"$ref": "#/$defs/stringListWithSource"}], "$comment": "About | Dev Lang | The language the database is developed in." },
+    "github_stars": {"type": "integer", "$comment": "About | GitHub ⭐ | The number of stars for the core product repository." },
+    "vector_launch_year": {"type": "integer", "$comment": "About | VSS Launch | The year of the first release for the vector search functionality." },
+    "metadata_filter": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | Filters | Metadata filtering support within vector search - allowing users to refine results based on additional contextual informatio and enhancing precision in search queries. Not to be confused with filters/faceting in Lucene based keyword search." },
+    "hybrid_search": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | Hybrid Search | Built-in blending of the 2 lists (keyword & vector search results) being done natively within the DB using something like Reciprocal Rank Fusion." },
+    "facets": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | Facets | Built-in aggregations on facets and facet cardinality calculation (similar to Lucene)." },
+    "geo_search": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | Geo Search | Built-in geospatial index for location queries." },
+    "multi_vec": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | Multi-Vector | Ability to create and index multiple vectors for a given document." },
+    "sparse_vectors": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | Sparse | Bring your own sparse vectors (e.g. TF-IDF) and have them be indexed and available for retrieval in the database." },
+    "bm25": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | BM25 | Built-in tokenization, indexing, and scoring for BM25." },
+    "full_text": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | Full-Text | Built-in inverted index for terms, capable of boolean queries (similar to Lucene)." },
+    "embeddings_text": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Models | Text Model | Ability to plug in commonly-used embedding models for text vectorization (Sentence-transformers/HuggingFace feature extraction models)" },
+    "embeddings_image": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Models | Image Model | Ability to plug in image embedding models for vectorization (e.g. CLIP)." },
+    "embeddings_structured": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Models | Struct Model | Ability to plug in models used to embedd structured data like user clicks and graphs." },
+    "rag": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "APIs | RAG | Calls a LLM internally for a full-stack Retrieval Augmented Generation solution." },
+    "recsys": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "APIs | RecSys | Built-in support for recommendation system functionality, e.g. a solution that refines the results based on behavioral data." },
+    "langchain": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "APIs | LangChain | Built-in integration with the LlamaIndex library." },
+    "llamaindex": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "APIs | LlamaIndex | Built-in integration with the LangChain library." },
+    "managed_cloud": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | Managed | A managed cloud offering is available." },
+    "pricing": {"allOf": [{"$ref": "#/$defs/stringWithSource"}], "$comment": "Ops | Pricing | The pricing models very widely, so this field is unstructured and ideally points to a pricing page." },
+    "in_process": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | In-process | Ability to run embedded within the application process, which leads to a simpler deployment and management in situations when the whole workload fits into one machine." },
+    "multi_tenancy": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | Multi-Tenant | Multi-tenancy - the ability to store multiple isolated indexes within one database instance." },
+    "disk_index": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | Disk Index | The vector search index can be held on disk while in use, as opposed to holding it in RAM, which makes the management of large indices more affordable." },
+    "ephemeral": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | Ephemeral Index | Ephemeral index support without a server." },
+    "sharding": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | Sharding | The search index is sharded across multiple machines." },
+    "doc_size": {"allOf": [{"$ref": "#/$defs/bytesWithSource"}], "$comment": "Ops | Document Size | Maximum size of a stored document." },
+    "vector_dims": {"allOf": [{"$ref": "#/$defs/integerWithSource"}], "$comment": "Ops | Vector Dims | Maximum number of vector dimensions." }    
+  
+  },
+
+  "$defs": {
+    "links": {
+      "$id": "links",
+      "type": "object",
+      "properties": {
+        "docs": {"type": "string"},
+        "github": {"type": "string"},
+        "website": {"type": "string"},
+        "vendor_discussion": {"type": "string"},
+        "poc_github": {"type": "string"},
+        "slug": {"type": "string"}
+      }
+    },
+    "featureWithSource": {
+      "$id": "featureWithSource",
+      "type": "object",
+      "properties": {
+        "support": {"enum": ["", "none", "partial", "full"]},
+        "source_url": {"type": "string"},
+        "comment": {"type": "string"}
+      }
+    },
+    "stringWithSource": {
+      "$id": "stringWithSource",
+      "type": "object",
+      "properties": {
+        "value": {"type": "string"},
+        "source_url": {"type": "string"},
+        "comment": {"type": "string"}
+      }
+    },
+    "stringListWithSource": {
+      "$id": "stringListWithSource",
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source_url": {"type": "string"},
+        "comment": {"type": "string"}
+      }
+    },
+    "integerWithSource": {
+      "$id": "integerWithSource",
+      "type": "object",
+      "properties": {
+        "value": {"type": "integer"},
+        "unlimited": {"type": "boolean"},
+        "source_url": {"type": "string"},
+        "comment": {"type":"string"}
+      }
+    },
+    "bytesWithSource": {
+      "$id": "bytesWithSource",
+      "type": "object",
+      "properties": {
+        "bytes": {"type": "integer"},
+        "unlimited": {"type": "boolean"},
+        "source_url": {"type": "string"},
+        "comment": {"type":"string"}
+      }
+    }
+  }
+}
