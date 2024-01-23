@@ -15,31 +15,29 @@
   },
   "license": {
     "value": "MIT",
-    "source_url": "",
+    "source_url": "https://github.com/meilisearch/meilisearch/blob/main/LICENSE",
     "comment": ""
   },
   "dev_languages": {
-    "value": [
-      "rust"
-    ],
+    "value": ["rust"],
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 40100,
-  "vector_launch_year": 0,
+  "github_stars": 41204,
+  "vector_launch_year": 2023,
   "metadata_filter": {
     "support": "full",
     "source_url": "https://solr.apache.org/guide/solr/latest/query-guide/dense-vector-search.html",
     "comment": "Dense vector search"
   },
   "hybrid_search": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://blog.meilisearch.com/meilisearch-1-6/",
     "comment": ""
   },
   "facets": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://www.meilisearch.com/docs/reference/api/facet_search#perform-a-facet-search",
     "comment": ""
   },
   "geo_search": {
@@ -119,7 +117,7 @@
   },
   "multi_tenancy": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://blog.meilisearch.com/multi-tenancy-guide/",
     "comment": ""
   },
   "disk_index": {
