@@ -1,4 +1,4 @@
-# Using Knowledge Graphs + Embeddings to Further Augment RAG Systems
+# Improving RAG performance with Knowledge Graphs
 
 We look at the limitations of not just LLMs but also standard RAG solutions to LLM's knowledge and reasoning gaps, and examine the ways Knowledge Graphs combined with vector embeddings can fill these gaps - through graph embedding constraints, judicious choice of reasoning techniques, careful retrieval design, collaborative filtering, and flywheel learning. 
 
