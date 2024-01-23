@@ -14,7 +14,6 @@ Let's take a closer look at how we can combine vector embeddings and KGs, fusin
 
 We start by exploring the inherent weaknesses of relying on vector search in isolation, and then show how to combine KGs and embeddings complementarily, to overcome the limitations of each.
 
-
 ## RAG Vector Search: process and limits
 
 Most RAG systems employ vector search on a document collection to surface relevant context for the LLM. This process has **several key steps**:
@@ -24,6 +23,8 @@ Most RAG systems employ vector search on a document collection to surface releva
 3. **Query Encoding**: An incoming user query is encoded as a vector representation, using the same embedding model.
 4. **Similarity Retrieval**: Using distance metrics like cosine similarity, the system runs a search over the indexed passages to find closest neighbors to the query vector.
 5. **Passage Return**: The system returns the most similar passage vectors, and extracts the corresponding original text to provide context for the LLM.
+
+![RAG](../assets/use_cases/knowledge_graphs/RAG.png)
   
 This RAG Vector Search pipeline has **several key limitations**:
 
@@ -48,6 +49,8 @@ How do KGs augment retrieval?
 5. **Joint Reasoning** — Entity Resolution can identify and link references that pertain to the same real-world object, enabling collective analysis.
 6. **Explainable Relevance** — Graph topology lets us transparently analyze the connections and relationships that determine why certain facts are retrieved as relevant.
 7. **Personalization** — KGs capture and tailor query results according to user attributes, context, and historical interactions.
+
+![RAG + Knowledge Graph](../assets/use_cases/knowledge_graphs/rag_kg.png)
 
 In sum, whereas RAG performs matching on disconnected nodes, KGs enable graph traversal search and retrieval of interconnected contextual, search for query-relevant facts, make the ranking process transparent, and encode structured facts, relationships, and context to enable complex, precise, multi-step reasoning. As a result, compared to pure vector search, KGs can improve relevance and explanatory power.
 
@@ -159,7 +162,7 @@ Streaming data pipelines, while continuously updating the KG, will not necessari
 
 Each loop of the flywheel analyzes current usage patterns and remediates more data issues, incrementally improving the quality of the Knowledge Graph. The flywheel process thus enables the KG and language model to co-evolve and improve in accordance with feedback from real-world system operation. Flywheel learning provides a scaffolding for continuous, automated improvement of the Knowledge Graph, tailoring it to fit the language model's needs. This powers the accuracy, relevance, and adaptability of the language model.
 
-## Conclusion:
+## Conclusion
 
 In sum, to achieve human-level performance, language AI must be augmented by retrieving external knowledge and reasoning. Where LLMs and RAG struggle with representing the context and relationships between real-world entities, Knowledge Graphs excel. The Knowledge Graph's structured representations permit complex, multi-hop, logical reasoning over interconnected facts. 
 
@@ -167,4 +170,11 @@ Still, while KGs provide previously missing information to language models, KGs 
 
 Finally, KG's aren't perfect; they have knowledge gaps and need updating. Flywheel Learning can make up for KG knowledge gaps through live system analysis, and handle continuous, large volume data updates to keep the KG current. Flywheel learning thus enables the co-evolution of KGs and LLMs to achieve better reasoning, accuracy, and relevance in language AI applications.
 
-The partnership of KGs and embeddings provides the building blocks moving language AI to true comprehension — conversation agents that understand context and history, recommendation engines that discern subtle preferences, and search systems that synthesize accurate answers by connecting facts. As we continue to improve our solutions to the challenges of constructing high-quality Knowledge Graphs, benchmarking, noise handling, and more, a key role will no doubt be played by hybrid techniques combining symbolic and neural approaches. 
+The partnership of KGs and embeddings provides the building blocks moving language AI to true comprehension — conversation agents that understand context and history, recommendation engines that discern subtle preferences, and search systems that synthesize accurate answers by connecting facts. As we continue to improve our solutions to the challenges of constructing high-quality Knowledge Graphs, benchmarking, noise handling, and more, a key role will no doubt be played by hybrid techniques combining symbolic and neural approaches.
+
+---
+## Contributors
+The author and editor have adapted this article with extensive content and format revisions from the author's previous article [Embeddings + Knowledge Graphs](https://towardsdatascience.com/embeddings-knowledge-graphs-the-ultimate-tools-for-rag-systems-cbbcca29f0fd), published in Towards Data Science, Nov 14, 2023.
+
+- [Anthony Alcaraz](https://www.linkedin.com/in/anthony-alcaraz-b80763155/)
+- [Robert Turner, editor](https://robertturner.co/copyedit)
