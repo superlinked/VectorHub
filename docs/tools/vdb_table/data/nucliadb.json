@@ -145,7 +145,7 @@
     "comment": "Max vectors of 50K"
   },
   "vector_dims": {
-    "value": "",
+    "value": 0,
     "unlimited": true,
     "source_url": "",
     "comment": ""
