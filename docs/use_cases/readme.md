@@ -18,6 +18,7 @@ In the blog section, we collate examples of these use cases and case studies fro
 - [Answering Questions with Knowledge Embeddings](https://hub.superlinked.com/answering-questions-with-knowledge-graph-embeddings)
 - [Representation Learning on Graph Structured Data](https://hub.superlinked.com/representation-learning-on-graph-structured-data)
 - [Improving RAG performance with Knowledge Graphs](use_cases/knowledge_graphs.md) 
+- [Real-time Socal Media Retrieval System](use_cases/social_media_retrieval.md)
 
 
 We are always looking to expand our Use Cases and share the latest thinking. So if you've been working on something and would like to share your experiences with the community, you [get in touch and contribute](https://github.com/superlinked/VectorHub).
