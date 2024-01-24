@@ -10,8 +10,8 @@
   },
   "oss": {
     "support": "full",
-    "source_url": "",
-    "comment": ""
+    "source_url": "https://github.com/nuclia/nucliadb",
+    "comment": "https://github.com/nuclia/nucliadb"
   },
   "license": {
     "value": "AGPLv3",
@@ -74,9 +74,9 @@
     "comment": "Done in the cloud"
   },
   "embeddings_image": {
-    "support": "none",
+    "support": "partial",
     "source_url": "",
-    "comment": ""
+    "comment": "Done in the cloud"
   },
   "embeddings_structured": {
     "support": "partial",
@@ -142,7 +142,7 @@
     "bytes": 0,
     "unlimited": true,
     "source_url": "",
-    "comment": "Max vectors of 50K"
+    "comment": "Max vectors of 50K for any given resource/doc in NucliaDB."
   },
   "vector_dims": {
     "value": 0,
