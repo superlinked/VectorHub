@@ -63,22 +63,22 @@
     "comment": ""
   },
   "full_text": {
-    "support": "full",
-    "source_url": "https://github.com/pinecone-io/examples/blob/master/docs/semantic-search.ipynb",
+    "support": "none",
+    "source_url": "",
     "comment": ""
   },
   "embeddings_text": {
     "support": "full",
-    "source_url": "https://github.com/pinecone-io/examples/blob/master/docs/semantic-search.ipynb",
+    "source_url": "https://github.com/pinecone-io/canopy",
     "comment": ""
   },
   "embeddings_image": {
-    "support": "full",
+    "support": "",
     "source_url": "https://github.com/pinecone-io/image-search-example",
     "comment": ""
   },
   "embeddings_structured": {
-    "support": "full",
+    "support": "",
     "source_url": "https://github.com/pinecone-io/examples/blob/master/learn/search/question-answering/table-qa.ipynb",
     "comment": ""
   },
