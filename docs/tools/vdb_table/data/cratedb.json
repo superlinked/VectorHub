@@ -3,7 +3,7 @@
   "links": {
     "docs": "https://cratedb.com/solutions/vector-database",
     "github": "https://github.com/crate/crate",
-    "website": "http://www.cratedb.com/",
+    "website": "https://cratedb.com/",
     "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/98",
     "poc_github": "https://github.com/crate/cratedb-examples",
     "slug": "cratedb"
