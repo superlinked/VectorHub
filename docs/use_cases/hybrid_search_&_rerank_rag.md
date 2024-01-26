@@ -5,7 +5,7 @@
 
 **RAG (Retrieval Augmented Generation)** has been the preferred strategy for AI developers all around the world to power their LLMs with up-to-date knowledge. It introduces a new age of information retrieval and search which has enabled many AI technologies we use often, like the Bing Chatbot, Google Bard or even the ChatPDF. A RAG architecture assists an LLM in identifying the most pertinent context and providing precise responses, similar to how a librarian aids an individual in choosing a preferred book from a vast collection.
 
-![Conventional RAG Workflow](..\assets\use_cases\hybrid_search_&_rerank_rag\RAGDiagram.png "Fig 1")
+![Conventional RAG Workflow](../assets/use_cases/hybrid_search_&_rerank_rag/RAGDiagram.png "Fig 1")
 
 As depicted in the figure, the retriever fetches relevant data from the knowledge base whenever a query is passed and the LLM can answer the query by examining the context provided. The accuracy of the response increases with the precision of the retrieved context. RAG solves a major issue in LLMs called **hallucination** where LLMs fail to respond with relevant context to the query and spit out irrelevant or false data which it thinks is true and thus gives the phenomenon its name.
 
@@ -19,7 +19,7 @@ Normal RAG systems find it difficult to match exact names like “Joe Biden” o
 Vector similarity works well even when there are spelling mistakes in the query because these typically don’t alter the overall meaning of the sentence. However, for precise word or abbreviation matching, vector similarity may not suffice because the abbreviations and names just dissolve in the vector embeddings along with the words around them. So, we need something to keep tabs on keywords also. 
 How can we solve such issues? One way is to tweak the search method to accommodate keywords. However, this would make the retrieval system weaker as identifying similarities is the fundamental objective when we decide to transform data into embeddings. The perfect way to do this is to take the best from semantic search and keyword search approaches while mitigating their limitations as much as possible. This keyword-sensitive semantic search is what we call **Hybrid Search**.
 
-![Hybrid Search in RAG](..\assets\use_cases\hybrid_search_&_rerank_rag\HybridSearch.png "Fig 2")
+![Hybrid Search in RAG](../assets/use_cases/hybrid_search_&_rerank_rag/HybridSearch.png "Fig 2")
 
 Microsoft discusses this concept in their [article](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/azure-ai-search-outperforming-vector-search-with-hybrid/ba-p/3929167): “Azure AI Search: Outperforming vector search with hybrid retrieval and ranking capabilities”.  Document chunking plays a crucial role in deciding the speed of search and the performance of the retrieval system. The whole document is divided into chunks with a fixed token length and indexed. 
 
@@ -83,7 +83,7 @@ Use this retriever in the standarad RAG pipeline code.
 
 A response by hybrid search does not solve our issue completely. A hybrid search scans the entire corpus to find all possible sections that could contain the answer. Typically, algorithms yield the top-k matches. However, the challenge lies in the fact that these top-k matches may not always include the relevant sections, or conversely, not all relevant sections may be within these top-k matches. At this point, we recognize the necessity to rank all the retrieved content based on a score that indicates semantic relevance with the query.
 
-![Hybrid Search + Rerank](..\assets\use_cases\hybrid_search_&_rerank_rag\Rerank.png "Fig 3")
+![Hybrid Search + Rerank](../assets/use_cases/hybrid_search_&_rerank_rag/Rerank.png "Fig 3")
 
 The responses from the retriever are passed to a semantic scoring model. Semantic scoring models are transformer models that take in queries and documents to produce a score in a calibrated range. There are many models like [ember](https://huggingface.co/llmrails/ember-v1) that are available to use. In the Azure AI approach, 0 stands for irrelevant and the maximum score is at 4. After reranking, a list of documents is returned, sorted according to relevance score, from highest to lowest.  Results are arranged in a sequence based on their scores and incorporated into the response payload of the query. The relevance score will be based on the semantic similarity calculated between the query and the document.
 Now, the LLM gets the most relevant part of the document that can satisfy what the user has asked. It then generates appropriate responses based on this content.
@@ -95,14 +95,14 @@ Hybrid search and reranking have shown significant progress in RAG performance. 
 Here are some comparisons with various approaches on benchmark and real-world datasets from the Azure AI article.
 
 
-![Comparison of Retrieval Modes](..\assets\use_cases\hybrid_search_&_rerank_rag\RetrievalComparison.png "Fig 4")
+![Comparison of Retrieval Modes](../assets/use_cases/hybrid_search_&_rerank_rag/RetrievalComparison.png "Fig 4")
 
 *Comparison of Retrieval Modes*, *Alec Berntson*, *2023*, *Azure AI*
 
 
 <br>The below chart from Azure AI shows the percentage of queries showing high-quality results in the top-5 retrievals.
 
-![Percentage of queries where high-quality chunks are found in the top 1 to 5 results](..\assets\use_cases\hybrid_search_&_rerank_rag\Performancegraph.png "Fig 5")
+![Percentage of queries where high-quality chunks are found in the top 1 to 5 results](../assets/use_cases/hybrid_search_&_rerank_rag/Performancegraph.png "Fig 5")
 
 *Percentage of queries where high-quality chunks are found in the top 1 to 5 results*, *Alec Berntson*, *2023*, *Azure AI*
 
