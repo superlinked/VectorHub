@@ -1,0 +1,153 @@
+{
+  "name": "Activeloop Deep Lake",
+  "links": {
+    "docs": "https://docs.activeloop.ai/",
+    "github": "https://github.com/activeloopai/deeplake",
+    "website": "https://www.activeloop.ai/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/97",
+    "poc_github": "https://github.com/davidbuniat",
+    "slug": "activeloop"
+  },
+  "oss": {
+    "support": "full",
+    "source_url": "https://github.com/activeloopai/deeplake",
+    "comment": "https://github.com/activeloopai/deeplake"
+  },
+  "license": {
+    "value": "MPL 2.0",
+    "source_url": "",
+    "comment": ""
+  },
+  "dev_languages": {
+    "value": [
+      "python",
+      "c++"
+    ],
+    "source_url": "",
+    "comment": ""
+  },
+  "github_stars": 7375,
+  "vector_launch_year": 2023,
+  "metadata_filter": {
+    "support": "full",
+    "source_url": "https://docs.activeloop.ai/example-code/tutorials/vector-store/vector-search-options/deep-lake-vector-store-api#filter-search-using-udfs",
+    "comment": ""
+  },
+  "hybrid_search": {
+    "support": "",
+    "source_url": "https://docs.activeloop.ai/performance-features/querying-datasets/query-syntax",
+    "comment": "While you can run embedding search + contains(text, 'keywoard') or multiple those (keyword search inside text tensor) since BM25 not available I wouldn't call a full hybrid search.  https://docs.activeloop.ai/performance-features/querying-datasets/query-syntax"
+  },
+  "facets": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "geo_search": {
+    "support": "none",
+    "source_url": "",
+    "comment": "although doable with UDFs and location storage"
+  },
+  "multi_vec": {
+    "support": "full",
+    "source_url": "https://docs.activeloop.ai/technical-details/data-layout",
+    "comment": "https://docs.activeloop.ai/technical-details/data-layout"
+  },
+  "sparse_vectors": {
+    "support": "partial",
+    "source_url": "https://docs.deeplake.ai/en/latest/Htypes.html",
+    "comment": "no native sparse vector support, although it supports all numpy arrays hence can also store sparse numpy arrays"
+  },
+  "bm25": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "full_text": {
+    "support": "partial",
+    "source_url": "",
+    "comment": "you can search keywords with TQL `contains(...)` function"
+  },
+  "embeddings_text": {
+    "support": "partial",
+    "source_url": "https://docs.activeloop.ai/quickstart",
+    "comment": "possible to load an embedding model as a UDF with embedding_function argument"
+  },
+  "embeddings_image": {
+    "support": "partial",
+    "source_url": "https://docs.activeloop.ai/quickstart",
+    "comment": "possible to load an embedding model as a UDF with embedding_function argument"
+  },
+  "embeddings_structured": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "rag": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "recsys": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "langchain": {
+    "support": "full",
+    "source_url": "https://python.langchain.com/docs/integrations/vectorstores/activeloop_deeplake",
+    "comment": "https://python.langchain.com/docs/integrations/vectorstores/activeloop_deeplake"
+  },
+  "llamaindex": {
+    "support": "full",
+    "source_url": "https://docs.llamaindex.ai/en/stable/examples/vector_stores/DeepLakeIndexDemo.html",
+    "comment": "https://docs.llamaindex.ai/en/stable/examples/vector_stores/DeepLakeIndexDemo.html"
+  },
+  "managed_cloud": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "pricing": {
+    "value": "Free 200GB, then $100 per month per 30M embeddings (200GB)",
+    "source_url": "https://www.activeloop.ai/pricing/",
+    "comment": ""
+  },
+  "in_process": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_tenancy": {
+    "support": "full",
+    "source_url": "https://docs.deeplake.ai/en/latest/deeplake.html",
+    "comment": "create a dataset per tenant, similar to collections/namespaces"
+  },
+  "disk_index": {
+    "support": "full",
+    "source_url": "https://docs.activeloop.ai/performance-features/index-for-ann-search",
+    "comment": "Custom Memory optimized HNSW that sits on top of an object storage (including FS)"
+  },
+  "ephemeral": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "sharding": {
+    "support": "partial",
+    "source_url": "https://docs.activeloop.ai/technical-details/data-layout",
+    "comment": ""
+  },
+  "doc_size": {
+    "bytes": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
+  }
+}
