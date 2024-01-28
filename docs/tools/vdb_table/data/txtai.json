@@ -1,0 +1,152 @@
+{
+  "name": "txtai",
+  "links": {
+    "docs": "https://neuml.github.io/txtai/",
+    "github": "https://github.com/neuml/txtai",
+    "website": "https://neuml.github.io/txtai/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/86",
+    "poc_github": "https://github.com/davidmezzetti",
+    "slug": "txtai"
+  },
+  "oss": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "license": {
+    "value": "Apache-2.0",
+    "source_url": "",
+    "comment": ""
+  },
+  "dev_languages": {
+    "value": [
+      "python"
+    ],
+    "source_url": "",
+    "comment": ""
+  },
+  "github_stars": 5972,
+  "vector_launch_year": 2020,
+  "metadata_filter": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "hybrid_search": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "facets": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "geo_search": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_vec": {
+    "support": "full",
+    "source_url": "https://neuml.hashnode.dev/whats-new-in-txtai-60",
+    "comment": "https://neuml.hashnode.dev/whats-new-in-txtai-60#heading-subindexes"
+  },
+  "sparse_vectors": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "bm25": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "full_text": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_text": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_image": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_structured": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "rag": {
+    "support": "full",
+    "source_url": "https://neuml.hashnode.dev/build-rag-pipelines-with-txtai",
+    "comment": "https://neuml.hashnode.dev/build-rag-pipelines-with-txtai"
+  },
+  "recsys": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "langchain": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "llamaindex": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "pricing": {
+    "value": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "in_process": {
+    "support": "full",
+    "source_url": "",
+    "comment": "txtai embeddings indexes can be loaded and run directly in a Python application"
+  },
+  "multi_tenancy": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "disk_index": {
+    "support": "partial",
+    "source_url": "https://neuml.github.io/txtai/embeddings/configuration/ann/#faiss",
+    "comment": "txtai embeddings indexes support on disk operations via mmap"
+  },
+  "ephemeral": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "sharding": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "doc_size": {
+    "bytes": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
+  }
+}
