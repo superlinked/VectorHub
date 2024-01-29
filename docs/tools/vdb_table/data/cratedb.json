@@ -5,7 +5,7 @@
     "github": "https://github.com/crate/crate",
     "website": "https://cratedb.com/",
     "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/98",
-    "poc_github": "https://github.com/crate/cratedb-examples",
+    "poc_github": "https://github.com/crate/marijaselakovic",
     "slug": "cratedb"
   },
   "oss": {
@@ -29,7 +29,7 @@
   "vector_launch_year": 2023,
   "metadata_filter": {
     "support": "full",
-    "source_url": "https://cratedb.com/docs/crate/reference/en/latest/general/builtins/scalar-functions.html",
+    "source_url": "https://cratedb.com/docs/crate/reference/en/latest/general/builtins/comparison-operators.html",
     "comment": "Combine similarity search (knn_match) with any other filter criteria."
   },
   "hybrid_search": {
