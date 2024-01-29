@@ -61,7 +61,7 @@ The access patterns deployed in Vector Search significantly impact storage, quer
 
 [Read more about the different access patterns, here](https://hub.superlinked.com/32-key-access-patterns)
 
-**1.3 Conclusions & Next Steps**
+### **3.3 Conclusions & Next Steps**
 So what does this all mean? 
 
 [Read our conclusions and recommended next steps, here](https://hub.superlinked.com/33-conclusion)
