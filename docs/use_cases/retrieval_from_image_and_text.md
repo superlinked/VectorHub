@@ -218,7 +218,7 @@ Now, let's put all the results side by side for comparison.
 
 ![](assets/use_cases/retrieval_from_image_and_text/table_all_scenarios_oiv7.png)
 
-In both the COCO and Open Images V7 datasets, the BLIP and OpenCLIP models emerged as the most efficient feature extractors. 
+In both the COCO and Open Images V7 datasets, the BLIP and OpenCLIP models (vision transformer models) emerged as the most efficient feature extractors. 
 On the COCO dataset, the BLIP model achieved comparable performance when utilizing only the image modality. The top 
 Sentence Transformers trailed by about 2% in MRR, but their inference speed is significantly faster. However, on the 
 Open Images V7 dataset, the distinction was that the Sentence Transformers lagged behind the other models by around -37% in 
