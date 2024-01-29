@@ -44,8 +44,13 @@ For RAG it can be restated as :
 ### If you can't retrieve it, you can't generate it!!
 
 Assuming you are aware of the different components of
-RAG viz. Information Retrieval - Augmentation - Response Generation
-Here we are talking about an evaluation methodology/framework that is essentially composed of using one/multiple tools, that cover each step to ensure our measurements are granular and thorough.
+RAG viz. Information Retrieval - Context Augmentation - Response Generation
+
+We categorised the component-wise challenges to understand it better to evaluate each component in isolation. 
+
+<img src=/assets/use_cases/retrieval_augmented_generation_eval/rag_challenges.png alt="Classification of Challenges of RAG Evaluation" data-size="100" />
+
+We need an evaluation methodology/framework that is essentially composed of using one/multiple tools, that cover each component of RAG to ensure our measurements are granular and thorough.
 
 An Evaluation metric could be one or a combination of many different metrics to assess the effectiveness of retrieval, coherence of generated responses, and relevance to the retrieved information.
 
@@ -55,7 +60,7 @@ An Evaluation metric could be one or a combination of many different metrics to 
 
 ## Strategies for Evaluation
 
-Now that we have defined different levels at which we can break down the RAG pipeline, let us zoom into the levels individually, starting from the level 1. 
+Now that we have defined different challenges and levels at which we can break down the RAG evaluation, let us zoom into the levels individually, starting from the level 1. 
 
 ### Model Evaluation 
 
@@ -100,10 +105,20 @@ A [utility]("https://chunkviz.up.railway.app/") like this seem very useful to vi
 
 ### Semantic Retrieval Evaluation
 
-This stage of evaluation goes into iteration with the other 2 previous stages as it puts them to a litmus test.
-We may have to go back and forth frequently.
+This stage of evaluation goes into iteration with the previous two stages as it puts them to a litmus test.
 
+Retrieval is driving component of the RAG and may need to be addressed as a classic information retrieval evaluation problem.
 
+One of the keys to evaluate information retrieval is to establish the expectations from the returned results , which will help us identifying our reference metrics and important parameters to establish if the documents retrieved at this stage are relevant to the expected information need.
+
+There are existing metrics to guide and define our baseline like Precision and Recall or their combination F1 Score. We have others metrics like DCG and NDCG to take into account the relevance in regards to the inclusion or rank of relevant documents in the results.
+
+Although the nature of semantic information retrieval poses a bit of challenge at this stage, as the documents are retrieved beyond the keywords/synonyms/token enrichment-matching.
+
+The essence of an idea here is to build a reference evaluation set aka [Golden Set]("https://www.luigisbox.com/search-glossary/golden-set/"). We could also leverage [T5 Model]("https://huggingface.co/docs/transformers/model_doc/t5") to generate a starter pack for evaluation.
+
+The golden set is a fundamental component in information retrieval evaluation, that helps in defining characteristics of reference standard for assessing the performance, effectiveness, and relevance of retrieval algorithm. 
+It provides a common ground for objective comparison and improvement of retrieval process/algorithm.
 
 ### End-to-End Evaluation
 
