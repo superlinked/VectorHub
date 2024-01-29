@@ -124,5 +124,18 @@ It provides a common ground for objective comparison and improvement of retrieva
 
 This stage of evaluation covers the evaluation of response generation of the question leveraging the provided context through document retrieved.
 
+Evaluating the quality of responses produced by large language models poses a considerable challenge due to various factors as described in the challenges above. 
 
-Now that we have laid the foundation of what are the important pieces and the layers of evaluation, we can further zoom in on the demo application which we are going to use to demystify the impact of each one of them.
+By virtue of nature and design , the answers generated rely on diversity of response which makes it impossible to device a fixed metric or methodology that fits in all domains and use-cases.
+
+To address these difficulties, it is often suggested to employ not a single but a blend of existing metrics like [BLEU]("https://huggingface.co/spaces/evaluate-metric/bleu") and [ROUGE]("https://huggingface.co/spaces/evaluate-metric/rouge") scores combined with LLM-based or human evaluation methods. [This]("https://scholarspace.manoa.hawaii.edu/server/api/core/bitstreams/c6a53998-09e3-4d17-91fd-c7416d51b250/content") paper provides some great ideas around the same.  
+
+In completeness, the idea is to establish a sense to automate evaluating similarity and content overlap between generated response and reference summaries , topped by leveraging human evaluation to aid the assessment of subjective aspects such as context-relevance, novelty, and fluency.
+
+Another simple technique to build a classified 'domain - questions' set on the basis of question complexity as easy , medium , hard to get an overall sense of the RAG performance aids targeted improvements.
+
+Nevertheless, formulating a comprehensive set of metrics for appraising the quality of responses from LLMs remains an ongoing and intricate issue within the context of natural language processing.
+
+
+Now that we have laid the foundation of the building blocks and the layers of evaluation , in the next part of this series we will continue to look into demystifying some of the existing frameworks that helps us to assess the RAG Evaluation.
+Looking forward to seeing you in the next part!
