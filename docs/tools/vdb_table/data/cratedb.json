@@ -5,7 +5,7 @@
     "github": "https://github.com/crate/crate",
     "website": "https://cratedb.com/",
     "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/98",
-    "poc_github": "https://github.com/crate/marijaselakovic",
+    "poc_github": "https://github.com/marijaselakovic",
     "slug": "cratedb"
   },
   "oss": {
