@@ -58,8 +58,8 @@
     "comment": "Supports all sparse vectors, including BM25 and native support for SPLADE vectors"
   },
   "bm25": {
-    "support": "full",
-    "source_url": "https://docs.pinecone.io/docs/encode-sparse-vectors",
+    "support": "none",
+    "source_url": "",
     "comment": ""
   },
   "full_text": {
@@ -68,23 +68,23 @@
     "comment": ""
   },
   "embeddings_text": {
-    "support": "full",
+    "support": "partial",
     "source_url": "https://github.com/pinecone-io/canopy",
     "comment": ""
   },
   "embeddings_image": {
-    "support": "",
-    "source_url": "https://github.com/pinecone-io/image-search-example",
+    "support": "none",
+    "source_url": "",
     "comment": ""
   },
   "embeddings_structured": {
     "support": "",
-    "source_url": "https://github.com/pinecone-io/examples/blob/master/learn/search/question-answering/table-qa.ipynb",
+    "source_url": "",
     "comment": ""
   },
   "rag": {
-    "support": "full",
-    "source_url": "https://github.com/pinecone-io/examples/blob/master/docs/langchain-retrieval-augmentation.ipynb",
+    "support": "",
+    "source_url": "",
     "comment": ""
   },
   "recsys": {
@@ -134,7 +134,7 @@
   },
   "sharding": {
     "support": "full",
-    "source_url": "https://docs.pinecone.io/reference/create_index/",
+    "source_url": "https://docs.pinecone.io/docs/scaling-indexes#horizontal-scaling",
     "comment": ""
   },
   "doc_size": {
