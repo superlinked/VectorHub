@@ -28,29 +28,28 @@ Let’s review the most basic RAG workflow:
 4. Add the retrieved document chunks as context to the query vector embedding and send it to the LLM.
 5. The LLM generates a response utilizing the retrieved context.
 
-While RAG workflows can become significantly more complex, incorporating methods like metadata filtering and retrieval reranking, _all_ RAG systems must contain contain the components involved the basic workflow: an embedding model, a store for document and vector embeddings, a retriever, and a LLM.
+While RAG workflows can become significantly more complex, incorporating methods like metadata filtering and retrieval reranking, _all_ RAG systems must contain the components involved the basic workflow: an embedding model, a store for document and vector embeddings, a retriever, and a LLM.
 
-But smart development, with productionization in mind, requires not just setting up our components in a functional way. We must also develop with cost-effective scalability in mind...
+But smart development, with productionization in mind, requires not just setting up our components in a functional way. We must also develop with cost-effective scalability in mind... For this we'll need not just these basic components, but the right tools for configuring a scalable RAG system..
 
-## Developing for Scalability
+## Developing for scalability: the right tools
 
-how do we achieve these basics in a scalable low cost way
+an embedding model, a store for document and vector embeddings, a retriever, and a LLM
+embedding model:
+storage: 
+LLM library: Langchain's LCEL
+productionizing framework for scaling: Ray
 
+### LLM library: LangChain
 
-
-## The right tools for this tutorial
-
-### The LangChain question
-
-LangChain has arguably become the most prominent LLM library to this date. A lot of developers are using it to build Proof-of-Concepts (PoC) and Minimal Viable Products (MVPs) or to simply test new ideas. While there has been a lot of discussion about LangChain in production, *most* of the criticism can be boiled down to personal preference and the fact that LangChain was originally built to address problems occurring much earlier in the development cycle.
-
-So what to do? Keep in mind that this is merely my personal opinion since there are no gold standards for which tools to use yet, but I’m convinced that there is no universal answer to this question. All of the major LLM and RAG libraries - LangChain, LlamaIndex and Haystack, to name my personal top three - have what it takes to producitonize a RAG system. And there’s a simple reason for this: they all have integrations for third-party libraries and providers that will handle the production requirements. I would try to view these tools as interfaces between all the other components. Which one you’d want to choose will depend on the details of your existing tech stack and use case. In our case, we'll use Langchain.
+As of this writing, LangChain, while it has also been the subject of much criticism, is also arguably the most prominent LLM library. A lot of developers turn to Langchain to build Proofs-of-Concept (PoCs) and Minimum Viable Products (MVPs), or simply to experiment with new ideas. Whether one chooses LangChain or one of the other major LLM and RAG libraries - for example, LlamaIndex or Haystack, to name my other personal favorites - they can _all_ be used to productionize an RAG system. That is, all three have integrations for third-party libraries and providers that will handle the production requirements. Which one you choose to interface with your other components depends on the details of your existing tech stack and use case. 
 
 ### Scaling with Ray
 
-Alright, but what will *we* choose for this tutorial? One of the first decisions to make will be where we want to run our system: should we use a cloud service, or should we run it within our own network? Since tutorials should aim to reduce complexity and avoid proprietary solutions where possible, we will opt not to use the cloud option here. While the aforementioned libraries support cloud deployment for AWS, Azure, and GCP, the details of cloud deployment heavily depend on the specific cloud provider you choose. Instead, we will utilize [Ray](https://github.com/ray-project/ray).
+Alright, but what will *we* choose for this tutorial? One of the first decisions to make will be where we want to run our system: should we use a cloud service, or should we run it within our own network? 
+Since tutorials should aim to reduce complexity and avoid proprietary solutions where possible, we will opt _not_ to use the cloud option here. While the aforementioned libraries (all of LangChain, LlamaIndex, Haystack??) support cloud deployment for AWS, Azure, and GCP, the details of cloud deployment heavily depend on the specific cloud provider you choose. Instead, we will utilize [Ray](https://github.com/ray-project/ray).
 
-Ray is a Python framework for productionizing and scaling machine learning (ML) workloads. It is adaptable for both local environments and Kubernetes, efficiently managing all workload requirements. Ray's design focuses on making the scaling of ML systems seamless, thanks to its range of autoscaling features. While we could opt for Ray integrations like LangChain, LlamaIndex, or Haystack, we'll use Ray directly to provide more universally applicable insights, given that all these integrations are built upon the same underlying framework.
+Ray is a Python framework for productionizing and scaling machine learning (ML) workloads. It is adaptable for both local environments and Kubernetes, efficiently managing all workload requirements. Ray's design focuses on making the scaling of ML systems seamless, thanks to its range of autoscaling features. While we could opt for using the Ray integrations within LangChain, LlamaIndex, or Haystack, we'll use Ray directly to provide more universally applicable insights, given that all these integrations are built upon the same underlying framework.
 
 Before diving in, it's worth mentioning LangServe, a recent addition to the LangChain ecosystem. LangServe is designed to bridge the gap in production tooling. Although it hasn't been widely adopted yet and may take some time to gain traction, the LangChain team is actively responding to feedback to enhance the production experience.
 
@@ -66,7 +65,7 @@ We start with **installing all the dependencies** that we will use in this tutor
 pip install ray langchain sentence-transformers qdrant-client einops openai tiktoken fastapi "ray[serve]"
 ```
 
-Since we will use the OpenAI API in this tutorial, we will **need an API key**. We export our API key as an environmental variable and then we initialize our Ray environment like this:
+Since we will use the OpenAI API in this tutorial, we will **need an API key**. We export our API key as an environmental variable and then we **initialize our Ray environment** like this:
 
 ```python
 import os
