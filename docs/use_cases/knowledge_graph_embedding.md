@@ -238,4 +238,5 @@ Because LLMs have trouble encoding intricate relation structures, their performa
 ## Contributors
 
 - [Richárd Kiss, author](https://www.linkedin.com/in/richard-kiss-3209a1186/)
+- [Mór Kapronczay, contributor](https://www.linkedin.com/in/m%C3%B3r-kapronczay-49447692/)
 - [Robert Turner, editor](https://robertturner.co/copyedit)
