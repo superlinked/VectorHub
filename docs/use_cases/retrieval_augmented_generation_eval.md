@@ -6,7 +6,7 @@
 
 ## Understanding Retrieval-Augmented Generation
 
-<img src=/assets/use_cases/retrieval_augmented_generation_eval/rag_qdrant.jpg alt="Implementation of RAG using Qdrant as a vector database" data-size="100" />
+<img src=/assets/use_cases/retrieval_augmented_generation_eval/rag_diagram.jpg alt="Typical implementation of RAG using a vector database" data-size="100" />
 
 RAG stands for Retrieval Augmented Generation and it probably is the most useful application of large language models lately.
 It is the technique that combines the strengths of both retrieval and generation models. The retrieval is usually based on dense vector search, in combination with a text generation model like GPT.
