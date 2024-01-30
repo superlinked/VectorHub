@@ -46,8 +46,8 @@
       "comment": ""
     },
     "geo_search": {
-      "support": "full",
-      "source_url": "https://learn.microsoft.com/azure/search/search-query-odata-geo-spatial-functions",
+      "support": "none",
+      "source_url": "",
       "comment": ""
     },
     "multi_vec": {
@@ -67,7 +67,7 @@
     },
     "full_text": {
       "support": "full",
-      "source_url": "https://learn.microsoft.com/azure/search/search-query-overview#types-of-queries",
+      "source_url": "https://learn.microsoft.com/azure/cosmos-db/mongodb/vcore/vector-search",
       "comment": ""
     },
     "embeddings_text": {
@@ -76,8 +76,8 @@
       "comment": "Built in Azure OpenAI embedding skill but welcome to use any embedding model via a custom web api skill."
     },
     "embeddings_image": {
-      "support": "partial",
-      "source_url": "https://learn.microsoft.com/azure/search/cognitive-search-custom-skill-web-api",
+      "support": "none",
+      "source_url": "",
       "comment": ""
     },
     "embeddings_structured": {
@@ -87,8 +87,8 @@
     },
     "rag": {
       "support": "full",
-      "source_url": "https://learn.microsoft.com/azure/ai-services/openai/concepts/use-your-data?tabs=ai-search",
-      "comment": "https://learn.microsoft.com/azure/ai-services/openai/concepts/use-your-data?tabs=ai-search"
+      "source_url": "https://learn.microsoft.com/azure/cosmos-db/mongodb/vcore/vector-search-ai",
+      "comment": ""
     },
     "recsys": {
       "support": "none",
@@ -121,8 +121,8 @@
       "comment": ""
     },
     "multi_tenancy": {
-      "support": "full",
-      "source_url": "https://learn.microsoft.com/azure/search/search-modeling-multitenant-saas-applications",
+      "support": "none",
+      "source_url": "",
       "comment": ""
     },
     "disk_index": {
@@ -137,19 +137,19 @@
     },
     "sharding": {
       "support": "full",
-      "source_url": "https://learn.microsoft.com//azure/search/search-capacity-planning#concepts-search-units-replicas-partitions-shards",
+      "source_url": "https://learn.microsoft.com/azure/cosmos-db/mongodb/vcore/compatibility",
       "comment": ""
     },
     "doc_size": {
       "bytes": 16000000,
       "unlimited": false,
-      "source_url": "https://learn.microsoft.com/azure/search/search-limits-quotas-capacity",
-      "comment": "Limited by batch size. However, the maximum size of a document is 16 MB. There is no max document limit per index."
+      "source_url": "",
+      "comment": ""
     },
     "vector_dims": {
       "value": 2048,
       "unlimited": false,
-      "source_url": "https://learn.microsoft.com/azure/search/vector-search-how-to-generate-embeddings",
+      "source_url": "",
       "comment": ""
     }
   }
