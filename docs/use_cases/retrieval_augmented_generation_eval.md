@@ -59,7 +59,7 @@ As for different components of RAG viz. Information Retrieval - Context Augmenta
 
 <figure>
 <img src=/assets/use_cases/retrieval_augmented_generation_eval/rag_challenges.jpg alt="Classification of Challenges of RAG Evaluation" data-size="100" />
-<figcaption align="center">Slide from RAG Evaluation Presentation mentions ['Lost in the Middle' problem](https://arxiv.org/abs/2307.03172)</figcaption>
+<figcaption align="center">Slide from RAG Evaluation Presentation mentions <a href="https://arxiv.org/abs/2307.03172">'Lost in the Middle' problem</a></figcaption>
 </figure>
 
 For evaluation, we need metrics/methodology/frameworks that uses one or more
