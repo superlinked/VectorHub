@@ -290,7 +290,7 @@ embedded_chunks = chunks_ds.map_batches(
 
 **Indexing the data**
 
-Now that our chunks are embedded, we need to **store** them somewhere. For the sake of this tutorial, we'll utilize Qdrant’s new in-memory feature, which lets us experiment with our code rapidly without needing to set up a fully-fledged instance. However, for deployment in a production environment, you should rely on more robust and scalable solutions — hosted either within your own network or by a third-party provider. Detailed guidance on setting up such solutions is beyond the scope of this tutorial.
+Now that our chunks are embedded, we need to **store** them somewhere. For the sake of this tutorial, we'll utilize Qdrant’s new in-memory feature, which lets us experiment with our code rapidly without needing to set up a fully-fledged instance. However, for deployment in a production environment, you should rely on more robust and scalable solutions — hosted either within your own network or by a third-party provider. For example, we would need to point to our Qdrant (or your prefered hosted vendor) instance instead of using it in-memory. Detailed guidance on self-hosting a Kubernetes cluster or similar local deployments database is beyond the scope of this tutorial.
 
 ```python
 from qdrant_client import QdrantClient
@@ -388,7 +388,7 @@ def semantic_search(query, embedding_model, k):
 
 We're now very close to being able to field queries and retrieve answers! We've set up everything we need to query our LLM _at scale_. But before querying the model for a response, we want to first inform the query with our data, by **retrieving relevant context from our vector database and then adding it to the query**.
 
-To do this, we use a simplified version of the generate.py script provided in Ray's [LLM repository](https://github.com/ray-project/llm-applications/blob/main/rag/generate.py). This simplified version is adapted to our code and leaves out a bunch of advanced retrieval techniques, such as reranking and hybrid search. We use gpt-3.5-turbo as our LLM and query it via the OpenAI API.
+To do this, we use a simplified version of the generate.py script provided in Ray's [LLM repository](https://github.com/ray-project/llm-applications/blob/main/rag/generate.py). This version is adapted to our code and - to simplify and keep our focus on scalable RAG - leaves out a bunch of advanced retrieval techniques, such as reranking and hybrid search. We use gpt-3.5-turbo as our LLM and query it via the OpenAI API.
 
 ```python
 from openai import OpenAI
@@ -467,7 +467,7 @@ for content in response:
     print(content, end='', flush=True)
 ```
 
-However, to make using our application even more convenient, we simply adapt Ray's official documentation to implement our workflow within a single QueryAgent class, which will will take care of all the steps we implemented above for us, including a few additional utility functions.
+However, to make using our application even more convenient, we simply adapt Ray's official documentation to implement our workflow within a **single** QueryAgent class, which bundles together and takes care of all of the steps we implemented above - retrieving embeddings, embedding the search query, performing vector search, processing the results, and querying the LLM to generate a response. Using this single class approach, we no longer need to to sequentially call all of these functions, and also include utility functions. (Specifically, `Get_num_tokens` encodes our text and gets the number of tokens, to calculate the length of the input. To maintain our standard 50:50 allocation for input:generation, we use `(text, max_context_length)` to trim input text if it's too long.)
 
 ```python
 import tiktoken
@@ -549,7 +549,7 @@ class QueryAgent:
         return result
 ```
 
-And this is how we can use the QueryAgent:
+To embed our query and retrieve relevant vectors, and then generate a response, we run our QueryAgent as follows:
 
 ```python
 import json 
