@@ -6,7 +6,7 @@
 
 Retrieval-augmented Generation (RAG) combines Large Language Models (LLMs) with external data to reduce the probability of machine hallucinations - AI-generated information that misrepresents underlying data or reality. When developing RAG systems, scalability is often an afterthought. This creates problems when moving from initial development to production. Having to manually adjust code while your application grows can get very costly and is prone to errors.
 
-Our tutorial provides one example of **how you can develop a RAG pipeline with production workloads in mind from the start**, using the right tools - ones that are designed to scale.
+Our tutorial provides an example of **how you can develop a RAG pipeline with production workloads in mind from the start**, using the right tools - ones that are designed to scale.
 
 ## Development vs. production
 
@@ -467,7 +467,7 @@ for content in response:
     print(content, end='', flush=True)
 ```
 
-However, to make using our application even more convenient, we simply and adapt Ray's official documentation to implement our workflow within a single QueryAgent class, which will will take care of all the steps we implemented above for us, including a few additional utility functions.
+However, to make using our application even more convenient, we simply adapt Ray's official documentation to implement our workflow within a single QueryAgent class, which will will take care of all the steps we implemented above for us, including a few additional utility functions.
 
 ```python
 import tiktoken
@@ -647,17 +647,17 @@ But to fully productionize your application, you also need to maintain it.
 
 ## Production is only the start: maintenance
 
-Often, reaching production is viewed as the primary goal, while maintenance is overlooked. However, the reality is that maintaining an application is a continuous and important task.
+We've mapped an example of how to develop scalably and economically - how to productionize from the very start of development. But productionizing includes one last crucial consideration: maintenance. And maintaining your application is a continuous task.
 
-Regular assessment and improvement of your application are essential. This might include routinely updating your data to guarantee that your application has the latest information, or keeping an eye on performance to prevent any degradation. For smoother operations, integrating your workflows with CI/CD pipelines is recommended.
+Maintenance involves regular assessment and improvement of your application. You may need to routinely update your dataset if your application relies on being current with real-world changes. And of course you should monitor application performance to prevent  degradation. For smoother operations, we recommend integrating your workflows with CI/CD pipelines.
 
-### Limitations
+### Limitations and future discussion
 
-There are are other critical aspects to consider that were outside of the scope of this article, but will be explored elsewhere:
+Other critical aspects of scalably productionizing fell outside of the scope of this article, but will be explored in future articles, including:
 
 - **Advanced Development** Pre-training, finetuning, prompt engineering and other in-depth development techniques
-- **Evaluation** LLM Evaluation can get very tricky due to randomness and qualitative metrics, RAG also consits of multiple complex parts
-- **Compliance** Adhering to data privacy laws and regulations, especially when handling personal or sensitive information.
+- **Evaluation** Randomness and qualitative metrics, and complex multi-part structure of RAG can make LLM evaluation difficult
+- **Compliance** Adhering to data privacy laws and regulations, especially when handling personal or sensitive information
 
 ---
 ## Contributors
