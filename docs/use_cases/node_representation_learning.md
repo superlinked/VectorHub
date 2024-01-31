@@ -361,4 +361,5 @@ As a final note, we've included a **pro vs con comparison** of our two node repr
 ## Contributors
 
 - [Richárd Kiss, author](https://www.linkedin.com/in/richard-kiss-3209a1186/)
+- [Mór Kapronczay, contributor](https://www.linkedin.com/in/m%C3%B3r-kapronczay-49447692/)
 - [Robert Turner, editor](https://robertturner.co/copyedit)
