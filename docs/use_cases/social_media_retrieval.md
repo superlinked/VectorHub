@@ -73,12 +73,10 @@ Before diving into the code, let's look over a LinkedIn post to address the chal
 
 ```json
 [
-    ...
     {
-        "text": "What is the 𝗱𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝗰𝗲 between your 𝗠𝗟 𝗱𝗲𝘃𝗲𝗹𝗼𝗽𝗺𝗲𝗻𝘁 and 𝗰𝗼𝗻𝘁𝗶𝗻𝘂𝗼𝘂𝘀 𝘁𝗿𝗮𝗶𝗻𝗶𝗻𝗴 𝗲𝗻𝘃𝗶𝗿𝗼𝗻𝗺𝗲𝗻𝘁𝘀?\nThey might do the same thing, but their design is entirely different ↓\n𝗠𝗟 𝗗𝗲𝘃𝗲𝗹𝗼𝗽𝗺𝗲𝗻𝘁 𝗘𝗻𝘃𝗶𝗿𝗼𝗻𝗺𝗲𝗻𝘁\nAt this point, your main goal is to ingest the raw and preprocessed data through versioned artifacts (or a feature store), analyze it & generate as many experiments as possible to find the best:\n- model\n- hyperparameters\n- augmentations\nBased on your business requirements, you must maximize some specific metrics, find the best latency-accuracy trade-offs, etc.\nYou will use an experiment tracker to compare all these experiments.\nAfter you settle on the best one, the output of your ML development environment will be:\n- a new version of the code\n- a new version of the configuration artifact\nHere is where the research happens. Thus, you need flexibility.\nThat is why we decouple it from the rest of the ML systems through artifacts (data, config, & code artifacts).\n𝗖𝗼𝗻𝘁𝗶𝗻𝘂𝗼𝘂𝘀 𝗧𝗿𝗮𝗶𝗻𝗶𝗻𝗴 𝗘𝗻𝘃𝗶𝗿𝗼𝗻𝗺𝗲𝗻𝘁\nHere is where you want to take the data, code, and config artifacts and:\n- train the model on all the required data\n- output a staging versioned model artifact\n- test the staging model artifact\n- if the test passes, label it as the new production model artifact\n- deploy it to the inference services\nA common strategy is to build a CI/CD pipeline that (e.g., using GitHub Actions):\n- builds a docker image from the code artifact (e.g., triggered manually or when a new artifact version is created)\n- start the training pipeline inside the docker container that pulls the feature and config artifacts and outputs the staging model artifact\n- manually look over the training report -> If everything went fine, manually trigger the testing pipeline\n- manually look over the testing report -> if everything worked fine (e.g., the model is better than the previous one), manually trigger the CD pipeline that deploys the new model to your inference services\nNote how the model registry quickly helps you to decouple all the components.\nAlso, because training and testing metrics are not always black & white, it is tough to 100% automate the CI/CD pipeline.\nThus, you need a human in the loop when deploying ML models.\nTo conclude...\nThe ML development environment is where you do your research to find better models:\n- 𝘪𝘯𝘱𝘶𝘵: data artifact\n- 𝘰𝘶𝘵𝘱𝘶𝘵: code & config artifacts\nThe continuous training environment is used to train & test the production model at scale:\n- 𝘪𝘯𝘱𝘶𝘵: data, code, config artifacts\n- 𝘰𝘶𝘵𝘱𝘶𝘵: model artifact\n.\n↳ See this strategy in action in my 𝗧𝗵𝗲 𝗙𝘂𝗹𝗹 𝗦𝘁𝗮𝗰𝗸 𝟳-𝗦𝘁𝗲𝗽𝘀 𝗠𝗟𝗢𝗽𝘀 𝗙𝗿𝗮𝗺𝗲𝘄𝗼𝗿𝗸 FREE course: 🔗\nhttps://lnkd.in/d_GVpZ9X\nhashtag\n#\nmachinelearning\nhashtag\n#\nmlops\nhashtag\n#\ndatascience",
-        "image": "https://media.licdn.com/dms/image/D4D10AQEdpFdpJSlDKQ/image-shrink_800/0/1701156624205?e=1705082400&v=beta&t=jxPE3kyWPThjTX_XDPpcMOeSnaBplBodZgaU5ukMN3c"
+        "text": "𝗪𝗵𝗮𝘁 do you need to 𝗳𝗶𝗻𝗲-𝘁𝘂𝗻𝗲 an open-source 𝗟𝗟𝗠 to create your own 𝗳𝗶𝗻𝗮𝗻𝗰𝗶𝗮𝗹 𝗮𝗱𝘃𝗶𝘀𝗼𝗿?\nThis is the 𝗟𝗟𝗠 𝗳𝗶𝗻𝗲-𝘁𝘂𝗻𝗶𝗻𝗴 𝗸𝗶𝘁 you must know ↓\n𝗗𝗮𝘁𝗮𝘀𝗲𝘁\nThe key component of any successful ML project is the data.\nYou need a 100 - 1000 sample Q&A (questions & answers) dataset with financial scenarios.\nThe best approach is to hire a bunch of experts to create it manually.\nBut, for a PoC, that might get expensive & slow.\nThe good news is that a method called \"𝘍𝘪𝘯𝘦𝘵𝘶𝘯𝘪𝘯𝘨 𝘸𝘪𝘵𝘩 𝘥𝘪𝘴𝘵𝘪𝘭𝘭𝘢𝘵𝘪𝘰𝘯\" exists.\nIn a nutshell, this is how it works: \"Use a big & powerful LLM (e.g., GPT4) to generate your fine-tuning data. After, use this data to fine-tune a smaller model (e.g., Falcon 7B).\"\nFor specializing smaller LLMs on specific use cases (e.g., financial advisors), this is an excellent method to kick off your project.\n𝗣𝗿𝗲-𝘁𝗿𝗮𝗶𝗻𝗲𝗱 𝗼𝗽𝗲𝗻-𝘀𝗼𝘂𝗿𝗰𝗲 𝗟𝗟𝗠\nYou never want to start training your LLM from scratch (or rarely).\nWhy? Because you need trillions of tokens & millions of $$$ in compute power.\nYou want to fine-tune your LLM on your specific task.\nThe good news is that you can find a plethora of open-source LLMs on HuggingFace (e.g., Falcon, LLaMa, etc.)\n𝗣𝗮𝗿𝗮𝗺𝗲𝘁𝗲𝗿 𝗲𝗳𝗳𝗶𝗰𝗶𝗲𝗻𝘁 𝗳𝗶𝗻𝗲-𝘁𝘂𝗻𝗶𝗻𝗴\nAs LLMs are big... duh...\n... they don't fit on a single GPU.\nAs you want only to fine-tune the LLM, the community invented clever techniques that quantize the LLM (to fit on a single GPU) and fine-tune only a set of smaller adapters.\nOne popular approach is QLoRA, which can be implemented using HF's `𝘱𝘦𝘧𝘵` Python package.\n𝗠𝗟𝗢𝗽𝘀\nAs you want your project to get to production, you have to integrate the following MLOps components:\n- experiment tracker to monitor & compare your experiments\n- model registry to version & share your models between the FTI pipelines\n- prompts monitoring to debug & track complex chains\n↳ All of them are available on ML platforms, such as Comet ML 🔗\nhttps://lnkd.in/d7jNQz7m\n𝗖𝗼𝗺𝗽𝘂𝘁𝗲 𝗽𝗹𝗮𝘁𝗳𝗼𝗿𝗺\nThe most common approach is to train your LLM on your on-prem Nivida GPUs cluster or rent them on cloud providers such as AWS, Paperspace, etc.\nBut what if I told you that there is an easier way?\nThere is! It is called serverless.\nFor example,\nBeam\nis a GPU serverless provider that makes deploying your training pipeline as easy as decorating your Python function with `@𝘢𝘱𝘱.𝘳𝘶𝘯()`.\nAlong with ease of deployment, you can easily add your training code to your CI/CD to add the final piece of the MLOps puzzle, called CT (continuous training).\n↳ Beam: 🔗\nhttps://lnkd.in/dedCaMDh\n.\n↳ To see all these components in action, check out my FREE 𝗛𝗮𝗻𝗱𝘀-𝗼𝗻 𝗟𝗟𝗠𝘀 𝗰𝗼𝘂𝗿𝘀𝗲 & give it a ⭐:  🔗\nhttps://lnkd.in/dZgqtf8f\nhashtag\n#\nmachinelearning\nhashtag\n#\nmlops\nhashtag\n#\ndatascience",
+        "image": "https://media.licdn.com/dms/image/D4D10AQHWQzZcToQQ1Q/image-shrink_800/0/1698388219549?e=1705082400&v=beta&t=9mrDC_NooJgD7u7Qk0PmrTGGaZtuwDIFKh3bEqeBsm0"
     }
-    ...
 ]
 ```
 
@@ -234,7 +232,7 @@ Here is what the cleaned post looks like:
 
 ```json
 {
-    "text": "What is the difference between your ML development and continuous training environments?\nThey might do the same thing, but their design is entirely different  \nML Development Environment\nAt this point, your main goal is to ingest the raw and preprocessed data through versioned artifacts (or a feature store), analyze it & generate as many experiments as possible to find the best:\n- model\n- hyperparameters\n- augmentations\nBased on your business requirements, you must maximize some specific metrics, find the best latency-accuracy trade-offs, etc.\nYou will use an experiment tracker to compare all these experiments.\nAfter you settle on the best one, the output of your ML development environment will be:\n- a new version of the code\n- a new version of the configuration artifact\nHere is where the research happens. Thus, you need flexibility.\nThat is why we decouple it from the rest of the ML systems through artifacts (data, config, & code artifacts).\nContinuous Training Environment\nHere is where you want to take the data, code, and config artifacts and:\n- train the model on all the required data\n- output a staging versioned model artifact\n- test the staging model artifact\n- if the test passes, label it as the new production model artifact\n- deploy it to the inference services\nA common strategy is to build a CI/CD pipeline that (e.g., using GitHub Actions):\n- builds a docker image from the code artifact (e.g., triggered manually or when a new artifact version is created)\n- start the training pipeline inside the docker container that pulls the feature and config artifacts and outputs the staging model artifact\n- manually look over the training report -> If everything went fine, manually trigger the testing pipeline\n- manually look over the testing report -> if everything worked fine (e.g., the model is better than the previous one), manually trigger the CD pipeline that deploys the new model to your inference services\nNote how the model registry quickly helps you to decouple all the components.\nAlso, because training and testing metrics are not always black & white, it is tough to 100% automate the CI/CD pipeline.\nThus, you need a human in the loop when deploying ML models.\nTo conclude...\nThe ML development environment is where you do your research to find better models:\n- input: data artifact\n- output: code & config artifacts\nThe continuous training environment is used to train & test the production model at scale:\n- input: data, code, config artifacts\n- output: model artifact\n.\n  See this strategy in action in my The Full Stack 7-Steps MLOps Framework FREE course:  \n[URL]\nhashtag\n#\nmachinelearning\nhashtag\n#\nmlops\nhashtag\n#\ndatascience"
+    "text": "What do you need to fine-tune an open-source LLM to create your own financial advisor?\nThis is the LLM fine-tuning kit you must know  \n\nDataset\nThe key component of any successful ML project is the data.\nYou need a 100 - 1000 sample Q&A (questions & answers) dataset with financial scenarios.\n\nThe best approach is to hire a bunch of experts to create it manually.\nBut, for a PoC, that might get expensive & slow.\nThe good news is that a method called \n'Finetuning with distillation' exists.\nIn a nutshell, this is how it works: 'Use a big & powerful LLM (e.g., GPT4) to generate your fine-tuning data. \nAfter, use this data to fine-tune a smaller model (e.g., Falcon 7B).'\nFor specializing smaller LLMs on specific use cases (e.g., financial advisors), \nthis is an excellent method to kick off your project.\nPre-trained open-source LLM\nYou never want to start training your LLM from scratch (or rarely).\n\nWhy? Because you need trillions of tokens & millions of $$$ in compute power.\nYou want to fine-tune your LLM on your specific task.\n\nhe good news is that you can find a plethora of open-source LLMs on HuggingFace (e.g., Falcon, LLaMa, etc.)\n\nParameter efficient fine-tuning\nAs LLMs are big... duh...\n... they don\'t fit on a single GPU.\n\nAs you want only to fine-tune the LLM, the community invented clever techniques that quantize the LLM (to fit on a single GPU) and \nfine-tune only a set of smaller adapters.\nOne popular approach is QLoRA, which can be implemented using HF\'s `peft` Python package.\nMLOps\n\nAs you want your project to get to production, you have to integrate the following MLOps components:\n\n- experiment tracker to monitor & compare your experiments\n\n- model registry to version & share your models between the FTI pipelines\n-\nprompts monitoring to debug & track complex chains\n\n  All of them are available on ML platforms, such as Comet ML  \n[URL]\nCompute platform\n\nThe most common approach is to train your LLM on your on-prem Nivida GPUs cluster or rent them on cloud providers such as AWS, Paperspace, etc.\n\nBut what if I told you that there is an easier way?\nThere is! It is called serverless.\nFor example,\nBeam\nis a GPU serverless provider that \nmakes deploying your training pipeline as easy as decorating your Python function with `@app.run()`.\n\nAlong with ease of deployment, you can easily add your training code to your CI/CD to add the final piece of the MLOps puzzle, \ncalled CT (continuous training).\n  Beam:  \n[URL]\n.\n\n  To see all these components in action, check out my FREE Hands-on LLMs course & give it a :  \n \n[URL]\nhashtag\n#\nmachinelearning\nhashtag\n#\nmlops\nhashtag\n#\ndatascience"
 }
 ```
 
@@ -303,7 +301,7 @@ One last thing to point out is that we dynamically computed the `chunk_id` using
 
 ### 4.4. Embed
 
-The last step before loading the posts to Qdrant is to compute the embedding of each chunk. To do so, we have a different `pydantic` model that exclusively calls the given embedding model ↓
+The last step before loading the posts to Qdrant is to compute the embedding of each chunk. To do so, we have a different `pydantic` model that exclusively calls the `sentence-transformers/all-MiniLM-L6-v2` embedding model, which is wrapped by the `EmbeddingModelSingleton` class ↓
 
 ```python
 class EmbeddedChunkedPost(BaseModel):
@@ -341,6 +339,8 @@ class EmbeddedChunkedPost(BaseModel):
             },
         )
 ```
+
+Note that by wrapping the embedding model with the `EmbeddingModelSingleton` class, we can easily swap it. For example, in this article, we have used `sentence-transformers/all-MiniLM-L6-v2` as it is very light, fast, and runs on a CPU. But you might need a more powerful model in a production-grade setup with millions of records. To do so, you only have to change the implementation of the `EmbeddingModelSingleton` class without touching anything else.
 
 ### 4.5. Load to Qdrant
 
@@ -382,13 +382,220 @@ Within this class, you must overwrite the `write_batch` method, where we seriali
 
 ## 5. Retrieval client
 
-### 5.1. Preprocess query
+Here, we will focus on preprocessing a user's query, searching the vector DB, and postprocessing the retrieved posts for maximum results.
+
+To design the retrieval step, we implemented a `QdrantVectorDBRetriever` class that will expose all the necessary features for our retrieval client.
+
+```python
+class QdrantVectorDBRetriever:
+    def __init__(
+        self,
+        embedding_model: EmbeddingModelSingleton,
+        vector_db_client: QdrantClient,
+        cross_encoder_model: Optional[CrossEncoderModelSingleton] = None,
+        vector_db_collection: str = settings.VECTOR_DB_OUTPUT_COLLECTION_NAME,
+    ):
+        self._embedding_model = embedding_model
+        self._vector_db_client = vector_db_client
+        self._cross_encoder_model = cross_encoder_model
+        self._vector_db_collection = vector_db_collection
+
+    def search(
+        self, query: str, limit: int = 3, return_all: bool = False
+    ) -> Union[list[EmbeddedChunkedPost], dict[str, list]]:
+        ...
+
+    def embed_query(self, query: str) -> list[list[float]]:
+        ...
+
+    def rerank(self, query: str, posts: list[EmbeddedChunkedPost]) -> list[EmbeddedChunkedPost]:
+        ...
+
+    def render_as_html(self, post: EmbeddedChunkedPost) -> None:
+        ...    
+```
+
+### 5.1. Embed query
+
+We have to embed the query in the exact same way as we ingested the posts into the vector DB. Because the streaming pipeline is written in Python due to Bytewax and every preprocessing operation is modular, we can quickly replicate all steps:
+
+```python
+def embed_query(self, query: str) -> list[list[float]]:
+    cleaned_query = CleanedPost.clean(query)
+    chunks = ChunkedPost.chunk(cleaned_query, self._embedding_model)
+    embdedded_queries = [
+        self._embedding_model(chunk, to_list=True) for chunk in chunks
+    ]
+
+    return embdedded_queries
+```
+
+Notice that now we might end with multiple query chunks. That is not an issue. It is even better, as we can search posts of interest in multiple areas of interest in the embedded posts vector space.
 
 ### 5.2. Plain retrieval
 
+```python
+class QdrantVectorDBRetriever:
+    ...
+
+    def search(
+        self, query: str, limit: int = 3, return_all: bool = False
+        ) -> Union[list[EmbeddedChunkedPost], dict[str, list]]:
+            embdedded_queries = self.embed_query(query)
+
+            if self._cross_encoder_model:
+                original_limit = limit
+                limit = limit * 7
+            else:
+                original_limit = limit
+
+            search_queries = [
+                models.SearchRequest(
+                    vector=embedded_query, limit=limit, with_payload=True, with_vector=True
+                )
+                for embedded_query in embdedded_queries
+            ]
+            retrieved_points = self._vector_db_client.search_batch(
+                collection_name=self._vector_db_collection,
+                requests=search_queries,
+            )
+
+            posts = set()
+            for chunk_retrieved_points in retrieved_points:
+                posts.update(
+                    {
+                        EmbeddedChunkedPost.from_retrieved_point(point)
+                        for point in chunk_retrieved_points
+                    }
+                )
+            posts = list(posts)
+
+            if self._cross_encoder_model:
+                posts = self.rerank(query, posts)
+            else:
+                posts = sorted(posts, key=lambda x: x.score, reverse=True)
+
+            posts = posts[:original_limit]
+
+            if return_all:
+                return {
+                    "posts": posts,
+                    "query": query,
+                    "embdedded_queries": embdedded_queries,
+                }
+
+            return posts
+```
+
+After we preprocess the query, the retrieval step is straighforward. We just have to map every embedded query to a Qdrant `SearchRequest` and call the `search_batch()` method on top of our LinkedIn posts collection.
+
+As we have multiple queries, we have to eliminate possible duplicates by adding all the posts to a set.
+
+We will go into the `rerank` aspects of the method in just a second!
+
 ### 5.3. Visualize retrieval
 
+For the visualization step, we implemented a dedicated class that uses the UMAP dimensionality reduction algorithm. We have picked UMAP as it holds the geometric properties, such as the distance, between the higher and lower dimensions better than its peers (e.g., PCA, t-SNE).
+
+The `RetrievalVisualizer` computes the projected embeddings for all the vector space once. Afterward, it uses `render()` method to project only the given query and retrieved posts before rendering them. 
+
+```python
+class RetrievalVisualizer:
+    def __init__(self, posts: list[EmbeddedChunkedPost]):
+        self._posts = posts
+
+        self._umap_transform = self._fit_model(self._posts)
+        self._projected_post_embeddings = self.project_posts(self._posts)
+
+    def _fit_model(self, posts: list[EmbeddedChunkedPost]) -> umap.UMAP:
+        embeddings = np.array([post.text_embedding for post in posts])
+
+        umap_transform = umap.UMAP(random_state=0, transform_seed=0)
+        umap_transform = umap_transform.fit(embeddings)
+
+        return umap_transform
+
+    def project_posts(self, posts: list[EmbeddedChunkedPost]) -> np.ndarray:
+        embeddings = np.array([post.text_embedding for post in posts])
+
+        return self._project(embeddings=embeddings)
+
+    def _project(self, embeddings: np.ndarray) -> np.ndarray:
+        umap_embeddings = np.empty((len(embeddings), 2))
+
+        for i, embedding in enumerate(tqdm(embeddings)):
+            umap_embeddings[i] = self._umap_transform.transform([embedding])
+
+        return umap_embeddings
+
+    def render(
+        self,
+        embedded_queries: list[list[float]],
+        retrieved_posts: list[EmbeddedChunkedPost],
+    ) -> None:
+    ...
+
+```
+
+
+
 ### 5.4. Rerank
+
+Now lets dive into the last aspect of our retrieval module: `rerank`. 
+
+The rerank step is used to refine the retrieved posts with respect to the initial query. This is beneficial as computing using cosine similarity (or similar distances) between the query and posts embeddings might miss more complex (but essential) relationships between the two.
+
+To implement the reranking step, we will use a **cross-encoder** model to give a new score between the user query and retrieved posts. These scores are more refined than a cos similarity as under the hood is a BERT classifier that outputs a number between 0 and 1 depending on how similar are 2 given sentences. As the similarity aspect between the 2 entities are modeled inside the model, it can understand more complex relantionships between the two.
+
+# TODO: Add image with the cross-endcoder models
+
+It is not optimal to use a **cross-encoder** model to search your whole collection, as it a lot slower than cosine similary. That is why reranking is a 2 step algorithm:
+1. you initially do a rough retrieval using cosine similary 
+2. you filter the rough search using the `rerank` strategy
+
+```python
+class QdrantVectorDBRetriever:
+    ...
+
+    def rerank(
+            self, query: str, posts: list[EmbeddedChunkedPost]
+        ) -> list[EmbeddedChunkedPost]:
+            pairs = [[query, f"{post.text}"] for post in posts]
+            cross_encoder_scores = self._cross_encoder_model(pairs)
+            ranked_posts = sorted(
+                zip(posts, cross_encoder_scores), key=lambda x: x[1], reverse=True
+            )
+
+            reranked_posts = []
+            for post, rerank_score in ranked_posts:
+                post.rerank_score = rerank_score
+                
+                reranked_posts.append(post)
+
+            return reranked_posts
+```
+
+Implementation wise is straightforward. We create a list of pairs between the cleaned query and retrieved posts. 
+
+Afterward, we call a `cross-encoder/ms-marco-MiniLM-L-6-v2` model to give them the rerank score. Based on the rerank score we sort the posts in descending order. 
+
+You might have noticed the following piece of code in the `search()` method:
+
+```python
+if self._cross_encoder_model:
+    original_limit = limit
+    limit = limit * 7
+else:
+    original_limit = limit
+
+...
+
+posts = posts[:original_limit]
+```
+
+This piece of code reflects the 2 step reranking algorighm, which at step 1 wideness the search space, and based on the sorted posts using the reranking score it takes only the original number of posts asked by the client.
+
+### 5.5. Visualize retrieval with rerank
 
 ## 6. More examples
 
