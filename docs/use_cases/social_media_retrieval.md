@@ -522,6 +522,8 @@ Here are the results:
 :::
 :::::
 
+You can see that only the first result is ok. The following ones are not relevant at all to our query. They are not about Qdrant or vector DBs.
+
 
 ### 5.3. Visualize retrieval
 
@@ -567,8 +569,19 @@ class RetrievalVisualizer:
 
 ```
 
-# TODO: Add images with the text + UAMP visualization 
+Let's see how the `"Posts about Qdrant"` query looks like ↓
 
+![Visualization Query Qdrant](../assets/use_cases/social_media_retrieval/query_qdrant_visualization.png)
+
+It is not that great. You can see how far are the retrieved posts from our query in the vector space.
+
+Now, let's use an entire post as a query. We will use the post shown in the `2. Data` section ↓
+
+![Visualization Query Post](../assets/use_cases/social_media_retrieval/query_post_visualization.png)
+
+As the query was split into multiple chunks, the results are somehow closer to the queries, but they still aren't that great.
+
+Let's see how we can improve this with the **rerank** strategy.
 
 
 ### 5.4. Rerank
@@ -629,6 +642,57 @@ posts = posts[:original_limit]
 This piece of code reflects the 2 step reranking algorighm, which at step 1 wideness the search space, and based on the sorted posts using the reranking score it takes only the original number of posts asked by the client.
 
 ### 5.5. Visualize retrieval with rerank
+
+Let's take a look at the results of our `"Posts about Qdrant"` query ↓
+
+:::::tabs
+::::tab{title="Result 1"}
+![Result 1](../assets/use_cases/social_media_retrieval/query_qdrant_result_rerank_1.png)
+::::
+
+:::tab{title="Result 2"}
+![Result 2](../assets/use_cases/social_media_retrieval/query_qdrant_result_rerank_2.png)
+:::
+
+:::tab{title="Result 3"}
+![Result 3](../assets/use_cases/social_media_retrieval/query_qdrant_result_rerank_3.png)
+:::
+:::::
+
+Look at that improvement! All the results are about Qdrant and vector DBs. 
+
+Let's see the UMAP visualization:
+
+![Visualization Query Qdrant](../assets/use_cases/social_media_retrieval/query_qdrant_visualization_rerank.png)
+
+The posts aren't very close to the query, but they are a lot closer to the query compared to when we weren't reranking the retrieved posts.
+
+Now let's take another look to our use case when we use the post from the `2. Data` section example as our query ↓
+
+:::::tabs
+::::tab{title="Result 1"}
+![Result 1](../assets/use_cases/social_media_retrieval/query_post_result_rerank_1.png)
+::::
+
+:::tab{title="Result 2"}
+![Result 2](../assets/use_cases/social_media_retrieval/query_post_result_rerank_2.png)
+:::
+
+:::tab{title="Result 3"}
+![Result 3](../assets/use_cases/social_media_retrieval/query_post_result_rerank_3.png)
+:::
+:::::
+
+We asked for 5 results, but as we index the posts based on their `chunk_id` 2 of them were duplicates. This can be solved by more preprocessing steps.
+
+But anyhow, out of 215 posts, look at how relevent the 3 retrieved posts are. The first one is the actual post we used to query the vector DB, which shows that the system is robust.
+
+The next ones are semantically similar to query post as their main topic is about fine-tuning LLMs.
+
+Let's see the UMAP visualization:
+
+![Visualization Query Post](../assets/use_cases/social_media_retrieval/query_post_visualization_rerank.png)
+
 
 # TODO: Add images with the text + UAMP visualization 
 
