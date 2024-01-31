@@ -171,7 +171,7 @@ also leverage human evaluation to evaluate subjective information, such as conte
 You can also build a classified 'domain - questions' set based on question complexity (easy, medium, hard). It can give you an overall sense of the RAG performance.
 
 Nevertheless, it is a challenge to formulate a comprehensive set of metrics. It
-has to appraise he quality of responses from LLMs. It remains an ongoing and intricate issue in the context of natural language processing.
+has to appraise the quality of responses from LLMs. It remains an ongoing and intricate issue in the context of natural language processing.
 
 We have laid the foundation, and we know more about the layers of evaluation. 
 
