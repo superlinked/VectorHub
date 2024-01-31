@@ -508,12 +508,19 @@ for post in retrieved_results["posts"]:
 
 Here are the results:
 
-{% tabs %}
-{% tab title="Result 1" %} [Result 1](../assets/use_cases/social_media_retrieval/query_qdrant_result_1.png) {% endtab %}
-{% tab title="Result 2" %} [Result 2](../assets/use_cases/social_media_retrieval/query_qdrant_result_2.png) {% endtab %}
-{% tab title="Result 3" %} [Result 3](../assets/use_cases/social_media_retrieval/query_qdrant_result_3.png) {% endtab %}
-{% endtabs %}
+:::::tabs
+::::tab{title="Result 1"}
+[Result 1](../assets/use_cases/social_media_retrieval/query_qdrant_result_1.png)
+::::
 
+:::tab{title="Result 2"}
+[Result 2](../assets/use_cases/social_media_retrieval/query_qdrant_result_2.png)
+:::
+
+:::tab{title="Result 3"}
+[Result 3](../assets/use_cases/social_media_retrieval/query_qdrant_result_3.png)
+:::
+:::::
 
 
 ### 5.3. Visualize retrieval
