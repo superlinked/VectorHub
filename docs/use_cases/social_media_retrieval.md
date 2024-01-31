@@ -693,12 +693,14 @@ Let's see the UMAP visualization:
 
 ![Visualization Query Post](../assets/use_cases/social_media_retrieval/query_post_visualization_rerank.png)
 
+This time, you can observe how close are all the retrieved posts to the qeury chunks. 
 
-# TODO: Add images with the text + UAMP visualization 
 
 ## Conclusion
 
+# TODO: Correct grammaticaly the "Retrieval client" section
 # TODO: write conclusion
+# TODO: Final double-check
 
 
 **Future steps:**
