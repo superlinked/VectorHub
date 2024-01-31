@@ -10,11 +10,11 @@ Our tutorial provides an example of **how you can develop a RAG pipeline with pr
 
 ## Development vs. production
 
-The goals and requirements of development and production are usually very different. This is particularly true for new technologies like Large Language Models (LLMs) and Retrieval-augmented Generation (RAG), where organizations prioritize rapid experimentation to test the waters before committing more resources. Once important stakeholders are convinced, the focus shifts from demonstrating that something _can create value_ to _actually creating value via production_. Until a system is productionized, its ROI is typically zero.
+The goals and requirements of development and production are usually very different. This is particularly true for new technologies like Large Language Models (LLMs) and Retrieval-augmented Generation (RAG), where organizations prioritize rapid experimentation to test the waters before committing more resources. Once important stakeholders are convinced, the focus shifts from demonstrating an application's _potential for_ creating value to _actually_ creating value, via production. Until a system is productionized, its ROI is typically zero.
 
 **Productionizing**, in the context of [RAG systems](https://hub.superlinked.com/retrieval-augmented-generation), involves transitioning from a prototype or test environment to a **stable, operational state**, in which the system is readily accessible and reliable for remote end users, such as via URL - i.e., independent of the end user machine state. Productionizing also involves **scaling** the system to handle varying levels of user demand and traffic, ensuring consistent performance and availability.
 
-Even though there is no ROI without productionizing, organizations often underesimate the hurdles involved. Productionizing is always a trade-off between performance and costs, and this is no different for Retrieval-augmented Generation (RAG) systems. The goal is to achieve a stable, operational, and scalable end product while keeping costs low. 
+Even though there is no ROI without productionizing, organizations often underesimate the hurdles involved in getting to an end product. Productionizing is always a trade-off between performance and costs, and this is no different for Retrieval-augmented Generation (RAG) systems. The goal is to achieve a stable, operational, and scalable end product while keeping costs low. 
 
 Let's look more closely at the basic requirements of an [RAG system](https://hub.superlinked.com/retrieval-augmented-generation), before going in to the specifics of what you'll need to productionize it in a cost-effective but scalable way.
 
@@ -30,13 +30,13 @@ The most basic RAG workflow looks like this:
 
 While RAG workflows can become significantly more complex, incorporating methods like metadata filtering and retrieval reranking, _all_ RAG systems must contain the components involved in the basic workflow: an embedding model, a store for document and vector embeddings, a retriever, and a LLM.
 
-But smart development, with productionization in mind, requires not just setting up our components in a functional way. We must also develop with cost-effective scalability in mind. For this we'll need not just these basic components, but more specifically the tools appropriate to configuring a scalable RAG system.
+But smart development, with productionization in mind, requires more than just setting up your components in a functional way. You must also develop with cost-effective scalability in mind. For this you'll need not just these basic components, but more specifically the tools appropriate to configuring a scalable RAG system.
 
 ## Developing for scalability: the right tools
 
 ### LLM library: LangChain
 
-As of this writing, LangChain, while it has also been the subject of much criticism, is arguably the most prominent LLM library. A lot of developers turn to Langchain to build Proof-of-Concepts (PoCs) and Minimum Viable Products (MVPs), or simply to experiment with new ideas. Whether one chooses LangChain or one of the other major LLM and RAG libraries - for example, LlamaIndex or Haystack, to name my alternate personal favorites - they can _all_ be used to productionize an RAG system. That is, all three have integrations for third-party libraries and providers that will handle production requirements. Which one you choose to interface with your other components depends on the details of your existing tech stack and use case.
+As of this writing, LangChain, while it has also been the subject of much criticism, is arguably the most prominent LLM library. A lot of developers turn to Langchain to build Proof-of-Concepts (PoCs) and Minimum Viable Products (MVPs), or simply to experiment with new ideas. Whether one chooses LangChain or one of the other major LLM and RAG libraries - for example, LlamaIndex or Haystack, to name our alternate personal favorites - they can _all_ be used to productionize an RAG system. That is, all three have integrations for third-party libraries and providers that will handle production requirements. Which one you choose to interface with your other components depends on the details of your existing tech stack and use case.
 
 For the purpose of this tutorial, we'll use part of the Langchain documentation, along with Ray.
 
@@ -203,7 +203,7 @@ content_ds.count()
 
 ```
 
-Awesome! The results of the above extraction are our dataset. Because Ray datasets are optimized for performance at scale, and therefore productionization, they don't require us to make costly and error-prone adjustments to our code when our application grows. 
+Awesome! The results of the above extraction are our dataset. Because Ray datasets are optimized for scaled performance in production, they don't require us to make costly and error-prone adjustments to our code when our application grows. 
 
 ### Processing the data
 
@@ -247,7 +247,7 @@ Now that we've gathered and chunked our data scalably, we need to embed and inde
 
 **Embedding the data**
 
-We use a pretrained model to create vector embeddings for both our data chunks and the query itself. By measuring the distance between the chunk embeddings and the query embedding, we can identify the most relevant, or "top-k," chunks. Of the various pretrained models, we'll use the popular 'bge-base-en-v1.5' model because, at the time of writing this tutorial, it ranks as the highest-performing model of its size on the [MTEB Leaderboard](https://huggingface.co/spaces/mteb/leaderboard). For convenience, we continue using LangChain:
+We use a pretrained model to create vector embeddings for both our data chunks and the query itself. By measuring the distance between the chunk embeddings and the query embedding, we can identify the most relevant, or "top-k," chunks. Of the various pretrained models, we'll use the popular 'bge-base-en-v1.5' model, which, at the time of writing this tutorial, ranks as the highest-performing model of its size on the [MTEB Leaderboard](https://huggingface.co/spaces/mteb/leaderboard). For convenience, we continue using LangChain:
 
 ```python
 from langchain.embeddings import OpenAIEmbeddings
@@ -288,7 +288,7 @@ embedded_chunks = chunks_ds.map_batches(
 
 **Indexing the data**
 
-Now that our chunks are embedded, we need to **store** them somewhere. For the sake of this tutorial, we'll utilize Qdrant’s new in-memory feature, which lets us experiment with our code rapidly without needing to set up a fully-fledged instance. However, for deployment in a production environment, you should rely on more robust and scalable solutions — hosted either within your own network or by a third-party provider. For example, we would need to point to our Qdrant (or your preferred hosted vendor) instance instead of using it in-memory. Detailed guidance on self-hosted solutions, such as setting up a Kubernetes cluster, are beyond the scope of this tutorial.
+Now that our chunks are embedded, we need to **store** them somewhere. For the sake of this tutorial, we'll utilize Qdrant’s new in-memory feature, which lets us experiment with our code rapidly without needing to set up a fully-fledged instance. However, for deployment in a production environment, you should rely on more robust and scalable solutions — hosted either within your own network or by a third-party provider. For example, to fully productionize, we would need to point to our Qdrant (or your preferred hosted vendor) instance instead of using it in-memory. Detailed guidance on self-hosted solutions, such as setting up a Kubernetes cluster, are beyond the scope of this tutorial.
 
 ```python
 from qdrant_client import QdrantClient
@@ -465,7 +465,7 @@ for content in response:
     print(content, end='', flush=True)
 ```
 
-However, to make using our application even more convenient, we can simply adapt Ray's official documentation to implement our workflow within a **single** QueryAgent class, which bundles together and takes care of all of the steps we implemented above - retrieving embeddings, embedding the search query, performing vector search, processing the results, and querying the LLM to generate a response. Using this single class approach, we no longer need to sequentially call all of these functions, and can also include utility functions. (Specifically, `Get_num_tokens` encodes our text and gets the number of tokens, to calculate the length of the input. To maintain our standard 50:50 allocation for input:generation, we use `(text, max_context_length)` to trim input text if it's too long.)
+To **make using our application even more convenient**, we can simply adapt Ray's official documentation to **implement our workflow within a single QueryAgent class**, which bundles together and takes care of all of the steps we implemented above - retrieving embeddings, embedding the search query, performing vector search, processing the results, and querying the LLM to generate a response. Using this single class approach, we no longer need to sequentially call all of these functions, and can also include utility functions. (Specifically, `Get_num_tokens` encodes our text and gets the number of tokens, to calculate the length of the input. To maintain our standard 50:50 ratio to allocate space to each of input and generation, we use `(text, max_context_length)` to trim input text if it's too long.)
 
 ```python
 import tiktoken
@@ -565,7 +565,7 @@ print(json.dumps(result, indent=2))
 
 ## Serving our application
 
-Our application is now running! Our final step is to serve it. Ray's [Ray Serve](https://docs.ray.io/en/latest/serve/index.html) module makes this very straightforward. We use Ray Serve in combination with FastAPI and pydantic. The @serve.deployment decorator lets us define how many replicas and compute resources we want to use, and Ray’s autoscaling will handle the rest. Two Ray Serve decorators are all we need to modify our FastAPI application for production.
+Our application is now running! Our last productionizing step is to serve it. Ray's [Ray Serve](https://docs.ray.io/en/latest/serve/index.html) module makes this step very straightforward. We combine Ray Serve with FastAPI and pydantic. The @serve.deployment decorator lets us define how many replicas and compute resources we want to use, and Ray’s autoscaling will handle the rest. Two Ray Serve decorators are all we need to modify our FastAPI application for production.
 
 ```python
 import pickle
@@ -612,7 +612,7 @@ class RayAssistantDeployment:
         return Response.parse_obj(result)
 ```
 
-And now we **deploy** our application:
+Now, we're ready to **deploy** our application:
 
 ```python
 # Deploying our application with Ray Serve
@@ -624,7 +624,7 @@ deployment = RayAssistantDeployment.bind(
 serve.run(deployment, route_prefix="/")
 ```
 
-Our FastAPI endpoint can now be queried like any other API, while Ray handles the workload automatically:
+Our FastAPI endpoint is capable of being queried like any other API, while Ray take care of the workload automatically:
 
 ```python
 # Performing inference
@@ -639,19 +639,19 @@ except:
   print(response.text)
 ```
 
-Wow! We've been on quite a journey. We gathered our data using Ray and some LangChain documentation, processed it by chunking, embedding, and indexing it, set up our retrieval and generation, and, finally, served our application using Ray Serve.
+Wow! We've been on quite a journey. We gathered our data using Ray and some LangChain documentation, processed it by chunking, embedding, and indexing it, set up our retrieval and generation, and, finally, served our application using Ray Serve. Our tutorial has so far covered an example of how to develop scalably and economically - how to productionize from the very start of development. 
 
-But to fully productionize your application, you also need to maintain it.
+Still, there is one last crucial step.
 
 ## Production is only the start: maintenance
 
-We've mapped an example of how to develop scalably and economically - how to productionize from the very start of development. But productionizing includes one last crucial consideration: maintenance. And maintaining your application is a continuous task.
+To fully productionize any application, you also need to maintain it. And maintaining your application is a continuous task.
 
 Maintenance involves regular assessment and improvement of your application. You may need to routinely update your dataset if your application relies on being current with real-world changes. And, of course, you should monitor application performance to prevent  degradation. For smoother operations, we recommend integrating your workflows with CI/CD pipelines.
 
 ### Limitations and future discussion
 
-Other critical aspects of scalably productionizing fell outside of the scope of this article, but will be explored in future articles, including:
+Other critical aspects of scalably productionizing fall outside of the scope of this article, but will be explored in future articles, including:
 
 - **Advanced Development** Pre-training, finetuning, prompt engineering and other in-depth development techniques
 - **Evaluation** Randomness and qualitative metrics, and complex multi-part structure of RAG can make LLM evaluation difficult
