@@ -34,38 +34,35 @@ But smart development, with productionization in mind, requires not just setting
 
 ## Developing for scalability: the right tools
 
-an embedding model, a store for document and vector embeddings, a retriever, and a LLM
-embedding model:
-storage: 
+store for doucment and vector embeddings: 
 LLM library: Langchain's LCEL
 productionizing framework for scaling: Ray
 
 ### LLM library: LangChain
 
-As of this writing, LangChain, while it has also been the subject of much criticism, is also arguably the most prominent LLM library. A lot of developers turn to Langchain to build Proofs-of-Concept (PoCs) and Minimum Viable Products (MVPs), or simply to experiment with new ideas. Whether one chooses LangChain or one of the other major LLM and RAG libraries - for example, LlamaIndex or Haystack, to name my other personal favorites - they can _all_ be used to productionize an RAG system. That is, all three have integrations for third-party libraries and providers that will handle the production requirements. Which one you choose to interface with your other components depends on the details of your existing tech stack and use case. 
+As of this writing, LangChain, while it has also been the subject of much criticism, is also arguably the most prominent LLM library. A lot of developers turn to Langchain to build Proof-of-Concepts (PoCs) and Minimum Viable Products (MVPs), or simply to experiment with new ideas. Whether one chooses LangChain or one of the other major LLM and RAG libraries - for example, LlamaIndex or Haystack, to name my other personal favorites - they can _all_ be used to productionize an RAG system. That is, all three have integrations for third-party libraries and providers that will handle the production requirements. Which one you choose to interface with your other components depends on the details of your existing tech stack and use case. 
+
+For the purpose of this tutorial, we'll use part of the Langchain documentation, along with Ray.
 
 ### Scaling with Ray
 
-Alright, but what will *we* choose for this tutorial? One of the first decisions to make will be where we want to run our system: should we use a cloud service, or should we run it within our own network? 
-Since tutorials should aim to reduce complexity and avoid proprietary solutions where possible, we will opt _not_ to use the cloud option here. While the aforementioned libraries (all of LangChain, LlamaIndex, Haystack??) support cloud deployment for AWS, Azure, and GCP, the details of cloud deployment heavily depend on the specific cloud provider you choose. Instead, we will utilize [Ray](https://github.com/ray-project/ray).
+Because our goal is to build a 1) simple, 2) scalable, _and_ 3) economically feasible option, not reliant on proprietary solutions, we have chosen to use [Ray](https://github.com/ray-project/ray), a Python framework for productionizing and scaling machine learning (ML) workloads. Ray is designed with a range of auto-scaling features, to seamlessly scale ML systems. It's also adaptable to both local environments and Kubernetes, efficiently managing all workload requirements.
 
-Ray is a Python framework for productionizing and scaling machine learning (ML) workloads. It is adaptable for both local environments and Kubernetes, efficiently managing all workload requirements. Ray's design focuses on making the scaling of ML systems seamless, thanks to its range of autoscaling features. While we could opt for using the Ray integrations within LangChain, LlamaIndex, or Haystack, we'll use Ray directly to provide more universally applicable insights, given that all these integrations are built upon the same underlying framework.
-
-Before diving in, it's worth mentioning LangServe, a recent addition to the LangChain ecosystem. LangServe is designed to bridge the gap in production tooling. Although it hasn't been widely adopted yet and may take some time to gain traction, the LangChain team is actively responding to feedback to enhance the production experience.
+**Ray permits us to keep our tutorial system simple, non-proprietary, and on our own network, rather than the cloud**. While LangChain, LlamaIndex, and Haystack libraries support cloud deployment for AWS, Azure, and GCP, the details of cloud deployment heavily depend on - and are therefore very particular to - the specific cloud provider you choose. These libraries also all contain Ray integrations to enable scaling. But **using Ray directly will provide us with more universally applicable insights**, given that the Ray integrations within LangChain, LlamaIndex, and Haystack are built upon the same underlying framework.
 
 ## Data gathering and processing
 
 ### Gathering the data
 
-Every ML journey starts with the data and data needs to be stored somewhere. We will use a part of the LangChain documentation for this tutorial. We will first download the html files and then create a [Ray dataset](https://docs.ray.io/en/latest/data/data.html) of them.
+Every ML journey starts with data, and that data needs to be gathered and stored somewhere. For this tutorial, we gather data from part of the LangChain documentation. We first download the html files and then create a [Ray dataset](https://docs.ray.io/en/latest/data/data.html) of them.
 
-We start with **installing all the dependencies** that we will use in this tutorial:
+We start by **installing all the dependencies** that we'll use:
 
 ```console
 pip install ray langchain sentence-transformers qdrant-client einops openai tiktoken fastapi "ray[serve]"
 ```
 
-Since we will use the OpenAI API in this tutorial, we will **need an API key**. We export our API key as an environmental variable and then we **initialize our Ray environment** like this:
+We use the OpenAI API in this tutorial, so we'll **need an API key**. We export our API key as an environmental variable, and then **initialize our Ray environment** like this:
 
 ```python
 import os
@@ -85,7 +82,7 @@ ray.init(runtime_env={
 })
 ```
 
-In order to work with the LangChain documentation, we need to **download the html files and process them**. Scraping html files can get very tricky and the details depend heavily on the structure of the website you’re trying to scrape. The functions below are only meant to be used in the context of this tutorial. 
+To work with the LangChain documentation, we need to **download the html files and process them**. Scraping html files can get very tricky and the details depend heavily on the structure of the website you’re trying to scrape. The functions below are only meant to be used in the context of this tutorial.
 
 ```python
 import requests
@@ -149,7 +146,7 @@ def download_all(start_url, folder, max_workers=5):
                     print(f"Error with future for {url}: {e}")
 ```
 
-Because the documentation is very large, we will only download **a subset** of it. We will use the documentation of **LangChain's Expression Language (LCEL)**, which consists of 28 html pages.
+Because the LangChain documentation is very large, we'll download only **a subset** of it: **LangChain's Expression Language (LCEL)**, which consists of 28 html pages.
 
 ```python
 base_domain = "python.langchain.com"
@@ -159,7 +156,7 @@ folder = working_dir
 download_all(start_url, folder, max_workers=10)
 ```
 
-**Now that we have downloaded the files, we can use them to create our Ray dataset**:
+Now that we've downloaded the files, we can use them to **create our Ray dataset**:
 
 ```python
 from pathlib import Path
@@ -170,7 +167,7 @@ ds = ray.data.from_items([{"path": path.absolute()} for path in document_dir.rgl
 print(f"{ds.count()} documents")
 ```
 
-Great! But there is something left to do before we can move on to the next phase of our workflow. We **still need to extract the relevant text from our html files and clean up all the html syntax**. For this, we will import BeautifulSoup to **parse the files and find relevant html tags**.
+Great! But there's one more step left before we can move on to the next phase of our workflow. We need to **extract the relevant text from our html files and clean up all the html syntax**. For this, we import BeautifulSoup to **parse the files and find relevant html tags**.
 
 ```python
 from bs4 import BeautifulSoup, NavigableString
@@ -199,7 +196,7 @@ def extract_main_content(record):
 
 ```
 
-We can now use this extraction process by utilizing Ray’s map() function. This let’s run multiple processes in parallel.
+We can now use Ray's map() function to run this extraction process. Ray let’s us run multiple processes in parallel.
 
 ```python
 # Extract content
@@ -208,17 +205,17 @@ content_ds.count()
 
 ```
 
-Awesome, this will be our dataset. Ray Datasets are optimized for performance at scale - which will make productionizing our system easier for us. Having to manually adjust code while your application grows can get very costly and is prone to errors.
+Awesome! The results of the above extraction are our dataset. Because Ray datasets are optimized for performance at scale, and therefore productionization, they don't require us to make costly and error-prone adjustments to our code when our application grows. 
 
 ### Processing the data
 
-The next three processing steps will consist of **chunking, embedding and indexing** our data source.
+To process our dataset, our next three steps are **chunking, embedding, and indexing**.
 
 **Chunking the data**
 
-Chunking is the process of splitting your documents into multiple smaller parts. Not only will this be necessary to make your data meet the LLM’s context length limits, it also helps to keep contexts specific enough to remain relevant. On the other hand, if your chunks are too small, the information retrieved might become too narrow. The exact chunk size will depend on your data, the models used and your use case. We will use a standard value here that has been used in a lot of applications.
+Chunking - splitting your documents into multiple smaller parts - is necessary to make your data meet the LLM’s context length limits, and helps keep contexts specific enough to remain relevant. Chunks need to be the right size. If your chunks are too small, the information retrieved may become too narrow to provide adequate query responses. The optimal chunk size will depend on your data, the models you use, and your use case. We will use a common chunking value here, one that has been used in a lot of applications.
 
-Let’s define our text splitting logic first, we will use a standard text splitter from LangChain:
+Let’s define our text splitting logic first, using a standard text splitter from LangChain:
 
 ```python
 from functools import partial
@@ -238,7 +235,7 @@ def chunking(document, chunk_size, chunk_overlap):
     return [{"text": chunk.page_content, "path": chunk.metadata["path"]} for chunk in chunks]
 ```
 
-Again, we utilize Ray's map() for scalability:
+Again, we utilize Ray's map() function to ensure scalability:
 
 ```python
 chunks_ds = content_ds.flat_map(partial(
@@ -248,9 +245,11 @@ chunks_ds = content_ds.flat_map(partial(
 print(f"{chunks_ds.count()} chunks")
 ```
 
+Now that we've gathered and chunked our data scalably, we need to embed and index it, so that we can efficiently retrieve relevant answers to our queries.
+
 **Embedding the data**
 
-Why are we doing all this again? To make our data retrievable in an efficient way. We want relevant answers to our questions. And to find the most relevant text sections for a query, we can use a pretrained model to create vector embeddings for both our data chunks and the query itself. By measuring the distance between the chunk embeddings and the query embedding, we can identify the most relevant chunks, typically referred to as the 'top-k' chunks. There are various pretrained models suitable for this task. We will be using the popular 'bge-base-en-v1.5' model because, at the time of writing this tutorial, it ranks as the highest-performing model of its size on the [MTEB Leaderboard](https://huggingface.co/spaces/mteb/leaderboard). For convenience, we will continue using LangChain:
+We use a pretrained model to create vector embeddings for both our data chunks and the query itself. By measuring the distance between the chunk embeddings and the query embedding, we can identify the most relevant, or "top-k," chunks. Of the various pretrained models, we'll use the popular 'bge-base-en-v1.5' model because, at the time of writing this tutorial, it ranks as the highest-performing model of its size on the [MTEB Leaderboard](https://huggingface.co/spaces/mteb/leaderboard). For convenience, we continue using LangChain:
 
 ```python
 from langchain.embeddings import OpenAIEmbeddings
@@ -266,7 +265,7 @@ def get_embedding_model(embedding_model_name, model_kwargs, encode_kwargs):
     return embedding_model
 ```
 
-This time we will define a class because we want to use map_batches() instead of map(). This function requires a class object with a **call** method.
+This time, instead of map(), we want to use map_batches(), which requires defining a class object to perform a **call** on.
 
 ```python
 class EmbedChunks:
@@ -291,7 +290,7 @@ embedded_chunks = chunks_ds.map_batches(
 
 **Indexing the data**
 
-Our chunks are embedded, and now we need to **store** them somewhere. For the sake of this tutorial, we will utilize Qdrant’s new in-memory feature. This feature allows us to experiment with our code rapidly without the need to set up a fully-fledged instance. However, for deployment in a production environment, it is advisable to rely on more robust and scalable solutions — these might be hosted either within your own network or by a third-party provider. Detailed guidance on setting up such solutions is beyond the scope of this tutorial.
+Now that our chunks are embedded, we need to **store** them somewhere. For the sake of this tutorial, we'll utilize Qdrant’s new in-memory feature, which lets us experiment with our code rapidly without needing to set up a fully-fledged instance. However, for deployment in a production environment, you should rely on more robust and scalable solutions — hosted either within your own network or by a third-party provider. Detailed guidance on setting up such solutions is beyond the scope of this tutorial.
 
 ```python
 from qdrant_client import QdrantClient
@@ -306,13 +305,13 @@ client.recreate_collection(
 )
 ```
 
-We could use Ray again, but to perform the next processing step Ray would require more than 2 CPU scores, which would make this tutorial incompatible with the free tier of Google Colab. Instead, then, we will use pandas. Fortunately, Ray allows us to convert our dataset into a pandas DataFrame with a single line of code.
+To perform the next processing step - storage - using Ray would require more than 2 CPU scores, making this tutorial incompatible with the free tier of Google Colab. Instead, then, we'll use pandas. Fortunately, Ray allows us to convert our dataset into a pandas DataFrame with a single line of code:
 
 ```python
 emb_chunks_df = embedded_chunks.to_pandas()
 ```
 
-Now we **define and execute our data storage function**:
+Now that our dataset is converted to pandas, we **define and execute our data storage function**:
 
 ```python
 from qdrant_client.models import PointStruct
@@ -345,7 +344,7 @@ This wraps up the data processing part! Our data is now stored in our vector dat
 
 ## Data retrieval
 
-When retrieving data from a vector storage, it is important to use the same embedding model for your query that was used for the source data. Otherwise, the comparison of the vectors would not be meaningful.
+When you retrieve data from vector storage, it's important to use the same embedding model for your query that you used for your source data. Otherwise, vector comparison to surface relevant content may result in mismatched or non-nuanced results (due to semantic drift, loss of context, or inconsistent distance metrics).
 
 ```python
 import numpy as np 
@@ -357,7 +356,7 @@ query_embedding = np.array(embedding_model.embed_query(query))
 len(query_embedding)
 ```
 
-Recall the concept of 'top-k' chunks? In Qdrant’s search, the 'limit' parameter is equivalent to 'k'. By default, the search uses cosine similarity as the metric, and the 5 chunks closest to our query embedding will be retrieved from our database:
+Recall from above that we measure the distance between the query embedding and chunk embeddings to identify the most relevant, or 'top-k' chunks. In Qdrant’s search, the 'limit' parameter is equivalent to 'k'. By default, the search uses cosine similarity as the metric, and retrieves from our database the 5 chunks closest to our query embedding:
 
 ```python
 hits = client.search(
@@ -370,7 +369,7 @@ context_list = [hit.payload["text"] for hit in hits]
 context = "\n".join(context_list)
 ```
 
-And we will rewrite this as a function for later use:
+We rewrite this as a function for later use:
 
 ```python
 def semantic_search(query, embedding_model, k):
@@ -387,9 +386,9 @@ def semantic_search(query, embedding_model, k):
 
 ## Generation
 
-We are so close to getting our answers! We set up everything we need to query our LLM — and we did so in a scalable way. Instead of simply querying the model for a response, we will first **retrieve relevant context from our vector database and then add it to the query**. We can think of this as a query that is informed by our data.
+We're now very close to being able to field queries and retrieve answers! We've set up everything we need to query our LLM _at scale_. Instead of simply querying the model for a response, we want to first inform the query with our data, by **retrieving relevant context from our vector database and then adding it to the query**.
 
-For this, we will use a simplified version of the implementation provided in Ray's [LLM repository](https://github.com/ray-project/llm-applications/blob/main/rag/generate.py). This version is adapted to our code and leaves out a bunch of advanced retrieval techniques, such as reranking and hybrid search. We will use gpt-3.5-turbo as our LLM and we will query it via the OpenAI API. 
+To do this, we use a simplified version of the generate.py script provided in Ray's [LLM repository](https://github.com/ray-project/llm-applications/blob/main/rag/generate.py). This simplified version is adapted to our code and leaves out a bunch of advanced retrieval techniques, such as reranking and hybrid search. We use gpt-3.5-turbo as our LLM and query it via the OpenAI API.
 
 ```python
 from openai import OpenAI
