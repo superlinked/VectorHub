@@ -21,6 +21,7 @@
   - [Personalized Search](use_cases/personalized_search.md)
   - [Recommender Systems](use_cases/recommender_systems.md)
   - [Retrieval Augmented Generation](use_cases/retrieval_augmented_generation.md)
+  - [Scaling RAG for Production](use_cases/scaling_rag_for_production.md)
   - [Enhancing RAG with multiple agents](use_cases/multi_agent_rag.md)
   - [Embeddings on browser](use_cases/embeddings_on_browser.md)
   - [Answering Questions with Knowledge Graph Embeddings](use_cases/knowledge_graph_embedding.md)
