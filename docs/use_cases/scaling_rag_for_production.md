@@ -386,7 +386,7 @@ def semantic_search(query, embedding_model, k):
 
 ## Generation
 
-We're now very close to being able to field queries and retrieve answers! We've set up everything we need to query our LLM _at scale_. Instead of simply querying the model for a response, we want to first inform the query with our data, by **retrieving relevant context from our vector database and then adding it to the query**.
+We're now very close to being able to field queries and retrieve answers! We've set up everything we need to query our LLM _at scale_. But before querying the model for a response, we want to first inform the query with our data, by **retrieving relevant context from our vector database and then adding it to the query**.
 
 To do this, we use a simplified version of the generate.py script provided in Ray's [LLM repository](https://github.com/ray-project/llm-applications/blob/main/rag/generate.py). This simplified version is adapted to our code and leaves out a bunch of advanced retrieval techniques, such as reranking and hybrid search. We use gpt-3.5-turbo as our LLM and query it via the OpenAI API.
 
@@ -451,7 +451,7 @@ def prepare_response(chat_completion, stream):
         return chat_completion.choices[0].message.content
 ```
 
-This is how we would **generate a response**:
+Finally, we **generate a response**:
 
 ```python
 # Generating our response
@@ -467,7 +467,7 @@ for content in response:
     print(content, end='', flush=True)
 ```
 
-However, to make using our application even more convenient, we will implement our workflow within a single class. This again is a simplified and adapted version of Ray’s official implementation. This QueryAgent class will take care of all the steps we implemented above for us, including a few additional utility functions.
+However, to make using our application even more convenient, we simply and adapt Ray's official documentation to implement our workflow within a single QueryAgent class, which will will take care of all the steps we implemented above for us, including a few additional utility functions.
 
 ```python
 import tiktoken
@@ -567,7 +567,7 @@ print(json.dumps(result, indent=2))
 
 ## Serving our application
 
-Finally! Our application is running and we are about to serve it. Fortunately, Ray makes this very straightforward with their [Ray Serve](https://docs.ray.io/en/latest/serve/index.html) module. We will use Ray Serve in combination with FastAPI and pydantic. The @serve.deployment decorator lets us define how many replicas and compute resources we want to use and Ray’s autoscaling will handle the rest. Two Ray serve decorators are all we need to modify our FastAPI application for production.
+Our application is now running! Our final step is to serve it. Ray's [Ray Serve](https://docs.ray.io/en/latest/serve/index.html) module makes this very straightforward. We use Ray Serve in combination with FastAPI and pydantic. The @serve.deployment decorator lets us define how many replicas and compute resources we want to use, and Ray’s autoscaling will handle the rest. Two Ray Serve decorators are all we need to modify our FastAPI application for production.
 
 ```python
 import pickle
@@ -614,7 +614,7 @@ class RayAssistantDeployment:
         return Response.parse_obj(result)
 ```
 
-And now we will **deploy** our application:
+And now we **deploy** our application:
 
 ```python
 # Deploying our application with Ray Serve
@@ -626,7 +626,7 @@ deployment = RayAssistantDeployment.bind(
 serve.run(deployment, route_prefix="/")
 ```
 
-Our FastAPI endpoint can then be queried like any other API, while Ray handles the workload automatically:
+Our FastAPI endpoint can now be queried like any other API, while Ray handles the workload automatically:
 
 ```python
 # Performing inference
@@ -641,7 +641,9 @@ except:
   print(response.text)
 ```
 
-Wow! This was quite the journey. We're glad you made it this far. One final reminder regarding maintenance — and a suggestion for what to explore next.
+Wow! We've been on quite a journey. We gathered our data using Ray and some LangChain documentation, processed it by chunking, embedding, and indexing it, set up our retrieval and generation, and, finally, served our application using Ray Serve... 
+
+But to fully productionize your application, you also need to maintain it.
 
 ## Production is only the start: maintenance
 
