@@ -420,14 +420,18 @@ class QdrantVectorDBRetriever:
 We have to embed the query in the exact same way as we ingested the posts into the vector DB. Because the streaming pipeline is written in Python due to Bytewax and every preprocessing operation is modular, we can quickly replicate all steps:
 
 ```python
-def embed_query(self, query: str) -> list[list[float]]:
-    cleaned_query = CleanedPost.clean(query)
-    chunks = ChunkedPost.chunk(cleaned_query, self._embedding_model)
-    embdedded_queries = [
-        self._embedding_model(chunk, to_list=True) for chunk in chunks
-    ]
+class QdrantVectorDBRetriever:
 
-    return embdedded_queries
+    ...
+
+    def embed_query(self, query: str) -> list[list[float]]:
+        cleaned_query = CleanedPost.clean(query)
+        chunks = ChunkedPost.chunk(cleaned_query, self._embedding_model)
+        embdedded_queries = [
+            self._embedding_model(chunk, to_list=True) for chunk in chunks
+        ]
+
+        return embdedded_queries
 ```
 
 Notice that now we might end with multiple query chunks. That is not an issue. It is even better, as we can search posts of interest in multiple areas of interest in the embedded posts vector space.
@@ -436,6 +440,7 @@ Notice that now we might end with multiple query chunks. That is not an issue. I
 
 ```python
 class QdrantVectorDBRetriever:
+
     ...
 
     def search(
@@ -493,6 +498,24 @@ As we have multiple queries, we have to eliminate possible duplicates by adding 
 
 We will go into the `rerank` aspects of the method in just a second!
 
+Let's give it a spin ↓
+
+```python
+retrieved_results = vector_db_retriever.search(query="Posts about Qdrant", limit=3, return_all=True)
+for post in retrieved_results["posts"]:
+    vector_db_retriever.render_as_html(post)
+```
+
+Here are the results:
+
+{% tabs %}
+{% tab title="Result 1" %} [Result 1](../assets/use_cases/social_media_retrieval/query_qdrant_result_1.png) {% endtab %}
+{% tab title="Result 2" %} [Result 2](../assets/use_cases/social_media_retrieval/query_qdrant_result_2.png) {% endtab %}
+{% tab title="Result 3" %} [Result 3](../assets/use_cases/social_media_retrieval/query_qdrant_result_3.png) {% endtab %}
+{% endtabs %}
+
+
+
 ### 5.3. Visualize retrieval
 
 For the visualization step, we implemented a dedicated class that uses the UMAP dimensionality reduction algorithm. We have picked UMAP as it holds the geometric properties, such as the distance, between the higher and lower dimensions better than its peers (e.g., PCA, t-SNE).
@@ -537,6 +560,8 @@ class RetrievalVisualizer:
 
 ```
 
+# TODO: Add images with the text + UAMP visualization 
+
 
 
 ### 5.4. Rerank
@@ -555,6 +580,7 @@ It is not optimal to use a **cross-encoder** model to search your whole collecti
 
 ```python
 class QdrantVectorDBRetriever:
+
     ...
 
     def rerank(
@@ -597,13 +623,14 @@ This piece of code reflects the 2 step reranking algorighm, which at step 1 wide
 
 ### 5.5. Visualize retrieval with rerank
 
-## 6. More examples
-
+# TODO: Add images with the text + UAMP visualization 
 
 ## Conclusion
 
+# TODO: write conclusion
 
-### Future steps:
+
+**Future steps:**
 - add an intermediat NoSQL DB between the RAW NoSQL DB & the cleaned posts
 - change embedding or rerank model
 
