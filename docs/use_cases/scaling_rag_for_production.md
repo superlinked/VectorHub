@@ -465,7 +465,7 @@ for content in response:
     print(content, end='', flush=True)
 ```
 
-To **make using our application even more convenient**, we can simply adapt Ray's official documentation to **implement our workflow within a single QueryAgent class**, which bundles together and takes care of all of the steps we implemented above - retrieving embeddings, embedding the search query, performing vector search, processing the results, and querying the LLM to generate a response. Using this single class approach, we no longer need to sequentially call all of these functions, and can also include utility functions. (Specifically, _Get_num_tokens_ encodes our text and gets the number of tokens, to calculate the length of the input. To maintain our standard 50:50 ratio to allocate space to each of input and generation, we use _(text, max_context_length)_ to trim input text if it's too long.)
+To **make using our application even more convenient**, we can simply adapt Ray's official documentation to **implement our workflow within a single QueryAgent class**, which bundles together and takes care of all of the steps we implemented above - retrieving embeddings, embedding the search query, performing vector search, processing the results, and querying the LLM to generate a response. Using this single class approach, we no longer need to sequentially call all of these functions, and can also include utility functions. (Specifically, `Get_num_tokens` encodes our text and gets the number of tokens, to calculate the length of the input. To maintain our standard 50:50 ratio to allocate space to each of input and generation, we use `(text, max_context_length)` to trim input text if it's too long.)
 
 ```python
 import tiktoken
