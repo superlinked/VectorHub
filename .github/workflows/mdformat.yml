@@ -1,5 +1,10 @@
 name: Run mdformat on markdown files
-on: [ push ]
+on:
+  workflow_run:
+    workflows:
+      - Validate vendor JSON files
+    types:
+      - completed
 
 jobs:
   format:
