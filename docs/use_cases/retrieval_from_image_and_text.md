@@ -1,51 +1,24 @@
-change
 # Retrieval from Image and Text Modalities
 
-## Problem statement
+## Multimodal embedding: the value add
 
-In the contemporary data-centric world, embeddings have become indispensable for converting complex and varied data into 
-numerical representations that are both manageable and analytically powerful. Utilized across a spectrum of industries, 
-from e-commerce to healthcare, these embeddings enable machines to interpret, analyze, and make predictions from 
-large-scale datasets, encompassing both textual and visual information. Traditionally, models have relied on 
-unimodal data, focusing on a single type of input. However, the advent of multimodal models, which synergize 
-various data forms such as text and images, has proven to be a game-changer. These multimodal approaches 
-surpass the limitations of unimodal methods, offering richer contextual insights and enhanced predictive capabilities. 
-This shift towards multimodal data integration marks a significant stride in the field, paving the way for more 
-sophisticated and accurate applications across diverse sectors. To explore how embeddings have started making 
-a big impact across various industries, and to see some real-world examples of their growing popularity, 
-check out [this link](https://mccormickml.com/2018/06/15/applying-word2vec-to-recommenders-and-advertising/).
+In the contemporary data-centric world, embeddings have become indispensable for converting complex and varied data into numerical representations that are both manageable and analytically powerful. Utilized [across a spectrum of industries](https://mccormickml.com/2018/06/15/applying-word2vec-to-recommenders-and-advertising/), from e-commerce to healthcare, these embeddings enable machines to interpret, analyze, and make predictions from large-scale datasets, encompassing both textual and visual information. Traditionally, models have relied on unimodal data, focusing on a single type of input. However, the advent of multimodal models, which synergize various data forms such as text and images, has proven to be a game-changer. These multimodal approaches surpass the limitations of unimodal methods, offering richer contextual insights and enhanced predictive capabilities, and paving the way for more sophisticated and accurate applications across diverse sectors. 
 
-
-In this project, we explore the use of the COCO and Open Images V7 datasets to create embeddings from both images and text. 
-We'll walk through various experiments, showcasing different embedding models and assessing their effectiveness 
-with ranking metrics. This will give you a clear understanding of how multimodal data can be used in 
-embedding processes.
+In this project, we explore the use of the COCO and Open Images V7 datasets to create embeddings from both images and text. We'll walk through various experiments, showcasing different embedding models and assessing their effectiveness with ranking metrics. This will give you a clear understanding of how multimodal data can be used in embedding processes. (say in more detail here how it can be used.. object detection, segmentation, image captioning??)
 
 ## Dataset Specification
 
-There are two essential criteria that a dataset must satisfy:
+There are two essential criteria that a (multimodal??) dataset must satisfy:
 
 1. The dataset should be structured to have <query, multiple answers> pairs.
 2. Both the "query" and "multiple answers" should include <image, text metadata>.
 
-Finding publicly available datasets that meet these criteria is challenging. However, the 
-[Common Objects in Context](https://cocodataset.org/#home) (COCO) and 
-[Open Images V7](https://storage.googleapis.com/openimages/web/index.html) datasets stand out as a notable exceptions. 
-Both datasets are extensively utilized as benchmark datasets for object detection, segmentation, and image captioning tasks. 
+Publicly available datasets that meet these criteria are rare. The [Common Objects in Context](https://cocodataset.org/#home) (COCO) and [Open Images V7](https://storage.googleapis.com/openimages/web/index.html) datasets are notable exceptions. Both datasets are extensively utilized as benchmark datasets for object detection, segmentation, and image captioning tasks. 
 
-COCO comprises images from 80 object categories, each accompanied by 5 unique, human-written captions. These captions 
-distinctively describe the objects present in the images. Open Images V7 encompasses a significantly larger number of distinct 
-object categories, totaling approximately 20,245. Diverging from mere captions, this dataset introduces Localized 
-Narratives—a form of human audio description for each image segment, identified by mouse hovering. Each subpart of the 
-Localized Narrative is accompanied by a timestamp. An illustrative example can be found 
-[here](https://blog.research.google/2020/02/open-images-v6-now-featuring-localized.html). In this research, we 
-leverage the textual representation of these Localized Narratives as captions.
+COCO comprises images from 80 object categories, each accompanied by 5 unique, human-written captions. These captions distinctively describe the objects present in the images. Open Images V7 encompasses a significantly larger number of distinct object categories, totaling approximately 20,245. In addition to captions, Open Images V7 introduces Localized 
+Narratives — a form of human audio description for each image segment, identified by mouse hovering. Each subpart of the Localized Narrative is accompanied by a timestamp. An illustrative example can be found [here](https://blog.research.google/2020/02/open-images-v6-now-featuring-localized.html). In this research, we leverage the textual representation of these Localized Narratives as captions.
 
-These datasets fulfill our requirements by allowing a transformation where, for any given image and its set of objects 
-(e.g., keyboard, mouse, person, TV), there exists at least one other image with an identical set of objects. This is achieved 
-by identifying unique object sets and excluding those that appear only once. The Open Images V7 dataset is down-sampled 
-by removing the outliers based on the frequency distribution of the label sets. Following these transformations, 
-the COCO and the Open Images V7 datasets contain 103,429 and 149,847 samples, respectively.
+COCO and Open Images V7 fulfill our requirements by letting us identify which images contain object sets (e.g., keyboard, mouse, person, TV) that appear only once in any particular image. We can transform our datasets to ensure that at least two images have the identical object set, by excluding images with singular object sets - sets that appear only once. The Open Images V7 dataset is down-sampled by removing the outliers based on the frequency distribution of the label sets. (what about the COCO dataset?) Following these transformations, the COCO and the Open Images V7 datasets contain 103,429 and 149,847 samples, respectively.
 
 The reference image for the mentioned object set from the COCO dataset is shown, and below, its corresponding 
 human-written captions are displayed.
