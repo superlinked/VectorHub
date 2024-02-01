@@ -192,7 +192,7 @@ Moreover, these five professions are all closely related to the film industry, s
 
 In sum, the model's performance in this scenario demonstrates its potential for **understanding concepts**, **interpreting context**, and **extracting semantic meaning**.
 
-Here is the [complete code for this demo](https://drive.google.com/file/d/1G3tJ6Nn_6hKZ8HZGpx8OHpWwGqp_sQtF/view?usp=sharing).
+Here is the [complete code for this demo](https://github.com/superlinked/VectorHub/blob/main/docs/assets/use_cases/knowledge_graph_embedding/kge_demo.ipynb).
 
 
 ## Comparing KGE with LLM performance on a large Knowledge Graph
@@ -238,4 +238,5 @@ Because LLMs have trouble encoding intricate relation structures, their performa
 ## Contributors
 
 - [Richárd Kiss, author](https://www.linkedin.com/in/richard-kiss-3209a1186/)
+- [Mór Kapronczay, contributor](https://www.linkedin.com/in/m%C3%B3r-kapronczay-49447692/)
 - [Robert Turner, editor](https://robertturner.co/copyedit)
