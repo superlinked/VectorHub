@@ -2,8 +2,6 @@
 
 # Scaling RAG for Production
 
-![](assets/use_cases/recommender_systems/cover.jpg) <Placeholder>
-
 Retrieval-augmented Generation (RAG) combines Large Language Models (LLMs) with external data to reduce the probability of machine hallucinations - AI-generated information that misrepresents underlying data or reality. When developing RAG systems, scalability is often an afterthought. This creates problems when moving from initial development to production. Having to manually adjust code while your application grows can get very costly and is prone to errors.
 
 Our tutorial provides an example of **how you can develop a RAG pipeline with production workloads in mind from the start**, using the right tools - ones that are designed to scale your application.
