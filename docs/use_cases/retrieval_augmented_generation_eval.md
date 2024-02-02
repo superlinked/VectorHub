@@ -85,7 +85,7 @@ Now that we have defined different challenges and levels at which we can break d
 To evaluate our model, we start with this [Massive Text Embedding Benchmark](https://huggingface.co/spaces/mteb/leaderboard). 
 We want to ensure that the model can understand the data that we encode.
 The benchmark shown above leverages different public/private datasets to evaluate and report on the different capabilities of individual models.
-If you're working with specialized domains, you may want to put together a specialized dataset to teach the model.
+If you're working with specialized domains, you may want to put together a specialized dataset to train the model.
 
 We could either leverage the results here (provided our model belongs to this list) or run relevant 'tasks' for our custom model (instructions provided in the github [link](https://github.com/embeddings-benchmark/mteb#leaderboard))
 
