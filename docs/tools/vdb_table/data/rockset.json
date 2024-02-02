@@ -68,12 +68,12 @@
     "comment": ""
   },
   "embeddings_text": {
-    "support": "full",
+    "support": "partial",
     "source_url": "https://docs.rockset.com/documentation/reference/user-defined-functions",
     "comment": ""
   },
   "embeddings_image": {
-    "support": "full",
+    "support": "partial",
     "source_url": "https://docs.rockset.com/documentation/reference/user-defined-functions",
     "comment": ""
   },
