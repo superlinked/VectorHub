@@ -21,16 +21,20 @@ Read more: [here](https://hub.superlinked.com/retrieval-augmented-generation)
 
 ## Why do we need RAG?
 
-RAG plays a crucial role to significantly enhance [vector search](https://qdrant.tech/documentation/overview/vector-search/) with the power of Large Language Model (LLM), enabling dynamic content generation based on the retrieved knowledge.
+RAG plays a crucial role in significantly enhancing [vector search](https://qdrant.tech/documentation/overview/vector-search/) with the power of Large Language Model (LLM), 
+enabling dynamic content generation based on the retrieved knowledge.
+It proves invaluable for tasks requiring detailed, coherent explanations, summaries, or responses that transcend the explicit data stored in vectors.
 
-It proves invaluable for tasks requiring detailed, coherent explanations, summaries, or responses that transcend the explicit data stored in vectors. 
-While vector search efficiently finds similar items, RAG takes a step further, offering content synthesis and a deeper level of understanding.
+While vector search efficiently retrieves relevant similar documents/chunks, RAG takes a step further, providing unique and tailored answers for each query.
+This distinction ensures that every response is not only relevant but also personalized, offering content synthesis and a deeper level of understanding beyond document retrieval,
+contributing to an enriched user experience.
 
 If the question is : "When is vector search alone not enough?" 
-RAG becomes crucial when users seek to generate new content rather than interact with documents or search results directly. 
+RAG becomes indispensable when users seek to generate new content rather than interact with documents or search results directly. 
 It excels in providing contextually rich, informative, and human-like responses, making it an ideal solution for a comprehensive and versatile approach when integrated with vector search.
 
-Your next step is to conduct feasibility studies and correlate the results with your business needs and value expectations.
+*While we've highlighted the substantial benefits of RAG, it's essential to note that its effectiveness may vary based on your unique business requirements. 
+Consider conducting feasibility studies to ensure that RAG aligns to your specific needs and correlates with your value expectations.*
 
 ## Evaluating Retrieval-Augmented Generation
 
