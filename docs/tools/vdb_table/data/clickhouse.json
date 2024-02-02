@@ -113,9 +113,9 @@
     "comment": ""
   },
   "in_process": {
-    "support": "none",
+    "support": "partial",
     "source_url": "https://github.com/chdb-io/chdb",
-    "comment": "possible via https://github.com/chdb-io/chdb"
+    "comment": "chDB is an embedded version of ClickHouse. It is a separate, independent project - not maintained by ClickHouse."
   },
   "multi_tenancy": {
     "support": "full",
