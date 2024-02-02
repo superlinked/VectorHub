@@ -51,7 +51,7 @@ One problem is that the 'data' frequently changes. Evaluation helps ensure the r
 
 For RAG it can be restated as :
 
->If you can't retrieve it, you can't generate it!!
+> If you can't retrieve it, you can't generate it!!
 
 Our experience has taught us that it is better to evaluate each component in isolation.
 
