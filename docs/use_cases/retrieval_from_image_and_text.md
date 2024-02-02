@@ -6,7 +6,7 @@ In the contemporary data-centric world, embeddings have become indispensable for
 
 In this project, we explore the use of the COCO and Open Images V7 datasets to create embeddings from both images and text. We'll walk through various experiments, showcasing different embedding models and assessing their effectiveness with ranking metrics. This will give you a clear understanding of how multimodal data can be used in embedding processes. (say in more detail here how it can be used.. object detection, segmentation, image captioning??)
 
-## Dataset Specification
+## Our dataset: COCO and Open Images V7
 
 There are two essential criteria that a (multimodal??) dataset must satisfy:
 
@@ -15,15 +15,14 @@ There are two essential criteria that a (multimodal??) dataset must satisfy:
 
 Publicly available datasets that meet these criteria are rare. The [Common Objects in Context](https://cocodataset.org/#home) (COCO) and [Open Images V7](https://storage.googleapis.com/openimages/web/index.html) datasets are notable exceptions. Both datasets are extensively utilized as benchmark datasets for object detection, segmentation, and image captioning tasks. 
 
-COCO comprises images from 80 object categories, each accompanied by 5 unique, human-written captions. These captions distinctively describe the objects present in the images. Open Images V7 encompasses a significantly larger number of distinct object categories, totaling approximately 20,245. In addition to captions, Open Images V7 introduces Localized 
-Narratives — a form of human audio description for each image segment, identified by mouse hovering. Each subpart of the Localized Narrative is accompanied by a timestamp. An illustrative example can be found [here](https://blog.research.google/2020/02/open-images-v6-now-featuring-localized.html). In this research, we leverage the textual representation of these Localized Narratives as captions.
+COCO comprises images from 80 object categories, each accompanied by 5 unique, human-written captions that distinctively describe the objects present in the images. Open Images V7 encompasses a significantly larger number of distinct object categories - approximately 20,245. In addition to captions, Open Images V7 introduces Localized 
+Narratives — a form of human audio description for each image segment, identified by mouse hovering. Each subpart of the Localized Narrative is accompanied by a timestamp. An illustrative example can be found [here](https://blog.research.google/2020/02/open-images-v6-now-featuring-localized.html). In this research, we leverage the textual representation of these Localized Narratives as captions. (by converting the Localized Narratives to text?)
 
-COCO and Open Images V7 fulfill our requirements by letting us identify which images contain object sets (e.g., keyboard, mouse, person, TV) that appear only once in any particular image. We can transform our datasets to ensure that at least two images have the identical object set, by excluding images with singular object sets - sets that appear only once. The Open Images V7 dataset is down-sampled by removing the outliers based on the frequency distribution of the label sets. (what about the COCO dataset?) Following these transformations, the COCO and the Open Images V7 datasets contain 103,429 and 149,847 samples, respectively.
+COCO and Open Images V7 fulfill our requirements by letting us identify which images contain object sets (e.g., keyboard, mouse, person, TV) that appear only once in any particular image. We can transform our datasets to ensure that at least two images have the identical object set, by excluding images with singular object sets - sets that appear only once. The Open Images V7 dataset is down-sampled by removing the outliers (= images with object sets that appear only once?) based on the frequency distribution of the label sets. (what about the COCO dataset?) Following these transformations, the COCO and the Open Images V7 datasets contain 103,429 and 149,847 samples, respectively. (how many outliers?)
 
-The reference image for the mentioned object set from the COCO dataset is shown, and below, its corresponding 
-human-written captions are displayed.
+Here's the reference image for the mentioned object set (=including outliers or whole COCO dataset?) from the COCO dataset, and below it, the human-written captions corresponding to each object set.
 
-![](assets/use_cases/retrieval_from_image_and_text/reference_image.png)
+![](assets/use_cases/retrieval_from_image_and_text/reference_image.png) (= no image)
 [Reference image from the COCO dataset.](https://cocodataset.org/#home)
 
 ```
@@ -36,47 +35,23 @@ A young kid with head phones on using a computer.
 
 ## Scenarios
 
-In each scenario, we vectorize/embed either the images or their captions, or both modalities. In cases 
-where both are used, the embeddings are concatenated. After embedding the entire dataset and normalizing each vector to 
-unit length, we assess the quality of the embedding vectors through retrieval and by calculating ranking metrics.
-This evaluation involves iterating over the vector space and, for each vector, retrieving its **_k (=10)_** nearest 
-neighbors based on [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity). Cosine similarity, which 
-measures the angle between two vectors, simplifies to a [dot product](https://en.wikipedia.org/wiki/Dot_product) 
-calculation when the vectors are normalized, quantifying their alignment.
+In each scenario, we vectorize/embed either the images or their captions, or both modalities. In cases where both are used, the embeddings are concatenated. After embedding the entire dataset and normalizing each vector to unit length, we assess the quality of the embedding vectors through retrieval and by calculating ranking metrics. This evaluation involves iterating over the vector space and, for each vector, retrieving its **_k (=10)_** nearest neighbors based on [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity). Cosine similarity, which measures the angle between two vectors, simplifies to a [dot product](https://en.wikipedia.org/wiki/Dot_product) calculation when the vectors are normalized, quantifying their alignment.
 
-For the retrieved vectors, we calculate ranking metrics using [Torchmetrics](https://lightning.ai/docs/torchmetrics/stable/all-metrics.html).
-Our primary focus will be on [Mean Reciprocal Rank](https://en.wikipedia.org/wiki/Mean_reciprocal_rank) (MRR) and
-[Normalized Discounted Cumulative Gain](https://en.wikipedia.org/wiki/Discounted_cumulative_gain) (NDCG). However,
-you will see other information retrieval metrics like Mean Average Precision (MAP), Precision@k, and Recall@k appearing as well. 
-MRR and NDCG are well explained [here](https://www.shaped.ai/blog/evaluating-recommendation-systems-map-mmr-ndcg), while the
-other metrics can be found [here](https://www.shaped.ai/blog/evaluating-recommendation-systems-part-1). No matter which metric is used, 
-the effectiveness of the retrieval is always best when relevant items/hits are ranked at the top positions.
+For the retrieved vectors, we calculate ranking metrics using [Torchmetrics](https://lightning.ai/docs/torchmetrics/stable/all-metrics.html). Our primary focus will be on [Mean Reciprocal Rank](https://en.wikipedia.org/wiki/Mean_reciprocal_rank) (MRR) and [Normalized Discounted Cumulative Gain](https://en.wikipedia.org/wiki/Discounted_cumulative_gain) (NDCG). However, you will see other information retrieval metrics like Mean Average Precision (MAP), Precision@k, and Recall@k appearing as well. MRR and NDCG are well explained [here](https://www.shaped.ai/blog/evaluating-recommendation-systems-map-mmr-ndcg), while the other metrics can be found [here](https://www.shaped.ai/blog/evaluating-recommendation-systems-part-1). No matter which metric is used, the effectiveness of the retrieval is always best when relevant items/hits are ranked at the top positions.
 
 With this foundation, let's dive into the scenarios and their experimental results.
 
 ### 1. Embedding Image Captions
 
-In this scenario, we employ the [Sentence-Transformers](https://www.sbert.net/) library to vectorize image captions. 
-The [leaderboard](https://www.sbert.net/docs/pretrained_models.html#sentence-embedding-models/) is an excellent resource 
-for selecting a top-performing model suited to our needs. Additionally, a wide range of models can be found on 
-[Huggingface](https://huggingface.co/sentence-transformers). Beyond model selection, we explore different ways to process 
-the textual data:
+In this scenario, we employ the [Sentence-Transformers](https://www.sbert.net/) library to vectorize image captions. The [leaderboard](https://www.sbert.net/docs/pretrained_models.html#sentence-embedding-models/) is an excellent resource for selecting a top-performing model suited to our needs. Additionally, a wide range of models can be found on [Huggingface](https://huggingface.co/sentence-transformers). Beyond model selection, we explore different ways to process the textual data:
 
-- Concatenating the 5 human-written image captions and embedding the combined text. Here, the Run Name is marked with a 
-"_concat_captions" suffix.
+- Concatenating the 5 human-written image captions and embedding the combined text. Here, the Run Name is marked with a "_concat_captions" suffix.
 - Randomly selecting one of the human-written image captions.
-- Using an AI model for generating captions, such as [Salesforce BLIP](https://arxiv.org/pdf/2201.12086.pdf), to compare 
-AI-generated descriptions against human-written ones. BLIP models are accessible [here](https://huggingface.co/models?search=Salesforce/blip).
+- Using an AI model for generating captions, such as [Salesforce BLIP](https://arxiv.org/pdf/2201.12086.pdf), to compare AI-generated descriptions against human-written ones. BLIP models are accessible [here](https://huggingface.co/models?search=Salesforce/blip).
 
 ![](assets/use_cases/retrieval_from_image_and_text/table_embed_text_coco.png)
 
-The table presents the Run Name, metrics values, number of model parameters, model name, and **_top k_** retrieved vectors 
-for evaluation and a flag to indicate if the caption is generated or not. Utilizing all five human-written captions as a 
-concatenation yielded the best results. The models "all-distilroberta-v1," "bge-large-en-v1.5", and "e5-large-v2" showed 
-comparable performance in terms of MRR and NDCG metrics. Opting for a randomly chosen caption emerged as the second-best 
-option on average, while generating new captions with BLIP resulted in the lowest MRR scores. Let's verify if these results 
-hold true for the more diverse Open Images V7 dataset, which feature a broader range of objects and more descriptive 
-Localized Narratives for each image. 
+The table presents the Run Name, metrics values, number of model parameters, model name, and **_top k_** retrieved vectors for evaluation and a flag to indicate if the caption is generated or not. Utilizing all five human-written captions as a concatenation yielded the best results. The models "all-distilroberta-v1," "bge-large-en-v1.5", and "e5-large-v2" showed comparable performance in terms of MRR and NDCG metrics. Opting for a randomly chosen caption emerged as the second-best option on average, while generating new captions with BLIP resulted in the lowest MRR scores. Let's verify if these results hold true for the more diverse Open Images V7 dataset, which feature a broader range of objects and more descriptive Localized Narratives for each image. 
 
 ![](assets/use_cases/retrieval_from_image_and_text/table_embed_text_oiv7.png)
 
