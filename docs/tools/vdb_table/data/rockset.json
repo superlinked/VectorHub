@@ -83,13 +83,13 @@
     "comment": ""
   },
   "rag": {
-    "support": "full",
-    "source_url": "https://github.com/sofia099/vector_search_demo",
+    "support": "none",
+    "source_url": "",
     "comment": ""
   },
   "recsys": {
-    "support": "full",
-    "source_url": "https://github.com/rocksetlabs/realtime-semantic-search",
+    "support": "none",
+    "source_url": "",
     "comment": ""
   },
   "langchain": {
@@ -134,8 +134,8 @@
   },
   "sharding": {
     "support": "full",
-    "source_url": "https://docs.rockset.com/documentation/docs/what-is-rockset",
-    "comment": ""
+    "source_url": "https://rockset.com/whitepapers/rockset-concepts-designs-and-architecture",
+    "comment": "tech talk that includes sharding details: https://www.youtube.com/watch?v=trXiMHjP6a8"
   },
   "doc_size": {
     "bytes": 41943040,
