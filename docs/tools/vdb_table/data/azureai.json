@@ -20,9 +20,7 @@
   },
   "dev_languages": {
     "value": [
-      "c#",
-      "c++",
-      "java"
+      "c++"
     ],
     "source_url": "",
     "comment": ""
