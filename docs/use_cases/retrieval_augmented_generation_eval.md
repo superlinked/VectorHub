@@ -128,7 +128,7 @@ A [utility](https://chunkviz.up.railway.app/) like this seems useful to visualis
 
 The next step is semantic retrieval evaluation. It puts the work you've done so far to a litmus test.
 
-Retrieval is the vital component of the RAG and its evaluation can be addressed as a classic information retrieval evaluation problem.
+Retrieval is a vital component of RAG and its evaluation can be addressed as a classic information retrieval evaluation problem.
 
 You need to establish the expectations from the returned results. This can help
 us to identify reference metrics and important parameters. Done correctly, it
