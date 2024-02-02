@@ -1,0 +1,24 @@
+name: Run mdformat on markdown files
+on:
+  workflow_run:
+    workflows:
+      - Validate vendor JSON files
+    types:
+      - completed
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - run: pip install mdformat
+      - run: mdformat docs/**/*.md --wrap 120
+      - name: Commit and push changes
+        uses: devops-infra/action-commit-push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          commit_message: Formatted Markdown files.
