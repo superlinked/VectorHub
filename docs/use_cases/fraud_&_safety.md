@@ -8,8 +8,7 @@
 
 your content here
 
-______________________________________________________________________
-
+---
 ## Contributors
 
 - [Your Name](you_social_handle.com)
