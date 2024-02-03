@@ -1,8 +1,8 @@
-<!-- SEO SUMMARY:  -->
+<!-- SEO SUMMARY:  Build a custom real-time retrieval system for social media data using a Bytewax streaming ingestion pipeline to sync LinkedIn posts between a data source and a Qdrant vector DB. Build a retrieval client for RAG systems, using the rerank pattern to improve the search results and UMAP to visualize each query.-->
 
 # TODO: Add SEO Summary
 
-# Social media retrieval system
+# Real-time retrieval system for social media data
 
 In this article, you will learn how to build a real-time retrieval system for social media data. In our particular scenario, we will use only my LinkedIn posts, but they can easily be extended to other platforms that support written content, such as X, Instagram, or Medium.
 
@@ -384,7 +384,7 @@ Within this class, you must overwrite the `write_batch` method, where we seriali
 
 Here, we will focus on preprocessing a user's query, searching the vector DB, and postprocessing the retrieved posts for maximum results.
 
-To design the retrieval step, we implemented a `QdrantVectorDBRetriever` class that will expose all the necessary features for our retrieval client.
+To design the retrieval step, we implemented a `QdrantVectorDBRetriever` class to expose all the necessary features for our retrieval client.
 
 ```python
 class QdrantVectorDBRetriever:
@@ -417,7 +417,7 @@ class QdrantVectorDBRetriever:
 
 ### 5.1. Embed query
 
-We have to embed the query in the exact same way as we ingested the posts into the vector DB. Because the streaming pipeline is written in Python due to Bytewax and every preprocessing operation is modular, we can quickly replicate all steps:
+We must embed the query precisely as we ingested the posts into the vector DB. Because the streaming pipeline is written in Python (due to Bytewax) and every preprocessing operation is modular, we can quickly replicate all steps necessary to embed the query.
 
 ```python
 class QdrantVectorDBRetriever:
@@ -434,79 +434,26 @@ class QdrantVectorDBRetriever:
         return embdedded_queries
 ```
 
-Notice that now we might end with multiple query chunks. That is not an issue. It is even better, as we can search posts of interest in multiple areas of interest in the embedded posts vector space.
+Notice that we have multiple query chunks if the query is too large. That is not an issue. We can query Qdrant with each chunk and merge the results. It is even better, as we can search posts of interest in multiple areas in the embedded posts vector space.
 
 ### 5.2. Plain retrieval
 
-```python
-class QdrantVectorDBRetriever:
+After we preprocess the query, the retrieval step is straightforward. We must map every embedded query to a Qdrant `SearchRequest` object and call the `search_batch()` method on top of our LinkedIn posts collection.
 
-    ...
-
-    def search(
-        self, query: str, limit: int = 3, return_all: bool = False
-        ) -> Union[list[EmbeddedChunkedPost], dict[str, list]]:
-            embdedded_queries = self.embed_query(query)
-
-            if self._cross_encoder_model:
-                original_limit = limit
-                limit = limit * 7
-            else:
-                original_limit = limit
-
-            search_queries = [
-                models.SearchRequest(
-                    vector=embedded_query, limit=limit, with_payload=True, with_vector=True
-                )
-                for embedded_query in embdedded_queries
-            ]
-            retrieved_points = self._vector_db_client.search_batch(
-                collection_name=self._vector_db_collection,
-                requests=search_queries,
-            )
-
-            posts = set()
-            for chunk_retrieved_points in retrieved_points:
-                posts.update(
-                    {
-                        EmbeddedChunkedPost.from_retrieved_point(point)
-                        for point in chunk_retrieved_points
-                    }
-                )
-            posts = list(posts)
-
-            if self._cross_encoder_model:
-                posts = self.rerank(query, posts)
-            else:
-                posts = sorted(posts, key=lambda x: x.score, reverse=True)
-
-            posts = posts[:original_limit]
-
-            if return_all:
-                return {
-                    "posts": posts,
-                    "query": query,
-                    "embdedded_queries": embdedded_queries,
-                }
-
-            return posts
-```
-
-After we preprocess the query, the retrieval step is straighforward. We just have to map every embedded query to a Qdrant `SearchRequest` and call the `search_batch()` method on top of our LinkedIn posts collection.
-
-As we have multiple queries, we have to eliminate possible duplicates by adding all the posts to a set.
+As we can end up with multiple queries (as we chunk the query if it's too long), when we merge all the retrieved posts, we must eliminate possible duplicates by adding all the items to a unique set based on their `chunk_id.`
 
 We will go into the `rerank` aspects of the method in just a second!
-
-Let's give it a spin ↓
+Now, let's call our `QdrantVectorDBRetriever` class and see how it works:
 
 ```python
+vector_db_retriever = QdrantVectorDBRetriever(embedding_model=EmbeddingModelSingleton(), vector_db_client=build_qdrant_client())
+
 retrieved_results = vector_db_retriever.search(query="Posts about Qdrant", limit=3, return_all=True)
 for post in retrieved_results["posts"]:
     vector_db_retriever.render_as_html(post)
 ```
 
-Here are the results:
+Here are the results ↓
 
 :::::tabs
 ::::tab{title="Result 1"}
@@ -522,14 +469,14 @@ Here are the results:
 :::
 :::::
 
-You can see that only the first result is ok. The following ones are not relevant at all to our query. They are not about Qdrant or vector DBs.
+You can see that only the first result is ok. The following ones are not relevant at all to our query. They are not at all about Qdrant or vector DBs.
 
 
 ### 5.3. Visualize retrieval
 
-For the visualization step, we implemented a dedicated class that uses the UMAP dimensionality reduction algorithm. We have picked UMAP as it holds the geometric properties, such as the distance, between the higher and lower dimensions better than its peers (e.g., PCA, t-SNE).
+For the visualization step, you will implement a dedicated class that uses the UMAP dimensionality reduction algorithm. We have picked UMAP as it holds the geometric properties, such as the distance, between the higher dimensions and the projected ones better than its peers (e.g., PCA, t-SNE).
 
-The `RetrievalVisualizer` computes the projected embeddings for all the vector space once. Afterward, it uses `render()` method to project only the given query and retrieved posts before rendering them. 
+The `RetrievalVisualizer` computes the projected embeddings for all the vector space once. Afterward, it uses the `render()` method to project only the given query and retrieved posts and plot them to a 2D graph.
 
 ```python
 class RetrievalVisualizer:
@@ -573,30 +520,30 @@ Let's see how the `"Posts about Qdrant"` query looks like ↓
 
 ![Visualization Query Qdrant](../assets/use_cases/social_media_retrieval/query_qdrant_visualization.png)
 
-It is not that great. You can see how far are the retrieved posts from our query in the vector space.
+It is not that great. You can see how far the retrieved posts from our query are in the vector space.
 
-Now, let's use an entire post as a query. We will use the post shown in the `2. Data` section ↓
+Now, let's use an entire post as a query (we will use the post shown in the `2. Data` section as an example) ↓
 
 ![Visualization Query Post](../assets/use_cases/social_media_retrieval/query_post_visualization.png)
 
-As the query was split into multiple chunks, the results are somehow closer to the queries, but they still aren't that great.
+As the query was split into multiple chunks, the results are closer to the queries, but they still aren't that great.
 
-Let's see how we can improve this with the **rerank** strategy.
+Let's see how we can improve the quality of the retrieval system using the **rerank** pattern.
 
 
 ### 5.4. Rerank
 
-Now lets dive into the last aspect of our retrieval module: `rerank`. 
+The rerank step is used to refine the retrieved posts regarding the initial query. This is powerful as the initial retrieval step where we use cosine similarity (or similar distances) to compute the distance between the query and post embeddings might miss more complex (but essential) relationships.
 
-The rerank step is used to refine the retrieved posts with respect to the initial query. This is beneficial as computing using cosine similarity (or similar distances) between the query and posts embeddings might miss more complex (but essential) relationships between the two.
-
-To implement the reranking step, we will use a **cross-encoder** model to give a new score between the user query and retrieved posts. These scores are more refined than a cos similarity as under the hood is a BERT classifier that outputs a number between 0 and 1 depending on how similar are 2 given sentences. As the similarity aspect between the 2 entities are modeled inside the model, it can understand more complex relantionships between the two.
+We will use a **cross-encoder** model to implement the reranking step to score the query with all the retrieved posts individually. These scores will take into consideration more complex relationships than cosine similarity can. Under the hood is a BERT classifier that outputs a number between 0 and 1 depending on how similar the 2 given sentences are. You will get a 0 if they are entirely different and a 1 for a perfect match.
 
 ![Bi-Encoder vs. Cross-Encoder](../assets/use_cases/social_media_retrieval/bi-encoder_vs_cross-encoder.png)
 
-It is not optimal to use a **cross-encoder** model to search your whole collection, as it a lot slower than cosine similary. That is why reranking is a 2 step algorithm:
-1. you initially do a rough retrieval using cosine similary 
-2. you filter the rough search using the `rerank` strategy
+You might ask: "Why not use the **cross-encoder** model in the first place if it is that great?"
+
+Using a **cross-encoder** model to search your whole collection is not optimal, as it is much slower than cosine similarity. That is why reranking is a 2 step algorithm:
+1. you initially do a rough retrieval step using cosine similarity, where you pick the top N items as potential candidates
+2. you filter the rough search using the `rerank` strategy, where you pick the top K items as your final results
 
 ```python
 class QdrantVectorDBRetriever:
@@ -621,9 +568,9 @@ class QdrantVectorDBRetriever:
             return reranked_posts
 ```
 
-Implementation wise is straightforward. We create a list of pairs between the cleaned query and retrieved posts. 
+The implementation is relatively straightforward. We create a list of pairs between the cleaned query and all the retrieved posts. 
 
-Afterward, we call a `cross-encoder/ms-marco-MiniLM-L-6-v2` model to give them the rerank score. Based on the rerank score we sort the posts in descending order. 
+Afterward, we call a `cross-encoder/ms-marco-MiniLM-L-6-v2` model (from sentence-transformers) to give them the rerank score. Based on the rerank score, we sort the posts in descending order. 
 
 You might have noticed the following piece of code in the `search()` method:
 
@@ -639,11 +586,11 @@ else:
 posts = posts[:original_limit]
 ```
 
-This piece of code reflects the 2 step reranking algorighm, which at step 1 wideness the search space, and based on the sorted posts using the reranking score it takes only the original number of posts asked by the client.
+This piece of code reflects the 2-step reranking algorithm, which at step 1 widens the search space as the top N potential candidates. Based on the sorted posts using the reranking score, it takes only the original number of posts asked by the client (our top K parameter exposed to the search method).
 
 ### 5.5. Visualize retrieval with rerank
 
-Let's take a look at the results of our `"Posts about Qdrant"` query ↓
+After adding the `rerank` pattern to our retrieval system, let's take a look at how it improved the results of our `"Posts about Qdrant"` query ↓
 
 :::::tabs
 ::::tab{title="Result 1"}
@@ -659,7 +606,7 @@ Let's take a look at the results of our `"Posts about Qdrant"` query ↓
 :::
 :::::
 
-Look at that improvement! All the results are about Qdrant and vector DBs. 
+Look at the improvement! All the results are about Qdrant and vector DBs. 
 
 Let's see the UMAP visualization:
 
@@ -667,7 +614,7 @@ Let's see the UMAP visualization:
 
 The posts aren't very close to the query, but they are a lot closer to the query compared to when we weren't reranking the retrieved posts.
 
-Now let's take another look to our use case when we use the post from the `2. Data` section example as our query ↓
+Now let's look at our use case when we use an entire post as a query (the example from the `2. Data` section) ↓
 
 :::::tabs
 ::::tab{title="Result 1"}
@@ -683,31 +630,39 @@ Now let's take another look to our use case when we use the post from the `2. Da
 :::
 :::::
 
-We asked for 5 results, but as we index the posts based on their `chunk_id` 2 of them were duplicates. This can be solved by more preprocessing steps.
+We asked for 5 results, but as we indexed the posts based on their `chunk_id`, 2 were duplicates. This can be solved by more preprocessing steps.
 
-But anyhow, out of 215 posts, look at how relevent the 3 retrieved posts are. The first one is the actual post we used to query the vector DB, which shows that the system is robust.
+But out of 215 posts, look at how relevant the 3 retrieved posts are. The first is the actual post we used to query the vector DB, which shows the system is robust.
 
-The next ones are semantically similar to query post as their main topic is about fine-tuning LLMs.
+The next ones are semantically similar to the query post, as their main topic is about fine-tuning LLMs.
 
 Let's see the UMAP visualization:
 
 ![Visualization Query Post](../assets/use_cases/social_media_retrieval/query_post_visualization_rerank.png)
 
-This time, you can observe how close are all the retrieved posts to the qeury chunks. 
+This time, you can observe how close all the retrieved posts are to the query chunks. 
 
 
 ## Conclusion
 
-# TODO: Correct grammaticaly the "Retrieval client" section
-# TODO: write conclusion
-# TODO: Final double-check
+In this article, you learned how to adapt the retrieval pattern used in RAG for LinkedIn posts.
 
+As social media data frequently changes, we implemented a real-time streaming pipeline that syncs the raw LinkedIn posts data source with a vector DB using the CDC pattern.
 
-**Future steps:**
-- add an intermediat NoSQL DB between the RAW NoSQL DB & the cleaned posts
-- change embedding or rerank model
+You saw how to use Bytewax to write a streaming pipeline that cleans, chunks, and embeds LinkedIn posts using 100% only Python.
 
+Finally, you implemented a standard retrieval client for RAG and saw how to improve it using the rerank pattern. As retrieval is complex to evaluate, you saw to visualize the retrieval for a given query by rendering all the posts, the query, and the retrieved posts in a 2D space using UMAP.
 
+### Future steps:
+
+Here are some fun ideas on how you can tweak the code to make it more production-ready:
+
+- Use a more powerful embedding and rerank model.
+- Add multiple data sources (e.g., X, Instagram posts or Medium articles).
+- Connect the streaming pipeline to an actual database and CDC system.
+- Quantitatively evaluate the retrieval step.
+
+Congratulations on reading the whole article, and happy learning from now on!
 
 ---
 
