@@ -23,7 +23,7 @@ We won't dive into the basics of building a retrieval or RAG system but focus on
 
 ## 1. System design
 
-# TODO: Add image
+![Social media retrieval system architecture](../assets/use_cases/social_media_retrieval/social_media_retrieval_system_architecture.png)
 
 The retrieval system is split into 2 detached components:
 1. The streaming ingestion pipeline
@@ -592,7 +592,7 @@ The rerank step is used to refine the retrieved posts with respect to the initia
 
 To implement the reranking step, we will use a **cross-encoder** model to give a new score between the user query and retrieved posts. These scores are more refined than a cos similarity as under the hood is a BERT classifier that outputs a number between 0 and 1 depending on how similar are 2 given sentences. As the similarity aspect between the 2 entities are modeled inside the model, it can understand more complex relantionships between the two.
 
-# TODO: Add image with the cross-endcoder models
+![Bi-Encoder vs. Cross-Encoder](../assets/use_cases/bi-encoder_vs_cross-encoder.png)
 
 It is not optimal to use a **cross-encoder** model to search your whole collection, as it a lot slower than cosine similary. That is why reranking is a 2 step algorithm:
 1. you initially do a rough retrieval using cosine similary 
