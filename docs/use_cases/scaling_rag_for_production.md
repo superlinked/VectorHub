@@ -2,84 +2,47 @@
 
 # Scaling RAG for Production
 
-Retrieval-augmented Generation (RAG) combines Large Language Models (LLMs) with external data to reduce the probability
-of machine hallucinations - AI-generated information that misrepresents underlying data or reality. When developing RAG
-systems, scalability is often an afterthought. This creates problems when moving from initial development to production.
-Having to manually adjust code while your application grows can get very costly and is prone to errors.
+Retrieval-augmented Generation (RAG) combines Large Language Models (LLMs) with external data to reduce the probability of machine hallucinations - AI-generated information that misrepresents underlying data or reality. When developing RAG systems, scalability is often an afterthought. This creates problems when moving from initial development to production. Having to manually adjust code while your application grows can get very costly and is prone to errors.
 
-Our tutorial provides an example of **how you can develop a RAG pipeline with production workloads in mind from the
-start**, using the right tools - ones that are designed to scale your application.
+Our tutorial provides an example of **how you can develop a RAG pipeline with production workloads in mind from the start**, using the right tools - ones that are designed to scale your application.
 
 ## Development vs. production
 
-The goals and requirements of development and production are usually very different. This is particularly true for new
-technologies like Large Language Models (LLMs) and Retrieval-augmented Generation (RAG), where organizations prioritize
-rapid experimentation to test the waters before committing more resources. Once important stakeholders are convinced,
-the focus shifts from demonstrating an application's _potential for_ creating value to _actually_ creating value, via
-production. Until a system is productionized, its ROI is typically zero.
+The goals and requirements of development and production are usually very different. This is particularly true for new technologies like Large Language Models (LLMs) and Retrieval-augmented Generation (RAG), where organizations prioritize rapid experimentation to test the waters before committing more resources. Once important stakeholders are convinced, the focus shifts from demonstrating an application's _potential for_ creating value to _actually_ creating value, via production. Until a system is productionized, its ROI is typically zero.
 
-**Productionizing**, in the context of [RAG systems](https://hub.superlinked.com/retrieval-augmented-generation),
-involves transitioning from a prototype or test environment to a **stable, operational state**, in which the system is
-readily accessible and reliable for remote end users, such as via URL - i.e., independent of the end user machine state.
-Productionizing also involves **scaling** the system to handle varying levels of user demand and traffic, ensuring
-consistent performance and availability.
+**Productionizing**, in the context of [RAG systems](https://hub.superlinked.com/retrieval-augmented-generation), involves transitioning from a prototype or test environment to a **stable, operational state**, in which the system is readily accessible and reliable for remote end users, such as via URL - i.e., independent of the end user machine state. Productionizing also involves **scaling** the system to handle varying levels of user demand and traffic, ensuring consistent performance and availability.
 
-Even though there is no ROI without productionizing, organizations often underesimate the hurdles involved in getting to
-an end product. Productionizing is always a trade-off between performance and costs, and this is no different for
-Retrieval-augmented Generation (RAG) systems. The goal is to achieve a stable, operational, and scalable end product
-while keeping costs low.
+Even though there is no ROI without productionizing, organizations often underesimate the hurdles involved in getting to an end product. Productionizing is always a trade-off between performance and costs, and this is no different for Retrieval-augmented Generation (RAG) systems. The goal is to achieve a stable, operational, and scalable end product while keeping costs low. 
 
-Let's look more closely at the basic requirements of an
-[RAG system](https://hub.superlinked.com/retrieval-augmented-generation), before going in to the specifics of what
-you'll need to productionize it in a cost-effective but scalable way.
+Let's look more closely at the basic requirements of an [RAG system](https://hub.superlinked.com/retrieval-augmented-generation), before going in to the specifics of what you'll need to productionize it in a cost-effective but scalable way.
 
 ## The basics of RAG
 
 The most basic RAG workflow looks like this:
 
 1. Submit a text query to an embedding model, which converts it into a semantically meaningful vector embedding.
-1. Send the resulting query vector embedding to your document embeddings storage location - typically a
-   [vector database](https://hub.superlinked.com/32-key-access-patterns#Ea74G).
-1. Retrieve the most relevant document chunks - based on proximity of document chunk embeddings to the query vector
-   embedding.
-1. Add the retrieved document chunks as context to the query vector embedding and send it to the LLM.
-1. The LLM generates a response utilizing the retrieved context.
+2. Send the resulting query vector embedding to your document embeddings storage location - typically a [vector database](https://hub.superlinked.com/32-key-access-patterns#Ea74G).
+3. Retrieve the most relevant document chunks - based on proximity of document chunk embeddings to the query vector embedding.
+4. Add the retrieved document chunks as context to the query vector embedding and send it to the LLM.
+5. The LLM generates a response utilizing the retrieved context.
 
-While RAG workflows can become significantly more complex, incorporating methods like metadata filtering and retrieval
-reranking, _all_ RAG systems must contain the components involved in the basic workflow: an embedding model, a store for
-document and vector embeddings, a retriever, and a LLM.
+While RAG workflows can become significantly more complex, incorporating methods like metadata filtering and retrieval reranking, _all_ RAG systems must contain the components involved in the basic workflow: an embedding model, a store for document and vector embeddings, a retriever, and a LLM.
 
-But smart development, with productionization in mind, requires more than just setting up your components in a
-functional way. You must also develop with cost-effective scalability in mind. For this you'll need not just these basic
-components, but more specifically the tools appropriate to configuring a scalable RAG system.
+But smart development, with productionization in mind, requires more than just setting up your components in a functional way. You must also develop with cost-effective scalability in mind. For this you'll need not just these basic components, but more specifically the tools appropriate to configuring a scalable RAG system.
 
 ## Developing for scalability: the right tools
 
 ### LLM library: LangChain
 
-As of this writing, LangChain, while it has also been the subject of much criticism, is arguably the most prominent LLM
-library. A lot of developers turn to Langchain to build Proof-of-Concepts (PoCs) and Minimum Viable Products (MVPs), or
-simply to experiment with new ideas. Whether one chooses LangChain or one of the other major LLM and RAG libraries - for
-example, LlamaIndex or Haystack, to name our alternate personal favorites - they can _all_ be used to productionize an
-RAG system. That is, all three have integrations for third-party libraries and providers that will handle production
-requirements. Which one you choose to interface with your other components depends on the details of your existing tech
-stack and use case.
+As of this writing, LangChain, while it has also been the subject of much criticism, is arguably the most prominent LLM library. A lot of developers turn to Langchain to build Proof-of-Concepts (PoCs) and Minimum Viable Products (MVPs), or simply to experiment with new ideas. Whether one chooses LangChain or one of the other major LLM and RAG libraries - for example, LlamaIndex or Haystack, to name our alternate personal favorites - they can _all_ be used to productionize an RAG system. That is, all three have integrations for third-party libraries and providers that will handle production requirements. Which one you choose to interface with your other components depends on the details of your existing tech stack and use case.
 
 For the purpose of this tutorial, we'll use part of the Langchain documentation, along with Ray.
 
 ### Scaling with Ray
 
-Because our goal is to build a 1) simple, 2) scalable, _and_ 3) economically feasible option, not reliant on proprietary
-solutions, we have chosen to use [Ray](https://github.com/ray-project/ray), a Python framework for productionizing and
-scaling machine learning (ML) workloads. Ray is designed with a range of auto-scaling features that seamlessly scale ML
-systems. It's also adaptable to both local environments and Kubernetes, efficiently managing all workload requirements.
+Because our goal is to build a 1) simple, 2) scalable, _and_ 3) economically feasible option, not reliant on proprietary solutions, we have chosen to use [Ray](https://github.com/ray-project/ray), a Python framework for productionizing and scaling machine learning (ML) workloads. Ray is designed with a range of auto-scaling features that seamlessly scale ML systems. It's also adaptable to both local environments and Kubernetes, efficiently managing all workload requirements.
 
-**Ray permits us to keep our tutorial system simple, non-proprietary, and on our own network, rather than the cloud**.
-While LangChain, LlamaIndex, and Haystack libraries support cloud deployment for AWS, Azure, and GCP, the details of
-cloud deployment heavily depend on - and are therefore very particular to - the specific cloud provider you choose.
-These libraries also all contain Ray integrations to enable scaling. But **using Ray directly will provide us with more
-universally applicable insights**, given that the Ray integrations within LangChain, LlamaIndex, and Haystack are built
-upon the same underlying framework.
+**Ray permits us to keep our tutorial system simple, non-proprietary, and on our own network, rather than the cloud**. While LangChain, LlamaIndex, and Haystack libraries support cloud deployment for AWS, Azure, and GCP, the details of cloud deployment heavily depend on - and are therefore very particular to - the specific cloud provider you choose. These libraries also all contain Ray integrations to enable scaling. But **using Ray directly will provide us with more universally applicable insights**, given that the Ray integrations within LangChain, LlamaIndex, and Haystack are built upon the same underlying framework.
 
 Now that we have our LLM library sorted, let's turn to data gathering and processing.
 
@@ -87,9 +50,7 @@ Now that we have our LLM library sorted, let's turn to data gathering and proces
 
 ### Gathering the data
 
-Every ML journey starts with data, and that data needs to be gathered and stored somewhere. For this tutorial, we gather
-data from part of the LangChain documentation. We first download the html files and then create a
-[Ray dataset](https://docs.ray.io/en/latest/data/data.html) of them.
+Every ML journey starts with data, and that data needs to be gathered and stored somewhere. For this tutorial, we gather data from part of the LangChain documentation. We first download the html files and then create a [Ray dataset](https://docs.ray.io/en/latest/data/data.html) of them.
 
 We start by **installing all the dependencies** that we'll use:
 
@@ -97,8 +58,7 @@ We start by **installing all the dependencies** that we'll use:
 pip install ray langchain sentence-transformers qdrant-client einops openai tiktoken fastapi "ray[serve]"
 ```
 
-We use the OpenAI API in this tutorial, so we'll **need an API key**. We export our API key as an environmental
-variable, and then **initialize our Ray environment** like this:
+We use the OpenAI API in this tutorial, so we'll **need an API key**. We export our API key as an environmental variable, and then **initialize our Ray environment** like this:
 
 ```python
 import os
@@ -118,9 +78,7 @@ ray.init(runtime_env={
 })
 ```
 
-To work with the LangChain documentation, we need to **download the html files and process them**. Scraping html files
-can get very tricky and the details depend heavily on the structure of the website you’re trying to scrape. The
-functions below are only meant to be used in the context of this tutorial.
+To work with the LangChain documentation, we need to **download the html files and process them**. Scraping html files can get very tricky and the details depend heavily on the structure of the website you’re trying to scrape. The functions below are only meant to be used in the context of this tutorial.
 
 ```python
 import requests
@@ -184,8 +142,7 @@ def download_all(start_url, folder, max_workers=5):
                     print(f"Error with future for {url}: {e}")
 ```
 
-Because the LangChain documentation is very large, we'll download only **a subset** of it: **LangChain's Expression
-Language (LCEL)**, which consists of 28 html pages.
+Because the LangChain documentation is very large, we'll download only **a subset** of it: **LangChain's Expression Language (LCEL)**, which consists of 28 html pages.
 
 ```python
 base_domain = "python.langchain.com"
@@ -206,9 +163,7 @@ ds = ray.data.from_items([{"path": path.absolute()} for path in document_dir.rgl
 print(f"{ds.count()} documents")
 ```
 
-Great! But there's one more step left before we can move on to the next phase of our workflow. We need to **extract the
-relevant text from our html files and clean up all the html syntax**. For this, we import BeautifulSoup to **parse the
-files and find relevant html tags**.
+Great! But there's one more step left before we can move on to the next phase of our workflow. We need to **extract the relevant text from our html files and clean up all the html syntax**. For this, we import BeautifulSoup to **parse the files and find relevant html tags**.
 
 ```python
 from bs4 import BeautifulSoup, NavigableString
@@ -246,8 +201,7 @@ content_ds.count()
 
 ```
 
-Awesome! The results of the above extraction are our dataset. Because Ray datasets are optimized for scaled performance
-in production, they don't require us to make costly and error-prone adjustments to our code when our application grows.
+Awesome! The results of the above extraction are our dataset. Because Ray datasets are optimized for scaled performance in production, they don't require us to make costly and error-prone adjustments to our code when our application grows. 
 
 ### Processing the data
 
@@ -255,11 +209,7 @@ To process our dataset, our next three steps are **chunking, embedding, and inde
 
 **Chunking the data**
 
-Chunking - splitting your documents into multiple smaller parts - is necessary to make your data meet the LLM’s context
-length limits, and helps keep contexts specific enough to remain relevant. Chunks also need to not be too small. When
-chunks are too small, the information retrieved may become too narrow to provide adequate query responses. The optimal
-chunk size will depend on your data, the models you use, and your use case. We will use a common chunking value here,
-one that has been used in a lot of applications.
+Chunking - splitting your documents into multiple smaller parts - is necessary to make your data meet the LLM’s context length limits, and helps keep contexts specific enough to remain relevant. Chunks also need to not be too small. When chunks are too small, the information retrieved may become too narrow to provide adequate query responses. The optimal chunk size will depend on your data, the models you use, and your use case. We will use a common chunking value here, one that has been used in a lot of applications.
 
 Let’s define our text splitting logic first, using a standard text splitter from LangChain:
 
@@ -291,16 +241,11 @@ chunks_ds = content_ds.flat_map(partial(
 print(f"{chunks_ds.count()} chunks")
 ```
 
-Now that we've gathered and chunked our data scalably, we need to embed and index it, so that we can efficiently
-retrieve relevant answers to our queries.
+Now that we've gathered and chunked our data scalably, we need to embed and index it, so that we can efficiently retrieve relevant answers to our queries.
 
 **Embedding the data**
 
-We use a pretrained model to create vector embeddings for both our data chunks and the query itself. By measuring the
-distance between the chunk embeddings and the query embedding, we can identify the most relevant, or "top-k," chunks. Of
-the various pretrained models, we'll use the popular 'bge-base-en-v1.5' model, which, at the time of writing this
-tutorial, ranks as the highest-performing model of its size on the
-[MTEB Leaderboard](https://huggingface.co/spaces/mteb/leaderboard). For convenience, we continue using LangChain:
+We use a pretrained model to create vector embeddings for both our data chunks and the query itself. By measuring the distance between the chunk embeddings and the query embedding, we can identify the most relevant, or "top-k," chunks. Of the various pretrained models, we'll use the popular 'bge-base-en-v1.5' model, which, at the time of writing this tutorial, ranks as the highest-performing model of its size on the [MTEB Leaderboard](https://huggingface.co/spaces/mteb/leaderboard). For convenience, we continue using LangChain:
 
 ```python
 from langchain.embeddings import OpenAIEmbeddings
@@ -316,8 +261,7 @@ def get_embedding_model(embedding_model_name, model_kwargs, encode_kwargs):
     return embedding_model
 ```
 
-This time, instead of map(), we want to use map_batches(), which requires defining a class object to perform a **call**
-on.
+This time, instead of map(), we want to use map_batches(), which requires defining a class object to perform a **call** on.
 
 ```python
 class EmbedChunks:
@@ -342,12 +286,7 @@ embedded_chunks = chunks_ds.map_batches(
 
 **Indexing the data**
 
-Now that our chunks are embedded, we need to **store** them somewhere. For the sake of this tutorial, we'll utilize
-Qdrant’s new in-memory feature, which lets us experiment with our code rapidly without needing to set up a fully-fledged
-instance. However, for deployment in a production environment, you should rely on more robust and scalable solutions —
-hosted either within your own network or by a third-party provider. For example, to fully productionize, we would need
-to point to our Qdrant (or your preferred hosted vendor) instance instead of using it in-memory. Detailed guidance on
-self-hosted solutions, such as setting up a Kubernetes cluster, are beyond the scope of this tutorial.
+Now that our chunks are embedded, we need to **store** them somewhere. For the sake of this tutorial, we'll utilize Qdrant’s new in-memory feature, which lets us experiment with our code rapidly without needing to set up a fully-fledged instance. However, for deployment in a production environment, you should rely on more robust and scalable solutions — hosted either within your own network or by a third-party provider. For example, to fully productionize, we would need to point to our Qdrant (or your preferred hosted vendor) instance instead of using it in-memory. Detailed guidance on self-hosted solutions, such as setting up a Kubernetes cluster, are beyond the scope of this tutorial.
 
 ```python
 from qdrant_client import QdrantClient
@@ -362,9 +301,7 @@ client.recreate_collection(
 )
 ```
 
-To perform the next processing step, storage, using Ray would require more than 2 CPU scores, making this tutorial
-incompatible with the free tier of Google Colab. Instead, then, we'll use pandas. Fortunately, Ray allows us to convert
-our dataset into a pandas DataFrame with a single line of code:
+To perform the next processing step, storage, using Ray would require more than 2 CPU scores, making this tutorial incompatible with the free tier of Google Colab. Instead, then, we'll use pandas. Fortunately, Ray allows us to convert our dataset into a pandas DataFrame with a single line of code:
 
 ```python
 emb_chunks_df = embedded_chunks.to_pandas()
@@ -403,9 +340,7 @@ This wraps up the data processing part! Our data is now stored in our vector dat
 
 ## Data retrieval
 
-When you retrieve data from vector storage, it's important to use the same embedding model for your query that you used
-for your source data. Otherwise, vector comparison to surface relevant content may result in mismatched or non-nuanced
-results (due to semantic drift, loss of context, or inconsistent distance metrics).
+When you retrieve data from vector storage, it's important to use the same embedding model for your query that you used for your source data. Otherwise, vector comparison to surface relevant content may result in mismatched or non-nuanced results (due to semantic drift, loss of context, or inconsistent distance metrics).
 
 ```python
 import numpy as np 
@@ -417,9 +352,7 @@ query_embedding = np.array(embedding_model.embed_query(query))
 len(query_embedding)
 ```
 
-Recall from above that we measure the distance between the query embedding and chunk embeddings to identify the most
-relevant, or 'top-k' chunks. In Qdrant’s search, the 'limit' parameter is equivalent to 'k'. By default, the search uses
-cosine similarity as the metric, and retrieves from our database the 5 chunks closest to our query embedding:
+Recall from above that we measure the distance between the query embedding and chunk embeddings to identify the most relevant, or 'top-k' chunks. In Qdrant’s search, the 'limit' parameter is equivalent to 'k'. By default, the search uses cosine similarity as the metric, and retrieves from our database the 5 chunks closest to our query embedding:
 
 ```python
 hits = client.search(
@@ -449,15 +382,9 @@ def semantic_search(query, embedding_model, k):
 
 ## Generation
 
-We're now very close to being able to field queries and retrieve answers! We've set up everything we need to query our
-LLM _at scale_. But before querying the model for a response, we want to first inform the query with our data, by
-**retrieving relevant context from our vector database and then adding it to the query**.
+We're now very close to being able to field queries and retrieve answers! We've set up everything we need to query our LLM _at scale_. But before querying the model for a response, we want to first inform the query with our data, by **retrieving relevant context from our vector database and then adding it to the query**.
 
-To do this, we use a simplified version of the generate.py script provided in Ray's
-[LLM repository](https://github.com/ray-project/llm-applications/blob/main/rag/generate.py). This version is adapted to
-our code and - to simplify and keep our focus on how to scale a basic RAG system - leaves out a bunch of advanced
-retrieval techniques, such as reranking and hybrid search. For our LLM, we use gpt-3.5-turbo, and query it via the
-OpenAI API.
+To do this, we use a simplified version of the generate.py script provided in Ray's [LLM repository](https://github.com/ray-project/llm-applications/blob/main/rag/generate.py). This version is adapted to our code and - to simplify and keep our focus on how to scale a basic RAG system - leaves out a bunch of advanced retrieval techniques, such as reranking and hybrid search. For our LLM, we use gpt-3.5-turbo, and query it via the OpenAI API.
 
 ```python
 from openai import OpenAI
@@ -536,13 +463,7 @@ for content in response:
     print(content, end='', flush=True)
 ```
 
-To **make using our application even more convenient**, we can simply adapt Ray's official documentation to **implement
-our workflow within a single QueryAgent class**, which bundles together and takes care of all of the steps we
-implemented above - retrieving embeddings, embedding the search query, performing vector search, processing the results,
-and querying the LLM to generate a response. Using this single class approach, we no longer need to sequentially call
-all of these functions, and can also include utility functions. (Specifically, `Get_num_tokens` encodes our text and
-gets the number of tokens, to calculate the length of the input. To maintain our standard 50:50 ratio to allocate space
-to each of input and generation, we use `(text, max_context_length)` to trim input text if it's too long.)
+To **make using our application even more convenient**, we can simply adapt Ray's official documentation to **implement our workflow within a single QueryAgent class**, which bundles together and takes care of all of the steps we implemented above - retrieving embeddings, embedding the search query, performing vector search, processing the results, and querying the LLM to generate a response. Using this single class approach, we no longer need to sequentially call all of these functions, and can also include utility functions. (Specifically, `Get_num_tokens` encodes our text and gets the number of tokens, to calculate the length of the input. To maintain our standard 50:50 ratio to allocate space to each of input and generation, we use `(text, max_context_length)` to trim input text if it's too long.)
 
 ```python
 import tiktoken
@@ -642,11 +563,7 @@ print(json.dumps(result, indent=2))
 
 ## Serving our application
 
-Our application is now running! Our last productionizing step is to serve it. Ray's
-[Ray Serve](https://docs.ray.io/en/latest/serve/index.html) module makes this step very straightforward. We combine Ray
-Serve with FastAPI and pydantic. The @serve.deployment decorator lets us define how many replicas and compute resources
-we want to use, and Ray’s autoscaling will handle the rest. Two Ray Serve decorators are all we need to modify our
-FastAPI application for production.
+Our application is now running! Our last productionizing step is to serve it. Ray's [Ray Serve](https://docs.ray.io/en/latest/serve/index.html) module makes this step very straightforward. We combine Ray Serve with FastAPI and pydantic. The @serve.deployment decorator lets us define how many replicas and compute resources we want to use, and Ray’s autoscaling will handle the rest. Two Ray Serve decorators are all we need to modify our FastAPI application for production.
 
 ```python
 import pickle
@@ -720,36 +637,25 @@ except:
   print(response.text)
 ```
 
-Wow! We've been on quite a journey. We gathered our data using Ray and some LangChain documentation, processed it by
-chunking, embedding, and indexing it, set up our retrieval and generation, and, finally, served our application using
-Ray Serve. Our tutorial has so far covered an example of how to develop scalably and economically - how to productionize
-from the very start of development.
+Wow! We've been on quite a journey. We gathered our data using Ray and some LangChain documentation, processed it by chunking, embedding, and indexing it, set up our retrieval and generation, and, finally, served our application using Ray Serve. Our tutorial has so far covered an example of how to develop scalably and economically - how to productionize from the very start of development. 
 
 Still, there is one last crucial step.
 
 ## Production is only the start: maintenance
 
-To fully productionize any application, you also need to maintain it. And maintaining your application is a continuous
-task.
+To fully productionize any application, you also need to maintain it. And maintaining your application is a continuous task.
 
-Maintenance involves regular assessment and improvement of your application. You may need to routinely update your
-dataset if your application relies on being current with real-world changes. And, of course, you should monitor
-application performance to prevent degradation. For smoother operations, we recommend integrating your workflows with
-CI/CD pipelines.
+Maintenance involves regular assessment and improvement of your application. You may need to routinely update your dataset if your application relies on being current with real-world changes. And, of course, you should monitor application performance to prevent  degradation. For smoother operations, we recommend integrating your workflows with CI/CD pipelines.
 
 ### Limitations and future discussion
 
-Other critical aspects of scalably productionizing fall outside of the scope of this article, but will be explored in
-future articles, including:
+Other critical aspects of scalably productionizing fall outside of the scope of this article, but will be explored in future articles, including:
 
 - **Advanced Development** Pre-training, finetuning, prompt engineering and other in-depth development techniques
-- **Evaluation** Randomness and qualitative metrics, and complex multi-part structure of RAG can make LLM evaluation
-  difficult
-- **Compliance** Adhering to data privacy laws and regulations, especially when handling personal or sensitive
-  information
+- **Evaluation** Randomness and qualitative metrics, and complex multi-part structure of RAG can make LLM evaluation difficult
+- **Compliance** Adhering to data privacy laws and regulations, especially when handling personal or sensitive information
 
-______________________________________________________________________
-
+---
 ## Contributors
 
 - [Pascal Biese, author](https://www.linkedin.com/in/pascalbiese/)
