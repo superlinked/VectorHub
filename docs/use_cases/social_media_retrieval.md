@@ -56,7 +56,7 @@ Doing so ensures you can access all the latest LinkedIn posts in your vector DB 
 - The ease of use and ecosystem of Python
 
 
-### 2.2. The retrieval client
+### 1.2. The retrieval client
 
 The retrieval client will be a standard Python module that preprocesses the user queries and searches the vector DB for most similar results. It is decoupled from the streaming ingestion pipeline through the Qdrant vector DB.
 
