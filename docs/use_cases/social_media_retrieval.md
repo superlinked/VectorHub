@@ -1,7 +1,5 @@
 <!-- SEO SUMMARY:  Build a custom real-time retrieval system for social media data using a Bytewax streaming ingestion pipeline to sync LinkedIn posts between a data source and a Qdrant vector DB. Build a retrieval client for RAG systems, using the rerank pattern to improve the search results and UMAP to visualize each query.-->
 
-# TODO: Add SEO Summary
-
 # Real-time retrieval system for social media data
 
 In this article, you will learn how to build a real-time retrieval system for social media data. In our particular scenario, we will use only my LinkedIn posts, but they can easily be extended to other platforms that support written content, such as X, Instagram, or Medium.
