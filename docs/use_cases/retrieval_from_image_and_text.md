@@ -69,21 +69,21 @@ Sentence Transformer models demonstrate consistent performance across diverse da
 
 ### 2. Embedding Images with Larger Models
 
-In our second experiment, we evaluate image embedding exclusively, and use [PyTorch Image Models](https://github.com/huggingface/pytorch-image-models) (timm) to embed each image. We investigate how an increase in the number of model parameters impacts the quality of the embeddings and the subsequent evaluation results. We use [ImageNet leaderboard](https://github.com/huggingface/pytorch-image-models/blob/main/results/results-imagenet-real.csv) within the timm repository serves to select models. We compare different sizes within the [EfficientNetV2](https://arxiv.org/pdf/2104.00298.pdf) family and include a [Vision Transformer](https://arxiv.org/pdf/2010.11929v2.pdf) (ViT) and its variants for contrast.
+In our second experiment, we use [PyTorch Image Models](https://github.com/huggingface/pytorch-image-models) (timm) to embed each image, and evaluate image embedding exclusively, looking at how an increase in the number of model parameters impacts the quality of the embeddings and the subsequent evaluation results. We select our models from [ImageNet leaderboard](https://github.com/huggingface/pytorch-image-models/blob/main/results/results-imagenet-real.csv) within the timm repository. We compare different sizes within the [EfficientNetV2](https://arxiv.org/pdf/2104.00298.pdf) family and include a [Vision Transformer](https://arxiv.org/pdf/2010.11929v2.pdf) (ViT) and its variants for contrast.
 
 ![](assets/use_cases/retrieval_from_image_and_text/table_embed_image_coco.png)
 
-Achieving the highest efficiency, the [caformer_m36](https://arxiv.org/pdf/2210.13452.pdf) model with approximately 56 million parameters attained an MRR score of 0.368. The EfficientNetv2 family, specifically the smallest model with around 21.5 million parameters, proved to be the second most effective method.
+On the COCO dataset, the [caformer_m36](https://arxiv.org/pdf/2210.13452.pdf) model, which has approximately 56 million parameters, achieved the highest efficiency with an MRR score of 0.368. The next most efficient models were the EfficientNetv2 family. Its smallest model, with around 21.5 million parameters, had the second highest MMR score, at 0.352.
 
 ![](assets/use_cases/retrieval_from_image_and_text/table_embed_image_oiv7.png)
 
-The smallest EfficientNetv2 model claimed the first position on the Open Images V7 dataset, with the caformer_m36 model securing the second spot, followed by the EfficientNetv2 family models of sizes m and l.
+The smallest EfficientNetv2 model was the most efficient performer on the Open Images V7 dataset, caformer_m36 came second, followed by the EfficientNetv2 model sizes m and l.
 
-The models' performance relative to each other remained consistent across datasets. Despite initial expectations of superior performance from the [Data-efficient Image Transformer models](https://arxiv.org/abs/2012.12877), attributed to their inductive biases from knowledge distillation, the experiments did not validate this assumption, resulting in these models occupying the last positions on both datasets.
+The models' performance relative to each other remained consistent across datasets. Despite initial expectations of superior performance from the [Data-efficient Image Transformer models](https://arxiv.org/abs/2012.12877), attributed to their inductive biases from knowledge distillation (@mor... we expected Data-efficient models to perform better/best because of their inductive biases... or they performed poorly because of these inductive biases?), the experiments did not validate this assumption, resulting in these models occupying the last positions on both datasets.
 
 ### 3. Embedding Both Images and Their Captions
 
-This approach integrates the embeddings from the first two scenarios using vector concatenation to form a combined embedding space. Here, we iterate through this space to retrieve the k nearest neighbors for each concatenated vector.
+Our third approach integrates embeddings from our first two experiments into a combined vector space using vector concatenation. We iterate through this space to retrieve the k nearest neighbors for each concatenated vector.
 
 ![](assets/use_cases/retrieval_from_image_and_text/table_embed_text_image.png)
 
@@ -91,17 +91,16 @@ Combining vectors from **two unaligned vector spaces** by concatenation did not 
 
 ### 4. Embedding Images with Multimodal Vision Transformers
 
-In this scenario, we delve into models based on [Contrastive Language-Image Pretraining](https://arxiv.org/pdf/2103.00020.pdf) (CLIP). CLIP models are unique for their multimodal approach, featuring separate but jointly trained Text and Image encoders. This joint training fosters a multimodal space where semantically similar concepts, regardless of being text or image, are positioned closer together in the embedding space.
+In experiment 4, we look at the performance of models based on [Contrastive Language-Image Pretraining](https://arxiv.org/pdf/2103.00020.pdf) (CLIP). CLIP models employs separate but jointly trained Text and Image encoders, to create a multimodal embedding space, where semantically similar concepts - regardless of whether they are text or image - are positioned closer together.
 
 ![](assets/use_cases/retrieval_from_image_and_text/clip.png)
 [CLIP's high level architecture from the paper Learning Transferable Visual Models From Natural Language Supervision.](https://arxiv.org/pdf/2103.00020.pdf)
 
-The structure depicted in the image illustrates that the encoders are versatile and adaptable to various model architectures for embedding text or image data. For our experiment, we utilize pretrained models from the [OpenClip leaderboard](https://github.com/mlfoundations/open_clip/blob/main/docs/openclip_results.csv) and apply the Image Encoder to embed the images, followed by an evaluation of the outcomes.
+The image above illustrates that the encoders are versatile and adaptable to various model architectures for embedding text or image data. In our experiment, we use pretrained models from the [OpenClip leaderboard](https://github.com/mlfoundations/open_clip/blob/main/docs/openclip_results.csv), and apply the Image Encoder to embed the images. Then we evaluate the outcomes.
 
 ![](assets/use_cases/retrieval_from_image_and_text/table_multimodal_vit_embed_image.png)
 
-
-The performance of the tested models remained consistent across both datasets. ViT-based models outperformed the [ResNet50](https://arxiv.org/abs/1512.03385)-based model on COCO, while on the Open Images V7 dataset, the difference was not as significant, despite ViT models having more than 4 times as many parameters. Additionally, we present results from BLIP, which utilizes a ViT model for image encoding.
+The performance of the tested models remained consistent (...@mor consistent with what?) across both datasets. ViT-based models outperformed the [ResNet50](https://arxiv.org/abs/1512.03385)-based model on COCO. On the Open Images V7 dataset, the difference between ViT and ResNet50 was less significant, despite ViT models having more than 4 times as many parameters. We also present results (below) from BLIP, which encodes images using a ViT model.
 
 ![](assets/use_cases/retrieval_from_image_and_text/table_multimodal_vit_embed_image_blip.png)
 
