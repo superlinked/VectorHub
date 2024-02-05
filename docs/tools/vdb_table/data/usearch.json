@@ -33,7 +33,7 @@
     "comment": "hybrid filtering techniques are available in some SDKs, like C++, but not in Python"
   },
   "hybrid_search": {
-    "support": "partial",
+    "support": "",
     "source_url": "",
     "comment": "hybrid filtering techniques are available in some SDKs, like C++, but not in Python"
   },
@@ -53,7 +53,7 @@
     "comment": "using the multi param in index creation"
   },
   "sparse_vectors": {
-    "support": "partial",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
@@ -68,12 +68,12 @@
     "comment": "with custom user-defined metrics on similar-length string until v3"
   },
   "embeddings_text": {
-    "support": "full",
+    "support": "partial",
     "source_url": "https://github.com/unum-cloud/uform",
     "comment": "UForm embeddings as well as third-party solutions can be used with USearch"
   },
   "embeddings_image": {
-    "support": "full",
+    "support": "partial",
     "source_url": "https://github.com/unum-cloud/uform",
     "comment": "UForm embeddings as well as third-party solutions can be used with USearch"
   },
@@ -114,8 +114,8 @@
   },
   "in_process": {
     "support": "full",
-    "source_url": "",
-    "comment": ""
+    "source_url": "https://ashvardanian.com/posts/porting-cpp-library-to-ten-languages/",
+    "comment": "The whole library is compiled for the target language runtime to be embedded natively into apps in different languages"
   },
   "multi_tenancy": {
     "support": "none",
@@ -124,7 +124,7 @@
   },
   "disk_index": {
     "support": "partial",
-    "source_url": "",
+    "source_url": "https://github.com/unum-cloud/usearch/#serialization--serving-index-from-disk",
     "comment": ""
   },
   "ephemeral": {
