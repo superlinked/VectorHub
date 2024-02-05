@@ -78,6 +78,7 @@
           "items": {
             "type": "string",
             "enum": [
+              "",
               "python",
               "c++",
               "c",
