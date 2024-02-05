@@ -64,7 +64,7 @@ Whether your data is structured, unstructured, or hybrid is crucial when evaluat
 
 [Read more about how to manage different data types/modalities, here](https://hub.superlinked.com/12-data-modality)
 
-**1.3 Conclusions & Next Steps**
+### **1.3 Conclusions & Next Steps**
 So what does this all mean? 
 
 [Read our conclusions and recommended next steps, here](https://hub.superlinked.com/13-conclusion)
