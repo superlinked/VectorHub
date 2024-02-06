@@ -51,7 +51,7 @@
     "comment": ""
   },
   "sparse_vectors": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
