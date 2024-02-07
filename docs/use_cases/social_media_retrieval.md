@@ -660,6 +660,10 @@ You saw how to use Bytewax to write a streaming pipeline that cleans, chunks, an
 
 Finally, you implemented a standard retrieval client for RAG and saw how to improve it using the rerank pattern. As retrieval is complex to evaluate, you saw how to visualize the retrieval for a given query by rendering all the posts, the query, and the retrieved posts in a 2D space using UMAP.
 
+> [!NOTE]
+> In case you want to try out the code yourself, check it out on our GitHub repository ↓
+> 🔗 [Code](https://github.com/decodingml/articles)
+
 ### Future steps:
 
 Here are some fun ideas on how you can tweak the code to make it more production-ready:
