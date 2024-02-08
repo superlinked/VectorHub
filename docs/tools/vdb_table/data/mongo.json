@@ -26,7 +26,6 @@
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 0,
   "vector_launch_year": 2023,
   "metadata_filter": {
     "support": "full",
@@ -149,5 +148,30 @@
     "unlimited": false,
     "source_url": "",
     "comment": ""
+  },
+  "github_stars": {
+    "value": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
+  },
+  "docker_pulls": {
+    "value": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
+  },
+  "pypi_downloads": {
+    "value": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
+  },
+  "npm_downloads": {
+    "value": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
   }
+  
 }
