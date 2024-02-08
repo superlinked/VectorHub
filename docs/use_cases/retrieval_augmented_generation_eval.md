@@ -113,7 +113,7 @@ print("--DONE--")
 ### Data Ingestion Evaluation
 
 After we evaluated our model's performance using benchmarks, and optionally fine-tuned it on the language of our domain,
-We can then configure data ingestion into our semantic retrieval store aka vector store.
+we can then configure data ingestion into our semantic retrieval store aka vector store.
 Various vector databases offer index configurations to influence and enhance the retrieval quality, based on the supported index types (Flat , LSH , HNSW and IVF).
 One such example here to improve HNSW [retrieval-quality](https://qdrant.tech/documentation/tutorials/retrieval-quality/).
 
