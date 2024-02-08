@@ -149,7 +149,7 @@
   "github_stars": {
     "value": 0,
     "unlimited": true,
-    "source_url": "",
+    "source_url": "https://github.com/meilisearch/meilisearch",
     "comment": ""
   },
   "docker_pulls": {
@@ -161,13 +161,13 @@
   "pypi_downloads": {
     "value": 0,
     "unlimited": true,
-    "source_url": "",
+    "source_url": "https://pypi.org/project/meilisearch/",
     "comment": ""
   },
   "npm_downloads": {
     "value": 0,
     "unlimited": true,
-    "source_url": "",
+    "source_url": "https://www.npmjs.com/package/meilisearch",
     "comment": ""
   }
   

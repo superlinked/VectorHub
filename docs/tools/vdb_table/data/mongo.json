@@ -152,25 +152,25 @@
   "github_stars": {
     "value": 0,
     "unlimited": true,
-    "source_url": "",
+    "source_url": "https://github.com/mongodb/mongo",
     "comment": ""
   },
   "docker_pulls": {
     "value": 0,
     "unlimited": true,
-    "source_url": "",
+    "source_url": "https://hub.docker.com/_/mongo",
     "comment": ""
   },
   "pypi_downloads": {
     "value": 0,
     "unlimited": true,
-    "source_url": "",
+    "source_url": "https://pypi.org/project/mongodbatlas/",
     "comment": ""
   },
   "npm_downloads": {
     "value": 0,
     "unlimited": true,
-    "source_url": "",
+    "source_url": "https://www.npmjs.com/package/mongodb-atlas-api-client",
     "comment": ""
   }
   

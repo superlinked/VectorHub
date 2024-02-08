@@ -151,7 +151,7 @@
   "github_stars": {
     "value": 0,
     "unlimited": true,
-    "source_url": "",
+    "source_url": "https://github.com/qdrant/qdrant",
     "comment": ""
   },
   "docker_pulls": {
@@ -163,13 +163,13 @@
   "pypi_downloads": {
     "value": 0,
     "unlimited": true,
-    "source_url": "",
+    "source_url": "https://pypi.org/project/qdrant-client/",
     "comment": ""
   },
   "npm_downloads": {
     "value": 0,
     "unlimited": true,
-    "source_url": "",
+    "source_url": "https://www.npmjs.com/package/@qdrant/js-client-grpc",
     "comment": ""
   }
 }

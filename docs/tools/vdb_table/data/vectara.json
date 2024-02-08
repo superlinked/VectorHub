@@ -151,7 +151,7 @@
   "github_stars": {
     "value": 0,
     "unlimited": true,
-    "source_url": "",
+    "source_url": "https://github.com/vectara",
     "comment": ""
   },
   "docker_pulls": {
@@ -169,7 +169,7 @@
   "npm_downloads": {
     "value": 0,
     "unlimited": true,
-    "source_url": "",
+    "source_url": "https://www.npmjs.com/package/@vectara/create-ui",
     "comment": ""
   }
 }

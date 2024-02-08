@@ -151,7 +151,7 @@
   "github_stars": {
     "value": 0,
     "unlimited": true,
-    "source_url": "",
+    "source_url": "https://github.com/RedisAI/VectorSimilarity",
     "comment": ""
   },
   "docker_pulls": {
@@ -163,13 +163,13 @@
   "pypi_downloads": {
     "value": 0,
     "unlimited": true,
-    "source_url": "",
+    "source_url": "https://pypi.org/project/redisearch/",
     "comment": ""
   },
   "npm_downloads": {
     "value": 0,
     "unlimited": true,
-    "source_url": "",
+    "source_url": "https://www.npmjs.com/package/@redis/search",
     "comment": ""
   }
   
