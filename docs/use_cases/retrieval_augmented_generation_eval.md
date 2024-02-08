@@ -46,10 +46,11 @@ about the unknowns. The lesson is to improve and optimize your solution through 
 Evaluation is key. It distills a sense of Trust in your application,
 which establishes reputation, and boosts team morale and confidence.
 It also validates that your applications avoid common pitfalls.
-
 As we know, LLMs can make mistakes!! 🙂
 
-One problem is that the 'data' frequently changes. Evaluation helps ensure the results are consistent with user expectations.
+The 'data' you leverage to build your RAG is likely to be dynamic in nature which may often undergo frequent changes.
+Not only are there going to be new queries , this can include data used to build response - like real-time data streams , economic fluctuations , business metrics or research data to name a few. 
+Evaluation helps ensure the results are consistent with user expectations.
 
 > If you can't quantify it, you can't improve it!!
 
@@ -59,26 +60,24 @@ For RAG it can be restated as :
 
 Our experience has taught us that it is better to evaluate each component in isolation.
 
-As for different components of RAG viz. Information Retrieval - Context Augmentation - Response Generation , we classified challenges of RAG as below :
+As for different components of RAG viz. Information Retrieval , Context Augmentation and Response Generation , we classified challenges of RAG as below :
 
 <figure>
 <img src=/assets/use_cases/retrieval_augmented_generation_eval/rag_challenges.jpg alt="Classification of Challenges of RAG Evaluation" data-size="100" />
 <figcaption align="center">Slide from RAG Evaluation Presentation mentions <a href="https://arxiv.org/abs/2307.03172">'Lost in the Middle' problem</a></figcaption>
 </figure>
 
-For evaluation, we need metrics/methodology/frameworks that uses one or more
-tools. The tools that you use should cover each component of RAG. Such coverage
-ensures granular and thorough measurements.
+For effective evaluation, we propose a framework such that the coverage ensures granular and thorough measurements.
 
 Evaluation metrics can assess:
 
-- Retrieval effectiveness
-- Coherence of generated responses
-- Relevance to the retrieved information.
+- Retrieval effectiveness - as a measure of accuracy of the retrieved relevant information from the underlying vector database that aligns with user's query intent.  
+- Relevance to the retrieved information - as a measure of generated responses being meaningful and aligned with the content and context of retrieved information.
+- Coherence of generated responses - as a measure of generated responses being logically connected , fluent and contextually consistent with the user's query.
 
 <img src=/assets/use_cases/retrieval_augmented_generation_eval/rag_granular.jpg alt="Granular Levels of Evaluation of RAG" data-size="100" />
 
-### Let's dive in !!
+**Let's dive in !!**
 
 ## Strategies for Evaluation
 
@@ -120,11 +119,11 @@ One such example here to improve HNSW [retrieval-quality](https://qdrant.tech/do
 
 To evaluate ingestion, we need to focus on related variables, such as:
 
-* **Chunk size** - represents the size of each segment. This depends on the token limit of our embedding model. It also has a substantial impact on the contextual understanding of the data. That impacts the precision, recall, and relevancy of our results.
+* **Chunk size** - represents the size of each segment. This depends on the token limit of our embedding model. It also has a substantial control on the granularity of the information and impact on the contextual understanding of the data. That impacts the precision, recall, and relevancy of our results.
 
 * **Chunk overlap** - represents the presence of overlapping information fragments in each segment. This helps with context retention of the information chunks but at the same time must be used with relevant strategies like deduplication, and content normalization to eradicate adverse effects.
 
-* **Chunking/Text splitting strategy** - represents the process of data splitting and further treatment as mentioned above.
+* **Chunking/Text splitting strategy** - represents the process of data splitting and further treatment based on the type of data for e.g. html , markdown , code , or pdf combined with nuances from the use-case like a summarization use-case may split segments based on chapters or paragraphs , legal document assistant may divide documents into sections based on headings and subsections , medical literature assistant may split them based on sentence boundaries or key-concepts. 
 
 A [utility](https://chunkviz.up.railway.app/) like this seems useful to visualise your apparent chunks.
 
@@ -144,7 +143,7 @@ We have several existing metrics to guide and define our baseline:
 - Precision and Recall or their combination F1 Score
 - DCG and nDCG, which relates to their relevance, based on the inclusion or rank of documents in the results
 
-The nature of semantic information retrieval poses a challenge at this stage, as the documents are retrieved beyond the keywords/synonyms/token enrichment-matching.
+At this stage, the challenge arises in semantic information retrieval, where retrieval transcends mere keyword matching, encompassing considerations beyond synonyms and token-level enrichment.
 
 You can build a reference evaluation set, known as a [Golden Set](https://www.luigisbox.com/search-glossary/golden-set/). We could also leverage [T5 Model](https://huggingface.co/docs/transformers/model_doc/t5) to generate a starter pack for evaluation.
 
