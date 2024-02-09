@@ -138,7 +138,7 @@
   },
   "doc_size": {
     "bytes": 0,
-    "unlimited": true,
+    "unlimited": false,
     "source_url": "",
     "comment": ""
   },

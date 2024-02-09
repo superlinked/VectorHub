@@ -144,7 +144,7 @@
   },
   "vector_dims": {
     "value": 65535,
-    "unlimited": true,
+    "unlimited": false,
     "source_url": "",
     "comment": ""
   },
