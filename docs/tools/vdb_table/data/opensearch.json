@@ -150,25 +150,25 @@
   },
   "github_stars": {
     "value": 0,
-    "unlimited": true,
+    "unlimited": false,
     "source_url": "https://github.com/opensearch-project/OpenSearch",
     "comment": ""
   },
   "docker_pulls": {
     "value": 0,
-    "unlimited": true,
+    "unlimited": false,
     "source_url": "https://hub.docker.com/r/opensearchproject/opensearch",
     "comment": ""
   },
   "pypi_downloads": {
     "value": 0,
-    "unlimited": true,
+    "unlimited": false,
     "source_url": "https://pypi.org/project/opensearch/",
     "comment": ""
   },
   "npm_downloads": {
     "value": 0,
-    "unlimited": true,
+    "unlimited": false,
     "source_url": "https://www.npmjs.com/package/@opensearch-project/opensearch",
     "comment": ""
   }

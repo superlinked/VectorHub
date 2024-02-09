@@ -138,37 +138,37 @@
   },
   "doc_size": {
     "bytes": 0,
-    "unlimited": true,
+    "unlimited": false,
     "source_url": "",
     "comment": ""
   },
   "vector_dims": {
     "value": 0,
-    "unlimited": true,
+    "unlimited": false,
     "source_url": "",
     "comment": ""
   },
   "github_stars": {
     "value": 0,
-    "unlimited": true,
+    "unlimited": false,
     "source_url": "https://github.com/unum-cloud/usearch",
     "comment": ""
   },
   "docker_pulls": {
     "value": 0,
-    "unlimited": true,
+    "unlimited": false,
     "source_url": "",
     "comment": ""
   },
   "pypi_downloads": {
     "value": 0,
-    "unlimited": true,
+    "unlimited": false,
     "source_url": "https://pypi.org/project/usearch/",
     "comment": ""
   },
   "npm_downloads": {
     "value": 0,
-    "unlimited": true,
+    "unlimited": false,
     "source_url": "",
     "comment": ""
   }

@@ -6,6 +6,7 @@ import requests
 # Constants for the script
 DIRECTORY = "docs/tools/vdb_table/data"
 GITHUB_API_URL = "https://api.github.com/repos/"
+DOCKER_HUB_API_URL = "https://hub.docker.com/v2/repositories/"
 
 
 def get_github_stars(github_url, headers):
@@ -21,6 +22,17 @@ def get_github_stars(github_url, headers):
         return None
 
 
+def get_docker_pulls(namespace, repo_name):
+    response = requests.get(f"{DOCKER_HUB_API_URL}{namespace}/{repo_name}/")
+    if response.status_code == 200:
+        return response.json()["pull_count"]
+    else:
+        print(
+            f"Failed to fetch pulls for {namespace}/{repo_name}: {response.status_code}"
+        )
+        return None
+
+
 def update_json_files(directory, headers=None):
     for filename in os.listdir(directory):
         if filename.endswith(".json"):
@@ -28,14 +40,20 @@ def update_json_files(directory, headers=None):
             with open(file_path, "r+", encoding="utf-8") as json_file:
                 data = json.load(json_file)
                 github_url = data.get("github_stars", {}).get("source_url", "")
+                docker_namespace = ""
+                docker_repo_name = ""
+                if docker_namespace and docker_repo_name:
+                    pulls = get_docker_pulls(docker_namespace, docker_repo_name)
+                    if pulls is not None:
+                        data["docker_pulls"] = pulls
                 if github_url:
                     stars = get_github_stars(github_url, headers)
                     if stars is not None:
                         data["github_stars"]["value"] = stars
-                        # Write the updated data back to the file
-                        json_file.seek(0)  # Rewind to the start of the file
-                        json.dump(data, json_file, indent=2)
-                        json_file.truncate()  # Remove any leftover content
+                # Write the updated data back to the file
+                json_file.seek(0)  # Rewind to the start of the file
+                json.dump(data, json_file, indent=2)
+                json_file.truncate()  # Remove any leftover content
 
 
 if __name__ == "__main__":
