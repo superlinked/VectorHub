@@ -25,7 +25,6 @@
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 15400,
   "vector_launch_year": 2021,
   "metadata_filter": {
     "support": "full",
@@ -139,7 +138,7 @@
   },
   "doc_size": {
     "bytes": 0,
-    "unlimited": true,
+    "unlimited": false,
     "source_url": "",
     "comment": ""
   },
@@ -147,6 +146,30 @@
     "value": 65536,
     "unlimited": false,
     "source_url": "",
+    "comment": ""
+  },
+  "github_stars": {
+    "value": 16069,
+    "unlimited": false,
+    "source_url": "https://github.com/qdrant/qdrant",
+    "comment": ""
+  },
+  "docker_pulls": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "pypi_downloads": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "https://pypi.org/project/qdrant-client/",
+    "comment": ""
+  },
+  "npm_downloads": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "https://www.npmjs.com/package/@qdrant/js-client-grpc",
     "comment": ""
   }
 }

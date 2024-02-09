@@ -25,7 +25,6 @@
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 5972,
   "vector_launch_year": 2020,
   "metadata_filter": {
     "support": "full",
@@ -139,13 +138,37 @@
   },
   "doc_size": {
     "bytes": 0,
-    "unlimited": true,
+    "unlimited": false,
     "source_url": "",
     "comment": ""
   },
   "vector_dims": {
     "value": 0,
-    "unlimited": true,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "github_stars": {
+    "value": 6380,
+    "unlimited": false,
+    "source_url": "https://github.com/neuml/txtai",
+    "comment": ""
+  },
+  "docker_pulls": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "pypi_downloads": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "https://pypi.org/project/txtai/",
+    "comment": ""
+  },
+  "npm_downloads": {
+    "value": 0,
+    "unlimited": false,
     "source_url": "",
     "comment": ""
   }
