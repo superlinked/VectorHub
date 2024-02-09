@@ -149,13 +149,13 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 0,
+    "value": 967,
     "unlimited": false,
     "source_url": "https://github.com/apache/solr",
     "comment": ""
   },
   "docker_pulls": {
-    "value": 0,
+    "value": 158756662,
     "unlimited": false,
     "source_url": "https://hub.docker.com/_/solr",
     "comment": ""

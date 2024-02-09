@@ -19,7 +19,9 @@
     "comment": ""
   },
   "dev_languages": {
-    "value": ["rust"],
+    "value": [
+      "rust"
+    ],
     "source_url": "",
     "comment": ""
   },
@@ -147,7 +149,7 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 0,
+    "value": 41669,
     "unlimited": false,
     "source_url": "https://github.com/meilisearch/meilisearch",
     "comment": ""
@@ -170,5 +172,4 @@
     "source_url": "https://www.npmjs.com/package/meilisearch",
     "comment": ""
   }
-  
 }

@@ -151,13 +151,13 @@
   "github_stars": {
     "value": 0,
     "unlimited": false,
-    "source_url": "",
+    "source_url": "https://github.com/GoogleCloudPlatform/vertex-ai-samples",
     "comment": ""
   },
   "docker_pulls": {
     "value": 0,
     "unlimited": false,
-    "source_url": "https://github.com/GoogleCloudPlatform/vertex-ai-samples",
+    "source_url": "",
     "comment": ""
   },
   "pypi_downloads": {
@@ -172,5 +172,4 @@
     "source_url": "",
     "comment": ""
   }
-  
 }

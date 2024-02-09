@@ -150,13 +150,13 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 0,
+    "value": 25080,
     "unlimited": false,
     "source_url": "https://github.com/mongodb/mongo",
     "comment": ""
   },
   "docker_pulls": {
-    "value": 0,
+    "value": 4114279396,
     "unlimited": false,
     "source_url": "https://hub.docker.com/_/mongo",
     "comment": ""
@@ -173,5 +173,4 @@
     "source_url": "https://www.npmjs.com/package/mongodb-atlas-api-client",
     "comment": ""
   }
-  
 }

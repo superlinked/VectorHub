@@ -2,15 +2,16 @@ import json
 import os
 
 import requests
+from urllib.parse import urlparse
 
 # Constants for the script
 DIRECTORY = "docs/tools/vdb_table/data"
+
 GITHUB_API_URL = "https://api.github.com/repos/"
 DOCKER_HUB_API_URL = "https://hub.docker.com/v2/repositories/"
 
 
-def get_github_stars(github_url, headers):
-    # Extract the owner and repo name from the GitHub URL
+def get_github_stars(github_url, headers=None):
     global GITHUB_API_URL
     parts = github_url.split("/")
     owner_repo = "/".join(parts[-2:])
@@ -22,8 +23,9 @@ def get_github_stars(github_url, headers):
         return None
 
 
-def get_docker_pulls(namespace, repo_name):
-    response = requests.get(f"{DOCKER_HUB_API_URL}{namespace}/{repo_name}/")
+def get_docker_pulls(namespace, repo_name, headers=None):
+    global DOCKER_HUB_API_URL
+    response = requests.get(f"{DOCKER_HUB_API_URL}{namespace}/{repo_name}/", headers=None)
     if response.status_code == 200:
         return response.json()["pull_count"]
     else:
@@ -40,12 +42,15 @@ def update_json_files(directory, headers=None):
             with open(file_path, "r+", encoding="utf-8") as json_file:
                 data = json.load(json_file)
                 github_url = data.get("github_stars", {}).get("source_url", "")
-                docker_namespace = ""
-                docker_repo_name = ""
-                if docker_namespace and docker_repo_name:
+                dockerhub_url = data.get("docker_pulls", {}).get("source_url", "")
+                if dockerhub_url:
+                    print(dockerhub_url)
+                    parsed_dockerhub_path = str(urlparse(dockerhub_url).path)
+                    docker_namespace = list(parsed_dockerhub_path.strip().split('/'))[-2] if '/_/' not in parsed_dockerhub_path else 'library'
+                    docker_repo_name = list(parsed_dockerhub_path.strip().split('/'))[-1]
                     pulls = get_docker_pulls(docker_namespace, docker_repo_name)
                     if pulls is not None:
-                        data["docker_pulls"] = pulls
+                        data["docker_pulls"]["value"] = pulls
                 if github_url:
                     stars = get_github_stars(github_url, headers)
                     if stars is not None:

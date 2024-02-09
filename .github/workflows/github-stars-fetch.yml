@@ -1,4 +1,4 @@
-name: Update GitHub Stars From GitHub API
+name: Update Stars, Pulls and Downloads From APIs
 
 on:
   pull_request:
@@ -18,14 +18,18 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Update files after fetching data from GitHub API
+    - name: Add dependencies
       run: |
-        python docs/tools/vdb_table/fetch-github-stars.py
+        python -m pip install requests
+
+    - name: Update files after fetching data from APIs
+      run: |
+        python docs/tools/vdb_table/fetch-data.py
 
     - name: Commit and push if there are changes
       run: |
         git config --global user.name 'Chirag Jain'
         git config --global user.email '31701616+chirag-jn@users.noreply.github.com'
         git add docs/tools/vdb_table/data/.
-        git commit -m "Update GitHub ⭐️" || exit 0   # Exit 0 if no changes
+        git commit -m "Update Stars, Pulls & Downloads" || exit 0   # Exit 0 if no changes
         git push

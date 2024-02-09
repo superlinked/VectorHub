@@ -149,13 +149,13 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 0,
+    "value": 8248,
     "unlimited": false,
     "source_url": "https://github.com/opensearch-project/OpenSearch",
     "comment": ""
   },
   "docker_pulls": {
-    "value": 0,
+    "value": 56140505,
     "unlimited": false,
     "source_url": "https://hub.docker.com/r/opensearchproject/opensearch",
     "comment": ""
@@ -172,5 +172,4 @@
     "source_url": "https://www.npmjs.com/package/@opensearch-project/opensearch",
     "comment": ""
   }
-  
 }
