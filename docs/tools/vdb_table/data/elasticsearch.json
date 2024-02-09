@@ -149,13 +149,13 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 66690,
+    "value": 66691,
     "unlimited": false,
     "source_url": "https://github.com/elastic/elasticsearch",
     "comment": ""
   },
   "docker_pulls": {
-    "value": 824341287,
+    "value": 824347402,
     "unlimited": false,
     "source_url": "https://hub.docker.com/_/elasticsearch",
     "comment": ""
