@@ -155,7 +155,7 @@
     "comment": ""
   },
   "docker_pulls": {
-    "value": 158814483,
+    "value": 158821573,
     "unlimited": false,
     "source_url": "https://hub.docker.com/_/solr",
     "comment": ""

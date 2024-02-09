@@ -155,7 +155,7 @@
     "comment": ""
   },
   "docker_pulls": {
-    "value": 200568244,
+    "value": 200568750,
     "unlimited": false,
     "source_url": "https://hub.docker.com/_/cassandra",
     "comment": ""

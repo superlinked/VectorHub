@@ -155,7 +155,7 @@
     "comment": ""
   },
   "docker_pulls": {
-    "value": 824349468,
+    "value": 824352010,
     "unlimited": false,
     "source_url": "https://hub.docker.com/_/elasticsearch",
     "comment": ""

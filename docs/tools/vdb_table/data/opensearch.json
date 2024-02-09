@@ -155,7 +155,7 @@
     "comment": ""
   },
   "docker_pulls": {
-    "value": 56149333,
+    "value": 56151260,
     "unlimited": false,
     "source_url": "https://hub.docker.com/r/opensearchproject/opensearch",
     "comment": ""
