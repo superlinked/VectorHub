@@ -8,7 +8,7 @@
     "links": {"allOf": [{"$ref": "#/$defs/links"}], "$comment": "About | Links | " },
     "oss": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "About | OSS | The code-base is open source and users can self-host it for free." },
     "license": {"allOf": [{"$ref": "#/$defs/stringWithSource"}], "$comment": "About | License | The license the source code is released under." },
-    "dev_languages": {"allOf": [{"$ref": "#/$defs/stringListWithSource"}], "$comment": "About | Dev Lang | The language the database is developed in." },
+    "dev_languages": {"allOf": [{"$ref": "#/$defs/devLanguageListWithSource"}], "$comment": "About | Dev Lang | The language the database is developed in." },
     "vector_launch_year": {"type": "integer", "$comment": "About | VSS Launch | The year of the first release for the vector search functionality." },
     "github_stars": {"allOf": [{"$ref": "#/$defs/integerWithSource"}], "$comment": "Stats | GitHub ⭐ | The number of stars for the core product repository." },
     "pypi_downloads": {"allOf": [{"$ref": "#/$defs/integerWithSource"}], "$comment": "Stats | pypi downloads | The number of pypi package downloads (last 90 days)" },
@@ -72,14 +72,26 @@
         "comment": {"type": "string"}
       }
     },
-    "stringListWithSource": {
-      "$id": "stringListWithSource",
+    "devLanguageListWithSource": {
+      "$id": "devLanguageListWithSource",
       "type": "object",
       "properties": {
         "value": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "",
+              "python",
+              "c++",
+              "c",
+              "c#",
+              "go",
+              "java",
+              "rust",
+              "typescript",
+              "not known"
+            ]
           }
         },
         "source_url": {"type": "string"},
