@@ -1,9 +1,12 @@
 name: Update Stars, Pulls and Downloads From APIs
 
 on:
-  # pull_request:
-  #   branches:
-  #   - main
+  pull_request:
+    branches:
+    - main
+  push:
+    branches:
+    - main
   schedule:
     - cron: '*/1 * * * *' # Runs at 8:00 AM every Monday
   workflow_dispatch:
@@ -11,6 +14,7 @@ on:
 jobs:
   fetchAndUpdate:
     runs-on: ubuntu-latest
+    if: github.actor != 'github-actions[bot]'
 
     strategy:
       matrix:
