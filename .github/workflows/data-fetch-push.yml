@@ -1,0 +1,52 @@
+name: Update Stars, Pulls and Downloads From APIs
+
+on:
+  pull_request:
+    branches:
+    - main
+  push:
+    branches:
+    - main
+  schedule:
+    - cron: '0 8 * * 1' # Runs at 8:00 AM every Monday
+  workflow_dispatch:
+
+jobs:
+  fetchAndUpdate:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-actions[bot]'
+
+    strategy:
+      matrix:
+        python-version: [3.8]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.head_ref }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Add dependencies
+      run: |
+        python -m pip install requests
+
+    - name: Update files after fetching data from APIs
+      run: |
+        python docs/tools/vdb_table/fetch-data.py
+
+    - name: Commit and push if there are changes
+      env:
+        GIT_AUTHOR_NAME: Chirag Jain
+        GIT_AUTHOR_EMAIL: 31701616+chirag-jn@users.noreply.github.com
+        GIT_COMMITTER_NAME: Chirag Jain
+        GIT_COMMITTER_EMAIL: 31701616+chirag-jn@users.noreply.github.com
+        GITHUB_TOKEN: ${{ secrets.DATA_PUSH_TOKEN }}
+      run: |
+        git add docs/tools/vdb_table/data/.
+        git commit -m "Update Stars, Pulls & Downloads" || exit 0  # Exit 0 if no changes
+    
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}

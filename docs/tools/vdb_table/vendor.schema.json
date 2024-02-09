@@ -37,8 +37,11 @@
     "ephemeral": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | Ephemeral Index | Ephemeral index support without a server." },
     "sharding": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | Sharding | The search index is sharded across multiple machines." },
     "doc_size": {"allOf": [{"$ref": "#/$defs/bytesWithSource"}], "$comment": "Ops | Document Size | Maximum size of a stored document." },
-    "vector_dims": {"allOf": [{"$ref": "#/$defs/integerWithSource"}], "$comment": "Ops | Vector Dims | Maximum number of vector dimensions." }    
-  
+    "vector_dims": {"allOf": [{"$ref": "#/$defs/integerWithSource"}], "$comment": "Ops | Vector Dims | Maximum number of vector dimensions." },
+    "github_stars": {"allOf": [{"$ref": "#/$defs/integerWithSource"}], "$comment": "Stats | GitHub ⭐ | The number of stars for the core product repository." },
+    "docker_pulls": {"allOf": [{"$ref": "#/$defs/integerWithSource"}],"$comment": "Stats | Docker Pulls | The number of pulls for the core product's docker image." },
+    "pypi_downloads": {"allOf": [{"$ref": "#/$defs/integerWithSource"}], "$comment": "Stats | PyPi Downlaods | The number of downloads for the core product's python package." },
+    "npm_downloads": {"allOf": [{"$ref": "#/$defs/integerWithSource"}], "$comment": "Stats | NPM Downloads | The number of downloads for the core product's NPM package." }
   },
 
   "$defs": {

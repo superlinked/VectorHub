@@ -25,7 +25,6 @@
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 3800,
   "vector_launch_year": 2023,
   "metadata_filter": {
     "support": "full",
@@ -147,6 +146,30 @@
     "value": 2048,
     "unlimited": false,
     "source_url": "",
+    "comment": ""
+  },
+  "github_stars": {
+    "value": 3882,
+    "unlimited": false,
+    "source_url": "https://github.com/crate/crate",
+    "comment": ""
+  },
+  "docker_pulls": {
+    "value": 17670980,
+    "unlimited": false,
+    "source_url": "https://hub.docker.com/_/crate",
+    "comment": ""
+  },
+  "pypi_downloads": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "https://pypi.org/project/crate/",
+    "comment": ""
+  },
+  "npm_downloads": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "https://n8n.io/integrations/cratedb/and/npm/",
     "comment": ""
   }
 }

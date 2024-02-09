@@ -26,7 +26,6 @@
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 24300,
   "vector_launch_year": 2019,
   "metadata_filter": {
     "support": "full",
@@ -146,6 +145,30 @@
   },
   "vector_dims": {
     "value": 32768,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "github_stars": {
+    "value": 25430,
+    "unlimited": false,
+    "source_url": "https://github.com/milvus-io/milvus",
+    "comment": ""
+  },
+  "docker_pulls": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "pypi_downloads": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "https://pypi.org/project/pymilvus/",
+    "comment": ""
+  },
+  "npm_downloads": {
+    "value": 0,
     "unlimited": false,
     "source_url": "",
     "comment": ""
