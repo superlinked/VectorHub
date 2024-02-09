@@ -155,7 +155,7 @@
     "comment": ""
   },
   "docker_pulls": {
-    "value": 17670433,
+    "value": 17670459,
     "unlimited": false,
     "source_url": "https://hub.docker.com/_/crate",
     "comment": ""
