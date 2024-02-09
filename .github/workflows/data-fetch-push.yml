@@ -41,7 +41,8 @@ jobs:
       run: |
         git add docs/tools/vdb_table/data/.
         git commit -m "Update Stars, Pulls & Downloads" || exit 0  # Exit 0 if no changes
+    
     - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
