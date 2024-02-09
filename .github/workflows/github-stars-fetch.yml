@@ -11,7 +11,7 @@ on:
     - cron: '0 8 * * 1' # Runs at 8:00 AM every Monday
 
 jobs:
-  fetchDataAndUpdateFile:
+  fetchAndUpdate:
     runs-on: ubuntu-latest
 
     steps:
