@@ -18,14 +18,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Fetch data from GitHub API
-      id: fetchdata
+    - name: Update files after fetching data from GitHub API
       run: |
-        echo "Fetching"
-
-    - name: Update files
-      run: |
-        echo "Updating"
+        python docs/tools/vdb_table/fetch-github-stars.py
 
     - name: Commit and push if there are changes
       run: |
