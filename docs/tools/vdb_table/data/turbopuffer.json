@@ -25,7 +25,6 @@
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 0,
   "vector_launch_year": 0,
   "metadata_filter": {
     "support": "full",
@@ -145,6 +144,30 @@
   },
   "vector_dims": {
     "value": 1536,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "github_stars": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "https://github.com/sirupsen",
+    "comment": ""
+  },
+  "docker_pulls": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "pypi_downloads": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "https://pypi.org/project/turbopuffer/",
+    "comment": ""
+  },
+  "npm_downloads": {
+    "value": 0,
     "unlimited": false,
     "source_url": "",
     "comment": ""

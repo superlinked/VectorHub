@@ -19,11 +19,12 @@
     "comment": ""
   },
   "dev_languages": {
-    "value": ["rust"],
+    "value": [
+      "rust"
+    ],
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 41204,
   "vector_launch_year": 2023,
   "metadata_filter": {
     "support": "full",
@@ -145,6 +146,30 @@
     "value": 0,
     "unlimited": true,
     "source_url": "",
+    "comment": ""
+  },
+  "github_stars": {
+    "value": 41669,
+    "unlimited": false,
+    "source_url": "https://github.com/meilisearch/meilisearch",
+    "comment": ""
+  },
+  "docker_pulls": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "pypi_downloads": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "https://pypi.org/project/meilisearch/",
+    "comment": ""
+  },
+  "npm_downloads": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "https://www.npmjs.com/package/meilisearch",
     "comment": ""
   }
 }
