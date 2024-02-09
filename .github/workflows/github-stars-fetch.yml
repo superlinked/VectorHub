@@ -1,0 +1,31 @@
+name: Update GitHub Stars From GitHub API
+
+on:
+  schedule:
+    - cron: '0 8 * * 1' # Runs at 8:00 AM every Monday
+  workflow_dispatch:
+
+jobs:
+  fetchDataAndUpdateFile:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Fetch data from GitHub API
+      id: fetchdata
+      run: |
+        echo "Fetching"
+
+    - name: Update files
+      run: |
+        echo "Updating"
+
+    - name: Commit and push if there are changes
+      run: |
+        git config --global user.name 'Chirag Jain'
+        git config --global user.email '31701616+chirag-jn@users.noreply.github.com'
+        git add docs/tools/vdb_table/data/.
+        git commit -m "Update GitHub ⭐️" || exit 0   # Exit 0 if no changes
+        git push
