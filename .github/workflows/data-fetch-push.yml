@@ -1,19 +1,15 @@
 name: Update Stars, Pulls and Downloads From APIs
 
 on:
-  pull_request:
-    branches:
-    - main
-  push:
-    branches:
-    - main
+  # pull_request:
+  #   branches:
+  #   - main
   schedule:
-    - cron: '0 8 * * 1' # Runs at 8:00 AM every Monday
+    - cron: '*/1 * * * *' # Runs at 8:00 AM every Monday
 
 jobs:
   fetchAndUpdate:
     runs-on: ubuntu-latest
-    if: github.actor != 'github-actions[bot]'
 
     steps:
     - name: Checkout repository
