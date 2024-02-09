@@ -139,13 +139,13 @@
   },
   "doc_size": {
     "bytes": 0,
-    "unlimited": false,
+    "unlimited": true,
     "source_url": "",
     "comment": ""
   },
   "vector_dims": {
     "value": 32768,
-    "unlimited": false,
+    "unlimited": true,
     "source_url": "",
     "comment": ""
   },
