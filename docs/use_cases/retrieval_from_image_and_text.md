@@ -21,7 +21,7 @@ COCO and Open Images V7 fulfill our essential multimodal dataset criteria; we ca
 
 Here's an example image from the COCO dataset, and below it, the human-written captions corresponding to each object set.
 
-![](assets/use_cases/retrieval_from_image_and_text/reference_image.png)
+![COCO dataset example image](assets/use_cases/retrieval_from_image_and_text/reference_image.png)
 [Example image from the COCO dataset.](https://cocodataset.org/#home)
 
 ```
