@@ -6,17 +6,22 @@ on:
   #   - main
   schedule:
     - cron: '*/1 * * * *' # Runs at 8:00 AM every Monday
+  workflow_dispatch:
 
 jobs:
   fetchAndUpdate:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: [3.8]
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
       with:
         ref: ${{ github.head_ref }}
-        token: ${{ secrets.DATA_PUSH_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Add dependencies
       run: |
@@ -36,4 +41,7 @@ jobs:
       run: |
         git add docs/tools/vdb_table/data/.
         git commit -m "Update Stars, Pulls & Downloads" || exit 0  # Exit 0 if no changes
-        git push
+    - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
