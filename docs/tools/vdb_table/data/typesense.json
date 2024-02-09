@@ -25,7 +25,6 @@
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 16100,
   "vector_launch_year": 2023,
   "metadata_filter": {
     "support": "full",
@@ -139,14 +138,38 @@
   },
   "doc_size": {
     "bytes": 0,
-    "unlimited": true,
+    "unlimited": false,
     "source_url": "",
     "comment": ""
   },
   "vector_dims": {
     "value": 0,
-    "unlimited": true,
+    "unlimited": false,
     "source_url": "",
+    "comment": ""
+  },
+  "github_stars": {
+    "value": 16889,
+    "unlimited": false,
+    "source_url": "https://github.com/typesense/typesense",
+    "comment": ""
+  },
+  "docker_pulls": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "pypi_downloads": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "https://pypi.org/project/typesense/",
+    "comment": ""
+  },
+  "npm_downloads": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "https://www.npmjs.com/package/typesense",
     "comment": ""
   }
 }

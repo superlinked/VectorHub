@@ -26,7 +26,6 @@
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 497,
   "vector_launch_year": 0,
   "metadata_filter": {
     "support": "",
@@ -145,6 +144,30 @@
     "comment": ""
   },
   "vector_dims": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "github_stars": {
+    "value": 539,
+    "unlimited": false,
+    "source_url": "https://github.com/nuclia/nucliadb",
+    "comment": ""
+  },
+  "docker_pulls": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "pypi_downloads": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "https://pypi.org/project/nucliadb/",
+    "comment": ""
+  },
+  "npm_downloads": {
     "value": 0,
     "unlimited": false,
     "source_url": "",

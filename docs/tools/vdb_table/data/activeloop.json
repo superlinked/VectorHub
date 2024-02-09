@@ -26,7 +26,6 @@
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 7375,
   "vector_launch_year": 2023,
   "metadata_filter": {
     "support": "full",
@@ -140,13 +139,37 @@
   },
   "doc_size": {
     "bytes": 0,
-    "unlimited": true,
+    "unlimited": false,
     "source_url": "",
     "comment": ""
   },
   "vector_dims": {
     "value": 0,
-    "unlimited": true,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "github_stars": {
+    "value": 7462,
+    "unlimited": false,
+    "source_url": "https://github.com/activeloopai/deeplake",
+    "comment": ""
+  },
+  "docker_pulls": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "pypi_downloads": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "https://pypi.org/project/deeplake/",
+    "comment": ""
+  },
+  "npm_downloads": {
+    "value": 0,
+    "unlimited": false,
     "source_url": "",
     "comment": ""
   }

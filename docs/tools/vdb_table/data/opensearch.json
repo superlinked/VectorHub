@@ -25,7 +25,6 @@
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 7900,
   "vector_launch_year": 2021,
   "metadata_filter": {
     "support": "full",
@@ -147,6 +146,30 @@
     "value": 10000,
     "unlimited": false,
     "source_url": "https://opensearch.org/docs/2.0/search-plugins/knn/approximate-knn/",
+    "comment": ""
+  },
+  "github_stars": {
+    "value": 8248,
+    "unlimited": false,
+    "source_url": "https://github.com/opensearch-project/OpenSearch",
+    "comment": ""
+  },
+  "docker_pulls": {
+    "value": 56143358,
+    "unlimited": false,
+    "source_url": "https://hub.docker.com/r/opensearchproject/opensearch",
+    "comment": ""
+  },
+  "pypi_downloads": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "https://pypi.org/project/opensearch/",
+    "comment": ""
+  },
+  "npm_downloads": {
+    "value": 0,
+    "unlimited": false,
+    "source_url": "https://www.npmjs.com/package/@opensearch-project/opensearch",
     "comment": ""
   }
 }
