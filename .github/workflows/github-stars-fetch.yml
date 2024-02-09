@@ -16,7 +16,9 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.head_ref }}
 
     - name: Add dependencies
       run: |
@@ -31,5 +33,5 @@ jobs:
         git config --global user.name 'Chirag Jain'
         git config --global user.email '31701616+chirag-jn@users.noreply.github.com'
         git add docs/tools/vdb_table/data/.
-        git commit -m "Update Stars, Pulls & Downloads" || exit 0   # Exit 0 if no changes
+        git commit -m "Update Stars, Pulls & Downloads" || exit 0  # Exit 0 if no changes
         git push
