@@ -75,7 +75,7 @@ def get_npm_downloads(npm_package, headers=None, start_date=None):
 
 def get_pypi_downloads(pypi_package, headers=None):
     global PYPI_API_URL
-    headers['X-Api-Key'] = os.getenv('PYPI_X_API_KEY', '')
+    headers['X-Api-Key'] = os.getenv('PYPI_API_KEY', '')
     response = requests.get(f"{PYPI_API_URL}/{pypi_package}", headers=headers)
     if response.status_code == 200:
         return response.json()["total_downloads"]

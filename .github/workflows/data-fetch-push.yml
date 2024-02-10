@@ -25,6 +25,10 @@ jobs:
       run: |
         python -m pip install requests
 
+    - name: Set pepy.tech API key
+        run: |
+          echo "PYPI_API_KEY=${{ secrets.PYPI_API_KEY }}" >> $GITHUB_ENV
+
     - name: Update files after fetching data from APIs
       run: |
         python docs/tools/vdb_table/fetch-data.py
