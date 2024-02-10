@@ -160,7 +160,8 @@
     "value": 0,
     "unlimited": false,
     "source_url": "",
-    "comment": ""
+    "comment": "",
+    "value_90_days": 0
   },
   "pypi_downloads": {
     "value": 505835,

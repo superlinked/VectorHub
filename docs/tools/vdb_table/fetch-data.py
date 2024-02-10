@@ -90,6 +90,8 @@ def update_json_files(directory, headers=None):
     if headers is None:
         headers = {}
 
+    sources = ['github_stars', 'docker_pulls', 'npm_downloads', 'pypi_downloads']
+
     for filename in os.listdir(directory):
         if filename.endswith(".json"):
             file_path = os.path.join(directory, filename)
@@ -99,6 +101,10 @@ def update_json_files(directory, headers=None):
                 dockerhub_url = data.get("docker_pulls", {}).get("source_url", "")
                 npm_url = data.get("npm_downloads", {}).get("source_url", "")
                 pypi_url = data.get("pypi_downloads", {}).get("source_url", "")
+
+                for source in sources:
+                    if 'value_90_days' not in data[source]:
+                        data[source]['value_90_days'] = 0
 
                 if dockerhub_url:
                     parsed_dockerhub_path = str(urlparse(dockerhub_url).path)
@@ -113,13 +119,11 @@ def update_json_files(directory, headers=None):
                     pulls = get_docker_pulls(docker_namespace, docker_repo_name)
                     if pulls is not None:
                         data["docker_pulls"]["value"] = pulls
-                    data["docker_pulls"]["value_90_days"] = 0
 
                 if github_url:
                     stars = get_github_stars(github_url, headers)
                     if stars is not None:
                         data["github_stars"]["value"] = stars
-                    data["github_stars"]["value_90_days"] = 0
 
                 if npm_url:
                     npm_package_name = list(npm_url.split('https://www.npmjs.com/package/'))[1].strip()
@@ -137,7 +141,6 @@ def update_json_files(directory, headers=None):
                     downloads = get_pypi_downloads(pypi_package_name, headers)
                     if downloads is not None:
                         data["pypi_downloads"]["value"] = downloads
-                    data["pypi_downloads"]["value_90_days"] = 0
 
                 # Write the updated data back to the file
                 json_file.seek(0)  # Rewind to the start of the file

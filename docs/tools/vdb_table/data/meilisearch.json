@@ -159,7 +159,8 @@
     "value": 0,
     "unlimited": false,
     "source_url": "",
-    "comment": ""
+    "comment": "",
+    "value_90_days": 0
   },
   "pypi_downloads": {
     "value": 684767,
@@ -173,6 +174,6 @@
     "unlimited": false,
     "source_url": "https://www.npmjs.com/package/meilisearch",
     "comment": "",
-    "value_90_days": 762634
+    "value_90_days": 759780
   }
 }
