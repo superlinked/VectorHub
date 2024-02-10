@@ -152,7 +152,8 @@
     "value": 0,
     "unlimited": false,
     "source_url": "https://github.com/rockset",
-    "comment": ""
+    "comment": "",
+    "value_90_days": 0
   },
   "docker_pulls": {
     "value": 0,
@@ -161,15 +162,17 @@
     "comment": ""
   },
   "pypi_downloads": {
-    "value": 0,
+    "value": 1793419,
     "unlimited": false,
     "source_url": "https://pypi.org/project/rockset/",
-    "comment": ""
+    "comment": "",
+    "value_90_days": 0
   },
   "npm_downloads": {
-    "value": 0,
+    "value": 9933,
     "unlimited": false,
     "source_url": "https://www.npmjs.com/package/rockset",
-    "comment": ""
+    "comment": "",
+    "value_90_days": 1448
   }
 }

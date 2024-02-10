@@ -152,7 +152,8 @@
     "value": 0,
     "unlimited": false,
     "source_url": "https://github.com/Anari-AI",
-    "comment": ""
+    "comment": "",
+    "value_90_days": 0
   },
   "docker_pulls": {
     "value": 0,
@@ -170,6 +171,7 @@
     "value": 0,
     "unlimited": false,
     "source_url": "",
-    "comment": ""
+    "comment": "",
+    "value_90_days": 0
   }
 }

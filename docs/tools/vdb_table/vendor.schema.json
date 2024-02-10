@@ -10,10 +10,6 @@
     "license": {"allOf": [{"$ref": "#/$defs/stringWithSource"}], "$comment": "About | License | The license the source code is released under." },
     "dev_languages": {"allOf": [{"$ref": "#/$defs/devLanguageListWithSource"}], "$comment": "About | Dev Lang | The language the database is developed in." },
     "vector_launch_year": {"type": "integer", "$comment": "About | VSS Launch | The year of the first release for the vector search functionality." },
-    "github_stars": {"allOf": [{"$ref": "#/$defs/integerWithSource"}], "$comment": "Stats | GitHub ⭐ | The number of stars for the core product repository." },
-    "pypi_downloads": {"allOf": [{"$ref": "#/$defs/integerWithSource"}], "$comment": "Stats | pypi downloads | The number of pypi package downloads (last 90 days)" },
-    "npm_downloads": {"allOf": [{"$ref": "#/$defs/integerWithSource"}], "$comment": "Stats | npm downloads | The number of npm package downloads (last 90 days)" },
-    "docker_pulls": {"allOf": [{"$ref": "#/$defs/integerWithSource"}], "$comment": "Stats | Docker Pulls | The number of docker pulls (last 90 days)" },
     "metadata_filter": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | Filters | Metadata filtering support within vector search - allowing users to refine results based on additional contextual informatio and enhancing precision in search queries. Not to be confused with filters/faceting in Lucene based keyword search." },
     "hybrid_search": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | Hybrid Search | Built-in blending of the 2 lists (keyword & vector search results) being done natively within the DB using something like Reciprocal Rank Fusion." },
     "facets": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | Facets | Built-in aggregations on facets and facet cardinality calculation (similar to Lucene)." },
@@ -38,10 +34,10 @@
     "sharding": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | Sharding | The search index is sharded across multiple machines." },
     "doc_size": {"allOf": [{"$ref": "#/$defs/bytesWithSource"}], "$comment": "Ops | Document Size | Maximum size of a stored document." },
     "vector_dims": {"allOf": [{"$ref": "#/$defs/integerWithSource"}], "$comment": "Ops | Vector Dims | Maximum number of vector dimensions." },
-    "github_stars": {"allOf": [{"$ref": "#/$defs/integerWithSource"}], "$comment": "Stats | GitHub ⭐ | The number of stars for the core product repository." },
-    "docker_pulls": {"allOf": [{"$ref": "#/$defs/integerWithSource"}],"$comment": "Stats | Docker Pulls | The number of pulls for the core product's docker image." },
-    "pypi_downloads": {"allOf": [{"$ref": "#/$defs/integerWithSource"}], "$comment": "Stats | PyPi Downlaods | The number of downloads for the core product's python package." },
-    "npm_downloads": {"allOf": [{"$ref": "#/$defs/integerWithSource"}], "$comment": "Stats | NPM Downloads | The number of downloads for the core product's NPM package." }
+    "github_stars": {"allOf": [{"$ref": "#/$defs/statsWithSource"}], "$comment": "Stats | GitHub ⭐ | The number of stars for the core product repository." },
+    "docker_pulls": {"allOf": [{"$ref": "#/$defs/statsWithSource"}],"$comment": "Stats | Docker Pulls | The number of pulls for the core product's docker image." },
+    "pypi_downloads": {"allOf": [{"$ref": "#/$defs/statsWithSource"}], "$comment": "Stats | PyPi Downlaods | The number of downloads for the core product's python package." },
+    "npm_downloads": {"allOf": [{"$ref": "#/$defs/statsWithSource"}], "$comment": "Stats | NPM Downloads | The number of downloads for the core product's NPM package." }
   },
 
   "$defs": {
@@ -106,6 +102,17 @@
       "type": "object",
       "properties": {
         "value": {"type": "integer"},
+        "unlimited": {"type": "boolean"},
+        "source_url": {"type": "string"},
+        "comment": {"type":"string"}
+      }
+    },
+    "statsWithSource": {
+      "$id": "statsWithSource",
+      "type": "object",
+      "properties": {
+        "value": {"type": "integer"},
+        "value_90_days": {"type": "integer"},
         "unlimited": {"type": "boolean"},
         "source_url": {"type": "string"},
         "comment": {"type":"string"}
