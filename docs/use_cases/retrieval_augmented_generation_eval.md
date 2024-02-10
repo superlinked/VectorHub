@@ -100,7 +100,7 @@ First, we establish what we expect the returned results to look like in terms of
 
 But semantic retrieval, because it goes beyond mere keyword matching, synonyms, and token-level enrichment, and encompasses broader semantic understanding and context, typically requires a "ground truth" evaluation set - a [Golden Set](https://www.luigisbox.com/search-glossary/golden-set/). A Golden Set assesses the correctness and faithfulness of generated answers to a human annotated reference set.
  
-We could leverage the [T5 Model](https://huggingface.co/docs/transformers/model_doc/t5) to generate a starter pack for evaluation using a Golden Set.
+To generate a starter pack for evaluation using a Golden Set, we can leverage the [T5 Model](https://huggingface.co/docs/transformers/model_doc/t5) .
 
 ### End-to-End Evaluation
 
