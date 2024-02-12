@@ -163,11 +163,11 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 2120247,
+    "value": 2136391,
     "unlimited": false,
     "source_url": "https://pypi.org/project/pgvector/",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 1202398
   },
   "npm_downloads": {
     "value": 177046,

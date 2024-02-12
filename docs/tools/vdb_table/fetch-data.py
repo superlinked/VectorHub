@@ -5,6 +5,7 @@ from urllib.parse import urlparse
 from tqdm.auto import tqdm
 
 import requests
+import pypistats
 
 # Constants for the script
 DIRECTORY = "docs/tools/vdb_table/data"
@@ -75,16 +76,29 @@ def get_npm_downloads(npm_package, headers=None, start_date=None):
     
 
 def get_pypi_downloads(pypi_package, headers=None):
-    global PYPI_API_URL
-    headers['X-Api-Key'] = os.getenv('PYPI_API_KEY', '')
-    response = requests.get(f"{PYPI_API_URL}/{pypi_package}", headers=headers)
-    if response.status_code == 200:
-        return response.json()["total_downloads"]
+     global PYPI_API_URL
+     headers['X-Api-Key'] = os.getenv('PYPI_API_KEY', '')
+     response = requests.get(f"{PYPI_API_URL}/{pypi_package}", headers=headers)
+     if response.status_code == 200:
+         return response.json()["total_downloads"]
+     else:
+         print(
+             f"Failed to fetch pypi downloads for {pypi_package}: {response.status_code}"
+         )
+         return None
+
+
+
+def get_pypi_downloads_last_90(pypi_package, headers=None, start_date=None, end_date=None):
+    stats = json.loads(pypistats.overall(pypi_package, mirrors=True, format="json", start_date=start_date, end_date=end_date))
+    if stats and 'data' in stats:
+        return stats['data'][0]['downloads']
     else:
         print(
-            f"Failed to fetch pypi downloads for {pypi_package}: {response.status_code}"
+            f"Failed to fetch pypi downloads for {pypi_package}"
         )
         return None
+
 
 
 def update_json_files(directory, headers=None):
@@ -142,6 +156,12 @@ def update_json_files(directory, headers=None):
                     downloads = get_pypi_downloads(pypi_package_name, headers)
                     if downloads is not None:
                         data["pypi_downloads"]["value"] = downloads
+
+                    end_date = datetime.now()
+                    start_date = end_date - timedelta(days=90)
+                    downloads = get_pypi_downloads_last_90(pypi_package_name, headers, start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
+                    if downloads is not None:
+                        data["pypi_downloads"]["value_90_days"] = downloads
 
                 # Write the updated data back to the file
                 json_file.seek(0)  # Rewind to the start of the file

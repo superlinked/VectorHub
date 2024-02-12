@@ -163,11 +163,11 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 3526,
+    "value": 3661,
     "unlimited": false,
     "source_url": "https://pypi.org/project/turbopuffer/",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 3610
   },
   "npm_downloads": {
     "value": 0,

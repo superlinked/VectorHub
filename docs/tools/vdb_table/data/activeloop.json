@@ -164,11 +164,11 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 505835,
+    "value": 506920,
     "unlimited": false,
     "source_url": "https://pypi.org/project/deeplake/",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 87204
   },
   "npm_downloads": {
     "value": 0,

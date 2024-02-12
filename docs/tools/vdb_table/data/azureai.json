@@ -163,11 +163,11 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 9702641,
+    "value": 9771456,
     "unlimited": false,
     "source_url": "https://pypi.org/project/azure-ai-ml/",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 4329385
   },
   "npm_downloads": {
     "value": 1558221,

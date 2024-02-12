@@ -163,11 +163,11 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 49812,
+    "value": 50820,
     "unlimited": false,
     "source_url": "https://pypi.org/project/astrapy/",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 27473
   },
   "npm_downloads": {
     "value": 0,

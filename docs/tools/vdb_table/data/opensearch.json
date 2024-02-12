@@ -156,18 +156,18 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 56566350,
+    "value": 56571285,
     "unlimited": false,
     "source_url": "https://hub.docker.com/r/opensearchproject/opensearch",
     "comment": "",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 298602,
+    "value": 298722,
     "unlimited": false,
     "source_url": "https://pypi.org/project/opensearch/",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 30208
   },
   "npm_downloads": {
     "value": 16409217,

@@ -156,18 +156,18 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 163658631,
+    "value": 163706843,
     "unlimited": false,
     "source_url": "https://hub.docker.com/_/solr",
     "comment": "",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 9431136,
+    "value": 9446098,
     "unlimited": false,
     "source_url": "https://pypi.org/project/pysolr/",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 848168
   },
   "npm_downloads": {
     "value": 1277739,

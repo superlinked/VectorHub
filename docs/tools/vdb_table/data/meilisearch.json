@@ -163,11 +163,11 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 684767,
+    "value": 686424,
     "unlimited": false,
     "source_url": "https://pypi.org/project/meilisearch/",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 146231
   },
   "npm_downloads": {
     "value": 5969402,

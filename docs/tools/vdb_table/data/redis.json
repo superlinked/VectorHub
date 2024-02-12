@@ -163,11 +163,11 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 756049,
+    "value": 756557,
     "unlimited": false,
     "source_url": "https://pypi.org/project/redisearch/",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 36825
   },
   "npm_downloads": {
     "value": 74963897,

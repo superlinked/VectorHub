@@ -164,11 +164,11 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 130719,
+    "value": 130819,
     "unlimited": false,
     "source_url": "https://pypi.org/project/VESPA/",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 2263
   },
   "npm_downloads": {
     "value": 0,

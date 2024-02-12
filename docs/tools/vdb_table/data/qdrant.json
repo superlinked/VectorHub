@@ -163,11 +163,11 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 2544674,
+    "value": 2560412,
     "unlimited": false,
     "source_url": "https://pypi.org/project/qdrant-client/",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 904055
   },
   "npm_downloads": {
     "value": 15467,

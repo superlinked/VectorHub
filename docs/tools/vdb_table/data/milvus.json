@@ -164,11 +164,11 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 7199158,
+    "value": 7217877,
     "unlimited": false,
     "source_url": "https://pypi.org/project/pymilvus/",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 1313779
   },
   "npm_downloads": {
     "value": 0,

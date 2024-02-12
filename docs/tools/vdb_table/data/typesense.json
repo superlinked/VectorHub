@@ -163,11 +163,11 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 2098083,
+    "value": 2099194,
     "unlimited": false,
     "source_url": "https://pypi.org/project/typesense/",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 255513
   },
   "npm_downloads": {
     "value": 3905075,

@@ -163,11 +163,11 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 603456,
+    "value": 613300,
     "unlimited": false,
     "source_url": "https://pypi.org/project/usearch/",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 228188
   },
   "npm_downloads": {
     "value": 0,

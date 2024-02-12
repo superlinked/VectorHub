@@ -156,18 +156,18 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 17723270,
+    "value": 17723821,
     "unlimited": false,
     "source_url": "https://hub.docker.com/_/crate",
     "comment": "",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 1173878,
+    "value": 1177861,
     "unlimited": false,
     "source_url": "https://pypi.org/project/crate/",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 75354
   },
   "npm_downloads": {
     "value": 28297,

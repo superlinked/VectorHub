@@ -163,11 +163,11 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 119897,
+    "value": 120150,
     "unlimited": false,
     "source_url": "https://pypi.org/project/marqo/",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 23018
   },
   "npm_downloads": {
     "value": 292,

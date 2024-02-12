@@ -163,11 +163,11 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 6884763,
+    "value": 6936274,
     "unlimited": false,
     "source_url": "https://pypi.org/project/chromadb/",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 3105277
   },
   "npm_downloads": {
     "value": 574766,

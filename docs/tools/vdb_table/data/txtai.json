@@ -163,11 +163,11 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 189905,
+    "value": 190394,
     "unlimited": false,
     "source_url": "https://pypi.org/project/txtai/",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 31540
   },
   "npm_downloads": {
     "value": 0,
