@@ -2,6 +2,7 @@ import json
 import os
 from datetime import datetime, timedelta
 from urllib.parse import urlparse
+from tqdm.auto import tqdm
 
 import requests
 
@@ -92,7 +93,7 @@ def update_json_files(directory, headers=None):
 
     sources = ['github_stars', 'docker_pulls', 'npm_downloads', 'pypi_downloads']
 
-    for filename in os.listdir(directory):
+    for filename in tqdm(os.listdir(directory)):
         if filename.endswith(".json"):
             file_path = os.path.join(directory, filename)
             with open(file_path, "r+", encoding="utf-8") as json_file:

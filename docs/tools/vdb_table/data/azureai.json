@@ -149,9 +149,9 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 31,
+    "value": 0,
     "unlimited": false,
-    "source_url": "https://github.com/Azure/enterprise-azureai",
+    "source_url": "",
     "comment": "",
     "value_90_days": 0
   },
@@ -174,6 +174,6 @@
     "unlimited": false,
     "source_url": "https://www.npmjs.com/package/@azure/openai",
     "comment": "",
-    "value_90_days": 750402
+    "value_90_days": 730025
   }
 }

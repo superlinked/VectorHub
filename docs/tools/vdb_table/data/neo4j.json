@@ -151,12 +151,12 @@
   "github_stars": {
     "value": 0,
     "unlimited": false,
-    "source_url": "https://github.com/neo4j",
+    "source_url": "",
     "comment": "",
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 247399882,
+    "value": 248009425,
     "unlimited": false,
     "source_url": "https://hub.docker.com/_/neo4j",
     "comment": "",
@@ -170,10 +170,10 @@
     "value_90_days": 0
   },
   "npm_downloads": {
-    "value": 50811,
+    "value": 49765,
     "unlimited": false,
     "source_url": "https://www.npmjs.com/package/neo4j",
     "comment": "",
-    "value_90_days": 6082
+    "value_90_days": 5870
   }
 }

@@ -170,10 +170,10 @@
     "value_90_days": 0
   },
   "npm_downloads": {
-    "value": 75091953,
+    "value": 74963897,
     "unlimited": false,
     "source_url": "https://www.npmjs.com/package/@redis/search",
     "comment": "",
-    "value_90_days": 17678392
+    "value_90_days": 17149268
   }
 }
