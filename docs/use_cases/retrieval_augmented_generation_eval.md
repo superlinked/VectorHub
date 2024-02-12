@@ -7,13 +7,14 @@
 
 Retrieval Augmented Generation (RAG) is probably the most useful application of large language models today. RAG enhances content generation by leveraging existing information effectively. It can amalgamate specific, relevant details from multiple sources to generate more accurate and relevant query results. This makes RAG potentially invaluable in various domains like content creation, question & answer application, and information synthesis. RAG does this by combining the strengths of retrieval - usually using dense vector search - and text generation models - like GPT. For a more in-depth introduction to RAG, read [here](https://hub.superlinked.com/retrieval-augmented-generation).
 
-But to see what is and isn't working in your RAG system, to refine and optimize, you have to **evaluate** it... LLMs can make mistakes....
-((outline what you did with your RAG eval... 
-This is first of three articles. In this article we go over the broad strokes of a general evaluation approach...))
+But to see what is and isn't working in your RAG system, to refine and optimize, you have to **evaluate** it. In this article, we go over the broad strokes of our proposed evaluation approach / framework, which includes separate assessments of the model itself, data ingestion, semantic retrieval, and, finally the RAG application end-to-end, providing a high level discussion of what's involved in each.
+
+In article 2, we will look at RAGAS (RAG Assessment), learn how to set it up with an example, calculate some of the supported metrics, and compare that with our proposed framework. We will also look at some examples of our proposed framework.
+In article 3...
 
 <img src=/assets/use_cases/retrieval_augmented_generation_eval/rag_qdrant.jpg alt="Implementation of RAG using Qdrant as a vector database" data-size="100" />
 
-While we use <a href="https://qdrant.tech" rel="nofollow">Qdrant</a>, there are a lot of Vector Databases. To determine which one is most suited to your specific use case, please refer to the [Vector DB feature matrix](https://vdbs.superlinked.com/). 
+We use <a href="https://qdrant.tech" rel="nofollow">Qdrant</a> as the knowledge store for our RAG. Still, there are a lot of other Vector Databases. To determine which one is most suited to your specific use case, please refer to the [Vector DB feature matrix](https://vdbs.superlinked.com/). 
 
 ## Why do we need RAG?
 
@@ -25,7 +26,7 @@ These are the promises of RAG. But how do we make sure that our RAG system is ac
 
 ## Evaluating RAG
 
-In the process of scaling RAG from Proof-of-concept (POC) to production ((in ....add details here)), we learned many things. But chief among them was the **importance of evaluation in improving and optimizing our RAG system**. 
+In the process of scaling RAG from Proof-of-concept (POC) to production, we learned many things. But chief among them was the **importance of evaluation in improving and optimizing our RAG system**. 
 
 > If you can't quantify it, you can't improve it. - Peter Drucker
 
@@ -42,14 +43,14 @@ To see where things are going well, can be improved, and also where errors may o
 
 The evaluation framework we propose is meant to ensure granular and thorough measurement, addressing the challenges faced in all three components. Broadly, we want to assess:
 
-- Retrieval effectiveness - the accuracy of the information retrieved from the underlying vector database that aligns with user's query intent. ((still vague))
+- Retrieval effectiveness - the accuracy of the information retrieved from the underlying vector database that aligns with user's query intent.
 - Relevance of responses to retrieved information - how meaningful and aligned the generated responses are with the content and context of retrieved information.
 - Coherence of generated responses - how logically connected, fluent, and contextually consistent generated responses are with the user's query.
 - (( possibly additional point repurposed from above, b/c doesn't fit anywhere above: "Data currency - the data you leverage to build your RAG is likely to be dynamic in nature, including not only new queries, but also updates to the data corpus used to generate responses; your database may be continuously revised with data from real-time data streams, economic fluctuations, business metrics or research data, and so on."))
 
 ## Strategies for Evaluation
 
-To meet these evaluation challenges systematically, we should break down our evaluation into different levels.
+To meet these evaluation challenges systematically, it's best practice to break down our evaluation into different levels, so that we understand what specifically is working well, and what needs improvement.
 
 <img src=/assets/use_cases/retrieval_augmented_generation_eval/rag_granular.jpg alt="Granular Levels of Evaluation of RAG" data-size="100" />
 
@@ -57,7 +58,7 @@ Let's take a closer look to see what's involved in each of the levels individual
 
 ### Model Evaluation
 
-We want to ensure that the model can understand the data that we encode. The [Massive Text Embedding Benchmark (MTEB)](https://huggingface.co/spaces/mteb/leaderboard) leverages different public/private datasets to evaluate and report on the different capabilities of individual models. We can use the MTEB to evaluate any model in its list. If, on the other hand, you're working with specialized domains, you may want to put together a specialized dataset to train the model. Another option is to run relevant 'tasks' for our custom model, using [these instructions](https://github.com/embeddings-benchmark/mteb#leaderboard). 
+We want to ensure that the model can understand the data that we encode. The [Massive Text Embedding Benchmark (MTEB)](https://huggingface.co/spaces/mteb/leaderboard) leverages different public/private datasets to evaluate and report on the different capabilities of individual models. We can use the MTEB to evaluate any model in its list. If, on the other hand, you're working with specialized domains, you may want to put together a specialized dataset to train the model. Another option is to run relevant 'tasks' for your custom model, using [these instructions](https://github.com/embeddings-benchmark/mteb#leaderboard). 
 
 Fortunately, our pretrained model (average_word_embeddings_komninos) is in the MTEB, so let's import, configure, initialize, and then evaluate our model:
 
@@ -79,14 +80,12 @@ print("--DONE--")
 
 ### Data Ingestion Evaluation
 
-After we evaluate our model’s performance using benchmarks, and optionally fine-tune it on the language of our domain, we can then configure data ingestion into our semantic retrieval store (vector store). Various vector databases offer index configurations (of whatever index types the database supports) to influence and enhance the retrieval quality. Common index types include Flat (Brute Force), LSH (Locality Sensitive Hashing), HNSW (Hierarchical Navigable Small World), and IVF (Inverted File Index). Here's one such example, based on HNSW <a href="[https://qdrant.tech](https://qdrant.tech/documentation/tutorials/retrieval-quality/)" rel="nofollow">retrieval-quality</a>.
+After we evaluate our model’s performance using benchmarks, and (optionally) fine-tune it on the language of our domain, we can then configure data ingestion into our semantic retrieval store (vector store). Various vector databases offer index configurations (of whatever index types the database supports) to influence and enhance the retrieval quality. Common index types include Flat (Brute Force), LSH (Locality Sensitive Hashing), HNSW (Hierarchical Navigable Small World), and IVF (Inverted File Index). Here's one such example, based on HNSW <a href="[https://qdrant.tech](https://qdrant.tech/documentation/tutorials/retrieval-quality/)" rel="nofollow">retrieval-quality</a>.
 
-cop: Evaluating the effect of these variables means observing and measuring how changes in chunk size, chunk overlap, and text splitting strategy impact the performance and effectiveness of data ingestion. 
-
-To evaluate ingestion, we need to focus on how changes in related variables affect ingestion outcomes. For example:
-* **Chunk size** - the size of each data segment, and depends on the token limit of our embedding model. Chunk size substantially determines data granularity and the contextual understanding of the data, which impacts the precision, recall, and relevancy of our results.
+To evaluate data ingestion, we need to observe and measure how changes in related variables affect ingestion outcomes. For example:
+* **Chunk size** - the size of each data segment, which depends on the token limit of our embedding model. Chunk size substantially determines data granularity and the contextual understanding of the data, which impacts the precision, recall, and relevancy of our results.
 * **Chunk overlap** - the extent to which data points of events are shared by adjacent data chunks. Overlap helps with retention of context information in chunks, but should be paired with strategies like deduplication and content normalization to eradicate adverse effects (redundancy or inconsistency).
-* **Chunking/Text splitting strategy** - the process of data splitting and further treatment, based on both data type (e.g. html, markdown, code, or pdf, etc.) and nuances of your use-case. For example, summarization use-cases might split segments based on chapters or paragraphs; a legal document assistant might section docs based on headings and subsections; a medical literature assistant might split docs based on sentence boundaries or key concepts.
+* **Chunking/Text splitting strategy** - the process of data splitting and further treatment, based on both data type (e.g. html, markdown, code, or pdf, etc.) and nuances of your use-case. For example, summarization use-cases might split segments based on chapters or paragraphs; a legal document assistant may section docs based on headings and subsections; a medical literature assistant might split docs based on sentence boundaries or key concepts.
 
 Utilities like [ChunkViz](https://chunkviz.up.railway.app/) help visualize different chunk splitting strategies on different chunk sizes and chunk overlaps.
 
@@ -104,19 +103,19 @@ To generate a starter pack for evaluation using a Golden Set, we can leverage th
 
 ### End-to-End Evaluation
 
-An end-to-end evaluation of a RAG application assesses the final responses generated by LLMs in response to given inputs. It requires addressing issues discussed above, related to data heterogeneity, domain specificity, and user query and preference diversity. It's impossible to devise a fixed metric or methodology that fits all domains and use-cases.
+An end-to-end evaluation of a RAG application assesses the final outputs generated by LLMs in response to given inputs. It requires addressing issues discussed above, related to data heterogeneity, domain specificity, and user query and preference diversity. It's impossible to devise a fixed metric or methodology that fits all domains and use-cases.
 
 To address these difficulties, you can assess the fidelity and quality of generated text using established metrics like [BLEU](https://huggingface.co/spaces/evaluate-metric/bleu) and [ROUGE](https://huggingface.co/spaces/evaluate-metric/rouge), and combine these scores with LLM-based or human evaluation methods. This [Quality Criteria paper](https://scholarspace.manoa.hawaii.edu/server/api/core/bitstreams/c6a53998-09e3-4d17-91fd-c7416d51b250/content) provides some excellent ideas for creating such a solution.
 
 ## In sum...
 
-To summarize, a robust RAG evaluation strategy requires you to establish methods to automatically evaluate similarity and content overlap between generated response and reference summaries. You can also leverage human evaluation to evaluate subjective information, such as context-relevance, novelty, and fluency. You can also build a classified 'domain - questions' set based on question complexity (easy, medium, hard). Doing this can give you an overall sense of the RAG performance.
+To summarize, a robust RAG evaluation strategy requires you to establish methods to automatically evaluate similarity and content overlap between generated response and reference summaries. You can also leverage human evaluation to evaluate subjective information, such as context-relevance, novelty, and fluency. In addition, you can  build a classified 'domain - questions' set based on question complexity (easy, medium, hard). Doing this will provide you with an overall sense of the RAG application's performance.
 
-Still, it remains complicated and challenging to formulate a comprehensive set of evaluation metrics. 
+While our proposed evaluation strategy is meant to improve RAG evaluation, we should acknowledge that no evaluation is perfect, and it remains complicated and challenging to formulate a comprehensive set of evaluation metrics.
 
 ## What's next
 
-We've laid a foundation and discussed the layers of evaluation. In the next article, we will describe how you can demystify existing frameworks ((too vague - frameworks for what?)). Looking forward to seeing you in the next part!
+We've laid a general foundation for discussing RAG evaluation. In the next article, we'll demystify some existing evaluation frameworks, including...(Trulens, Arize, maybe Quotient AI MVP), and see how well they do at covering all the layers of evaluation we've discused. Looking forward to seeing you in the next part!
 
 ## Contributors
 
