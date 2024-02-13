@@ -23,7 +23,7 @@ Here's an example image from the COCO dataset, and below it, the human-written c
 
 ![COCO dataset example image](assets/use_cases/retrieval_from_image_and_text/reference_image_COCO.png)
 
-_Example image from the_ [_COCO dataset_](https://cocodataset.org/#home)_(above), with corresponding human-written captions (below)._
+_Example image (above) from the_ [_COCO dataset_](https://cocodataset.org/#home)_, with corresponding human-written captions (below)._
 
 ```
 A young boy standing in front of a computer keyboard.
