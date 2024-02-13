@@ -21,11 +21,13 @@
   - [Personalized Search](use_cases/personalized_search.md)
   - [Recommender Systems](use_cases/recommender_systems.md)
   - [Retrieval Augmented Generation](use_cases/retrieval_augmented_generation.md)
+  - [Scaling RAG for Production](use_cases/scaling_rag_for_production.md)
   - [Enhancing RAG with multiple agents](use_cases/multi_agent_rag.md)
   - [Embeddings on browser](use_cases/embeddings_on_browser.md)
   - [Answering Questions with Knowledge Graph Embeddings](use_cases/knowledge_graph_embedding.md)
   - [Representation Learning on Graph Structured Data](use_cases/node_representation_learning.md)
-  - [Improving RAG performance with Knowledge Graphs](use_cases/knowledge_graphs.md) 
+  - [Improving RAG performance with Knowledge Graphs](use_cases/knowledge_graphs.md)
+  - [Retrieval from Image and Text Modalities](use_cases/retrieval_from_image_and_text.md)
 
 <!-- - [Toolbox](tools/readme.md)
 - [TestPage](tools/testpage.md) -->
