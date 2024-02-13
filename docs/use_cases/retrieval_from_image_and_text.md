@@ -23,7 +23,7 @@ Here's an example image from the COCO dataset, and below it, the human-written c
 
 ![COCO dataset example image](assets/use_cases/retrieval_from_image_and_text/reference_image_COCO.png)
 
-_Example image from the_ [_COCO dataset_](https://cocodataset.org/#home)_, with corresponding human-written captions below._
+_Example image from the_ [_COCO dataset_](https://cocodataset.org/#home)_(above), with corresponding human-written captions (below)._
 
 ```
 A young boy standing in front of a computer keyboard.
@@ -93,7 +93,7 @@ In experiment 4, we look at the performance of models based on [Contrastive Lang
 
 ![](assets/use_cases/retrieval_from_image_and_text/clip.png)
 
-_CLIP's high level architecture, from_ [_Learning Transferable Visual Models From Natural Language Supervision_](https://arxiv.org/pdf/2103.00020.pdf)
+_CLIP's high level architecture (above), from_ [_Learning Transferable Visual Models From Natural Language Supervision_](https://arxiv.org/pdf/2103.00020.pdf)
 
 The structure of CLIP encoders (image above) makes them versatile and adaptable to various model architectures for embedding text or image data. In our experiment, we used pretrained models from the [OpenClip leaderboard](https://github.com/mlfoundations/open_clip/blob/main/docs/openclip_results.csv), and applied the Image Encoder to embed the images. Then we evaluated the outcomes.
 
