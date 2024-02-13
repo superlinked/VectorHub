@@ -21,8 +21,7 @@ COCO and Open Images V7 fulfill our essential dataset criteria; we can identify 
 
 Here's an example image from the COCO dataset, and below it, the human-written captions corresponding to the image's object set.
 
-![COCO dataset example image](assets/use_cases/retrieval_from_image_and_text/reference_image_COCO.png)
-
+![COCO dataset example image](assets/use_cases/retrieval_from_image_and_text/reference_image_COCO.png) 
 _Example image from the_ [_COCO dataset_](https://cocodataset.org/#home).
 
 ```
@@ -91,8 +90,7 @@ Concatenating vectors from two unaligned vector spaces into one space - using th
 
 In experiment 4, we look at the performance of models based on [Contrastive Language-Image Pretraining](https://arxiv.org/pdf/2103.00020.pdf) (CLIP). CLIP models employ separate but jointly trained Text and Image encoders to create a single multimodal embedding space. Regardless of whether the embeddings in this space represent text or image, if they are semantically similar, they are positioned closer together.
 
-![](assets/use_cases/retrieval_from_image_and_text/clip.png)
-
+![](assets/use_cases/retrieval_from_image_and_text/clip.png) 
 _CLIP's high level architecture, from_ [_"Learning Transferable Visual Models From Natural Language Supervision"_](https://arxiv.org/pdf/2103.00020.pdf)
 
 The structure of CLIP encoders (image above) makes them versatile and adaptable to various model architectures for embedding text or image data. In our experiment, we used pretrained models from the [OpenClip leaderboard](https://github.com/mlfoundations/open_clip/blob/main/docs/openclip_results.csv), and applied the Image Encoder to embed the images. Then we evaluated the outcomes.
