@@ -134,18 +134,6 @@ We should also **take into account the inference time and GPU demands** for each
 - Embedding images with "tf_efficientnetv2_s.in21k_ft_in1k" similarly takes about 3 hours and consumes 15 GB of GPU memory for batch sizes of 128.
 - Embedding both captions and images using the OpenCLIP "ViT-L-14_datacomp_xl_s13b_b90k" model can be completed in about 50 minutes when processing with a batch size of 512, requiring 14.5 GB of GPU memory.
 
-| experiment/task | model | inference time | GPU demand | batch size |
-| --- | --- | --- | --- | --- |
-| embedding captions | "all-mpnet-base-v2" | ~ 5 minutes |  ~ 2.8 GB | 128 |
-| generating captions | "Salesforce/blip-image-captioning-base" | ~ 3 hours | ~ 15.5 GB | 128 |
-| embedding images | "tf_efficientnetv2_s.in21k_ft_in1k" | ~ 3 hours | ~ 15 GB | 128 |
-| embedding captions & images | OpenCLIP "ViT-L-14_datacomp_xl_s13b_b90k" | ~ 50 minutes | 14.5 GB | 512 |
- 
-- Embedding captions with "all-mpnet-base-v2" takes approximately 5 minutes and uses about 2.8 GB of GPU memory for batches of 128.
-- Generating captions with "Salesforce/blip-image-captioning-base" spans around 3 hours and requires close to 15.5 GB of GPU memory, also with batches of 128.
-- Embedding images with "tf_efficientnetv2_s.in21k_ft_in1k" similarly takes about 3 hours and consumes 15 GB of GPU memory for batch sizes of 128.
-- Embedding both captions and images using the OpenCLIP "ViT-L-14_datacomp_xl_s13b_b90k" model can be completed in about 50 minutes when processing with a batch size of 512, requiring 14.5 GB of GPU memory.
-
 If high-quality image captions are already in hand, embedding with Sentence Transformers proves to be highly efficient, and balances speed and effectiveness. On the other hand, if only images are available and your application or project also requires captions to be generated, the time cost of different methods should be considered carefully.
 
 ## Questions for further investigation
