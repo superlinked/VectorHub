@@ -113,7 +113,6 @@
       "properties": {
         "value": {"type": "integer"},
         "value_90_days": {"type": "integer"},
-        "unlimited": {"type": "boolean"},
         "source_url": {"type": "string"},
         "comment": {"type":"string"}
       }
