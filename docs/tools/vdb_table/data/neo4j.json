@@ -15,13 +15,13 @@
   },
   "license": {
     "value": "Proprietary",
-    "source_url": "",
+    "source_url": "https://neo4j.com/licensing/",
     "comment": ""
   },
   "dev_languages": {
     "value": [
-      "Java",
-      "Scala"
+      "java",
+      "scala"
     ],
     "source_url": "",
     "comment": ""
@@ -35,7 +35,7 @@
   },
   "hybrid_search": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://github.com/langchain-ai/langchain/blob/db6f266d979215db37a1998f4de89ce83ddd3469/libs/community/langchain_community/vectorstores/neo4j_vector.py#L47-L63",
     "comment": ""
   },
   "facets": {
@@ -50,7 +50,7 @@
   },
   "multi_vec": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://neo4j.com/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/",
     "comment": ""
   },
   "sparse_vectors": {
@@ -79,9 +79,9 @@
     "comment": ""
   },
   "embeddings_structured": {
-    "support": "full",
+    "support": "",
     "source_url": "",
-    "comment": "Graphs are kinda our thing :)"
+    "comment": ""
   },
   "rag": {
     "support": "full",
@@ -124,7 +124,7 @@
     "comment": ""
   },
   "disk_index": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
