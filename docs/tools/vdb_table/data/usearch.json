@@ -15,7 +15,7 @@
   },
   "license": {
     "value": "Apache-2.0",
-    "source_url": "",
+    "source_url": "https://github.com/unum-cloud/usearch/blob/main/LICENSE",
     "comment": ""
   },
   "dev_languages": {
@@ -25,26 +25,26 @@
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 1061,
+  "github_stars": 1250,
   "vector_launch_year": 2023,
   "metadata_filter": {
-    "support": "",
+    "support": "partial",
     "source_url": "",
-    "comment": ""
+    "comment": "hybrid filtering techniques are available in some SDKs, like C++, but not in Python"
   },
   "hybrid_search": {
     "support": "",
     "source_url": "",
-    "comment": ""
+    "comment": "hybrid filtering techniques are available in some SDKs, like C++, but not in Python"
   },
   "facets": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "geo_search": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://ashvardanian.com/posts/abusing-vector-search/",
     "comment": ""
   },
   "multi_vec": {
@@ -58,24 +58,24 @@
     "comment": ""
   },
   "bm25": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "full_text": {
-    "support": "",
+    "support": "partial",
     "source_url": "",
-    "comment": ""
+    "comment": "with custom user-defined metrics on similar-length string until v3"
   },
   "embeddings_text": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "partial",
+    "source_url": "https://github.com/unum-cloud/uform",
+    "comment": "UForm embeddings as well as third-party solutions can be used with USearch"
   },
   "embeddings_image": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "partial",
+    "source_url": "https://github.com/unum-cloud/uform",
+    "comment": "UForm embeddings as well as third-party solutions can be used with USearch"
   },
   "embeddings_structured": {
     "support": "",
@@ -108,23 +108,23 @@
     "comment": ""
   },
   "pricing": {
-    "value": "",
+    "value": "none",
     "source_url": "",
     "comment": ""
   },
   "in_process": {
+    "support": "full",
+    "source_url": "https://ashvardanian.com/posts/porting-cpp-library-to-ten-languages/",
+    "comment": "The whole library is compiled for the target language runtime to be embedded natively into apps in different languages"
+  },
+  "multi_tenancy": {
     "support": "none",
     "source_url": "",
     "comment": ""
   },
-  "multi_tenancy": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
-  },
   "disk_index": {
-    "support": "",
-    "source_url": "",
+    "support": "partial",
+    "source_url": "https://github.com/unum-cloud/usearch/#serialization--serving-index-from-disk",
     "comment": ""
   },
   "ephemeral": {
@@ -133,7 +133,7 @@
     "comment": ""
   },
   "sharding": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
