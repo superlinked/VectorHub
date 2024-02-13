@@ -7,7 +7,7 @@
 
 Retrieval Augmented Generation (RAG) is probably the most useful application of large language models today. RAG enhances content generation by leveraging existing information effectively. It can amalgamate specific, relevant details from multiple sources to generate more accurate and relevant query results. This makes RAG potentially invaluable in various domains like content creation, question & answer application, and information synthesis. RAG does this by combining the strengths of retrieval - usually using dense vector search - and text generation models - like GPT. For a more in-depth introduction to RAG, read [here](https://hub.superlinked.com/retrieval-augmented-generation).
 
-But to see what is and isn't working in your RAG system, to refine and optimize, you have to **evaluate** it. In this article, we go over the broad strokes of our proposed evaluation approach / framework, which includes separate assessments of the model itself, data ingestion, semantic retrieval, and, finally the RAG application end-to-end, providing a high level discussion of what's involved in each.
+But to see what is and isn't working in your RAG system, to refine and optimize, you have to **evaluate** it. Evaluation is, therefore, essential to validate and make sure your application does what users expect it to. In this article, we go over the broad strokes of our proposed evaluation approach / framework, which includes separate assessments of the model itself, data ingestion, semantic retrieval, and, finally the RAG application end-to-end, providing a high level discussion of what's involved in each.
 
 In article 2, we will look at RAGAS (RAG Assessment)(https://github.com/explodinggradients/ragas), learn how to set it up with an example, calculate some of the supported metrics, and compare that with our proposed framework. We will also look at some examples of our proposed framework.
 In article 3, we will look at Arize AI (https://arize.com/) way of evaluating RAG applications using Phoenix Evals focussed on Retrieval evaluation and Response evaluation.
@@ -43,10 +43,10 @@ To see where things are going well, can be improved, and also where errors may o
 
 The evaluation framework we propose is meant to ensure granular and thorough measurement, addressing the challenges faced in all three components. Broadly, we want to assess:
 
-- Retrieval effectiveness - the accuracy of the information retrieved from the underlying vector database that aligns with user's query intent.
+- Retrieval effectiveness - the degree to which the information retrieved from the underlying vector database is semantically relevant to the intention of the user's query.
 - Relevance of responses to retrieved information - how meaningful and aligned the generated responses are with the content and context of retrieved information.
 - Coherence of generated responses - how logically connected, fluent, and contextually consistent generated responses are with the user's query.
-- (( possibly additional point repurposed from above, b/c doesn't fit anywhere above: "Data currency - the data you leverage to build your RAG is likely to be dynamic in nature, including not only new queries, but also updates to the data corpus used to generate responses; your database may be continuously revised with data from real-time data streams, economic fluctuations, business metrics or research data, and so on."))
+- Up-to-date data - how reflective of real-world changes your RAG application's database is, to meet user expectations. Commonly, your RAG database will be dynamic, and include not just new queries but also continuously revised with data from real-time data streams, economic fluctuations, business metrics or research data, etc.
 
 ## Strategies for Evaluation
 
@@ -115,7 +115,7 @@ While our proposed evaluation strategy is meant to improve RAG evaluation, we sh
 
 ## What's next
 
-We've laid a general foundation for discussing RAG evaluation. In the next article, we'll demystify some existing evaluation frameworks, including...(Trulens, Arize, maybe Quotient AI MVP), and see how well they do at covering all the layers of evaluation we've discussed. Looking forward to seeing you in the next part!
+We've laid a general foundation for discussing RAG evaluation. In the next article, we'll demystify some existing evaluation frameworks, including...(Trulens, Arize, maybe Quotient AI MVP), and see how well they do at covering all the layers of evaluation we've discused. Looking forward to seeing you in the next part!
 
 ## Contributors
 
