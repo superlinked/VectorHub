@@ -2,9 +2,9 @@
 
 ## The value of multimodal embedding
 
-In our contemporary data-centric world, embeddings have become indispensable for converting complex and varied data into numerical representations that are both manageable and analytically powerful. [Across a spectrum of industries](https://mccormickml.com/2018/06/15/applying-word2vec-to-recommenders-and-advertising/), from e-commerce to healthcare, these embeddings enable machines to interpret, analyze, and make predictions from large-scale datasets containing textual and/or visual information. Traditionally, models have relied on unimodal data, typically either images or text, but not both. However, the advent of multimodal models, which can synergize various data forms, has proven to be a game-changer. Multimodal approaches surpass the limitations of unimodal methods, offering richer contextual insights and enhanced predictive capabilities, and paving the way for more sophisticated and accurate applications across diverse sectors.
+In our contemporary data-centric world, embeddings have become indispensable for converting complex and varied data into numerical representations that are both manageable and analytically powerful. [Across a spectrum of industries](https://mccormickml.com/2018/06/15/applying-word2vec-to-recommenders-and-advertising/), from e-commerce to healthcare, these embeddings enable machines to interpret, analyze, and make predictions from large-scale datasets containing textual and/or visual information. Traditionally, models have relied on unimodal data, typically either images or text, but not both. However, the advent of multimodal models, which can synergize various data forms, has proven to be a game-changer. **Multimodal approaches surpass the limitations of unimodal methods, offering richer contextual insights and enhanced predictive capabilities, and paving the way for more sophisticated and accurate applications across diverse sectors**.
 
-Below, we carry out various text and image embedding experiments using COCO and Open Images V7 datasets, showcasing different unimodal and multimodal embedding models and assessing their effectiveness using ranking metrics. By the end, you'll have an understanding of how to embed multimodal data. We'll also evaluate the performance of unimodal vs. multimodal embeddings, and how different multimodal models stack up against each other.
+Below, we carry out various text and image embedding experiments using COCO and Open Images V7 datasets, showcasing different unimodal and multimodal embedding models, and assessing their effectiveness using ranking metrics. By the end, you'll have an understanding of how to embed multimodal data. We'll also evaluate the performance of unimodal vs. multimodal embeddings, and how different multimodal models stack up against each other.
 
 ## Our datasets: COCO and Open Images V7
 
@@ -15,14 +15,15 @@ Our dataset must satisfy two essential criteria:
 
 Publicly available datasets that meet these criteria are rare. [Common Objects in Context](https://cocodataset.org/#home) (COCO) and [Open Images V7](https://storage.googleapis.com/openimages/web/index.html) are notable exceptions. Both datasets are extensively utilized as benchmark datasets for object detection, segmentation, and image captioning tasks. 
 
-COCO comprises images from 80 object categories, each image accompanied by 5 unique, human-written captions that distinctively describe objects present in the image. Open Images V7 encompasses a significantly larger number of distinct object categories - approximately 20,245. In addition to captions, Open Images V7 introduces Localized Narratives — human audio descriptions - for each image segment, identified by mouse hovering. Each subpart of the Localized Narrative is accompanied by a timestamp. An illustrative example can be found [here](https://blog.research.google/2020/02/open-images-v6-now-featuring-localized.html). In our experiments, we leverage the textual representation of these Localized Narratives as captions.
+COCO comprises images from 80 object categories, each image accompanied by 5 unique, human-written captions that distinctively describe objects present in the image. Open Images V7 encompasses a significantly larger number of distinct object categories - approximately 20,245. In addition to captions, Open Images V7 introduces Localized Narratives - human audio descriptions - for each image segment, identified by mouse hovering. Each subpart of the Localized Narrative is accompanied by a timestamp. An illustrative example can be found [here](https://blog.research.google/2020/02/open-images-v6-now-featuring-localized.html). In our experiments, we leverage the textual representation of these Localized Narratives as captions.
 
 COCO and Open Images V7 fulfill our essential dataset criteria; we can identify which images contain object sets (e.g., keyboard, mouse, person, TV) in any particular image, and ensure that at least two images have the identical object set by excluding images with object sets that appear only once. Based on label set frequency distribution, these outliers are removed from both Open Images V7 and COCO datasets. The resulting down-sampled COCO and the Open Images V7 datasets contain 103,429 and 149,847 samples, respectively.
 
 Here's an example image from the COCO dataset, and below it, the human-written captions corresponding to the image's object set.
 
 ![COCO dataset example image](assets/use_cases/retrieval_from_image_and_text/reference_image.png)
-[Example image from the COCO dataset.](https://cocodataset.org/#home)
+
+_Example image from the_ [_COCO dataset_](https://cocodataset.org/#home).
 
 ```
 A young boy standing in front of a computer keyboard.
@@ -34,7 +35,7 @@ A young kid with head phones on using a computer.
 
 ## Our embedding experiments
 
-In our experiments below, we **vectorize/embed**, respectively, 1) image captions, 2) images, 3) both images and their captions, 4) images with multimodal vision transformers, 5) both images and their captions with multimodal vision transformers. In cases where images and their captions are vectorized separately, the embeddings are concatenated.
+In our experiments below, we **vectorize/embed**, respectively, 1) image captions, 2) images, 3) both images and their captions, 4) images with multimodal transformers, 5) both images and their captions with multimodal transformers. In cases where images and their captions are vectorized separately, the embeddings are concatenated.
 
 After embedding the entire dataset and normalizing each vector to unit length, we **assess the quality of the embedding vectors by retrieving them and calculating ranking metrics**. More specifically. we iterate over the vector space and retrieve each vector's **_k (=10)_** nearest neighbors based on [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity). Cosine similarity measures and quantifies the angle between two vectors by simplifying to a [dot product](https://en.wikipedia.org/wiki/Dot_product) calculation.
 
@@ -60,19 +61,19 @@ But do these outcome patterns hold true for the more diverse Open Images V7 data
 
 ![](assets/use_cases/retrieval_from_image_and_text/table_embed_text_oiv7.png)
 
-BLIP-generated captions were more efficient than human Localized Narratives on the Open Images V7 dataset. The "all-distilroberta-v1," "bge-large-en-v1.5", and "e5-large-v2" models  maintained their relative performance order, but the "all-mpnet-v2" model did better, with the top MRR score: 0.0706. Overall, all the models performed comparably on generated captions, with slight variations attributable to Approximate Nearest Neighbor Search using [FAISS](https://github.com/facebookresearch/faiss).
+BLIP-generated captions were more efficient than human Localized Narratives on the Open Images V7 dataset. The "all-distilroberta-v1," "bge-large-en-v1.5", and "e5-large-v2" models maintained their relative performance order, but the "all-mpnet-v2" model did better, with the top MRR score: 0.0706. Overall, all the models performed comparably on generated captions, with slight variations attributable to Approximate Nearest Neighbor Search using [FAISS](https://github.com/facebookresearch/faiss).
 
-When we used [LLaVA](https://arxiv.org/pdf/2304.08485.pdf) 1.5 to generate detailed descriptions for each image, the model tended to hallucinate non-existing objects at least 50% of the time. Performance improved when prompting for detailed descriptions of only those elements LLaVa 1.5 was confident about, but the model's one to two short sentence output was no better than 's output. We also looked at GPT-4, which performed well for all tested images. But GPT-4's current API limit means that it would take an estimated 2 weeks to re-caption an entire dataset, making it impractical.
+When we used [LLaVA](https://arxiv.org/pdf/2304.08485.pdf) 1.5 to generate detailed descriptions for each image, the model tended to hallucinate non-existing objects at least 50% of the time. Performance improved when prompting for detailed descriptions of only those elements LLaVA 1.5 was confident about, but the model's one to two short sentence output was no better than BLIP's output. We also looked at GPT-4, which performed well for all tested images. But GPT-4's current API limit means that it would take an estimated 2 weeks to re-caption an entire dataset, making it impractical.
 
-In sum, the Sentence Transformers models performed consistently across diverse datasets in our first experiment. In addition, generating captions with BLIP seems to be a viable option, especially when the captions provide a detailed description of each image. However, in use cases requiring descriptions that focus on the overall concept, and such fine granularity isn't necessary, BLIP-generated captions may unnecessarily reduce the system's retrieval capabilities.
+In sum, the **Sentence Transformers models performed consistently across diverse datasets in our first experiment**. In addition, **generating captions with BLIP seems to be a viable option, especially when the captions provide a detailed description of each image**. However, in use cases requiring descriptions that focus on the overall concept, and such fine granularity isn't necessary, BLIP-generated captions may unnecessarily reduce the system's retrieval capabilities.
 
 ### 2. Embedding images with larger models
 
-In our second experiment, we used [PyTorch Image Models](https://github.com/huggingface/pytorch-image-models) (timm) to embed each image, and evaluated image embedding exclusively, looking at how an increase in the number of model parameters impacts the quality of the embeddings and subsequent performance. We selected our models from within the timm repository of [ImageNet leaderboard](https://github.com/huggingface/pytorch-image-models/blob/main/results/results-imagenet-real.csv). We compared different sizes within the [EfficientNetV2](https://arxiv.org/pdf/2104.00298.pdf) family and included a [Vision Transformer](https://arxiv.org/pdf/2010.11929v2.pdf) (ViT) and its variants for contrast. First, let's look at notable COCO dataset results.
+In our second experiment, we used [PyTorch Image Models](https://github.com/huggingface/pytorch-image-models) (timm) to embed each image, and evaluated image embedding exclusively, looking at how an increase in the number of model parameters impacts the quality of the embeddings and subsequent performance. We selected our models from within the timm repository of [ImageNet leaderboard](https://github.com/huggingface/pytorch-image-models/blob/main/results/results-imagenet-real.csv). We compared different sizes within the [EfficientNetV2](https://arxiv.org/pdf/2104.00298.pdf) family, and included a [Vision Transformer](https://arxiv.org/pdf/2010.11929v2.pdf) (ViT) and its variants for contrast. First, let's look at **notable COCO dataset results**.
 
 ![](assets/use_cases/retrieval_from_image_and_text/table_embed_image_coco.png)
 
-On the COCO dataset, the [caformer_m36](https://arxiv.org/pdf/2210.13452.pdf) model, which has approximately 56 million parameters, achieved the highest efficiency with an MRR score of 0.368. The next most efficient models were the EfficientNetv2 family. Its smallest model, with around 21.5 million parameters, had the second highest MMR score, at 0.352. Now, let's see how the models performed on the Open Images 7 dataset.
+On the COCO dataset, the [caformer_m36](https://arxiv.org/pdf/2210.13452.pdf) model, which has approximately 56 million parameters, achieved the highest efficiency with an MRR score of 0.368. The next most efficient models were the EfficientNetv2 family. Its smallest model, with around 21.5 million parameters, had the second highest MMR score, at 0.352. Now, let's see how the models performed **on the Open Images 7 dataset**.
 
 ![](assets/use_cases/retrieval_from_image_and_text/table_embed_image_oiv7.png)
 
@@ -80,18 +81,19 @@ The smallest EfficientNetv2 model was the most efficient performer on the Open I
 
 ### 3. Embedding both images and their captions
 
-Our third experiment concatenated vectors from our first two experiments into a combined vector space. We iterated through this space to retrieved the k nearest neighbors for each concatenated vector, with the following results.
+Our third experiment **concatenated vectors from our first two experiments into a combined vector space**. We iterated through this space to retrieve the k nearest neighbors for each concatenated vector, with the following results.
 
 ![](assets/use_cases/retrieval_from_image_and_text/table_embed_text_image.png)
 
-Concatenating vectors from **two unaligned vector spaces** into one space - specifically, using the Sentence Transformers models on the COCO dataset - led to a deterioration in performance to the level of the Computer Vision models. As a result, we next investigated (in experiments 4. and 5.) whether using _jointly trained_ text and image encoders, and then concatenating their vectors, might lead to better performance than concatenating vectors created by _separately trained_ image and text encoders.
+Concatenating vectors from two unaligned vector spaces into one space - using the Sentence Transformers models on the COCO dataset, **deteriorated performance to the level of the Computer Vision models**. As a result, we next investigated (in experiments 4. and 5.) **whether using _jointly trained_ text and image encoders, and then concatenating their vectors, might lead to better performance than concatenating vectors created by _separately trained_ image and text encoders**.
 
 ### 4. Embedding images with Multimodal Transformers
 
 In experiment 4, we look at the performance of models based on [Contrastive Language-Image Pretraining](https://arxiv.org/pdf/2103.00020.pdf) (CLIP). CLIP models employ separate but jointly trained Text and Image encoders to create a single multimodal embedding space. Regardless of whether the embeddings in this space represent text or image, if they are semantically similar, they are positioned closer together.
 
 ![](assets/use_cases/retrieval_from_image_and_text/clip.png)
-[CLIP's high level architecture from the paper Learning Transferable Visual Models From Natural Language Supervision.](https://arxiv.org/pdf/2103.00020.pdf)
+
+_CLIP's high level architecture, from_ [_"Learning Transferable Visual Models From Natural Language Supervision"_](https://arxiv.org/pdf/2103.00020.pdf)
 
 The structure of CLIP encoders (image above) makes them versatile and adaptable to various model architectures for embedding text or image data. In our experiment, we used pretrained models from the [OpenClip leaderboard](https://github.com/mlfoundations/open_clip/blob/main/docs/openclip_results.csv), and applied the Image Encoder to embed the images. Then we evaluated the outcomes.
 
@@ -101,11 +103,11 @@ The performance of the tested models was consistent across both datasets. ViT-ba
 
 ![](assets/use_cases/retrieval_from_image_and_text/table_multimodal_vit_embed_image_blip.png)
 
-BLIP achieved the best MRR scores on both datasets, surpassing the OpenCLIP models, aligning with findings of the [BLIP paper](https://arxiv.org/pdf/2201.12086.pdf). The larger of the two BLIP models, with 447 million parameters (the base model has 224.7 million), reached notable MRR scores of 0.494 on COCO and 0.112 on Open Images V7.
+**BLIP achieved the best MRR scores on both datasets**, surpassing the OpenCLIP models, aligning with findings of the [BLIP paper](https://arxiv.org/pdf/2201.12086.pdf). The larger of the two BLIP models, with 447 million parameters (the base model has 224.7 million), reached notable MRR scores of 0.494 on COCO and 0.112 on Open Images V7.
 
-### 5. Embedding both images and their captions with Multimodal Vision Transformers
+### 5. Embedding both images and their captions with Multimodal Transformers
 
-In our final experiment, we used Text and Image encoders from both CLIP and BLIP models to encode captions and images separately, then concatenated the resulting embeddings. A key difference from our third experiment (embedding both images and their captions) is that, here, the encoders have either undergone joint pre-training - in the case of CLIP, or aligned with additional layers - in the case of BLIP.
+In our final experiment, **we used Text and Image encoders from both CLIP and BLIP models to encode captions and images separately, then concatenated the resulting embeddings**. A key difference from our third experiment (embedding both images and their captions) is that, here, the **encoders have either undergone joint pre-training** - in the case of CLIP, **or been aligned with additional layers** - in the case of BLIP.
 
 ![](assets/use_cases/retrieval_from_image_and_text/table_multimodal_vit_embed_image_text.png)
 
@@ -113,7 +115,7 @@ In experiment 5, the rank order of the two ViT-based OpenCLIP models on the COCO
 
 ![](assets/use_cases/retrieval_from_image_and_text/table_multimodal_vit_embed_image_text_blip.png)
 
-Here, as we anticipated, concatenating embeddings from two _jointly trained or aligned encoders_ boosted retrieval performance, over and above the results achieved by concatenating vectors created by _separately trained_ image and text encoders (in experiment 4). This boost was more pronounced for the OpenCLIP models.
+Here, as we anticipated, **concatenating embeddings from two _jointly trained or aligned encoders_ boosted retrieval performance, over and above the results achieved by concatenating vectors created by _separately trained_ image and text encoders** (in experiment 4). This boost was more pronounced for the OpenCLIP models.
 
 ### Comparing all results
 
