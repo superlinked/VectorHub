@@ -25,6 +25,12 @@ Here's an example image from the COCO dataset, and below it, the human-written c
 
 _Example image from the_ [_COCO dataset_](https://cocodataset.org/#home).
 
+
+<img src="assets/use_cases/retrieval_from_image_and_text/reference_image_COCO.png" alt="COCO dataset example image">
+
+<p style="margin-top: -10px; font-size: smaller">Example image from the <a href="https://cocodataset.org/#home">COCO dataset</a>.</p>
+
+
 ```
 A young boy standing in front of a computer keyboard.
 A little boy wearing headphones and looking at a computer monitor. 
