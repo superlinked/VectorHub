@@ -21,7 +21,7 @@ COCO and Open Images V7 fulfill our essential dataset criteria; we can identify 
 
 Here's an example image from the COCO dataset, and below it, the human-written captions corresponding to the image's object set.
 
-![COCO dataset example image](assets/use_cases/retrieval_from_image_and_text/reference_image.png)
+![COCO dataset example image](assets/use_cases/retrieval_from_image_and_text/reference_image_COCO.png)
 
 _Example image from the_ [_COCO dataset_](https://cocodataset.org/#home).
 
