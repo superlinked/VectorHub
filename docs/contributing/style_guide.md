@@ -11,27 +11,37 @@ Who are you writing for, and what problem are you solving?
 :::
 
 Ask yourself why your article is **valuable** to your readers.
-Set the context: identify your readers explicitly - say who your article is relevant to and why. What **problem** of theirs are you helping to **solve**?
-Instead of this: "This latest software update is packed with helpful enhancements."
+Set the context: say who your article is relevant to and why. What **problem** of theirs are you helping to **solve**?
+e.g. Instead of this: "This latest software update is packed with helpful enhancements."
 Write this: "Our November 15, 2023 update lets web developers optimize projects by developing faster with simplified coding."
 
 Front load your first paragraph with **keywords**.
 
-### 2. Be clear, substantive, and brief
+### 2. Be hierarchical
+
+:::hint
+Organize your content like a building, and show us the blueprint first.
+:::
+
+**Give vectorhub editors a one-sentence-per-section outline showing us what you want to communicate. This is a huge timesaver, and helps us make sure your article does what you want it to.**
+
+Give an overview of where you're going in your Introduction. In your article itself, add clear **headings** and **subheadings** that give information and an overview to your readers. This will enable readers to navigate to relevant sections and search engines to scan it.
+
+Link (scroll-to-anchor) between concepts in your article (or to other articles on the platform) where it makes sense.
+
+### 3. Be clear, substantive, and brief
 
 :::hint
 Use simple language, short sentences, write only what's essential. 800-2500 words.
 :::
 
-Write clearly and concisely. Aim for [crisp minimalism](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice).
-Use simple language wherever possible; write like you speak.
-Be minimal. Less is more. Use **adjectives** only when they add value.
-
-In general, write short sentences.
-
 **Length**: Articles must be **at least 800 but less than max 2500 words**.
 
-Get the **substance** down **first**. Don't worry about making perfect sentences until after you've completed your article in **point form**. Fine-tuned, stylized prose can come later. First, make sure you've included everything that your article needs to make sense and convey value to your readers.
+Write clearly and concisely. Aim for [crisp minimalism](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice).
+Use simple language wherever possible; write like you speak.
+Be minimal. Less is more. Use **adjectives** only when they add value. Avoid superlatives.
+
+Get the **substance** down **first**. Fine-tuned, stylized prose can come later. First, complete your article in **point form**. Make sure you've included everything that your article needs to make sense and convey value to your readers.
 
 Use common **abbreviations**.
 e.g. "apps" instead of "applications"
@@ -44,15 +54,15 @@ e.g. "We are programmers, data analysts, and web designers."
 
 Don't add extra **spaces** anywhere. One space between sentences and words.
 
-### 3. Be visual
+### 4. Be visual
 
 :::hint
-Save a thousand words. Use a picture. Represent your ideas visually whenever possible.
+Save a thousand words. Use a picture.
 :::
 
-Text only goes so far. Complement your verbal descriptions with **diagrams**, **graphs**, **charts**, **code snippets**, **images** and any other visual tools that explain your work more efficiently.
+Text only goes so far. Complement your words with **diagrams**, **graphs**, **charts**, **code snippets**, **images** and any other visual tools that explain your work more efficiently.
 
-### 4. Be conversational, friendly, and use action verbs
+### 5. Be conversational, friendly, and use action verbs
 
 :::hint
 Write how you speak. Be personal. In an active voice.
@@ -71,30 +81,22 @@ Choose specific action verbs over generic ones.
 e.g. Instead of: "We made changes to the code to improve performance."
 Write this: "We optimized the code to boost performance."
 
-### 5. Be hierarchical
+Use consistent verb tenses.
 
-:::hint
-Organize your content like a building, and show us the blueprint first.
-:::
-
-Add clear **headings** and **subheadings** that give information and an overview to your readers. This will enable readers to navigate to relevant sections and search engines to scan it.
-
-Give an overview of where you're going in your Introduction.
-
-Link (scroll-to-anchor) between concepts in your article (or to other articles on the platform) where it makes sense.
-
-### 6. Cite all sources
+### 6. Cite (hyperlink) all sources
 
 :::hint
 Give credit where credit is due. Always.
 :::
 
+**Hyperlink to sources**, rather than including the source url. Don't use footnote or endnotes.
+
 Make sure you have **permission** to reuse any images you include in your VectorHub article.
 Cite your own modified versions of images owned by someone else as a "Modified version of" the original source.
 
-Cite sources for all graphics, images, direct quotations, and others' unique or patented ideas.
+Cite sources for all graphics, images, direct quotations, and others' unique or patented ideas. If you're not sure whether to cite it, you probably should.
 
-You should cite visual elements (i.e., figures) as follows: [Title], [Author/Photographer/Artist], [Year], [Source].
+Cite visual elements (i.e., figures) as follows: [Title], [Author/Photographer/Artist], [Year], [Source].
 Provide a hyperlink for the whole citation, pointing to the visual element source. 
 e.g. [Feed Recommendation Illustration, Arunesh Singh, 2023, superlinked.com.](https://superlinked.com)
 
@@ -106,7 +108,7 @@ e.g.
 [Graph embeddings for movie visualization and recommendation.
 Figure 1. Conceptual illustration. M. Vlachos, 2012, ResearchGate.](https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ)
 
-Punctuate outside of links.
+Punctuate _outside_ of links.
 e.g. "We explain our approach in more depth [here](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice)."
 
 ### 7. Edit and proofread
@@ -115,9 +117,9 @@ e.g. "We explain our approach in more depth [here](https://learn.microsoft.com/e
 Nail down your logic. Step back, outline, and revise.
 :::
 
-As early as possible (when your article is still in point form), go through it, summarize each paragraph in one (concise) sentence. Now, put all your summary sentences together and see if they tell a story. Is there a logical flow? If not, rearrange, remove, or add content until the article makes sense. In our experience, going through this exercise saves a lot of time and energy. It's also a good way of checking whether your headings and subheadings are accurate.
+As early as possible (when your article is still in point form), go through it, summarize each paragraph in one (concise) sentence. Now, put all your summary sentences together and see if they tell a story. Is there a logical flow? If not, rearrange, remove, or add content until the article makes sense. This exercise saves a lot of time and energy, and ensures your headings and subheadings are accurate.
 
-Whenever possible, find an industry-specific reader.
+Use a spell and grammar checker.
 
 ### 8. Technical terminology
 
@@ -125,8 +127,7 @@ Whenever possible, find an industry-specific reader.
 It's an article about tech. Use relevant, familiar technical terms.
 :::
 
-You're writing a technical article. Use technology-specific terminology. If you think the thing you're describing is unfamiliar to most readers, it probably is. Feel free to link to external resources that provide more in-depth explanations of terms you do not have space to explain in your article.
-In general, don't overcomplicate your text; communicate as simply and clearly as possible.
+Use technology-specific terminology. If you think the thing you're describing is unfamiliar to most readers, it probably is. Link to external resources that provide more in-depth explanations of terms you don't have space to explain in your article.
 
 ### 9. Accessibility
 

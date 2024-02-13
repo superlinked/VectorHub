@@ -8,7 +8,7 @@
     "links": {"allOf": [{"$ref": "#/$defs/links"}], "$comment": "About | Links | " },
     "oss": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "About | OSS | The code-base is open source and users can self-host it for free." },
     "license": {"allOf": [{"$ref": "#/$defs/stringWithSource"}], "$comment": "About | License | The license the source code is released under." },
-    "dev_languages": {"allOf": [{"$ref": "#/$defs/stringListWithSource"}], "$comment": "About | Dev Lang | The language the database is developed in." },
+    "dev_languages": {"allOf": [{"$ref": "#/$defs/devLanguageListWithSource"}], "$comment": "About | Dev Lang | The language the database is developed in." },
     "github_stars": {"type": "integer", "$comment": "About | GitHub ⭐ | The number of stars for the core product repository." },
     "vector_launch_year": {"type": "integer", "$comment": "About | VSS Launch | The year of the first release for the vector search functionality." },
     "metadata_filter": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | Filters | Metadata filtering support within vector search - allowing users to refine results based on additional contextual informatio and enhancing precision in search queries. Not to be confused with filters/faceting in Lucene based keyword search." },
@@ -69,14 +69,26 @@
         "comment": {"type": "string"}
       }
     },
-    "stringListWithSource": {
-      "$id": "stringListWithSource",
+    "devLanguageListWithSource": {
+      "$id": "devLanguageListWithSource",
       "type": "object",
       "properties": {
         "value": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "",
+              "python",
+              "c++",
+              "c",
+              "c#",
+              "go",
+              "java",
+              "rust",
+              "typescript",
+              "not known"
+            ]
           }
         },
         "source_url": {"type": "string"},
