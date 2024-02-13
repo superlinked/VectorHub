@@ -150,28 +150,24 @@
   },
   "github_stars": {
     "value": 1393,
-    "unlimited": false,
     "source_url": "https://github.com/unum-cloud/usearch",
     "comment": "",
     "value_90_days": 0
   },
   "docker_pulls": {
     "value": 0,
-    "unlimited": false,
     "source_url": "",
     "comment": "",
     "value_90_days": 0
   },
   "pypi_downloads": {
     "value": 613300,
-    "unlimited": false,
     "source_url": "https://pypi.org/project/usearch/",
     "comment": "",
     "value_90_days": 228188
   },
   "npm_downloads": {
     "value": 0,
-    "unlimited": false,
     "source_url": "",
     "comment": "",
     "value_90_days": 0
