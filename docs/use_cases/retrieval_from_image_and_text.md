@@ -69,11 +69,11 @@ In sum, the **Sentence Transformers models performed consistently across diverse
 
 ### 2. Embedding images with larger models
 
-In our second experiment, we used [PyTorch Image Models](https://github.com/huggingface/pytorch-image-models) (timm) to embed each image, and evaluated image embedding exclusively, looking at how an increase in the number of model parameters impacts the quality of the embeddings and subsequent performance. We selected our models from within the timm repository of [ImageNet leaderboard](https://github.com/huggingface/pytorch-image-models/blob/main/results/results-imagenet-real.csv). We compared different sizes within the [EfficientNetV2](https://arxiv.org/pdf/2104.00298.pdf) family, and included a [Vision Transformer](https://arxiv.org/pdf/2010.11929v2.pdf) (ViT) and its variants for contrast. First, let's look at **notable COCO dataset results**.
+In our second experiment, we used [PyTorch Image Models](https://github.com/huggingface/pytorch-image-models) (timm) to embed each image, and evaluated image embedding exclusively, looking at how an increase in the number of model parameters impacts the quality of the embeddings and subsequent performance. We selected our models from within the timm repository of [ImageNet leaderboard](https://github.com/huggingface/pytorch-image-models/blob/main/results/results-imagenet-real.csv). We compared different sizes within the [EfficientNetV2](https://arxiv.org/pdf/2104.00298.pdf) family, and included a [Vision Transformer](https://arxiv.org/pdf/2010.11929v2.pdf) (ViT) and its variants for contrast. First, let's look at notable COCO dataset results.
 
 ![](assets/use_cases/retrieval_from_image_and_text/table_embed_image_coco.png)
 
-On the COCO dataset, the [caformer_m36](https://arxiv.org/pdf/2210.13452.pdf) model, which has approximately 56 million parameters, achieved the highest efficiency with an MRR score of 0.368. The next most efficient models were the EfficientNetv2 family. Its smallest model, with around 21.5 million parameters, had the second highest MMR score, at 0.352. Now, let's see how the models performed **on the Open Images 7 dataset**.
+On the COCO dataset, the [caformer_m36](https://arxiv.org/pdf/2210.13452.pdf) model, which has approximately 56 million parameters, achieved the highest efficiency with an MRR score of 0.368. The next most efficient models were the EfficientNetv2 family. Its smallest model, with around 21.5 million parameters, had the second highest MMR score, at 0.352. Now, let's see how the models performed on the Open Images 7 dataset.
 
 ![](assets/use_cases/retrieval_from_image_and_text/table_embed_image_oiv7.png)
 
@@ -85,7 +85,7 @@ Our third experiment **concatenated vectors from our first two experiments into 
 
 ![](assets/use_cases/retrieval_from_image_and_text/table_embed_text_image.png)
 
-Concatenating vectors from two unaligned vector spaces into one space - using the Sentence Transformers models on the COCO dataset, **deteriorated performance to the level of the Computer Vision models**. As a result, we next investigated (in experiments 4. and 5.) **whether using _jointly trained_ text and image encoders, and then concatenating their vectors, might lead to better performance than concatenating vectors created by _separately trained_ image and text encoders**.
+Concatenating vectors from two unaligned vector spaces into one space - using the Sentence Transformers models on the COCO dataset, deteriorated performance to the level of the Computer Vision models. As a result, we next investigated (in experiments 4. and 5.) whether using _jointly trained_ text and image encoders, and then concatenating their vectors, might lead to better performance than concatenating vectors created by _separately trained_ image and text encoders.
 
 ### 4. Embedding images with Multimodal Transformers
 
@@ -107,7 +107,7 @@ The performance of the tested models was consistent across both datasets. ViT-ba
 
 ### 5. Embedding both images and their captions with Multimodal Transformers
 
-In our final experiment, **we used Text and Image encoders from both CLIP and BLIP models to encode captions and images separately, then concatenated the resulting embeddings**. A key difference from our third experiment (embedding both images and their captions) is that, here, the **encoders have either undergone joint pre-training** - in the case of CLIP, **or been aligned with additional layers** - in the case of BLIP.
+In our final experiment, we used Text and Image encoders from both CLIP and BLIP models to encode captions and images separately, then concatenated the resulting embeddings. A key difference from our third experiment (embedding both images and their captions) is that, here, the encoders have either undergone joint pre-training - in the case of CLIP, or been aligned with additional layers - in the case of BLIP.
 
 ![](assets/use_cases/retrieval_from_image_and_text/table_multimodal_vit_embed_image_text.png)
 
