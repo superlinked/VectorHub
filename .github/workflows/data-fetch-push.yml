@@ -1,12 +1,6 @@
 name: Update Stars, Pulls and Downloads From APIs
 
 on:
-  pull_request:
-    branches:
-    - main
-  push:
-    branches:
-    - main
   schedule:
     - cron: '0 8 * * 1' # Runs at 8:00 AM every Monday
   workflow_dispatch:
@@ -14,7 +8,6 @@ on:
 jobs:
   fetchAndUpdate:
     runs-on: ubuntu-latest
-    if: github.actor != 'github-actions[bot]'
 
     strategy:
       matrix:
@@ -25,11 +18,17 @@ jobs:
       uses: actions/checkout@v3
       with:
         ref: ${{ github.head_ref }}
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.DATA_PUSH_TOKEN }}
 
     - name: Add dependencies
       run: |
         python -m pip install requests
+        python -m pip install tqdm
+        python -m pip install pypistats
+
+    - name: Set pepy.tech API key
+        run: |
+          echo "PYPI_API_KEY=${{ secrets.PYPI_API_KEY }}" >> $GITHUB_ENV
 
     - name: Update files after fetching data from APIs
       run: |
@@ -37,10 +36,10 @@ jobs:
 
     - name: Commit and push if there are changes
       env:
-        GIT_AUTHOR_NAME: Chirag Jain
-        GIT_AUTHOR_EMAIL: 31701616+chirag-jn@users.noreply.github.com
-        GIT_COMMITTER_NAME: Chirag Jain
-        GIT_COMMITTER_EMAIL: 31701616+chirag-jn@users.noreply.github.com
+        GIT_AUTHOR_NAME: Arunesh Singh
+        GIT_AUTHOR_EMAIL: 43724007+AruneshSingh@users.noreply.github.com
+        GIT_COMMITTER_NAME: Arunesh Singh
+        GIT_COMMITTER_EMAIL: 43724007+AruneshSingh@users.noreply.github.com
         GITHUB_TOKEN: ${{ secrets.DATA_PUSH_TOKEN }}
       run: |
         git add docs/tools/vdb_table/data/.
@@ -49,4 +48,4 @@ jobs:
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.DATA_PUSH_TOKEN }}

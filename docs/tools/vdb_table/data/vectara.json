@@ -150,26 +150,26 @@
   },
   "github_stars": {
     "value": 0,
-    "unlimited": false,
-    "source_url": "https://github.com/vectara",
-    "comment": ""
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
   },
   "docker_pulls": {
     "value": 0,
-    "unlimited": false,
     "source_url": "",
-    "comment": ""
+    "comment": "",
+    "value_90_days": 0
   },
   "pypi_downloads": {
     "value": 0,
-    "unlimited": false,
     "source_url": "",
-    "comment": ""
+    "comment": "",
+    "value_90_days": 0
   },
   "npm_downloads": {
-    "value": 0,
-    "unlimited": false,
+    "value": 34,
     "source_url": "https://www.npmjs.com/package/@vectara/create-ui",
-    "comment": ""
+    "comment": "",
+    "value_90_days": 34
   }
 }
