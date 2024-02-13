@@ -9,8 +9,8 @@ Retrieval Augmented Generation (RAG) is probably the most useful application of 
 
 But to see what is and isn't working in your RAG system, to refine and optimize, you have to **evaluate** it. In this article, we go over the broad strokes of our proposed evaluation approach / framework, which includes separate assessments of the model itself, data ingestion, semantic retrieval, and, finally the RAG application end-to-end, providing a high level discussion of what's involved in each.
 
-In article 2, we will look at RAGAS (RAG Assessment), learn how to set it up with an example, calculate some of the supported metrics, and compare that with our proposed framework. We will also look at some examples of our proposed framework.
-In article 3...
+In article 2, we will look at RAGAS (RAG Assessment)(https://github.com/explodinggradients/ragas), learn how to set it up with an example, calculate some of the supported metrics, and compare that with our proposed framework. We will also look at some examples of our proposed framework.
+In article 3, we will look at Arize AI (https://arize.com/) way of evaluating RAG applications using Phoenix Evals focussed on Retrieval evaluation and Response evaluation.
 
 <img src=/assets/use_cases/retrieval_augmented_generation_eval/rag_qdrant.jpg alt="Implementation of RAG using Qdrant as a vector database" data-size="100" />
 
@@ -58,9 +58,9 @@ Let's take a closer look to see what's involved in each of the levels individual
 
 ### Model Evaluation
 
-We want to ensure that the model can understand the data that we encode. The [Massive Text Embedding Benchmark (MTEB)](https://huggingface.co/spaces/mteb/leaderboard) leverages different public/private datasets to evaluate and report on the different capabilities of individual models. We can use the MTEB to evaluate any model in its list. If, on the other hand, you're working with specialized domains, you may want to put together a specialized dataset to train the model. Another option is to run relevant 'tasks' for your custom model, using [these instructions](https://github.com/embeddings-benchmark/mteb#leaderboard). 
+We want to ensure that the model can understand the data that we encode. The [Massive Text Embedding Benchmark (MTEB)](https://huggingface.co/spaces/mteb/leaderboard) leverages different public/private datasets to evaluate and report on the different capabilities of individual models. We can use the MTEB to evaluate any model in its list. If, on the other hand, you're working with specialized domains, you may want to put together a specialized dataset to train the model. Another option is to run relevant 'tasks' for your custom model, using instructions available [here](https://github.com/embeddings-benchmark/mteb#leaderboard). 
 
-Fortunately, our pretrained model (average_word_embeddings_komninos) is in the MTEB, so let's import, configure, initialize, and then evaluate our model:
+For a custom SentenceTransformer based model we can set up evaluation tasks as below -  import, configure, initialize, and then evaluate our model:
 
 ```python
 import logging
@@ -70,7 +70,7 @@ from sentence_transformers import SentenceTransformer
 
 logging.basicConfig(level=logging.INFO)
 
-model_name = "average_word_embeddings_komninos"
+model_name = "<<CUSTOM_MODEL_NAME>>"
 model = SentenceTransformer(model_name)
 evaluation = MTEB(task_langs=["en"])
 evaluation.run(model, output_folder=f"results/{model_name}", eval_splits=["test"])
@@ -115,7 +115,7 @@ While our proposed evaluation strategy is meant to improve RAG evaluation, we sh
 
 ## What's next
 
-We've laid a general foundation for discussing RAG evaluation. In the next article, we'll demystify some existing evaluation frameworks, including...(Trulens, Arize, maybe Quotient AI MVP), and see how well they do at covering all the layers of evaluation we've discused. Looking forward to seeing you in the next part!
+We've laid a general foundation for discussing RAG evaluation. In the next article, we'll demystify some existing evaluation frameworks, including...(Trulens, Arize, maybe Quotient AI MVP), and see how well they do at covering all the layers of evaluation we've discussed. Looking forward to seeing you in the next part!
 
 ## Contributors
 
