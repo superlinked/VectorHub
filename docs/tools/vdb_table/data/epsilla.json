@@ -149,7 +149,7 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 851,
+    "value": 852,
     "source_url": "https://github.com/epsilla-cloud/vectordb",
     "comment": "",
     "value_90_days": 0
@@ -161,10 +161,10 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 23134,
+    "value": 23537,
     "source_url": "https://pypi.org/project/pyepsilla/",
     "comment": "",
-    "value_90_days": 12017
+    "value_90_days": 12343
   },
   "npm_downloads": {
     "value": 0,
