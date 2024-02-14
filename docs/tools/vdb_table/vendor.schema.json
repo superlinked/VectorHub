@@ -87,6 +87,7 @@
               "c#",
               "go",
               "java",
+              "scala",
               "rust",
               "typescript",
               "not known"
