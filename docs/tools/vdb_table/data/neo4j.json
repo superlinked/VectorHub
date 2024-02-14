@@ -79,8 +79,8 @@
     "comment": ""
   },
   "embeddings_structured": {
-    "support": "",
-    "source_url": "",
+    "support": "partial",
+    "source_url": "https://neo4j.com/docs/graph-data-science/current/machine-learning/node-embeddings/node2vec/",
     "comment": ""
   },
   "rag": {
