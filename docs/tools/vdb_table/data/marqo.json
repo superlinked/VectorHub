@@ -149,7 +149,7 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 3926,
+    "value": 3935,
     "source_url": "https://github.com/marqo-ai/marqo",
     "comment": "",
     "value_90_days": 0
@@ -161,10 +161,10 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 120150,
+    "value": 120619,
     "source_url": "https://pypi.org/project/marqo/",
     "comment": "",
-    "value_90_days": 23018
+    "value_90_days": 22890
   },
   "npm_downloads": {
     "value": 292,
