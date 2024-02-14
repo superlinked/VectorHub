@@ -43,6 +43,7 @@ Here are some examples from the community, more coming soon!
 
 Subscribe to be updated when new ones come out & check the blog section.
 
+-[02/14 - Retrieval from Image and Text Modalities](https://hub.superlinked.com/retrieval-from-image-and-text-modalities):Research comparing different modal and multi-modal approaches to analysing data from images and captions. Shows how combining data types offers advantages in retrieval quality.
 - [02/01 - Scaling RAG for Production](https://hub.superlinked.com/scaling-rag-for-production): How to go from working model to a production system with step-by-step instructions.
 - [01/25 - Improving RAG performance with Knowledge Graphs](use_cases/knowledge_graphs.md): Adding knowledge graph embeddings as contextual data to improve the performance of RAG.
 - [01/18 Representation Learning on Graph Structured Data](https://hub.superlinked.com/representation-learning-on-graph-structured-data): Understanding how combining KGEs and semantic embeddings can improve understanding of your solution.
