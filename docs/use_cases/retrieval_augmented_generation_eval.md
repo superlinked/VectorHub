@@ -7,7 +7,7 @@
 
 Retrieval Augmented Generation (RAG) is probably the most useful application of large language models today. RAG enhances content generation by leveraging existing information effectively. It can amalgamate specific, relevant details from multiple sources to generate more accurate and relevant query results. This makes RAG potentially invaluable in various domains like content creation, question & answer application, and information synthesis. RAG does this by combining the strengths of retrieval - usually using dense vector search - and text generation models - like GPT. For a more in-depth introduction to RAG, read [here](https://hub.superlinked.com/retrieval-augmented-generation).
 
-But to see what is and isn't working in your RAG system, to refine and optimize, you have to **evaluate** it. Evaluation is, therefore, essential to validate and make sure your application does what users expect it to. In this article, we go over the broad strokes of our proposed evaluation approach / framework, which includes separate assessments of the model itself, data ingestion, semantic retrieval, and, finally the RAG application end-to-end, providing a high level discussion of what's involved in each.
+But to see what is and isn't working in your RAG system, to refine and optimize, you have to **evaluate** it. Evaluation is, therefore, essential to validate and make sure your application does what users expect it to. In this article (the first of three), we go over the broad strokes of our proposed evaluation approach / framework, which includes separate assessments of the model itself, data ingestion, semantic retrieval, and, finally the RAG application end-to-end, providing a high level discussion of what's involved in each.
 
 In article 2, we will look at RAGAS ([RAG Assessment](https://github.com/explodinggradients/ragas)), learn how to set it up with an example, calculate some of the supported metrics, and compare that with our proposed framework. We will also look at some examples of our proposed framework. Then, in article 3, we will look at Arize AI (https://arize.com/) way of evaluating RAG applications using Phoenix Evals focussed on Retrieval evaluation and Response evaluation.
 
@@ -25,7 +25,7 @@ These are the promises of RAG. But how do we make sure that our RAG system is ac
 
 ## Evaluating RAG
 
-In the process of scaling RAG from Proof-of-concept (POC) to production with clients from the academia and finance domains, numerous lessons emerged. Right from assessing various data processing and enrichment techniques to choosing a model to understand the 'domain specific' jargon and their combined impact on the retrieval, bolstered with creative prompts built with guardrails to generate trustworthy and informative responses. However, paramount among these was the significance of evaluation in enhancing and refining our RAG system.
+In the process of scaling RAG from Proof-of-concept (POC) to production with clients in academia and finance, we learned many things - including various data processing and enrichment techniques, choosing a model to understand the 'domain specific' jargon, their combined impact on retrieval, bolstering with creative prompts built with guardrails to generate trustworthy and informative responses, to name a few. But our chief lesson was the **importance of evaluation in enhancing and refining our RAG system**.
 
 > If you can't quantify it, you can't improve it. - Peter Drucker
 
