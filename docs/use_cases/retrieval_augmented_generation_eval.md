@@ -7,9 +7,9 @@
 
 Retrieval Augmented Generation (RAG) is probably the most useful application of large language models today. RAG enhances content generation by leveraging existing information effectively. It can amalgamate specific, relevant details from multiple sources to generate more accurate and relevant query results. This makes RAG potentially invaluable in various domains, including content creation, question & answer applications, and information synthesis. RAG does this by combining the strengths of retrieval, usually using dense vector search, and text generation models, like GPT. For a more in-depth introduction to RAG, read [here](https://hub.superlinked.com/retrieval-augmented-generation). 
 
-<img src=/assets/use_cases/retrieval_augmented_generation_eval/rag_qdrant.jpg alt="Implementation of RAG using Qdrant as a vector database" data-size="100" />
+![Implementation of RAG using Qdrant as a vector database](..assets/use_cases/retrieval_augmented_generation_eval/rag_qdrant.jpg)
 
-*RAG system (above) using* <a href="https://qdrant.tech" rel="nofollow">*Qdrant*</a> *as the knowledge store. To determine which Vector Database fits your specific use case, refer to the [Vector DB feature matrix](https://vdbs.superlinked.com/).*
+*RAG system (above) using* <a href="https://qdrant.tech" rel="nofollow">*Qdrant*</a> *as the knowledge store. To determine which Vector Database fits your specific use case, refer to the* [*Vector DB feature matrix*](https://vdbs.superlinked.com/).
 
 **But to see what is and isn't working in your RAG system, to refine and optimize, you have to evaluate it**. Evaluation is essential to validate and make sure your application does what users expect it to. In this article (the first of three), we go over the broad strokes of our proposed evaluation framework, which includes separate assessments of the model itself, data ingestion, semantic retrieval, and, finally, the RAG application end-to-end, providing a high level discussion of what's involved in each.
 
@@ -35,10 +35,9 @@ In the case of RAG, not only is it important to have good metrics, but that you 
 
 To see where things are going well, can be improved, and also where errors may originate, it's important to evaluate each component in isolation. In the following visual, we've classified RAG's components - Information Retrieval, Context Augmentation, and Response Generation - along with what needs evaluation in each:
 
-<figure>
-<img src=/assets/use_cases/retrieval_augmented_generation_eval/rag_challenges.jpg alt="Classification of Challenges of RAG Evaluation" data-size="100" />
-<figcaption align="center">Slide from RAG Evaluation Presentation mentions <a href="https://arxiv.org/abs/2307.03172">'Lost in the Middle' problem</a></figcaption>
-</figure>
+![Classification of Challenges of RAG Evaluation](..assets/use_cases/retrieval_augmented_generation_eval/rag_challenges.jpg)
+
+*The challenges of RAG Evaluation Presentation (above), including the* [*'Lost in the Middle'*](https://arxiv.org/abs/2307.03172) *problem*.
 
 The evaluation framework we propose is meant to ensure granular and thorough measurement, addressing the challenges faced in all three components. Broadly, we want to assess:
 
