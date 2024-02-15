@@ -5,15 +5,15 @@
 
 ## Why evaluate RAG?
 
-Retrieval Augmented Generation (RAG) is probably the most useful application of large language models today. RAG enhances content generation by leveraging existing information effectively. It can amalgamate specific, relevant details from multiple sources to generate more accurate and relevant query results. This makes RAG potentially invaluable in various domains like content creation, question & answer application, and information synthesis. RAG does this by combining the strengths of retrieval - usually using dense vector search - and text generation models - like GPT. For a more in-depth introduction to RAG, read [here](https://hub.superlinked.com/retrieval-augmented-generation).
+Retrieval Augmented Generation (RAG) is probably the most useful application of large language models today. RAG enhances content generation by leveraging existing information effectively. It can amalgamate specific, relevant details from multiple sources to generate more accurate and relevant query results. This makes RAG potentially invaluable in various domains like content creation, question & answer applications, and information synthesis. RAG does this by combining the strengths of retrieval - usually using dense vector search - and text generation models - like GPT. For a more in-depth introduction to RAG, read [here](https://hub.superlinked.com/retrieval-augmented-generation). 
+
+<img src=/assets/use_cases/retrieval_augmented_generation_eval/rag_qdrant.jpg alt="Implementation of RAG using Qdrant as a vector database" data-size="100" />
+
+*RAG system (above) using* <a href="https://qdrant.tech" rel="nofollow">*Qdrant*</a> *as the knowledge store. To determine which Vector Database fits your specific use case, refer to the [Vector DB feature matrix](https://vdbs.superlinked.com/).*
 
 But to see what is and isn't working in your RAG system, to refine and optimize, you have to **evaluate** it. Evaluation is, therefore, essential to validate and make sure your application does what users expect it to. In this article (the first of three), we go over the broad strokes of our proposed evaluation approach / framework, which includes separate assessments of the model itself, data ingestion, semantic retrieval, and, finally the RAG application end-to-end, providing a high level discussion of what's involved in each.
 
 In article 2, we will look at RAGAS ([RAG Assessment](https://github.com/explodinggradients/ragas)), learn how to set it up with an example, calculate some of the supported metrics, and compare that with our proposed framework. We will also look at some examples of our proposed framework. Then, in article 3, we will look at Arize AI (https://arize.com/) way of evaluating RAG applications using Phoenix Evals focussed on Retrieval evaluation and Response evaluation.
-
-<img src=/assets/use_cases/retrieval_augmented_generation_eval/rag_qdrant.jpg alt="Implementation of RAG using Qdrant as a vector database" data-size="100" />
-
-We use <a href="https://qdrant.tech" rel="nofollow">Qdrant</a> as the knowledge store for our RAG. Still, there are a lot of other Vector Databases. To determine which one is most suited to your specific use case, please refer to the [Vector DB feature matrix](https://vdbs.superlinked.com/). 
 
 ## Why do we need RAG?
 
