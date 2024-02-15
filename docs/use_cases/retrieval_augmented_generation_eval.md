@@ -7,7 +7,7 @@
 
 Retrieval Augmented Generation (RAG) is probably the most useful application of large language models today. RAG enhances content generation by leveraging existing information effectively. It can amalgamate specific, relevant details from multiple sources to generate more accurate and relevant query results. This makes RAG potentially invaluable in various domains, including content creation, question & answer applications, and information synthesis. RAG does this by combining the strengths of retrieval, usually using dense vector search, and text generation models, like GPT. For a more in-depth introduction to RAG, read [here](https://hub.superlinked.com/retrieval-augmented-generation). 
 
-![Implementation of RAG using Qdrant as a vector database](..assets/use_cases/retrieval_augmented_generation_eval/rag_qdrant.jpg)
+![Implementation of RAG using Qdrant as a vector database](../assets/use_cases/retrieval_augmented_generation_eval/rag_qdrant.jpg)
 
 *RAG system (above) using* <a href="https://qdrant.tech" rel="nofollow">*Qdrant*</a> *as the knowledge store. To determine which Vector Database fits your specific use case, refer to the* [*Vector DB feature matrix*](https://vdbs.superlinked.com/).
 
@@ -35,7 +35,7 @@ In the case of RAG, not only is it important to have good metrics, but that you 
 
 To see where things are going well, can be improved, and also where errors may originate, it's important to evaluate each component in isolation. In the following visual, we've classified RAG's components - Information Retrieval, Context Augmentation, and Response Generation - along with what needs evaluation in each:
 
-![Classification of Challenges of RAG Evaluation](..assets/use_cases/retrieval_augmented_generation_eval/rag_challenges.jpg)
+![Classification of Challenges of RAG Evaluation](../assets/use_cases/retrieval_augmented_generation_eval/rag_challenges.jpg)
 
 *The challenges of RAG Evaluation Presentation (above), including the* [*'Lost in the Middle'*](https://arxiv.org/abs/2307.03172) *problem*.
 
@@ -50,7 +50,7 @@ The evaluation framework we propose is meant to ensure granular and thorough mea
 
 To meet these evaluation challenges systematically, it's best practice to break down our evaluation into different levels, so that we understand what specifically is working well, and what needs improvement.
 
-<img src=/assets/use_cases/retrieval_augmented_generation_eval/rag_granular.jpg alt="Granular Levels of Evaluation of RAG" data-size="100" />
+![Granular Levels of Evaluation of RAG](../assets/use_cases/retrieval_augmented_generation_eval/rag_granular.jpg)
 
 Let's take a closer look to see what's involved in each of these levels individually.
 
