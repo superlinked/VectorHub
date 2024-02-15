@@ -25,7 +25,7 @@ These are the promises of RAG. But how do we make sure that our RAG system is ac
 
 ## Evaluating RAG
 
-In the process of scaling RAG from Proof-of-concept (POC) to production, we learned many things. But chief among them was the **importance of evaluation in improving and optimizing our RAG system**. 
+In the process of scaling RAG from Proof-of-concept (POC) to production with clients from the academia and finance domains, numerous lessons emerged. Right from assessing various data processing and enrichment techniques to choosing a model to understand the 'domain specific' jargon and their combined impact on the retrieval, bolstered with creative prompts built with guardrails to generate trustworthy and informative responses. However, paramount among these was the significance of evaluation in enhancing and refining our RAG system.
 
 > If you can't quantify it, you can't improve it. - Peter Drucker
 
