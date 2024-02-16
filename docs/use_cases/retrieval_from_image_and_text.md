@@ -2,7 +2,11 @@
 
 ## The value of multimodal embedding
 
-In our contemporary data-centric world, embeddings have become indispensable for converting complex and varied data into numerical representations that are both manageable and analytically powerful. [Across a spectrum of industries](https://mccormickml.com/2018/06/15/applying-word2vec-to-recommenders-and-advertising/), from e-commerce to healthcare, these embeddings enable machines to interpret, analyze, and make predictions from large-scale datasets containing textual and/or visual information. Traditionally, models have relied on unimodal data, typically either images or text, but not both. However, the advent of multimodal models, which can synergize various data forms, has proven to be a game-changer. **Multimodal approaches surpass the limitations of unimodal methods, offering richer contextual insights and enhanced predictive capabilities, and paving the way for more sophisticated and accurate applications across diverse sectors**.
+In our contemporary data-centric world, embeddings have become indispensable for converting complex and varied data into numerical representations that are both manageable and analytically powerful. 
+
+[Across a spectrum of industries](https://mccormickml.com/2018/06/15/applying-word2vec-to-recommenders-and-advertising/), from e-commerce to healthcare, these embeddings enable machines to interpret, analyze, and make predictions from large-scale datasets containing textual and/or visual information. 
+
+Traditionally, models have relied on unimodal data, typically either images or text, but not both. However, the advent of multimodal models, which can synergize various data forms, has proven to be a game-changer. **Multimodal approaches surpass the limitations of unimodal methods, offering richer contextual insights and enhanced predictive capabilities, and paving the way for more sophisticated and accurate applications across diverse sectors**.
 
 Below, we carry out various text and image embedding experiments using COCO and Open Images V7 datasets, showcasing different unimodal and multimodal embedding models, and assessing their effectiveness using ranking metrics. By the end, you'll have an understanding of how to embed multimodal data. We'll also evaluate the performance of unimodal vs. multimodal embeddings, and how different multimodal models stack up against each other.
 
