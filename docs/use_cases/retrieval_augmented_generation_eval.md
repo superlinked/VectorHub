@@ -2,7 +2,7 @@
 
 # Evaluating Retrieval Augmented Generation - a framework for assessment
 
-*In this first article of a three-part (monthly) series, we introduce RAG evaluation, outline its challenges, propose an effective evaluation framework, and provide a rough overview of the various evaluation tools and approaches you can use to evaluate your RAG application.*
+*In this first article of a three-part (monthly) series, we introduce RAG evaluation, outline its challenges, propose an effective evaluation framework, and provide a rough overview of the various tools and approaches you can use to evaluate your RAG application.*
 
 ## Why evaluate RAG?
 
