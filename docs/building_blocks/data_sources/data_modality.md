@@ -141,3 +141,10 @@ The visualization below shows how CDC can be implemented within a streaming data
     - These consumers treat CDC data as a continuous flow of real-time data, making it readily available for processing and analysis.
 
 <img src=assets/building_blocks/data_sources/bb1-3.png alt="CDC with streaming data" data-size="100" />
+
+
+## Contributors
+
+- [Daniel Svonava](https://www.linkedin.com/in/svonava/)
+- [Paolo Perrone](https://www.linkedin.com/in/paoloperrone/)
+- [Robert Turner, editor](https://robertturner.co/copyedit)
