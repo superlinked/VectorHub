@@ -32,9 +32,9 @@
     "comment": ""
   },
   "hybrid_search": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://lancedb.github.io/lancedb/hybrid_search/hybrid_search/",
+    "comment": "Offered several re-rankers too: Linear Combination, Cohere, Cross-Encoder, ColBERT, OpenAI and Custom"
   },
   "facets": {
     "support": "",
