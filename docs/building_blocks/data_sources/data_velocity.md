@@ -116,3 +116,10 @@ In the context of real-time data processing, the choice between Kappa and Lambda
 | *Data Consistency* | May sacrifice some data consistency to prioritize real-time processing. | Ensures strong data consistency between real-time and batch views, making it suitable for data analytics and historical comparisons. |
 | *Use Cases* | Ideal for use cases with high velocity, such as real-time monitoring, fraud detection, and sensor data processing. | Suitable for applications where historical data analysis, complex event processing, and reconciling real-time and batch views are required. |
 
+
+## Contributors
+
+- [Daniel Svonava](https://www.linkedin.com/in/svonava/)
+- [Paolo Perrone](https://www.linkedin.com/in/paoloperrone/)
+- [Robert Turner, editor](https://robertturner.co/copyedit)
+
