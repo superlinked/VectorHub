@@ -7,6 +7,7 @@ In this article, we learned how to map your data infrastructure and identify the
 Next, let’s dive into how [Vector Compute](https://hub.superlinked.com/vector-compute) connects your data to your [Vector Search](https://hub.superlinked.com/vector-search) systems.
 
 
+---
 ## Contributors
 
 - [Daniel Svonava](https://www.linkedin.com/in/svonava/)
