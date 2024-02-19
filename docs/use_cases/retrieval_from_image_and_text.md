@@ -155,5 +155,5 @@ Our experiments demonstrate that Transformer models are highly effective feature
 ## Contributors
 
 - [Kristóf Horváth, author](https://www.linkedin.com/in/kristof-horvath-0301/)
-- [Mór Kapronczay, contributor](linkedin.com/in/mór-kapronczay-49447692)
+- [Mór Kapronczay, contributor](https://www.linkedin.com/in/mór-kapronczay-49447692)
 - [Robert Turner, editor](https://robertturner.co/copyedit)
