@@ -10,6 +10,7 @@ Our use cases include:
 In the blog section, we collate examples of these use cases and case studies from our contributors discussing how they use and improve information retrieval systems to solve real-world problems.  
 
 ## Contents
+
 - [02/01 - Scaling RAG for Production](https://hub.superlinked.com/scaling-rag-for-production): How to go from working model to a production system with step-by-step instructions.
 - [01/25 - Improving RAG performance with Knowledge Graphs](use_cases/knowledge_graphs.md): Adding knowledge graph embeddings as contextual data to improve the performance of RAG.
 - [01/18 Representation Learning on Graph Structured Data](https://hub.superlinked.com/representation-learning-on-graph-structured-data): Understanding how combining KGEs and semantic embeddings can improve understanding of your solution.
