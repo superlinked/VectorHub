@@ -55,3 +55,10 @@ The **primary advantage of pre-trained models is their ability to learn powerful
 Leveraging pre-trained models as a starting point offers remarkable computational efficiency and enhanced performance, **especially in scenarios where task-specific data is limited**.
 
 Still, pre-trained models have limitations; whether you should use a custom or pre-trained model depends on your task requirements.
+
+---
+## Contributors
+
+- [Daniel Svonava](https://www.linkedin.com/in/svonava/)
+- [Paolo Perrone](https://www.linkedin.com/in/paoloperrone/)
+- [Robert Turner, editor](https://robertturner.co/copyedit)
