@@ -87,9 +87,13 @@ Before diving into the code, let's look over a LinkedIn post to address the chal
 As you can see, during our preprocessing step, we have to take care of the following aspects that are not compatible with the embedding model:
 - emojis
 - bold, italic text
-- URLs
 - other non-ASCII characters 
+- URLs
 - exceed the context window of the embedding model
+
+For example, the emojis, bolded and italic text are represented by Unicode characters that are not available in the vocabulary of the embedding model. Thus, these items cannot be tokenized and passed to the model. That is why we have to remove them or normalize them to something that can be parsed by the tokenizer. The same principle applies to all other non-ASCII characters.
+
+The URLs' value does not provide much value but uselessly fills the context window. Still, it is valuable to know there is a URL in the sentence. That is why we will replace all the URLs with a `[URL]` token. By doing so, we get the best of both worlds.
 
 ## 3. Settings
 
@@ -390,7 +394,7 @@ Ultimately, you load the serialized data to the vector DB.
 
 Here, we will focus on preprocessing a user's query, searching the vector DB, and postprocessing the retrieved posts for maximum results.
 
-To design the retrieval step, we implemented a `QdrantVectorDBRetriever` class to expose all the necessary features for our retrieval client.
+To design the retrieval step, we implemented a `QdrantVectorDBRetriever` class to expose all the necessary features for our retrieval client. In the following sections, we will dive into implementing each class method.
 
 ```python
 class QdrantVectorDBRetriever:
