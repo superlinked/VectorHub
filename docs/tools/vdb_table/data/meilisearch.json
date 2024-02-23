@@ -19,15 +19,16 @@
     "comment": ""
   },
   "dev_languages": {
-    "value": ["rust"],
+    "value": [
+      "rust"
+    ],
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 41204,
   "vector_launch_year": 2023,
   "metadata_filter": {
     "support": "full",
-    "source_url": "https://solr.apache.org/guide/solr/latest/query-guide/dense-vector-search.html",
+    "source_url": "https://www.meilisearch.com/docs/learn/fine_tuning_results/filtering#filter-basics",
     "comment": "Dense vector search"
   },
   "hybrid_search": {
@@ -37,7 +38,7 @@
   },
   "facets": {
     "support": "full",
-    "source_url": "https://www.meilisearch.com/docs/reference/api/facet_search#perform-a-facet-search",
+    "source_url": "https://www.meilisearch.com/docs/learn/fine_tuning_results/faceted_search#facet-distribution",
     "comment": ""
   },
   "geo_search": {
@@ -46,19 +47,19 @@
     "comment": "https://www.meilisearch.com/docs/learn/fine_tuning_results/geosearch"
   },
   "multi_vec": {
-    "support": "",
+    "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "Up to 65536 vectors by document"
   },
   "sparse_vectors": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "bm25": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
+    "support": "partial",
+    "source_url": "https://github.com/orgs/meilisearch/discussions/674",
+    "comment": "Support scoring but not exactly BM25"
   },
   "full_text": {
     "support": "full",
@@ -66,14 +67,14 @@
     "comment": ""
   },
   "embeddings_text": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://www.meilisearch.com/docs/learn/experimental/vector_search",
     "comment": ""
   },
   "embeddings_image": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://www.meilisearch.com/docs/learn/experimental/vector_search",
+    "comment": "Custom vectors can be linked to documents and provided during search"
   },
   "embeddings_structured": {
     "support": "",
@@ -121,17 +122,17 @@
     "comment": ""
   },
   "disk_index": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://blog.kerollmops.com/spotify-inspired-elevating-meilisearch-with-hybrid-search-and-rust",
     "comment": ""
   },
   "ephemeral": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "sharding": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
@@ -146,5 +147,29 @@
     "unlimited": true,
     "source_url": "",
     "comment": ""
+  },
+  "github_stars": {
+    "value": 41801,
+    "source_url": "https://github.com/meilisearch/meilisearch",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "docker_pulls": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "pypi_downloads": {
+    "value": 699527,
+    "source_url": "https://pypi.org/project/meilisearch/",
+    "comment": "",
+    "value_90_days": 151841
+  },
+  "npm_downloads": {
+    "value": 6039024,
+    "source_url": "https://www.npmjs.com/package/meilisearch",
+    "comment": "",
+    "value_90_days": 774199
   }
 }
