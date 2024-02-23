@@ -16,7 +16,7 @@ In this article, we will explain only the retrieval part of an RAG system. Still
 - use the rerank pattern to improve the retrieval accuracy
 - visualize the retrieval for a given query in a 2D plot using UMAP
 
-We won't dive into the basics of an RAG system but focus only on the specifics of implementing a retrieval system for LinkedIn posts. In case you want to refresh your mind on RAG systems, check out this excellent article from VectorHub: [Retrieval Augmented Generation](https://hub.superlinked.com/retrieval-augmented-generation)
+We won't dive into the basics of a RAG system but focus only on the specifics of implementing a retrieval system for LinkedIn posts. In case you want to refresh your mind on RAG systems, check out this excellent article from VectorHub: [Retrieval Augmented Generation](https://hub.superlinked.com/retrieval-augmented-generation)
 
 
 ## 1. System design
