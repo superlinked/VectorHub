@@ -25,7 +25,6 @@
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 797,
   "vector_launch_year": 2023,
   "metadata_filter": {
     "support": "full",
@@ -33,8 +32,8 @@
     "comment": ""
   },
   "hybrid_search": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://epsilla-inc.gitbook.io/epsilladb/vector-database/hybrid-search",
     "comment": ""
   },
   "facets": {
@@ -83,9 +82,9 @@
     "comment": ""
   },
   "rag": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://blog.epsilla.com/your-data-your-ai-build-an-ai-chatbot-with-your-own-knowledge-in-5-minutes-with-epsilla-cloud-35f549332c8e",
+    "comment": "Through Epsilla Cloud"
   },
   "recsys": {
     "support": "",
@@ -148,5 +147,29 @@
     "unlimited": true,
     "source_url": "",
     "comment": ""
+  },
+  "github_stars": {
+    "value": 852,
+    "source_url": "https://github.com/epsilla-cloud/vectordb",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "docker_pulls": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "pypi_downloads": {
+    "value": 24282,
+    "source_url": "https://pypi.org/project/pyepsilla/",
+    "comment": "",
+    "value_90_days": 12521
+  },
+  "npm_downloads": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
   }
 }

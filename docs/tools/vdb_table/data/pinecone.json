@@ -25,17 +25,16 @@
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 0,
   "vector_launch_year": 2019,
   "metadata_filter": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://docs.pinecone.io/docs/metadata-filtering",
     "comment": ""
   },
   "hybrid_search": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://docs.pinecone.io/docs/hybrid-search",
+    "comment": "Supports full hybrid search, including BM25 and native support for SPLADE vectors"
   },
   "facets": {
     "support": "none",
@@ -54,8 +53,8 @@
   },
   "sparse_vectors": {
     "support": "full",
-    "source_url": "",
-    "comment": ""
+    "source_url": "https://docs.pinecone.io/docs/hybrid-search",
+    "comment": "Supports all sparse vectors, including BM25 and native support for SPLADE vectors"
   },
   "bm25": {
     "support": "none",
@@ -68,8 +67,8 @@
     "comment": ""
   },
   "embeddings_text": {
-    "support": "none",
-    "source_url": "",
+    "support": "partial",
+    "source_url": "https://github.com/pinecone-io/canopy",
     "comment": ""
   },
   "embeddings_image": {
@@ -88,18 +87,18 @@
     "comment": ""
   },
   "recsys": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://github.com/pinecone-io/recommender-example-typescript",
     "comment": ""
   },
   "langchain": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://github.com/pinecone-io/examples/blob/master/docs/langchain-retrieval-agent.ipynb",
     "comment": ""
   },
   "llamaindex": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://github.com/pinecone-io/examples/blob/master/learn/generation/llama-index/llama-index-intro.ipynb",
     "comment": ""
   },
   "managed_cloud": {
@@ -108,9 +107,9 @@
     "comment": ""
   },
   "pricing": {
-    "value": "",
-    "source_url": "",
-    "comment": ""
+    "value": "full",
+    "source_url": "https://www.pinecone.io/pricing/",
+    "comment": "Includes free tier"
   },
   "in_process": {
     "support": "none",
@@ -119,7 +118,7 @@
   },
   "multi_tenancy": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://docs.pinecone.io/docs/multitenancy",
     "comment": "via namespaces"
   },
   "disk_index": {
@@ -133,20 +132,44 @@
     "comment": ""
   },
   "sharding": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.pinecone.io/docs/scaling-indexes#horizontal-scaling",
     "comment": ""
   },
   "doc_size": {
     "bytes": 40000,
     "unlimited": false,
-    "source_url": "",
+    "source_url": "https://docs.pinecone.io/docs/limits",
     "comment": ""
   },
   "vector_dims": {
     "value": 20000,
     "unlimited": false,
-    "source_url": "",
+    "source_url": "https://docs.pinecone.io/docs/limits",
     "comment": ""
+  },
+  "github_stars": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "docker_pulls": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "pypi_downloads": {
+    "value": 8812878,
+    "source_url": "https://pypi.org/project/pinecone-client/",
+    "comment": "",
+    "value_90_days": 2297889
+  },
+  "npm_downloads": {
+    "value": 5292551,
+    "source_url": "https://www.npmjs.com/package/@pinecone-database/pinecone",
+    "comment": "",
+    "value_90_days": 1370862
   }
 }

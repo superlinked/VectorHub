@@ -17,8 +17,10 @@ In the blog section, we collate examples of these use cases and case studies fro
 - [Vector Embeddings In The Browser](https://hub.superlinked.com/vector-embeddings-in-the-browser)
 - [Answering Questions with Knowledge Embeddings](https://hub.superlinked.com/answering-questions-with-knowledge-graph-embeddings)
 - [Representation Learning on Graph Structured Data](https://hub.superlinked.com/representation-learning-on-graph-structured-data)
-- [Improving RAG performance with Knowledge Graphs](use_cases/knowledge_graphs.md) 
+- [Improving RAG performance with Knowledge Graphs](use_cases/knowledge_graphs.md)
+- [Retrieval from Image and Text Modalities](use_cases/retrieval_from_image_and_text.md)
 - [Real-time Socal Media Retrieval System](use_cases/social_media_retrieval.md)
+- [Evaluating Retrieval Augmented Generation - part 1](use_cases/retrieval_augmented_generation_eval.md)
 
 
 We are always looking to expand our Use Cases and share the latest thinking. So if you've been working on something and would like to share your experiences with the community, you [get in touch and contribute](https://github.com/superlinked/VectorHub).
