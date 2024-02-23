@@ -62,7 +62,7 @@ Lastly, to better understand and explain the retrieval process for particular qu
 
 ## 2. Data
 
-We will ingest 215 LinkedIn posts from [my profile - Paul Iusztin](https://www.linkedin.com/in/pauliusztin/). Though we simulate the post ingestion step using JSON files, the posts themselves are authentic.
+We will ingest 215 LinkedIn posts from [my Linked profile - Paul Iusztin](https://www.linkedin.com/in/pauliusztin/). Though we simulate the post ingestion step using JSON files, the posts themselves are authentic.
 
 Before diving into the code, let's take a look at an example LinkedIn post to familiarize ourselves with the challenges it will introduce ↓
 
