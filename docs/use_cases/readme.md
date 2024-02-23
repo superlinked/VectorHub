@@ -19,6 +19,7 @@ In the blog section, we collate examples of these use cases and case studies fro
 - [Representation Learning on Graph Structured Data](https://hub.superlinked.com/representation-learning-on-graph-structured-data)
 - [Improving RAG performance with Knowledge Graphs](use_cases/knowledge_graphs.md)
 - [Retrieval from Image and Text Modalities](use_cases/retrieval_from_image_and_text.md)
+- [Evaluating Retrieval Augmented Generation - part 1](use_cases/retrieval_augmented_generation_eval.md)
 
 
 We are always looking to expand our Use Cases and share the latest thinking. So if you've been working on something and would like to share your experiences with the community, you [get in touch and contribute](https://github.com/superlinked/VectorHub).
