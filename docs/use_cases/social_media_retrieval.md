@@ -512,7 +512,7 @@ class RetrievalVisualizer:
 
 Let's take a look at the result to see how the `"Posts about Qdrant"` query looks ↓
 
-![Visualization Query Qdrant](../assets/use_cases/social_media_retrieval/query_qdrant_visualization_rerank.png)
+![Visualization Query Qdrant](../assets/use_cases/social_media_retrieval/query_qdrant_visualization_1.png)
 
 Our results are not great. You can see how far the retrieved posts are from our query in the vector space. Let's see if we can improve upon this using an entire post (take from our `2. Data` section above) as a query ↓
 
@@ -602,7 +602,7 @@ The improvement is remarkable! All our results are about Qdrant and vector DBs.
 
 Now, let's look at the UMAP visualization:
 
-![Visualization Query Qdrant](../assets/use_cases/social_media_retrieval/query_qdrant_visualization.png)
+![Visualization Query Qdrant](../assets/use_cases/social_media_retrieval/query_qdrant_visualization_rerank_1.png)
 
 While the returned posts aren't very close to the query, they are **a lot closer to the query compared to when we weren't reranking the retrieved posts**.
 
