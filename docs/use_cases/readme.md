@@ -19,6 +19,7 @@ In the blog section, we collate examples of these use cases and case studies fro
 - [Representation Learning on Graph Structured Data](https://hub.superlinked.com/representation-learning-on-graph-structured-data)
 - [Improving RAG performance with Knowledge Graphs](use_cases/knowledge_graphs.md)
 - [Retrieval from Image and Text Modalities](use_cases/retrieval_from_image_and_text.md)
+- [Real-time Socal Media Retrieval System](use_cases/social_media_retrieval.md)
 - [Evaluating Retrieval Augmented Generation - part 1](use_cases/retrieval_augmented_generation_eval.md)
 
 
