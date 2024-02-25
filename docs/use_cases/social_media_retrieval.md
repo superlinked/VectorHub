@@ -436,7 +436,8 @@ After we preprocess the query, the retrieval step is straightforward. We map eve
 
 Because we chunk queries that are too long into multiple queries, when we merge all the retrieved posts, we must eliminate possible duplicates by adding all the items to a unique set based on their `chunk_id.`
 
-We go into the `rerank` aspects of the method in just a second! First, let's call our `QdrantVectorDBRetriever` class and see how it works:
+We go into the `rerank` aspects of the method in just a second!
+First, let's call our `QdrantVectorDBRetriever` class and see how it works:
 
 ```python
 vector_db_retriever = QdrantVectorDBRetriever(embedding_model=EmbeddingModelSingleton(), vector_db_client=build_qdrant_client())
