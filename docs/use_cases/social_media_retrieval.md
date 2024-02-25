@@ -13,7 +13,7 @@ Our implementation focuses on just the retrieval part of a RAG system. But you c
 - build a streaming pipeline that ingests LinkedIn posts into a vector DB in real-time
 - clean, chunk, and embed LinkedIn posts
 - build a retrieval client to query LinkedIn posts
-- use the rerank pattern to improve retrieval accuracy
+- use a rerank pattern to improve retrieval accuracy
 - visualize content retrieved for a given query in a 2D plot using UMAP
 
 If, before continuing, you want to refamiliarize yourself with the **basics of RAG systems**, we encourage you check out this excellent article on VectorHub: [Retrieval Augmented Generation](https://hub.superlinked.com/retrieval-augmented-generation).
@@ -53,9 +53,9 @@ Our retrieval client is a standard Python module that preprocesses user queries 
 
 To avoid training-serving skew, it's essential to preprocess the ingested posts and queries in the same way.
 
-Using a semantic-based retrieval system lets us query our LinkedIn post collection very flexibly. For example, we can find similar posts using another post or other questions or sentences.
+Using a semantic-based retrieval system lets us query our LinkedIn post collection very flexibly. For example, we can retrieve similar posts using a variety of query types - e.g., posts, questions, sentences.
 
-Also, to improve the retrieval system's accuracy, we use the rerank pattern.
+Also, to improve the retrieval system's accuracy, we use a rerank pattern.
 
 Lastly, to better understand and explain the retrieval process for particular queries, we visualize our results on a 2D plot using UMAP.
 
@@ -511,7 +511,7 @@ class RetrievalVisualizer:
 
 Let's take a look at the result to see how the `"Posts about Qdrant"` query looks ↓
 
-![Visualization Query Qdrant](../assets/use_cases/social_media_retrieval/query_qdrant_visualization.png)
+![Visualization Query Qdrant](../assets/use_cases/social_media_retrieval/query_qdrant_visualization_rerank.png)
 
 Our results are not great. You can see how far the retrieved posts are from our query in the vector space. Let's see if we can improve upon this using an entire post (take from our `2. Data` section above) as a query ↓
 
@@ -524,7 +524,7 @@ Can we improve the quality of our retrieval system using the **rerank** pattern?
 
 ### 5.4. Rerank
 
-We use the rerank step to refine our retrieval for the initial query. Our initial retrieval step - because it used cosine similarity (or similar distance metrics) to compute distance between query and post embeddings - may have missed more complex (but essential) relationships between the query and the documents in the vector space. Reranking leverages the power of transformer models that are capable of understanding more nuanced semantic relationships.
+We use a rerank step to refine our retrieval for the initial query. Our initial retrieval step - because it used cosine similarity (or similar distance metrics) to compute distance between query and post embeddings - may have missed more complex (but essential) relationships between the query and the documents in the vector space. Reranking leverages the power of transformer models that are capable of understanding more nuanced semantic relationships.
 
 We use a **cross-encoder** model to implement the reranking step, so we can score the query relative to all retrieved posts individually. These scores take into consideration more complex relationships than cosine similarity can. Under the hood is a BERT classifier that outputs a number between 0 and 1 according to how similar the 2 given sentences are. The BERT classifier outputs 0 if they are entirely different, and 1 if they are a perfect match.
 
@@ -601,7 +601,7 @@ The improvement is remarkable! All our results are about Qdrant and vector DBs.
 
 Now, let's look at the UMAP visualization:
 
-![Visualization Query Qdrant](../assets/use_cases/social_media_retrieval/query_qdrant_visualization_rerank.png)
+![Visualization Query Qdrant](../assets/use_cases/social_media_retrieval/query_qdrant_visualization.png)
 
 While the returned posts aren't very close to the query, they are **a lot closer to the query compared to when we weren't reranking the retrieved posts**.
 
