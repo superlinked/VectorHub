@@ -4,7 +4,7 @@
 
 In this article, you will learn how to build a real-time retrieval system for social media data. In our example, we will use only my LinkedIn posts, but our implementation can easily be extended to other platforms supporting written content, such as X, Instagram, or Medium.
 
-Social media data platforms produce data at high frequencies. As a result, your vector DB can easily fall behind the social media data sources it ingests and represents, compared to data from other sources your system retrieves. To address this, we'll show you how to build a streaming engine that moves data from your raw social media data source to a vector DB continuously, in real-time.
+Social media data platforms produce data at high frequencies. As a result, your vector DB can easily fall behind the social media data sources it ingests and represents, compared to data your system retrieves from other sources. To address this, we'll show you how to build a streaming engine that moves data continuously from your raw social media data source to a vector DB, in real-time.
 
 Our implementation focuses on just the retrieval part of a RAG system. But you can quickly hook the retrieved LinkedIn posts to an LLM for post analysis or personalized content generation.
 
@@ -14,7 +14,7 @@ Our implementation focuses on just the retrieval part of a RAG system. But you c
 - clean, chunk, and embed LinkedIn posts
 - build a retrieval client to query LinkedIn posts
 - use a rerank pattern to improve retrieval accuracy
-- visualize content retrieved for a given query in a 2D plot using UMAP
+- visualize content retrieved for a given query in a 2D plot, using UMAP
 
 If, before continuing, you want to refamiliarize yourself with the **basics of RAG systems**, we encourage you check out this excellent article on VectorHub: [Retrieval Augmented Generation](https://hub.superlinked.com/retrieval-augmented-generation).
 
@@ -27,7 +27,7 @@ The retrieval system is based on 2 detached components:
 1. the streaming ingestion pipeline
 2. the retrieval client
 
-The **streaming ingestion pipeline** runs 24/7 to keep the vector DB synced up with current raw LinkedIn posts data source, while the **retrieval client** is used in RAG applications to query the vector DB. These 2 components **communicate with each other only through the vector DB**.
+The **streaming ingestion pipeline** runs 24/7 to keep the vector DB synced up with current raw LinkedIn posts in our data source, while the **retrieval client** is used in RAG applications to query the vector DB. These 2 components **communicate with each other only through the vector DB**.
 
 
 ### 1.1. The streaming ingestion pipeline
@@ -40,7 +40,7 @@ The streaming pipeline is built in Python using Bytewax, and cleans, chunks, and
 
 **Why do we need a stream engine?**
 
-Because LinkedIn posts (or any other social media data) evolve frequently, your vector DB can quickly get out of sync. To handle this, you can build a batch pipeline that runs every minute. But to really minimize data lag, to **make sure your vector DB stays current with new social media posts**, you need to use a streaming pipeline that **immediately** takes every new item the moment it's posted, preprocesses it, and loads it into the vector DB.
+Because LinkedIn posts (or any other social media data) evolve frequently, your vector DB can quickly get out of sync. To handle this, you can build a batch pipeline that runs every minute. But to _really_ minimize data lag - **to make sure your vector DB stays current with new social media posts**, you need to use a streaming pipeline that **immediately** takes every new item the moment it's posted, preprocesses it, and loads it into the vector DB.
 
 **Why Bytewax?**
 
@@ -53,7 +53,7 @@ Our retrieval client is a standard Python module that preprocesses user queries 
 
 To avoid training-serving skew, it's essential to preprocess the ingested posts and queries in the same way.
 
-Using a semantic-based retrieval system lets us query our LinkedIn post collection very flexibly. For example, we can retrieve similar posts using a variety of query types - e.g., posts, questions, sentences.
+By using a semantic-based retrieval system, we can query our LinkedIn post collection very flexibly. For example, we can retrieve similar posts using a variety of query types - e.g., posts, questions, sentences.
 
 Also, to improve the retrieval system's accuracy, we use a rerank pattern.
 
@@ -64,7 +64,7 @@ Lastly, to better understand and explain the retrieval process for particular qu
 
 We will ingest 215 LinkedIn posts from [my Linked profile - Paul Iusztin](https://www.linkedin.com/in/pauliusztin/). Though we simulate the post ingestion step using JSON files, the posts themselves are authentic.
 
-Before diving into the code, let's take a look at an example LinkedIn post to familiarize ourselves with the challenges it will introduce ↓
+Before diving into the code, let's take a look at an example LinkedIn post to familiarize ourselves with the challenges it introduces ↓
 
 ```json
 [
@@ -75,7 +75,7 @@ Before diving into the code, let's take a look at an example LinkedIn post to fa
 ]
 ```
 
-The following features of the above post are not compatible with embeddings models. We'll need to find some way of handling them in our preprocessing step:
+The following features of the post above are not compatible with embeddings models. We'll need to find some way of handling them in our preprocessing step:
 - emojis
 - bold, italic text
 - other non-ASCII characters 
@@ -84,7 +84,7 @@ The following features of the above post are not compatible with embeddings mode
 
 Emojis and bolded and italic text are represented by Unicode characters that are not available in the vocabulary of the embedding model. Thus, these items cannot be tokenized and passed to the model; we have to remove them, or normalize them to something that can be parsed by the tokenizer. The same holds true for all other non-ASCII characters.
 
-URLs take up space in the context window without providing much semantic value. Still, knowing that there's a URL in the sentence may add context. For this reason, we replace all URLs with a `[URL]` token. This lets us ingest whatever value the URL's presence conveys, without it taking up valuable space.
+URLs take up space in the context window without providing much semantic value. Still, even knowing that there's a URL in the sentence can add context. For this reason, we replace all URLs with a `[URL]` token. This lets us ingest whatever value the URL's presence conveys, without it taking up valuable space.
 
 ## 3. Settings
 
@@ -109,14 +109,14 @@ class AppSettings(BaseSettings):
 settings = AppSettings()
 ```
 
-These constants are used across all the components of the retrieval system, ensuring a single configuration entry point.
+These constants are used across all components of the retrieval system, ensuring a single configuration entry point.
 
 
 ## 4. Streaming ingestion pipeline
 
-Let's dive into the streaming pipeline, starting from the top and working our way to the bottom ↓
+Let's dive into the streaming pipeline, beginning at the top, and working our way to the bottom ↓
 
-## 4.1. Bytemax flow - starting from ingestion
+## 4.1. Bytemax flow - starting with ingestion
 
 **The Bytewax flow** transparently conveys all the steps of the streaming pipeline.
 
@@ -222,9 +222,9 @@ class CleanedPost(BaseModel):
         return cleaned_text
 ```
 
-The `from_raw_post` factory method takes an instance of the `RawPost` as input and uses the `clean()` method to clean the text so that it's compatible with the embedding model. Our cleaning method addresses all embedding-incompatible features highlighted in our `2. Data` section above - e.g., bolded text, emojis, non-ascii characters, etc.
+The `from_raw_post` factory method takes an instance of the `RawPost` as input and uses the `clean()` method to clean the text, so that it's compatible with the embedding model. Our cleaning method addresses all embedding-incompatible features highlighted in our `2. Data` section above - e.g., bolded text, emojis, non-ascii characters, etc.
 
-Here's how the cleaned post looks:
+Here's what the cleaned post looks like:
 
 ```json
 {
@@ -287,13 +287,13 @@ class ChunkedPost(BaseModel):
         return chunks
 ```
 
-We use the `RecursiveCharacterTextSplitter` class from LangChain to separate paragraphs delimited by `\n\n`, because these have a high chance of starting a different topic within the posts. Since the length of a chunk is restricted by the `max_input_length` of the embedding model, we use the `SentenceTransformersTokenTextSplitter` class to split the paragraphs further based on the maximum accepted input length. This is a standard strategy in chunking text for retrieval systems.
+We use the `RecursiveCharacterTextSplitter` class from LangChain to separate paragraphs delimited by `\n\n`, because these have a high chance of starting a different topic within the posts. Since the length of a chunk is restricted by the `max_input_length` of the embedding model, we use the `SentenceTransformersTokenTextSplitter` class to split the paragraphs further - based on the maximum accepted input length. This is a standard strategy in chunking text for retrieval systems.
 
-One last thing to point out: we dynamically compute the `chunk_id` using the `MD5` deterministic digital signatures to ensure that we don't ingest duplicates into the vector DB. For text within a given chunk, the MD5 hash will always be the same.
+One last thing to point out: we dynamically compute the `chunk_id` using `MD5` deterministic digital signatures to ensure that we don't ingest duplicates into the vector DB. For text within a given chunk, the MD5 hash will always be the same.
 
 ### 4.4. Embed
 
-The last step before loading the cleaned, chunked posts to Qdrant is to compute the embedding of each chunk. To do this, we use a different `pydantic` model that exclusively calls the `sentence-transformers/all-MiniLM-L6-v2` embedding model, which is wrapped by the `EmbeddingModelSingleton` class ↓
+The last step before loading the cleaned, chunked posts to Qdrant is to **compute the embedding of each chunk**. To do this, we use a different `pydantic` model that exclusively calls the `sentence-transformers/all-MiniLM-L6-v2` embedding model, which is wrapped by the `EmbeddingModelSingleton` class ↓
 
 ```python
 class EmbeddedChunkedPost(BaseModel):
@@ -332,7 +332,7 @@ class EmbeddedChunkedPost(BaseModel):
         )
 ```
 
-Wrapping the embedding model with the `EmbeddingModelSingleton` class allows you to **easily swap the model to fit the requirements of different use cases**. For example, we use `sentence-transformers/all-MiniLM-L6-v2` for our implementation because it's very light, fast, and runs on a CPU. For your use case, on the other hand, you may require a more powerful model in a production-grade setup with millions of records. You can change your model simply by changing the implementation of the `EmbeddingModelSingleton` class. You don't need to touch anything else.
+Wrapping the embedding model with the `EmbeddingModelSingleton` class allows you to **easily swap the model to fit the requirements of different use cases**. We use `sentence-transformers/all-MiniLM-L6-v2` for our implementation because it's very light, fast, and runs on a CPU. But for your use case, you may require a more powerful model in a production-grade setup with millions of records. You can change your model simply by changing the implementation of the `EmbeddingModelSingleton` class. You don't need to touch anything else.
 
 ### 4.5. Load to Qdrant
 
@@ -376,7 +376,7 @@ Finally, you load the serialized data to the vector DB.
 
 ## 5. Retrieval client
 
-Here, we focus on preprocessing a user's query, searching the vector DB, and postprocessing the retrieved posts for maximum results.
+Here, we focus on preprocessing a user's query, searching the vector DB, and postprocessing the retrieved posts for optimal results.
 
 To design the retrieval step, we implement a `QdrantVectorDBRetriever` class to expose all the necessary features for our retrieval client. In the sections below, we'll go into how to implement each of the methods involved in the class.
 
@@ -428,7 +428,7 @@ class QdrantVectorDBRetriever:
         return embdedded_queries
 ```
 
-In cases where the query is too large, the query is divided into multiple smaller query chunks. We can allay concerns about losing context or meaning, since we can query Qdrant with each chunk and merge the results. Moreover, chunking can even enhance our search, by broadening it to include posts in more areas of the embedded posts vector space. In essence, it permits more comprehensive coverage of the vector space, potentially leading to more relevant and diverse results.
+In cases where the query is too large, we divide it into multiple smaller query chunks. We can query Qdrant with each chunk and merge the results. Moreover, chunking can even enhance our search, by broadening it to include posts in more areas of the embedded posts vector space. In essence, it permits more comprehensive coverage of the vector space, potentially leading to more relevant and diverse results.
 
 ### 5.2. Plain retrieval
 
@@ -436,8 +436,8 @@ After we preprocess the query, the retrieval step is straightforward. We map eve
 
 Because we chunk queries that are too long into multiple queries, when we merge all the retrieved posts, we must eliminate possible duplicates by adding all the items to a unique set based on their `chunk_id.`
 
-We go into the `rerank` aspects of the method in just a second!
-First, let's call our `QdrantVectorDBRetriever` class and see how it works:
+We'll go into the `rerank` aspects of the method in just a second.
+But first, let's call our `QdrantVectorDBRetriever` class and see how it works:
 
 ```python
 vector_db_retriever = QdrantVectorDBRetriever(embedding_model=EmbeddingModelSingleton(), vector_db_client=build_qdrant_client())
@@ -468,7 +468,7 @@ You can see (above) that only the first result is relevant. The others are not a
 
 ### 5.3. Visualize retrieval
 
-To visualize our retrieval, we implement a dedicated class that uses the UMAP dimensionality reduction algorithm. We have picked UMAP as it preserves the geometric properties between points (e.g., the distance) in higher dimensions when they are projected onto lower dimensions better than its peers (e.g., PCA, t-SNE).
+To visualize our retrieval, we implement a dedicated class that uses the UMAP dimensionality reduction algorithm. We chose UMAP because it does a better job than its peers (e.g., PCA, t-SNE) of preserving the geometric properties between points (e.g., distance) in higher dimensions when they are projected onto lower dimensions.
 
 The `RetrievalVisualizer` computes the projected embeddings for the entire vector space once. Afterwards, it uses the `render()` method to project only the given query and retrieved posts, and plot them to a 2D graph.
 
@@ -518,20 +518,20 @@ Our results are not great. You can see how far the retrieved posts are from our 
 
 ![Visualization Query Post](../assets/use_cases/social_media_retrieval/query_post_visualization.png)
 
-Because the query was split into multiple chunks, our results are closer to the queries. But they still aren't that great.
+Because the query was split into multiple chunks, our results are now closer to the queries. But they still aren't that great.
 
-Can we improve the quality of our retrieval system using the **rerank** pattern?
+Can we improve the quality of our retrieval system using the **rerank** pattern? Let's see.
 
 
 ### 5.4. Rerank
 
-We use a rerank step to refine our retrieval for the initial query. Our initial retrieval step - because it used cosine similarity (or similar distance metrics) to compute distance between query and post embeddings - may have missed more complex (but essential) relationships between the query and the documents in the vector space. Reranking leverages the power of transformer models that are capable of understanding more nuanced semantic relationships.
+Our initial retrieval step - because it used cosine similarity (or similar distance metrics) to compute distance between query and post embeddings - may have missed more complex (but essential) relationships between the query and the documents in the vector space. Reranking leverages the power of transformer models that are capable of understanding more nuanced semantic relationships. So let's use a rerank step to refine our retrieval for the initial query.
 
 We use a **cross-encoder** model to implement the reranking step, so we can score the query relative to all retrieved posts individually. These scores take into consideration more complex relationships than cosine similarity can. Under the hood is a BERT classifier that outputs a number between 0 and 1 according to how similar the 2 given sentences are. The BERT classifier outputs 0 if they are entirely different, and 1 if they are a perfect match.
 
 ![Bi-Encoder vs. Cross-Encoder](../assets/use_cases/social_media_retrieval/bi-encoder_vs_cross-encoder.png)
 
-But, you might ask, "Why not use the **cross-encoder** model from the start if it is that much better?"
+But, you might ask, "Why not use the **cross-encoder** model from the start, if it is that much better?"
 
 The answer, in a word, is speed. Using a cross-encoder model to search your whole collection is much slower than using cosine similarity. To optimize your retrieval, therefore, your reranking process should involve 2 steps:
 1. an initial rough retrieval step using cosine similarity, which retrieves the top N items as potential candidates
@@ -578,7 +578,7 @@ else:
 posts = posts[:original_limit]
 ```
 
-This piece of code implements the 2-step reranking algorithm, which in step 1 widens the search space limit to include 7 times as many top N potential candidates. After the potential candidates have been identified, they are, in step 2, reranked and sorted based on their reranking scores. But instead of the returning all the ranked candidates, the algorithm returns only the top K candidates per the original post number (limit) set by the client.
+This piece of code implements the 2-step reranking algorithm, which in step 1 widens the search space limit to include 7 times as many top N potential candidates. After the potential candidates have been identified, they are, in step 2, reranked and sorted based on their reranking scores. But instead of returning all the ranked candidates, the algorithm returns only the top K candidates, per the original post number (limit) set by the client.
 
 ### 5.5. Visualize retrieval with rerank
 
@@ -600,13 +600,13 @@ Now that we've added the `rerank` pattern to our retrieval system, let's see if 
 
 The improvement is remarkable! All our results are about Qdrant and vector DBs. 
 
-Now, let's look at the UMAP visualization:
+Let's see how this looks in the UMAP visualization:
 
 ![Visualization Query Qdrant](../assets/use_cases/social_media_retrieval/query_qdrant_visualization_rerank_1.png)
 
 While the returned posts aren't very close to the query, they are **a lot closer to the query compared to when we weren't reranking the retrieved posts**.
 
-Now let's examine our use case results **when we use an entire post as a query** (the example given in section `2. Data` above) ↓
+Now, let's examine our use case results **when we use an entire post as a query** (the example given in section `2. Data` above) ↓
 
 :::::tabs
 ::::tab{title="Result 1"}
@@ -628,14 +628,14 @@ Finally, let's visualize our results using UMAP:
 
 ![Visualization Query Post](../assets/use_cases/social_media_retrieval/query_post_visualization_rerank.png)
 
-This time, all our retrieved posts are very close to the query chunks! Using reranking on an entire post query improved results significantly!
+This time, all our retrieved posts are very close to the query chunks! **Using reranking on an entire post query improved results significantly!**
 
 
 ## Conclusion
 
-In this article, we learned how to adapt a RAG retrieval pattern to improve LinkedIn post retrieval. To keep our database up to date with rapidly changing social media data, we implemented a real-time streaming pipeline that uses CDC to sync the raw LinkedIn posts data source with a vector DB. You also saw how to use Bytewax to write - using only Python - a streaming pipeline that cleans, chunks, and embeds LinkedIn posts.
+In this article, we learned how to adapt a RAG retrieval pattern to improve LinkedIn post retrieval. To keep our database up to date with rapidly changing social media data, we implemented a real-time streaming pipeline that uses CDC to sync the raw LinkedIn posts data source with a vector DB. You also saw how to use Bytewax to write, using Python alone, a streaming pipeline that cleans, chunks, and embeds LinkedIn posts.
 
-Finally, you learned how to implement a standard retrieval client for RAG, and saw how to improve it using the rerank pattern. As retrieval is complex to evaluate, you saw how to visualize the retrieval for a given query by rendering all the posts, the query, and the retrieved posts in a 2D space using UMAP.
+Finally, you learned how to implement a standard retrieval client for RAG, and saw how to improve it using the rerank pattern. As retrieval is complex to evaluate, we went through how to visualize the retrieval for a given query by rendering all the posts, the query, and the retrieved posts in a 2D space using UMAP.
 
 > [!NOTE]
 > If you want to **try out** the **code** yourself, check it out on our 🔗 [GitHub repository](https://github.com/decodingml/articles/tree/main/llms/real_time_retrieval_system_for_social_media_data).
