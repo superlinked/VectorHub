@@ -653,6 +653,6 @@ Here are a few interesting possible tweaks you can try to make our RAG retrieval
 
 ## Contributors
 
-- [Paul Iusztin, author](https://decodingml.substack.com/)
+- [Paul Iusztin, author](https://www.linkedin.com/in/pauliusztin/) via [Decoding ML](https://decodingml.substack.com/)
 - [Mór Kapronczay, contributor](https://www.linkedin.com/in/mór-kapronczay-49447692)
 - [Robert Turner, editor](https://robertturner.co/copyedit)
