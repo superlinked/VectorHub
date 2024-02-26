@@ -150,7 +150,7 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 5180,
+    "value": 5205,
     "source_url": "https://github.com/vespa-engine/vespa",
     "comment": "",
     "value_90_days": 0
@@ -162,10 +162,10 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 130986,
+    "value": 131179,
     "source_url": "https://pypi.org/project/VESPA/",
     "comment": "",
-    "value_90_days": 2363
+    "value_90_days": 2438
   },
   "npm_downloads": {
     "value": 0,
