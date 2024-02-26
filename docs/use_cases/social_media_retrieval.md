@@ -638,7 +638,7 @@ In this article, we learned how to adapt a RAG retrieval pattern to improve Link
 Finally, you learned how to implement a standard retrieval client for RAG, and saw how to improve it using the rerank pattern. As retrieval is complex to evaluate, we went through how to visualize the retrieval for a given query by rendering all the posts, the query, and the retrieved posts in a 2D space using UMAP.
 
 > [!NOTE]
-> If you want to **try out** the **code** yourself, check it out on our 🔗 [GitHub repository](https://github.com/decodingml/articles/tree/main/llms/real_time_retrieval_system_for_social_media_data).
+> If you want to **try out** the **code** yourself, check it out on our 🔗 [GitHub repository](https://github.com/decodingml/articles-code/tree/main/articles/large_language_models/real_time_retrieval_system_for_social_media_data).
 
 ### Future steps
 
