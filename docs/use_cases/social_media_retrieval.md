@@ -514,7 +514,7 @@ Let's take a look at the result to see how the `"Posts about Qdrant"` query look
 
 ![Visualization Query Qdrant](../assets/use_cases/social_media_retrieval/query_qdrant_visualization_1.png)
 
-Our results are not great. You can see how far the retrieved posts are from our query in the vector space. Let's see if we can improve upon this using an entire post (take from our `2. Data` section above) as a query ↓
+Our results are not great. You can see how far the retrieved posts are from our query in the vector space. Let's see if we can improve upon this using an entire post (taken from our `2. Data` section above) as a query ↓
 
 ![Visualization Query Post](../assets/use_cases/social_media_retrieval/query_post_visualization.png)
 
