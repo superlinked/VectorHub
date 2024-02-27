@@ -633,7 +633,7 @@ This time, all our retrieved posts are very close to the query chunks! **Using r
 
 ## Conclusion
 
-In this article, we learned how to adapt a RAG retrieval pattern to improve LinkedIn post retrieval. To keep our database up to date with rapidly changing social media data, we implemented a real-time streaming pipeline that uses CDC to sync the raw LinkedIn posts data source with a vector DB. You also saw how to use Bytewax to write, using Python alone, a streaming pipeline that cleans, chunks, and embeds LinkedIn posts.
+In this article, we learned how to adapt a RAG retrieval pattern to improve LinkedIn post retrieval. To keep our database up to date with rapidly changing social media data, we implemented a real-time streaming pipeline that uses CDC to sync the raw LinkedIn posts data source with a vector DB. You also saw how to use Bytewax to write (100% in Python) a streaming pipeline that cleans, chunks, and embeds LinkedIn posts.
 
 Finally, you learned how to implement a standard retrieval client for RAG, and saw how to improve it using the rerank pattern. As retrieval is complex to evaluate, we went through how to visualize the retrieval for a given query by rendering all the posts, the query, and the retrieved posts in a 2D space using UMAP.
 
@@ -642,7 +642,7 @@ Finally, you learned how to implement a standard retrieval client for RAG, and s
 
 ### Future steps
 
-Here are a few interesting possible tweaks you can try to make our RAG retrieval code above more production-ready:
+Here are a few interesting tweaks you can try to make our RAG retrieval code above more production-ready:
 
 - Use a more powerful embedding or rerank model.
 - Add multiple data sources (e.g., X, Instagram posts, or Medium articles).
