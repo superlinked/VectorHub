@@ -116,7 +116,7 @@ These constants are used across all components of the retrieval system, ensuring
 
 Let's dive into the streaming pipeline, beginning at the top, and working our way to the bottom ↓
 
-## 4.1. Bytemax flow - starting with ingestion
+### 4.1. Bytemax flow - starting with ingestion
 
 **The Bytewax flow** transparently conveys all the steps of the streaming pipeline.
 
