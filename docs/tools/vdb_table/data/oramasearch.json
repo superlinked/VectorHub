@@ -25,7 +25,6 @@
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 7100,
   "vector_launch_year": 2022,
   "metadata_filter": {
     "support": "full",
@@ -33,7 +32,7 @@
     "comment": ""
   },
   "hybrid_search": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
@@ -48,7 +47,7 @@
     "comment": ""
   },
   "multi_vec": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
@@ -108,13 +107,13 @@
     "comment": ""
   },
   "pricing": {
-    "value": "free plan / $29.99 per month (pro)",
-    "source_url": "",
+    "value": "free plan / $4.99 per month (pro)",
+    "source_url": "https://oramasearch.com/pricing",
     "comment": ""
   },
   "in_process": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://github.com/askorama/orama#installation",
     "comment": "Orama can work completely in-memory in your browser or server"
   },
   "multi_tenancy": {
