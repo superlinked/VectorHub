@@ -34,12 +34,12 @@
   },
   "hybrid_search": {
     "support": "full",
-    "source_url": "https://github.com/nuclia/nucliadb/blob/main/docs/internal/SEARCH.md",
+    "source_url": "https://docs.nuclia.dev/docs/guides/using/search/#features",
     "comment": ""
   },
   "facets": {
     "support": "full",
-    "source_url": "https://github.com/nuclia/nucliadb/blob/main/docs/internal/SEARCH.md",
+    "source_url": "https://docs.nuclia.dev/docs/guides/using/search/#facets",
     "comment": ""
   },
   "geo_search": {
@@ -48,8 +48,8 @@
     "comment": ""
   },
   "multi_vec": {
-    "support": "full",
-    "source_url": "https://github.com/nuclia/nucliadb/blob/main/README.md",
+    "support": "",
+    "source_url": "",
     "comment": ""
   },
   "sparse_vectors": {
@@ -59,7 +59,7 @@
   },
   "bm25": {
     "support": "full",
-    "source_url": "https://github.com/nuclia/nucliadb/blob/main/docs/internal/SEARCH.md",
+    "source_url": "https://nuclia.com/vector-database/#:~:text=Score%20type%3A-,BM25,-Score%3A%200.8871671557426453",
     "comment": ""
   },
   "full_text": {
@@ -68,23 +68,23 @@
     "comment": ""
   },
   "embeddings_text": {
-    "support": "partial",
-    "source_url": "https://github.com/nuclia/nucliadb/blob/main/nucliadb_node/README.md#nucliadb_paragraphs-and-nucliadb_fields",
-    "comment": "Done in the cloud"
+    "support": "",
+    "source_url": "",
+    "comment": ""
   },
   "embeddings_image": {
-    "support": "partial",
+    "support": "",
     "source_url": "",
-    "comment": "Done in the cloud"
+    "comment": ""
   },
   "embeddings_structured": {
-    "support": "partial",
-    "source_url": "https://docs.nuclia.dev/docs/guides/using/ner/",
-    "comment": "Graph. Done in the cloud"
+    "support": "",
+    "source_url": "",
+    "comment": ""
   },
   "rag": {
     "support": "full",
-    "source_url": "https://docs.nuclia.dev/docs/about/nuclia",
+    "source_url": "https://docs.nuclia.dev/docs/guides/using/search/chat/",
     "comment": ""
   },
   "recsys": {
@@ -118,7 +118,7 @@
     "comment": ""
   },
   "multi_tenancy": {
-    "support": "full",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
@@ -139,7 +139,7 @@
   },
   "doc_size": {
     "bytes": 0,
-    "unlimited": true,
+    "unlimited": false,
     "source_url": "",
     "comment": "Max vectors of 50K for any given resource/doc in NucliaDB."
   },
