@@ -51,7 +51,7 @@ The evaluation framework we propose is meant to ensure granular and thorough mea
 
 To meet these evaluation challenges systematically, it's best practice to break down our evaluation into different levels, so that we understand what specifically is working well, and what needs improvement.
 
-![Granular Levels of Evaluation of RAG](../assets/use_cases/retrieval_augmented_generation_eval/rag_granular.jpg)
+![Granular Levels of Evaluation of RAG](../assets/use_cases/retrieval_augmented_generation_eval/rag_granular.png)
 
 Let's take a closer look to see what's involved in each of these levels individually.
 
@@ -116,8 +116,8 @@ While our proposed evaluation strategy is meant to improve RAG evaluation, we sh
 
 We've laid a general foundation for discussing RAG evaluation. In the next article (next month), we'll demystify an existing evaluation framework (RAGAS), and see how well it does at covering all the layers of evaluation we've discused. Looking forward to seeing you in the next part!
 
-## Contributors
-
-[Atita Arora, Author](https://www.linkedin.com/in/atitaarora/)
-[Mór Kapronczay, Editor](linkedin.com/in/mór-kapronczay-49447692)
-[Robert Turner, Editor](https://robertturner.co/copyedit)
+## Contributors 
+ 
+[Atita Arora, Author](https://www.linkedin.com/in/atitaarora/) 
+[Mór Kapronczay, Editor](https://www.linkedin.com/in/mór-kapronczay-49447692) 
+[Robert Turner, Editor](https://robertturner.co/copyedit) 

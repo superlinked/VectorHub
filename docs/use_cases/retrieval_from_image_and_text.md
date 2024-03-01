@@ -41,7 +41,7 @@ A young kid with head phones on using a computer.
 
 In our experiments below, we **vectorize/embed**, respectively, 1) image captions, 2) images, 3) both images and their captions, 4) images with multimodal transformers, 5) both images and their captions with multimodal transformers. In cases where images and their captions are vectorized separately, the embeddings are concatenated.
 
-After embedding the entire dataset and normalizing each vector to unit length, we **assess the quality of the embedding vectors by retrieving them and calculating ranking metrics**. More specifically. we iterate over the vector space and retrieve each vector's **_k (=10)_** nearest neighbors based on [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity). Cosine similarity measures and quantifies the angle between two vectors by simplifying to a [dot product](https://en.wikipedia.org/wiki/Dot_product) calculation.
+After embedding the entire dataset and normalizing each vector to unit length, we **assess the quality of the embedding vectors by retrieving them and calculating ranking metrics**. More specifically. we iterate over the vector space and retrieve each vector's **_k (=10)_** nearest neighbors based on [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity). Cosine similarity measures and quantifies the angle between two vectors, derived from a [dot product](https://en.wikipedia.org/wiki/Dot_product) calculation.
 
 For the retrieved vectors, we calculate ranking metrics using [Torchmetrics](https://lightning.ai/docs/torchmetrics/stable/all-metrics.html). We focus primarily on [Mean Reciprocal Rank](https://en.wikipedia.org/wiki/Mean_reciprocal_rank) (MRR) and [Normalized Discounted Cumulative Gain](https://en.wikipedia.org/wiki/Discounted_cumulative_gain) (NDCG), both of which you can read more about [here](https://www.shaped.ai/blog/evaluating-recommendation-systems-map-mmr-ndcg). But we also use other information retrieval metrics like Mean Average Precision (MAP), Precision@k, and Recall@k, which are explained in detail [here](https://www.shaped.ai/blog/evaluating-recommendation-systems-part-1). In all of these metrics, the higher the ranking of relevant items/hits, the more effective the retrieval.
 
@@ -111,7 +111,7 @@ The performance of the tested models was consistent across both datasets. ViT-ba
 
 ### 5. Embedding both images and their captions with Multimodal Transformers
 
-In our final experiment, we used Text and Image encoders from both CLIP and BLIP models to encode captions and images separately, then concatenated the resulting embeddings. A key difference from our third experiment (embedding both images and their captions) is that, here, the encoders have either undergone joint pre-training - in the case of CLIP, or been aligned with additional layers - in the case of BLIP.
+In our final experiment, we used Text and Image encoders from both CLIP and BLIP models to encode captions and images separately, then concatenated the resulting embeddings. A key difference from our third experiment (embedding both images and their captions) is that, here, the encoders have undergone joint pre-training - in the case of CLIP, or the embeddings of the encoders have been aligned with additional layers - in the case of BLIP.
 
 ![](assets/use_cases/retrieval_from_image_and_text/table_multimodal_vit_embed_image_text.png)
 
@@ -155,5 +155,5 @@ Our experiments demonstrate that Transformer models are highly effective feature
 ## Contributors
 
 - [Kristóf Horváth, author](https://www.linkedin.com/in/kristof-horvath-0301/)
-- [Mór Kapronczay, contributor](linkedin.com/in/mór-kapronczay-49447692)
+- [Mór Kapronczay, contributor](https://www.linkedin.com/in/mór-kapronczay-49447692)
 - [Robert Turner, editor](https://robertturner.co/copyedit)
