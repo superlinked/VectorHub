@@ -28,7 +28,8 @@ For this exercise, the collaborators have worked with points of contact from the
 **Frontend:**
 - [Arunesh Singh](https://www.linkedin.com/in/aruneshsingh99/)
 
-
+## Third Party Libraries
+We use [pepy.tech](https://www.pepy.tech) for obtaining statistics for a Python package. To obtain an API key, refer the [documentation](https://www.pepy.tech/pepy-api) and set the API key as an environment variable `PYPI_API_KEY`.
 
 ## Contributing
 

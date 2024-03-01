@@ -6,6 +6,7 @@ on:
 
 jobs:
   bundle:
+    if: ${{ github.repository == 'superlinked/VectorHub' }}
     runs-on: ubuntu-latest
     permissions:
       contents: 'read'
