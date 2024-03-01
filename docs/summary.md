@@ -28,6 +28,8 @@
   - [Representation Learning on Graph Structured Data](use_cases/node_representation_learning.md)
   - [Improving RAG performance with Knowledge Graphs](use_cases/knowledge_graphs.md)
   - [Retrieval from Image and Text Modalities](use_cases/retrieval_from_image_and_text.md)
+  - [Evaluating Retrieval Augmented Generation](use_cases/retrieval_augmented_generation_eval.md)
+  - [A Real-time Retrieval System for Social Media Data](use_cases/social_media_retrieval.md)
 
 <!-- - [Toolbox](tools/readme.md)
 - [TestPage](tools/testpage.md) -->
