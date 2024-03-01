@@ -37,3 +37,9 @@ While generic pre-trained models fail to capture the nuances of proprietary data
 
 But even better optimization results from intricate, home-grown solutions that develop custom models and integrate them with (fine-tuned) pre-trained models into a **single system** – one that assigns each type of model alone, or in combination with the other, to tasks each is best suited to. The future of Vector Compute lies in developing this kind of solution.
 
+---
+## Contributors
+
+- [Daniel Svonava](https://www.linkedin.com/in/svonava/)
+- [Paolo Perrone](https://www.linkedin.com/in/paoloperrone/)
+- [Robert Turner, editor](https://robertturner.co/copyedit)

@@ -85,3 +85,10 @@ Quantization reduces the memory required to store vectors by compressing the dat
 **Product** quantization splits the vector dimensions into smaller subvectors, each independently quantized into an index using the subvector’s set of codewords, representing data point clusters, and then combined into a single index representing the original high-dimensional vector. Product quantization provides better compression (minimal memory footprint) but is slower and less accurate than scalar quantization.
 
 ANN search can be combined with quantization to enable running high-performance [Vector Search] pipelines on huge datasets.
+
+---
+## Contributors
+
+- [Daniel Svonava](https://www.linkedin.com/in/svonava/)
+- [Paolo Perrone](https://www.linkedin.com/in/paoloperrone/)
+- [Robert Turner, editor](https://robertturner.co/copyedit)

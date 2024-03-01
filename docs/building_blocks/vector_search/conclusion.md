@@ -7,3 +7,10 @@ Second, the **access pattern** you use to perform nearest neighbor search. Wheth
 Third, your use case will require its own particular **prioritization of latency, throughput, and accuracy**. To optimise your application's objectives, you must balance latency, throughput, and accuracy concerns.
 
 Tying your Vector Search & Management together with high-quality vector embeddings produces a modern, scalable retrieval stack. Rich vectors encode important relationships. Combined with performant Search & Management, enabling responsivity and large-scale analytics – a wealth of latent value.
+
+---
+## Contributors
+
+- [Daniel Svonava](https://www.linkedin.com/in/svonava/)
+- [Paolo Perrone](https://www.linkedin.com/in/paoloperrone/)
+- [Robert Turner, editor](https://robertturner.co/copyedit)
