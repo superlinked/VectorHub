@@ -3,15 +3,33 @@
 
 # Optimizing RAG with Hybrid Search & Reranking
 
-Hybrid search emerges as a powerful approach for information retrieval, captivating the attention of AI developers worldwide. Its ability to combine the strengths of different search methods promises to unlock new levels of effectiveness and accuracy. Compared to traditional methods, hybrid search boasts greater flexibility and adaptability, allowing it to tackle a wider range of information needs. This potent combination holds immense potential for various applications, including natural language processing tasks like question answering and text summarization.
+Hybrid search emerges as a powerful approach for information retrieval, captivating the attention of AI developers worldwide. 
+Its ability to combine the strengths of different search methods promises to unlock new levels of effectiveness and accuracy. 
+Compared to simple semantic search, hybrid search boasts greater flexibility and adaptability, allowing it to tackle a wider 
+range of information needs. This potent combination holds immense potential for various applications, including natural language 
+processing tasks like question answering and text summarization.
 
-Here, we will delve deeply into the nuances of Hybrid search, the highly coveted approach for enhancing the retrieval component in **[RAG (Retrieval Augmented Generation)](https://hub.superlinked.com/retrieval-augmented-generation)** , thereby enhancing its potential to deliver impactful and insightful text generation across various domains.
+Here, we will delve deeply into its nuances, the highly coveted approach for enhancing the retrieval component in **[RAG (Retrieval Augmented Generation)](https://hub.superlinked.com/retrieval-augmented-generation)** , thereby enhancing its potential to deliver impactful and insightful text generation across various domains.
 
 
 ## What is Hybrid Search?
 
-Conventional vector similarity search alone works well even when there are typos in the query because these typically don’t alter the overall meaning of the sentence. However, for precise word or abbreviation matching, a vector similarity search may not suffice because the abbreviations and names (keywords) just dissolve in the vector embeddings along with the words around them. 
-Thus we combine the best from vector search and keyword search algorithms while mitigating their limitations, to create a keyword-sensitive semantic search approach which is called “Hybrid Search”. As the name suggests, hybrid search is fundamentally the combination of one or more search approaches.
+In current Retrieval-Augmented Generation (RAG) systems, word embeddings are used to represent data in the vector database and 
+vector similarity search is commonly used for searching through them.  While there are keyword-based representations like Bag-of-words (BoW), 
+word embeddings remain the preferred method for LLMs and RAG systems because they capture semantic relationships between words.
+
+Vector similarity search has its strengths, particularly when dealing with queries that contain typos, as these usually don’t change 
+the overall intent of the sentence. However, when it comes to precise matching of words or abbreviations, vector similarity search may 
+fall short. This is because specific abbreviations and names, or keywords, can get lost in the vector embeddings along with the surrounding words. 
+
+Keyword search alone (even though earlier used in search engines) also cannot fetch relevant results as they fail to capture the semantic 
+relationships or meaning in word embeddings. For example, a keyword search will relate the words *“the river bank”* and *“the Bank of America”* 
+even though there is no actual connection. Keyword search could potentially utilize vector search, although the prevailing approach among most 
+tools is to implement it via a distinct methodology. This disparity underscores the relevance of Hybrid Search in such scenarios.
+
+Thus we combine the best from vector search and keyword search algorithms while mitigating their limitations, to create a keyword-sensitive semantic 
+search approach which is called “Hybrid Search”. As the name suggests, hybrid search is fundamentally the combination of one or more search approaches.
+
 Take a peek into how Microsoft discusses this concept in their [article](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/azure-ai-search-outperforming-vector-search-with-hybrid/ba-p/3929167): “Azure AI Search: Outperforming vector search with hybrid retrieval and ranking capabilities”.  
 
 ## Use cases for Hybrid Search
@@ -21,25 +39,35 @@ In certain scenarios here, vector similarity search proves to be inadequate:
 - Identify exact words of names or objects like “Biden” or “Salvador Dali”.
 - Identify exact code snippets in programming languages as taking a similarity search here is practically useless.<br>
 
-This is where hybrid search comes in handy. The keyword search feature guarantees that abbreviations, annotations, names, and code stays on the radar and the vector search keeps the search results relevant in context.
-An interesting use case that will make this clear for you is the new Stack Overflow page. Stack Overflow leveraged AI to make its search algorithms powerful by migrating from simple lexical search to semantic and hybrid search. Earlier, they used the [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) algorithm to keep tabs on keywords in the user’s search string. This could result in missing out on relevant posts if the keywords (exact code snippets for the task) were not present in the post. Now, they use a hybrid search methodology to find the semantically relevant content from their corpus and also match the exact code typed in by the user if necessary. Check out their [blog](https://stackoverflow.blog/2023/07/31/ask-like-a-human-implementing-semantic-search-on-stack-overflow/?source=post_page-----c75203c2f2f5--------------------------------) to see how the search results improved by adopting hybrid search.
+This is where hybrid search comes in handy. The keyword search feature guarantees that abbreviations, annotations, names, and code stays on the 
+radar and the vector search keeps the search results relevant in context.
+An interesting use case that will make this clear for you is the new Stack Overflow page. Stack Overflow leveraged AI to make its search algorithms
+ powerful by migrating from simple lexical search to semantic and hybrid search. Earlier, they used the [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) 
+ algorithm to keep tabs on keywords in the user’s search string. This could result in missing out on relevant posts if the keywords (exact code snippets for the task) 
+ were not present in the post. Now, they use a hybrid search methodology to find the semantically relevant content from their corpus and also match the 
+ exact code typed in by the user if necessary. Check out their [blog](https://stackoverflow.blog/2023/07/31/ask-like-a-human-implementing-semantic-search-on-stack-overflow/?source=post_page-----c75203c2f2f5--------------------------------) to see how the search results improved by adopting hybrid search.
 
 ## Things to be aware of
 
 While hybrid search gives you a clear edge in most of the cases, you may also have to consider some potential pitfalls.
-- **Latency**: A hybrid query might exhibit an increase in latency compared to a semantic search when executing on a large knowledge corpus as it involves performing two search algorithms.
-- **Computational Expense**: Developing and customizing models for hybrid search can be computationally expensive. It is best to consider hybrid search only if your system requires keyword-backed results.
+- **Latency**: A hybrid query might exhibit an increase in latency compared to a semantic search when executing on a large knowledge corpus 
+as it involves performing two search algorithms.
+- **Computational Expense**: Developing and customizing models for hybrid search can be computationally expensive. It is best to consider 
+hybrid search only if your system requires keyword-backed results.
 - **Native Support in Databases**: Make sure the vector database you are using supports this functionality. 
 
-There are many vector databases that support this feature. Pinecone, ElasticSearch, Apache Cassandra, and Weaviate incorporate functions that implement hybrid search. Check out the [Vector DB Comparison table](https://vdbs.superlinked.com/) by Vectorhub to know if your vector database supports hybrid search.
+There are many vector databases that support this feature. Pinecone, ElasticSearch, Apache Cassandra, and Weaviate incorporate functions that implement 
+hybrid search. Check out the [Vector DB Comparison table](https://vdbs.superlinked.com/) by Vectorhub to know if your vector database supports hybrid search.
 
 ## Implementation Architecture
 ![Hybrid Search Archirecture](../assets/use_cases/hybrid_search_&_rerank_rag/HybridSearch.png "Fig 1")
 
 The hybrid search algorithm combines keyword search and vector search to retrieve relevant content from a corpus. In this section, we will dig deeper into the components.
 ### Keyword Search
-**Sparse vectors** or embeddings are vectors with high dimensionality, where most elements are zero. They usually symbolize various language tokens, with the non-zero values signifying their respective significance. The keyword search algorithm uses sparse embeddings and so it is also called **sparse vector search**. 
-Usually, the **BM25 (Best Match 25)** algorithm is employed for keyword matching in embeddings. BM25 is a way of finding the most relevant documents for a given query by looking at two things:
+**Sparse vectors** are vectors with high dimensionality, where most elements are zero. They usually symbolize various language tokens, with the non-zero 
+values signifying their respective significance. Keyword search is also called **sparse vector search**. 
+Usually, the **BM25 (Best Match 25)** algorithm is employed for keyword matching in embeddings. BM25 is a way of finding the most relevant documents for 
+a given query by looking at two things:
 - How often do the query words appear in each document (the more, the better)?
 - How rare the query words are across all the documents (the rarer, the better)?
 
@@ -57,14 +85,19 @@ where,
 Notice that it is a refined version of the [TF-IDF(Term-Frequency Inverse-Document Frequency)](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) algorithm.
 
 ### Vector Search
-**Dense vectors** or embeddings are arrays with a high number of dimensions, filled predominantly with meaningful, non-zero values. These are frequently employed in machine learning to represent the underlying semantics and connections of words in a numerical format, thereby encapsulating their semantic essence effectively. The vector search algorithm uses dense embeddings and is thus called **dense vector search**. 
+**Dense vectors or embeddings** are arrays with a high number of dimensions, filled predominantly with meaningful, non-zero values. Machine learning 
+frequently employs these to represent the underlying semantics and connections of words in a numerical format, thereby effectively encapsulating their 
+semantic essence. Dense vector search is a method of finding similar items in a vector space that is used in semantic search systems.
 
-A common approach for vector search is the [cosine similarity search algorithm](https://en.wikipedia.org/wiki/Cosine_similarity). It is calculated as the result of the dot product of the vectors, normalized by the multiplication of their magnitudes. The nearer the outcome is to 1, the greater the similarity between the vectors.
+A common approach for vector search is the [cosine similarity search algorithm](https://en.wikipedia.org/wiki/Cosine_similarity). It is calculated as the 
+result of the dot product of the vectors, normalized by the multiplication of their magnitudes. The nearer the outcome is to 1, the greater the similarity 
+between the vectors.
 
 **C(A,B) = cos(θ) = A.B / ||A|| ||B||**
 
 ### Combination
-The results from each algorithm have to be fused to choose the best outcome. There are various strategies to combine them and get a score. Typically, we require a certain formula to balance the keyword search score and vector search score as per the requirements. 
+The results from each algorithm have to be fused to choose the best outcome. There are various strategies to combine them and get a score. Typically, 
+we require a certain formula to balance the keyword search score and vector search score as per the requirements. 
 **H = (1-α) K + αV**
 
 where,
@@ -75,7 +108,9 @@ where,
  
 As evident, the hybrid score is a pure vector score when α is 1 and a pure keyword score when α is 0.
 
-There are various methods to combine dense and sparse search scores. One of them is **Reciprocal Rank Fusion**. This method ranks each passage according to its place in the keyword and vector outcome lists and subsequently merges these rankings to generate a unified result list. The RRF score is determined by summing the inverse rankings from each list. By positioning the document’s rank in the denominator, it imposes a penalty on documents that appear lower in the list.
+There are various methods to combine dense and sparse search scores. One of them is **Reciprocal Rank Fusion**. This method ranks each passage according 
+to its place in the keyword and vector outcome lists and subsequently merges these rankings to generate a unified result list. The RRF score is determined 
+by summing the inverse rankings from each list. By positioning the document’s rank in the denominator, it imposes a penalty on documents that appear lower in the list.
 
 ![Reciprocal Rank Fusion Equation](../assets/use_cases/hybrid_search_&_rerank_rag/RRF.png "Fig 2")
 
@@ -87,12 +122,18 @@ where,
 ### Reranking
 ![Reranking Diagram](../assets/use_cases/hybrid_search_&_rerank_rag/Rerank.png "Fig 2")
 
-Typically, algorithms yield the top-k matches. However, the challenge lies in the fact that these top-k matches may not always include the relevant sections, or conversely, not all relevant sections may be within these top-k matches. At this point, we recognize the need to rank all retrieved content based on a score indicating semantic relevance with the query.
+Typically, algorithms yield the top-k matches. However, the challenge lies in the fact that these top-k matches may not always include the relevant sections,
+ or conversely, not all relevant sections may be within these top-k matches. At this point, we recognize the need to rank all retrieved content based on a 
+ score indicating semantic relevance with the query.
 
-The responses from the retriever are passed to a **semantic scoring model**. Semantic scoring models are transformer models that take in queries and documents to produce a score in a calibrated range. There are many models like [ember](https://huggingface.co/llmrails/ember-v1) that are available to use. After reranking, a list of documents is returned, sorted according to relevance score, from highest to lowest.  Results are arranged in a sequence based on their scores and incorporated into the response payload of the query.
+The responses from the retriever are passed to a **semantic scoring model**. Semantic scoring models are transformer models that take in queries and documents 
+to produce a score in a calibrated range. After reranking, a list of documents is returned, sorted according to relevance score, from highest to lowest.  
+Results are arranged in a sequence based on their scores and incorporated into the response payload of the query.
 
 ## Implementation Example 
-Let’s test the performance of a normal vector search algorithm and a hybrid search algorithm in various contexts. We will be using [ChromaDB](https://www.trychroma.com/) supported by [LangChain](https://www.langchain.com/) and HuggingFace libraries. ChromaDB has no direct implementations for hybrid search but for clarity, we will create an ensemble in the same way we discussed in the theory.
+Let’s test the performance of a normal vector search algorithm and a hybrid search algorithm in various contexts. We will be using [ChromaDB](https://www.trychroma.com/) 
+supported by [LangChain](https://www.langchain.com/) and models from HuggingFace. ChromaDB has no direct implementations for hybrid search but for clarity, 
+we will create an ensemble in the same way we discussed in the theory.
 Install and import the required libraries.
 
 ```bash
@@ -121,7 +162,8 @@ from langchain.retrievers import BM25Retriever, EnsembleRetriever
 
 import os
 ```
-Load the PDF document and split them into chunks of desired length with sufficient overlapping. Feel free to adjust the chunk size based on the length of your document and the requirements of the LLM.
+Load the PDF document and split them into chunks of desired length with sufficient overlapping. Feel free to adjust the chunk size based on the 
+length of your document and the requirements of the LLM.
 
 ```python
 doc_path = "/content/document.pdf"
@@ -215,7 +257,7 @@ pipeline = pipeline(
     top_k=5,
     num_return_sequences=1,
     eos_token_id=tokenizer.eos_token_id,
-    pad_token_id=tokenizer.eos_token_id,
+    pad_token_id=tokenizer.pad_token_id,
 )
 
 llm = HuggingFacePipeline(pipeline=pipeline)
@@ -273,8 +315,6 @@ Result: Biden's strategy emphasizes the importance of ensuring freedom of naviga
 
 ```
 
-Again hybrid search fares well in location filters. Thus we can conclude that semantic search is enough for all common RAG systems but when it comes to specific names, filters, or abbreviations like in research papers, you may have to consider hybrid search.
-
 Other databases offer native support and implementation for hybrid search. For example, the retriever component for hybrid search in [Weaviate DB](https://weaviate.io/) can be defined as follows.
 
 ```python
@@ -295,12 +335,29 @@ hybrid_chain = RetrievalQA.from_chain_type(
 ```
 The value of the parameter **alpha** can be adjusted to weigh the impact of semantic and keyword searches.
 
+The retriever created above scores the top k  responses internally and returns the highest-scoring response. So, explicitly performing 
+reranking may not always be necessary. In case there is low accuracy in the retrieved content, you can implement a reranker directly 
+using libraries from Cohere or build your own custom reranking function.
+When using a reranker from [Cohere](https://cohere.com/rerank), the following changes will be made in the retriever.
+
+```python
+from langchain.retrievers import ContextualCompressionRetriever
+from langchain.retrievers.document_compressors import CohereRerank
+compressor = CohereRerank()
+compression_retriever = ContextualCompressionRetriever(
+    base_compressor=compressor, base_retriever=ensemble_retriever
+)
+hybrid_chain = RetrievalQA.from_chain_type(
+    llm=llm, chain_type="stuff", retriever=compression_retriever
+)
+```
 
 
 ## Conclusion
 
-We have discussed how hybrid search + rerank offers enhanced performance in RAG systems for keyword matching and refinement in response. The higher recall rates of the retriever have aided in better responses from the LLM. Retrieval Augmented Generation is transforming how we work with search engines and documents, so we expect to see more developments in this space.
-Another general learning we can infer from this approach here is that substituting an entire method in RAG for either search or response generation yields superior results compared to minor tweaks made sporadically. 
+We have discussed how hybrid search + rerank offers enhanced performance in RAG systems for keyword matching and refinement in response. 
+The higher recall rates of the retriever have aided in better responses from the LLM. Retrieval Augmented Generation is transforming how 
+we work with search engines and documents, so we expect to see more developments in this space.
 
 
 ## References
