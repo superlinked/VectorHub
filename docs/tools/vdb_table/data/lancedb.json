@@ -32,9 +32,9 @@
     "comment": ""
   },
   "hybrid_search": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://lancedb.github.io/lancedb/hybrid_search/hybrid_search/",
+    "comment": "Rerankers offered: Linear Combination, Cohere, Cross-Encoder, ColBERT, OpenAI and Custom"
   },
   "facets": {
     "support": "",
@@ -149,7 +149,7 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 2167,
+    "value": 2308,
     "source_url": "https://github.com/lancedb/lancedb",
     "comment": "",
     "value_90_days": 0
@@ -161,15 +161,15 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 353437,
+    "value": 385365,
     "source_url": "https://pypi.org/project/lancedb/",
     "comment": "",
-    "value_90_days": 165476
+    "value_90_days": 183640
   },
   "npm_downloads": {
-    "value": 426747,
+    "value": 480777,
     "source_url": "https://www.npmjs.com/package/@lancedb/vectordb-linux-x64-gnu",
     "comment": "",
-    "value_90_days": 194178
+    "value_90_days": 224975
   }
 }

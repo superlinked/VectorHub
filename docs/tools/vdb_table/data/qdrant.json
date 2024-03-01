@@ -149,7 +149,7 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 16142,
+    "value": 16364,
     "source_url": "https://github.com/qdrant/qdrant",
     "comment": "",
     "value_90_days": 0
@@ -161,15 +161,15 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 2588343,
+    "value": 2727750,
     "source_url": "https://pypi.org/project/qdrant-client/",
     "comment": "",
-    "value_90_days": 921863
+    "value_90_days": 960127
   },
   "npm_downloads": {
-    "value": 15467,
+    "value": 16870,
     "source_url": "https://www.npmjs.com/package/@qdrant/js-client-grpc",
     "comment": "",
-    "value_90_days": 9892
+    "value_90_days": 10835
   }
 }
