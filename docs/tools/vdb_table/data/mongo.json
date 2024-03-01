@@ -144,7 +144,7 @@
     "comment": ""
   },
   "vector_dims": {
-    "value": 0,
+    "value": 4096,
     "unlimited": false,
     "source_url": "",
     "comment": ""
