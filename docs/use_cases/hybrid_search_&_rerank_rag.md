@@ -333,6 +333,6 @@ We have discussed how combining hybrid search with reranking offers enhanced per
 - [LangChain](https://python.langchain.com/docs/get_started/introduction)
 
 ## Contributors
-- [Ashish Abraham, Author](t)
+- [Ashish Abraham, author](https://www.linkedin.com/in/ashish-abraham-811a23201/)
 - [Mór Kapronczay, contributor](https://www.linkedin.com/in/mór-kapronczay-49447692)
 - [Robert Turner, editor](https://robertturner.co/copyedit)
