@@ -72,7 +72,7 @@ A common approach to vector search is [cosine similarity search](https://en.wiki
 **C(A,B) = cos(θ) = A.B / ||A|| ||B||**
 
 ### Combination
-The results from each algorithm have to be fused to choose the best outcome. There are various strategies to combine them and get a score. Typically, we use a certain formula to balance the keyword search score and vector search score to meet our requirements. Here's the formula we use:
+The results from each algorithm have to be fused to implement a hybrid search. There are various strategies to combine them and get a score. Typically, we use a certain formula to balance the keyword search score and vector search score to meet our requirements. Here's the formula we use:
 **H = (1-α) K + αV**
 
 where,
@@ -93,7 +93,7 @@ where,
 - **r(d)** is the rank of document d
 
 ### Reranking
-![Reranking Diagram](../assets/use_cases/hybrid_search_&_rerank_rag/Rerank.png "Fig 2")
+![Reranking Diagram](../assets/use_cases/hybrid_search_&_rerank_rag/Rerank.png "Fig 3")
 
 Typically, algorithms yield the top-k matches. But these top-k matches may not always include the relevant sections, or, conversely, not all relevant sections may be within these top-k matches. We can ameliorate this issue by ranking all retrieved content based on a score indicating semantic relevance to the query.
 
@@ -132,7 +132,7 @@ from langchain.retrievers import BM25Retriever, EnsembleRetriever
 import os
 ```
 
-Now, we load the PDF document and split them into chunks of desired length with sufficient overlapping. In this step, you can adjust the chunk size based on the length of your document and the requirements of the LLM.
+Now, we load the PDF document and split it into chunks of the desired length with sufficient overlapping. In this step, you can adjust the chunk size based on the length of your document and the requirements of the LLM.
 
 ```python
 doc_path = "/content/document.pdf"
@@ -173,7 +173,7 @@ ensemble_retriever = EnsembleRetriever(retrievers=[vectorstore_retreiver,
                                        weights=[0.3, 0.7])
 ```
 
-We modify the weights to incorporate the impact of both search outcomes appropriately. The weight values correspond to **α** and **1-α**, as we discussed above. We have weighted keywords more heavily, with a value of 0.7.
+We can modify the **weights** parameter to balance the impact of both search outcomes as needed. The weight values correspond to **α** and **1-α**, as we discussed above. Here, we have weighted keywords more heavily, with a value of 0.7.
 
 Our RAG pipeline needs an LLM. We utilize a quantized version of [Zephyr-7B-Beta](http://HuggingFaceH4/zephyr-7b-beta) for lightweight and optimized performance.
 
@@ -286,6 +286,7 @@ Result:  The passage doesn't explicitly state how the Strait of Hormuz is import
 Hybrid Search
 Result: Biden's strategy emphasizes the importance of ensuring freedom of navigation through the Strait of Hormuz, a waterway located in the Middle East. This strategy aims to prevent any country from dominating the region through military efforts and ensures that there are no efforts to control the waterways. This emphasis on freedom of navigation is crucial for the United States and its allies as a significant portion of the world's oil supply passes through this waterway. Any disruption or control of this waterway could have significant economic and geopolitical implications, making Biden's strategy to maintain this freedom critical.
 ```
+The hybrid search appears to perform better in providing a specific and detailed response to the query compared to the semantic search, which offers a more generalized interpretation without explicitly addressing the importance of the Strait of Hormuz and a geographical overview of the place.
 
 **Other databases offer native support and implementation for hybrid search**. For example, the retriever component for hybrid search in [Weaviate DB](https://weaviate.io/) can be defined as follows.
 
@@ -305,9 +306,9 @@ hybrid_chain = RetrievalQA.from_chain_type(
 )
 ```
 
-The value of the parameter **alpha** in the Weaviate retriever can be adjusted to weigh the impact of semantic and keyword searches.
+The value of the parameter **alpha** in the Weaviate retriever can be adjusted to control the impact of semantic and keyword searches.
 
-Because the retriever created above scores the top k responses internally and returns the highest-scoring response, we may not always need to explicitly perform reranking. In the event of low accuracy in the retrieved content, you can implement a reranker directly using libraries from Cohere, or build your own custom reranking function. When using a reranker from [Cohere](https://cohere.com/rerank), the following changes should be made in the retriever.
+Because the retrievers created above scores the top k responses internally and returns the highest-scoring response, we may not always need to explicitly perform reranking. In the event of low accuracy in the retrieved content, you can implement a reranker directly using libraries from Cohere, or build your own custom reranking function. When using a reranker from [Cohere](https://cohere.com/rerank), the following changes should be made in the retriever.
 
 ```python
 from langchain.retrievers import ContextualCompressionRetriever
