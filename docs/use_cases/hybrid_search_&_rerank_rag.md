@@ -1,6 +1,6 @@
 <!-- SEO: Retrieval-Augmented Generation (RAG) is revolutionizing traditional search engines and AI methodologies for information retrieval. However, standard RAG systems often lack efficiency and precision when dealing with extensive data repositories. Substituting the search approach with a hybrid method and reordering the outcomes using a semantic ranker considerably enhances performance, indicating potential for large-scale implementations.
 -->
-(VectorHub Team note: For many use cases, hybrid search is not a good fit. Whenever one needs metadata embedded in the vector itself (point to 1-2 articles that show that @mor?))
+(VectorHub Team note: For use cases that require metadata to be embedded in the vector itself, hybrid search may not be an optimal approach, as discussed in ... (point to 1-2 articles that show this @mor?))
 # Optimizing RAG with Hybrid Search & Reranking
 
 Retrieval-Augmented Generation (RAG) is revolutionizing traditional search engines and AI methodologies for information retrieval. However, standard RAG systems employing simple semantic search often lack efficiency and precision when dealing with extensive data repositories. Hybrid search, on the other hand, combines the strengths of different search methods, unlocking new levels of efficiency and accuracy. Hybrid search is flexible and can be adapted to tackle a wider range of information needs. 
@@ -16,7 +16,7 @@ In current Retrieval-Augmented Generation (RAG) systems, word embeddings are use
 
 But each of vector similarity search and keyword search has its own strengths and weaknesses. Vector similarity search is good, for example, at dealing with queries that contain typos, which usually don’t change the overall intent of the sentence. However, vector similarity search is not as good at precise matching on keywords, abbreviations, and names, which can get lost in vector embeddings along with the surrounding words. Here, keyword search performs better.
 
-That being said, keyword search is not as good as vector similarity search at fetching relevant results based on semantic relationships or meaning, which are only available via word embeddings. For example, a keyword search will relate the words *“the river bank”* and *“the Bank of America”* even though there is no actual semantic connection between the terms. Keyword search could potentially utilize vector search, although the prevailing approach among most tools is to implement it via a distinct methodology. This disparity underscores the relevance of Hybrid Search in such scenarios.
+That being said, keyword search is not as good as vector similarity search at fetching relevant results based on semantic relationships or meaning, which are only available via word embeddings. For example, a keyword search will relate the words *“the river bank”* and *“the Bank of America”* even though there is no actual semantic connection between the terms - a difference to which vector similarity search is sensitive. Keyword search would, therefore, benefit from vector search, but the prevailing approach is not to combine them but rather to implement them separately using distinct methodologies.
 
 In hybrid search - a keyword-sensitive semantic search approach, we combine vector search and keyword search algorithms to [take advantage of their respective strengths while mitigating their respective limitations](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/azure-ai-search-outperforming-vector-search-with-hybrid/ba-p/3929167).
 
@@ -42,7 +42,7 @@ While hybrid search confers advantages in many use cases, it is not a silver bul
 That being said, there _are_ many vector databases that incorporate functions that implement hybrid search - e.g., Pinecone, ElasticSearch, Apache Cassandra, and Weaviate. Check out the [Vector DB Comparison table](https://vdbs.superlinked.com/) to see if your vector database supports hybrid search.
 
 ## Implementation Architecture
-![Hybrid Search Archirecture](../assets/use_cases/hybrid_search_&_rerank_rag/HybridSearch.png "Fig 1")
+![Hybrid Search Architecture](../assets/use_cases/hybrid_search_&_rerank_rag/HybridSearch.png "Fig 1")
 
 The hybrid search algorithm combines keyword search and vector search to retrieve relevant content from a corpus. Let's take a look at the components that make up the architecture of hybrid search.
 
@@ -67,12 +67,13 @@ Notice that the BM25 algorithm is a refined version of the [TF-IDF(Term-Frequenc
 ### Vector Search
 **Dense vectors, or embeddings** are arrays with a high number of dimensions, filled predominantly with meaningful, non-zero values. Machine learning frequently employs these to represent the underlying semantics and connections of words in a numerical format, thereby effectively encapsulating their semantic essence. Dense vector search is a method used in semantic search systems for finding similar items in a vector space.
 
-A common approach to vector search is [cosine similarity search](https://en.wikipedia.org/wiki/Cosine_similarity). Cosine similarity is calculated as the result of the dot product of the vectors, normalized by the multiplication of their magnitudes. The nearer the outcome is to 1, the greater the similarity between the vectors.
+A common approach to vector search is [cosine similarity search](https://en.wikipedia.org/wiki/Cosine_similarity). Cosine similarity is calculated as the result of the dot product of the vectors, normalized by the multiplication of their magnitudes. The nearer the outcome is to 1, the more similar the vectors are.
 
 **C(A,B) = cos(θ) = A.B / ||A|| ||B||**
 
 ### Combination
-The results from each algorithm have to be fused to implement a hybrid search. There are various strategies to combine them and get a score. Typically, we use a certain formula to balance the keyword search score and vector search score to meet our requirements. Here's the formula we use:
+The results from each algorithm have to be fused to implement a hybrid search. There are various strategies to combine them and get a score. To balance the keyword search score and vector search score to meet our requirements, we use the following formula:
+
 **H = (1-α) K + αV**
 
 where,
@@ -95,7 +96,7 @@ where,
 ### Reranking
 ![Reranking Diagram](../assets/use_cases/hybrid_search_&_rerank_rag/Rerank.png "Fig 3")
 
-Typically, algorithms yield the top-k matches. But these top-k matches may not always include the relevant sections, or, conversely, not all relevant sections may be within these top-k matches. We can ameliorate this issue by ranking all retrieved content based on a score indicating semantic relevance to the query.
+Typically, algorithms yield top-k matches. But these top-k matches may not always include the relevant sections, or, conversely, not all relevant sections may be within these top-k matches. We can ameliorate this issue by ranking all retrieved content based on a score indicating semantic relevance to the query.
 
 To do this, responses from the retriever must be passed to a **semantic scoring model**. Semantic scoring models are transformer models that take in queries and documents to produce a score in a calibrated range. This reranking process returns a list of documents, sorted according to relevance score, from highest to lowest, and incorporated into the response payload of the query.
 
@@ -132,7 +133,7 @@ from langchain.retrievers import BM25Retriever, EnsembleRetriever
 import os
 ```
 
-Now, we load the PDF document and split it into chunks of the desired length with sufficient overlapping. In this step, you can adjust the chunk size based on the length of your document and the requirements of the LLM.
+Now, we load the PDF document and split it into chunks of the desired length with sufficient overlap. In this step, you can adjust the chunk size based on the length of your document and the requirements of your LLM.
 
 ```python
 doc_path = "/content/document.pdf"
@@ -173,7 +174,7 @@ ensemble_retriever = EnsembleRetriever(retrievers=[vectorstore_retreiver,
                                        weights=[0.3, 0.7])
 ```
 
-We can modify the **weights** parameter to balance the impact of both search outcomes as needed. The weight values correspond to **α** and **1-α**, as we discussed above. Here, we have weighted keywords more heavily, with a value of 0.7.
+We can modify the **weights** parameter to balance the impact of both search outcomes appropriately as needed. The weight values correspond to **α** and **1-α**, as we discussed above. Here, we have weighted keywords more heavily, with a value of 0.7.
 
 Our RAG pipeline needs an LLM. We utilize a quantized version of [Zephyr-7B-Beta](http://HuggingFaceH4/zephyr-7b-beta) for lightweight and optimized performance.
 
@@ -286,9 +287,11 @@ Result:  The passage doesn't explicitly state how the Strait of Hormuz is import
 Hybrid Search
 Result: Biden's strategy emphasizes the importance of ensuring freedom of navigation through the Strait of Hormuz, a waterway located in the Middle East. This strategy aims to prevent any country from dominating the region through military efforts and ensures that there are no efforts to control the waterways. This emphasis on freedom of navigation is crucial for the United States and its allies as a significant portion of the world's oil supply passes through this waterway. Any disruption or control of this waterway could have significant economic and geopolitical implications, making Biden's strategy to maintain this freedom critical.
 ```
+
 The hybrid search appears to perform better in providing a specific and detailed response to the query compared to the semantic search, which offers a more generalized interpretation without explicitly addressing the importance of the Strait of Hormuz and a geographical overview of the place.
 
-**Other databases offer native support and implementation for hybrid search**. For example, the retriever component for hybrid search in [Weaviate DB](https://weaviate.io/) can be defined as follows.
+### Other database options
+Our implementation example above uses ChromaDB. Your use case may warrant using a different database. Other databases, for example, [Weaviate DB](https://weaviate.io/), **offer native support and implementation for hybrid search**. Here's how you would define the retriever component for hybrid search in Weaviate DB.
 
 ```python
 from langchain.retrievers.weaviate_hybrid_search import WeaviateHybridSearchRetriever
@@ -306,9 +309,9 @@ hybrid_chain = RetrievalQA.from_chain_type(
 )
 ```
 
-The value of the parameter **alpha** in the Weaviate retriever can be adjusted to control the impact of semantic and keyword searches.
+The value of the **alpha** parameter in the Weaviate retriever can be adjusted to control the relative impact of semantic and keyword searches.
 
-Because the retrievers created above scores the top k responses internally and returns the highest-scoring response, we may not always need to explicitly perform reranking. In the event of low accuracy in the retrieved content, you can implement a reranker directly using libraries from Cohere, or build your own custom reranking function. When using a reranker from [Cohere](https://cohere.com/rerank), the following changes should be made in the retriever.
+Because the retrievers created above score the top k responses internally and return the highest-scoring response, we may not always need to perform reranking explicitly. In the event of low accuracy in the retrieved content, you can implement a reranker directly using libraries from Cohere, or build your own custom reranking function. When using a reranker from [Cohere](https://cohere.com/rerank), the following changes should be made in the retriever.
 
 ```python
 from langchain.retrievers import ContextualCompressionRetriever
@@ -327,11 +330,6 @@ hybrid_chain = RetrievalQA.from_chain_type(
 
 We have discussed how combining hybrid search with reranking offers enhanced performance in RAG systems, permitting keyword matching and more refined responses. The retriever's higher recall rates improve responses from the LLM.
 
-
-## References
-- [Dify.ai](https://dify.ai/blog/hybrid-search-rerank-rag-improvement)
-- [Benham & Culpepper](https://rodgerbenham.github.io/bc17-adcs.pdf)
-- [LangChain](https://python.langchain.com/docs/get_started/introduction)
 
 ## Contributors
 - [Ashish Abraham, author](https://www.linkedin.com/in/ashish-abraham-811a23201/)
