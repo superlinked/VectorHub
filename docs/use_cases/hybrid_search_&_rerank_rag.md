@@ -1,6 +1,6 @@
 <!-- SEO: Retrieval-Augmented Generation (RAG) is revolutionizing traditional search engines and AI methodologies for information retrieval. However, standard RAG systems often lack efficiency and precision when dealing with extensive data repositories. Substituting the search approach with a hybrid method and reordering the outcomes using a semantic ranker considerably enhances performance, indicating potential for large-scale implementations.
 -->
-(VectorHub Team note: For use cases that require metadata to be embedded in the vector itself, hybrid search may not be an optimal approach, as discussed in ... (point to 1-2 articles that show this @mor?))
+
 # Optimizing RAG with Hybrid Search & Reranking
 
 Retrieval-Augmented Generation (RAG) is revolutionizing traditional search engines and AI methodologies for information retrieval. However, standard RAG systems employing simple semantic search often lack efficiency and precision when dealing with extensive data repositories. Hybrid search, on the other hand, combines the strengths of different search methods, unlocking new levels of efficiency and accuracy. Hybrid search is flexible and can be adapted to tackle a wider range of information needs. 
@@ -38,6 +38,7 @@ While hybrid search confers advantages in many use cases, it is not a silver bul
 - **Latency**: Hybrid search involves performing two search algorithms, so it may be slower than a semantic search when executing on a large knowledge corpus.
 - **Computational Expense**: Developing and customizing models for hybrid search can be computationally expensive. It's best to consider hybrid search only if your system requires keyword-backed results.
 - **Native Support in Databases**: Not all vector databases support hybrid search. You need to ensure the vector database you choose does.
+- **Metadata**: For use cases that require metadata to be embedded in the vector itself, hybrid search may not be an optimal approach.
 
 That being said, there _are_ many vector databases that incorporate functions that implement hybrid search - e.g., Pinecone, ElasticSearch, Apache Cassandra, and Weaviate. Check out the [Vector DB Comparison table](https://vdbs.superlinked.com/) to see if your vector database supports hybrid search.
 
@@ -328,7 +329,7 @@ hybrid_chain = RetrievalQA.from_chain_type(
 
 ## Conclusion
 
-We have discussed how combining hybrid search with reranking offers enhanced performance in RAG systems, permitting keyword matching and more refined responses. The retriever's higher recall rates improve responses from the LLM.
+We've looked at how RAG system performance can be enhanced by using hybrid search along with reranking, as compared with using keyword search or vector search on their own. By combining keyword and vector search into one hybrid method, we can match on keywords in contextually relevant content, achieving more refined responses. Using hybrid search, the retriever's higher recall rates permit the LLM to produce higher-quality outputs. 
 
 
 ## Contributors
