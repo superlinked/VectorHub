@@ -86,7 +86,7 @@ The hybrid score is a pure vector score when α is 1, and a pure keyword score w
 
 **Reciprocal Rank Fusion (RRF)** is one of several available methods for combining dense and sparse search scores. RRF ranks each passage according to its place in the keyword and vector outcome lists, and then merges these rankings to generate a unified result list. The RRF score is determined by summing the inverse rankings from each list. Positioning the document’s rank in the denominator imposes a penalty on documents that appear lower in the list.
 
-<img src="assets/use_cases/hybrid_search_&_rerank_rag/RRF.png" alt="Reciprocal Rank Fusion Equation"  width="100" />
+<img src="assets/use_cases/hybrid_search_&_rerank_rag/RRF.png" alt="Reciprocal Rank Fusion Equation"  data-size="100" />
 
 where,
 - **D** represents the set of documents
