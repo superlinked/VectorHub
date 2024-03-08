@@ -3,9 +3,9 @@
 
 # Optimizing RAG with Hybrid Search & Reranking
 
-Retrieval-Augmented Generation (RAG) is revolutionizing traditional search engines and AI methodologies for information retrieval. However, standard RAG systems employing simple semantic search often lack efficiency and precision when dealing with extensive data repositories. Hybrid search, on the other hand, combines the strengths of different search methods, unlocking new levels of efficiency and accuracy. Hybrid search is flexible and can be adapted to tackle a wider range of information needs. 
+Retrieval-Augmented Generation (RAG) is revolutionizing traditional search engines and AI methodologies for information retrieval. However, standard RAG systems employing simple semantic search often lack efficiency and precision when dealing with extensive data repositories. Hybrid search, on the other hand, combines the strengths of different search methods, unlocking new levels of efficiency and accuracy. **Hybrid search is flexible and can be adapted to tackle a wider range of information needs**. 
 
-Hybrid search can also be paired with semantic reranking (to reorder outcomes) to further enhance performance. Combining hybrid search with reranking holds immense potential for various applications, including natural language processing tasks like question answering and text summarization, even for implementation at a large-scale.
+Hybrid search can also be paired with **semantic reranking** (to reorder outcomes) to further enhance performance. Combining hybrid search with reranking holds immense potential for various applications, including natural language processing tasks like question answering and text summarization, even for implementation at a large-scale.
 
 In our article, we'll delve into the nuances and limitations of hybrid search and reranking. Though pure vector search is preferable, in many cases hybrid search can enhance the retrieval component in **[RAG (Retrieval Augmented Generation)](https://hub.superlinked.com/retrieval-augmented-generation)**, and thereby deliver impactful and insightful text generation across various domains.
 
@@ -18,7 +18,7 @@ But each of vector similarity search and keyword search has its own strengths an
 
 That being said, keyword search is not as good as vector similarity search at fetching relevant results based on semantic relationships or meaning, which are only available via word embeddings. For example, a keyword search will relate the words *“the river bank”* and *“the Bank of America”* even though there is no actual semantic connection between the terms - a difference to which vector similarity search is sensitive. Keyword search would, therefore, benefit from vector search, but the prevailing approach is not to combine them but rather to implement them separately using distinct methodologies.
 
-In hybrid search - a keyword-sensitive semantic search approach, we combine vector search and keyword search algorithms to [take advantage of their respective strengths while mitigating their respective limitations](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/azure-ai-search-outperforming-vector-search-with-hybrid/ba-p/3929167).
+**In hybrid search - a keyword-sensitive semantic search approach, we combine vector search and keyword search algorithms to **[**take advantage of their respective strengths while mitigating their respective limitations**](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/azure-ai-search-outperforming-vector-search-with-hybrid/ba-p/3929167).
 
 
 ## Use cases for Hybrid Search
