@@ -289,7 +289,7 @@ Hybrid Search
 Result: Biden's strategy emphasizes the importance of ensuring freedom of navigation through the Strait of Hormuz, a waterway located in the Middle East. This strategy aims to prevent any country from dominating the region through military efforts and ensures that there are no efforts to control the waterways. This emphasis on freedom of navigation is crucial for the United States and its allies as a significant portion of the world's oil supply passes through this waterway. Any disruption or control of this waterway could have significant economic and geopolitical implications, making Biden's strategy to maintain this freedom critical.
 ```
 
-The hybrid search appears to perform better in providing a specific and detailed response to the query compared to the semantic search. Semantic search here gives a more generalized interpretation without explicitly addressing the importance of the Strait of Hormuz and a geographical overview of the place.
+The hybrid search appears to perform better in providing a specific and detailed response to the query, whereas the semantic search produced a more generalized interpretation without explicitly addressing the importance of the Strait of Hormuz and a geographical overview of the place.
 
 ### Other database options
 Our implementation example above uses ChromaDB. Your use case may warrant using a different database. Other databases, for example, [Weaviate DB](https://weaviate.io/), **offer native support and implementation for hybrid search**. Here's how you would define the retriever component for hybrid search in Weaviate DB.
