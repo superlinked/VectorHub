@@ -168,8 +168,8 @@
   },
   "npm_downloads": {
     "value": 0,
-    "source_url": "https://www.npmjs.com/package/@clickhouse/client",
-    "comment": "",
+    "source_url": "",
+    "comment": "Uses Clickhouse package",
     "value_90_days": 0
   }
 }
