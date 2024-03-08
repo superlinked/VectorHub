@@ -7,7 +7,7 @@ Retrieval-Augmented Generation (RAG) is revolutionizing traditional search engin
 
 Hybrid search can also be paired with semantic reranking (to reorder outcomes) to further enhance performance. Combining hybrid search with reranking holds immense potential for various applications, including natural language processing tasks like question answering and text summarization, even for implementation at a large-scale.
 
-In our article, we'll delve deeply into the nuances of hybrid search and reranking, exploring how this potent combo can enhance the retrieval component in **[RAG (Retrieval Augmented Generation)](https://hub.superlinked.com/retrieval-augmented-generation)**, and thereby deliver impactful and insightful text generation across various domains.
+In our article, we'll delve into the nuances of hybrid search and reranking, including limitations. Though pure vector search is preferable, in many cases hybrid search can enhance the retrieval component in **[RAG (Retrieval Augmented Generation)](https://hub.superlinked.com/retrieval-augmented-generation)**, and thereby deliver impactful and insightful text generation across various domains.
 
 
 ## What is Hybrid Search?
@@ -38,7 +38,6 @@ While hybrid search confers advantages in many use cases, it is not a silver bul
 - **Latency**: Hybrid search involves performing two search algorithms, so it may be slower than a semantic search when executing on a large knowledge corpus.
 - **Computational Expense**: Developing and customizing models for hybrid search can be computationally expensive. It's best to consider hybrid search only if your system requires keyword-backed results.
 - **Native Support in Databases**: Not all vector databases support hybrid search. You need to ensure the vector database you choose does.
-- **Metadata**: For use cases that require metadata to be embedded in the vector itself, hybrid search may not be an optimal approach.
 
 That being said, there _are_ many vector databases that incorporate functions that implement hybrid search - e.g., Pinecone, ElasticSearch, Apache Cassandra, and Weaviate. Check out the [Vector DB Comparison table](https://vdbs.superlinked.com/) to see if your vector database supports hybrid search.
 
