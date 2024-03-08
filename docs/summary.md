@@ -30,6 +30,7 @@
   - [Retrieval from Image and Text Modalities](use_cases/retrieval_from_image_and_text.md)
   - [Evaluating Retrieval Augmented Generation](use_cases/retrieval_augmented_generation_eval.md)
   - [A Real-time Retrieval System for Social Media Data](use_cases/social_media_retrieval.md)
+  - [Optimizing RAG with Hybrid Search & Reranking](hybrid_search_&_rerank_rag.md)
 
 <!-- - [Toolbox](tools/readme.md)
 - [TestPage](tools/testpage.md) -->
