@@ -7,7 +7,7 @@ Retrieval-Augmented Generation (RAG) is revolutionizing traditional search engin
 
 Hybrid search can also be paired with semantic reranking (to reorder outcomes) to further enhance performance. Combining hybrid search with reranking holds immense potential for various applications, including natural language processing tasks like question answering and text summarization, even for implementation at a large-scale.
 
-In our article, we'll delve into the nuances of hybrid search and reranking, including limitations. Though pure vector search is preferable, in many cases hybrid search can enhance the retrieval component in **[RAG (Retrieval Augmented Generation)](https://hub.superlinked.com/retrieval-augmented-generation)**, and thereby deliver impactful and insightful text generation across various domains.
+In our article, we'll delve into the nuances and limitations of hybrid search and reranking. Though pure vector search is preferable, in many cases hybrid search can enhance the retrieval component in **[RAG (Retrieval Augmented Generation)](https://hub.superlinked.com/retrieval-augmented-generation)**, and thereby deliver impactful and insightful text generation across various domains.
 
 
 ## What is Hybrid Search?
@@ -39,12 +39,12 @@ While hybrid search confers advantages in many use cases, it is not a silver bul
 - **Computational Expense**: Developing and customizing models for hybrid search can be computationally expensive. It's best to consider hybrid search only if your system requires keyword-backed results.
 - **Native Support in Databases**: Not all vector databases support hybrid search. You need to ensure the vector database you choose does.
 
-That being said, there _are_ many vector databases that incorporate functions that implement hybrid search - e.g., Pinecone, ElasticSearch, Apache Cassandra, and Weaviate. Check out the [Vector DB Comparison table](https://vdbs.superlinked.com/) to see if your vector database supports hybrid search.
+That being said, there _are_ many vector databases that incorporate functions that implement hybrid search - e.g., Pinecone, ElasticSearch, Apache Cassandra, and Weaviate. Check out the [Vector DB Comparison table](https://vdbs.superlinked.com/) to see which vector databases support hybrid search.
 
 ## Implementation Architecture
 ![Hybrid Search Architecture](../assets/use_cases/hybrid_search_&_rerank_rag/HybridSearch.png "Fig 1")
 
-The hybrid search algorithm combines keyword search and vector search to retrieve relevant content from a corpus. Let's take a look at the components that make up the architecture of hybrid search.
+The hybrid search algorithm combines keyword search and vector search to retrieve relevant content from a corpus. Let's take a look at the **components that make up the architecture of hybrid search**.
 
 ### Keyword Search
 **Sparse vectors** are vectors with high dimensionality, where most elements are zero. They usually symbolize various language tokens, non-zero values signifying their respective importance. Keyword search is also called **sparse vector search**. The **BM25 (Best Match 25)** algorithm is a popular and effective ranking function employed for keyword matching in embeddings. BM25 finds the most relevant documents for a given query by examining two things:
@@ -86,7 +86,7 @@ The hybrid score is a pure vector score when α is 1, and a pure keyword score w
 
 **Reciprocal Rank Fusion (RRF)** is one of several available methods for combining dense and sparse search scores. RRF ranks each passage according to its place in the keyword and vector outcome lists, and then merges these rankings to generate a unified result list. The RRF score is determined by summing the inverse rankings from each list. Positioning the document’s rank in the denominator imposes a penalty on documents that appear lower in the list.
 
-![Reciprocal Rank Fusion Equation](../assets/use_cases/hybrid_search_&_rerank_rag/RRF.png "Fig 2")
+<img src="assets/use_cases/hybrid_search_&_rerank_rag/RRF.png" alt="Reciprocal Rank Fusion Equation"  data-size="100" />
 
 where,
 - **D** represents the set of documents
