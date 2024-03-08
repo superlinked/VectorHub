@@ -169,7 +169,7 @@
   "npm_downloads": {
     "value": 0,
     "source_url": "",
-    "comment": "",
+    "comment": "Uses Clickhouse package",
     "value_90_days": 0
   }
 }
