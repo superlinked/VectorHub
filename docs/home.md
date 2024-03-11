@@ -43,11 +43,13 @@ Here are some examples from the community, more coming soon!
 
 Subscribe to be updated when new ones come out & check the blog section.
 
+-[03/04 - Optimising RAG with Hybrid Search & Rerank](https://superlinked.com/vectorhub/optimizing-rag-with-hybrid-search-and-reranking): Improve the performance of RAG and overcome some of the shortcomings of Semantic Search with Hybrid Search and Reranking.
+- [02/28 - A Real-time Retrieval System for Social Media Data](https://superlinked.com/vectorhub/a-real-time-retrieval-system-for-social-media-data): Step by step how to build and optimise a retrieval client for LinkedIn posts
 - [02/22 - Evaluating Retrieval Augmented Generation](https://superlinked.com/vectorhub/evaluating-retrieval-augmented-generation-a-framework-for-assessment): How to evaluate your RAG. Understanding the challenges working with RAG and 4 ways to evaluate performance.
 - [02/15 - Retrieval from Image and Text Modalities](https://superlinked.com/vectorhub/retrieval-from-image-and-text-modalities): Comparing multi-modal and singular vector embeddings with image and text data to improve retrieval quality
 - [02/01 - Scaling RAG for Production](https://hub.superlinked.com/scaling-rag-for-production): How to go from working model to a production system with step-by-step instructions.
 - [01/25 - Improving RAG performance with Knowledge Graphs](use_cases/knowledge_graphs.md): Adding knowledge graph embeddings as contextual data to improve the performance of RAG.
-- [01/18 Representation Learning on Graph Structured Data](https://hub.superlinked.com/representation-learning-on-graph-structured-data): Understanding how combining KGEs and semantic embeddings can improve understanding of your solution.
+- [01/18 - Representation Learning on Graph Structured Data](https://hub.superlinked.com/representation-learning-on-graph-structured-data): Understanding how combining KGEs and semantic embeddings can improve understanding of your solution.
 - [01/11 - VDB Feature Matrix](https://vdbs.superlinked.com/): Find the right Vector Database (VDB) for your use case.
 - [01/04 - Answering Questions with Knowledge Embeddings](https://hub.superlinked.com/answering-questions-with-knowledge-graph-embeddings): An introduction to knowledge graph embeddings and comparing the performance with LLMs.
 - [12/15 - Vector Embeddings In The Browser](https://hub.superlinked.com/vector-embeddings-in-the-browser): Creating an LLM powered application in browser with React.
