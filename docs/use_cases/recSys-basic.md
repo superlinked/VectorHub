@@ -1,6 +1,6 @@
 ## Why do we build Recommender Systems?
 
-Recommender Systems are part of almost every web platform offering items to users. These systems are build to help people find items they like but might not discover on their own, such as movies, products, or articles. Recommenders analyze patterns of user behavior to suggest items similar to what users have liked in the past or what similar users have enjoyed. Evidence supporting the effectiveness of recommender systems includes increased sales, higher user satisfaction, and improved engagement on platforms like Amazon, Netflix, and Spotify, where personalized recommendations significantly contribute to user experience and business success.
+Recommender Systems are part of almost every web platform offering items to users. These systems are built to help people find items they like but might not discover on their own, such as movies, products, or articles. Recommenders analyze patterns of user behavior to suggest items similar to what users have liked in the past or what similar users have enjoyed. Evidence supporting the effectiveness of recommender systems includes increased sales, higher user satisfaction, and improved engagement on platforms like Amazon, Netflix, and Spotify, where personalized recommendations significantly contribute to user experience and business success.
 
 Below we will show how to build a very simple recommender system that will provide news articles to users. The system consists of two parts:
     
