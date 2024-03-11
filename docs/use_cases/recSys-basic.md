@@ -196,7 +196,7 @@ print("Total number of categories : ", news_articles["category"].nunique())
 
 ## 1. Content-based recommender
 
-Below we will implement our content-based recommended. The recommended list would be same for all users, and would be displayed under the title "Similar Articles".
+Below we will implement our content-based recommender. The recommended list would be same for all users, and would be displayed under the title "Similar Articles".
 
 To identify which news articles are similar to a given article, we will obtain embedding of the text associated 
 with all articles. Once we have the embeddings, we will use cosine similarity to retrieve the most similar
