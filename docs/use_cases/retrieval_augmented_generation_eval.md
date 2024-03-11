@@ -51,7 +51,7 @@ The evaluation framework we propose is meant to ensure granular and thorough mea
 
 To meet these evaluation challenges systematically, it's best practice to break down our evaluation into different levels, so that we understand what specifically is working well, and what needs improvement.
 
-![Granular Levels of Evaluation of RAG](../assets/use_cases/retrieval_augmented_generation_eval/rag_granular.jpg)
+![Granular Levels of Evaluation of RAG](../assets/use_cases/retrieval_augmented_generation_eval/rag_granular.png)
 
 Let's take a closer look to see what's involved in each of these levels individually.
 
