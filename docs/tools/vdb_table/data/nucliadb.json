@@ -162,15 +162,15 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 374301,
+    "value": 384813,
     "source_url": "https://pypi.org/project/nucliadb/",
     "comment": "",
-    "value_90_days": 115303
+    "value_90_days": 122181
   },
   "npm_downloads": {
-    "value": 0,
+    "value": 7398,
     "source_url": "https://www.npmjs.com/package/@nuclia/core",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 2191
   }
 }
