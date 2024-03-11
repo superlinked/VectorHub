@@ -1,14 +1,15 @@
 ## Why do we build Recommender Systems?
 
-Recommender Systems are part of almost every web platform offering items to users. These systems are built to help people find items they like but might not discover on their own, such as movies, products, or articles. Recommenders analyze patterns of user behavior to suggest items similar to what users have liked in the past or what similar users have enjoyed. Evidence supporting the effectiveness of recommender systems includes increased sales, higher user satisfaction, and improved engagement on platforms like Amazon, Netflix, and Spotify, where personalized recommendations significantly contribute to user experience and business success.
+Recommender Systems are central to nearly every web platform offering things - movies, clothes, any kind of commodity - to users. Recommenders analyze patterns of user behavior to suggest items they might like but not necessarily discover on their own, items similar to what they or users similar to them have liked in the past. Personalized recommendation systems are reported to increase sales, boost user satisfaction, and improve engagment on a broad range of platforms, including Amazon, Netflix, and Spotify. Building one yourself may seem daunting. Where do you start? What are the necessary components?
 
-Below we will show how to build a very simple recommender system that will provide news articles to users. The system consists of two parts:
+Below, we'll show how to build a very simple recommender system. Our example system suggests news articles to users, and consists of just two parts:
     
-   1. a content-based recommender - the model operates via item similarity, meaning that only items similar to the context item are recommended. The recommended list would be shown to the user under the title "Similar Articles", and the objective is to motivate the readers to read more content.
-   2. a collaborative-filtering recommender - in this case the user's past interactions are taken into account. The model first identifies users who have similar interaction history with the current user, and then collects items seen by these similar users, which where not yet seen by the current user. The recommended list would be shown under the tile "Others also read" or "Personalized Recommendations" to indicate that this list is specifically generated for this particular user. The objective is obviously to keep the users engaged with the platform
+- 1. a content-based recommender - the model identifies and recommends items similar to the context item. To motivate readers to read more content, we show them a list of recommendations, entited "Similar Articles."
+- 2. a collaborative-filtering recommender - based on the user's past interactions, the model first identifies users with an interaction history similar to the current user's, collects articles these similar users have interacted with, excluding articles the user's already seen, and recommends these articles as an "Others also read" or "Personalized Recommendations" list, indicating to the user that this list is specifically generated for them.
     
-   The dataset below can be downloaded [here](https://www.kaggle.com/datasets/yazansalameh/news-category-dataset-v2). It is a news dataset, using which we will build the recommenders. We will provide user-article interaction data later, once we move on to the collaborative-filtering model.
+We build our recommenders using a news dataset, [downloadable here](https://www.kaggle.com/datasets/yazansalameh/news-category-dataset-v2). Down below, we'll link you to user-article interaction data, once we move on to the collaborative-filtering model.
 
+But first, let's set up and refine our dataest.
 
 ```python
 import numpy as np
@@ -123,8 +124,7 @@ news_articles.head()
 
 
 
-We see that the dataset has columns such as `category`, `headline`, `short_description`, `date`. We will extract 
-instances that were published after 2018-01-01.
+Using our dataset's columns, e.g., `category`, `headline`, `short_description`, `date`, we can extract only instances that were published after 2018-01-01.
 
 
 ```python
@@ -155,7 +155,7 @@ news_articles.shape
 
 
 
-We see that the number of articles dropped from around 200K to around 8.5K.
+By filtering out articles that were published on or before 2018-01-01, we've refined out article set from around 200K to roughly 8.5K.
 
 We will also remove news with short headlines (shorter than 7 words), and then drop duplicates based on headline.
 
