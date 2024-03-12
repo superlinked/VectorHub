@@ -1,3 +1,5 @@
+# Rec Sys for Beginners
+
 ## Why do we build Recommender Systems?
 
 Recommender Systems are central to nearly every web platform offering things - movies, clothes, any kind of commodity - to users. Recommenders analyze patterns of user behavior to suggest items they might like but not necessarily discover on their own, items similar to what they or users similar to them have liked in the past. Personalized recommendation systems are reported to increase sales, boost user satisfaction, and improve engagment on a broad range of platforms, including Amazon, Netflix, and Spotify. Building one yourself may seem daunting. Where do you start? What are the necessary components?
@@ -153,7 +155,7 @@ news_articles.shape
 
 
 
-By filtering out articles published on or before 2018-01-01, we've refined out article set down from around 200K to roughly 8.5K.
+By filtering out articles published on or before 2018-01-01, we've refined our article set down from around 200K to roughly 8.5K.
 
 Next, we remove news with short headlines (shorter than 7 words), and then drop duplicates based on headline.
 
@@ -196,7 +198,7 @@ print("Total number of categories : ", news_articles["category"].nunique())
 
 Next, we'll implement our content-based recommender. This recommender creates the same recommended list for all users, displayed under the title "Similar Articles."
 
-To identify which news articles are similar to a given article, we'll obtain embeddings of the text associated with all articles in our refined dataset. Once we have the embeddings, we use cosine similarity to retrieve the most similar articles. We use a model from the Sentence Transformers family that is often used for text-embedding tasks.
+To identify which news articles are similar to a given article, we obtain embeddings of the text associated with all articles in our refined dataset. Once we have the embeddings, we use cosine similarity to retrieve the most similar articles. We use a model from the Sentence Transformers family that is often used for text-embedding tasks.
 
 
 ```python
@@ -222,9 +224,7 @@ def compute_vectors(corpus, model):
     return vectors
 ```
 
-We will add one more column to the dataset, the values of which would be a concatenation of the headline and the 
-news article description. We intend to use the text corpus of this column for embedding, i.e., calculating vector
-representation of the articles
+We add one more column to the dataset, populated with values concatenating the headline and the news article description. We do this so we can embed the text corpus of this column - i.e., calculate a vector representation of the articles.
 
 
 ```python
@@ -319,7 +319,7 @@ news_articles.head()
 
 
 
-We make index serve as article id.
+We make index serve as article id, as follows:
 
 
 ```python
@@ -483,7 +483,7 @@ articles_simple.head()
 
 
 
-For computational efficiency, we collected the first 500 articles. Feel free to experiment with a different subset or full data.
+For computational efficiency, we collect the first 500 articles. Feel free to experiment with a different subset or the full dataset.
 
 
 ```python
@@ -559,8 +559,7 @@ def print_article_text(corpus, ids_count_map, similar_article_ids):
         print('-' * 30)
 ```
 
-Below we will chose a context article, for which we will then search similar articles. We hope that the short artcile description would be enough to evaluate if the recommended similar articles make sense.
-
+Below, we choose a context article, and then search for articles similar to it. Our aim is to see whether the short article descriptions are enough to evaluate whether the recommended articles are indeed similar to the context article.
 
 ```python
 original_id = 744
@@ -589,8 +588,7 @@ similar_articles
 
 
 
-Below we map the article ids to count ids, by which we index articles in the corpus.
-
+Next, we map the article ids to count ids. This lets us index articles in corpus by their count ids.
 
 ```python
 similar_article_ids = [ids_count_map[id_] for id_ in similar_articles]
@@ -629,11 +627,9 @@ print_article_text(corpus, ids_count_map, similar_article_ids) # similar article
     ------------------------------
 
 
-As we see in the above, the context article was about Donald Trump. Our recommendered articles also mention
-Mr. Trump - it makes sense to assume that people who read the context article would also be interested in reading
-our recommendations.
+Our context article (above) was about Donald Trump. Our recommended articles also mention Mr. Trump. And it makes intuitive sense that people who read the context article would also be interested in reading our recommendations.
 
-We will now try to identify two different articles, and find articles similar/relavent to both. This is done by simple vector averaging before cosine similarity search. We will use articles from Entertainment and Business section.
+We now try to identify two different articles, and find articles similar/relevant to both. We do this using simple vector averaging before doing our cosine similarity search. We use articles from the Entertainment and Business sections.
 
 
 ```python
@@ -684,27 +680,21 @@ print_article_text(corpus, ids_count_map, similar_article_ids_)
     ------------------------------
 
 
-#### Evaluation
+### Evaluating recommender systems
 
-One way to evaluate a content-based recommender system is by 'manual' inspection of results, as we have demonstrated above. In case of a news platform, someone from the editorial team can check if - given a context article - the recommended articles make sense.
+**One way to evaluate a content-based recommender system is to 'manually' inspect the results**, the way we've already done above. In our use case, a news platform, for example, we could get someone from the editorial team to check if our recommended articles are similar enough to our context article.
 
-However, a golden standard in evaluating/comparing impact of two or more recommenders (be it content-based, or with user interactions) is AB-testing. This simply means launching the models, assigning fair amount of traffic 
-to each, then watching how they behave: which one has a higher click-through-rate, basically.
+But the **gold standard** for evaluating/comparing **two or more recommenders** (whether they are content-based or user-interaction-based) **is A/B-testing**. This simply means launching the models, assigning a fair amount of traffic to each, then basically seeing which one has a higher click-through-rate.
 
-## 2. Collaborative-filtering
+## 2. Collaborative-filtering recommenders
 
-Below we will provide implementations of two collaborative filtering approaches that give personalized recommendations to the users. The cold-start problem will also be tackled, and in the end we will implement some basic evaluation metrics that would tell us which model is to be preferred.
+Below, we provide implementations of two collaborative filtering approaches that give personalized recommendations to users, in lists titled "Recommendations for you," "Others also read," or "Personalized Recommendations." Our implementations address the cold-start problem, and deploy some basic evaluation metrics that will tell us which model performs better.
 
-The list of generated recommendations would be under the title "Recommendations for you", "Others also read" or "Personalized Recommendations".
+### Generating user-item interactions
 
-#### Generating user-item interactions
+To keep things simple, we'll create a simulated user-article interaction dataset with the following assumptions:
 
-We'll create a simulated user-article interaction dataset with the following assumptions for simplicity:
-
-Users have specific interests (e.g., "politics", "entertainment", "comedy").
-Articles are already categorized, so we will simply 'match' the users to their preferred category. 
-We also assign a rating to the interaction: a rating 3-5 would be given in a case of a taste match, 1-2 otherwise.
-The low ratings will be filtered out, but we leave the option for further exploration/
+Users have specific interests (e.g., "politics", "entertainment", "comedy"). Articles are already categorized, so we will simply 'match' users to their preferred category. We also assign a rating to the interaction: ratings ranging from 3 - 5 indicate a taste match, otherwise 1 - 2. For our purposes, we'll filter out the low rating interactions, but we leave the option for further exploration.
 
 
 ```python
@@ -791,8 +781,7 @@ print(interactions.shape)
 user_id = 74
 ```
 
-We see above that the user number 74 has interests in travelling. Let's see if we have matched him with
-appropriate articles.
+We see above that user_id 74 has an interest in "travel". Let's see if we have matched this user with relevant articles.
 
 
 ```python
@@ -876,23 +865,18 @@ set([news_articles.loc[id_]['category'] for id_ in specific_articles])
 
 
 
-It seems we have done it correctly.
+We have successfully matched articles with this user's interest ("travel").
 
 
+Let's turn to our two collaborative filtering models. **To train our models, we need to create train and test data**.
 
-Let's create train and test data. The train data would be used for models training. 
+We will provide two models. For the **first model**, which we'll call "**Similar Vectors**," the training data will be used to create a vector for each user, populated by ratings given to news articles. Once we've created our user vectors, we can retrieve the most similar users via, for example, cosine similarity. And once similar users are identified, we can easily collect articles they've viewed that the context user hasn't yet seen.
 
-We will provide two models. For the first, the train data would be 
-used to create a vector, for each user, where this vector would be populated by ratings given to news articles.
-Once we have created the user vectors, we can retrieve the most similar users via, e.g., cosine similarity. 
-And once similar users are identified, we can easily collect items they have seen that the context users has not
-yet seen. Let's call the first model "Similar Vectors".
-
-The second model is a Matrix Factorization model presented in [this paper](http://yifanhu.net/PUB/cf.pdf), with an efficient implementation in `implicit` package available [here](https://github.com/benfred/implicit).
+The **second model** is a **Matrix Factorization** model presented in [this paper](http://yifanhu.net/PUB/cf.pdf), with an efficient implementation in `implicit` package available [here](https://github.com/benfred/implicit).
 
 ### Cold-start problem
 
-The models can recommend items only to users that were part of training. This means that for new users for whom we don't have any interactions yet, we have to recommend items via a different strategy. One common way is to present these users with a list of most popular items.
+Our two models can recommend items only to users that were part of training. Because new users start without any interactions, we have to recommend articles to them using a different strategy. One common solution is to present these users with a list of the most popular items.
 
 
 ```python
@@ -923,14 +907,16 @@ print_articles_from_list(most_popular_articles)
     Trump Considering 'Full Pardon' Of Late Boxing Champion Jack Johnson Johnson, the first black heavyweight champion, was arrested for driving his girlfriend across state lines.
     
 
-
-In general, below is the recipe on which type of recommendations to provide to a particular user-type (where user-type is determined by user activity on the platform):
+This cold start strategy is one tier of our moral general recipe for providing recommendations to particular user-types (where user-type is determined by user activity on the platform):
 
 - no interactions -> most popular items
 - some interactions -> content-based items
 - more interactions -> collaborative filtering
 
-#### Train-test split
+
+Before proceeding to training and testing, we need to split our interactions dataset into a training set and a test set.
+
+### Train-test split
 
 
 ```python
@@ -938,8 +924,8 @@ train = interactions.head(20000)
 test = interactions.tail(interactions.shape[0] - train.shape[0])
 ```
 
-#### Similar Vectors model
-
+### Similar Vectors model
+Here's the code for our Similar Vectors model.
 
 ```python
 # function to recommend articles for a given user
@@ -995,11 +981,11 @@ recommended_articles_sv
 
 
 
-#### Matrix Factorization
+### Matrix Factorization (MF)
 
-A general MF model takes a list of triplets (user, item, rating), and then tries to create vector representaitons for both users and items, such that the inner product of user-vector and item-vector is as close to the rating as possible. 
+A general MF model takes a list of triplets (user, item, rating), and then tries to create vector representations for both users and items, such that the inner product of user-vector and item-vector is as close to the rating as possible. 
 
-The specific model we use actually integrates a weight component to the innner product, and restricts the ratings to a constant value of 1.
+The specific MF model we use actually incorporates a weight component in the calculation of the inner product, and restricts the ratings to a constant value of 1, as shown in the following snippet.
 
 
 ```python
@@ -1049,7 +1035,7 @@ def build_matrix(data, rating_col, users_map, items_map,
     )
 ```
 
-#### Model parameters
+### Model parameters
 
 The MF model has several parameters:
 
