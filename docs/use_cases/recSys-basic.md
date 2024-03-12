@@ -4,12 +4,10 @@ Recommender Systems are central to nearly every web platform offering things - m
 
 Below, we'll show how to build a very simple recommender system. Our example system suggests news articles to users, and consists of just two parts:
     
-- 1. a content-based recommender - the model identifies and recommends items similar to the context item. To motivate readers to read more content, we show them a list of recommendations, entited "Similar Articles."
-- 2. a collaborative-filtering recommender - based on the user's past interactions, the model first identifies users with an interaction history similar to the current user's, collects articles these similar users have interacted with, excluding articles the user's already seen, and recommends these articles as an "Others also read" or "Personalized Recommendations" list, indicating to the user that this list is specifically generated for them.
-    
-We build our recommenders using a news dataset, [downloadable here](https://www.kaggle.com/datasets/yazansalameh/news-category-dataset-v2). Down below, we'll link you to user-article interaction data, once we move on to the collaborative-filtering model.
+    1. a content-based recommender - the model identifies and recommends items similar to the context item. To motivate readers to read more content, we show them a list of recommendations, entited "Similar Articles."
+    2. a collaborative-filtering recommender - based on the user's past interactions, the model first identifies users with an interaction history similar to the current user's, collects articles these similar users have interacted with, excluding articles the user's already seen, and recommends these articles as an "Others also read" or "Personalized Recommendations" list, indicating to the user that this list is specifically generated for them.
 
-But first, let's set up and refine our dataest.
+We build our recommenders using a news dataset, [downloadable here](https://www.kaggle.com/datasets/yazansalameh/news-category-dataset-v2). Down below, once we move on to the collaborative-filtering model, we'll link you to user-article interaction data. But first, **let's set up and refine our dataest**.
 
 ```python
 import numpy as np
@@ -124,7 +122,7 @@ news_articles.head()
 
 
 
-Using our dataset's columns, e.g., `category`, `headline`, `short_description`, `date`, we can extract only instances that were published after 2018-01-01.
+Using our dataset's columns, e.g., `category`, `headline`, `short_description`, `date`, we can extract only instances published after 2018-01-01.
 
 
 ```python
@@ -155,9 +153,9 @@ news_articles.shape
 
 
 
-By filtering out articles that were published on or before 2018-01-01, we've refined out article set from around 200K to roughly 8.5K.
+By filtering out articles published on or before 2018-01-01, we've refined out article set down from around 200K to roughly 8.5K.
 
-We will also remove news with short headlines (shorter than 7 words), and then drop duplicates based on headline.
+Next, we remove news with short headlines (shorter than 7 words), and then drop duplicates based on headline.
 
 
 ```python
@@ -196,11 +194,9 @@ print("Total number of categories : ", news_articles["category"].nunique())
 
 ## 1. Content-based recommender
 
-Below we will implement our content-based recommender. The recommended list would be same for all users, and would be displayed under the title "Similar Articles".
+Next, we'll implement our content-based recommender. This recommender creates the same recommended list for all users, displayed under the title "Similar Articles."
 
-To identify which news articles are similar to a given article, we will obtain embedding of the text associated 
-with all articles. Once we have the embeddings, we will use cosine similarity to retrieve the most similar
-articles. The model we chose is from the Sentence Transformers family, often used for text-embedding tasks.
+To identify which news articles are similar to a given article, we'll obtain embeddings of the text associated with all articles in our refined dataset. Once we have the embeddings, we use cosine similarity to retrieve the most similar articles. We use a model from the Sentence Transformers family that is often used for text-embedding tasks.
 
 
 ```python
