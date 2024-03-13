@@ -1,4 +1,4 @@
-# Rec Sys for Beginners
+# RecSys for Beginners
 
 ## Why do we build Recommender Systems?
 
@@ -1386,12 +1386,7 @@ len(common_user_ids)
 ```
 
 
-
-
     284
-
-
-
 
 
 
@@ -1410,8 +1405,6 @@ precision_and_recall_at_k(train, test, recos_sv, k=5)
 
 
 
-
-
     (0.784507042253521, 0.6387401993297399)
 
 
@@ -1422,9 +1415,6 @@ precision_and_recall_at_k(train, test, recos_mf, k=5)
 ```
 
     Number of common users:  284
-
-
-
 
 
     (0.6542253521126759, 0.635305934716874)
