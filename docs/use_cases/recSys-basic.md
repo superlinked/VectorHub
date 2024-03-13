@@ -1,4 +1,4 @@
-# Rec Sys for Beginners
+# RecSys for Beginners
 
 ## Why do we build Recommender Systems?
 
