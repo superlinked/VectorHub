@@ -682,19 +682,19 @@ print_article_text(corpus, ids_count_map, similar_article_ids_)
 
 ### Evaluating recommender systems
 
-**One way to evaluate a content-based recommender system is to 'manually' inspect the results**, the way we've done already, above. In our use case, a news platform, for example, we could get someone from the editorial team to check if our recommended articles are similar enough to our context article.
+A relatively easy way to get a first-glimpse evaluation of a recommender system (whether content-based or user-interaction-based) is to 'manually' inspect the results, the way we've done already, above. In our use case - a news platform, for example, we could get someone from the editorial team to check if our recommended articles are similar enough to our context article.
 
-But to evaluate/compare **two or more recommenders** (whether they are content-based or user-interaction-based), the **gold standard is A/B-testing**. This simply means launching the models, assigning a fair amount of traffic to each, then basically seeing which one has a higher click-through-rate.
+But the gold standard for evaluation is A/B testing. In our case, below, where we want to see which of two collaborative filtering (user-interaction-based) models performs better, we A/B test by launching the models, assigning a fair amount of traffic to each, then basically seeing which one has a higher click-through-rate. 
 
 ## 2. Collaborative-filtering recommenders
 
-Below, we provide implementations of two collaborative filtering approaches that give personalized recommendations to users, in lists titled "Recommendations for you," "Others also read," or "Personalized Recommendations." Our implementations address the cold-start problem, and deploy some basic evaluation metrics that will tell us which model performs better.
+Below, we provide implementations of two collaborative filtering approaches to giving personalized recommendations to users, in lists titled "Recommendations for you," "Others also read," or "Personalized Recommendations." Our implementations address the cold-start problem, and deploy some basic evaluation metrics that will tell us which model performs better.
 
 ### Generating user-item interactions
 
 To keep things simple, we'll create a simulated user-article interaction dataset with the following assumptions:
 
-Users have specific interests (e.g., "politics", "entertainment", "comedy"). Articles are already categorized, so we will simply 'match' users to their preferred category. We also assign a rating to the interaction: ratings ranging from 3 - 5 indicate a taste match, otherwise 1 - 2. For our purposes, we'll filter out the low rating interactions, but we leave the option for further exploration.
+Users have specific interests (e.g., "politics", "entertainment", "comedy"). Articles are already categorized, so we will simply 'match' users to their preferred category. We also assign a rating to the interaction: ratings ranging from 3 - 5 indicate a match between user interest and article category, ratings of 1 - 2 indicate no match. For our purposes, we'll filter out the low rating interactions.
 
 
 ```python
@@ -870,7 +870,7 @@ We have successfully matched articles with this user's interest ("travel").
 
 Let's turn to our two collaborative filtering models. **To train our models, we need to create train and test data**.
 
-We will provide two models. For the **first model**, which we'll call "**Similar Vectors**," the training data will be used to create a vector for each user, populated by ratings given to news articles. Once we've created our user vectors, we can retrieve the most similar users via, for example, cosine similarity. And once similar users are identified, we can easily collect articles they've viewed that the context user hasn't yet seen.
+We will provide two models. For the **first model**, which we'll call "**Similar Vectors**," the training data will be used to create a vector for each user, populated by ratings given to news articles by all users. Once we've created our user vectors, we can retrieve the most similar users via, for example, cosine similarity. And once similar users are identified, we can easily collect articles they've viewed that the context user hasn't yet seen.
 
 The **second model** is a **Matrix Factorization** model presented in [this paper](http://yifanhu.net/PUB/cf.pdf), with an efficient implementation in `implicit` package available [here](https://github.com/benfred/implicit).
 
