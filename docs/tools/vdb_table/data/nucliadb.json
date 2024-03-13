@@ -9,9 +9,9 @@
     "slug": "nucliadb"
   },
   "oss": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://github.com/nuclia/nucliadb",
+    "comment": "https://github.com/nuclia/nucliadb"
   },
   "license": {
     "value": "AGPLv3",
@@ -26,24 +26,24 @@
     "source_url": "",
     "comment": ""
   },
-  "vector_launch_year": 0,
+  "vector_launch_year": 2021,
   "metadata_filter": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://github.com/nuclia/nucliadb/blob/main/docs/internal/SEARCH.md",
     "comment": ""
   },
   "hybrid_search": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.nuclia.dev/docs/guides/using/search/#features",
     "comment": ""
   },
   "facets": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.nuclia.dev/docs/guides/using/search/#facets",
     "comment": ""
   },
   "geo_search": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
@@ -53,18 +53,18 @@
     "comment": ""
   },
   "sparse_vectors": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "bm25": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://nuclia.com/vector-database/#:~:text=Score%20type%3A-,BM25,-Score%3A%200.8871671557426453",
     "comment": ""
   },
   "full_text": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://github.com/nuclia/nucliadb/blob/main/nucliadb_node/README.md#nucliadb_paragraphs-and-nucliadb_fields",
     "comment": ""
   },
   "embeddings_text": {
@@ -83,34 +83,34 @@
     "comment": ""
   },
   "rag": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.nuclia.dev/docs/guides/using/search/chat/",
     "comment": ""
   },
   "recsys": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "langchain": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://nuclia.com/developers/using-langchain-with-nuclia/",
+    "comment": "https://python.langchain.com/docs/integrations/tools/nuclia"
   },
   "llamaindex": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "managed_cloud": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://docs.nuclia.dev/docs/about/architecture",
     "comment": ""
   },
   "pricing": {
     "value": "",
-    "source_url": "",
-    "comment": ""
+    "source_url": "https://nuclia.com/pricing/",
+    "comment": "Pricing|Nuclia"
   },
   "in_process": {
     "support": "none",
@@ -123,34 +123,34 @@
     "comment": ""
   },
   "disk_index": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://github.com/nuclia/nucliadb/blob/main/docs/internal/NODES.md",
     "comment": ""
   },
   "ephemeral": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "sharding": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://github.com/nuclia/nucliadb/blob/main/docs/internal/NODES.md",
     "comment": ""
   },
   "doc_size": {
     "bytes": 0,
     "unlimited": false,
     "source_url": "",
-    "comment": ""
+    "comment": "Max vectors of 50K for any given resource/doc in NucliaDB."
   },
   "vector_dims": {
     "value": 0,
-    "unlimited": false,
+    "unlimited": true,
     "source_url": "",
     "comment": ""
   },
   "github_stars": {
-    "value": 548,
+    "value": 547,
     "source_url": "https://github.com/nuclia/nucliadb",
     "comment": "",
     "value_90_days": 0
@@ -162,15 +162,15 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 362409,
+    "value": 384813,
     "source_url": "https://pypi.org/project/nucliadb/",
     "comment": "",
-    "value_90_days": 112656
+    "value_90_days": 122181
   },
   "npm_downloads": {
-    "value": 0,
-    "source_url": "",
+    "value": 7398,
+    "source_url": "https://www.npmjs.com/package/@nuclia/core",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 2191
   }
 }

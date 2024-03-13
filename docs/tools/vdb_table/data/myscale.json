@@ -161,15 +161,15 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 20792,
+    "value": 20977,
     "source_url": "https://pypi.org/project/myscaledb-client/",
     "comment": "",
-    "value_90_days": 876
+    "value_90_days": 961
   },
   "npm_downloads": {
     "value": 0,
     "source_url": "",
-    "comment": "",
+    "comment": "Uses Clickhouse package",
     "value_90_days": 0
   }
 }
