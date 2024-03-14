@@ -2,14 +2,20 @@
 
 ## Why do we build Recommender Systems?
 
-Recommender Systems are central to nearly every web platform offering things - movies, clothes, any kind of commodity - to users. Recommenders analyze patterns of user behavior to suggest items they might like but not necessarily discover on their own, items similar to what they or users similar to them have liked in the past. Personalized recommendation systems are reported to increase sales, boost user satisfaction, and improve engagment on a broad range of platforms, including Amazon, Netflix, and Spotify. Building one yourself may seem daunting. Where do you start? What are the necessary components?
+Recommender Systems are central to nearly every web platform offering things - movies, clothes, any kind of commodity - to users. Recommenders analyze patterns of user behavior to suggest items they might like but not necessarily discover on their own, items similar to what they or users similar to them have liked in the past. Personalized recommendation systems are reported to increase sales, boost user satisfaction, and improve engagment on a broad range of platforms, including, for example, Amazon, Netflix, and Spotify. Building one yourself may seem daunting. Where do you start? What are the necessary components?
 
 Below, we'll show how to build a very simple recommender system. Our example system suggests news articles to users, and consists of just two parts:
     
     1. a content-based recommender - the model identifies and recommends items similar to the context item. To motivate readers to read more content, we show them a list of recommendations, entited "Similar Articles."
     2. a collaborative-filtering recommender - based on the user's past interactions, the model first identifies users with an interaction history similar to the current user's, collects articles these similar users have interacted with, excluding articles the user's already seen, and recommends these articles as an "Others also read" or "Personalized Recommendations" list, indicating to the user that this list is specifically generated for them.
 
-We build our recommenders using a news dataset, [downloadable here](https://www.kaggle.com/datasets/yazansalameh/news-category-dataset-v2). Down below, once we move on to the collaborative-filtering model, we'll link you to user-article interaction data. But first, **let's set up and refine our dataest**.
+Let's get started.
+
+## Our RecSys build
+
+We build our recommenders using a news dataset, [downloadable here](https://www.kaggle.com/datasets/yazansalameh/news-category-dataset-v2). Down below, once we move on to the collaborative-filtering model, we'll link you to user-article interaction data. 
+
+But first, **let's set up and refine our dataset**.
 
 ```python
 import numpy as np
@@ -196,9 +202,9 @@ print("Total number of categories : ", news_articles["category"].nunique())
 
 ## 1. Content-based recommender
 
-Next, we'll implement our content-based recommender. This recommender creates the same recommended list for all users, displayed under the title "Similar Articles."
+Next, we'll implement the first of our models: the content-based recommender. This recommender creates the same recommended list for all users, displayed under the title "Similar Articles."
 
-To identify which news articles are similar to a given article, we obtain embeddings of the text associated with all articles in our refined dataset. Once we have the embeddings, we use cosine similarity to retrieve the most similar articles. We use a model from the Sentence Transformers family that is often used for text-embedding tasks.
+To identify which news articles are similar to a given (or "context") article, we obtain embeddings of the text associated with all articles in our refined dataset. Once we have the embeddings, we use cosine similarity to retrieve the most similar articles. We use a model from the Sentence Transformers family that is often used for text-embedding tasks.
 
 
 ```python
@@ -680,15 +686,15 @@ print_article_text(corpus, ids_count_map, similar_article_ids_)
     ------------------------------
 
 
-### Evaluating recommender systems
+### Evaluating recommender models
 
-A relatively easy way to get a first-glimpse evaluation of a recommender system (whether content-based or user-interaction-based) is to 'manually' inspect the results, the way we've done already, above. In our use case - a news platform, for example, we could get someone from the editorial team to check if our recommended articles are similar enough to our context article.
+The gold standard for evaluating recommender models is to A/B test - launch the models, assign a fair amount of traffic to each, then see which one has a higher click-through-rate. But a **relatively easy way to get a first-glimpse evaluation** of a recommender model (whether content-based or user-interaction-based) is to **'manually' inspect the results**, the way we've already done above. In our use case - a news platform, for example, we could get someone from the editorial team to check if our recommended articles are similar enough to our context article.
 
-But the gold standard for evaluation is A/B testing. In our case, below, where we want to see which of two collaborative filtering (user-interaction-based) models performs better, we A/B test by launching the models, assigning a fair amount of traffic to each, then basically seeing which one has a higher click-through-rate. 
+Manual evaluation provides a sense of the relevance and interpretability of the recommendations. But manual evaluation remains subjective and not scalable. To get a more objective (and scalable) evaluation, we can compliment our manual evaluation by obtaining metrics - precision, recall, and rank. We use manual evaluation for both our content-based and interaction-based (collaborative-filtering) models, and run metrics on our interaction-based models.
 
 ## 2. Collaborative-filtering recommenders
 
-Below, we provide implementations of two collaborative filtering approaches to giving personalized recommendations to users, in lists titled "Recommendations for you," "Others also read," or "Personalized Recommendations." Our implementations address the cold-start problem, and deploy some basic evaluation metrics that will tell us which model performs better.
+Below, we provide implementations of two collaborative filtering approaches for giving personalized recommendations to users, in lists titled "Recommendations for you," "Others also read," or "Personalized Recommendations." Our implementations address the cold-start problem, and deploy some basic evaluation metrics that will tell us which model performs better.
 
 ### Generating user-item interactions
 
