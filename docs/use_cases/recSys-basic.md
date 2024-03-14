@@ -1438,6 +1438,8 @@ calculate_mrr(common_user_ids, recos_mf, k)
 
 Both precision-recall and MRR results indicate that, for our simulated dataset at least, the Similar Vectors approach gives better recommendations than the Matrix Factorization model. However, it's important to note that our models may perform differently with real-world data. 
 
+## In sum...
+
 In sum, we've implemented a RecSys that can handle the broad range of use cases encountered by any web platform that offers things to users. Our RecSys incorporates three different approaches to handle recommendations for users of all three (zero, low, and higher) activity level types, as well as content-based ("Similar articles") and personalized (interaction-based) strategies ("e.g., "Recommendations for you," etc.) amenable to different sections of your web platform.
 
 ```python
