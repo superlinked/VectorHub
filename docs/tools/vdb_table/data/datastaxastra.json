@@ -102,46 +102,6 @@
     "source_url": "https://docs.datastax.com/en/astra/astra-db-vector/integrations/llamaindex.html",
     "comment": "https://docs.datastax.com/en/astra/astra-db-vector/integrations/llamaindex.html"
   },
-  "langchain.js": {
-    "support": "full",
-    "source_url": "https://docs.datastax.com/en/astra/astra-db-vector/integrations/langchain-js.html",
-    "comment": "https://docs.datastax.com/en/astra/astra-db-vector/integrations/langchain-js.html"
-  },
-  "airbyte": {
-    "support": "full",
-    "source_url": "https://docs.datastax.com/en/astra/astra-db-vector/integrations/airbyte.html",
-    "comment": "https://docs.datastax.com/en/astra/astra-db-vector/integrations/airbyte.html"
-  },
-  "assistants_api": {
-    "support": "full",
-    "source_url": "https://docs.datastax.com/en/astra/astra-db-vector/api-reference/astra-assistants-api.html",
-    "comment": "https://docs.datastax.com/en/astra/astra-db-vector/api-reference/astra-assistants-api.html"
-  },
-  "cohere": {
-    "support": "full",
-    "source_url": "https://docs.datastax.com/en/astra/astra-db-vector/integrations/cohere.html",
-    "comment": "https://docs.datastax.com/en/astra/astra-db-vector/integrations/cohere.html"
-  },
-  "haystack": {
-    "support": "full",
-    "source_url": "https://docs.datastax.com/en/astra/astra-db-vector/integrations/haystack.html",
-    "comment": "https://docs.datastax.com/en/astra/astra-db-vector/integrations/haystack.html"
-  },
-  "lamaindex.ts": {
-    "support": "full",
-    "source_url": "https://docs.datastax.com/en/astra/astra-db-vector/integrations/llama-typescript.html",
-    "comment": "https://docs.datastax.com/en/astra/astra-db-vector/integrations/llama-typescript.html"
-  },
-  "unstructured.io": {
-    "support": "full",
-    "source_url": "https://docs.datastax.com/en/astra/astra-db-vector/integrations/unstructured-io.html",
-    "comment": "https://docs.datastax.com/en/astra/astra-db-vector/integrations/unstructured-io.html"
-  },
-  "vercel": {
-    "support": "full",
-    "source_url": "https://docs.datastax.com/en/astra/astra-db-vector/integrations/vercel.html",
-    "comment": "https://docs.datastax.com/en/astra/astra-db-vector/integrations/vercel.html"
-  },
   "managed_cloud": {
     "support": "full",
     "source_url": "https://www.datastax.com/products/datastax-astra",
@@ -161,11 +121,6 @@
     "support": "full",
     "source_url": "",
     "comment": ""
-  },
-  "multi_region": {
-    "support": "full",
-    "source_url": "https://www.datastax.com/blog/general-availability-multi-region-vector",
-    "comment": "Full support for multi-region vector"
   },
   "disk_index": {
     "support": "full",
