@@ -15,7 +15,7 @@ Below, we'll show how to build a very simple recommender system. The rationale f
 Accordingly, our example system, which suggests news articles to users, consists of two parts:
     
 1. a **content-based recommender** - the model identifies and recommends items similar to the context item. To motivate readers to read more content, we show them a list of recommendations, entited "Similar Articles."
-2. a **collaborative filtering (interaction-based) recommender** - based on the user's past interactions, this type of model first identifies users with an interaction history similar to the current user's, collects articles these similar users have interacted with, excluding articles the user's already seen, and recommends these articles as an "Others also read" or "Personalized Recommendations" list, indicating to the user that this list is personalized - generated specifically for them.
+2. a **collaborative filtering (interaction-based) recommender** - this type of model first identifies users with an interaction history similar to the current user's, collects articles these similar users have interacted with, excluding articles the user's already seen, and recommends these articles as an "Others also read" or "Personalized Recommendations" list, indicating to the user that this list is personalized - generated specifically for them.
 
 Let's get started.
 
