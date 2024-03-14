@@ -4,16 +4,24 @@
 
 Recommender Systems are central to nearly every web platform offering things - movies, clothes, any kind of commodity - to users. Recommenders analyze patterns of user behavior to suggest items they might like but not necessarily discover on their own, items similar to what they or users similar to them have liked in the past. Personalized recommendation systems are reported to increase sales, boost user satisfaction, and improve engagment on a broad range of platforms, including, for example, Amazon, Netflix, and Spotify. Building one yourself may seem daunting. Where do you start? What are the necessary components?
 
-Below, we'll show how to build a very simple recommender system. Our example system suggests news articles to users, and consists of just two parts:
+Below, we'll show how to build a very simple recommender system. The rationale for our recommendation system reflects our general recipe for providing recommendations based on user-type (activity level):
+
+| interaction level | -> | recommendations |
+| ----------------- | -- | ---------------- |
+| no interactions (cold start) | -> | most popular items |
+| some interactions | -> | content-based items |
+| more interactions | -> | collaborative filtering (interaction-based) items |
+
+Accordingly, our example system, which suggests news articles to users, consists of two parts:
     
-    1. a content-based recommender - the model identifies and recommends items similar to the context item. To motivate readers to read more content, we show them a list of recommendations, entited "Similar Articles."
-    2. a collaborative-filtering recommender - based on the user's past interactions, the model first identifies users with an interaction history similar to the current user's, collects articles these similar users have interacted with, excluding articles the user's already seen, and recommends these articles as an "Others also read" or "Personalized Recommendations" list, indicating to the user that this list is specifically generated for them.
+1. a **content-based recommender** - the model identifies and recommends items similar to the context item. To motivate readers to read more content, we show them a list of recommendations, entited "Similar Articles."
+2. a **collaborative filtering (interaction-based) recommender** - based on the user's past interactions, this type of model first identifies users with an interaction history similar to the current user's, collects articles these similar users have interacted with, excluding articles the user's already seen, and recommends these articles as an "Others also read" or "Personalized Recommendations" list, indicating to the user that this list is personalized - generated specifically for them.
 
 Let's get started.
 
 ## Our RecSys build
 
-We build our recommenders using a news dataset, [downloadable here](https://www.kaggle.com/datasets/yazansalameh/news-category-dataset-v2). Down below, once we move on to the collaborative-filtering model, we'll link you to user-article interaction data. 
+We build our recommenders using a news dataset, [downloadable here](https://www.kaggle.com/datasets/yazansalameh/news-category-dataset-v2). Down below, once we move on to the collaborative filtering model, we'll link you to our user-article interaction data.
 
 But first, **let's set up and refine our dataset**.
 
@@ -202,7 +210,7 @@ print("Total number of categories : ", news_articles["category"].nunique())
 
 ## 1. Content-based recommender
 
-Next, we'll implement the first of our models: the content-based recommender. This recommender creates the same recommended list for all users, displayed under the title "Similar Articles."
+Next, we'll implement the first of our models: the content-based recommender. This recommender creates the same recommended list for all readers of a given article, displayed under the title "Similar Articles."
 
 To identify which news articles are similar to a given (or "context") article, we obtain embeddings of the text associated with all articles in our refined dataset. Once we have the embeddings, we use cosine similarity to retrieve the most similar articles. We use a model from the Sentence Transformers family that is often used for text-embedding tasks.
 
@@ -594,7 +602,7 @@ similar_articles
 
 
 
-Next, we map the article ids to count ids. This lets us index articles in corpus by their count ids.
+Next, we map the article ids to count ids. This lets us index articles in the corpus by their count ids.
 
 ```python
 similar_article_ids = [ids_count_map[id_] for id_ in similar_articles]
@@ -635,7 +643,7 @@ print_article_text(corpus, ids_count_map, similar_article_ids) # similar article
 
 Our context article (above) was about Donald Trump. Our recommended articles also mention Mr. Trump. And it makes intuitive sense that people who read the context article would also be interested in reading our recommendations.
 
-We now try to identify two different articles, and find articles similar/relevant to both. We do this using simple vector averaging before doing our cosine similarity search. We use articles from the Entertainment and Business sections.
+Our system should of course be able to handle scenarios where a user has read more than one article. We therefore test our content-based recommender model to see if it can identify two different context articles, and find articles similar/relevant to both. We do this using simple vector averaging before doing our cosine similarity search. We use articles from the Entertainment and Business sections.
 
 
 ```python
@@ -685,22 +693,23 @@ print_article_text(corpus, ids_count_map, similar_article_ids_)
     Will Ferrell And Molly Shannon Cover The Royal Wedding As 'Cord And Tish' They should cover everything.
     ------------------------------
 
+Our content-based model successfully provides articles relevant to both of the context articles.
 
 ### Evaluating recommender models
 
 The gold standard for evaluating recommender models is to A/B test - launch the models, assign a fair amount of traffic to each, then see which one has a higher click-through-rate. But a **relatively easy way to get a first-glimpse evaluation** of a recommender model (whether content-based or user-interaction-based) is to **'manually' inspect the results**, the way we've already done above. In our use case - a news platform, for example, we could get someone from the editorial team to check if our recommended articles are similar enough to our context article.
 
-Manual evaluation provides a sense of the relevance and interpretability of the recommendations. But manual evaluation remains subjective and not scalable. To get a more objective (and scalable) evaluation, we can compliment our manual evaluation by obtaining metrics - precision, recall, and rank. We use manual evaluation for both our content-based and interaction-based (collaborative-filtering) models, and run metrics on our interaction-based models.
+Manual evaluation provides a sense of the relevance and interpretability of the recommendations. But manual evaluation remains relatively subjective and not scalable. To get a more objective (and scalable) evaluation, we can compliment our manual evaluation by obtaining metrics - precision, recall, and rank. We use manual evaluation for both our content-based and collaborative filtering (interaction-based) models, and run metrics on the latter. Let's take a closer look at these collaborative filtering models.
 
-## 2. Collaborative-filtering recommenders
+## 2. Collaborative filtering recommenders
 
-Below, we provide implementations of two collaborative filtering approaches for giving personalized recommendations to users, in lists titled "Recommendations for you," "Others also read," or "Personalized Recommendations." Our implementations address the cold-start problem, and deploy some basic evaluation metrics that will tell us which model performs better.
+To be able to provide personalized article recommendations to our users, we need to use interaction-based models in our RecSys. Below, we provide implementations of two collaborative filtering approaches that can provide user-specific recommendations, in lists we title "Recommendations for you," "Others also read," or "Personalized Recommendations." Our implementations, called "Similar Vectors" and "Matrix Factorization," address the cold-start problem, and deploy some basic evaluation metrics - precision, recall, rank - that will tell us which model performs better.
 
-### Generating user-item interactions
+### Generating a user-item interaction dataset
 
-To keep things simple, we'll create a simulated user-article interaction dataset with the following assumptions:
+To keep things simple, we'll first create a simulated user-article interaction dataset with the following assumptions:
 
-Users have specific interests (e.g., "politics", "entertainment", "comedy"). Articles are already categorized, so we will simply 'match' users to their preferred category. We also assign a rating to the interaction: ratings ranging from 3 - 5 indicate a match between user interest and article category, ratings of 1 - 2 indicate no match. For our purposes, we'll filter out the low rating interactions.
+Users are randomly assigned specific interests (e.g., "politics", "entertainment", "comedy", "travel", etc.). Articles are already categorized according to "interest", so we will simply 'match' users to their preferred interest category. We also assign a rating to the interaction: ratings ranging from 3 - 5 indicate a match between user interest and article category, ratings of 1 - 2 indicate no match. For our purposes, we'll filter out the low rating interactions.
 
 
 ```python
@@ -787,7 +796,7 @@ print(interactions.shape)
 user_id = 74
 ```
 
-We see above that user_id 74 has an interest in "travel". Let's see if we have matched this user with relevant articles.
+user_id 74, for example, has been assigned an interest in "travel". Let's see if we've successfully matched this user with "travel" articles.
 
 
 ```python
@@ -870,19 +879,19 @@ set([news_articles.loc[id_]['category'] for id_ in specific_articles])
     {'TRAVEL'}
 
 
+Success! We see that user_id 74 has been matched with articles appropriate to their interest in "travel". Our user-interaction dataset appears to be effective in matching users with articles they would be interested in.
 
-We have successfully matched articles with this user's interest ("travel").
+### Training our interaction-based models
 
+Now that we've successfully created our user-interaction dataset, let's get into the details of our two collaborative filtering models. **To train them, we need to create training and test data**.
 
-Let's turn to our two collaborative filtering models. **To train our models, we need to create train and test data**.
+In our **first collaborative filtering model**, which we'll call "**Similar Vectors**," we use training data to create a vector for each user, populated by ratings they've given to news articles. Once we've created our user vectors, we can retrieve the most similar users via, for example, cosine similarity. And once similar users are identified, we can easily collect articles they've viewed that the context user hasn't yet seen.
 
-We will provide two models. For the **first model**, which we'll call "**Similar Vectors**," the training data will be used to create a vector for each user, populated by ratings given to news articles by all users. Once we've created our user vectors, we can retrieve the most similar users via, for example, cosine similarity. And once similar users are identified, we can easily collect articles they've viewed that the context user hasn't yet seen.
-
-The **second model** is a **Matrix Factorization** model presented in [this paper](http://yifanhu.net/PUB/cf.pdf), with an efficient implementation in `implicit` package available [here](https://github.com/benfred/implicit).
+Our **second collaborative filtering model** is a **Matrix Factorization** model, presented in [this paper](http://yifanhu.net/PUB/cf.pdf), with an efficient implementation in `implicit` package available [here](https://github.com/benfred/implicit).
 
 ### Cold-start problem
 
-Our two models can recommend items only to users that were part of training. Because new users start without any interactions, we have to recommend articles to them using a different strategy. One common solution is to present these users with a list of the most popular items.
+Recall the tiers of our general recipe for providing recommendations to particular user-types (based on their activity level). Our two collaborative filtering models can recommend items only to users that were part of training. And our content-based recommender can only recommend articles to users who have at least one interaction with content. Because new users start "cold" - without any platform activity, we have to recommend articles to them using a different strategy. One common solution to the cold start problem is to present these users with a list of the most popular items among all users.
 
 
 ```python
@@ -913,17 +922,11 @@ print_articles_from_list(most_popular_articles)
     Trump Considering 'Full Pardon' Of Late Boxing Champion Jack Johnson Johnson, the first black heavyweight champion, was arrested for driving his girlfriend across state lines.
     
 
-This cold start strategy is one tier of our more general recipe for providing recommendations to particular user-types (where user-type is determined by user activity on the platform):
-
-- no interactions -> most popular items
-- some interactions -> content-based items
-- more interactions -> collaborative filtering
-
-
-Before proceeding to training and testing, we need to split our interactions dataset into a training set and a test set.
+By suggesting Similar Articles, we hope to start moving cold start users to higher levels of platform activity, and expose them to our content-based and interaction-based recommendation approaches.
 
 ### Train-test split
 
+Before proceeding to training and testing of our collaborative filtering models, we need to split our interactions dataset into a training set and a test set.
 
 ```python
 train = interactions.head(20000)
@@ -931,7 +934,8 @@ test = interactions.tail(interactions.shape[0] - train.shape[0])
 ```
 
 ### Similar Vectors model
-Here's the code for our Similar Vectors model.
+
+With our interactions dataset split, we can set up our Similar Vectors model.
 
 ```python
 # function to recommend articles for a given user
@@ -986,6 +990,7 @@ recommended_articles_sv
     [5129, 5199, 4146, 5395, 1299]
 
 
+Next, let's set up our Matrix Factorization model.
 
 ### Matrix Factorization (MF)
 
@@ -1041,7 +1046,7 @@ def build_matrix(data, rating_col, users_map, items_map,
     )
 ```
 
-### MF model parameters
+**MF model parameters**
 
 The MF model has several parameters:
 
@@ -1273,10 +1278,13 @@ train.head()
 </div>
 
 
+Now that we have both our Similar Vectors and Matrix Factorization models set up, let's start evaluating them, first 'manually', and then using metrics - precision, recall, and rank.
 
-### 'Manual' evaluation
+### Evaluating our collaborative filtering models - manual, and metrics
 
-Below, we list the articles that the context user has actually read, and compare this list to the lists generated by our two models.
+**'Manual' evaluation**
+
+Below, we list the articles that the context user has actually read, and 'manually' compare this list to the lists generated by our two models.
 
 
 ```python
@@ -1334,12 +1342,11 @@ set([news_articles.loc[id_]['category'] for id_ in recommended_articles_mf])
 
 
 
-Evaluating manually, we can see (above) that both of our models recommend items that belong to the 'travel' category, which means that both models produce lists that are relevant. But to provide a more insightful evaluation of our models, we need to measure them numerically.
+Evaluating manually, we can see (above) that both of our models recommend items that belong to the 'travel' category, which means that both models produce lists that are relevant. This is a good intuitive start to evaluating our two interaction-based models. But to provide a more objective (and scalable) evaluation of our models, we need a quantitative measure.
 
-### Evaluation Metrics
+**Evaluation metrics**
 
-Another, probably more effective way to ascertain the quality of a recommender is to measure values such as precision and recall. These metrics evaluate recommendation relevancy in two different ways. Precision measures the proportion of recommended items that are relevant, while recall assesses the proportion of relevant items that are recommended. High precision means that most of the recommended items are relevant, and high recall means that most of the relevant items are recommended. Let's perform such an evaluation, below.
-
+Measuring values such as precision and recall are good ways of complementing our manual evaluation of our recommendation system's quality. Precision and recall evaluate recommendation relevancy in two different ways. **Precision** measures the proportion of recommended items that are relevant, while **recall** assesses the proportion of relevant items that are recommended. High precision means that most of the recommended items are relevant, and high recall means that most of the relevant items are recommended. Let's perform such an evaluation of our models, below.
 
 ```python
 def precision_and_recall_at_k(train, test, recommended, k):
@@ -1379,7 +1386,7 @@ def precision_and_recall_at_k(train, test, recommended, k):
     return average_precision, average_recall
 ```
 
-We first extract a list of users which appear in both the training set and the test set, because - as discussed in the Cold-start section - our models can generate recommendations for only those users whose interactions the models have been trained on.
+We first extract a list of users who appear in both the training set and the test set, because - as we discussed in the "Cold Start" section - our models can generate recommendations for only those users whose interactions the models have been trained on.
 
 
 ```python
@@ -1436,7 +1443,7 @@ precision_and_recall_at_k(train, test, recos_mf, k=5)
 
 
 
-### Position-based metrics
+**Position-based metrics**
 
 Recall and precision consider only the **number** of items common to both the recommendations and the test set. We can obtain a more complete picture by also generating metrics - for example, Mean Reciprocal Rank (MRR) - that measure the **position (rank)** of relevant items. MRR can provide an indication of whether our model does a good job of recommending the most relevant items to users first.
 
@@ -1496,10 +1503,11 @@ calculate_mrr(common_user_ids, recos_mf, k)
     0.7596692111959288
 
 
-## Our results, for simulated data
+## Collaborative filter results, for simulated data
 
-Both precision-recall and MRR results indicate that for our simulated dataset the Similar Vectors approach gives better recommendations than the Matrix Factorization model. However, it's important to note that our models may perform differently with real-world data.
+Both precision-recall and MRR results indicate that, for our simulated dataset at least, the Similar Vectors approach gives better recommendations than the Matrix Factorization model. However, it's important to note that our models may perform differently with real-world data. 
 
+In sum, we've implemented a RecSys that can handle the broad range of use cases encountered by any web platform that offers things to users. Our RecSys incorporates three different approaches to handle recommendations for users of all three (zero, low, and higher) activity level types, as well as content-based ("Similar articles") and personalized (interaction-based) strategies ("e.g., "Recommendations for you," etc.) amenable to different sections of your web platform.
 
 ```python
 
