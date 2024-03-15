@@ -1118,7 +1118,7 @@ calculate_mrr(common_user_ids, recos_mf, k)
     0.7596692111959288
 
 
-## Collaborative filter results, for simulated data
+## Collaborative filter results
 
 Both precision-recall and MRR results indicate that, for our simulated dataset at least, the Similar Vectors approach gives better recommendations than the Matrix Factorization model. However, it's important to note that our models may perform differently with real-world data. 
 
