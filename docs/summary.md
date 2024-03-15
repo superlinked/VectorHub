@@ -31,6 +31,7 @@
   - [Evaluating Retrieval Augmented Generation](use_cases/retrieval_augmented_generation_eval.md)
   - [A Real-time Retrieval System for Social Media Data](use_cases/social_media_retrieval.md)
   - [Optimizing RAG with Hybrid Search & Reranking](use_cases/hybrid_search_&_rerank_rag.md)
+  - [RecSys for Beginners](use_cases/recSys-basic.md)
 
 <!-- - [Toolbox](tools/readme.md)
 - [TestPage](tools/testpage.md) -->
