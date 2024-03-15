@@ -57,13 +57,13 @@ news_articles = pd.read_json("News_Category_Dataset_v2.json", lines = True)
 news_articles.head()
 ```
 
-|    | category      | headline                                            | authors        | link                                               | short_description                                  | date       |
-|---:|:--------------|:----------------------------------------------------|:---------------|:---------------------------------------------------|:---------------------------------------------------|:-----------|
-|  0 | CRIME         | There Were 2 Mass Shootings In Texas Last Week...  | Melissa Jeltsen| https://www.huffingtonpost.com/entry/t...  | She left her husband. He killed their children... | 2018-05-26 |
-|  1 | ENTERTAINMENT | Will Smith Joins Diplo And Nicky Jam For The 2...  | Andy McDonald  | https://www.huffingtonpost.com/entry/w...  | Of course it has a song.                          | 2018-05-26 |
-|  2 | ENTERTAINMENT | Hugh Grant Marries For The First Time At Age 57   | Ron Dicker     | https://www.huffingtonpost.com/entry/h...  | The actor and his longtime girlfriend Anna Ebe... | 2018-05-26 |
-|  3 | ENTERTAINMENT | Jim Carrey Blasts 'Castrato' Adam Schiff And D... | Ron Dicker     | https://www.huffingtonpost.com/entry/j...  | The actor gives Dems an ass-kicking for not fi... | 2018-05-26 |
-|  4 | ENTERTAINMENT | Julianna Margulies Uses Donald Trump Poop Bags... | Ron Dicker     | https://www.huffingtonpost.com/entry/j...  | The "Dietland" actress said using the bags is ... | 2018-05-26 |
+|    | category      | headline                                            | authors        | link                                                | short_description                                  | date       |
+|---:|:--------------|:----------------------------------------------------|:---------------|:----------------------------------------------------|:---------------------------------------------------|:-----------|
+|  0 | CRIME         | There Were 2 Mass Shootings In Texas Last Week...  | Melissa Jeltsen| `https://www.huffingtonpost.com/entry/t...`  | She left her husband. He killed their children... | 2018-05-26 |
+|  1 | ENTERTAINMENT | Will Smith Joins Diplo And Nicky Jam For The 2...  | Andy McDonald  | `https://www.huffingtonpost.com/entry/w...`  | Of course it has a song.                          | 2018-05-26 |
+|  2 | ENTERTAINMENT | Hugh Grant Marries For The First Time At Age 57   | Ron Dicker     | `https://www.huffingtonpost.com/entry/h...`  | The actor and his longtime girlfriend Anna Ebe... | 2018-05-26 |
+|  3 | ENTERTAINMENT | Jim Carrey Blasts 'Castrato' Adam Schiff And D... | Ron Dicker     | `https://www.huffingtonpost.com/entry/j...`  | The actor gives Dems an ass-kicking for not fi... | 2018-05-26 |
+|  4 | ENTERTAINMENT | Julianna Margulies Uses Donald Trump Poop Bags... | Ron Dicker     | `https://www.huffingtonpost.com/entry/j...`  | The "Dietland" actress said using the bags is ... | 2018-05-26 |
 
 
 <table border="1" class="dataframe">
