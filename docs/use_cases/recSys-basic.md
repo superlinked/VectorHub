@@ -2,11 +2,11 @@
 
 ## Why do we build Recommender Systems?
 
-Recommender Systems are central to nearly every web platform offering things - movies, clothes, any kind of commodity - to users. Recommenders analyze patterns of user behavior to suggest items they might like but not necessarily discover on their own, items similar to what they or users similar to them have liked in the past. Personalized recommendation systems are reported to increase sales, boost user satisfaction, and improve engagment on a broad range of platforms, including, for example, Amazon, Netflix, and Spotify. Building one yourself may seem daunting. Where do you start? What are the necessary components?
+Recommender Systems are central to nearly every web platform that offers things - movies, clothes, any kind of commodity - to users. Recommenders analyze patterns of user behavior to suggest items they might like but would not necessarily discover on their own, items similar to what they or users similar to them have liked in the past. Personalized recommendation systems are reported to increase sales, boost user satisfaction, and improve engagment on a broad range of platforms, including, for example, Amazon, Netflix, and Spotify. Building one yourself may seem daunting. Where do you start? What are the necessary components?
 
-Below, we'll show how to build a very simple recommender system. The rationale for our recommendation system reflects our general recipe for providing recommendations based on user-type (activity level):
+Below, we'll show you how to build a very simple recommender system. The rationale for our RecSys comes from our general recipe for providing recommendations, which is based on user-type (activity level):
 
-| interaction level | -> | recommendation approach |
+| **interaction level** | -> | **recommendation approach** |
 | ----------------- | -- | ---------------- |
 | no interactions (cold start) | -> | most popular items |
 | some interactions | -> | content-based items |
@@ -15,7 +15,7 @@ Below, we'll show how to build a very simple recommender system. The rationale f
 Our RecSys also lets you adopt use-case-specific strategies depending on whether a content- or interaction-based approach makes more sense. Our example system, which suggests news articles to users, therefore consists of two parts:
     
 1. a **content-based recommender** - the model identifies and recommends items similar to the context item. To motivate readers to read more content, we show them a list of recommendations, entited "Similar Articles."
-2. a **collaborative filtering (interaction-based) recommender** - this type of model first identifies users with an interaction history similar to the current user's, collects articles these similar users have interacted with, excluding articles the user's already seen, and recommends these articles as an "Others also read" or "Personalized Recommendations" list, indicating to the user that this list is personalized - generated specifically for them.
+2. a **collaborative filtering (interaction-based) recommender** - this type of model first identifies users with an interaction history similar to the current user's, collects articles these similar users have interacted with, excluding articles the user's already seen, and recommends these articles as an "Others also read" or "Personalized Recommendations" list. These titles tell the user that the list is personalized - generated specifically for them.
 
 Let's get started.
 
@@ -159,7 +159,7 @@ news_articles.shape
 
 By filtering out articles published on or before 2018-01-01, we've refined our article set down from around 200K to roughly 8.5K.
 
-Next, we remove news with short headlines (shorter than 7 words), and then drop duplicates based on headline.
+Next, we remove news articles with short headlines (shorter than 7 words), and then drop duplicates based on headline.
 
 
 ```python
@@ -198,9 +198,9 @@ print("Total number of categories : ", news_articles["category"].nunique())
 
 ## 1. Content-based recommender
 
-Next, we'll implement the first of our models: the content-based recommender. This recommender creates the same recommended list for all readers of a given article, displayed under the title "Similar Articles."
+Next, we implement the first of our models: the content-based recommender. This recommender creates the same recommended list for all readers of a given article, displayed under the title "Similar Articles."
 
-To identify which news articles are similar to a given (or "context") article, we obtain embeddings of the text associated with all articles in our refined dataset. Once we have the embeddings, we use cosine similarity to retrieve the most similar articles. We use a model from the Sentence Transformers family that is often used for text-embedding tasks.
+To identify which news articles are similar to a given (or "context") article, we obtain embeddings of the text associated with all articles in our refined dataset. Once we have the embeddings, we employ cosine similarity to retrieve the most similar articles. We use a model from the Sentence Transformers family that is often used for text-embedding tasks.
 
 
 ```python
@@ -451,7 +451,7 @@ articles_simple.head()
 
 
 
-For computational efficiency, we collect the first 500 articles. Feel free to experiment with a different subset or the full dataset.
+For computational efficiency, we collect the first 500 articles. Feel free to experiment with a different subset or the full dataset, whatever fits your use case.
 
 
 ```python
