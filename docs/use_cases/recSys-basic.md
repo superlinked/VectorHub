@@ -66,69 +66,6 @@ news_articles.head()
 |  4 | ENTERTAINMENT | Julianna Margulies Uses Donald Trump Poop Bags... | Ron Dicker     | `https://www.huffingtonpost.com/entry/j...`  | The "Dietland" actress said using the bags is ... | 2018-05-26 |
 
 
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>category</th>
-      <th>headline</th>
-      <th>authors</th>
-      <th>link</th>
-      <th>short_description</th>
-      <th>date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>CRIME</td>
-      <td>There Were 2 Mass Shootings In Texas Last Week...</td>
-      <td>Melissa Jeltsen</td>
-      <td>https://www.huffingtonpost.com/entry/texas-ama...</td>
-      <td>She left her husband. He killed their children...</td>
-      <td>2018-05-26</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>ENTERTAINMENT</td>
-      <td>Will Smith Joins Diplo And Nicky Jam For The 2...</td>
-      <td>Andy McDonald</td>
-      <td>https://www.huffingtonpost.com/entry/will-smit...</td>
-      <td>Of course it has a song.</td>
-      <td>2018-05-26</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>ENTERTAINMENT</td>
-      <td>Hugh Grant Marries For The First Time At Age 57</td>
-      <td>Ron Dicker</td>
-      <td>https://www.huffingtonpost.com/entry/hugh-gran...</td>
-      <td>The actor and his longtime girlfriend Anna Ebe...</td>
-      <td>2018-05-26</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>ENTERTAINMENT</td>
-      <td>Jim Carrey Blasts 'Castrato' Adam Schiff And D...</td>
-      <td>Ron Dicker</td>
-      <td>https://www.huffingtonpost.com/entry/jim-carre...</td>
-      <td>The actor gives Dems an ass-kicking for not fi...</td>
-      <td>2018-05-26</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>ENTERTAINMENT</td>
-      <td>Julianna Margulies Uses Donald Trump Poop Bags...</td>
-      <td>Ron Dicker</td>
-      <td>https://www.huffingtonpost.com/entry/julianna-...</td>
-      <td>The "Dietland" actress said using the bags is ...</td>
-      <td>2018-05-26</td>
-    </tr>
-  </tbody>
-</table>
-
-
-
 Using our dataset's columns, e.g., `category`, `headline`, `short_description`, `date`, we can extract only instances published after 2018-01-01.
 
 
@@ -238,72 +175,13 @@ news_articles.head()
 ```
 
     
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>category</th>
-      <th>headline</th>
-      <th>authors</th>
-      <th>link</th>
-      <th>short_description</th>
-      <th>date</th>
-      <th>headline_description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2932</th>
-      <td>QUEER VOICES</td>
-      <td>‘Will &amp; Grace’ Creator To Donate Gay Bunny Boo...</td>
-      <td>Elyse Wanshel</td>
-      <td>https://www.huffingtonpost.com/entry/will-grac...</td>
-      <td>It's about to be a lot easier for kids in Mike...</td>
-      <td>2018-04-02</td>
-      <td>‘Will &amp; Grace’ Creator To Donate Gay Bunny Boo...</td>
-    </tr>
-    <tr>
-      <th>4487</th>
-      <td>QUEER VOICES</td>
-      <td>‘The Voice’ Blind Auditions Make History With ...</td>
-      <td>Lyndsey Parker, Yahoo Entertainment</td>
-      <td>https://www.huffingtonpost.com/entry/the-voice...</td>
-      <td>Austin Giorgio, 21: “How Sweet It Is (To Be Lo...</td>
-      <td>2018-03-06</td>
-      <td>‘The Voice’ Blind Auditions Make History With ...</td>
-    </tr>
-    <tr>
-      <th>8255</th>
-      <td>QUEER VOICES</td>
-      <td>‘The Penumbra’ Is The Queer Audio Drama You Di...</td>
-      <td>Sarah Emily Baum, ContributorFreelance Writer</td>
-      <td>https://www.huffingtonpost.com/entry/the-penum...</td>
-      <td>Young, fun, fantastical and, most notably, inc...</td>
-      <td>2018-01-05</td>
-      <td>‘The Penumbra’ Is The Queer Audio Drama You Di...</td>
-    </tr>
-    <tr>
-      <th>744</th>
-      <td>COMEDY</td>
-      <td>‘The Opposition’ Gives Trump A Hot Lawyer Of H...</td>
-      <td>Ed Mazza</td>
-      <td>https://www.huffingtonpost.com/entry/trump-hot...</td>
-      <td>He's here to make a "strong case" for the pres...</td>
-      <td>2018-05-11</td>
-      <td>‘The Opposition’ Gives Trump A Hot Lawyer Of H...</td>
-    </tr>
-    <tr>
-      <th>2893</th>
-      <td>ENTERTAINMENT</td>
-      <td>‘Stranger Things’ Fans Will Be Able To Visit T...</td>
-      <td>Elyse Wanshel</td>
-      <td>https://www.huffingtonpost.com/entry/stranger-...</td>
-      <td>Hawkins is headed to Hollywood, Orlando and Si...</td>
-      <td>2018-04-03</td>
-      <td>‘Stranger Things’ Fans Will Be Able To Visit T...</td>
-    </tr>
-  </tbody>
-</table>
+|      | category      | headline                                            | authors                                             | link                                                | short_description                                  | date       | headline_description                               |
+|-----:|:--------------|:----------------------------------------------------|:----------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------|:-----------|:----------------------------------------------------|
+| 2932 | QUEER VOICES  | ‘Will & Grace’ Creator To Donate Gay Bunny Boo...   | Elyse Wanshel                                       | `https://www.huffingtonpost.com/entry/w...`        | It's about to be a lot easier for kids in Mike... | 2018-04-02 | ‘Will & Grace’ Creator To Donate Gay Bunny Boo...  |
+| 4487 | QUEER VOICES  | ‘The Voice’ Blind Auditions Make History With ...  | Lyndsey Parker, Yahoo Entertainment                 | `https://www.huffingtonpost.com/entry/t...`        | Austin Giorgio, 21: “How Sweet It Is (To Be Lo... | 2018-03-06 | ‘The Voice’ Blind Auditions Make History With ...  |
+| 8255 | QUEER VOICES  | ‘The Penumbra’ Is The Queer Audio Drama You Di...  | Sarah Emily Baum, ContributorFreelance Writer      | `https://www.huffingtonpost.com/entry/t...`        | Young, fun, fantastical and, most notably, inc... | 2018-01-05 | ‘The Penumbra’ Is The Queer Audio Drama You Di...  |
+|  744 | COMEDY        | ‘The Opposition’ Gives Trump A Hot Lawyer Of H...  | Ed Mazza                                            | `https://www.huffingtonpost.com/entry/t...`        | He's here to make a "strong case" for the pres... | 2018-05-11 | ‘The Opposition’ Gives Trump A Hot Lawyer Of H...  |
+| 2893 | ENTERTAINMENT | ‘Stranger Things’ Fans Will Be Able To Visit T...  | Elyse Wanshel                                       | `https://www.huffingtonpost.com/entry/s...`        | Hawkins is headed to Hollywood, Orlando and Si... | 2018-04-03 | ‘Stranger Things’ Fans Will Be Able To Visit T...  |
 
 
 We make index serve as article id, as follows:
@@ -315,78 +193,14 @@ news_articles.head()
 ```
 
 
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>category</th>
-      <th>headline</th>
-      <th>authors</th>
-      <th>link</th>
-      <th>short_description</th>
-      <th>date</th>
-      <th>headline_description</th>
-      <th>article_id</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2932</th>
-      <td>QUEER VOICES</td>
-      <td>‘Will &amp; Grace’ Creator To Donate Gay Bunny Boo...</td>
-      <td>Elyse Wanshel</td>
-      <td>https://www.huffingtonpost.com/entry/will-grac...</td>
-      <td>It's about to be a lot easier for kids in Mike...</td>
-      <td>2018-04-02</td>
-      <td>‘Will &amp; Grace’ Creator To Donate Gay Bunny Boo...</td>
-      <td>2932</td>
-    </tr>
-    <tr>
-      <th>4487</th>
-      <td>QUEER VOICES</td>
-      <td>‘The Voice’ Blind Auditions Make History With ...</td>
-      <td>Lyndsey Parker, Yahoo Entertainment</td>
-      <td>https://www.huffingtonpost.com/entry/the-voice...</td>
-      <td>Austin Giorgio, 21: “How Sweet It Is (To Be Lo...</td>
-      <td>2018-03-06</td>
-      <td>‘The Voice’ Blind Auditions Make History With ...</td>
-      <td>4487</td>
-    </tr>
-    <tr>
-      <th>8255</th>
-      <td>QUEER VOICES</td>
-      <td>‘The Penumbra’ Is The Queer Audio Drama You Di...</td>
-      <td>Sarah Emily Baum, ContributorFreelance Writer</td>
-      <td>https://www.huffingtonpost.com/entry/the-penum...</td>
-      <td>Young, fun, fantastical and, most notably, inc...</td>
-      <td>2018-01-05</td>
-      <td>‘The Penumbra’ Is The Queer Audio Drama You Di...</td>
-      <td>8255</td>
-    </tr>
-    <tr>
-      <th>744</th>
-      <td>COMEDY</td>
-      <td>‘The Opposition’ Gives Trump A Hot Lawyer Of H...</td>
-      <td>Ed Mazza</td>
-      <td>https://www.huffingtonpost.com/entry/trump-hot...</td>
-      <td>He's here to make a "strong case" for the pres...</td>
-      <td>2018-05-11</td>
-      <td>‘The Opposition’ Gives Trump A Hot Lawyer Of H...</td>
-      <td>744</td>
-    </tr>
-    <tr>
-      <th>2893</th>
-      <td>ENTERTAINMENT</td>
-      <td>‘Stranger Things’ Fans Will Be Able To Visit T...</td>
-      <td>Elyse Wanshel</td>
-      <td>https://www.huffingtonpost.com/entry/stranger-...</td>
-      <td>Hawkins is headed to Hollywood, Orlando and Si...</td>
-      <td>2018-04-03</td>
-      <td>‘Stranger Things’ Fans Will Be Able To Visit T...</td>
-      <td>2893</td>
-    </tr>
-  </tbody>
-</table>
+|      | category      | headline                                            | authors                                             | link                                                | short_description                                  | date       | headline_description                               | article_id |
+|-----:|:--------------|:----------------------------------------------------|:----------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------|:-----------|:----------------------------------------------------|------------|
+| 2932 | QUEER VOICES  | ‘Will & Grace’ Creator To Donate Gay Bunny Boo...   | Elyse Wanshel                                       | `https://www.huffingtonpost.com/entry/will-grac...` | It's about to be a lot easier for kids in Mike... | 2018-04-02 | ‘Will & Grace’ Creator To Donate Gay Bunny Boo...  | 2932       |
+| 4487 | QUEER VOICES  | ‘The Voice’ Blind Auditions Make History With ...  | Lyndsey Parker, Yahoo Entertainment                 | `https://www.huffingtonpost.com/entry/the-voice...` | Austin Giorgio, 21: “How Sweet It Is (To Be Lo... | 2018-03-06 | ‘The Voice’ Blind Auditions Make History With ...  | 4487       |
+| 8255 | QUEER VOICES  | ‘The Penumbra’ Is The Queer Audio Drama You Di...  | Sarah Emily Baum, ContributorFreelance Writer      | `https://www.huffingtonpost.com/entry/the-penum...` | Young, fun, fantastical and, most notably, inc... | 2018-01-05 | ‘The Penumbra’ Is The Queer Audio Drama You Di...  | 8255       |
+|  744 | COMEDY        | ‘The Opposition’ Gives Trump A Hot Lawyer Of H...  | Ed Mazza                                            | `https://www.huffingtonpost.com/entry/trump-hot...` | He's here to make a "strong case" for the pres... | 2018-05-11 | ‘The Opposition’ Gives Trump A Hot Lawyer Of H...  | 744        |
+| 2893 | ENTERTAINMENT | ‘Stranger Things’ Fans Will Be Able To Visit T...  | Elyse Wanshel                                       | `https://www.huffingtonpost.com/entry/stranger-...` | Hawkins is headed to Hollywood, Orlando and Si... | 2018-04-03 | ‘Stranger Things’ Fans Will Be Able To Visit T...  | 2893       |
+
 
 
 ```python
@@ -395,42 +209,13 @@ articles_simple.head()
 ```
 
 
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>article_id</th>
-      <th>headline_description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2932</th>
-      <td>2932</td>
-      <td>‘Will &amp; Grace’ Creator To Donate Gay Bunny Boo...</td>
-    </tr>
-    <tr>
-      <th>4487</th>
-      <td>4487</td>
-      <td>‘The Voice’ Blind Auditions Make History With ...</td>
-    </tr>
-    <tr>
-      <th>8255</th>
-      <td>8255</td>
-      <td>‘The Penumbra’ Is The Queer Audio Drama You Di...</td>
-    </tr>
-    <tr>
-      <th>744</th>
-      <td>744</td>
-      <td>‘The Opposition’ Gives Trump A Hot Lawyer Of H...</td>
-    </tr>
-    <tr>
-      <th>2893</th>
-      <td>2893</td>
-      <td>‘Stranger Things’ Fans Will Be Able To Visit T...</td>
-    </tr>
-  </tbody>
-</table>
+|      | article_id | headline_description                               |
+|-----:|------------|:----------------------------------------------------|
+| 2932 | 2932       | ‘Will & Grace’ Creator To Donate Gay Bunny Boo...  |
+| 4487 | 4487       | ‘The Voice’ Blind Auditions Make History With ... |
+| 8255 | 8255       | ‘The Penumbra’ Is The Queer Audio Drama You Di... |
+|  744 | 744        | ‘The Opposition’ Gives Trump A Hot Lawyer Of H... |
+| 2893 | 2893       | ‘Stranger Things’ Fans Will Be Able To Visit T...  |
 
 
 For computational efficiency, we collect the first 500 articles. Feel free to experiment with a different subset or the full dataset, whatever fits your use case.
@@ -1017,48 +802,13 @@ train.head()
 ```
 
 
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>user_id</th>
-      <th>article_id</th>
-      <th>rating</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>379822</th>
-      <td>127</td>
-      <td>1047</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>621877</th>
-      <td>208</td>
-      <td>57</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>857185</th>
-      <td>286</td>
-      <td>1958</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>894788</th>
-      <td>299</td>
-      <td>37</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>255164</th>
-      <td>86</td>
-      <td>8436</td>
-      <td>5</td>
-    </tr>
-  </tbody>
-</table>
+|      | user_id | article_id | rating |
+|-----:|---------|------------|--------|
+| 379822 | 127    | 1047       | 3      |
+| 621877 | 208    | 57         | 5      |
+| 857185 | 286    | 1958       | 5      |
+| 894788 | 299    | 37         | 5      |
+| 255164 | 86     | 8436       | 5      |
 
 
 ```python
@@ -1134,48 +884,13 @@ train.head()
 ```
 
     
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>user_id</th>
-      <th>article_id</th>
-      <th>rating</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>379822</th>
-      <td>127</td>
-      <td>1047</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>621877</th>
-      <td>208</td>
-      <td>57</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>857185</th>
-      <td>286</td>
-      <td>1958</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>894788</th>
-      <td>299</td>
-      <td>37</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>255164</th>
-      <td>86</td>
-      <td>8436</td>
-      <td>5</td>
-    </tr>
-  </tbody>
-</table>
+|      | user_id | article_id | rating |
+|-----:|--------:|-----------:|-------:|
+| 379822 | 127 | 1047 | 3 |
+| 621877 | 208 | 57 | 5 |
+| 857185 | 286 | 1958 | 5 |
+| 894788 | 299 | 37 | 5 |
+| 255164 | 86 | 8436 | 5 |
 
 
 Now that we have both our Similar Vectors and Matrix Factorization models set up, let's start evaluating them, first 'manually', and then using metrics - precision, recall, and rank.
