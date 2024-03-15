@@ -20,7 +20,8 @@
   },
   "dev_languages": {
     "value": [
-      "java"
+      "java",
+      "go"
     ],
     "source_url": "",
     "comment": ""
@@ -93,13 +94,13 @@
   },
   "langchain": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://docs.datastax.com/en/astra/astra-db-vector/integrations/langchain.html",
     "comment": ""
   },
   "llamaindex": {
     "support": "full",
-    "source_url": "",
-    "comment": ""
+    "source_url": "https://docs.datastax.com/en/astra/astra-db-vector/integrations/llamaindex.html",
+    "comment": "https://docs.datastax.com/en/astra/astra-db-vector/integrations/llamaindex.html"
   },
   "managed_cloud": {
     "support": "full",
@@ -123,8 +124,8 @@
   },
   "disk_index": {
     "support": "full",
-    "source_url": "https://cassandra.apache.org/doc/latest/cassandra/developing/cql/indexing/sai/sai-faq.html",
-    "comment": "SAI index"
+    "source_url": "https://docs.datastax.com/en/cql/astra/docs/developing/indexing/sai/sai-overview.html",
+    "comment": "Storage-Attached Index (SAI)"
   },
   "ephemeral": {
     "support": "full",
@@ -161,15 +162,15 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 66837,
+    "value": 70943,
     "source_url": "https://pypi.org/project/astrapy/",
     "comment": "",
-    "value_90_days": 39507
+    "value_90_days": 41628
   },
   "npm_downloads": {
-    "value": 0,
-    "source_url": "",
+    "value": 80857,
+    "source_url": "https://www.npmjs.com/package/@datastax/astra-db-ts",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 79953
   }
 }
