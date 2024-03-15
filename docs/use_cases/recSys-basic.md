@@ -58,10 +58,6 @@ news_articles.head()
 ```
 
 
-
-
-<div>
-
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -122,7 +118,6 @@ news_articles.head()
     </tr>
   </tbody>
 </table>
-</div>
 
 
 
