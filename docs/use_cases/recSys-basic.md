@@ -228,11 +228,6 @@ news_articles["headline_description"] = news_articles['headline'] + ' ' + news_a
 news_articles.head()
 ```
 
-
-
-
-<div>
-
     
 <table border="1" class="dataframe">
   <thead>
@@ -300,8 +295,6 @@ news_articles.head()
     </tr>
   </tbody>
 </table>
-</div>
-
 
 
 We make index serve as article id, as follows:
@@ -313,11 +306,6 @@ news_articles.head()
 ```
 
 
-
-
-<div>
-
-    
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -390,9 +378,6 @@ news_articles.head()
     </tr>
   </tbody>
 </table>
-</div>
-
-
 
 
 ```python
@@ -400,10 +385,6 @@ articles_simple = news_articles[['article_id', 'headline_description']]
 articles_simple.head()
 ```
 
-
-
-
-<div>
 
 <table border="1" class="dataframe">
   <thead>
@@ -441,8 +422,6 @@ articles_simple.head()
     </tr>
   </tbody>
 </table>
-</div>
-
 
 
 For computational efficiency, we collect the first 500 articles. Feel free to experiment with a different subset or the full dataset, whatever fits your use case.
@@ -1029,10 +1008,6 @@ train.head()
 ```
 
 
-
-
-<div>
-
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1075,9 +1050,6 @@ train.head()
     </tr>
   </tbody>
 </table>
-</div>
-
-
 
 
 ```python
@@ -1152,11 +1124,6 @@ recommended_articles_mf
 train.head()
 ```
 
-
-
-
-<div>
-
     
 <table border="1" class="dataframe">
   <thead>
@@ -1200,7 +1167,6 @@ train.head()
     </tr>
   </tbody>
 </table>
-</div>
 
 
 Now that we have both our Similar Vectors and Matrix Factorization models set up, let's start evaluating them, first 'manually', and then using metrics - precision, recall, and rank.
