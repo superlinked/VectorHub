@@ -957,11 +957,11 @@ set([news_articles.loc[id_]['category'] for id_ in recommended_articles_mf])
 
 
 
-Evaluating manually, we can see (above) that both of our models recommend items that belong to the 'travel' category, which means that both models produce lists that are relevant. This is a good intuitive start to evaluating our two interaction-based models. But to provide a more objective (and scalable) evaluation of our models, we need a quantitative measure.
+Evaluating manually, we can see (above) that both of our models recommend items that belong to the 'travel' category, which means that both models produce lists that are relevant. This is a good intuitive start to evaluating our two interaction-based models. But to provide a more objective (and scalable) evaluation of our models, we need some quantitative metrics.
 
 **Evaluation metrics**
 
-Measuring values such as precision and recall are good ways of complementing our manual evaluation of our recommendation system's quality. Precision and recall evaluate recommendation relevancy in two different ways. **Precision** measures the proportion of recommended items that are relevant, while **recall** assesses the proportion of relevant items that are recommended. High precision means that most of the recommended items are relevant, and high recall means that most of the relevant items are recommended. Let's perform such an evaluation of our models, below.
+Measuring values such as precision and recall are good ways to complement our manual evaluation of our recSys's quality. Precision and recall evaluate recommendation relevancy in two different ways. **Precision** measures the proportion of recommended items that are relevant, while **recall** assesses the proportion of relevant items that are recommended. High precision means that most of the recommended items are relevant, and high recall means that most of the relevant items are recommended. Let's perform such an evaluation of our models, below.
 
 ```python
 def precision_and_recall_at_k(train, test, recommended, k):
@@ -1064,7 +1064,7 @@ Recall and precision consider only the **number** of items common to both the re
 
 MRR is calculated as the average of the reciprocal ranks of the first correct answer for a set of queries or users. The reciprocal rank is the inverse of the rank at which the first relevant item appears; for example, if the first relevant item appears in the third position, the reciprocal rank is 1/3.
 
-MRR is particularly useful when the position of the first relevant recommendation is more consequential than the presence of other relevant items in the list. MRR quantifies how effective a system is at providing the most relevant result as early as possible in a recommendation list. High MRR values indicate a system that often ranks the most relevant items higher, thereby increasing the probability of user satisfaction in scenarios where users are likely to consider only the top few recommendations or answers.
+MRR is particularly useful when the position of the first relevant recommendation is more consequential than the presence of other relevant items in the list. It quantifies how effective a recSys is at providing the most relevant result as early as possible in a recommendation list. High MRR values indicate a system that often ranks the most relevant items higher, thereby increasing the probability of user satisfaction in scenarios where users are likely to consider only the top few recommendations or answers.
 
 
 ```python
@@ -1124,7 +1124,7 @@ Both precision-recall and MRR results indicate that, for our simulated dataset a
 
 ## In sum...
 
-In sum, we've implemented a RecSys that can handle the broad range of use cases encountered by any web platform that offers things to users. Our RecSys incorporates three different approaches to handle recommendations for users of all three (zero, low, and higher) activity level types, as well as content-based ("Similar articles") and personalized (interaction-based) strategies ("e.g., "Recommendations for you," etc.) amenable to different sections of your web platform.
+In sum, we've implemented a RecSys that can handle the broad range of use cases encountered by any web platform that recommends things to users. Our RecSys incorporates three different approaches to handle recommendations for users of all three (zero, low, and higher) activity level types, as well as content-based ("Similar articles") and personalized (interaction-based) strategies ("e.g., "Recommendations for you," etc.) amenable to different sections of your web platform.
 
 ```python
 
