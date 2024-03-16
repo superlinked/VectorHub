@@ -362,7 +362,7 @@ print_article_text(corpus, ids_count_map, similar_article_ids) # similar article
     ------------------------------
 
 
-Our context article (above) was about Donald Trump. Our recommended articles also mention Mr. Trump. And it makes intuitive sense that people who read the context article would also be interested in reading our recommendations.
+Our context article (above) was about Donald Trump. Our recommended articles also mention Mr. Trump. On a first glance evaluation of our content-based recommender looks good - it makes intuitive sense that people who read the context article would also be interested in reading our recommended articles.
 
 Our system should of course be able to handle scenarios where a user has read more than one article. We therefore test our content-based recommender model to see if it can identify two different context articles, and find articles similar/relevant to both. We do this using simple vector averaging before doing our cosine similarity search. We use articles from the Entertainment and Business sections.
 
