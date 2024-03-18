@@ -161,10 +161,10 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 20977,
+    "value": 20999,
     "source_url": "https://pypi.org/project/myscaledb-client/",
     "comment": "",
-    "value_90_days": 961
+    "value_90_days": 911
   },
   "npm_downloads": {
     "value": 0,

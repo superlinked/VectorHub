@@ -161,15 +161,15 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 4983,
+    "value": 5731,
     "source_url": "https://pypi.org/project/turbopuffer/",
     "comment": "",
-    "value_90_days": 4932
+    "value_90_days": 5159
   },
   "npm_downloads": {
-    "value": 939,
+    "value": 977,
     "source_url": "https://www.npmjs.com/package/turbopuffer-sdk",
     "comment": "",
-    "value_90_days": 831
+    "value_90_days": 717
   }
 }
