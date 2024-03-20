@@ -1126,6 +1126,7 @@ Both precision-recall and MRR results indicate that, for our simulated dataset a
 
 In sum, we've implemented a RecSys that can handle the broad range of use cases encountered by any web platform that recommends things to users. Our RecSys incorporates three different approaches to handle recommendations for users of all three (zero, low, and higher) activity level types, as well as content-based ("Similar articles") and personalized (interaction-based) strategies ("e.g., "Recommendations for you," etc.) amenable to different sections of your web platform.
 
-```python
+## Contributors
 
-```
+- [Mirza Klimenta, PhD](https://www.linkedin.com/in/mirza-klimenta/)
+- [Robert Turner, editor](https://robertturner.co/copyedit)
