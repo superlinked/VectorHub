@@ -659,4 +659,5 @@ Other critical aspects of scalably productionizing fall outside of the scope of 
 ## Contributors
 
 - [Pascal Biese, author](https://www.linkedin.com/in/pascalbiese/)
+- [Mór Kapronczay, contributor](https://www.linkedin.com/in/m%C3%B3r-kapronczay-49447692/)
 - [Robert Turner, editor](https://robertturner.co/copyedit/)
