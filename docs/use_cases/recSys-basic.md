@@ -1129,4 +1129,5 @@ In sum, we've implemented a RecSys that can handle the broad range of use cases 
 ## Contributors
 
 - [Dr. Mirza Klimenta](https://www.linkedin.com/in/mirza-klimenta/)
+- [Mór Kapronczay, contributor](https://www.linkedin.com/in/mór-kapronczay-49447692)
 - [Robert Turner, editor](https://robertturner.co/copyedit)
