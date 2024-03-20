@@ -148,6 +148,11 @@
     "source_url": "",
     "comment": ""
   },
+  "int8_quantization": {
+    "support": "full",
+    "source_url": "https://www.elastic.co/blog/whats-new-elasticsearch-platform-8-12-0",
+    "comment": ""
+  },
   "github_stars": {
     "value": 67082,
     "source_url": "https://github.com/elastic/elasticsearch",

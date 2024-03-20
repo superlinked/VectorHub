@@ -149,6 +149,11 @@
     "source_url": "",
     "comment": ""
   },
+  "int8_quantization": {
+    "support": "partial",
+    "source_url": "https://milvus.io/docs/index.md#Indexes-supported-in-Milvus",
+    "comment": "via IVF_SQ8 index type"
+  },
   "github_stars": {
     "value": 26022,
     "source_url": "https://github.com/milvus-io/milvus",
