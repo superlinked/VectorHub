@@ -22,7 +22,8 @@ In the blog section, we collate examples of these use cases and case studies fro
 - [Real-time Socal Media Retrieval System](use_cases/social_media_retrieval.md)
 - [Evaluating Retrieval Augmented Generation - part 1](use_cases/retrieval_augmented_generation_eval.md)
 - [A Real-time Retrieval System for Social Media Data](https://superlinked.com/vectorhub/a-real-time-retrieval-system-for-social-media-data)
-- [Optimising RAG RAG with Hybrid Search & Rerank](https://superlinked.com/vectorhub/optimizing-rag-with-hybrid-search-and-reranking)
+- [Optimising RAG with Hybrid Search & Rerank](https://superlinked.com/vectorhub/optimizing-rag-with-hybrid-search-and-reranking)
+- [RecSys for Beginners](https://superlinked.com/vectorhub/recsys-for-beginners)
 
 
 We are always looking to expand our Use Cases and share the latest thinking. So if you've been working on something and would like to share your experiences with the community, you [get in touch and contribute](https://github.com/superlinked/VectorHub).
