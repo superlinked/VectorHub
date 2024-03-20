@@ -149,6 +149,11 @@
     "source_url": "",
     "comment": ""
   },
+  "int8_quantization": {
+    "support": "full",
+    "source_url": "https://docs.vespa.ai/en/reference/tensor.html#tensor-type-spec",
+    "comment": ""
+  },
   "github_stars": {
     "value": 5256,
     "source_url": "https://github.com/vespa-engine/vespa",
