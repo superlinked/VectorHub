@@ -148,6 +148,11 @@
     "source_url": "",
     "comment": ""
   },
+  "int8_quantization": {
+    "support": "partial",
+    "source_url": "https://qdrant.tech/articles/scalar-quantization/#scalar-quantization",
+    "comment": "via Scalar Quantization of index"
+  },
   "github_stars": {
     "value": 16817,
     "source_url": "https://github.com/qdrant/qdrant",

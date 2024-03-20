@@ -148,6 +148,11 @@
     "source_url": "https://opensearch.org/docs/2.0/search-plugins/knn/approximate-knn/",
     "comment": ""
   },
+  "int8_quantization": {
+    "support": "full",
+    "source_url": "https://opensearch.org/blog/byte-quantized-vectors-in-opensearch/",
+    "comment": ""
+  },
   "github_stars": {
     "value": 8417,
     "source_url": "https://github.com/opensearch-project/OpenSearch",
