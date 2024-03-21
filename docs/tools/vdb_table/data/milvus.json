@@ -33,7 +33,7 @@
     "comment": ""
   },
   "hybrid_search": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
@@ -48,12 +48,12 @@
     "comment": ""
   },
   "multi_vec": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "sparse_vectors": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
