@@ -34,7 +34,7 @@
   },
   "hybrid_search": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://milvus.io/docs/multi-vector-search.md",
     "comment": ""
   },
   "facets": {
@@ -49,17 +49,17 @@
   },
   "multi_vec": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://milvus.io/docs/multi-vector-search.md",
     "comment": ""
   },
   "sparse_vectors": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://milvus.io/docs/release_notes.md#Sparse-Vector-Beta",
     "comment": ""
   },
   "bm25": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://milvus.io/docs/embed-with-bm25.md",
     "comment": ""
   },
   "full_text": {
@@ -94,12 +94,12 @@
   },
   "langchain": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://milvus.io/docs/integrate_with_langchain.md",
     "comment": ""
   },
   "llamaindex": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://milvus.io/docs/integrate_with_llamaindex.md",
     "comment": ""
   },
   "managed_cloud": {
