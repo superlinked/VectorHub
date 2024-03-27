@@ -3,7 +3,7 @@
   "links": {
     "docs": "https://cratedb.com/solutions/vector-database",
     "github": "https://github.com/crate/crate",
-    "website": "http://www.cratedb.com/",
+    "website": "https://cratedb.com/",
     "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/98",
     "poc_github": "https://github.com/marijaselakovic",
     "slug": "cratedb"
@@ -25,12 +25,11 @@
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 3800,
   "vector_launch_year": 2023,
   "metadata_filter": {
     "support": "full",
-    "source_url": "https://cratedb.com/docs/crate/reference/en/5.5/general/builtins/scalar-functions.html",
-    "comment": "combine knn_match with other criteria"
+    "source_url": "https://cratedb.com/docs/crate/reference/en/latest/general/builtins/comparison-operators.html",
+    "comment": "Combine similarity search (knn_match) with any other filter criteria."
   },
   "hybrid_search": {
     "support": "",
@@ -39,18 +38,18 @@
   },
   "facets": {
     "support": "full",
-    "source_url": "https://cratedb.com/docs/crate/reference/en/5.5/general/builtins/aggregation.html",
+    "source_url": "https://cratedb.com/docs/crate/reference/en/latest/general/builtins/aggregation.html",
     "comment": ""
   },
   "geo_search": {
     "support": "full",
-    "source_url": "https://cratedb.com/docs/crate/reference/en/5.5/general/dql/geo.html",
+    "source_url": "https://cratedb.com/docs/crate/reference/en/latest/general/dql/geo.html",
     "comment": ""
   },
   "multi_vec": {
     "support": "full",
-    "source_url": "https://cratedb.com/docs/crate/reference/en/5.5/general/ddl/data-types.html",
-    "comment": "add more columns of type knn_vector"
+    "source_url": "https://cratedb.com/docs/crate/reference/en/latest/general/ddl/data-types.html",
+    "comment": "Multiple columns of type knn_vector can be added."
   },
   "sparse_vectors": {
     "support": "",
@@ -58,14 +57,14 @@
     "comment": ""
   },
   "bm25": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://cratedb.com/docs/crate/reference/en/latest/general/ddl/system-columns.html",
+    "comment": "CrateDB uses Lucene's BM25Similarity implementation, based on the widely-used Okapi BM25 algorithm."
   },
   "full_text": {
     "support": "full",
-    "source_url": "https://cratedb.com/docs/crate/reference/en/5.5/general/dql/fulltext.html",
-    "comment": "based on Apache Lucene"
+    "source_url": "https://cratedb.com/docs/crate/reference/en/latest/general/dql/fulltext.html",
+    "comment": "CrateDB exposes the majority of Apache Lucene's functions in SQL."
   },
   "embeddings_text": {
     "support": "",
@@ -119,13 +118,13 @@
   },
   "multi_tenancy": {
     "support": "full",
-    "source_url": "https://cratedb.com/docs/crate/reference/en/5.5/admin/privileges.html",
-    "comment": "via Schemas, Tables"
+    "source_url": "https://cratedb.com/docs/crate/reference/en/latest/admin/privileges.html",
+    "comment": "Role-based access control via Schemas and Tables/Views."
   },
   "disk_index": {
     "support": "full",
     "source_url": "https://cratedb.com/blog/guide-to-write-operations-in-cratedb",
-    "comment": "all tables and columns in CrateDB are stored in lucene indexes/segments on disk. \nhttps://cratedb.com/blog/guide-to-write-operations-in-cratedb"
+    "comment": "All tables and columns in CrateDB are stored in lucene indexes/segments on disk."
   },
   "ephemeral": {
     "support": "",
@@ -134,7 +133,7 @@
   },
   "sharding": {
     "support": "full",
-    "source_url": "https://cratedb.com/docs/crate/reference/en/5.5/general/ddl/sharding.html",
+    "source_url": "https://cratedb.com/docs/crate/reference/en/latest/general/ddl/sharding.html",
     "comment": ""
   },
   "doc_size": {
@@ -148,5 +147,29 @@
     "unlimited": false,
     "source_url": "",
     "comment": ""
+  },
+  "github_stars": {
+    "value": 3930,
+    "source_url": "https://github.com/crate/crate",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "docker_pulls": {
+    "value": 18425046,
+    "source_url": "https://hub.docker.com/_/crate",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "pypi_downloads": {
+    "value": 1205983,
+    "source_url": "https://pypi.org/project/crate/",
+    "comment": "",
+    "value_90_days": 82611
+  },
+  "npm_downloads": {
+    "value": 27117,
+    "source_url": "https://www.npmjs.com/package/node-crate",
+    "comment": "",
+    "value_90_days": 4241
   }
 }

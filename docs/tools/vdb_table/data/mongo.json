@@ -26,7 +26,6 @@
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 0,
   "vector_launch_year": 2023,
   "metadata_filter": {
     "support": "full",
@@ -145,9 +144,33 @@
     "comment": ""
   },
   "vector_dims": {
-    "value": 0,
+    "value": 4096,
     "unlimited": false,
     "source_url": "",
     "comment": ""
+  },
+  "github_stars": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "docker_pulls": {
+    "value": 4217883889,
+    "source_url": "https://hub.docker.com/_/mongo",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "pypi_downloads": {
+    "value": 37502,
+    "source_url": "https://pypi.org/project/mongodbatlas/",
+    "comment": "",
+    "value_90_days": 2444
+  },
+  "npm_downloads": {
+    "value": 330441,
+    "source_url": "https://www.npmjs.com/package/mongodb-atlas-api-client",
+    "comment": "",
+    "value_90_days": 100060
   }
 }
