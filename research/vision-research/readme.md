@@ -163,9 +163,9 @@ One option is using conda, but feel free to use pyenv, too.
 
 ## Share / load pre-computed artifacts
 
-Download the already computed caption embeddings - "artifacts/embeddings/text/", image embeddings -
-"artifacts/embeddings/image", image captions (computed with image captioning models) - 
-"artifacts/image_captions/", and experiment results - "artifacts/experiments/" from
+Download the already computed caption embeddings - "embeddings/text/", image embeddings -
+"embeddings/image", image captions (computed with image captioning models) - 
+"image_captions/", and experiment results - "experiments/" from
 [this Google Cloud Storage link](https://console.cloud.google.com/storage/browser/superlinked-vectorhub-vision-research-embeddings),
 and place them under the "./artifacts/" folder. Experiments can be run by utilizing the already
 computed embeddings and captions and the experiments can be visualized from the MLflow artifacts.
