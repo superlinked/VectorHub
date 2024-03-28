@@ -100,16 +100,16 @@ Without the reranker, the different chunking methods, with the exception of the 
 
 Here’s a tabular summary of our best performing methods for handling RAG Retrieval.
 
-| dataset | model | chunker | reranker | MRR | Recall@10 |
-| —------ | —------ | —------ | —------ | —------ | —------ |
-| all datasets | ColBERT v2 | SentenceSplitter | TinyBERT-L-2-v2 | ~ +8% | ~ +12% |
-| HotpotQA | ColBERT v2 | SentenceSplitter | TinyBERT-L-2-v2 | 0.3123 | 0.5051 |
-| HotpotQA | WhereIsAI/UAE-Large-V1 | SentenceSplitter | TinyBERT-L-2-v2 | 0.2953 | 0.4257 |
-| SQUAD | ColBERT v2 | SentenceSplitter | TinyBERT-L-2-v2 | 0.8711 | 0.9581 |
-| SQUAD | BAAI/bge-m3 | SentenceSplitter | TinyBERT-L-2-v2 | 0.8286 | 0.93 |
-| SQUAD | BAAI/bge-m3 | SentenceSplitter | none | 0.8063 | 0.93 |
-| QuAC | ColBERT v2 | SentenceSplitter | TinyBERT-L-2-v2 | 0.2207 | 0.3144 |
-| QuAC | BAAI/bge-large-en-v1.5 | SentenceSplitter | TinyBERT-L-2-v2 | 0.1975 | 0.2766 |
+| Dataset      | Model                 | Chunker          | Reranker        | MRR   | Recall@10 |
+| ------------ | --------------------- | ---------------- | --------------- | ----- | --------- |
+| All datasets | ColBERT v2            | SentenceSplitter | TinyBERT-L-2-v2 | ~ +8% | ~ +12%    |
+| HotpotQA     | ColBERT v2            | SentenceSplitter | TinyBERT-L-2-v2 | 0.3123| 0.5051    |
+| HotpotQA     | WhereIsAI/UAE-Large-V1| SentenceSplitter | TinyBERT-L-2-v2 | 0.2953| 0.4257    |
+| SQUAD        | ColBERT v2            | SentenceSplitter | TinyBERT-L-2-v2 | 0.8711| 0.9581    |
+| SQUAD        | BAAI/bge-m3           | SentenceSplitter | TinyBERT-L-2-v2 | 0.8286| 0.93      |
+| SQUAD        | BAAI/bge-m3           | SentenceSplitter | None            | 0.8063| 0.93      |
+| QuAC         | ColBERT v2            | SentenceSplitter | TinyBERT-L-2-v2 | 0.2207| 0.3144    |
+| QuAC         | BAAI/bge-large-en-v1.5| SentenceSplitter | TinyBERT-L-2-v2 | 0.1975| 0.2766    |
 
 Our best performing method for handling RAG Retrieval on all datasets was ColBERT v2 with SentenceSplitter and reranking with TinyBERT. 
 
