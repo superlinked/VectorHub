@@ -1,6 +1,5 @@
 - [Home](home.md)
 - [VDB Feature Matrix](tools/vdb_table/README.md)
-- [Image Research Embeddings](https://github.com/superlinked/VectorHub/tree/main/research/vision-research)
 - [Manifesto](manifesto.md)
 - [Subscribe](subscribe.md)
 
