@@ -2,7 +2,7 @@
 
 Choosing a RAG Retrieval method that suits your use case can be daunting. Are some methods better suited to specific tasks and types of datasets than others? Are there trade-offs between performance and resource requirements you need to be aware of? How do different chunking techniques, embedding models, and reranking interact to impact performance results? Evaluation can help answer these questions.
 
-To **evaluate the relative performance of several different, prominent chunking methods within the Retrieval component of a RAG system**, we looked at how they performed 1) on different leaderboard datasets, 2) using different parameters and embedding models, and 3) along several ranking metrics - MRR, NDCG@k, Recall@k, Precision@k, MAP@k and Hit-Rate, with k’s of 1, 3, 7 and 10.
+To **evaluate the relative performance of several different, prominent chunking methods within the Retrieval component of a RAG system**, we looked at how they performed 1) on different leaderboard datasets, 2) using different parameters and embedding models, and 3) along several ranking metrics - MRR, NDCG@k, Recall@k, Precision@k, MAP@k and Hit-Rate, with k’s of 1, 3, 7, and 10.
 
 Below, we present our datasets, chunking methods, embedding models, rerankers, and, finally, the outcomes of our research, within each dataset, and across all datasets.
 
