@@ -1,0 +1,1761 @@
+## --------------------------------- COCO Dataset ------------------------------------------
+## ------------------------------Caption Images BLIP----------------------------------------
+#
+#- mlflow: # mlflow logging will not happen here, only the experiment selection and caption computation
+#    experiment_name: CaptionImagesBlip
+#    model:
+#      image_captioning:
+#        model_name: Salesforce/blip-image-captioning-base
+#        batch_size: 128
+#        n_workers: 3
+#        save_captions: true
+#        file_name: captions.csv
+#        path_suffix: ''
+#
+## ------------------------------Embed Text----------------------------------------
+## ------------------------------Random Caption----------------------------------------
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: all-mpnet-base-v2_random_caption
+#    description: COCO text embedding based retrieval based on randomly selected caption
+#    tags:
+#      experiment: EmbedText
+#      dataset: COCO
+#      model: all-mpnet-base-v2
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    concatenate_captions: false
+#    drop_samples_with_one_class: false
+#    combine_train_val: true
+#    replace_captions: false
+#  model:
+#    sentence_transformer:
+#      model_name: all-mpnet-base-v2
+#      path_suffix: '_random_caption'
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: multi-qa-mpnet-base-dot-v1_random_caption
+#    description: COCO text embedding based retrieval based on randomly selected caption
+#    tags:
+#      experiment: EmbedText
+#      dataset: COCO
+#      model: multi-qa-mpnet-base-dot-v1
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    concatenate_captions: false
+#    drop_samples_with_one_class: false
+#    combine_train_val: true
+#    replace_captions: false
+#  model:
+#    sentence_transformer:
+#      model_name: multi-qa-mpnet-base-dot-v1
+#      path_suffix: '_random_caption'
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: all-distilroberta-v1_random_caption
+#    description: COCO text embedding based retrieval based on randomly selected caption
+#    tags:
+#      experiment: EmbedText
+#      dataset: COCO
+#      model: all-distilroberta-v1
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    concatenate_captions: false
+#    drop_samples_with_one_class: false
+#    combine_train_val: true
+#    replace_captions: false
+#  model:
+#    sentence_transformer:
+#      model_name: all-distilroberta-v1
+#      path_suffix: '_random_caption'
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: embaas/sentence-transformers-e5-large-v2_random_caption
+#    description: COCO text embedding based retrieval based on randomly selected caption
+#    tags:
+#      experiment: EmbedText
+#      dataset: COCO
+#      model: aembaas/sentence-transformers-e5-large-v2
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    concatenate_captions: false
+#    drop_samples_with_one_class: false
+#    combine_train_val: true
+#    replace_captions: false
+#  model:
+#    sentence_transformer:
+#      model_name: embaas/sentence-transformers-e5-large-v2
+#      path_suffix: '_random_caption'
+#
+## ------------------------------Concatenated Caption----------------------------------------
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: all-mpnet-base-v2_concat_captions
+#    description: COCO text embedding based retrieval based on concatenated captions
+#    tags:
+#      experiment: EmbedText
+#      dataset: COCO
+#      concat_captions: true
+#      model: all-mpnet-base-v2
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    concatenate_captions: true
+#    drop_samples_with_one_class: false
+#    combine_train_val: true
+#    replace_captions: false
+#  model:
+#    sentence_transformer:
+#      model_name: all-mpnet-base-v2
+#      path_suffix: '_concat_captions'
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: multi-qa-mpnet-base-dot-v1_concat_captions
+#    description: COCO text embedding based retrieval based on concatenated captions
+#    tags:
+#      experiment: EmbedText
+#      dataset: COCO
+#      concat_captions: true
+#      model: multi-qa-mpnet-base-dot-v1
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    concatenate_captions: true
+#    drop_samples_with_one_class: false
+#    combine_train_val: true
+#    replace_captions: false
+#  model:
+#    sentence_transformer:
+#      model_name: multi-qa-mpnet-base-dot-v1
+#      path_suffix: '_concat_captions'
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: all-distilroberta-v1_concat_captions
+#    description: COCO text embedding based retrieval based on concatenated captions
+#    tags:
+#      experiment: EmbedText
+#      dataset: COCO
+#      concat_captions: true
+#      model: all-distilroberta-v1
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    concatenate_captions: true
+#    drop_samples_with_one_class: false
+#    combine_train_val: true
+#    replace_captions: false
+#  model:
+#    sentence_transformer:
+#      model_name: all-distilroberta-v1
+#      path_suffix: '_concat_captions'
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: embaas/sentence-transformers-e5-large-v2_concat_captions
+#    description: COCO text embedding based retrieval based on concatenated captions
+#    tags:
+#      experiment: EmbedText
+#      dataset: COCO
+#      concat_captions: true
+#      model: embaas/sentence-transformers-e5-large-v2
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    concatenate_captions: true
+#    drop_samples_with_one_class: false
+#    combine_train_val: true
+#    replace_captions: false
+#  model:
+#    sentence_transformer:
+#      model_name: embaas/sentence-transformers-e5-large-v2
+#      path_suffix: '_concat_captions'
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: BAAI/bge-large-en-v1.5_concat_captions
+#    description: COCO text embedding based retrieval based on concatenated captions
+#    tags:
+#      experiment: EmbedText
+#      dataset: COCO
+#      concat_captions: true
+#      model: BAAI/bge-large-en-v1.5
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    concatenate_captions: true
+#    drop_samples_with_one_class: false
+#    combine_train_val: true
+#    replace_captions: false
+#  model:
+#    sentence_transformer:
+#      model_name: BAAI/bge-large-en-v1.5
+#      encode:
+#        batch_size: 512
+#      path_suffix: '_concat_captions'
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: Salesforce/blip-image-captioning-base
+#    description: COCO text embedding based retrieval based on concatenated captions
+#    tags:
+#      experiment: EmbedText
+#      dataset: COCO
+#      concat_captions: true
+#      model: Salesforce/blip-image-captioning-base
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    concatenate_captions: true
+#    drop_samples_with_one_class: false
+#    combine_train_val: true
+#    replace_captions: false
+#  model:
+#    sentence_transformer:
+#      model_name: Salesforce/blip-image-captioning-base
+#      encode:
+#        batch_size: 128
+#      path_suffix: '_concat_captions'
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: Salesforce/blip-image-captioning-large
+#    description: COCO text embedding based retrieval based on concatenated captions
+#    tags:
+#      experiment: EmbedText
+#      dataset: COCO
+#      concat_captions: true
+#      model: Salesforce/blip-image-captioning-large
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    concatenate_captions: true
+#    drop_samples_with_one_class: false
+#    combine_train_val: true
+#    replace_captions: false
+#  model:
+#    sentence_transformer:
+#      model_name: Salesforce/blip-image-captioning-large
+#      encode:
+#        batch_size: 128
+#      path_suffix: '_concat_captions'
+#
+## ------------------------------Blip Generated Caption----------------------------------------
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: all-mpnet-base-v2_blip-image-captioning-base
+#    description: COCO text embedding based retrieval based on generated caption
+#    tags:
+#      experiment: EmbedText
+#      dataset: COCO
+#      generated_caption: true
+#      model_1: all-mpnet-base-v2
+#      model_2: blip-image-captioning-base
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    drop_samples_with_one_class: false
+#    combine_train_val: true
+#    replace_captions: true
+#    generated_captions: Salesforce/blip-image-captioning-base/captions.csv
+#  model:
+#    sentence_transformer:
+#      model_name: all-mpnet-base-v2
+#      path_suffix: '_blip-image-captioning-base'
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: multi-qa-mpnet-base-dot-v1_blip-image-captioning-base
+#    description: COCO text embedding based retrieval based on generated caption
+#    tags:
+#      experiment: EmbedText
+#      dataset: COCO
+#      generated_caption: true
+#      model_1: multi-qa-mpnet-base-dot-v1
+#      model_2: blip-image-captioning-base
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    drop_samples_with_one_class: false
+#    combine_train_val: true
+#    replace_captions: true
+#    generated_captions: Salesforce/blip-image-captioning-base/captions.csv
+#  model:
+#    sentence_transformer:
+#      model_name: multi-qa-mpnet-base-dot-v1
+#      path_suffix: '_blip-image-captioning-base'
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: all-distilroberta-v1_blip-image-captioning-base
+#    description: COCO text embedding based retrieval based on generated caption
+#    tags:
+#      experiment: EmbedText
+#      dataset: COCO
+#      generated_caption: true
+#      model_1: all-distilroberta-v1
+#      model_2: blip-image-captioning-base
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    drop_samples_with_one_class: false
+#    combine_train_val: true
+#    replace_captions: true
+#    generated_captions: Salesforce/blip-image-captioning-base/captions.csv
+#  model:
+#    sentence_transformer:
+#      model_name: all-distilroberta-v1
+#      path_suffix: '_blip-image-captioning-base'
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: embaas/sentence-transformers-e5-large-v2_blip-image-captioning-base
+#    description: COCO text embedding based retrieval based on generated caption
+#    tags:
+#      experiment: EmbedText
+#      dataset: COCO
+#      generated_caption: true
+#      model_1: embaas/sentence-transformers-e5-large-v2
+#      model_2: blip-image-captioning-base
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    drop_samples_with_one_class: false
+#    combine_train_val: true
+#    replace_captions: true
+#    generated_captions: Salesforce/blip-image-captioning-base/captions.csv
+#  model:
+#    sentence_transformer:
+#      model_name: embaas/sentence-transformers-e5-large-v2
+#      path_suffix: '_blip-image-captioning-base'
+#
+## ------------------------------Embed Image----------------------------------------
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: tf_efficientnetv2_s.in21k_ft_in1k
+#    description: COCO image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: COCO
+#      model: tf_efficientnetv2_s.in21k_ft_in1k
+#      top_k: 10
+#  top_k: 10
+#  model:
+#    pytorch_image_model:
+#      model_name: tf_efficientnetv2_s.in21k_ft_in1k
+#      batch_size: 32
+#      n_workers: 6
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: tf_efficientnetv2_m.in1k
+#    description: COCO image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: COCO
+#      model: tf_efficientnetv2_m.in1k
+#      top_k: 10
+#  top_k: 10
+#  model:
+#    pytorch_image_model:
+#      model_name: tf_efficientnetv2_m.in1k
+#      batch_size: 32
+#      n_workers: 6
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: tf_efficientnetv2_l.in1k
+#    description: COCO image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: COCO
+#      model: tf_efficientnetv2_l.in1k
+#      top_k: 10
+#  top_k: 10
+#  model:
+#    pytorch_image_model:
+#      model_name: tf_efficientnetv2_l.in1k
+#      batch_size: 32
+#      n_workers: 6
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: vit_medium_patch16_gap_384.sw_in12k_ft_in1k
+#    description: COCO image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: COCO
+#      model: vit_medium_patch16_gap_384.sw_in12k_ft_in1k
+#      top_k: 10
+#  top_k: 10
+#  model:
+#    pytorch_image_model:
+#      model_name: vit_medium_patch16_gap_384.sw_in12k_ft_in1k
+#      batch_size: 32
+#      n_workers: 6
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: caformer_m36.sail_in22k_ft_in1k_384
+#    description: COCO image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: COCO
+#      model: caformer_m36.sail_in22k_ft_in1k_384
+#      top_k: 10
+#  top_k: 10
+#  model:
+#    pytorch_image_model:
+#      model_name: caformer_m36.sail_in22k_ft_in1k_384
+#      batch_size: 8
+#      n_workers: 10
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: caformer_s36.sail_in22k_ft_in1k_384
+#    description: COCO image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: COCO
+#      model: caformer_s36.sail_in22k_ft_in1k_384
+#      top_k: 10
+#  top_k: 10
+#  model:
+#    pytorch_image_model:
+#      model_name: caformer_s36.sail_in22k_ft_in1k_384
+#      batch_size: 16
+#      n_workers: 8
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: caformer_b36.sail_in22k_ft_in1k_384
+#    description: COCO image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: COCO
+#      model: caformer_b36.sail_in22k_ft_in1k_384
+#      top_k: 10
+#  top_k: 10
+#  model:
+#    pytorch_image_model:
+#      model_name: caformer_b36.sail_in22k_ft_in1k_384
+#      batch_size: 8
+#      n_workers: 10
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: convnextv2_large.fcmae_ft_in22k_in1k_384
+#    description: COCO image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: COCO
+#      model: convnextv2_large.fcmae_ft_in22k_in1k_384
+#      top_k: 10
+#  top_k: 10
+#  model:
+#    pytorch_image_model:
+#      model_name: convnextv2_large.fcmae_ft_in22k_in1k_384
+#      batch_size: 4
+#      n_workers: 10
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: convnext_base.clip_laion2b_augreg_ft_in12k_in1k_384
+#    description: COCO image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: COCO
+#      model: convnext_base.clip_laion2b_augreg_ft_in12k_in1k_384
+#      top_k: 10
+#  top_k: 10
+#  model:
+#    pytorch_image_model:
+#      model_name: convnext_base.clip_laion2b_augreg_ft_in12k_in1k_384
+#      batch_size: 4
+#      n_workers: 10
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: deit3_base_patch16_384.fb_in22k_ft_in1k
+#    description: COCO image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: COCO
+#      model: deit3_base_patch16_384.fb_in22k_ft_in1k
+#      top_k: 10
+#  top_k: 10
+#  model:
+#    pytorch_image_model:
+#      model_name: deit3_base_patch16_384.fb_in22k_ft_in1k
+#      batch_size: 16
+#      n_workers: 8
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: Salesforce/blip-image-captioning-base
+#    description: COCO image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: COCO
+#      model: Salesforce/blip-image-captioning-base
+#      top_k: 10
+#  top_k: 10
+#  model:
+#    pytorch_image_model:
+#      model_name: Salesforce/blip-image-captioning-base
+#      batch_size: 16
+#      n_workers: 8
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: Salesforce/blip-image-captioning-large
+#    description: COCO image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: COCO
+#      model: Salesforce/blip-image-captioning-large
+#      top_k: 10
+#  top_k: 10
+#  model:
+#    pytorch_image_model:
+#      model_name: Salesforce/blip-image-captioning-large
+#      batch_size: 4
+#      n_workers: 12
+#
+# ------------------------------Embed Text Image----------------------------------------
+#
+#- mlflow:
+#    experiment_name: EmbedTextImage
+#    run_name: all-mpnet-base-v2_concat_captions_tf_efficientnetv2_s.in21k_ft_in1k
+#    description: COCO concatenation of text and image embeddings based retrieval
+#    tags:
+#      experiment: EmbedTextImage
+#      dataset: COCO
+#      model_1: all-mpnet-base-v2
+#      model_2: tf_efficientnetv2_s.in21k_ft_in1k
+#      top_k: 10
+#  top_k: 10
+#  model:
+#    sentence_transformer:
+#      model_name: all-mpnet-base-v2
+#      path_suffix: '_concat_captions'
+#    pytorch_image_model:
+#      model_name: tf_efficientnetv2_s.in21k_ft_in1k
+#      batch_size: 32
+#      n_workers: 6
+#
+#- mlflow:
+#    experiment_name: EmbedTextImage
+#    run_name: all-distilroberta-v1_concat_captions_tf_efficientnetv2_s.in21k_ft_in1k
+#    description: COCO concatenation of text and image embeddings based retrieval
+#    tags:
+#      experiment: EmbedTextImage
+#      dataset: COCO
+#      model_1: all-distilroberta-v1
+#      model_2: tf_efficientnetv2_s.in21k_ft_in1k
+#      top_k: 10
+#  top_k: 10
+#  model:
+#    sentence_transformer:
+#      model_name: all-distilroberta-v1
+#      path_suffix: '_concat_captions'
+#    pytorch_image_model:
+#      model_name: tf_efficientnetv2_s.in21k_ft_in1k
+#      batch_size: 32
+#      n_workers: 6
+#
+#- mlflow:
+#    experiment_name: EmbedTextImage
+#    run_name: all-mpnet-base-v2_concat_captions_caformer_m36.sail_in22k_ft_in1k_384
+#    description: COCO concatenation of text and image embeddings based retrieval
+#    tags:
+#      experiment: EmbedTextImage
+#      dataset: COCO
+#      model_1: all-mpnet-base-v2
+#      model_2: caformer_m36.sail_in22k_ft_in1k_384
+#      top_k: 10
+#  top_k: 10
+#  model:
+#    sentence_transformer:
+#      model_name: all-mpnet-base-v2
+#      path_suffix: '_concat_captions'
+#    pytorch_image_model:
+#      model_name: caformer_m36.sail_in22k_ft_in1k_384
+#      batch_size: 32
+#      n_workers: 6
+#
+#- mlflow:
+#    experiment_name: EmbedTextImage
+#    run_name: all-distilroberta-v1_concat_captions_caformer_m36.sail_in22k_ft_in1k_384
+#    description: COCO concatenation of text and image embeddings based retrieval
+#    tags:
+#      experiment: EmbedTextImage
+#      dataset: COCO
+#      model_1: all-distilroberta-v1
+#      model_2: caformer_m36.sail_in22k_ft_in1k_384
+#      top_k: 10
+#  top_k: 10
+#  model:
+#    sentence_transformer:
+#      model_name: all-distilroberta-v1
+#      path_suffix: '_concat_captions'
+#    pytorch_image_model:
+#      model_name: caformer_m36.sail_in22k_ft_in1k_384
+#      batch_size: 32
+#      n_workers: 6
+#
+#- mlflow:
+#    experiment_name: EmbedTextImage
+#    run_name: Salesforce/blip-image-captioning-base
+#    description: COCO concatenation of text and image embeddings based retrieval
+#    tags:
+#      experiment: EmbedTextImage
+#      dataset: COCO
+#      model_1: Salesforce/blip-image-captioning-base
+#      model_2: Salesforce/blip-image-captioning-base
+#      top_k: 10
+#  top_k: 10
+#  model:
+#    sentence_transformer:
+#      model_name: Salesforce/blip-image-captioning-base
+#      path_suffix: '_concat_captions'
+#    pytorch_image_model:
+#      model_name: Salesforce/blip-image-captioning-base
+#
+#- mlflow:
+#    experiment_name: EmbedTextImage
+#    run_name: Salesforce/blip-image-captioning-large
+#    description: COCO concatenation of text and image embeddings based retrieval
+#    tags:
+#      experiment: EmbedTextImage
+#      dataset: COCO
+#      model_1: Salesforce/blip-image-captioning-large
+#      model_2: Salesforce/blip-image-captioning-large
+#      top_k: 10
+#  top_k: 10
+#  model:
+#    sentence_transformer:
+#      model_name: Salesforce/blip-image-captioning-large
+#      path_suffix: '_concat_captions'
+#    pytorch_image_model:
+#      model_name: Salesforce/blip-image-captioning-large
+#
+## ------------------------------MultiModal Vit Embed Image----------------------------------------
+#
+#- mlflow:
+#    experiment_name: MultiModalVitEmbedImage
+#    run_name: ViT-L-14_datacomp_xl_s13b_b90k
+#    description: COCO OpenClip image based retrieval
+#    tags:
+#      experiment: MultiModalVitEmbedImage
+#      dataset: COCO
+#      model: ViT-L-14_datacomp_xl_s13b_b90k
+#      top_k: 10
+#  top_k: 10
+#  model:
+#    open_clip:
+#      model_name: ViT-L-14
+#      pretrained: datacomp_xl_s13b_b90k
+#      batch_size: 32
+#      n_workers: 6
+#      path_suffix_image: ''
+#
+#- mlflow:
+#    experiment_name: MultiModalVitEmbedImage
+#    run_name: RN50_openai
+#    description: COCO OpenClip image based retrieval
+#    tags:
+#      experiment: MultiModalVitEmbedImage
+#      dataset: COCO
+#      model: RN50_openai
+#      top_k: 10
+#  top_k: 10
+#  model:
+#    open_clip:
+#      model_name: RN50
+#      pretrained: openai
+#      batch_size: 32
+#      n_workers: 6
+#      path_suffix_image: ''
+#
+#- mlflow:
+#    experiment_name: MultiModalVitEmbedImage
+#    run_name: ViT-L-14-quickgelu_metaclip_fullcc
+#    description: COCO OpenClip image based retrieval
+#    tags:
+#      experiment: MultiModalVitEmbedImage
+#      dataset: COCO
+#      model: ViT-L-14-quickgelu_metaclip_fullcc
+#      top_k: 10
+#  top_k: 10
+#  model:
+#    open_clip:
+#      model_name: ViT-L-14-quickgelu
+#      pretrained: metaclip_fullcc
+#      batch_size: 8
+#      n_workers: 6
+#      path_suffix_image: ''
+#
+## ------------------------------MultiModal Vit Embed Image Text----------------------------------------
+#
+#- mlflow:
+#    experiment_name: MultiModalVitEmbedImageText
+#    run_name: ViT-L-14_datacomp_xl_s13b_b90k
+#    description: COCO OpenClip image and text based retrieval
+#    tags:
+#      experiment: MultiModalVitEmbedImageText
+#      dataset: COCO
+#      model: ViT-L-14_datacomp_xl_s13b_b90k
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    concatenate_captions: true
+#    drop_samples_with_one_class: false
+#    combine_train_val: true
+#    replace_captions: false
+#  model:
+#    open_clip:
+#      model_name: ViT-L-14
+#      pretrained: datacomp_xl_s13b_b90k
+#      batch_size: 32
+#      n_workers: 6
+#      path_suffix_image: ''
+#      path_suffix_text: '_concat_captions'
+#
+#- mlflow:
+#    experiment_name: MultiModalVitEmbedImageText
+#    run_name: RN50_openai
+#    description: COCO OpenClip image and text based retrieval
+#    tags:
+#      experiment: MultiModalVitEmbedImageText
+#      dataset: COCO
+#      model: RN50_openai
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    concatenate_captions: true
+#    drop_samples_with_one_class: false
+#    combine_train_val: true
+#    replace_captions: false
+#  model:
+#    open_clip:
+#      model_name: RN50
+#      pretrained: openai
+#      batch_size: 32
+#      n_workers: 6
+#      path_suffix_image: ''
+#      path_suffix_text: '_concat_captions'
+#
+#- mlflow:
+#    experiment_name: MultiModalVitEmbedImageText
+#    run_name: ViT-L-14-quickgelu_metaclip_fullcc
+#    description: COCO OpenClip image and text based retrieval
+#    tags:
+#      experiment: MultiModalVitEmbedImageText
+#      dataset: COCO
+#      model: ViT-L-14-quickgelu_metaclip_fullcc
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    concatenate_captions: true
+#    drop_samples_with_one_class: false
+#    combine_train_val: true
+#    replace_captions: false
+#  model:
+#    open_clip:
+#      model_name: ViT-L-14-quickgelu
+#      pretrained: metaclip_fullcc
+#      batch_size: 32
+#      n_workers: 6
+#      path_suffix_image: ''
+#      path_suffix_text: '_concat_captions'
+#
+## ------------------------------MultiModal Vit Embed Image Text--------------------------------------
+#
+#- mlflow:
+#    experiment_name: ConcatSentenceTransformerOpenCLIP
+#    run_name: all-mpnet-base-v2_ViT-L-14_datacomp_xl_s13b_b90k
+#    description: COCO concatenation of Sentence Transformer and OpenCLIP embeddings
+#    tags:
+#      experiment: ConcatSentenceTransformerOpenCLIP
+#      dataset: COCO
+#      concat_captions: true
+#      model_1: all-mpnet-base-v2
+#      model_2: ViT-L-14_datacomp_xl_s13b_b90k
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    concatenate_captions: true
+#    drop_samples_with_one_class: false
+#    combine_train_val: true
+#    replace_captions: false
+#  model:
+#    sentence_transformer:
+#      model_name: all-mpnet-base-v2
+#      path_suffix: '_concat_captions'
+#    open_clip:
+#      model_name: ViT-L-14
+#      pretrained: datacomp_xl_s13b_b90k
+#      batch_size: 32
+#      n_workers: 8
+#      path_suffix_image: ''
+#
+#- mlflow:
+#    experiment_name: ConcatSentenceTransformerOpenCLIP
+#    run_name: all-mpnet-base-v2_ViT-L-14-quickgelu_metaclip_fullcc
+#    description: COCO concatenation of Sentence Transformer and OpenCLIP embeddings
+#    tags:
+#      experiment: ConcatSentenceTransformerOpenCLIP
+#      dataset: COCO
+#      concat_captions: true
+#      model_1: all-mpnet-base-v2
+#      model_2: ViT-L-14-quickgelu_metaclip_fullcc
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    concatenate_captions: true
+#    drop_samples_with_one_class: false
+#    combine_train_val: true
+#    replace_captions: false
+#  model:
+#    sentence_transformer:
+#      model_name: all-mpnet-base-v2
+#      path_suffix: '_concat_captions'
+#    open_clip:
+#      model_name: ViT-L-14-quickgelu
+#      pretrained: metaclip_fullcc
+#      batch_size: 32
+#      n_workers: 8
+#      path_suffix_image: ''
+#
+#- mlflow:
+#    experiment_name: ConcatSentenceTransformerOpenCLIP
+#    run_name: all-distilroberta-v1_ViT-L-14_datacomp_xl_s13b_b90k
+#    description: COCO concatenation of Sentence Transformer and OpenCLIP embeddings
+#    tags:
+#      experiment: ConcatSentenceTransformerOpenCLIP
+#      dataset: COCO
+#      concat_captions: true
+#      model_1: all-distilroberta-v1
+#      model_2: ViT-L-14_datacomp_xl_s13b_b90k
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    concatenate_captions: true
+#    drop_samples_with_one_class: false
+#    combine_train_val: true
+#    replace_captions: false
+#  model:
+#    sentence_transformer:
+#      model_name: all-distilroberta-v1
+#      path_suffix: '_concat_captions'
+#    open_clip:
+#      model_name: ViT-L-14
+#      pretrained: datacomp_xl_s13b_b90k
+#      batch_size: 32
+#      n_workers: 8
+#      path_suffix_image: ''
+#
+#- mlflow:
+#    experiment_name: ConcatSentenceTransformerOpenCLIP
+#    run_name: all-distilroberta-v1_ViT-L-14-quickgelu_metaclip_fullcc
+#    description: COCO concatenation of Sentence Transformer and OpenCLIP embeddings
+#    tags:
+#      experiment: ConcatSentenceTransformerOpenCLIP
+#      dataset: COCO
+#      concat_captions: true
+#      model_1: all-distilroberta-v1
+#      model_2: ViT-L-14-quickgelu_metaclip_fullcc
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    concatenate_captions: true
+#    drop_samples_with_one_class: false
+#    combine_train_val: true
+#    replace_captions: false
+#  model:
+#    sentence_transformer:
+#      model_name: all-distilroberta-v1
+#      path_suffix: '_concat_captions'
+#    open_clip:
+#      model_name: ViT-L-14-quickgelu
+#      pretrained: metaclip_fullcc
+#      batch_size: 32
+#      n_workers: 8
+#      path_suffix_image: ''
+#
+## ----------------------------- Open Images V7 Dataset -----------------------------------
+## set the appropriate preprocess file and the different embeddings paths before running this part
+## ------------------------------Caption Images BLIP----------------------------------------
+#
+#- mlflow: # mlflow logging will not happen here, only the experiment selection and caption computation
+#    experiment_name: CaptionImagesBlip
+#    model:
+#      image_captioning:
+#        model_name: Salesforce/blip-image-captioning-base
+#        batch_size: 128
+#        n_workers: 3
+#        save_captions: true
+#        file_name: captions.csv
+#        path_suffix: ''
+#
+## ------------------------------Embed Text------------------------------------------------
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: all-mpnet-base-v2
+#    description: Open Images V7 text embedding based retrieval
+#    tags:
+#      experiment: EmbedText
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: all-mpnet-base-v2
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    sentence_transformer:
+#      model_name: all-mpnet-base-v2
+#      path_suffix: ''
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: multi-qa-mpnet-base-dot-v1
+#    description: Open Images V7 text embedding based retrieval
+#    tags:
+#      experiment: EmbedText
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: all-mpnet-base-v2
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    sentence_transformer:
+#      model_name: multi-qa-mpnet-base-dot-v1
+#      path_suffix: ''
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: all-distilroberta-v1
+#    description: Open Images V7 text embedding based retrieval
+#    tags:
+#      experiment: EmbedText
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: all-mpnet-base-v2
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    sentence_transformer:
+#      model_name: all-distilroberta-v1
+#      path_suffix: ''
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: embaas/sentence-transformers-e5-large-v2
+#    description: Open Images V7 text embedding based retrieval
+#    tags:
+#      experiment: EmbedText
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: embaas/sentence-transformers-e5-large-v2
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    sentence_transformer:
+#      model_name: embaas/sentence-transformers-e5-large-v2
+#      path_suffix: ''
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: BAAI/bge-large-en-v1.5
+#    description: Open Images V7 text embedding based retrieval
+#    tags:
+#      experiment: EmbedText
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: BAAI/bge-large-en-v1.5
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    sentence_transformer:
+#      model_name: BAAI/bge-large-en-v1.5
+#      encode:
+#        batch_size: 512
+#      path_suffix: ''
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: Salesforce/blip-image-captioning-base
+#    description: Open Images V7 text embedding based retrieval
+#    tags:
+#      experiment: EmbedText
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: Salesforce/blip-image-captioning-base
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    sentence_transformer:
+#      model_name: Salesforce/blip-image-captioning-base
+#      encode:
+#        batch_size: 128
+#      path_suffix: ''
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: Salesforce/blip-image-captioning-large
+#    description: Open Images V7 text embedding based retrieval
+#    tags:
+#      experiment: EmbedText
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: Salesforce/blip-image-captioning-large
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    sentence_transformer:
+#      model_name: Salesforce/blip-image-captioning-large
+#      encode:
+#        batch_size: 128
+#      path_suffix: ''
+#
+## ------------------------------Blip Generated Caption--------------------------------------
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: all-mpnet-base-v2_blip-image-captioning-base
+#    description: Open Images V7 text embedding based retrieval based on generated caption
+#    tags:
+#      experiment: EmbedText
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      generated_caption: true
+#      model_1: all-mpnet-base-v2
+#      model_2: blip-image-captioning-base
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#    replace_captions: true
+#    generated_captions: Salesforce/blip-image-captioning-base/captions.csv
+#  model:
+#    sentence_transformer:
+#      model_name: all-mpnet-base-v2
+#      path_suffix: '_blip-image-captioning-base'
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: multi-qa-mpnet-base-dot-v1_blip-image-captioning-base
+#    description: Open Images V7 text embedding based retrieval based on generated caption
+#    tags:
+#      experiment: EmbedText
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      generated_caption: true
+#      model_1: multi-qa-mpnet-base-dot-v1
+#      model_2: blip-image-captioning-base
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#    replace_captions: true
+#    generated_captions: Salesforce/blip-image-captioning-base/captions.csv
+#  model:
+#    sentence_transformer:
+#      model_name: multi-qa-mpnet-base-dot-v1
+#      path_suffix: '_blip-image-captioning-base'
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: all-distilroberta-v1_blip-image-captioning-base
+#    description: Open Images V7 text embedding based retrieval based on generated caption
+#    tags:
+#      experiment: EmbedText
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      generated_caption: true
+#      model_1: all-distilroberta-v1
+#      model_2: blip-image-captioning-base
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#    replace_captions: true
+#    generated_captions: Salesforce/blip-image-captioning-base/captions.csv
+#  model:
+#    sentence_transformer:
+#      model_name: all-distilroberta-v1
+#      path_suffix: '_blip-image-captioning-base'
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: embaas/sentence-transformers-e5-large-v2_blip-image-captioning-base
+#    description: Open Images V7 text embedding based retrieval based on generated caption
+#    tags:
+#      experiment: EmbedText
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      generated_caption: true
+#      model_1: embaas/sentence-transformers-e5-large-v2
+#      model_2: blip-image-captioning-base
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#    replace_captions: true
+#    generated_captions: Salesforce/blip-image-captioning-base/captions.csv
+#  model:
+#    sentence_transformer:
+#      model_name: embaas/sentence-transformers-e5-large-v2
+#      path_suffix: '_blip-image-captioning-base'
+#
+#- mlflow:
+#    experiment_name: EmbedText
+#    run_name: BAAI/bge-large-en-v1.5_blip-image-captioning-base
+#    description: Open Images V7 text embedding based retrieval based on generated caption
+#    tags:
+#      experiment: EmbedText
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      generated_caption: true
+#      model_1: BAAI/bge-large-en-v1.5
+#      model_2: blip-image-captioning-base
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#    replace_captions: true
+#    generated_captions: Salesforce/blip-image-captioning-base/captions.csv
+#  model:
+#    sentence_transformer:
+#      model_name: BAAI/bge-large-en-v1.5
+#      encode:
+#        batch_size: 512
+#      path_suffix: '_blip-image-captioning-base'
+#
+## ------------------------------Embed Image----------------------------------------
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: tf_efficientnetv2_s.in21k_ft_in1k
+#    description: Open Images V7 image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: tf_efficientnetv2_s.in21k_ft_in1k
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    pytorch_image_model:
+#      model_name: tf_efficientnetv2_s.in21k_ft_in1k
+#      batch_size: 32
+#      n_workers: 6
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: tf_efficientnetv2_m.in1k
+#    description: Open Images V7 image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: tf_efficientnetv2_m.in1k
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    pytorch_image_model:
+#      model_name: tf_efficientnetv2_m.in1k
+#      batch_size: 16
+#      n_workers: 12
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: tf_efficientnetv2_l.in1k
+#    description: Open Images V7 image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: tf_efficientnetv2_l.in1k
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    pytorch_image_model:
+#      model_name: tf_efficientnetv2_l.in1k
+#      batch_size: 8
+#      n_workers: 12
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: vit_medium_patch16_gap_384.sw_in12k_ft_in1k
+#    description: Open Images V7 image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: vit_medium_patch16_gap_384.sw_in12k_ft_in1k
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    pytorch_image_model:
+#      model_name: vit_medium_patch16_gap_384.sw_in12k_ft_in1k
+#      batch_size: 16
+#      n_workers: 12
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: caformer_m36.sail_in22k_ft_in1k_384
+#    description: Open Images V7 image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: caformer_m36.sail_in22k_ft_in1k_384
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    pytorch_image_model:
+#      model_name: caformer_m36.sail_in22k_ft_in1k_384
+#      batch_size: 8
+#      n_workers: 12
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: caformer_s36.sail_in22k_ft_in1k_384
+#    description: Open Images V7 image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: caformer_s36.sail_in22k_ft_in1k_384
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    pytorch_image_model:
+#      model_name: caformer_s36.sail_in22k_ft_in1k_384
+#      batch_size: 8
+#      n_workers: 12
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: caformer_b36.sail_in22k_ft_in1k_384
+#    description: Open Images V7 image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: caformer_b36.sail_in22k_ft_in1k_384
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    pytorch_image_model:
+#      model_name: caformer_b36.sail_in22k_ft_in1k_384
+#      batch_size: 8
+#      n_workers: 12
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: convnextv2_large.fcmae_ft_in22k_in1k_384
+#    description: Open Images V7 image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: convnextv2_large.fcmae_ft_in22k_in1k_384
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    pytorch_image_model:
+#      model_name: convnextv2_large.fcmae_ft_in22k_in1k_384
+#      batch_size: 4
+#      n_workers: 12
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: convnext_base.clip_laion2b_augreg_ft_in12k_in1k_384
+#    description: Open Images V7 image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: convnext_base.clip_laion2b_augreg_ft_in12k_in1k_384
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    pytorch_image_model:
+#      model_name: convnext_base.clip_laion2b_augreg_ft_in12k_in1k_384
+#      batch_size: 4
+#      n_workers: 12
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: deit3_base_patch16_384.fb_in22k_ft_in1k
+#    description: Open Images V7 image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: deit3_base_patch16_384.fb_in22k_ft_in1k
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    pytorch_image_model:
+#      model_name: deit3_base_patch16_384.fb_in22k_ft_in1k
+#      batch_size: 16
+#      n_workers: 12
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: Salesforce/blip-image-captioning-base
+#    description: Open Images V7 image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: Salesforce/blip-image-captioning-base
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    pytorch_image_model:
+#      model_name: Salesforce/blip-image-captioning-base
+#      batch_size: 16
+#      n_workers: 12
+#
+#- mlflow:
+#    experiment_name: EmbedImage
+#    run_name: Salesforce/blip-image-captioning-large
+#    description: Open Images V7 image embedding based retrieval
+#    tags:
+#      experiment: EmbedImage
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: Salesforce/blip-image-captioning-large
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    pytorch_image_model:
+#      model_name: Salesforce/blip-image-captioning-large
+#      batch_size: 8
+#      n_workers: 12
+#
+## ------------------------------Embed Text Image----------------------------------------
+#
+#- mlflow:
+#    experiment_name: EmbedTextImage
+#    run_name: all-mpnet-base-v2_tf_efficientnetv2_s.in21k_ft_in1k
+#    description: Open Images V7 concatenation of text and image embeddings based retrieval
+#    tags:
+#      experiment: EmbedTextImage
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model_1: all-mpnet-base-v2
+#      model_2: tf_efficientnetv2_s.in21k_ft_in1k
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    sentence_transformer:
+#      model_name: all-mpnet-base-v2
+#      path_suffix: ''
+#    pytorch_image_model:
+#      model_name: tf_efficientnetv2_s.in21k_ft_in1k
+#      batch_size: 32
+#      n_workers: 6
+#
+#- mlflow:
+#    experiment_name: EmbedTextImage
+#    run_name: all-distilroberta-v1_tf_efficientnetv2_s.in21k_ft_in1k
+#    description: Open Images V7 concatenation of text and image embeddings based retrieval
+#    tags:
+#      experiment: EmbedTextImage
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model_1: all-distilroberta-v1
+#      model_2: tf_efficientnetv2_s.in21k_ft_in1k
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    sentence_transformer:
+#      model_name: all-distilroberta-v1
+#      path_suffix: ''
+#    pytorch_image_model:
+#      model_name: tf_efficientnetv2_s.in21k_ft_in1k
+#      batch_size: 32
+#      n_workers: 6
+#
+#- mlflow:
+#    experiment_name: EmbedTextImage
+#    run_name: all-mpnet-base-v2_caformer_m36.sail_in22k_ft_in1k_384
+#    description: Open Images V7 concatenation of text and image embeddings based retrieval
+#    tags:
+#      experiment: EmbedTextImage
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model_1: all-mpnet-base-v2
+#      model_2: caformer_m36.sail_in22k_ft_in1k_384
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    sentence_transformer:
+#      model_name: all-mpnet-base-v2
+#      path_suffix: ''
+#    pytorch_image_model:
+#      model_name: caformer_m36.sail_in22k_ft_in1k_384
+#      batch_size: 32
+#      n_workers: 6
+#
+#- mlflow:
+#    experiment_name: EmbedTextImage
+#    run_name: all-distilroberta-v1_caformer_m36.sail_in22k_ft_in1k_384
+#    description: Open Images V7 concatenation of text and image embeddings based retrieval
+#    tags:
+#      experiment: EmbedTextImage
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model_1: all-distilroberta-v1
+#      model_2: caformer_m36.sail_in22k_ft_in1k_384
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    sentence_transformer:
+#      model_name: all-distilroberta-v1
+#      path_suffix: ''
+#    pytorch_image_model:
+#      model_name: caformer_m36.sail_in22k_ft_in1k_384
+#      batch_size: 32
+#      n_workers: 6
+#
+#- mlflow:
+#    experiment_name: EmbedTextImage
+#    run_name: Salesforce/blip-image-captioning-base
+#    description: Open Images V7 concatenation of text and image embeddings based retrieval
+#    tags:
+#      experiment: EmbedTextImage
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model_1: Salesforce/blip-image-captioning-base
+#      model_2: Salesforce/blip-image-captioning-base
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    sentence_transformer:
+#      model_name: Salesforce/blip-image-captioning-base
+#      path_suffix: ''
+#    pytorch_image_model:
+#      model_name: Salesforce/blip-image-captioning-base
+#
+#- mlflow:
+#    experiment_name: EmbedTextImage
+#    run_name: Salesforce/blip-image-captioning-large
+#    description: Open Images V7 concatenation of text and image embeddings based retrieval
+#    tags:
+#      experiment: EmbedTextImage
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model_1: Salesforce/blip-image-captioning-large
+#      model_2: Salesforce/blip-image-captioning-large
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    sentence_transformer:
+#      model_name: Salesforce/blip-image-captioning-large
+#      path_suffix: ''
+#    pytorch_image_model:
+#      model_name: Salesforce/blip-image-captioning-large
+#
+## ------------------------------MultiModal Vit Embed Image----------------------------------------
+#
+#- mlflow:
+#    experiment_name: MultiModalVitEmbedImage
+#    run_name: ViT-L-14_datacomp_xl_s13b_b90k
+#    description: Open Images V7 OpenClip image based retrieval
+#    tags:
+#      experiment: MultiModalVitEmbedImage
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: ViT-L-14_datacomp_xl_s13b_b90k
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    open_clip:
+#      model_name: ViT-L-14
+#      pretrained: datacomp_xl_s13b_b90k
+#      batch_size: 32
+#      n_workers: 6
+#      path_suffix_image: ''
+#
+#- mlflow:
+#    experiment_name: MultiModalVitEmbedImage
+#    run_name: RN50_openai
+#    description: Open Images V7 OpenClip image based retrieval
+#    tags:
+#      experiment: MultiModalVitEmbedImage
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: RN50_openai
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    open_clip:
+#      model_name: RN50
+#      pretrained: openai
+#      batch_size: 32
+#      n_workers: 6
+#      path_suffix_image: ''
+#
+#- mlflow:
+#    experiment_name: MultiModalVitEmbedImage
+#    run_name: ViT-L-14-quickgelu_metaclip_fullcc
+#    description: Open Images V7 OpenClip image based retrieval
+#    tags:
+#      experiment: MultiModalVitEmbedImage
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: ViT-L-14-quickgelu_metaclip_fullcc
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    open_clip:
+#      model_name: ViT-L-14-quickgelu
+#      pretrained: metaclip_fullcc
+#      batch_size: 8
+#      n_workers: 6
+#      path_suffix_image: ''
+#
+## ------------------------------MultiModal Vit Embed Image Text----------------------------------------
+#
+#- mlflow:
+#    experiment_name: MultiModalVitEmbedImageText
+#    run_name: ViT-L-14_datacomp_xl_s13b_b90k
+#    description: Open Images V7 OpenClip image and text based retrieval
+#    tags:
+#      experiment: MultiModalVitEmbedImageText
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: ViT-L-14_datacomp_xl_s13b_b90k
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    open_clip:
+#      model_name: ViT-L-14
+#      pretrained: datacomp_xl_s13b_b90k
+#      batch_size: 32
+#      n_workers: 6
+#      path_suffix_image: ''
+#      path_suffix_text: ''
+#
+#- mlflow:
+#    experiment_name: MultiModalVitEmbedImageText
+#    run_name: RN50_openai
+#    description: Open Images V7 OpenClip image and text based retrieval
+#    tags:
+#      experiment: MultiModalVitEmbedImageText
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: RN50_openai
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    open_clip:
+#      model_name: RN50
+#      pretrained: openai
+#      batch_size: 32
+#      n_workers: 6
+#      path_suffix_image: ''
+#      path_suffix_text: ''
+#
+#- mlflow:
+#    experiment_name: MultiModalVitEmbedImageText
+#    run_name: ViT-L-14-quickgelu_metaclip_fullcc
+#    description: Open Images V7 OpenClip image and text based retrieval
+#    tags:
+#      experiment: MultiModalVitEmbedImageText
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model: ViT-L-14-quickgelu_metaclip_fullcc
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    open_clip:
+#      model_name: ViT-L-14-quickgelu
+#      pretrained: metaclip_fullcc
+#      batch_size: 32
+#      n_workers: 6
+#      path_suffix_image: ''
+#      path_suffix_text: ''
+#
+## ------------------------------MultiModal Vit Embed Image Text--------------------------------------
+#
+#- mlflow:
+#    experiment_name: ConcatSentenceTransformerOpenCLIP
+#    run_name: all-mpnet-base-v2_ViT-L-14_datacomp_xl_s13b_b90k
+#    description: Open Images V7 concatenation of Sentence Transformer and OpenCLIP embeddings
+#    tags:
+#      experiment: ConcatSentenceTransformerOpenCLIP
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model_1: all-mpnet-base-v2
+#      model_2: ViT-L-14_datacomp_xl_s13b_b90k
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    sentence_transformer:
+#      model_name: all-mpnet-base-v2
+#      path_suffix: ''
+#    open_clip:
+#      model_name: ViT-L-14
+#      pretrained: datacomp_xl_s13b_b90k
+#      batch_size: 32
+#      n_workers: 8
+#      path_suffix_image: ''
+#
+#- mlflow:
+#    experiment_name: ConcatSentenceTransformerOpenCLIP
+#    run_name: all-mpnet-base-v2_ViT-L-14-quickgelu_metaclip_fullcc
+#    description: Open Images V7 concatenation of Sentence Transformer and OpenCLIP embeddings
+#    tags:
+#      experiment: ConcatSentenceTransformerOpenCLIP
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model_1: all-mpnet-base-v2
+#      model_2: ViT-L-14-quickgelu_metaclip_fullcc
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    sentence_transformer:
+#      model_name: all-mpnet-base-v2
+#      path_suffix: ''
+#    open_clip:
+#      model_name: ViT-L-14-quickgelu
+#      pretrained: metaclip_fullcc
+#      batch_size: 32
+#      n_workers: 8
+#      path_suffix_image: ''
+#
+#- mlflow:
+#    experiment_name: ConcatSentenceTransformerOpenCLIP
+#    run_name: all-distilroberta-v1_ViT-L-14_datacomp_xl_s13b_b90k
+#    description: Open Images V7 concatenation of Sentence Transformer and OpenCLIP embeddings
+#    tags:
+#      experiment: ConcatSentenceTransformerOpenCLIP
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model_1: all-distilroberta-v1
+#      model_2: ViT-L-14_datacomp_xl_s13b_b90k
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    sentence_transformer:
+#      model_name: all-distilroberta-v1
+#      path_suffix: ''
+#    open_clip:
+#      model_name: ViT-L-14
+#      pretrained: datacomp_xl_s13b_b90k
+#      batch_size: 32
+#      n_workers: 8
+#      path_suffix_image: ''
+#
+#- mlflow:
+#    experiment_name: ConcatSentenceTransformerOpenCLIP
+#    run_name: all-distilroberta-v1_ViT-L-14-quickgelu_metaclip_fullcc
+#    description: Open Images V7 concatenation of Sentence Transformer and OpenCLIP embeddings
+#    tags:
+#      experiment: ConcatSentenceTransformerOpenCLIP
+#      dataset: OpenImagesV7
+#      remove_outliers: true
+#      model_1: all-distilroberta-v1
+#      model_2: ViT-L-14-quickgelu_metaclip_fullcc
+#      top_k: 10
+#  top_k: 10
+#  preprocess:
+#    remove_outliers: true
+#  model:
+#    sentence_transformer:
+#      model_name: all-distilroberta-v1
+#      path_suffix: ''
+#    open_clip:
+#      model_name: ViT-L-14-quickgelu
+#      pretrained: metaclip_fullcc
+#      batch_size: 32
+#      n_workers: 8
+#      path_suffix_image: ''

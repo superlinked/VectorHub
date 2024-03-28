@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/Projects/Superlinked/artifacts/experiments/881649966110335545/87fee477a1584ef5b1cf08e778b00b33/artifacts
+end_time: 1704461834788
+entry_point_name: ''
+experiment_id: '881649966110335545'
+lifecycle_stage: active
+run_id: 87fee477a1584ef5b1cf08e778b00b33
+run_name: vit_medium_patch16_gap_384.sw_in12k_ft_in1k
+run_uuid: 87fee477a1584ef5b1cf08e778b00b33
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1704461834733
+status: 3
+tags: []
+user_id: hkris

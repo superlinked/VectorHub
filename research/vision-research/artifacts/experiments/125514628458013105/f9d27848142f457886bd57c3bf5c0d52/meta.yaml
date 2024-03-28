@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/Projects/Superlinked/artifacts/experiments/125514628458013105/f9d27848142f457886bd57c3bf5c0d52/artifacts
+end_time: 1704558012022
+entry_point_name: ''
+experiment_id: '125514628458013105'
+lifecycle_stage: active
+run_id: f9d27848142f457886bd57c3bf5c0d52
+run_name: all-mpnet-base-v2_ViT-L-14_datacomp_xl_s13b_b90k
+run_uuid: f9d27848142f457886bd57c3bf5c0d52
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1704558011984
+status: 3
+tags: []
+user_id: hkris

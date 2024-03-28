@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/Projects/Superlinked/artifacts/experiments/995534458464332567/edebefebb3574ae7b64f98917a149489/artifacts
+end_time: 1702240724287
+entry_point_name: ''
+experiment_id: '995534458464332567'
+lifecycle_stage: active
+run_id: edebefebb3574ae7b64f98917a149489
+run_name: ViT-L-14-quickgelu_metaclip_fullcc
+run_uuid: edebefebb3574ae7b64f98917a149489
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1702240724246
+status: 3
+tags: []
+user_id: hkris

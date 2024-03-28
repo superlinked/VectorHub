@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/Projects/Superlinked/artifacts/experiments/328745028278130147/cc58ab1524e94d85891501c23d4f1de8/artifacts
+end_time: 1702237270307
+entry_point_name: ''
+experiment_id: '328745028278130147'
+lifecycle_stage: active
+run_id: cc58ab1524e94d85891501c23d4f1de8
+run_name: multi-qa-mpnet-base-dot-v1_random_caption
+run_uuid: cc58ab1524e94d85891501c23d4f1de8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1702237270269
+status: 3
+tags: []
+user_id: hkris

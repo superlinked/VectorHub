@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/Projects/Superlinked/artifacts/experiments/205508137205738529/a108f32d1f7c4ac5b835fc05e48db88d/artifacts
+end_time: 1704488479720
+entry_point_name: ''
+experiment_id: '205508137205738529'
+lifecycle_stage: active
+run_id: a108f32d1f7c4ac5b835fc05e48db88d
+run_name: RN50_openai
+run_uuid: a108f32d1f7c4ac5b835fc05e48db88d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1704488479682
+status: 3
+tags: []
+user_id: hkris

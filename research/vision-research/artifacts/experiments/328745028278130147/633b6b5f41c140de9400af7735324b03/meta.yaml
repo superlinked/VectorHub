@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/Projects/Superlinked/artifacts/experiments/328745028278130147/633b6b5f41c140de9400af7735324b03/artifacts
+end_time: 1704721165125
+entry_point_name: ''
+experiment_id: '328745028278130147'
+lifecycle_stage: active
+run_id: 633b6b5f41c140de9400af7735324b03
+run_name: embaas/sentence-transformers-e5-large-v2_blip-image-captioning-base
+run_uuid: 633b6b5f41c140de9400af7735324b03
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1704721165078
+status: 3
+tags: []
+user_id: hkris

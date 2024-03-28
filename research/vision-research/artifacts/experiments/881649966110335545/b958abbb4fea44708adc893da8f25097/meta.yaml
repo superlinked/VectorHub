@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/Projects/Superlinked/artifacts/experiments/881649966110335545/b958abbb4fea44708adc893da8f25097/artifacts
+end_time: 1704480427221
+entry_point_name: ''
+experiment_id: '881649966110335545'
+lifecycle_stage: active
+run_id: b958abbb4fea44708adc893da8f25097
+run_name: convnext_base.clip_laion2b_augreg_ft_in12k_in1k_384
+run_uuid: b958abbb4fea44708adc893da8f25097
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1704480427167
+status: 3
+tags: []
+user_id: hkris

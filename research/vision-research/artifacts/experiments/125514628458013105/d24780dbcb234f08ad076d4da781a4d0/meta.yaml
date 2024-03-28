@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/Projects/Superlinked/artifacts/experiments/125514628458013105/d24780dbcb234f08ad076d4da781a4d0/artifacts
+deleted_time: 1704557280833
+end_time: 1704556156885
+entry_point_name: ''
+experiment_id: '125514628458013105'
+lifecycle_stage: deleted
+run_id: d24780dbcb234f08ad076d4da781a4d0
+run_name: all-distilroberta-v1_ViT-L-14_datacomp_xl_s13b_b90k
+run_uuid: d24780dbcb234f08ad076d4da781a4d0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1704556156842
+status: 3
+tags: []
+user_id: hkris

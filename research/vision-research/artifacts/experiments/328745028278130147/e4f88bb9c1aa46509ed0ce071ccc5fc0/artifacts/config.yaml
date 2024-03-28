@@ -1,0 +1,46 @@
+experiments: ./artifacts/experiments/
+image_captions: ./artifacts/image_captions
+image_embeddings: ./artifacts/embeddings/image
+mlflow:
+  description: COCO text embedding based retrieval based on randomly selected caption
+  experiment_name: EmbedText
+  run_name: all-distilroberta-v1_random_caption
+  tags:
+    dataset: COCO
+    experiment: EmbedText
+    generated_caption: false
+    model: all-distilroberta-v1
+    top_k: 10
+model:
+  sentence_transformer:
+    encode:
+      batch_size: 2048
+      convert_to_numpy: true
+      show_progress_bar: true
+    model_name: all-distilroberta-v1
+    path_suffix: _random_caption
+    save_embeddings: true
+preprocess:
+  captions_train: captions_train2017.json
+  captions_valid: captions_val2017.json
+  combine_train_val: true
+  concatenate_captions: false
+  dir_annotations:
+  - annotations_trainval2017
+  - annotations
+  dir_train_images:
+  - train2017
+  dir_valid_images:
+  - val2017
+  - val2017
+  drop_samples_with_one_class: false
+  generated_captions: Salesforce/blip-image-captioning-base/captions.csv
+  instances_train: instances_train2017.json
+  instances_valid: instances_val2017.json
+  path_data:
+  - datasets
+  - coco2017
+  remove_duplicated_labels: true
+  replace_captions: false
+text_embeddings: ./artifacts/embeddings/text
+top_k: 10

@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/Projects/Superlinked/artifacts/experiments/881649966110335545/c33957217eab4102a14776d2ac43b84b/artifacts
+end_time: 1704452698009
+entry_point_name: ''
+experiment_id: '881649966110335545'
+lifecycle_stage: active
+run_id: c33957217eab4102a14776d2ac43b84b
+run_name: tf_efficientnetv2_s.in21k_ft_in1k
+run_uuid: c33957217eab4102a14776d2ac43b84b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1704452697947
+status: 3
+tags: []
+user_id: hkris

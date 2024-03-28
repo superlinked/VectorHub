@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/Projects/Superlinked/artifacts/experiments/881649966110335545/b71481aeb1dd4c00b45f80bf77b297d2/artifacts
+end_time: 1704807464153
+entry_point_name: ''
+experiment_id: '881649966110335545'
+lifecycle_stage: active
+run_id: b71481aeb1dd4c00b45f80bf77b297d2
+run_name: Salesforce/blip-image-captioning-base
+run_uuid: b71481aeb1dd4c00b45f80bf77b297d2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1704807464109
+status: 3
+tags: []
+user_id: hkris

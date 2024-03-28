@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/Projects/Superlinked/artifacts/experiments/328745028278130147/45dff629704541bcb77647014e063844/artifacts
+deleted_time: 1704441088422
+end_time: 1704440490698
+entry_point_name: ''
+experiment_id: '328745028278130147'
+lifecycle_stage: deleted
+run_id: 45dff629704541bcb77647014e063844
+run_name: multi-qa-mpnet-base-dot-v1
+run_uuid: 45dff629704541bcb77647014e063844
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1704440490658
+status: 3
+tags: []
+user_id: hkris

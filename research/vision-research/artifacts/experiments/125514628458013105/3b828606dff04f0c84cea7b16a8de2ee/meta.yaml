@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/Projects/Superlinked/artifacts/experiments/125514628458013105/3b828606dff04f0c84cea7b16a8de2ee/artifacts
+end_time: 1704558641390
+entry_point_name: ''
+experiment_id: '125514628458013105'
+lifecycle_stage: active
+run_id: 3b828606dff04f0c84cea7b16a8de2ee
+run_name: all-distilroberta-v1_ViT-L-14-quickgelu_metaclip_fullcc
+run_uuid: 3b828606dff04f0c84cea7b16a8de2ee
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1704558641346
+status: 3
+tags: []
+user_id: hkris

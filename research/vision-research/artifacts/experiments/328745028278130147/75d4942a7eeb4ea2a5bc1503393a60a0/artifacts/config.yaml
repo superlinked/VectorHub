@@ -1,0 +1,37 @@
+experiments: ./artifacts/experiments/
+image_captions: ./artifacts/image_captions/open_images_v7
+image_embeddings: ./artifacts/embeddings/open_images_v7/image
+mlflow:
+  description: Open Images V7 text embedding based retrieval based on generated caption
+  experiment_name: EmbedText
+  run_name: all-mpnet-base-v2_blip-image-captioning-base
+  tags:
+    dataset: OpenImagesV7
+    experiment: EmbedText
+    generated_caption: true
+    model: all-mpnet-base-v2
+    model_1: all-mpnet-base-v2
+    model_2: blip-image-captioning-base
+    remove_outliers: true
+    top_k: 10
+model:
+  sentence_transformer:
+    encode:
+      batch_size: 1024
+      convert_to_numpy: true
+      show_progress_bar: true
+    model_name: all-mpnet-base-v2
+    path_suffix: _blip-image-captioning-base
+    save_embeddings: true
+preprocess:
+  dataframe: open_images_v7.parquet
+  dir_images: train
+  generated_captions: Salesforce/blip-image-captioning-base/captions.csv
+  path_data:
+  - datasets
+  - open_images_v7
+  preprocessor: OpenImagesV7PreProcessor
+  remove_outliers: true
+  replace_captions: true
+text_embeddings: ./artifacts/embeddings/open_images_v7/text
+top_k: 10

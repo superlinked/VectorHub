@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/Projects/Superlinked/artifacts/experiments/732085581234239849/13f6c10da8694f70b278158f07dd7578/artifacts
+end_time: 1704484093997
+entry_point_name: ''
+experiment_id: '732085581234239849'
+lifecycle_stage: active
+run_id: 13f6c10da8694f70b278158f07dd7578
+run_name: all-distilroberta-v1_caformer_m36.sail_in22k_ft_in1k_384
+run_uuid: 13f6c10da8694f70b278158f07dd7578
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1704484093934
+status: 3
+tags: []
+user_id: hkris

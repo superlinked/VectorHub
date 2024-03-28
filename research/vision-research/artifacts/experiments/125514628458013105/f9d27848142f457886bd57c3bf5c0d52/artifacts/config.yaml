@@ -1,0 +1,43 @@
+experiments: ./artifacts/experiments/
+image_captions: ./artifacts/image_captions/open_images_v7
+image_embeddings: ./artifacts/embeddings/open_images_v7/image
+mlflow:
+  description: Open Images V7 concatenation of Sentence Transformer and OpenCLIP embeddings
+  experiment_name: ConcatSentenceTransformerOpenCLIP
+  run_name: all-mpnet-base-v2_ViT-L-14_datacomp_xl_s13b_b90k
+  tags:
+    dataset: OpenImagesV7
+    experiment: ConcatSentenceTransformerOpenCLIP
+    generated_caption: false
+    model: all-mpnet-base-v2
+    model_1: all-mpnet-base-v2
+    model_2: ViT-L-14_datacomp_xl_s13b_b90k
+    remove_outliers: true
+    top_k: 10
+model:
+  pytorch_image_model:
+    batch_size: 128
+    model_name: tf_efficientnetv2_s.in21k_ft_in1k
+    n_workers: 6
+    path_suffix: ''
+    save_embeddings: true
+  sentence_transformer:
+    encode:
+      batch_size: 1024
+      convert_to_numpy: true
+      show_progress_bar: true
+    model_name: all-mpnet-base-v2
+    path_suffix: ''
+    save_embeddings: true
+preprocess:
+  dataframe: open_images_v7.parquet
+  dir_images: train
+  generated_captions: Salesforce/blip-image-captioning-base/captions.csv
+  path_data:
+  - datasets
+  - open_images_v7
+  preprocessor: OpenImagesV7PreProcessor
+  remove_outliers: true
+  replace_captions: false
+text_embeddings: ./artifacts/embeddings/open_images_v7/text
+top_k: 10

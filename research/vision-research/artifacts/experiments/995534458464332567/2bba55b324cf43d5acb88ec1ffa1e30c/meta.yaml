@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/Projects/Superlinked/artifacts/experiments/995534458464332567/2bba55b324cf43d5acb88ec1ffa1e30c/artifacts
+end_time: 1702240357202
+entry_point_name: ''
+experiment_id: '995534458464332567'
+lifecycle_stage: active
+run_id: 2bba55b324cf43d5acb88ec1ffa1e30c
+run_name: ViT-L-14_datacomp_xl_s13b_b90k
+run_uuid: 2bba55b324cf43d5acb88ec1ffa1e30c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1702240357158
+status: 3
+tags: []
+user_id: hkris
