@@ -105,7 +105,7 @@ Here’s a tabular summary of our best performing methods for handling RAG Retri
 
 | Dataset      | Model                 | Chunker          | Reranker        | MRR   | Recall@10 |
 | ------------ | --------------------- | ---------------- | --------------- | ----- | --------- |
-| All datasets | ColBERT v2            | SentenceSplitter | TinyBERT-L-2-v2 | ~ +8% | ~ +12%    |
+| All datasets | ColBERT v2            | SentenceSplitter | TinyBERT-L-2-v2 | + 8%  | + 12%     |
 | HotpotQA     | ColBERT v2            | SentenceSplitter | TinyBERT-L-2-v2 | 0.3123| 0.5051    |
 | HotpotQA     | WhereIsAI/UAE-Large-V1| SentenceSplitter | TinyBERT-L-2-v2 | 0.2953| 0.4257    |
 | SQUAD        | ColBERT v2            | SentenceSplitter | TinyBERT-L-2-v2 | 0.8711| 0.9581    |
