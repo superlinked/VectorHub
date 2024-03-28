@@ -25,10 +25,10 @@
     "source_url": "",
     "comment": ""
   },
-  "vector_launch_year": 0,
+  "vector_launch_year": 2023,
   "metadata_filter": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://turbopuffer.com/docs/reference/query",
     "comment": ""
   },
   "hybrid_search": {
@@ -107,7 +107,7 @@
     "comment": ""
   },
   "pricing": {
-    "value": "$1/million vecs, $4/million queries https://turbopuffer.com",
+    "value": "$1/million vecs, $4/million queries",
     "source_url": "https://turbopuffer.com/",
     "comment": ""
   },
@@ -143,9 +143,9 @@
     "comment": ""
   },
   "vector_dims": {
-    "value": 1536,
+    "value": 10752,
     "unlimited": false,
-    "source_url": "",
+    "source_url": "https://turbopuffer.com/docs/get-started/limits",
     "comment": ""
   },
   "github_stars": {
@@ -168,7 +168,7 @@
   },
   "npm_downloads": {
     "value": 992,
-    "source_url": "https://www.npmjs.com/package/turbopuffer-sdk",
+    "source_url": "https://www.npmjs.com/package/@turbopuffer/turbopuffer",
     "comment": "",
     "value_90_days": 648
   }
