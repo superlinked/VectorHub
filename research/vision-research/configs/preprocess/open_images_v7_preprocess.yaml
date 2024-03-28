@@ -1,0 +1,16 @@
+preprocessor: OpenImagesV7PreProcessor
+
+path_data:
+  - datasets
+  - open_images_v7
+
+dir_images: train
+
+dataframe: open_images_v7.parquet
+
+# remove samples where the frequency of the label set is an outlier
+remove_outliers: true
+
+# replace captions with image model captions
+replace_captions: false
+generated_captions: Salesforce/blip-image-captioning-base/captions.csv
