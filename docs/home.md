@@ -43,6 +43,7 @@ Here are some examples from the community, more coming soon!
 
 Subscribe to be updated when new ones come out & check the blog section.
 
+- [03/28 - Vision Research Open-Source!](https://github.com/superlinked/VectorHub/tree/main/research/vision-research): We have open-sourced our research on multimodal embeddings for the retrieval and ranking of images. Access it and the embeddings via the link.
 - [03/20 - RecSys for Beginners](https://superlinked.com/vectorhub/recsys-for-beginners): How to build a recommendation engine using vector embeddings and collaborative filtering.
 - [03/04 - Optimising RAG with Hybrid Search & Rerank](https://superlinked.com/vectorhub/optimizing-rag-with-hybrid-search-and-reranking): Improve the performance of RAG and overcome some of the shortcomings of Semantic Search with Hybrid Search and Reranking.
 - [02/28 - A Real-time Retrieval System for Social Media Data](https://superlinked.com/vectorhub/a-real-time-retrieval-system-for-social-media-data): Step by step how to build and optimise a retrieval client for LinkedIn posts
