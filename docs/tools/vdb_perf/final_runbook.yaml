@@ -1,0 +1,16 @@
+operations:
+  - type: insert
+    id: 1
+    vector: [0.1, 0.2, 0.3]
+  - type: insert
+    id: 2
+    vector: [0.4, 0.5, 0.6]
+  - type: delete
+    id: 1
+  - type: search
+    query: [0.1, 0.2, 0.3]
+  - type: insert
+    id: 3
+    vector: [0.7, 0.8, 0.9]
+  - type: delete
+    id: 2
