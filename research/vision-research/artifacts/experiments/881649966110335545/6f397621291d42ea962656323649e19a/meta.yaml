@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/Projects/Superlinked/artifacts/experiments/881649966110335545/6f397621291d42ea962656323649e19a/artifacts
+end_time: 1704483257290
+entry_point_name: ''
+experiment_id: '881649966110335545'
+lifecycle_stage: active
+run_id: 6f397621291d42ea962656323649e19a
+run_name: deit3_base_patch16_384.fb_in22k_ft_in1k
+run_uuid: 6f397621291d42ea962656323649e19a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1704483257232
+status: 3
+tags: []
+user_id: hkris

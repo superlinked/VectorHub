@@ -1,0 +1,46 @@
+experiments: ./artifacts/experiments/
+image_captions: ./artifacts/image_captions
+image_embeddings: ./artifacts/embeddings/image
+mlflow:
+  description: COCO OpenClip image and text based retrieval
+  experiment_name: MultiModalVitEmbedImageText
+  run_name: ViT-L-14-quickgelu_metaclip_fullcc
+  tags:
+    dataset: COCO
+    experiment: MultiModalVitEmbedImageText
+    generated_caption: false
+    model: ViT-L-14-quickgelu_metaclip_fullcc
+    top_k: 10
+model:
+  open_clip:
+    batch_size: 32
+    model_name: ViT-L-14-quickgelu
+    n_workers: 6
+    path_suffix_image: ''
+    path_suffix_text: _concat_captions
+    pretrained: metaclip_fullcc
+    save_embeddings: true
+preprocess:
+  captions_train: captions_train2017.json
+  captions_valid: captions_val2017.json
+  combine_train_val: true
+  concatenate_captions: true
+  dir_annotations:
+  - annotations_trainval2017
+  - annotations
+  dir_train_images:
+  - train2017
+  dir_valid_images:
+  - val2017
+  - val2017
+  drop_samples_with_one_class: false
+  generated_captions: Salesforce/blip-image-captioning-base/captions.csv
+  instances_train: instances_train2017.json
+  instances_valid: instances_val2017.json
+  path_data:
+  - datasets
+  - coco2017
+  remove_duplicated_labels: true
+  replace_captions: false
+text_embeddings: ./artifacts/embeddings/text
+top_k: 10

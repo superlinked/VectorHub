@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/Projects/Superlinked/artifacts/experiments/881649966110335545/affc4a6f0a9c4ad5a72190772f7683aa/artifacts
+end_time: 1704477674367
+entry_point_name: ''
+experiment_id: '881649966110335545'
+lifecycle_stage: active
+run_id: affc4a6f0a9c4ad5a72190772f7683aa
+run_name: convnextv2_large.fcmae_ft_in22k_in1k_384
+run_uuid: affc4a6f0a9c4ad5a72190772f7683aa
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1704477674310
+status: 3
+tags: []
+user_id: hkris

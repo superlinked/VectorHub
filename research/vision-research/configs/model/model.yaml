@@ -1,0 +1,43 @@
+# https://www.sbert.net/docs/pretrained_models.html#sentence-embedding-models/
+sentence_transformer:
+  model_name: all-mpnet-base-v2
+  encode:
+    batch_size: 2048
+    show_progress_bar: true
+    convert_to_numpy: true
+  save_embeddings: true
+  # will be added to the model name if not ''
+  path_suffix: '_blip-image-captioning-base'
+  #path_suffix: ''
+
+# https://github.com/huggingface/pytorch-image-models/blob/main/results/results-imagenet-real.csv
+pytorch_image_model:
+  model_name: tf_efficientnetv2_s.in21k_ft_in1k
+  batch_size: 128
+  n_workers: 6
+  save_embeddings: true
+  # will be added to the model name if not ''
+  path_suffix: ''
+
+# https://huggingface.co/models?search=Salesforce/blip
+image_captioning:
+  model_name: Salesforce/blip-image-captioning-base
+  batch_size: 128
+  n_workers: 3
+  save_captions: true
+  file_name: captions.csv
+  path_suffix: ''
+
+
+# https://github.com/mlfoundations/open_clip/blob/main/docs/openclip_results.csv
+open_clip:
+  model_name: ViT-L-14
+  pretrained: datacomp_xl_s13b_b90k # check context length -> use random caption selection if needed
+  batch_size: 512
+  n_workers: 8
+  save_embeddings: true
+  # will be added to the model name if not ''
+  path_suffix_image: ''
+  path_suffix_text: '_concat_captions'
+
+

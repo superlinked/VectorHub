@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/Projects/Superlinked/artifacts/experiments/881649966110335545/17b9bd8a91fb45c99e382c69b58871b7/artifacts
+end_time: 1702238775208
+entry_point_name: ''
+experiment_id: '881649966110335545'
+lifecycle_stage: active
+run_id: 17b9bd8a91fb45c99e382c69b58871b7
+run_name: caformer_s36.sail_in22k_ft_in1k_384
+run_uuid: 17b9bd8a91fb45c99e382c69b58871b7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1702238775155
+status: 3
+tags: []
+user_id: hkris

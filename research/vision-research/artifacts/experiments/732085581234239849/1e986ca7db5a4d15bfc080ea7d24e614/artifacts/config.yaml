@@ -1,0 +1,54 @@
+experiments: ./artifacts/experiments/
+image_captions: ./artifacts/image_captions
+image_embeddings: ./artifacts/embeddings/image
+mlflow:
+  description: COCO concatenation of text and image embeddings based retrieval
+  experiment_name: EmbedTextImage
+  run_name: all-distilroberta-v1_concat_captions_tf_efficientnetv2_s.in21k_ft_in1k
+  tags:
+    dataset: COCO
+    experiment: EmbedTextImage
+    generated_caption: false
+    model: all-mpnet-base-v2
+    model_1: all-distilroberta-v1
+    model_2: tf_efficientnetv2_s.in21k_ft_in1k
+    top_k: 10
+model:
+  pytorch_image_model:
+    batch_size: 32
+    model_name: tf_efficientnetv2_s.in21k_ft_in1k
+    n_workers: 6
+    path_suffix: ''
+    save_embeddings: true
+  sentence_transformer:
+    encode:
+      batch_size: 2048
+      convert_to_numpy: true
+      show_progress_bar: true
+    model_name: all-distilroberta-v1
+    path_suffix: _concat_captions
+    save_embeddings: true
+preprocess:
+  captions_train: captions_train2017.json
+  captions_valid: captions_val2017.json
+  combine_train_val: true
+  concatenate_captions: true
+  dir_annotations:
+  - annotations_trainval2017
+  - annotations
+  dir_train_images:
+  - train2017
+  dir_valid_images:
+  - val2017
+  - val2017
+  drop_samples_with_one_class: false
+  generated_captions: Salesforce/blip-image-captioning-base/captions.csv
+  instances_train: instances_train2017.json
+  instances_valid: instances_val2017.json
+  path_data:
+  - datasets
+  - coco2017
+  remove_duplicated_labels: true
+  replace_captions: true
+text_embeddings: ./artifacts/embeddings/text
+top_k: 10

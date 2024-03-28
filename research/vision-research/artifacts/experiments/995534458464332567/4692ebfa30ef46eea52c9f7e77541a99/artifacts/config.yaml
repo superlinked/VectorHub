@@ -1,0 +1,35 @@
+experiments: ./artifacts/experiments/
+image_captions: ./artifacts/image_captions/open_images_v7
+image_embeddings: ./artifacts/embeddings/open_images_v7/image
+mlflow:
+  description: Open Images V7 OpenClip image and text based retrieval
+  experiment_name: MultiModalVitEmbedImageText
+  run_name: ViT-L-14_datacomp_xl_s13b_b90k
+  tags:
+    dataset: OpenImagesV7
+    experiment: MultiModalVitEmbedImageText
+    generated_caption: false
+    model: ViT-L-14_datacomp_xl_s13b_b90k
+    remove_outliers: true
+    top_k: 10
+model:
+  open_clip:
+    batch_size: 32
+    model_name: ViT-L-14
+    n_workers: 6
+    path_suffix_image: ''
+    path_suffix_text: ''
+    pretrained: datacomp_xl_s13b_b90k
+    save_embeddings: true
+preprocess:
+  dataframe: open_images_v7.parquet
+  dir_images: train
+  generated_captions: Salesforce/blip-image-captioning-base/captions.csv
+  path_data:
+  - datasets
+  - open_images_v7
+  preprocessor: OpenImagesV7PreProcessor
+  remove_outliers: true
+  replace_captions: false
+text_embeddings: ./artifacts/embeddings/open_images_v7/text
+top_k: 10

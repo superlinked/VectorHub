@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/Projects/Superlinked/artifacts/experiments/328745028278130147/e4f88bb9c1aa46509ed0ce071ccc5fc0/artifacts
+end_time: 1702237383893
+entry_point_name: ''
+experiment_id: '328745028278130147'
+lifecycle_stage: active
+run_id: e4f88bb9c1aa46509ed0ce071ccc5fc0
+run_name: all-distilroberta-v1_random_caption
+run_uuid: e4f88bb9c1aa46509ed0ce071ccc5fc0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1702237383847
+status: 3
+tags: []
+user_id: hkris

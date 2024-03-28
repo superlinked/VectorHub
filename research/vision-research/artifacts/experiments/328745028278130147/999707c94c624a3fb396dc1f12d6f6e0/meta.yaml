@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/Projects/Superlinked/artifacts/experiments/328745028278130147/999707c94c624a3fb396dc1f12d6f6e0/artifacts
+deleted_time: 1704441088417
+end_time: 1704440167695
+entry_point_name: ''
+experiment_id: '328745028278130147'
+lifecycle_stage: deleted
+run_id: 999707c94c624a3fb396dc1f12d6f6e0
+run_name: all-mpnet-base-v2
+run_uuid: 999707c94c624a3fb396dc1f12d6f6e0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1704440167655
+status: 3
+tags: []
+user_id: hkris

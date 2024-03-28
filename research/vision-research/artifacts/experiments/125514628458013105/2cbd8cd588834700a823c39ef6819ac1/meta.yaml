@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/Projects/Superlinked/artifacts/experiments/125514628458013105/2cbd8cd588834700a823c39ef6819ac1/artifacts
+deleted_time: 1704557280837
+end_time: 1704555954397
+entry_point_name: ''
+experiment_id: '125514628458013105'
+lifecycle_stage: deleted
+run_id: 2cbd8cd588834700a823c39ef6819ac1
+run_name: all-mpnet-base-v2_ViT-L-14-quickgelu_metaclip_fullcc
+run_uuid: 2cbd8cd588834700a823c39ef6819ac1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1704555954354
+status: 3
+tags: []
+user_id: hkris

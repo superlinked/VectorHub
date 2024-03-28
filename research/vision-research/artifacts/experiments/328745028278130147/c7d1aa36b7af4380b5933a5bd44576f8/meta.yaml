@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/Projects/Superlinked/artifacts/experiments/328745028278130147/c7d1aa36b7af4380b5933a5bd44576f8/artifacts
+end_time: 1702237500339
+entry_point_name: ''
+experiment_id: '328745028278130147'
+lifecycle_stage: active
+run_id: c7d1aa36b7af4380b5933a5bd44576f8
+run_name: all-mpnet-base-v2_concat_captions
+run_uuid: c7d1aa36b7af4380b5933a5bd44576f8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1702237500290
+status: 3
+tags: []
+user_id: hkris
