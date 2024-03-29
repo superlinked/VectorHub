@@ -9,12 +9,12 @@
     "slug": "myscale"
   },
   "oss": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "Publicly announced on X on 29 Mar 2024: https://twitter.com/MyScaleDB/status/1773720536297992359"
   },
   "license": {
-    "value": "Proprietary",
+    "value": "Apache-2.0",
     "source_url": "",
     "comment": ""
   },
