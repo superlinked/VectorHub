@@ -22,8 +22,20 @@
                         "name": "Vector Search",
                         "path": "vector_search",
                         "has_blogs": true
+                    },
+                    {
+                        "type": "folder",
+                        "name": "Data Sources",
+                        "path": "data_sources",
+                        "has_blogs": true
                     }
                 ]
+            },
+            {
+                "type": "folder",
+                "name": "Use Cases",
+                "path": "use_cases",
+                "has_blogs": true
             }
         ]
     }
