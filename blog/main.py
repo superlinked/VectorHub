@@ -93,15 +93,19 @@ def find_files_to_upload(items: list):
         folder_files = folder_path.glob(f"*.{extension}")
         for file in folder_files:
             if 'readme.md' not in str(file).lower():
-                files.append(str(file))
+                files.append({
+                    'path': str(file),
+                    'time': datetime.fromtimestamp(os.path.getmtime(file)).strftime("%Y-%m-%d")
+                })
 
     return files
 
 
-def build_blog_object(filepath: str) -> StrapiBlog:
+def build_blog_object(file_obj: dict) -> StrapiBlog:
+    filepath = file_obj['path']
     with open(filepath, 'r') as file:
         content = file.read()
-        blog = StrapiBlog(content, filepath, datetime.now().strftime("%Y-%m-%d"), StrapiBlogType.USECASE)
+        blog = StrapiBlog(content, filepath, file_obj['time'], StrapiBlogType.USECASE)
         return blog
 
 def upload_blog(blog: StrapiBlog):
