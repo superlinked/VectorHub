@@ -15,6 +15,7 @@ BASE_URL = os.getenv('STRAPI_URL', "")
 API_KEY = os.getenv('STRAPI_API_KEY', "")
 
 paths_to_search = []
+existing_slugs_discovered = {}
 
 headers = {
     'Authorization': f'Bearer {API_KEY}',
@@ -47,9 +48,26 @@ def load_items_from_json(directories: str) -> list:
         print(f"{directories} does not exist.")
         exit(1)
 
+
+def load_existing_blogs(page_num=1):
+    global existing_slugs_discovered
+    base_url = urljoin(BASE_URL, 'api/blogs')
+    search_url = base_url + f"?pagination[page]={page_num}"
+
+    session = requests.Session()
+
+    response = session.get(search_url, headers=headers)
+    if response.status_code == 200:
+        data = json.loads(response.text)['data']
+        if len(data) > 0:
+            for item in data:
+                existing_slugs_discovered[item['attributes']['slug_url']] = {'discovered': False, 'id': -1}
+            load_existing_blogs(page_num+1)
+
+
 def fetch_paths(node: Item, current_path=""):
     global paths_to_search
-    # Update the current path with the node's path
+    # Update the current path with dthe node's path
     current_path = f"{current_path}/{node.path}" if current_path else node.path
 
     # If the node has children, recurse on each child
@@ -58,9 +76,7 @@ def fetch_paths(node: Item, current_path=""):
     if node.children and len(node.children) > 0:
         for child in node.children:
             fetch_paths(child, current_path)
-    # else:
-        # If there are no children, print the current path
-        # print(current_path)
+
 
 def find_files_to_upload(items: list):
     global paths_to_search
@@ -86,19 +102,22 @@ def build_blog_object(filepath: str) -> StrapiBlog:
     with open(filepath, 'r') as file:
         content = file.read()
         blog = StrapiBlog(content, filepath, datetime.now().strftime("%Y-%m-%d"), StrapiBlogType.USECASE)
-        print(blog.get_slug())
         return blog
 
 def upload_blog(blog: StrapiBlog):
     base_url = urljoin(BASE_URL, 'api/blogs')
-    search_url = base_url + f"?filters[slug_url][$eq]={blog.get_slug()}"
+    slug = blog.get_slug()
+    search_url = base_url + f"?filters[slug_url][$eq]={slug}"
     session = requests.Session()
+
+    if slug in existing_slugs_discovered:
+        existing_slugs_discovered[slug]['discovered'] = True
 
     response = session.get(search_url, headers=headers)
 
     if response.status_code == 200:
         responses = json.loads(response.text)['data']
-
+        print(f'Uploading slug: {blog.get_slug()}')
         if len(responses) > 0:
             # Blog already exists at this slug
             id = json.loads(response.text)['data'][0]['id']
@@ -110,13 +129,37 @@ def upload_blog(blog: StrapiBlog):
             url = base_url
             create_response = session.post(url, headers=headers, data=json.dumps(blog.get_post_json()))
 
+        if create_response.status_code == 200:
+            if slug in existing_slugs_discovered:
+                create_response_text = json.loads(create_response.text)
+                existing_slugs_discovered[slug]['id'] = create_response_text['data']['id']
+
+def delete_old_blogs():
+    global existing_slugs_discovered
+
+    base_url = urljoin(BASE_URL, 'api/blogs')
+    session = requests.Session()
+
+    for slug in existing_slugs_discovered:
+        if not existing_slugs_discovered[slug]['discovered']:
+            print(f"Deleting slug: {slug}")
+            if existing_slugs_discovered[slug]['id'] > 0:
+                url = f"{base_url}/{id}"
+                response = session.delete(url, headers=headers)
+
 
 if __name__ == "__main__":
     arg_parse()
     items = load_items_from_json(args.directories)
 
+    load_existing_blogs()
+
     files = find_files_to_upload(items)
 
+    print('Uploading blogs')
     for file in tqdm(files):
         blog = build_blog_object(file)
         upload_blog(blog)
+
+    print('Deleting blogs')
+    delete_old_blogs()
