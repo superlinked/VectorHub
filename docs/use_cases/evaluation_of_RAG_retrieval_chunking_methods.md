@@ -1,8 +1,10 @@
+<!-- SEO: We evaluate some Retrieval methods in Retrieval-Augmented Generation (RAG), comparing different popular chunking techniques, leaderboard single- and multi-vector embedding models, and reranking to see how they affect outcome accuracy and relevance on benchmark datasets - HotpotQA, SQUAD, and QuAC. Impressive results achieved by models ColBERT v2, WhereIsAI/UAE-Large-V1, BAAI/bge-large-en-v1.5, SentenceSplitter chunking, and TinyBERT-L-2-v2 reranker.-->
+
 # An evaluation of RAG Retrieval Chunking Methods
 
 Choosing a RAG Retrieval method that suits your use case can be daunting. Are some methods better suited to specific tasks and types of datasets than others? Are there trade-offs between performance and resource requirements you need to be aware of? How do different chunking techniques, embedding models, and reranking interact to impact performance results? Evaluation can help answer these questions.
 
-To **evaluate the relative performance of several different, prominent chunking methods within the Retrieval component of a RAG system**, we looked at how they performed 1) on different leaderboard datasets, 2) using different parameters and embedding models, and 3) along several ranking metrics - MRR, NDCG@k, Recall@k, Precision@k, MAP@k and Hit-Rate, with k’s of 1, 3, 7 and 10.
+To **evaluate the relative performance of several different, prominent chunking methods within the Retrieval component of a RAG system**, we looked at how they performed 1) on different leaderboard datasets, 2) using different parameters and embedding models, and 3) along several ranking metrics - MRR, NDCG@k, Recall@k, Precision@k, MAP@k and Hit-Rate, with k’s of 1, 3, 7, and 10.
 
 Below, we present our datasets, chunking methods, embedding models, rerankers, and, finally, the outcomes of our research, within each dataset, and across all datasets.
 
@@ -64,6 +66,7 @@ Now, let’s take a look at our dataset-specific outcomes.
 ## Dataset HotpotQA results
 
 ![Chunking methods performance results on HotpotQA dataset](assets/use_cases/evaluation_of_RAG_retrieval_chunking_methods/mlflow_hotpotqa.png)
+
 _Chunking methods performance results on HotpotQA dataset_
 
 On the HotpotQA dataset, the best performance came from ColBERT, which used the default SentenceSplitter chunker from LlamaIndex, with a max_document_length of 512. This method achieved an MRR of 0.3123 and Recall@10 of 0.5051.
@@ -75,6 +78,7 @@ The single-vector embedding models performed about as well as each other whether
 ## Dataset SQUAD results
 
 ![Chunking methods performance on SQUAD dataset](assets/use_cases/evaluation_of_RAG_retrieval_chunking_methods/mlflow_squad.png)
+
 _Chunking methods performance results on SQUAD dataset_
 
 On the SQUAD dataset, the best ColBERT experiment produced an MRR of 0.8711 and Recall@10 of 0.9581. These values are very high, and we think this may suggest that the model was trained on SQUAD, though the ColBERT v2 paper mentions only evaluation of the Dev partition of SQUAD, which we did not use.
@@ -88,6 +92,7 @@ We tested multiple rerankers on this dataset of 278M-560M parameters, but they p
 ## Dataset QuAC results
 
 ![Chunking methods performance on QuAC dataset](assets/use_cases/evaluation_of_RAG_retrieval_chunking_methods/mlflow_quac.png)
+
 _Chunking methods performance results on QuAC dataset_
 
 On the QuAC dataset, the ColBERT experiment achieved an MRR of 0.2207 and Recall@10 of 0.3144.
@@ -102,7 +107,7 @@ Here’s a tabular summary of our best performing methods for handling RAG Retri
 
 | Dataset      | Model                 | Chunker          | Reranker        | MRR   | Recall@10 |
 | ------------ | --------------------- | ---------------- | --------------- | ----- | --------- |
-| All datasets | ColBERT v2            | SentenceSplitter | TinyBERT-L-2-v2 | ~ +8% | ~ +12%    |
+| All datasets | ColBERT v2            | SentenceSplitter | TinyBERT-L-2-v2 | + 8%  | + 12%     |
 | HotpotQA     | ColBERT v2            | SentenceSplitter | TinyBERT-L-2-v2 | 0.3123| 0.5051    |
 | HotpotQA     | WhereIsAI/UAE-Large-V1| SentenceSplitter | TinyBERT-L-2-v2 | 0.2953| 0.4257    |
 | SQUAD        | ColBERT v2            | SentenceSplitter | TinyBERT-L-2-v2 | 0.8711| 0.9581    |
