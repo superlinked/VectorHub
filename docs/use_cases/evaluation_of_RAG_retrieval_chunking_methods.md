@@ -50,15 +50,20 @@ Finally, we also tested the effect on performance of different **rerankers** aft
 
 ## Summary of outcomes
 
+### Model
+
 **ColBERT-based embedding** - using SentenceSplitter - **and Retrieval** proved to be the **most efficient method of improving result accuracy and relevance**, with an average performance advantage of about 10% over the second best method. This method's performance superiority held for all the datasets we tested.
 
-This result surprised us. We intuitively assumed that the naive **SentenceSplitter** (which takes in chunk_size and overlap parameters) would be the _least_ efficient chunking method, and that instead the **SemanticSplitterNodeParser**’s performance would be _superior_ - because, for any given sentence, the latter method creates chunks based on breakpoints computed from semantic dissimilarities of the preceding and succeeding sentences. This assumption turned out to be false. **Why?**
+### Chunking
 
-The **superior performance of SentenceSplitter over SemanticSplitterNodeParser** appears to illustrate that, despite the advantages of semantic evaluation: 1) a sentence is a very natural level of granularity for containing meaningful information, and 2) high semantic similarity measures can result from noise rather than meaningful similarities. Vector representations of semantically similar sentences (provided there is no word overlap) are often more distant from each other than we might expect based on the sentences’ meaning. Words can mean different things in different contexts, and word embeddings basically encode the "average" meaning of a word, so they can miss context-specific meaning in particular instances.
+Also, the **SentenceSplitter** performed better than the other chunking methods, contrary to our expectations. We had intuitively assumed that the naive **SentenceSplitter** (which takes in chunk_size and overlap parameters) would be the _least_ efficient chunking method, and that instead the **SemanticSplitterNodeParser**’s performance would be _superior_ - because, for any given sentence, the latter method creates chunks based on breakpoints computed from semantic dissimilarities of the preceding and succeeding sentences. This assumption turned out to be false. **Why?**
+
+The **superior performance of SentenceSplitter over SemanticSplitterNodeParser** appears to illustrate that, despite the advantages of semantic evaluation: 1) a sentence is a very natural level of granularity for containing meaningful information, and 2) high semantic similarity measures can result from noise rather than meaningful similarities. Vector representations of semantically similar sentences (provided there is no word overlap) are often more distant from each other than we might expect based on the sentences’ meaning. Words can mean different things in different contexts, and word embeddings basically encode the "average" meaning of a word, so they can miss context-specific meaning in particular instances. In addition, sentence embeddings are aggregates of word embeddings, which further "averages away" some meaning.
 
 As a result, retrieval performance can suffer when we 1) do our chunking by splitting text on the basis of something other than the borders of sentences, 2) merge text segments into groups on the basis of semantic similarity rather than using a fixed length (i.e., basically 1-2 sentences).
 
-### Rerankers
+### Reranking
+
 Using rerankers after retrieval (as a post-processing step) was very good at improving result accuracy and relevance. In particular, reranker model **cross-encoder/ms-marco-TinyBERT-L-2-v2**, with only 4.3M parameters, was highly efficient in terms of inference speed, and also outperformed the larger models consistently across all three datasets.
 
 Now, let’s take a look at our dataset-specific outcomes.
@@ -116,7 +121,7 @@ Here’s a tabular summary of our best performing methods for handling RAG Retri
 | QuAC         | ColBERT v2            | SentenceSplitter | TinyBERT-L-2-v2 | 0.2207| 0.3144    |
 | QuAC         | BAAI/bge-large-en-v1.5| SentenceSplitter | TinyBERT-L-2-v2 | 0.1975| 0.2766    |
 
-Our best performing method for handling RAG Retrieval on all datasets was ColBERT v2 with SentenceSplitter and reranking with TinyBERT. 
+Our best performing method for handling RAG Retrieval on all datasets was ColBERT v2 with SentenceSplitter and TinyBERT reranking.
 
 Our other models, though trailing in performance behind ColBERT v2 (with SentenceSplitter and TinyBERT reranking), the other (single-vector) embedding models tended to perform about the same as each other, both when they were combined with reranking and when they weren’t, across all three datasets.
 
@@ -128,4 +133,4 @@ Finally, reranker model TinyBERT proved to be the most efficient at improving mo
 
 - [Kristóf Horváth, author](https://www.linkedin.com/in/kristof-horvath-0301/)
 - [Mór Kapronczay, contributor](https://www.linkedin.com/in/mór-kapronczay-49447692)
-- [Robert Turner, editor](https://robertturner.co/copyedit)
+- [Robert Turner, contributor](https://www.linkedin.com/in/robertdhayanturner/)
