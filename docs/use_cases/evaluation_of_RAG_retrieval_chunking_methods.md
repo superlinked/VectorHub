@@ -72,7 +72,7 @@ Now, let’s take a look at our dataset-specific outcomes.
 
 ![Chunking methods performance results on HotpotQA dataset](assets/use_cases/evaluation_of_RAG_retrieval_chunking_methods/mlflow_hotpotqa.png)
 
-_Chunking methods performance results on HotpotQA dataset_
+_Chunking methods performance results on HotpotQA dataset (above)_
 
 On the HotpotQA dataset, the best performance came from **ColBERT v2**, which used the default **SentenceSplitter** chunker from LlamaIndex, with a max_document_length of 512. This method achieved an MRR of 0.3123 and Recall@10 of 0.5051.
 
@@ -84,7 +84,7 @@ The single-vector embedding models performed about as well as each other whether
 
 ![Chunking methods performance on SQUAD dataset](assets/use_cases/evaluation_of_RAG_retrieval_chunking_methods/mlflow_squad.png)
 
-_Chunking methods performance results on SQUAD dataset_
+_Chunking methods performance results on SQUAD dataset (above)_
 
 On the SQUAD dataset, the **best ColBERT experiment** produced an MRR of 0.8711 and Recall@10 of 0.9581. These values are very high. We think this may suggest that the model was trained on SQUAD, though the ColBERT v2 paper mentions only evaluation of the Dev partition of SQUAD, which we didn't use.
 
@@ -98,7 +98,7 @@ We tested multiple rerankers on this dataset of 278M-560M parameters, but they p
 
 ![Chunking methods performance on QuAC dataset](assets/use_cases/evaluation_of_RAG_retrieval_chunking_methods/mlflow_quac.png)
 
-_Chunking methods performance results on QuAC dataset_
+_Chunking methods performance results on QuAC dataset (above)_
 
 On the QuAC dataset, the **ColBERT experiment** achieved an MRR of 0.2207 and Recall@10 of 0.3144.
 
