@@ -133,4 +133,4 @@ Finally, reranker model TinyBERT proved to be the most efficient at improving mo
 
 - [Kristóf Horváth, author](https://www.linkedin.com/in/kristof-horvath-0301/)
 - [Mór Kapronczay, contributor](https://www.linkedin.com/in/mór-kapronczay-49447692)
-- [Robert Turner, contributor](https://www.linkedin.com/in/robertdhayanturner/)
+- [Robert Turner, editor](https://www.linkedin.com/in/robertdhayanturner/)
