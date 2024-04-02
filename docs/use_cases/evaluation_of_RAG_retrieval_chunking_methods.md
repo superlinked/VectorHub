@@ -88,7 +88,7 @@ _Chunking methods performance results on SQUAD dataset (above)_
 
 On the SQUAD dataset, the **best ColBERT experiment** produced an MRR of 0.8711 and Recall@10 of 0.9581. These values are very high. We think this may suggest that the model was trained on SQUAD, though the ColBERT v2 paper mentions only evaluation of the Dev partition of SQUAD, which we didn't use.
 
-On this dataset, the **BAAI/bge-m3** model, using the same **cross-encoder/ms-marco-TinyBERT-L-2-v2** reranker, produced the second best results - an MRR of 0.8286 and Recall@10 of 0.93. Without a reranker, BAAI/bge-m3’s MRR was 0.8063 and Recall@10 was 0.93.
+On this dataset, the **BAAI/bge-m3** model, using the same **cross-encoder/ms-marco-TinyBERT-L-2-v2** reranker, produced the **second** best results - an MRR of 0.8286 and Recall@10 of 0.93. Without a reranker, BAAI/bge-m3’s MRR was 0.8063 and Recall@10 was 0.93.
 
 BAAI/bge-m3’s scores are also (like ColBERT’s) **high**. It’s possible that this model was also trained on SQUAD, but [Huggingface doesn’t provide an exhaustive list of BAAI/bge-m3’s training datasets](https://huggingface.co/BAAI/bge-m3).
 
