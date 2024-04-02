@@ -74,9 +74,9 @@ Now, let’s take a look at our dataset-specific outcomes.
 
 _Chunking methods performance results on HotpotQA dataset_
 
-On the HotpotQA dataset, the best performance came from ColBERT, which used the default SentenceSplitter chunker from LlamaIndex, with a max_document_length of 512. This method achieved an MRR of 0.3123 and Recall@10 of 0.5051.
+On the HotpotQA dataset, the best performance came from **ColBERT v2**, which used the default **SentenceSplitter** chunker from LlamaIndex, with a max_document_length of 512. This method achieved an MRR of 0.3123 and Recall@10 of 0.5051.
 
-The second best performance came from using SentenceSplitter with a chunk size of 128, embedding model WhereIsAI/UAE-Large-V1, with 335M parameters, and reranker cross-encoder/ms-marco-TinyBERT-L-2-v2. In fact, all the other single-vector embedding models, combined with SentenceSplitter chunking and the TinyBERT reranker, performed about as well as WhereIsAI/UAE-Large-V1, with minor differences. This includes model BAAI/bge-small-en-v1.5; it performed on par with the larger models despite being only 1/10th their size. 
+The **second** best performance came from using SentenceSplitter with a chunk size of 128, embedding model **WhereIsAI/UAE-Large-V1**, with 335M parameters, and reranker **cross-encoder/ms-marco-TinyBERT-L-2-v2**. In fact, all the other single-vector embedding models, combined with SentenceSplitter chunking and the TinyBERT reranker, performed about as well as WhereIsAI/UAE-Large-V1, with minor differences. This includes model BAAI/bge-small-en-v1.5; it performed on par with the larger models despite being only 1/10th their size. 
 
 The single-vector embedding models performed about as well as each other whether reranking was applied or not. Reranking improved their performance by about the same percentage for all these models. This was true not just for this dataset, but also across our other datasets (SQUAD and QuAC).
 
@@ -86,7 +86,7 @@ The single-vector embedding models performed about as well as each other whether
 
 _Chunking methods performance results on SQUAD dataset_
 
-On the SQUAD dataset, the best ColBERT experiment produced an MRR of 0.8711 and Recall@10 of 0.9581. These values are very high. We think this may suggest that the model was trained on SQUAD, though the ColBERT v2 paper mentions only evaluation of the Dev partition of SQUAD, which we didn't use.
+On the SQUAD dataset, the **best ColBERT experiment** produced an MRR of 0.8711 and Recall@10 of 0.9581. These values are very high. We think this may suggest that the model was trained on SQUAD, though the ColBERT v2 paper mentions only evaluation of the Dev partition of SQUAD, which we didn't use.
 
 On this dataset, the **BAAI/bge-m3** model, using the same **cross-encoder/ms-marco-TinyBERT-L-2-v2** reranker, produced the second best results - an MRR of 0.8286 and Recall@10 of 0.93. Without a reranker, BAAI/bge-m3’s MRR was 0.8063 and Recall@10 was 0.93.
 
@@ -100,9 +100,9 @@ We tested multiple rerankers on this dataset of 278M-560M parameters, but they p
 
 _Chunking methods performance results on QuAC dataset_
 
-On the QuAC dataset, the ColBERT experiment achieved an MRR of 0.2207 and Recall@10 of 0.3144.
+On the QuAC dataset, the **ColBERT experiment** achieved an MRR of 0.2207 and Recall@10 of 0.3144.
 
-The second best performing model was BAAI/bge-large-en-v1.5 with SentenceSplitter, chunk size of 128 and chunk overlap of 16, combined with the same TinyBERT reranker. The other models, when using the same reranker, performed roughly on par with this model.
+The **second** best performing model was **BAAI/bge-large-en-v1.5** with **SentenceSplitter**, chunk size of 128 and chunk overlap of 16, combined with the same **TinyBERT reranker**. The other models, when using the same reranker, performed roughly on par with this model.
 
 Without the reranker, the different chunking methods, with the exception of the SemanticSplitter, would produce comparable results.
 
@@ -121,9 +121,9 @@ Here’s a tabular summary of our best performing methods for handling RAG Retri
 | QuAC         | ColBERT v2            | SentenceSplitter | TinyBERT-L-2-v2 | 0.2207| 0.3144    |
 | QuAC         | BAAI/bge-large-en-v1.5| SentenceSplitter | TinyBERT-L-2-v2 | 0.1975| 0.2766    |
 
-Our best performing method for handling RAG Retrieval on all datasets was **ColBERT v2 with SentenceSplitter and TinyBERT reranking**.
+Our **best performing method** for handling RAG Retrieval on all datasets was **ColBERT v2 with SentenceSplitter and TinyBERT reranking**.
 
-Our other (single-vector) embedding models, though trailing in performance behind ColBERT v2 (with SentenceSplitter and TinyBERT reranking), tended to perform about the same as each other, both when they were combined with reranking and when they weren’t, across all three datasets.
+Our **other (single-vector) embedding models**, though trailing in performance behind ColBERT v2 (with SentenceSplitter and TinyBERT reranking), tended to perform **about the same** as each other, both when they were combined with reranking and when they weren’t, across all three datasets.
 
 **SentenceSplitter chunking** surprised us by outperforming SemanticSplitterNodeParser, but upon further reflection, these outcomes suggest that sentences are natural delimiters of meaning, and semantic “averaging” of meaning may miss context-specific relevance. 
 
