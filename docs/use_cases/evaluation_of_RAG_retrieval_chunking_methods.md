@@ -56,7 +56,7 @@ Finally, we also tested the effect on performance of different **rerankers** aft
 
 ### Chunking
 
-Also, the **SentenceSplitter** performed better than the other chunking methods, contrary to our expectations. We had intuitively assumed that the naive **SentenceSplitter** (which takes in chunk_size and overlap parameters) would be the _least_ efficient chunking method, and that instead the **SemanticSplitterNodeParser**’s performance would be _superior_ - because, for any given sentence, the latter method creates chunks based on breakpoints computed from semantic dissimilarities of the preceding and succeeding sentences. This assumption turned out to be false. **Why?**
+The **SentenceSplitter** performed better than the other chunking methods, contrary to our expectations. We had intuitively assumed that the naive **SentenceSplitter** (which takes in chunk_size and overlap parameters) would be the _least_ efficient chunking method, and that instead the **SemanticSplitterNodeParser**’s performance would be _superior_ - because, for any given sentence, the latter method creates chunks based on breakpoints computed from semantic dissimilarities of the preceding and succeeding sentences. This assumption turned out to be false. **Why?**
 
 The **superior performance of SentenceSplitter over SemanticSplitterNodeParser** appears to illustrate that, despite the advantages of semantic evaluation: 1) a sentence is a very natural level of granularity for containing meaningful information, and 2) high semantic similarity measures can result from noise rather than meaningful similarities. Vector representations of semantically similar sentences (provided there is no word overlap) are often more distant from each other than we might expect based on the sentences’ meaning. Words can mean different things in different contexts, and word embeddings basically encode the "average" meaning of a word, so they can miss context-specific meaning in particular instances. In addition, sentence embeddings are aggregates of word embeddings, which further "averages away" some meaning.
 
@@ -76,9 +76,9 @@ _Chunking methods performance results on HotpotQA dataset_
 
 On the HotpotQA dataset, the best performance came from ColBERT, which used the default SentenceSplitter chunker from LlamaIndex, with a max_document_length of 512. This method achieved an MRR of 0.3123 and Recall@10 of 0.5051.
 
-The second best performance came from using SentenceSplitter with a chunk size of 128, embedding model WhereIsAI/UAE-Large-V1, with 335M parameters, and reranker cross-encoder/ms-marco-TinyBERT-L-2-v2. In fact, all the other single-vector embedding models, combined with SentenceSplitter chunking and the TinyBERT reranker, performed about as well as WhereIsAI/UAE-Large-V1, with minor differences. This includes model BAAI/bge-small-en-v1.5; it performed on par with the larger models despite being only 1/10th their size. 
+The second best performance came from using SentenceSplitter with a chunk size of 128, embedding model WhereIsAI/UAE-Large-V1, with 335M parameters, and reranker cross-encoder/ms-marco-TinyBERT-L-2-v2. In fact, all the other single-vector embedding models, combined with SentenceSplitter chunking and the TinyBERT reranker, performed about as well as WhereIsAI/UAE-Large-V1, with minor differences. This includes model BAAI/bge-small-en-v1.5; it performed on par with the larger models despite being only 1/10th their size. 
 
-The single-vector embedding models performed about as well as each other whether reranking was applied or not. Reranking improved their performance by about the same percentage for all these models. This was true for not just for this dataset, but also across our other datasets (SQUAD and QuAC).
+The single-vector embedding models performed about as well as each other whether reranking was applied or not. Reranking improved their performance by about the same percentage for all these models. This was true not just for this dataset, but also across our other datasets (SQUAD and QuAC).
 
 ## Dataset SQUAD results
 
@@ -86,13 +86,13 @@ The single-vector embedding models performed about as well as each other whether
 
 _Chunking methods performance results on SQUAD dataset_
 
-On the SQUAD dataset, the best ColBERT experiment produced an MRR of 0.8711 and Recall@10 of 0.9581. These values are very high, and we think this may suggest that the model was trained on SQUAD, though the ColBERT v2 paper mentions only evaluation of the Dev partition of SQUAD, which we did not use.
+On the SQUAD dataset, the best ColBERT experiment produced an MRR of 0.8711 and Recall@10 of 0.9581. These values are very high. We think this may suggest that the model was trained on SQUAD, though the ColBERT v2 paper mentions only evaluation of the Dev partition of SQUAD, which we didn't use.
 
-On this dataset, **BAAI/bge-m3** model, using the same **cross-encoder/ms-marco-TinyBERT-L-2-v2** reranker, produced the second best results - an MRR of 0.8286 and Recall@10 of 0.93. Without a reranker, BAAI/bge-m3’s MRR was 0.8063 and Recall@10 was 0.93.
+On this dataset, the **BAAI/bge-m3** model, using the same **cross-encoder/ms-marco-TinyBERT-L-2-v2** reranker, produced the second best results - an MRR of 0.8286 and Recall@10 of 0.93. Without a reranker, BAAI/bge-m3’s MRR was 0.8063 and Recall@10 was 0.93.
 
-BAAI/bge-m3’s scores are also (like ColBERT’s) high scores. It’s possible that this model was also trained on SQUAD, but [Huggingface doesn’t provide an exhaustive list of BAAI/bge-m3’s training datasets](https://huggingface.co/BAAI/bge-m3).
+BAAI/bge-m3’s scores are also (like ColBERT’s) **high**. It’s possible that this model was also trained on SQUAD, but [Huggingface doesn’t provide an exhaustive list of BAAI/bge-m3’s training datasets](https://huggingface.co/BAAI/bge-m3).
 
-We tested multiple rerankers on this dataset of 278M-560M parameters, but they proved to perform far more poorly than the small (TinyBERT) model, in addition to having much slower inference speeds. 
+We tested multiple rerankers on this dataset of 278M-560M parameters, but they performed significantly worse than the small (TinyBERT) model, in addition to having much slower inference speeds. 
 
 ## Dataset QuAC results
 
@@ -106,7 +106,7 @@ The second best performing model was BAAI/bge-large-en-v1.5 with SentenceSplitte
 
 Without the reranker, the different chunking methods, with the exception of the SemanticSplitter, would produce comparable results.
 
-## In sum..
+## In sum...
 
 Here’s a tabular summary of our best performing methods for handling RAG Retrieval.
 
@@ -121,16 +121,16 @@ Here’s a tabular summary of our best performing methods for handling RAG Retri
 | QuAC         | ColBERT v2            | SentenceSplitter | TinyBERT-L-2-v2 | 0.2207| 0.3144    |
 | QuAC         | BAAI/bge-large-en-v1.5| SentenceSplitter | TinyBERT-L-2-v2 | 0.1975| 0.2766    |
 
-Our best performing method for handling RAG Retrieval on all datasets was ColBERT v2 with SentenceSplitter and TinyBERT reranking.
+Our best performing method for handling RAG Retrieval on all datasets was **ColBERT v2 with SentenceSplitter and TinyBERT reranking**.
 
-Our other models, though trailing in performance behind ColBERT v2 (with SentenceSplitter and TinyBERT reranking), the other (single-vector) embedding models tended to perform about the same as each other, both when they were combined with reranking and when they weren’t, across all three datasets.
+Our other (single-vector) embedding models, though trailing in performance behind ColBERT v2 (with SentenceSplitter and TinyBERT reranking), tended to perform about the same as each other, both when they were combined with reranking and when they weren’t, across all three datasets.
 
-SentenceSplitter chunking surprised us by outperforming SemanticSplitterNodeParser, but upon further reflection, these outcomes suggest that sentences are natural delimiters of meaning, and semantic “averaging” of meaning may miss context-specific relevance. 
+**SentenceSplitter chunking** surprised us by outperforming SemanticSplitterNodeParser, but upon further reflection, these outcomes suggest that sentences are natural delimiters of meaning, and semantic “averaging” of meaning may miss context-specific relevance. 
 
-Finally, reranker model TinyBERT proved to be the most efficient at improving model performance, outperforming even the larger rerankers.
+Finally, **reranker model TinyBERT** proved to be the most efficient at improving model performance, outperforming even the larger rerankers.
 
 ## Contributors
 
 - [Kristóf Horváth, author](https://www.linkedin.com/in/kristof-horvath-0301/)
 - [Mór Kapronczay, contributor](https://www.linkedin.com/in/mór-kapronczay-49447692)
-- [Robert Turner, editor](https://www.linkedin.com/in/robertdhayanturner/)
+- [Robert Turner, contributor-editor](https://www.linkedin.com/in/robertdhayanturner/)
