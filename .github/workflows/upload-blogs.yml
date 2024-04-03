@@ -15,6 +15,12 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
+  
+    - name: Set STRAPI secrets
+      run: |
+        echo "STRAPI_URL=${{ secrets.STRAPI_URL }}" >> $GITHUB_ENV
+        echo "STRAPI_API_KEY=${{ secrets.STRAPI_API_KEY }}" >> $GITHUB_ENV
+
     - name: Install dependencies
       run: |
         pip install -r blog/requirements.txt
