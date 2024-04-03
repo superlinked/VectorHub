@@ -116,6 +116,7 @@ def update_json_files(directory, headers=None):
                 dockerhub_url = data.get("docker_pulls", {}).get("source_url", "")
                 npm_url = data.get("npm_downloads", {}).get("source_url", "")
                 pypi_url = data.get("pypi_downloads", {}).get("source_url", "")
+                rust_url = data.get("rust_downloads", {}).get("source_url", "")
 
                 for source in sources:
                     if 'value_90_days' not in data[source]:
@@ -162,6 +163,18 @@ def update_json_files(directory, headers=None):
                     downloads = get_pypi_downloads_last_90(pypi_package_name, headers, start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
                     if downloads is not None:
                         data["pypi_downloads"]["value_90_days"] = downloads
+    
+                if rust_url:
+                    pypi_package_name = list(pypi_url.split('https://pypi.org/project/'))[1].strip().strip('/')
+                    downloads = get_pypi_downloads(pypi_package_name, headers)
+                    if downloads is not None:
+                        data["rust_downloads"]["value"] = downloads
+
+                    end_date = datetime.now()
+                    start_date = end_date - timedelta(days=90)
+                    downloads = get_pypi_downloads_last_90(pypi_package_name, headers, start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
+                    if downloads is not None:
+                        data["rust_downloads"]["value_90_days"] = downloads
 
                 # Write the updated data back to the file
                 json_file.seek(0)  # Rewind to the start of the file
