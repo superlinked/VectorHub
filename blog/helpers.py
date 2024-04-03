@@ -14,8 +14,6 @@ class Item:
         self.path = path
         self.has_blogs = has_blogs
         self.children = []
-        self.publishedAt = None
-        self.slug_url = None
 
         if children:
             self.add_children(children)
@@ -59,6 +57,8 @@ class StrapiBlog:
         self.content = content
         self.filepath = filepath
         self.last_updated = last_updated
+        self.publishedAt = None
+        self.slug_url = None
 
     def get_title(self) -> str:
         return os.path.basename(self.filepath).replace('-', ' ').replace('_', ' ').replace('.md', '')
