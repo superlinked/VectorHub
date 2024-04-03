@@ -70,11 +70,11 @@ class StrapiBlog:
         return f'{GIT_REPO}/blob/main/{self.filepath}'
     
     def get_filepath(self):
-        return self.filepath
+        return self.filepath.replace('&', '').replace('--', '-').replace('__', '_')
     
     def get_slug(self):
         if not self.slug_url:
-            slug = self.get_filepath().replace('.md', '').replace('_', '-').replace(' ', '-').replace('docs/', '').replace('&', '').replace('--', '-')
+            slug = self.get_filepath().replace('.md', '').replace('_', '-').replace(' ', '-').replace('docs/', '')
             self.slug_url = slug.lower()
         return self.slug_url
 
