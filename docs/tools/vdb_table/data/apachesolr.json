@@ -172,7 +172,7 @@
     "comment": "",
     "value_90_days": 92169
   },
-  "rust_downloads": {
+  "crates_io_downloads": {
     "value": 1063,
     "source_url": "https://crates.io/crates/solr",
     "comment": "",

@@ -172,7 +172,7 @@
     "comment": "",
     "value_90_days": 772494
   },
-  "rust_downloads": {
+  "crates_io_downloads": {
     "value": 77811,
     "source_url": "https://crates.io/crates/cassandra",
     "comment": "",

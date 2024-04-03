@@ -172,7 +172,7 @@
     "comment": "",
     "value_90_days": 25971
   },
-  "rust_downloads": {
+  "crates_io_downloads": {
     "value": 24476,
     "source_url": "https://crates.io/crates/usearch",
     "comment": "",

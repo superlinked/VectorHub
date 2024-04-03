@@ -172,7 +172,7 @@
     "comment": "",
     "value_90_days": 300166
   },
-  "rust_downloads": {
+  "crates_io_downloads": {
     "value": 4269,
     "source_url": "https://crates.io/crates/chromadb",
     "comment": "",

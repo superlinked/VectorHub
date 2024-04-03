@@ -155,7 +155,7 @@ def update_json_files(directory, headers=None):
     if headers is None:
         headers = {}
 
-    sources = ["github_stars", "docker_pulls", "npm_downloads", "pypi_downloads", "rust_downloads"]
+    sources = ["github_stars", "docker_pulls", "npm_downloads", "pypi_downloads", "crates_io_downloads"]
 
     for filename in tqdm(os.listdir(directory)):
         if filename.endswith(".json"):
@@ -166,7 +166,7 @@ def update_json_files(directory, headers=None):
                 dockerhub_url = data.get("docker_pulls", {}).get("source_url", "")
                 npm_url = data.get("npm_downloads", {}).get("source_url", "")
                 pypi_url = data.get("pypi_downloads", {}).get("source_url", "")
-                rust_url = data.get("rust_downloads", {}).get("source_url", "")
+                rust_url = data.get("crates_io_downloads", {}).get("source_url", "")
 
                 for source in sources:
                     if "value_90_days" not in data[source]:
@@ -233,11 +233,11 @@ def update_json_files(directory, headers=None):
                     )
                     downloads = get_rust_downloads(rust_crate_name)
                     if downloads is not None:
-                        data["rust_downloads"]["value"] = downloads
+                        data["crates_io_downloads"]["value"] = downloads
 
                     downloads_last_90 = get_rust_downloads_last_90(rust_crate_name)
                     if downloads_last_90 is not None:
-                        data["rust_downloads"]["value_90_days"] = downloads_last_90
+                        data["crates_io_downloads"]["value_90_days"] = downloads_last_90
 
                 # Write the updated data back to the file
                 json_file.seek(0)  # Rewind to the start of the file

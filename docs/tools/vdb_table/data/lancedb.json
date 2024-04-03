@@ -172,7 +172,7 @@
     "comment": "",
     "value_90_days": 299348
   },
-  "rust_downloads": {
+  "crates_io_downloads": {
     "value": 1659,
     "source_url": "https://crates.io/crates/lancedb",
     "comment": "",

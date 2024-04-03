@@ -173,7 +173,7 @@
     "comment": "",
     "value_90_days": 99973
   },
-  "rust_downloads": {
+  "crates_io_downloads": {
     "value": 523,
     "source_url": "https://crates.io/crates/mongodb-atlas-admin",
     "comment": "",
