@@ -4,7 +4,7 @@ import argparse
 from json.decoder import JSONDecodeError
 import requests
 from urllib.parse import urljoin
-from helpers import Item, ItemType, StrapiBlog, StrapiBlogType
+from helpers import Item, ItemType, StrapiBlog
 from tqdm.auto import tqdm
 from datetime import datetime
 from pathlib import Path
@@ -105,7 +105,7 @@ def build_blog_object(file_obj: dict) -> StrapiBlog:
     filepath = file_obj['path']
     with open(filepath, 'r') as file:
         content = file.read()
-        blog = StrapiBlog(content, filepath, file_obj['time'], StrapiBlogType.USECASE)
+        blog = StrapiBlog(content, filepath, file_obj['time'])
         return blog
 
 def upload_blog(blog: StrapiBlog):

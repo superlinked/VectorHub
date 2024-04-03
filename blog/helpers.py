@@ -52,17 +52,11 @@ class Item:
         }
 
 
-class StrapiBlogType(enum.Enum):
-    USECASE = "USECASE"
-    ARTICLE = "ARTICLE"
-
-
 class StrapiBlog:
-    def __init__(self, content, filepath, last_updated, type: StrapiBlogType):
+    def __init__(self, content, filepath, last_updated):
         self.content = content
         self.filepath = filepath
         self.last_updated = last_updated
-        self.type = type
 
     def get_title(self) -> str:
         return os.path.basename(self.filepath).replace('-', ' ').replace('_', ' ').replace('.md', '')
@@ -75,13 +69,12 @@ class StrapiBlog:
     
     
     def get_slug(self):
-        return self.filepath.replace('.md', '').replace('_', '-').replace(' ', '-')
+        return self.filepath.replace('.md', '').replace('_', '-').replace(' ', '-').replace('docs/', '')
 
     def get_json(self):
         return {
         "github_url": self.get_github_url(),
         "content": self.content,
-        "type": self.type.value,
         "github_last_updated_date": self.last_updated,
         "title": self.get_title(),
         "slug_url": self.get_slug()
