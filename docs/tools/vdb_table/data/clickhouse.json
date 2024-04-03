@@ -171,5 +171,11 @@
     "source_url": "https://www.npmjs.com/package/@clickhouse/client",
     "comment": "",
     "value_90_days": 1339389
+  },
+  "rust_downloads": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
   }
 }

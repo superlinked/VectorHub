@@ -171,5 +171,11 @@
     "source_url": "https://www.npmjs.com/package/chromadb",
     "comment": "",
     "value_90_days": 300166
+  },
+  "rust_downloads": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
   }
 }
