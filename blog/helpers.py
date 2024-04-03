@@ -59,12 +59,20 @@ class StrapiBlog:
         self.last_updated = last_updated
         self.publishedAt = None
         self.slug_url = None
+        self.title = self.get_title()
 
     def get_title(self) -> str:
-        return os.path.basename(self.filepath).replace('-', ' ').replace('_', ' ').replace('.md', '')
+        lines = self.content.split('\n')
+        first_line = str(lines[0]).strip()
+        if first_line.startswith('# '):
+            self.content = '\n'.join(lines[1:])
+            self.content = self.content.strip()
+            return first_line.replace('# ', '').strip()
+        else:
+            return os.path.basename(self.filepath).replace('-', ' ').replace('_', ' ').replace('.md', '')
 
     def __str__(self) -> str:
-        return self.get_title()
+        return self.title
 
     def get_github_url(self):
         return f'{GIT_REPO}/blob/main/{self.filepath}'
@@ -89,7 +97,7 @@ class StrapiBlog:
         "github_url": self.get_github_url(),
         "content": self.content,
         "github_last_updated_date": self.last_updated,
-        "title": self.get_title(),
+        "title": self.title,
         "slug_url": self.get_slug(),
         "publishedAt": self.publishedAt,
         "filepath": self.get_filepath()
