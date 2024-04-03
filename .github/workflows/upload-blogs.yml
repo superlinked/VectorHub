@@ -1,0 +1,22 @@
+name: Upload blogs to Strapi
+
+on:
+  push:
+    branches:
+      - vh-redesign
+
+jobs:
+  run-script:
+    if: ${{ github.repository == 'superlinked/VectorHub' }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.x
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: |
+        pip install -r blog/requirements.txt
+    - name: Run script
+      run: python blog/main.py --directories blog/directories.json
