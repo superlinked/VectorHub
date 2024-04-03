@@ -15,7 +15,7 @@ BASE_URL = os.getenv('STRAPI_URL', "")
 API_KEY = os.getenv('STRAPI_API_KEY', "")
 
 paths_to_search = []
-existing_slugs_discovered = {}
+existing_filepaths_discovered = {}
 
 headers = {
     'Authorization': f'Bearer {API_KEY}',
@@ -50,7 +50,7 @@ def load_items_from_json(directories: str) -> list:
 
 
 def load_existing_blogs(page_num=1):
-    global existing_slugs_discovered
+    global existing_filepaths_discovered
     base_url = urljoin(BASE_URL, 'api/blogs')
     search_url = base_url + f"?pagination[page]={page_num}"
 
@@ -61,7 +61,7 @@ def load_existing_blogs(page_num=1):
         data = json.loads(response.text)['data']
         if len(data) > 0:
             for item in data:
-                existing_slugs_discovered[item['attributes']['slug_url']] = {'discovered': False, 'id': -1}
+                existing_filepaths_discovered[item['attributes']['filepath']] = {'discovered': False, 'id': -1}
             load_existing_blogs(page_num+1)
 
 
@@ -110,21 +110,24 @@ def build_blog_object(file_obj: dict) -> StrapiBlog:
 
 def upload_blog(blog: StrapiBlog):
     base_url = urljoin(BASE_URL, 'api/blogs')
-    slug = blog.get_slug()
-    search_url = base_url + f"?filters[slug_url][$eq]={slug}"
+    filepath = blog.get_filepath()
+    search_url = base_url + f"?filters[filepath][$eqi]={filepath}&publicationState=preview"
     session = requests.Session()
 
-    if slug in existing_slugs_discovered:
-        existing_slugs_discovered[slug]['discovered'] = True
+    if filepath in existing_filepaths_discovered:
+        existing_filepaths_discovered[filepath]['discovered'] = True
 
     response = session.get(search_url, headers=headers)
 
     if response.status_code == 200:
         responses = json.loads(response.text)['data']
-        print(f'Uploading slug: {blog.get_slug()}')
+        print(f'Uploading filepath: {blog.get_filepath()}')
         if len(responses) > 0:
-            # Blog already exists at this slug
+            # Blog already exists at this filepath
             id = json.loads(response.text)['data'][0]['id']
+
+            blog.set_slug_url(json.loads(response.text)['data'][0]['attributes']['slug_url'])
+            blog.set_published_at(json.loads(response.text)['data'][0]['attributes']['publishedAt'])
 
             url = f"{base_url}/{id}"
             create_response = session.put(url, headers=headers, data=json.dumps(blog.get_post_json()))
@@ -134,24 +137,24 @@ def upload_blog(blog: StrapiBlog):
             create_response = session.post(url, headers=headers, data=json.dumps(blog.get_post_json()))
 
         if create_response.status_code == 200:
-            if slug in existing_slugs_discovered:
+            if filepath in existing_filepaths_discovered:
                 create_response_text = json.loads(create_response.text)
-                existing_slugs_discovered[slug]['id'] = create_response_text['data']['id']
+                existing_filepaths_discovered[filepath]['id'] = create_response_text['data']['id']
         else:
-            print(f'Error in parsing blog: {slug}')
+            print(f'Error in parsing blog: {filepath}')
             print(create_response.text)
             exit(1)
 
 def delete_old_blogs():
-    global existing_slugs_discovered
+    global existing_filepaths_discovered
 
     base_url = urljoin(BASE_URL, 'api/blogs')
     session = requests.Session()
 
-    for slug in existing_slugs_discovered:
-        if not existing_slugs_discovered[slug]['discovered']:
-            print(f"Deleting slug: {slug}")
-            if existing_slugs_discovered[slug]['id'] > 0:
+    for filepath in existing_filepaths_discovered:
+        if not existing_filepaths_discovered[filepath]['discovered']:
+            print(f"Deleting filepath: {filepath}")
+            if existing_filepaths_discovered[filepath]['id'] > 0:
                 url = f"{base_url}/{id}"
                 response = session.delete(url, headers=headers)
 

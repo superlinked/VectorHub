@@ -14,6 +14,8 @@ class Item:
         self.path = path
         self.has_blogs = has_blogs
         self.children = []
+        self.publishedAt = None
+        self.slug_url = None
 
         if children:
             self.add_children(children)
@@ -67,10 +69,20 @@ class StrapiBlog:
     def get_github_url(self):
         return f'{GIT_REPO}/blob/main/{self.filepath}'
     
+    def get_filepath(self):
+        return self.filepath
     
     def get_slug(self):
-        slug = self.filepath.replace('.md', '').replace('_', '-').replace(' ', '-').replace('docs/', '').replace('&', '').replace('--', '-')
-        return slug.lower()
+        if not self.slug_url:
+            slug = self.get_filepath().replace('.md', '').replace('_', '-').replace(' ', '-').replace('docs/', '').replace('&', '').replace('--', '-')
+            self.slug_url = slug.lower()
+        return self.slug_url
+
+    def set_published_at(self, publishedAt):
+        self.publishedAt = publishedAt
+
+    def set_slug_url(self, slug_url):
+        self.slug_url = slug_url
 
     def get_json(self):
         return {
@@ -78,10 +90,12 @@ class StrapiBlog:
         "content": self.content,
         "github_last_updated_date": self.last_updated,
         "title": self.get_title(),
-        "slug_url": self.get_slug()
+        "slug_url": self.get_slug(),
+        "publishedAt": self.publishedAt,
+        "filepath": self.get_filepath()
     }
 
-    def get_post_json(self):
+    def get_post_json(self, is_draft=False):
         return {"data": self.get_json()}
 
     def __eq__(self, __value) -> bool:
