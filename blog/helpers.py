@@ -69,7 +69,8 @@ class StrapiBlog:
     
     
     def get_slug(self):
-        return self.filepath.replace('.md', '').replace('_', '-').replace(' ', '-').replace('docs/', '')
+        slug = self.filepath.replace('.md', '').replace('_', '-').replace(' ', '-').replace('docs/', '').replace('&', '').replace('--', '-')
+        return slug.lower()
 
     def get_json(self):
         return {

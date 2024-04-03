@@ -137,6 +137,10 @@ def upload_blog(blog: StrapiBlog):
             if slug in existing_slugs_discovered:
                 create_response_text = json.loads(create_response.text)
                 existing_slugs_discovered[slug]['id'] = create_response_text['data']['id']
+        else:
+            print(f'Error in parsing blog: {slug}')
+            print(create_response.text)
+            exit(1)
 
 def delete_old_blogs():
     global existing_slugs_discovered
