@@ -71,7 +71,7 @@ class StrapiBlog:
         return self.get_title()
 
     def get_github_url(self):
-        return f'{GIT_REPO}/tree/main/{self.filepath}'
+        return f'{GIT_REPO}/blob/main/{self.filepath}'
     
     
     def get_slug(self):
