@@ -1,0 +1,42 @@
+[
+    {
+        "type": "folder",
+        "name": "VectorHub",
+        "path": "docs",
+        "has_blogs": false,
+        "children": [
+            {
+                "type": "folder",
+                "name": "Building Blocks",
+                "path": "building_blocks",
+                "has_blogs": false,
+                "children": [
+                    {
+                        "type": "folder",
+                        "name": "Vector Compute",
+                        "path": "vector_compute",
+                        "has_blogs": true
+                    },
+                    {
+                        "type": "folder",
+                        "name": "Vector Search",
+                        "path": "vector_search",
+                        "has_blogs": true
+                    },
+                    {
+                        "type": "folder",
+                        "name": "Data Sources",
+                        "path": "data_sources",
+                        "has_blogs": true
+                    }
+                ]
+            },
+            {
+                "type": "folder",
+                "name": "Use Cases",
+                "path": "use_cases",
+                "has_blogs": true
+            }
+        ]
+    }
+]
