@@ -39,7 +39,7 @@
     "docker_pulls": {"allOf": [{"$ref": "#/$defs/statsWithSource"}],"$comment": "Stats | Docker Pulls | The total number of pulls for the core product's docker image." },
     "pypi_downloads": {"allOf": [{"$ref": "#/$defs/statsWithSource"}], "$comment": "Stats | PyPi Downloads | The number of downloads (in last 90 days) for the core product's python package." },
     "npm_downloads": {"allOf": [{"$ref": "#/$defs/statsWithSource"}], "$comment": "Stats | NPM Downloads | The number of downloads (in last 90 days) for the core product's NPM package." },
-    "rust_downloads": {"allOf": [{"$ref": "#/$defs/statsWithSource"}], "$comment": "Stats | Rust Crates Downloads | The number of downloads (in last 90 days) for the core product's Rust crate." }
+    "crates_io_downloads": {"allOf": [{"$ref": "#/$defs/statsWithSource"}], "$comment": "Stats | Rust Crates Downloads | The number of downloads (in last 90 days) for the core product's Rust crate." }
   },
 
   "$defs": {
