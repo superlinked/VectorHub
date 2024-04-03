@@ -178,9 +178,9 @@
     "value_90_days": 10195
   },
   "rust_downloads": {
-    "value": 0,
+    "value": 86334,
     "source_url": "https://crates.io/crates/qdrant-client",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 31916
   }
 }

@@ -173,9 +173,9 @@
     "value_90_days": 460
   },
   "rust_downloads": {
-    "value": 0,
+    "value": 6860,
     "source_url": "https://crates.io/crates/txtai",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 917
   }
 }

@@ -173,9 +173,9 @@
     "value_90_days": 1339389
   },
   "rust_downloads": {
-    "value": 0,
+    "value": 242937,
     "source_url": "https://crates.io/crates/clickhouse",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 60858
   }
 }

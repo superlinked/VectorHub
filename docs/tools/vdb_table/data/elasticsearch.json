@@ -178,9 +178,9 @@
     "value_90_days": 12226250
   },
   "rust_downloads": {
-    "value": 0,
+    "value": 1256668,
     "source_url": "https://crates.io/crates/elasticsearch",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 218469
   }
 }

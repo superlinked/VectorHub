@@ -179,9 +179,9 @@
     "value_90_days": 139278
   },
   "rust_downloads": {
-    "value": 0,
+    "value": 987,
     "source_url": "https://crates.io/crates/milvus",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 611
   }
 }

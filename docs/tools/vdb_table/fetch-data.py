@@ -14,7 +14,7 @@ GITHUB_API_URL = "https://api.github.com/repos/"
 DOCKER_HUB_API_URL = "https://hub.docker.com/v2/repositories/"
 NPM_API_URL = "https://api.npmjs.org/downloads/point/"
 PYPI_API_URL = "https://api.pepy.tech/api/v2/projects"
-RUST_CRATES_API_URL = "https://crates.io/api/v1/crates/"
+RUST_CRATES_API_URL = "https://crates.io/api/v1/crates"
 
 
 def get_github_stars(github_url, headers=None):
@@ -113,30 +113,40 @@ def get_pypi_downloads_last_90(
 
 
 def get_rust_downloads(crate_name):
-    response = requests.get(f"{RUST_CRATES_API_URL}{crate_name}")
+    global RUST_CRATES_API_URL
+    response = requests.get(f"{RUST_CRATES_API_URL}/{crate_name}")
     if response.status_code == 200:
-        return response.json()["crate"]["downloads"]
+        try:
+            return response.json()["crate"]["downloads"]
+        except Exception as e:
+            print(f'Failed to fetch total downloads for rust crate {crate_name} with exception: {e}')
+            return None
     else:
         print(
-            f"Failed to fetch total downloads for Rust crate {crate_name}: {response.status_code}"
+            f"Failed to fetch total downloads for rust crate {crate_name}: {response.status_code}"
         )
         return None
 
 
 def get_rust_downloads_last_90(crate_name):
-    response = requests.get(f"{RUST_CRATES_API_URL}{crate_name}/downloads")
+    global RUST_CRATES_API_URL
+    response = requests.get(f"{RUST_CRATES_API_URL}/{crate_name}/downloads")
     if response.status_code == 200:
-        downloads_data = response.json()["meta"]["extra_downloads"]
-        last_90_days_date = datetime.now() - timedelta(days=90)
-        downloads_last_90_days = sum(
-            item["downloads"]
-            for item in downloads_data
-            if datetime.strptime(item["date"], "%Y-%m-%d") >= last_90_days_date
-        )
-        return downloads_last_90_days
+        try:
+            downloads_data = response.json()["version_downloads"]
+            last_90_days_date = datetime.now() - timedelta(days=90)
+            downloads_last_90_days = sum(
+                item["downloads"]
+                for item in downloads_data
+                if datetime.strptime(item["date"], "%Y-%m-%d") >= last_90_days_date
+            )
+            return downloads_last_90_days
+        except Exception as e:
+            print(f'Failed to fetch downloads for the last 90 days for rust crate {crate_name} with exception: {e}')
+            return None
     else:
         print(
-            f"Failed to fetch downloads for the last 90 days for Rust crate {crate_name}: {response.status_code}"
+            f"Failed to fetch downloads for the last 90 days for rust crate {crate_name}: {response.status_code}"
         )
         return None
 
@@ -145,7 +155,7 @@ def update_json_files(directory, headers=None):
     if headers is None:
         headers = {}
 
-    sources = ["github_stars", "docker_pulls", "npm_downloads", "pypi_downloads"]
+    sources = ["github_stars", "docker_pulls", "npm_downloads", "pypi_downloads", "rust_downloads"]
 
     for filename in tqdm(os.listdir(directory)):
         if filename.endswith(".json"):
