@@ -179,7 +179,7 @@
   },
   "rust_downloads": {
     "value": 0,
-    "source_url": "",
+    "source_url": "https://crates.io/crates/elasticsearch",
     "comment": "",
     "value_90_days": 0
   }
