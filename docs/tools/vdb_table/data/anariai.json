@@ -171,5 +171,11 @@
     "source_url": "https://www.npmjs.com/package/epsillajs",
     "comment": "",
     "value_90_days": 1000
+  },
+  "crates_io_downloads": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
   }
 }
