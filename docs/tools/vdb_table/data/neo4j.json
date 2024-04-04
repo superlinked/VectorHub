@@ -174,9 +174,9 @@
     "value_90_days": 6852
   },
   "crates_io_downloads": {
-    "value": 51921,
-    "source_url": "https://crates.io/crates/neo4rs",
+    "value": 0,
+    "source_url": "",
     "comment": "",
-    "value_90_days": 7098
+    "value_90_days": 0
   }
 }
