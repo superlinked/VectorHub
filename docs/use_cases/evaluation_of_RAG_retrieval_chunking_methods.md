@@ -112,18 +112,18 @@ Here’s a tabular summary of our best performing methods for handling RAG Retri
 
 | Dataset      | Model                 | Chunker          | Reranker        | MRR   | Recall@10 |
 | ------------ | --------------------- | ---------------- | --------------- | ----- | --------- |
-| All datasets | ColBERT v2            | SentenceSplitter | TinyBERT-L-2-v2 | + 8%  | + 12%     |
-| HotpotQA     | ColBERT v2            | SentenceSplitter | TinyBERT-L-2-v2 | 0.3123| 0.5051    |
+| All datasets | ColBERT v2            | SentenceSplitter | None            | + 8%  | + 12%     |
+| HotpotQA     | ColBERT v2            | SentenceSplitter | None            | 0.3123| 0.5051    |
 | HotpotQA     | WhereIsAI/UAE-Large-V1| SentenceSplitter | TinyBERT-L-2-v2 | 0.2953| 0.4257    |
-| SQUAD        | ColBERT v2            | SentenceSplitter | TinyBERT-L-2-v2 | 0.8711| 0.9581    |
+| SQUAD        | ColBERT v2            | SentenceSplitter | None            | 0.8711| 0.9581    |
 | SQUAD        | BAAI/bge-m3           | SentenceSplitter | TinyBERT-L-2-v2 | 0.8286| 0.93      |
 | SQUAD        | BAAI/bge-m3           | SentenceSplitter | None            | 0.8063| 0.93      |
-| QuAC         | ColBERT v2            | SentenceSplitter | TinyBERT-L-2-v2 | 0.2207| 0.3144    |
+| QuAC         | ColBERT v2            | SentenceSplitter | None            | 0.2207| 0.3144    |
 | QuAC         | BAAI/bge-large-en-v1.5| SentenceSplitter | TinyBERT-L-2-v2 | 0.1975| 0.2766    |
 
-Our **best performing method** for handling RAG Retrieval on all datasets was **ColBERT v2 with SentenceSplitter and TinyBERT reranking**.
+Our **best performing method** for handling RAG Retrieval on all datasets was **ColBERT v2 with SentenceSplitter chunking.
 
-Our **other (single-vector) embedding models**, though trailing in performance behind ColBERT v2 (with SentenceSplitter and TinyBERT reranking), tended to perform **about the same** as each other, both when they were combined with reranking and when they weren’t, across all three datasets.
+Our **other (single-vector) embedding models**, though trailing in performance behind ColBERT v2 (with SentenceSplitter), tended to perform **about the same** as each other, both when they were combined with reranking and when they weren’t, across all three datasets.
 
 **SentenceSplitter chunking** surprised us by outperforming SemanticSplitterNodeParser, but upon further reflection, these outcomes suggest that sentences are natural delimiters of meaning, and semantic “averaging” of meaning may miss context-specific relevance. 
 
