@@ -173,9 +173,9 @@
     "value_90_days": 980931
   },
   "crates_io_downloads": {
-    "value": 554,
-    "source_url": "https://crates.io/crates/typesense",
+    "value": 0,
+    "source_url": "",
     "comment": "",
-    "value_90_days": 303
+    "value_90_days": 0
   }
 }
