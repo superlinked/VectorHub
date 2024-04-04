@@ -171,5 +171,11 @@
     "source_url": "https://www.npmjs.com/package/weaviate-client",
     "comment": "",
     "value_90_days": 45339
+  },
+  "crates_io_downloads": {
+    "value": 255,
+    "source_url": "https://crates.io/crates/weaviate-client",
+    "comment": "",
+    "value_90_days": 189
   }
 }

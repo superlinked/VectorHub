@@ -171,5 +171,11 @@
     "source_url": "https://www.npmjs.com/package/@clickhouse/client",
     "comment": "",
     "value_90_days": 1339389
+  },
+  "crates_io_downloads": {
+    "value": 242937,
+    "source_url": "https://crates.io/crates/clickhouse",
+    "comment": "",
+    "value_90_days": 60858
   }
 }

@@ -171,5 +171,11 @@
     "source_url": "https://www.npmjs.com/package/@pinecone-database/pinecone",
     "comment": "",
     "value_90_days": 1512291
+  },
+  "crates_io_downloads": {
+    "value": 828,
+    "source_url": "https://crates.io/crates/pinecone-rs",
+    "comment": "",
+    "value_90_days": 828
   }
 }

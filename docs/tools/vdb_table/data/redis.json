@@ -171,5 +171,11 @@
     "source_url": "https://www.npmjs.com/package/@redis/search",
     "comment": "",
     "value_90_days": 20262838
+  },
+  "crates_io_downloads": {
+    "value": 3288,
+    "source_url": "https://crates.io/crates/redis-query",
+    "comment": "",
+    "value_90_days": 742
   }
 }
