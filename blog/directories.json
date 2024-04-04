@@ -36,6 +36,12 @@
                 "name": "Use Cases",
                 "path": "use_cases",
                 "has_blogs": true
+            },
+            {
+                "type": "folder",
+                "name": "Contributing",
+                "path": "contributing",
+                "has_blogs": true
             }
         ]
     }
