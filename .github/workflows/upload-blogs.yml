@@ -18,6 +18,11 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
+
+    - name: Set file timestamps
+      run: |
+        ./blog/update-timestamps.sh
+      shell: bash
   
     - name: Set STRAPI secrets
       run: |
