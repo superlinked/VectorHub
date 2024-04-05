@@ -1,6 +1,4 @@
-<!-- TODO: Replace this text with a summary of article for SEO -->
-
-# 3.0 Vector Search & Management
+# Vector Search & Management: Introduction
 
 <!-- TODO: Cover image: 
 1. You can create your own cover image and put it in the correct asset directory,

@@ -1,6 +1,4 @@
-<!-- TODO: Replace this text with a summary of article for SEO -->
-
-# 2.0 Vector Compute
+# Vector Compute: Introduction
 
 ## Introduction 
 

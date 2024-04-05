@@ -1,3 +1,5 @@
+# Nearest Neighbor Search Algorithms
+
 **Scanning to calculate the similarity between vectors quickly** is at the heart of Vector Search. Vector similarity scores encoded by your embedding model/s store valuable feature or characteristic information about your data that can be used in various applications (e.g., content recommendation, clustering, data analysis). There are several ways to perform nearest neighbor search.
 
 ### Full Scan
