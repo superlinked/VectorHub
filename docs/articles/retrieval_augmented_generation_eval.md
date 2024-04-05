@@ -1,5 +1,3 @@
-<!--First of a three-part (monthly) series on RAG evaluation. In this article, we introduce RAG evaluation and its challenges, outline the broad strokes of an effective evaluation framework, and provide an overview of the kinds of evaluation tools and approaches you can use to evaluate your RAG application. We also provide useful links to articles on RAG, RAG evaluation, a vector database feature matrix, and discuss Golden Sets, BLEU and ROUGE, and more. -->
-
 # Evaluating Retrieval Augmented Generation - a framework for assessment
 
 *In this first article of a three-part (monthly) series, we introduce RAG evaluation, outline its challenges, propose an effective evaluation framework, and provide a rough overview of the various tools and approaches you can use to evaluate your RAG application.*

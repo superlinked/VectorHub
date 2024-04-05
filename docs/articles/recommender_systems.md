@@ -1,5 +1,3 @@
-<!--SEO SUMMARY: Personalized product recommendations, according to a study by IBM, can lead to a 10-30% increase in revenue. But creating truly personalized experiences requires extensive user and product data, which is not always available. For example, providers with restrictions on collecting user data may only have basic product information, like genre and popularity. While collaborative filtering approaches work reasonably well when extensive user and product data is scarce, they leave significant gains on the table. Incorporating side data with a recommender based on collaborative filtering can significantly increase recommendation quality (>20% gains in precision), leading to greater customer satisfaction, more traffic, and millions in additional revenue.-->
-
 # A Recommender System: Collaborative Filtering with Sparse Metadata
 
 <img src=assets/use_cases/recommender_systems/recommender.png alt="Cover" data-size="100" />

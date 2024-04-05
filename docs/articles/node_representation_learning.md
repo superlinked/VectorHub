@@ -1,5 +1,3 @@
-<!-- SEO: Introduction to Node Representation Learning. Introduction to Node2Vec. Introduction to GraphSAGE. Example code for training Node2Vec. Example code for training GraphSAGE. Node2Vec GraphSAGE comparison. Node2Vec and GraphSAGE pro con. -->
-
 # Representation Learning on Graph Structured Data
 
 ## Introduction: representing things and relationships between them

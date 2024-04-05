@@ -1,5 +1,3 @@
-<!-- SEO: We evaluate some Retrieval methods in Retrieval-Augmented Generation (RAG), comparing different popular chunking techniques, leaderboard single- and multi-vector embedding models, and reranking to see how they affect outcome accuracy and relevance on benchmark datasets - HotpotQA, SQUAD, and QuAC. Impressive results achieved by models ColBERT v2, WhereIsAI/UAE-Large-V1, BAAI/bge-large-en-v1.5, SentenceSplitter chunking, and TinyBERT-L-2-v2 reranker.-->
-
 # An evaluation of RAG Retrieval Chunking Methods
 
 Choosing a RAG Retrieval method that suits your use case can be daunting. Are some methods better suited to specific tasks and types of datasets than others? Are there trade-offs between performance and resource requirements you need to be aware of? How do different chunking techniques, embedding models, and reranking interact to impact performance results? Evaluation can help answer these questions.
