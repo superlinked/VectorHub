@@ -121,7 +121,7 @@ Here’s a tabular summary of our best performing methods for handling RAG Retri
 | QuAC         | ColBERT v2            | SentenceSplitter | None            | 0.2207| 0.3144    |
 | QuAC         | BAAI/bge-large-en-v1.5| SentenceSplitter | TinyBERT-L-2-v2 | 0.1975| 0.2766    |
 
-Our **best performing method** for handling RAG Retrieval on all datasets was **ColBERT v2 with SentenceSplitter chunking.
+Our **best performing method** for handling RAG Retrieval on all datasets was **ColBERT v2 with SentenceSplitter chunking**.
 
 Our **other (single-vector) embedding models**, though trailing in performance behind ColBERT v2 (with SentenceSplitter), tended to perform **about the same** as each other, both when they were combined with reranking and when they weren’t, across all three datasets.
 
