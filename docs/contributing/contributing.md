@@ -1,4 +1,4 @@
-# Contributing
+# Contributing Guidelines
 
 VectorHub is a learning hub that lives on its contributors. We are always looking for people to help others, especially as we grow. You can contribute in many ways, either by creating new content or by letting us know if content needs updating.
 

@@ -1,4 +1,4 @@
-# 1.3 Conclusion 
+# Data Sources: Conclusion 
 
 Building an effective vector retrieval stack requires a deep understanding of its objectives,  available data sources, and how these interact in the context of your retrieval system.
 

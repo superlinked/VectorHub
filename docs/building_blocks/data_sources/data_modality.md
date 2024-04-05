@@ -1,4 +1,4 @@
-# 1.2 Data Modality
+# Data Modality
 
 ## Understanding the different Data Modality / Types
 
