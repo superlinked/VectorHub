@@ -37,6 +37,9 @@ Now that we have reemphasised the importance and relevance of RAG, let's look at
 3) **Learning to use evaluation dataset to evaluate given metrics**<br>
 4) **Code walkthrough and reference notebook**<br>
 
+>  💡 In this article, we utilize two Hugging Face datasets: [qdrant_doc](https://huggingface.co/datasets/atitaarora/qdrant_doc) and [qdrant_doc_qna](https://huggingface.co/datasets/atitaarora/qdrant_doc_qna). The dataset [qdrant_doc](https://huggingface.co/datasets/atitaarora/qdrant_doc) serves as the reference dataset upon which our Retrieval-Augmented Generation (RAG) solution is built. On the other hand, the dataset [qdrant_doc_qna](https://huggingface.co/datasets/atitaarora/qdrant_doc_qna) is employed as the golden-set for evaluation purposes. Keep this distinction in mind as you follow along with our analysis and results.
+
+
 ### **Synthetic Evaluation Dataset**
 
 Right from the ages of relevance evaluation and assessment of information retrieval systems we have known and acknowledged the importance of the golden set or evaluation dataset.
@@ -45,7 +48,7 @@ Addressing the elephant-in-the-room , how do we get on and create one of these e
 
 We got you covered , and here are some techniques you can use to create one of your own.
 
-***Note: Some of the techniques below may involve using OpenAI to generate the questions on the chunked document.***
+>  💡 Note: Some of the techniques below may involve using **OpenAI** to generate the questions on the chunked document.
 
 To make some sensible set of questions - we need to use targeted snippets to ensure our questions as well as answers are crisp.
 
@@ -140,7 +143,7 @@ def generate_question_answer(context):
   return response.choices[0].message.content
 ```
 
-Using the subroutine above to generate question and answer pairs as :
+Using the subroutine above to generate question and answer/ground-truth pairs as :
 
 ```python
 # Generate question-answer pairs for the given chunk
@@ -160,9 +163,9 @@ print(question_answer_pair)
 # A . Qdrant is a vector similarity search engine that offers a production-ready service with an API for storing, searching, and managing points (vectors) along with additional payload information. The payloads can provide extra details to refine searches and offer valuable information to users. Qdrant can be utilized through the Python `qdrant-client`, by downloading the latest docker image of `qdrant` and connecting to it locally, or by exploring the free tier option of [Qdrant's Cloud](https://cloud.qdrant.io/) before transitioning to the full version.
 ```
 
-We saw another decent way to generate questions along with answers using OpenAI prompts this time.
+We saw another way to generate questions along with answers/ground-truth using OpenAI prompts this time.
 
-However , as we are discussing about RAGAS , it comes with an easier way to generate Question-Answer pair and rather a complete baseline evaluation dataset [utility](https://docs.ragas.io/en/latest/getstarted/testset_generation.html) in RAGAS , using your dataset in just a couple of lines of code as below.
+However , as we are discussing about RAGAS , it comes with an easier way to generate Question-Context-Ground_Truth set and rather a complete baseline evaluation dataset [utility](https://docs.ragas.io/en/latest/getstarted/testset_generation.html) in RAGAS , using your dataset in just a couple of lines of code as below.
 
 ```python
 ## Test Evaluation Dataset Generation using Ragas
@@ -189,19 +192,20 @@ df = testset.to_pandas()
 df.head(10)
 ```
 
-Which gives us a very reasonable set of baseline question-answer pairs as below :
-
-
+Which gives us a reasonable set of baseline question-context-ground_truth set as below which could later be used to generate response from our RAG pipeline for evaluation :
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_baseline_eval_dataset_preview.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_baseline_eval_dataset_preview.png)
 
-It is a good idea to export them as a hugging-face dataset to be utilised later during the evaluation baseline step.
-The techniques above let you build a good baseline evaluation dataset including resonably good questions and answers to evaluate your RAG system.
+Let's zoom into one of the rows to see what did RAGAS generate for us: 
+
+![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_sample_question.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_sample_question.png)
+
+The first column is the `question` generated based on the given list of values of `contexts` along with value of `ground_truth` used to evaluate our `answer` which is going to be surfaced as we run the `question` through our RAG pipeline.
+It is a good idea to export them as a hugging-face dataset to be utilised later during the evaluation step.
+The techniques above let you build a good evaluation dataset including reasonably good questions and ground-truths to evaluate your RAG system.
 ---
 
-<aside>
-💡 An essential aspect to consider is the creation of an evaluation dataset for each tuning cycle. This suggests developing a subroutine that facilitates the construction of this dataset in the expected RAGAS format, as illustrated above, utilizing the provided questions and executing them through your RAG system.
-</aside>
+> 💡 An essential aspect to consider is the creation of an evaluation dataset with `answer` for each tuning cycle. This suggests developing a subroutine that facilitates the construction of evaluation dataset in the expected RAGAS format, as illustrated above, utilizing the provided questions and executing them through your RAG system.
 
 A sample subroutine may look like this below :
 
@@ -251,8 +255,8 @@ rag_response_dataset = Dataset.from_dict(rag_response_data)
 rag_response_dataset.to_csv('rag_chunk_512.csv')
 ```
  
----
-The subroutine here uses an abstraction of your RAG pipeline `query_with_context()` method , we will show a sample naive-rag example in a bit.
+
+The subroutine here uses an abstraction of your RAG pipeline `query_with_context()` method , we will show a sample naive-rag example in a bit. It uses the older format with `ground_truths` which is the list on ground_truth strings while the latest format asserts to use `ground_truth` as a string value. You can choose your preferred format. 
 
 Now that we have a baseline as well as the subroutine to create evaluation dataset .
 
