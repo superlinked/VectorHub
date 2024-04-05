@@ -52,7 +52,7 @@ def load_items_from_json(directories: str) -> list:
 def load_existing_blogs(page_num=1):
     global existing_filepaths_discovered
     base_url = urljoin(BASE_URL, 'api/blogs')
-    search_url = base_url + f"?pagination[page]={page_num}"
+    search_url = base_url + f"?pagination[page]={page_num}&publicationState=preview"
 
     session = requests.Session()
 
