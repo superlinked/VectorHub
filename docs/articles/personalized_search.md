@@ -1,5 +1,3 @@
-<!-- TODO: Replace this text with a summary of article for SEO -->
-
 # Personalized Search: Harnessing the Power of Vector Embeddings
 
 <!-- TODO: Cover image: 
