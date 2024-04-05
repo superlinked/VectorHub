@@ -3,7 +3,7 @@
         "type": "folder",
         "name": "VectorHub",
         "path": "docs",
-        "has_blogs": false,
+        "has_blogs": true,
         "children": [
             {
                 "type": "folder",
