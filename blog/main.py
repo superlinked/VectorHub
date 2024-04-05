@@ -61,7 +61,7 @@ def load_existing_blogs(page_num=1):
         data = json.loads(response.text)['data']
         if len(data) > 0:
             for item in data:
-                existing_filepaths_discovered[item['attributes']['filepath']] = {'discovered': False, 'id': -1}
+                existing_filepaths_discovered[item['attributes']['filepath']] = {'discovered': False, 'id': item['id']}
             load_existing_blogs(page_num+1)
 
 
@@ -136,17 +136,13 @@ def upload_blog(blog: StrapiBlog):
             url = base_url
             create_response = session.post(url, headers=headers, data=json.dumps(blog.get_post_json()))
 
-        if create_response.status_code == 200:
-            if filepath in existing_filepaths_discovered:
-                create_response_text = json.loads(create_response.text)
-                existing_filepaths_discovered[filepath]['id'] = create_response_text['data']['id']
-        else:
+        if not create_response.status_code == 200:
             print(f'Error in parsing blog: {filepath}')
             print(create_response.text)
             exit(1)
 
 def delete_old_blogs():
-    global existing_filepaths_discovered
+    global existing_filepaths_discovered, BASE_URL
 
     base_url = urljoin(BASE_URL, 'api/blogs')
     session = requests.Session()
@@ -154,9 +150,13 @@ def delete_old_blogs():
     for filepath in existing_filepaths_discovered:
         if not existing_filepaths_discovered[filepath]['discovered']:
             print(f"Deleting filepath: {filepath}")
-            if existing_filepaths_discovered[filepath]['id'] > 0:
+            id = existing_filepaths_discovered[filepath]['id']
+            if id > 0:
                 url = f"{base_url}/{id}"
                 response = session.delete(url, headers=headers)
+                if response.status_code != 200:
+                    print(f'Error in deleting blog: {filepath}')
+                    print(response.text)
 
 
 if __name__ == "__main__":
