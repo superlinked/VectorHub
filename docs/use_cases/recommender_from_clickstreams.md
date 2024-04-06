@@ -127,7 +127,7 @@ The formula is $\text{Cosine Similarity}(\mathbf{A}, \mathbf{B}) = \frac{\mathbf
 ![Cosine Similarity](../assets/use_cases/recommender_from_clickstreams/cossim.png)
 
 # How Does It Work?
-So, what is Gensim's Word2Vec model doing under the hood? Basically, it is a fast implementation of the ideas of Mikolov et. al in their paper [Efficient Estimation of Word Representations in Vector Space](https://arxiv.org/abs/1301.3781) from 2013, a true classic that changed the world of NLP forever (before transformers came around and disrupted it again).
+So, what is Gensim's Word2Vec model doing under the hood? Basically, it is a fast implementation of the ideas of Mikolov et al. in their paper [Efficient Estimation of Word Representations in Vector Space](https://arxiv.org/abs/1301.3781) from 2013, a true classic that changed the world of NLP forever (before transformers came around and disrupted it again).
 
 The authors' Word2Vec comes in two flavors:
 - CBOW
