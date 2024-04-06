@@ -82,7 +82,7 @@ As opposed to BoW vectors, node embeddings are vector representations that captu
 $P(\text{context}|\text{source}) = \frac{1}{Z}\exp(w_{c}^Tw_s)$
 -->
 
-<img src=assets/use_cases/node_representation_learning/context_proba_v3.png alt="Node2Vec conditional probability" data-size="50" />
+<img src="../assets/use_cases/node_representation_learning/context_proba_v3.png" alt="Node2Vec conditional probability" data-size="50" />
 
 Here, *w_c* and *w_s* are the embeddings of the context node *c* and source node *s* respectively. The variable *Z* serves as a normalization constant, which, for computational efficiency, is never explicitly computed.
 

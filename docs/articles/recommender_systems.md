@@ -1,6 +1,6 @@
 # A Recommender System: Collaborative Filtering with Sparse Metadata
 
-<img src=../assets/use_cases/recommender_systems/recommender.png alt="Cover" data-size="100" />
+<img src="../assets/use_cases/recommender_systems/recommender.png" alt="Cover" data-size="100" />
 
 ## Introduction
 
@@ -26,7 +26,7 @@ We can represent this process using a graph, in which users and items are graph 
 ​
 When understood from a graph perspective, it is easy to see how matrix factorization can be extended to include additional metadata. What we want is to somehow let the algorithm know about the new links, which help group similar items or users together. In other words, we want to "inject" new nodes – nodes that link nodes belonging to the same group. How do we do this? Let's take a look at the illustration below:
 
-<img src=../assets/use_cases/recommender_systems/dummy_nodes.jpg alt="Node structure" data-size="100" />
+<img src="../assets/use_cases/recommender_systems/dummy_nodes.jpg" alt="Node structure" data-size="100" />
 
 There are three users: u1, u2 and u3; and four items: i1, i2, i3, i4. The user u1 has interacted with items i1 and i3. There is a dummy user, who links items that have the same color (i1, i3, i4). By coupling similar items, the dummy user helps the model identify related content. This increases the chances of item i4 being recommended to user u1.
 
