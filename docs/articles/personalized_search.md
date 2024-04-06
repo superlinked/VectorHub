@@ -14,7 +14,7 @@ Vector embeddings let you return more _relevant_ results to your search queries 
 
 Let's look first at how vector embeddings improve the relevance of search query results generally, and then at how vector embeddings permit us to use the meaning of personal preferences to create truly personalized searches.
 
-<img src=assets/use_cases/personalized_search/vector_embeddings.png alt="Illustration of vector embeddings" data-size="100" />
+<img src=../assets/use_cases/personalized_search/vector_embeddings.png alt="Illustration of vector embeddings" data-size="100" />
 
 ## Vector search vs. keyword-based search
 

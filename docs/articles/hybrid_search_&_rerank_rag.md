@@ -251,7 +251,7 @@ response = PREFFERED_CHAIN.invoke("QUERY")
 Let’s check responses from both retrievers in various contexts. First, we will **query in a general context without keywords, abbreviations, or location filters**.
 
 
-```
+```markdown
 Query: What are the two strategic challenges that the United States faces according to the National Security Strategy?
 
 Semantic Search
@@ -263,7 +263,7 @@ Result: According to the 2022 National Security Strategy, the United States face
 
 Both results are somewhat accurate and satisfactory. Now, let us try again, **this time incorporating abbreviations and name filters** to see how that works.
 
-```
+```markdown
 Query: How did Joe Biden help deepen NATO relationship?
 
 Semantic Search
@@ -275,7 +275,7 @@ Result: Under Joe Biden's leadership, the United States has worked to deepen NAT
 
 The results of the hybrid search are more detailed, provide a more comprehensive response, including the names of countries and other specific information. Now, **let’s add specific locations to see how each approach fares**.
 
-```
+```markdown
 Query: How is Strait of Hormuz important in Biden's strategy?
 
 Semantic Search

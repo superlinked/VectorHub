@@ -68,7 +68,7 @@ Now, let’s take a look at our dataset-specific outcomes.
 
 ## Dataset HotpotQA results
 
-![Chunking methods performance results on HotpotQA dataset](assets/use_cases/evaluation_of_RAG_retrieval_chunking_methods/mlflow_hotpotqa.png)
+![Chunking methods performance results on HotpotQA dataset](../assets/use_cases/evaluation_of_RAG_retrieval_chunking_methods/mlflow_hotpotqa.png)
 
 _Chunking methods performance results on HotpotQA dataset (above)_
 
@@ -80,7 +80,7 @@ The single-vector embedding models performed about as well as each other whether
 
 ## Dataset SQUAD results
 
-![Chunking methods performance on SQUAD dataset](assets/use_cases/evaluation_of_RAG_retrieval_chunking_methods/mlflow_squad.png)
+![Chunking methods performance on SQUAD dataset](../assets/use_cases/evaluation_of_RAG_retrieval_chunking_methods/mlflow_squad.png)
 
 _Chunking methods performance results on SQUAD dataset (above)_
 
@@ -94,7 +94,7 @@ We tested multiple rerankers on this dataset of 278M-560M parameters, but they p
 
 ## Dataset QuAC results
 
-![Chunking methods performance on QuAC dataset](assets/use_cases/evaluation_of_RAG_retrieval_chunking_methods/mlflow_quac.png)
+![Chunking methods performance on QuAC dataset](../assets/use_cases/evaluation_of_RAG_retrieval_chunking_methods/mlflow_quac.png)
 
 _Chunking methods performance results on QuAC dataset (above)_
 
