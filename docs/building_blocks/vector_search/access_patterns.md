@@ -75,7 +75,7 @@ In short, which storage technology, data serialization format, and execution env
 - Your desired level of processing control,
 - and your available resources and time for set up and maintenance. 
 
-<img src=assets/building_blocks/vector_search/bb3-2.png alt="Choosing a batch processing setup" data-size="100" />
+<img src="../assets/building_blocks/vector_search/bb3-2.png" alt="Choosing a batch processing setup" data-size="100" />
 
 ---
 ## Contributors

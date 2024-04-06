@@ -27,7 +27,7 @@ Pinterest uses diverse data types to improve the recommendation performance of i
 
 Below is an overview of the data & ML stack Pinterest uses to convert all this data (above) to product value.
 
-<img src=assets/building_blocks/data_sources/bb1-1.png alt="Pinterest Tech Stack" data-size="70" />
+<img src="../assets/building_blocks/data_sources/bb1-1.png" alt="Pinterest Tech Stack" data-size="70" />
 
 1. **Event Streaming Platform**:
     - Pinterest relies on an **event streaming platform**, [Flink](https://medium.com/pinterest-engineering/unified-flink-source-at-pinterest-streaming-data-processing-c9d4e89f2ed6#:~:text=To%20best%20serve%20Pinners%2C%20creators,as%20its%20stream%20processing%20engine), to collect real-time event data. This platform allows them to easily collect, enrich, and transform event attributes.
