@@ -26,7 +26,7 @@ In this article, I want to show you how you can get these embeddings with only a
 Let's see how this works!
 
 
-# Gather Your Data
+## Gather Your Data
 In the following, we will use [this artificial dataset](../assets/use_cases/recommender_from_clickstreams/clickstreams.txt). The first few lines out of 10,000 look like this:
 ```text
 554>11>956>952>108>174>587>243>153>863>935>87>841
@@ -58,7 +58,7 @@ Your data looks like this now:
  ...
  ```
 
- # Train a Model
+ ## Train a Model
 Once we have the data in this format, we can just type
 
 ```python
@@ -97,7 +97,7 @@ The first five rows look like this:
 
 The index consists of the hotel ID, and next to it, you find the 16 (since we have set `vector_size=16`) numbers that represent the learned embedding.
 
-## Recommend alternative hotels
+### Recommend alternative hotels
 Since we have an embedding for each hotel, we can now ask for **closest embeddings** given an embedding for a hotel. This should give us hotels that are similar to the ones we query.
 
 Using Gensim, you can easily do it via 
@@ -126,7 +126,7 @@ The formula is $\text{Cosine Similarity}(\mathbf{A}, \mathbf{B}) = \frac{\mathbf
 :::
 ![Cosine Similarity](../assets/use_cases/recommender_from_clickstreams/cossim.png)
 
-# How Does It Work?
+## How Does It Work?
 So, what is Gensim's Word2Vec model doing under the hood? Basically, it is a fast implementation of the ideas of Mikolov et al. in their paper [Efficient Estimation of Word Representations in Vector Space](https://arxiv.org/abs/1301.3781) from 2013, a true classic that changed the world of NLP forever (before transformers came around and disrupted it again).
 
 The authors' Word2Vec comes in two flavors:
@@ -140,4 +140,73 @@ graph LR;
       id2[Summit Vista Inn]-->id3[Azure Sands Hotel];
       id3[Azure Sands Hotel]-->id4[Evergreen Retreat Lodge];
 ```
-> **The fundamental idea**: For each hotel in this stream, we try to predict the hotel before and after it.
+> **The fundamental idea**: For each hotel in this stream, we try to predict the hotel right before and after it.
+
+In the example, we would create the following table:
+| Focus                   | Prediction              |
+|-------------------------|-------------------------|
+| Tranquil Haven Resort   | Summit Vista Inn        |
+| Summit Vista Inn        | Tranquil Haven Resort   |
+| Summit Vista Inn        | Azure Sands Hotel       |
+| Azure Sands Hotel       | Summit Vista Inn        |
+| Azure Sands Hotel       | Evergreen Retreat Lodge |
+| Evergreen Retreat Lodge | Azure Sands Hotel       |
+
+Each pair in this table is also called a **skipgram**. However, we do not phrase the problem like this, but slightly different to model it as a binary classification problem. This has the advantage that the model architecture gets easier and more efficient.
+
+| Focus                   | Other Hotel             | Neighbor? |
+|-------------------------|-------------------------|-----------|
+| Tranquil Haven Resort   | Summit Vista Inn        | Yes       |
+| Summit Vista Inn        | Tranquil Haven Resort   | Yes       |
+| Summit Vista Inn        | Azure Sands Hotel       | Yes       |
+| Azure Sands Hotel       | Summit Vista Inn        | Yes       |
+| Azure Sands Hotel       | Evergreen Retreat Lodge | Yes       |
+| Evergreen Retreat Lodge | Azure Sands Hotel       | Yes       |
+
+Do you see the problem when building a binary classifier for this table? The target column *Neighbor?* only contains a single label since this is how we have constructed this table! So, what the authors proposed was to use **negative sampling** to save the day.
+
+### Negative sampling
+The idea is simple: 
+>If you only have *positive* rows consisting of neighbors, just make up some random pairs of hotels that were not seen next to each other in a sequence.
+This can look like this:
+
+| Focus                   | Other Hotel             | Neighbor? |
+|-------------------------|-------------------------|-----------|
+| Tranquil Haven Resort   | Summit Vista Inn        | Yes       |
+| Tranquil Haven Resort   | Some Other Hotel 1      | No        |
+| Summit Vista Inn        | Tranquil Haven Resort   | Yes       |
+| Summit Vista Inn        | Some Other Hotel 2      | No        |
+| Summit Vista Inn        | Azure Sands Hotel       | Yes       |
+| Summit Vista Inn        | Some Other Hotel 1      | No        |
+| Azure Sands Hotel       | Summit Vista Inn        | Yes       |
+| Azure Sands Hotel       | Some Other Hotel 3      | No        |
+| Azure Sands Hotel       | Evergreen Retreat Lodge | Yes       |
+| Azure Sands Hotel       | Some Other Hotel 3      | No        |
+| Evergreen Retreat Lodge | Azure Sands Hotel       | Yes       |
+| Evergreen Retreat Lodge | Some Other Hotel 1      | No        |
+
+And now, we can build a binary classifier that has to solve the reasonable classification task of finding out whether two hotels were clicked successively, or not.
+
+And this is what happens under the hood in a nutshell. Of course, there are many more hyperparameters that you can tune to get better embeddings. We have seen the embedding size (called `vector_size` in Gensim) already. Another important hyperparameter is **window size** using the `window_size` parameter. This enlarges the focus of the model, so we are not only interested in the direct left and right neighbors of the hotel but also hotels that are maybe two or three steps apart from the focus element.
+
+## Conclusion
+We have seen how easy it is to get embeddings for hotels - or rather any type of item - that users click on in an online session. We only have to record the clickstream data and preprocess it a bit, so we can use Gensim to train a model in a few lines of code.
+
+It is probably one of the easiest projects to set up, and still, you get really interesting results from it in the form of embeddings. You can then use these embeddings to either build a recommender system, but you can also just visualize them to gain more insights into your data.
+
+As an example, you can use PCA, t-SNE, or UMAP to project the embeddings into two dimensions like this:
+```python
+import matplotlib.pyplot as plt
+from sklearn.manifold import TSNE
+
+t = TSNE(random_state=0).fit(model.wv.vectors)
+plt.scatter(t.embedding_[:, 0], t.embedding_[:, 1])
+```
+
+![Projected Embeddings](../assets/use_cases/recommender_from_clickstreams/scatter.png)
+
+Here, you can see how certain hotels form clusters, and it might be interesting to study them. But we will stop at this point for now. Give it a try with your datasets now! All it takes are about ten lines of code. Thanks for reading!
+
+## Contributors
+
+- Dr. Robert Kübler ([LinkedIn](https://www.linkedin.com/in/robert-kuebler/) / [Medium](https://medium.com/@dr-robert-kuebler))
