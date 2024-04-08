@@ -161,10 +161,10 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 3852,
+    "value": 4250,
     "source_url": "https://pypi.org/project/kdbai-client/",
     "comment": "",
-    "value_90_days": 1671
+    "value_90_days": 1998
   },
   "npm_downloads": {
     "value": 0,

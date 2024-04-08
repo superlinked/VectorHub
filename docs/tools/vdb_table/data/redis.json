@@ -161,16 +161,16 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 783215,
+    "value": 786864,
     "source_url": "https://pypi.org/project/redisearch/",
     "comment": "",
-    "value_90_days": 43573
+    "value_90_days": 44658
   },
   "npm_downloads": {
-    "value": 83875310,
+    "value": 85011521,
     "source_url": "https://www.npmjs.com/package/@redis/search",
     "comment": "",
-    "value_90_days": 20262838
+    "value_90_days": 20601700
   },
   "crates_io_downloads": {
     "value": 0,
