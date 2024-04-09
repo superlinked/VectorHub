@@ -225,7 +225,7 @@ rag.draw("rag.png")
 
 As you can see, this creates an image file that maps out all the components and their connections, offering a clear overview of the entire pipeline process.
 
-![](assets\use_cases\advanced_retrieval_augmented_generation\pipeline_graph.png)
+![](assets/use_cases/advanced_retrieval_augmented_generation/pipeline_graph.png)
 
 That's a lot of components! Let's write a query and try it out. We will be asking questions about my previous tutorials on Vector Hub: [An introduction to RAG](https://superlinked.com/vectorhub/retrieval-augmented-generation) and [scaling RAG for production with Ray](https://superlinked.com/vectorhub/scaling-rag-for-production).
 
