@@ -24,7 +24,7 @@ In this tutorial, we will cover the following components, including code example
 
 ### Set up
 
-Before we start diving into advanced RAG and pre-retrieval, let's set up everything we will need for this tutorial. First, we install the dependencies:
+Before we start diving into advanced RAG and pre-retrieval, let's set up everything we will need for this tutorial. Note that if you're on Windows, you might run into trouble setting up [bitsandbytes](https://github.com/TimDettmers/bitsandbytes), as there is no Windows support yet.
 
 ```bash
 pip install haystack-ai sentence-transformers accelerate -i <https://pypi.org/simple/> bitsandbytes
@@ -75,12 +75,12 @@ from haystack.components.preprocessors import DocumentSplitter
 splitter = DocumentSplitter(split_by="sentence", split_length=3, split_overlap=2)
 ```
 
-In this setup, we chose "sentence" for `split_by`, a choice driven to maintain granular control over the chunking process. The `split_length` is set to 3 sentences to ensure each chunk is sufficiently detailed yet concise, while a `split_overlap` of 2 sentences helps maintain context continuity between adjacent chunks. There exists no golden rule for these hyperparameters, I would advise that you try out different configurations based on the structure and type of your documents. 
+In this setup, we chose "sentence" for `split_by`, a choice driven to maintain granular control over the chunking process. The `split_length` is set to 3 sentences to ensure each chunk is sufficiently detailed yet concise, while a `split_overlap` of 2 sentences helps maintain context continuity between adjacent chunks. There exists no golden rule for these hyperparameters, I would advise that you try out different configurations based on the structure and type of your documents. For a thorough evaluation of chunking methods, check out this [article](https://superlinked.com/vectorhub/an-evaluation-of-rag-retrieval-chunking-methods).
 
 ### Document embeddings
 Embeddings are a central component of the pre-processing stage, serving as the bridge between raw text data and the sophisticated algorithms that drive RAG systems, typically Large Language Models (LLMs). By converting words into numerical vectors, embeddings capture the semantic relationships between different terms, enabling models to understand context and generate relevant responses. Selecting the right embeddings and models is critical for achieving high-quality retrieval and generation, laying the groundwork for RAG's success.
 
-We will be using the `SentenceTransformersDocumentEbedder`, which is a sentence embedding model. This means that instead of only looking at individual words in isolation, the model considers the full context of sentences or even larger text snippets to generate embeddings. This approach allows for a deeper understanding of the text, capturing nuances and meanings that might be lost in word-level embeddings. 
+We will be using the `SentenceTransformersDocumentEbedder`, which is a sentence embedding model. This means that instead of only looking at individual words in isolation, the model considers the full context of sentences or even larger text snippets to generate embeddings. This approach allows for a deeper understanding of the text, capturing nuances and meanings that might be lost in word-level embeddings.
 
 ```python
 from haystack.components.embedders import SentenceTransformersDocumentEmbedder
@@ -89,7 +89,7 @@ doc_embedder = SentenceTransformersDocumentEmbedder("BAAI/bge-small-en-v1.5")
 doc_embedder.warm_up()
 ```
 
-The model we are using, "BAAI/bge-small-en-v1.5", has been selected based on its performance in recent evaluations, striking a balance between retrieval accuracy and computational efficiency. For more information, see Huggingface [MTEB leaderboard](https://huggingface.co/spaces/mteb/leaderboard).
+The model we are using, "BAAI/bge-small-en-v1.5", has been selected based on its performance in recent evaluations, striking a balance between retrieval accuracy and computational efficiency. For more information, see Huggingface [MTEB leaderboard](https://huggingface.co/spaces/mteb/leaderboard). Before you use another model with this class, make sure that it's [compatible](https://docs.haystack.deepset.ai/docs/sentencetransformersdocumentembedder#compatible-models) with sentence embeddings first.
 
 ### Indexing
 To facilitate swift and accurate retrieval of information, indexing organizes the pre-processed data in a structured format that can be quickly accessed by the RAG system. This step involves creating an optimized database of chunks, where each piece of information is tagged and categorized for easy retrieval.
@@ -119,7 +119,7 @@ text_embedder.warm_up()
 
 ### Hybrid Search
 
-Another way to enhance retrieval accuracy is through hybrid search techniques. Traditional keyword search, such as BM25, has its merits in certain contexts due to its high precision. Hybrid search is not a direct Haystack component but can be implemented by querying with both retrievers and merging results in your pipeline.
+Another way to enhance retrieval accuracy is through [hybrid search](https://superlinked.com/vectorhub/optimizing-rag-with-hybrid-search-and-reranking) techniques. Traditional keyword search, such as BM25, has its merits in certain contexts due to its high precision. Hybrid search is not a direct Haystack component but can be implemented by querying with both retrievers and merging results in your pipeline.
 
 ```python
 from haystack.components.retrievers.in_memory import InMemoryBM25Retriever
@@ -164,7 +164,7 @@ Context:
 prompt_builder = PromptBuilder(template=template)
 ```
 
-For our generator, we will be using Zephyr-7b-beta, which is a popular fine-tuned model based on [Mistral 7B](https://huggingface.co/mistralai/Mistral-7B-v0.1). It's a comparatively small yet performant choice.. The model settings include various optimizations to improve efficiency and performance, such as loading the model in 4-bit quantization to save memory and processing power.
+For our generator, we will be using Zephyr-7b-beta, which is a popular fine-tuned model based on [Mistral 7B](https://huggingface.co/mistralai/Mistral-7B-v0.1). It's a comparatively small yet performant choice. The model settings include various optimizations to improve efficiency and performance, such as loading the model in 4-bit quantization to save memory and processing power.
 
 ```python
 import torch
@@ -246,21 +246,10 @@ results = rag.run({
 answer = results["llm"]["replies"][0]
 ```
 
-Finally! Let's print our answer:
+Finally! Let's take a look at our answer:
 
-```shell
-Hallucinations in generative models, specifically in LLMs (Large Language Models),
-can be dangerous as they create false or inaccurate pieces of information, also
-known as machine hallucinations. These hallucinations can have disastrous
-consequences in customer support and content creation, as they can lead to
-incorrect information being generated. In industry settings, hallucinations can
-be a major blocker and concern for the adoption of Generative AI and LLMs, as
-they can result in incorrect or misleading information being presented to
-users. This was demonstrated in February 2023 when Google's Chatbot presented 
-made-up information, resulting in a 7% fall in Alphabet's stock price. Therefore,
-it's crucial to balance retrieval and generation in LLMs to prevent hallucinations
-and ensure the accuracy and reliability of the information generated.
-```
+"Hallucinations in generative models, specifically in LLMs (Large Language Models), can be dangerous as they create false or inaccurate pieces of information, also known as machine hallucinations. These hallucinations can have disastrous consequences in customer support and content creation, as they can lead to incorrect information being generated. In industry settings, hallucinations can
+be a major blocker and concern for the adoption of Generative AI and LLMs, as they can result in incorrect or misleading information being presented to users. This was demonstrated in February 2023 when Google's Chatbot presented made-up information, resulting in a 7% fall in Alphabet's stock price. Therefore, it's crucial to balance retrieval and generation in LLMs to prevent hallucinations and ensure the accuracy and reliability of the information generated."
 
 Keep in mind that this is not a fully deterministic process, so if you will be running this code yourself, you might receive a slightly different answer.
 
