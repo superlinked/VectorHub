@@ -14,7 +14,7 @@ VectorHub's content is organized into three major areas:
 
 ## How to contribute
 
-[This loom](https://www.loom.com/share/aae75e4746f24453af0f3ae276f9ac56?sid=28db5254-f95f-48ae-8bf9-e13ed201bbce) explains how to set up your contributing workflow.
+[This loom](https://www.loom.com/share/dd7f74501fa74740906910d7fb41e02e?sid=6ff5c716-ad70-43a2-968c-7f900b6fb613) explains how to set up your contributing workflow.
 
 To summarise:
 1. Fork the VectorHub repo
