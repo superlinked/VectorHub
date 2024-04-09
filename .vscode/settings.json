@@ -1,0 +1,8 @@
+{
+    "grammarly.files.include": [
+        "**/README.md",
+        "**/readme.md",
+        "**/*.txt",
+        "**/social_media_retrieval.md"
+    ]
+}

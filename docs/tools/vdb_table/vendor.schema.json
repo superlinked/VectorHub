@@ -8,8 +8,7 @@
     "links": {"allOf": [{"$ref": "#/$defs/links"}], "$comment": "About | Links | " },
     "oss": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "About | OSS | The code-base is open source and users can self-host it for free." },
     "license": {"allOf": [{"$ref": "#/$defs/stringWithSource"}], "$comment": "About | License | The license the source code is released under." },
-    "dev_languages": {"allOf": [{"$ref": "#/$defs/stringListWithSource"}], "$comment": "About | Dev Lang | The language the database is developed in." },
-    "github_stars": {"type": "integer", "$comment": "About | GitHub ⭐ | The number of stars for the core product repository." },
+    "dev_languages": {"allOf": [{"$ref": "#/$defs/devLanguageListWithSource"}], "$comment": "About | Dev Lang | The language the database is developed in." },
     "vector_launch_year": {"type": "integer", "$comment": "About | VSS Launch | The year of the first release for the vector search functionality." },
     "metadata_filter": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | Filters | Metadata filtering support within vector search - allowing users to refine results based on additional contextual informatio and enhancing precision in search queries. Not to be confused with filters/faceting in Lucene based keyword search." },
     "hybrid_search": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | Hybrid Search | Built-in blending of the 2 lists (keyword & vector search results) being done natively within the DB using something like Reciprocal Rank Fusion." },
@@ -24,8 +23,8 @@
     "embeddings_structured": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Models | Struct Model | Ability to plug in models used to embedd structured data like user clicks and graphs." },
     "rag": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "APIs | RAG | Calls a LLM internally for a full-stack Retrieval Augmented Generation solution." },
     "recsys": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "APIs | RecSys | Built-in support for recommendation system functionality, e.g. a solution that refines the results based on behavioral data." },
-    "langchain": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "APIs | LangChain | Built-in integration with the LlamaIndex library." },
-    "llamaindex": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "APIs | LlamaIndex | Built-in integration with the LangChain library." },
+    "langchain": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "APIs | LangChain | Built-in integration with the LangChain library." },
+    "llamaindex": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "APIs | LlamaIndex | Built-in integration with the LlamaIndex library." },
     "managed_cloud": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | Managed | A managed cloud offering is available." },
     "pricing": {"allOf": [{"$ref": "#/$defs/stringWithSource"}], "$comment": "Ops | Pricing | The pricing models very widely, so this field is unstructured and ideally points to a pricing page." },
     "in_process": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | In-process | Ability to run embedded within the application process, which leads to a simpler deployment and management in situations when the whole workload fits into one machine." },
@@ -34,8 +33,13 @@
     "ephemeral": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | Ephemeral Index | Ephemeral index support without a server." },
     "sharding": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | Sharding | The search index is sharded across multiple machines." },
     "doc_size": {"allOf": [{"$ref": "#/$defs/bytesWithSource"}], "$comment": "Ops | Document Size | Maximum size of a stored document." },
-    "vector_dims": {"allOf": [{"$ref": "#/$defs/integerWithSource"}], "$comment": "Ops | Vector Dims | Maximum number of vector dimensions." }    
-  
+    "vector_dims": {"allOf": [{"$ref": "#/$defs/integerWithSource"}], "$comment": "Ops | Vector Dims | Maximum number of vector dimensions." },
+    "int8_quantization": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | Int8 Quantization | Vectors can be stored in int8 quantized format in the index." },
+    "github_stars": {"allOf": [{"$ref": "#/$defs/statsWithSource"}], "$comment": "Stats | GitHub ⭐ | The total number of stars for the core product repository." },
+    "docker_pulls": {"allOf": [{"$ref": "#/$defs/statsWithSource"}],"$comment": "Stats | Docker Pulls | The total number of pulls for the core product's docker image." },
+    "pypi_downloads": {"allOf": [{"$ref": "#/$defs/statsWithSource"}], "$comment": "Stats | PyPi Downloads | The number of downloads (in last 90 days) for the core product's python package." },
+    "npm_downloads": {"allOf": [{"$ref": "#/$defs/statsWithSource"}], "$comment": "Stats | NPM Downloads | The number of downloads (in last 90 days) for the core product's NPM package." },
+    "crates_io_downloads": {"allOf": [{"$ref": "#/$defs/statsWithSource"}], "$comment": "Stats | Rust Crates Downloads | The number of downloads (in last 90 days) for the core product's Rust crate." }
   },
 
   "$defs": {
@@ -69,14 +73,27 @@
         "comment": {"type": "string"}
       }
     },
-    "stringListWithSource": {
-      "$id": "stringListWithSource",
+    "devLanguageListWithSource": {
+      "$id": "devLanguageListWithSource",
       "type": "object",
       "properties": {
         "value": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "",
+              "python",
+              "c++",
+              "c",
+              "c#",
+              "go",
+              "java",
+              "scala",
+              "rust",
+              "typescript",
+              "not known"
+            ]
           }
         },
         "source_url": {"type": "string"},
@@ -89,6 +106,16 @@
       "properties": {
         "value": {"type": "integer"},
         "unlimited": {"type": "boolean"},
+        "source_url": {"type": "string"},
+        "comment": {"type":"string"}
+      }
+    },
+    "statsWithSource": {
+      "$id": "statsWithSource",
+      "type": "object",
+      "properties": {
+        "value": {"type": "integer"},
+        "value_90_days": {"type": "integer"},
         "source_url": {"type": "string"},
         "comment": {"type":"string"}
       }
