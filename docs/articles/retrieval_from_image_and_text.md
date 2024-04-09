@@ -32,7 +32,7 @@ Here's an example image from the COCO dataset, and below it, the human-written c
 
 _Example image (above) from the_ [_COCO dataset_](https://cocodataset.org/#home)_, with corresponding human-written captions (below)._
 
-```
+```markdown
 A young boy standing in front of a computer keyboard.
 A little boy wearing headphones and looking at a computer monitor. 
 He is listening intently to the computer at school.

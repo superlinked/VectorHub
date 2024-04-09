@@ -1,5 +1,3 @@
-[//]: # (Commenting to test)
-
 # Manifesto
 
 To ensure that we stay active and engaged, we've put together some guiding principles for VectorHub. These principles embody and highlight our commitment to creating a practical, high quality resource that developers can use to experiment with and launch products using vector retrieval. 
