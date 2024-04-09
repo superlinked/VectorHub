@@ -25,7 +25,6 @@
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 905,
   "vector_launch_year": 2022,
   "metadata_filter": {
     "support": "full",
@@ -113,9 +112,9 @@
     "comment": ""
   },
   "in_process": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
+    "support": "partial",
+    "source_url": "https://solr.apache.org/docs/9_4_0/core/org/apache/solr/client/solrj/embedded/EmbeddedSolrServer.html",
+    "comment": "Available via EmbeddedSolrServer for Java apps only"
   },
   "multi_tenancy": {
     "support": "full",
@@ -148,5 +147,35 @@
     "unlimited": true,
     "source_url": "https://issues.apache.org/jira/browse/SOLR-16836",
     "comment": ""
+  },
+  "github_stars": {
+    "value": 998,
+    "source_url": "https://github.com/apache/solr",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "docker_pulls": {
+    "value": 241912254,
+    "source_url": "https://hub.docker.com/_/solr",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "pypi_downloads": {
+    "value": 10022711,
+    "source_url": "https://pypi.org/project/pysolr/",
+    "comment": "",
+    "value_90_days": 906058
+  },
+  "npm_downloads": {
+    "value": 938539,
+    "source_url": "https://www.npmjs.com/package/solr-client",
+    "comment": "",
+    "value_90_days": 95113
+  },
+  "crates_io_downloads": {
+    "value": 1080,
+    "source_url": "https://crates.io/crates/solr",
+    "comment": "",
+    "value_90_days": 197
   }
 }

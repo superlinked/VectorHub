@@ -25,7 +25,6 @@
     "source_url": "",
     "comment": ""
   },
-  "github_stars": 62400,
   "vector_launch_year": 2021,
   "metadata_filter": {
     "support": "full",
@@ -148,5 +147,35 @@
     "unlimited": true,
     "source_url": "",
     "comment": ""
+  },
+  "github_stars": {
+    "value": 34,
+    "source_url": "https://github.com/RedisAI/VectorSimilarity",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "docker_pulls": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "pypi_downloads": {
+    "value": 786864,
+    "source_url": "https://pypi.org/project/redisearch/",
+    "comment": "",
+    "value_90_days": 44658
+  },
+  "npm_downloads": {
+    "value": 85011521,
+    "source_url": "https://www.npmjs.com/package/@redis/search",
+    "comment": "",
+    "value_90_days": 20601700
+  },
+  "crates_io_downloads": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
   }
 }
