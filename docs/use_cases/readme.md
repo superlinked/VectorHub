@@ -24,6 +24,7 @@ In the blog section, we collate examples of these use cases and case studies fro
 - [A Real-time Retrieval System for Social Media Data](https://superlinked.com/vectorhub/a-real-time-retrieval-system-for-social-media-data)
 - [Optimising RAG with Hybrid Search & Rerank](https://superlinked.com/vectorhub/optimizing-rag-with-hybrid-search-and-reranking)
 - [RecSys for Beginners](https://superlinked.com/vectorhub/recsys-for-beginners)
+- [An evaluation of RAG Retrieval Chunking Methods](https://superlinked.com/vectorhub/an-evaluation-of-rag-retrieval-chunking-methods)
 
 
 We are always looking to expand our Use Cases and share the latest thinking. So if you've been working on something and would like to share your experiences with the community, you [get in touch and contribute](https://github.com/superlinked/VectorHub).
