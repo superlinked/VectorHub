@@ -38,7 +38,7 @@ Most systems deployed in production at scale combine stream and batch processing
 
 When choosing and configuring the data sources for a vector retrieval system, it’s important to consider tradeoffs between data velocity, complexity, and model size. 
 
-<img src="../assets/building_blocks/data_sources/bb1-2.png" alt="Velocity-complexity tradeoff" data-size="100" />
+<img src="assets/building_blocks/data_sources/bb1-2.png" alt="Velocity-complexity tradeoff" data-size="100" />
 
 ### Velocity vs Complexity Tradeoff
 
