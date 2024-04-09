@@ -1,0 +1,33 @@
+defaults:
+  - _self_
+  - preprocess: coco_preprocess
+#  - preprocess: open_images_v7_preprocess
+  - model: model
+  - pipeline: pipeline
+
+# to group MLFlow experiments
+mlflow:
+  experiment_name: EmbedText
+  run_name: all-mpnet-base-v2_blip-image-captioning-base
+  description: COCO text embedding based retrieval based on generated caption
+  tags:
+    experiment: EmbedText
+    dataset: COCO
+    model: all-mpnet-base-v2
+    generated_caption: false
+    top_k: 10
+# vectors to retrieve for ranking
+top_k: 10
+
+image_embeddings: ./artifacts/embeddings/coco/image
+text_embeddings: ./artifacts/embeddings/coco/text
+image_captions: ./artifacts/image_captions/coco
+#image_embeddings: ./artifacts/embeddings/open_images_v7/image
+#text_embeddings: ./artifacts/embeddings/open_images_v7/text
+#image_captions: ./artifacts/image_captions/open_images_v7
+experiments: ./artifacts/experiments/
+
+# change default log directory for hydra
+hydra:
+  run:
+    dir: ./artifacts/hydra/${now:%Y-%m-%d}/${now:%H-%M-%S}

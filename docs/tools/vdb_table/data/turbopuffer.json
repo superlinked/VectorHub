@@ -25,10 +25,10 @@
     "source_url": "",
     "comment": ""
   },
-  "vector_launch_year": 0,
+  "vector_launch_year": 2023,
   "metadata_filter": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://turbopuffer.com/docs/reference/query",
     "comment": ""
   },
   "hybrid_search": {
@@ -107,7 +107,7 @@
     "comment": ""
   },
   "pricing": {
-    "value": "$1/million vecs, $4/million queries https://turbopuffer.com",
+    "value": "$1/million vecs, $4/million queries",
     "source_url": "https://turbopuffer.com/",
     "comment": ""
   },
@@ -143,9 +143,9 @@
     "comment": ""
   },
   "vector_dims": {
-    "value": 1536,
+    "value": 10752,
     "unlimited": false,
-    "source_url": "",
+    "source_url": "https://turbopuffer.com/docs/get-started/limits",
     "comment": ""
   },
   "github_stars": {
@@ -161,15 +161,21 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 6177,
+    "value": 91737,
     "source_url": "https://pypi.org/project/turbopuffer/",
     "comment": "",
-    "value_90_days": 5274
+    "value_90_days": 90662
   },
   "npm_downloads": {
-    "value": 992,
-    "source_url": "https://www.npmjs.com/package/turbopuffer-sdk",
+    "value": 34303,
+    "source_url": "https://www.npmjs.com/package/@turbopuffer/turbopuffer",
     "comment": "",
-    "value_90_days": 648
+    "value_90_days": 34303
+  },
+  "crates_io_downloads": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
   }
 }

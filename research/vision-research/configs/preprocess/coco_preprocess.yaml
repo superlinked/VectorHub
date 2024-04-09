@@ -1,0 +1,37 @@
+preprocessor: COCOPreProcessor
+
+path_data:
+  - datasets
+  - coco2017
+
+dir_train_images:
+  - train2017
+
+dir_valid_images:
+  - val2017
+  - val2017
+
+dir_annotations:
+  - annotations_trainval2017
+  - annotations
+
+captions_train: captions_train2017.json
+instances_train: instances_train2017.json
+
+captions_valid: captions_val2017.json
+instances_valid: instances_val2017.json
+
+# remove duplicated class labels (e.g. two motorbike are on the image)
+remove_duplicated_labels: true
+# COCO contains more than 1 captions for each image. If this flag is false,
+# one of the captions will be randomly picked, otherwise all of them will be
+# concatenated
+concatenate_captions: true
+# to keep samples where only 1 class is present on the image or not
+drop_samples_with_one_class: false
+# concatenate train and validation data
+combine_train_val: true
+# replace captions with image model captions
+replace_captions: false
+generated_captions: Salesforce/blip-image-captioning-base/captions.csv
+
