@@ -16,7 +16,7 @@ But not everyone has access to the kind or amount of metadata fashion retailers 
 
 Developers often disregard this side information because it is scarce. While CF (i.e., extrapolating user preferences via similarities of all users' browsing/purchasing history) works reasonably well in this use case, we can improve the recommendation quality (thereby increasing user engagement) of CF by adding available side information, even if it's scarce. 
 
-More precisely, there are libraries that allow us to "inject" side information ([LightFM](https://making.lyst.com/lightfm/docs/home.html), for example). Even the most efficient and effective collaborative filtering models, such as [ALS Matrix Factorization (MF)](http://yifanhu.net/PUB/cf.pdf) (the Python ["implicit"](https://github.com/benfred/implicit) library) or [EASE] (https://arxiv.org/abs/1905.03375) (Embarrassingly Shallow Autoencoder), can be extended and improved using side information.
+More precisely, there are libraries that allow us to "inject" side information ([LightFM](https://making.lyst.com/lightfm/docs/home.html), for example). Even the most efficient and effective collaborative filtering models, such as [ALS Matrix Factorization (MF)](http://yifanhu.net/PUB/cf.pdf) (the Python ["implicit"](https://github.com/benfred/implicit) library) or [EASE](https://arxiv.org/abs/1905.03375) (Embarrassingly Shallow Autoencoder), can be extended and improved using side information.
 
 ## Recommender systems as graphs
 

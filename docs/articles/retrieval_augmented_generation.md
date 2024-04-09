@@ -223,7 +223,7 @@ Answer: Tesla's revenue for Q2 2023 was $24.9 billion.
 
 ```
 
-Et voilà! If you go back to the passage from the financial report that we printed out above, you can see that our new, retrieval augmented figure of "$24.9 billion" is the correct answer to our question. That's approximately 20x the amount phi-1.5 hallucinated earlier ($1.2 billion). Using RAG has saved us from what could've been a terrible investment decision.
+Et voilà! If you go back to the passage from the financial report that we printed out above, you can see that our new, retrieval augmented figure of "\$24.9 billion" is the correct answer to our question. That's approximately 20x the amount phi-1.5 hallucinated earlier ($1.2 billion). Using RAG has saved us from what could've been a terrible investment decision.
 
 ## Conclusion
 
