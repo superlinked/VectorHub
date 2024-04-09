@@ -8,7 +8,7 @@ VectorHub's content is organized into three major areas:
 
 1. Building Blocks: These cover the broad field of vector creation and retrieval. We take a step by step approach to creating a vector stack: Data Sources -> Vector Compute -> Vector Search & Management.
 
-2. Blog: This is where contributors can share examples of things they have been working on, research and solutions to problems they have encountered while working on Information Retrieval problems
+2. Articles: This is where contributors can share examples of things they have been working on, research and solutions to problems they have encountered while working on Information Retrieval problems
 
 3. Toolkit (coming soon): These are interesting apps, links, videos, tips, & tricks that aid in vector creation and retrieval.
 
