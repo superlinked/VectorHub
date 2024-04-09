@@ -204,9 +204,9 @@ GraphSAGE is an inductive representation learning algorithm that leverages GNNs 
 
 The GraphSAGE layer is defined as follows:
 
-<!--
-$h_i^{(k)} = \sigma(W (h_i^{(k-1)} + \underset{j \in \mathcal{N}(i)}{\Sigma}h_j^{(k-1)}))$
--->
+
+$$h_i^{(k)} = \sigma(W (h_i^{(k-1)} + \underset{j \in \mathcal{N}(i)}{\Sigma}h_j^{(k-1)}))$$
+
 
 <img align="left" src=assets/use_cases/node_representation_learning/sage_layer_eqn_v3.png alt="GraphSAGE layer defintion" data-size="50" />
 
