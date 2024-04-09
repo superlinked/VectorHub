@@ -32,16 +32,8 @@ We constantly release bounties looking for content contributions. Keep an eye ou
 
 ### Other ways you can get involved
 
-::::link-array
-:::link-array-item{headerImage headerColor}
 [Report an error/bug/typo](https://github.com/superlinked/VectorHub/issues)
-:::
 
-:::link-array-item{headerImage headerColor}
 [Create new or update existing content](https://github.com/superlinked/VectorHub)
-:::
-::::
 
-:::hint{type="info"}
 Thank you for your suggestions! If you think there is anything to improve on VectorHub, feel free to contact us on arunesh\@superlinked.com, or check our [GitHub repository](https://github.com/superlinked/VectorHub).
-:::
