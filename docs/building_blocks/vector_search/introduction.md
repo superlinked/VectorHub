@@ -43,7 +43,7 @@ What you choose to prioritize affects your retrieval system's architecture and t
 
 An efficient and effective Vector Search & Management approach must carefully consider and quantify the retrieval system’s update frequency, access patterns, and priorities to meet the requirements of the intended use case, whether it’s providing instant e-commerce product recommendations, facilitating real-time decision-making, conducting in-depth data analysis, or something else entirely.
 
-<img src="../assets/building_blocks/vector_search/bb3-1.png" alt="Three core considerations of Vector Search" data-size="100" />
+<img src="../../assets/building_blocks/vector_search/bb3-1.png" alt="Three core considerations of Vector Search" data-size="100" />
 
 The above visual's key takeaway: Our three corners (priorities, update frequency, access patterns) interact to determine the design of our system. Depending on our project, we may privilege one or two corners over the other/s. For example, if we're building a recommendation system for an online store, we would emphasize "real-time" interactions and "speed" to offer customers instant, personalized recommendations.
 
