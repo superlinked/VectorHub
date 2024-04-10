@@ -14,7 +14,7 @@ Our implementation focuses on just the retrieval part of a RAG system. But you c
 - use a rerank pattern to improve retrieval accuracy
 - visualize content retrieved for a given query in a 2D plot, using UMAP
 
-If, before continuing, you want to refamiliarize yourself with the **basics of RAG systems**, we encourage you check out this excellent article on VectorHub: [Retrieval Augmented Generation](articles/retrieval-augmented-generation).
+If, before continuing, you want to refamiliarize yourself with the **basics of RAG systems**, we encourage you check out this excellent article on VectorHub: [Retrieval Augmented Generation](retrieval-augmented-generation).
 
 
 ## 1. System design
