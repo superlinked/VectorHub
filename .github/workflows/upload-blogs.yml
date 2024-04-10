@@ -3,7 +3,7 @@ name: Upload blogs to Strapi
 on:
   push:
     branches:
-      - vh-redesign
+      - main
 
 jobs:
   run-script:
