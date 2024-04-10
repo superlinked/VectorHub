@@ -302,9 +302,9 @@ count_id = ids_count_map[original_id]
 print("Context Article: ", count_id, corpus[count_id])
 ```
 
+```markdown
     Context Article:  3 ‘The Opposition’ Gives Trump A Hot Lawyer Of His Own He's here to make a "strong case" for the president.
-
-
+```
 
 ```python
 k = 3 # how many similar articles to retrieve
@@ -316,11 +316,9 @@ similar_articles = get_similar_articles(count_id, vectors, k, count_ids_map)
 similar_articles
 ```
 
-
-
-
+```markdown
     [3705, 8208, 7878]
-
+```
 
 
 Next, we map the article ids to count ids. This lets us index articles in the corpus by their count ids.
@@ -330,37 +328,30 @@ similar_article_ids = [ids_count_map[id_] for id_ in similar_articles]
 similar_article_ids
 ```
 
-
-
-
+```markdown
     [277, 276, 367]
-
-
-
+```
 
 ```python
 corpus[count_id] # context article
 ```
 
-
-
-
+```markdown
     '‘The Opposition’ Gives Trump A Hot Lawyer Of His Own He\'s here to make a "strong case" for the president.'
-
-
-
+```
 
 ```python
 print_article_text(corpus, ids_count_map, similar_article_ids) # similar articles
 ```
 
+```markdown
     White House Lawyer Insists Trump Isn't Considering Firing Mueller Republican lawmakers have insisted that Trump let the special counsel to do his job.
     ------------------------------
     White House Lawyer Misled Trump To Prevent James Comey's Dismissal: Report The deputy counsel was reportedly trying to prevent an obstruction investigation.
     ------------------------------
     Wednesday's Morning Email: Judge Halts Trump Administration's Plan To Kill DACA While a lawsuit proceeds.
     ------------------------------
-
+```
 
 Our context article (above) was about Donald Trump. Our recommended articles also mention Mr. Trump. On a first glance evaluation of our content-based recommender looks good - it makes intuitive sense that people who read the context article would also be interested in reading our recommended articles.
 
@@ -375,8 +366,9 @@ bv_vect = vectors[bv_count_id]
 print("1st Context Article: ", bv_count_id, corpus[bv_count_id])
 ```
 
+```markdown
     1st Context Article:  4 ‘Stranger Things’ Fans Will Be Able To Visit The Upside Down IRL Hawkins is headed to Hollywood, Orlando and Singapore this fall.
-
+```
 
 
 ```python
@@ -387,8 +379,9 @@ en_vect = vectors[en_count_id]
 print("2nd Context Article: ", en_count_id, corpus[en_count_id])
 ```
 
+```markdown
     2nd Context Article:  69 YouTube Quietly Escalates Crackdown On Firearm Videos The video site is expanding restrictions following the Florida massacre.
-
+```
 
 
 ```python
@@ -407,12 +400,14 @@ similar_article_ids_ = [ids_count_map[id_[0]] for id_ in similar_articles_ if id
 print_article_text(corpus, ids_count_map, similar_article_ids_)
 ```
 
+```markdown
     Whistleblower Leaked Michael Cohen's Financials Over Potential Cover-Up: Report The whistleblower said two files about Cohen's business dealings are missing from a government database.
     ------------------------------
     What You Missed About The Saddest Death In 'Avengers: Infinity War' Directors Joe and Anthony Russo answer our most pressing questions.
     ------------------------------
     Will Ferrell And Molly Shannon Cover The Royal Wedding As 'Cord And Tish' They should cover everything.
     ------------------------------
+```
 
 Our content-based model successfully provides articles relevant to both of the context articles.
 
@@ -482,26 +477,22 @@ interactions = generate_interactions(users_dynamic, articles)
 print(interactions.head())
 ```
 
-       user_id  article_id  rating
-    0        1        2932       1
-    1        1        4487       1
-    2        1        8255       1
-    3        1         744       1
-    4        1        2893       2
-
+|      | user_id | article_id | rating |
+|-----:|---------|------------|--------|
+| 0 | 1    | 2932       | 1      |
+| 1 | 1    | 4487         | 1      |
+| 2 | 1    | 8255       | 1      |
+| 3 | 1    | 744         | 1      |
+| 4 | 1     | 2893       | 2      |
 
 
 ```python
 interactions.shape
 ```
 
-
-
-
+```markdown
     (900000, 3)
-
-
-
+```
 
 ```python
 # collecting interactions with ratings greater than or equal to 3
@@ -509,8 +500,9 @@ interactions = interactions[interactions['rating'] >= 3]
 print(interactions.shape)
 ```
 
+```markdown
     (25768, 3)
-
+```
 
 
 ```python
@@ -537,6 +529,7 @@ def print_articles_from_list(articles):
 print_articles_from_list(specific_articles)
 ```
 
+```markdown
     United Airlines Mistakenly Flies Family's Dog To Japan Instead Of Kansas City The mix-up came just a day after a puppy died aboard a United flight.
     
     The 10 Best Hotels In The US In 2018, Revealed BRB, booking a trip to San Antonio immediately ✈️
@@ -586,7 +579,7 @@ print_articles_from_list(specific_articles)
     These Are The Most Expensive Travel Days Of The Year We all love a good travel deal, so avoid these two days. There are two days of the year that are the absolute most expensive
     
     Roller Coaster Riders Suspended 100 Feet In The Air, Facing Down, After Malfunction An "abnormality" halted the coaster at the worst possible time.
-    
+```
 
 
 
@@ -594,11 +587,9 @@ print_articles_from_list(specific_articles)
 set([news_articles.loc[id_]['category'] for id_ in specific_articles])
 ```
 
-
-
-
+```markdown
     {'TRAVEL'}
-
+```
 
 Success! We see that user_id 74 has been matched with articles appropriate to their interest in "travel". Our user-interaction dataset appears to be effective in matching users with articles they would be interested in.
 
@@ -620,11 +611,9 @@ most_popular_articles = train['article_id'].value_counts().index.tolist()[:5]
 most_popular_articles
 ```
 
-
-
-
+```markdown
     [6622, 1005, 2561, 3622, 1861]
-
+```
 
 
 
@@ -632,6 +621,7 @@ most_popular_articles
 print_articles_from_list(most_popular_articles)
 ```
 
+```markdown
     These 'No Promo Homo' Laws Are Hurting LGBTQ Students Across America Seven states still have laws that specifically target gay students.
     
     Trump Defends Gina Haspel, His Nominee For CIA Director, And Her Record Of Torture “We have the most qualified person, a woman, who Democrats want Out because she is too tough on terror,” Trump tweeted Monday.
@@ -641,7 +631,7 @@ print_articles_from_list(most_popular_articles)
     Trump Congratulates Putin On Totally Expected Victory In Russian Election It seems the U.S. president at least has no hard feelings toward Russia.
     
     Trump Considering 'Full Pardon' Of Late Boxing Champion Jack Johnson Johnson, the first black heavyweight champion, was arrested for driving his girlfriend across state lines.
-    
+```
 
 By suggesting Similar Articles, we hope to start moving cold start users to higher levels of platform activity, and expose them to our content-based and interaction-based recommendation approaches.
 
@@ -704,12 +694,9 @@ recommended_articles_sv = recommend_articles_sv(user_id, user_article_matrix, us
 recommended_articles_sv
 ```
 
-
-
-
-
+```markdown
     [5129, 5199, 4146, 5395, 1299]
-
+```
 
 Next, let's set up our Matrix Factorization model.
 
@@ -823,9 +810,10 @@ print(f"Number of users: {len(users_map)}")
 print(f"Number of articles: {len(items_map)}")
 ```
 
+```markdown
     Number of users: 299
     Number of articles: 3000
-
+```
 
 
 ```python
@@ -842,8 +830,9 @@ train_matrix = build_matrix(train_data, rating_col='rating', users_map=users_map
 model.fit(train_matrix, show_progress=True)
 ```
 
-    100%|███████████████████████████████████████████| 15/15 [00:00<00:00, 89.22it/s]
-
+```markdown
+    100%|██████████████████████████████████████| 15/15 [00:00<00:00, 89.22it/s]
+```
 
 
 ```python
@@ -871,11 +860,9 @@ recommended_articles_mf = recommend_articles_mf(model, user_id, users_map, items
 recommended_articles_mf
 ```
 
-
-
-
+```markdown
     [1299, 2524, 5129, 5199, 5395]
-
+```
 
 
 
@@ -914,11 +901,9 @@ seen_articles = get_seen_articles_by_user(test, user_id)
 len(seen_articles)
 ```
 
-
-
-
+```markdown
     7
-
+```
 
 
 
@@ -926,11 +911,9 @@ len(seen_articles)
 set([news_articles.loc[id_]['category'] for id_ in seen_articles])
 ```
 
-
-
-
+```markdown
     {'TRAVEL'}
-
+```
 
 
 
@@ -938,23 +921,17 @@ set([news_articles.loc[id_]['category'] for id_ in seen_articles])
 set([news_articles.loc[id_]['category'] for id_ in recommended_articles_sv])
 ```
 
-
-
-
+```markdown
     {'TRAVEL'}
-
-
-
+```
 
 ```python
 set([news_articles.loc[id_]['category'] for id_ in recommended_articles_mf])
 ```
 
-
-
-
+```markdown
     {'TRAVEL'}
-
+```
 
 
 Evaluating manually, we can see (above) that both of our models recommend items that belong to the 'travel' category, which means that both models produce lists that are relevant. This is a good intuitive start to evaluating our two interaction-based models. But to provide a more objective (and scalable) evaluation of our models, we need some quantitative metrics.
@@ -1012,11 +989,9 @@ common_user_ids = list(set(train_user_ids).intersection(set(test_user_ids)))
 len(common_user_ids)
 ```
 
-
-
-
+```markdown
     284
-
+```
 
 
 
@@ -1033,14 +1008,11 @@ recos_mf = {user_id: recommend_articles_mf(model, user_id, users_map, items_map_
 precision_and_recall_at_k(train, test, recos_sv, k=5)
 ```
 
+```markdown
     Number of common users:  284
 
-
-
-
-
     (0.784507042253521, 0.6387401993297399)
-
+```
 
 
 
@@ -1048,14 +1020,11 @@ precision_and_recall_at_k(train, test, recos_sv, k=5)
 precision_and_recall_at_k(train, test, recos_mf, k=5)
 ```
 
+```markdown
     Number of common users:  284
 
-
-
-
-
     (0.6542253521126759, 0.635305934716874)
-
+```
 
 
 **Position-based metrics**
@@ -1100,11 +1069,9 @@ def calculate_mrr(common_user_ids, recommended, k):
 calculate_mrr(common_user_ids, recos_sv, k)
 ```
 
-
-
-
+```markdown
     1.0
-
+```
 
 
 
@@ -1112,11 +1079,9 @@ calculate_mrr(common_user_ids, recos_sv, k)
 calculate_mrr(common_user_ids, recos_mf, k)
 ```
 
-
-
-
+```markdown
     0.7596692111959288
-
+```
 
 ## Collaborative filter results
 
