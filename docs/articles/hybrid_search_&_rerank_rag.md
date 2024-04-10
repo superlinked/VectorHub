@@ -4,7 +4,7 @@ Retrieval-Augmented Generation (RAG) is revolutionizing traditional search engin
 
 Hybrid search can also be paired with **semantic reranking** (to reorder outcomes) to further enhance performance. Combining hybrid search with reranking holds immense potential for various applications, including natural language processing tasks like question answering and text summarization, even for implementation at a large-scale.
 
-In our article, we'll delve into the nuances and limitations of hybrid search and reranking. Though pure vector search is preferable, in many cases hybrid search can enhance the retrieval component in **[RAG (Retrieval Augmented Generation)](articles/retrieval-augmented-generation)**, and thereby deliver impactful and insightful text generation across various domains.
+In our article, we'll delve into the nuances and limitations of hybrid search and reranking. Though pure vector search is preferable, in many cases hybrid search can enhance the retrieval component in **[RAG (Retrieval Augmented Generation)](retrieval-augmented-generation)**, and thereby deliver impactful and insightful text generation across various domains.
 
 
 ## What is Hybrid Search?

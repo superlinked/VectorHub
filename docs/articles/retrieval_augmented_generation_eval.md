@@ -4,7 +4,7 @@
 
 ## Why evaluate RAG?
 
-Retrieval Augmented Generation (RAG) is probably the most useful application of large language models today. RAG enhances content generation by leveraging existing information effectively. It can amalgamate specific, relevant details from multiple sources to generate more accurate and relevant query results. This makes RAG potentially invaluable in various domains, including content creation, question & answer applications, and information synthesis. RAG does this by combining the strengths of retrieval, usually using dense vector search, and text generation models, like GPT. For a more in-depth introduction to RAG, read [here](articles/retrieval-augmented-generation). 
+Retrieval Augmented Generation (RAG) is probably the most useful application of large language models today. RAG enhances content generation by leveraging existing information effectively. It can amalgamate specific, relevant details from multiple sources to generate more accurate and relevant query results. This makes RAG potentially invaluable in various domains, including content creation, question & answer applications, and information synthesis. RAG does this by combining the strengths of retrieval, usually using dense vector search, and text generation models, like GPT. For a more in-depth introduction to RAG, read [here](retrieval-augmented-generation). 
 
 ![Implementation of RAG using Qdrant as a vector database](../assets/use_cases/retrieval_augmented_generation_eval/rag_qdrant.jpg)
 
@@ -16,7 +16,7 @@ In article 2, we'll look at RAGAS ([RAG Assessment](https://github.com/exploding
 
 ## Why do we need RAG?
 
-RAG significantly enhances [vector search](building-blocks/vector-search/introduction) with the power of Large Language Models (LLM), by enabling dynamic content generation based on  retrieved knowledge. RAG is indispensable when users seek to generate new content rather than interact with documents or search results directly. It excels in providing contextually rich, informative, and human-like responses. For tasks requiring detailed, coherent explanations, summaries, or responses that transcend the explicit data stored in vectors, RAG is invaluable. _Before setting up a RAG system, you should consider conducting feasibility studies to determine how and whether RAG aligns with your specific needs and value expectations._
+RAG significantly enhances [vector search](../building-blocks/vector-search/introduction) with the power of Large Language Models (LLM), by enabling dynamic content generation based on  retrieved knowledge. RAG is indispensable when users seek to generate new content rather than interact with documents or search results directly. It excels in providing contextually rich, informative, and human-like responses. For tasks requiring detailed, coherent explanations, summaries, or responses that transcend the explicit data stored in vectors, RAG is invaluable. _Before setting up a RAG system, you should consider conducting feasibility studies to determine how and whether RAG aligns with your specific needs and value expectations._
 
 While vector search efficiently retrieves relevant similar documents/chunks from a document corpus, RAG permits content synthesis and a deeper level of understanding, providing essential context to queries and results generation. In this way, RAG can ensure that answers are unique and tailored to each query, in essence personalized to the user.
 
