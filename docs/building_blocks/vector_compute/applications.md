@@ -1,3 +1,5 @@
+# Applications of Vector Compute
+
 Such robust homegrown solutions will be increasingly important given the broad and ever-expanding application of Vector Compute to solve real-world problems in a spectrum of domains, partially enumerated below.
 
 **Personalized Search** 
@@ -31,7 +33,7 @@ These example applications indicate the breadth and depth of Vector Compute’s 
 
 As Machine Learning takes on an increasingly prominent and broad role in handling and realizing value from data, more organizations in a range of domains need an effective vector retrieval stack – one that organizes your data in a way that lets you quickly retrieve relevant information and represents your data in a way that makes it easy to feed into your ML models. 
 
-To build this kind of solution, you need the right combination and configuration of embedding models – connecting your [Data Sources](https://hub.superlinked.com/data-sources) to your [Vector Search & Management](https://hub.superlinked.com/vector-search).
+To build this kind of solution, you need the right combination and configuration of embedding models – connecting your [Data Sources](../../building-blocks/data-sources) to your [Vector Search & Management](../../building-blocks/vector-search).
 
 While generic pre-trained models fail to capture the nuances of proprietary data, developing custom models from scratch is expensive and risky. Fine-tuned pre-trained models with some high-quality in-domain data can outperform large custom models while avoiding overfitting. 
 
