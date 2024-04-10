@@ -14,7 +14,7 @@ Our implementation focuses on just the retrieval part of a RAG system. But you c
 - use a rerank pattern to improve retrieval accuracy
 - visualize content retrieved for a given query in a 2D plot, using UMAP
 
-If, before continuing, you want to refamiliarize yourself with the **basics of RAG systems**, we encourage you check out this excellent article on VectorHub: [Retrieval Augmented Generation](https://hub.superlinked.com/retrieval-augmented-generation).
+If, before continuing, you want to refamiliarize yourself with the **basics of RAG systems**, we encourage you check out this excellent article on VectorHub: [Retrieval Augmented Generation](articles/retrieval-augmented-generation).
 
 
 ## 1. System design
@@ -447,19 +447,17 @@ for post in retrieved_results["posts"]:
 
 Here are the results ↓
 
-:::::tabs
-::::tab{title="Result 1"}
+#### Result 1
 ![Result 1](../assets/use_cases/social_media_retrieval/query_qdrant_result_1.png)
-::::
 
-:::tab{title="Result 2"}
+
+#### Result 2
 ![Result 2](../assets/use_cases/social_media_retrieval/query_qdrant_result_2.png)
-:::
 
-:::tab{title="Result 3"}
+
+#### Result 3
 ![Result 3](../assets/use_cases/social_media_retrieval/query_qdrant_result_3.png)
-:::
-:::::
+
 
 You can see (above) that only the first result is relevant. The others are not at all relevant to our query, which was about Qdrant or vector DBs.
 
@@ -582,19 +580,17 @@ This piece of code implements the 2-step reranking algorithm, which in step 1 wi
 
 Now that we've added the `rerank` pattern to our retrieval system, let's see if it improves the results of our `"Posts about Qdrant"` query ↓
 
-:::::tabs
-::::tab{title="Result 1"}
+#### Result 1
 ![Result 1](../assets/use_cases/social_media_retrieval/query_qdrant_result_rerank_1.png)
-::::
 
-:::tab{title="Result 2"}
+
+#### Result 2
 ![Result 2](../assets/use_cases/social_media_retrieval/query_qdrant_result_rerank_2.png)
-:::
 
-:::tab{title="Result 3"}
+
+#### Result 3
 ![Result 3](../assets/use_cases/social_media_retrieval/query_qdrant_result_rerank_3.png)
-:::
-:::::
+
 
 The improvement is remarkable! All our results are about Qdrant and vector DBs. 
 
@@ -606,19 +602,17 @@ While the returned posts aren't very close to the query, they are **a lot closer
 
 Now, let's examine our use case results **when we use an entire post as a query** (the example given in section `2. Data` above) ↓
 
-:::::tabs
-::::tab{title="Result 1"}
+#### Result 1
 ![Result 1](../assets/use_cases/social_media_retrieval/query_post_result_rerank_1.png)
-::::
 
-:::tab{title="Result 2"}
+
+#### Result 2
 ![Result 2](../assets/use_cases/social_media_retrieval/query_post_result_rerank_2.png)
-:::
 
-:::tab{title="Result 3"}
+
+#### Result 3
 ![Result 3](../assets/use_cases/social_media_retrieval/query_post_result_rerank_3.png)
-:::
-:::::
+
 
 We asked for 5 results, but because we indexed posts based on their `chunk_id`, 2 of these turned out to be duplicates. This can be solved through more preprocessing steps (to ensure uniqueness in the indexing process). Still, of 215 posts, the 3 retrieved posts are very relevant to the query. The first post is the very same post we used to query the vector DB, which shows that our system is robust. The next two results are semantically similar to the query post - their focus is on fine-tuning LLMs.
 

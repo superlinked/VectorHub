@@ -9,13 +9,13 @@ Getting stuff to production takes a lot more than launching “cool demos.” It
 * Evaluate vendors and models in realistic ways, not random synthetic benchmarks.
 * Prioritize low latency & cost as baseline infrastructure prerequisites. We want speed and affordability. It is _not_ acceptable to be waiting *seconds* for queries.
 
-[Data Sources](building_blocks/data_sources/introduction.md), [Vector Search & Management](building_blocks/vector_search/introduction.md) have in-depth reviews of vendors and models.
+[Data Sources](building_blocks/data-sources/introduction), [Vector Search & Management](building_blocks/vector-search/introduction) have in-depth reviews of vendors and models.
 
 ## Composition
 
 Full-stack LLM application builder tools are like a black box, it's hard to figure out what happens under the hood and impossible to control it properly. As a result, we believe that building your stack from atomized components is far superior. It's transparent, and you can configure it to meet your needs.
 
-[Building Blocks](building_blocks) is where we put together and revise literature around creating vector stacks.
+[Building Blocks](building-blocks) is where we put together and revise literature around creating vector stacks.
 
 ## Anti-hype
 

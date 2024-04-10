@@ -52,17 +52,17 @@ Now let's dive into the details.
 ### **3.1 Nearest Neighbor Search Algorithms**
 Scanning to calculate the similarity between vectors quickly is at the heart of Vector Search. Vector similarity scores encoded by your embedding model/s store valuable feature or characteristic information about your data that can be used in various applications (e.g., content recommendation, clustering, data analysis). There are several ways to perform nearest neighbor search.
 
-[Read more about different vector search algorithms, here](https://hub.superlinked.com/31-nearest-neighbor-search-algorithms)
+[Read more about different vector search algorithms, here](building-blocks/vector-search/nearest-neighbor-algorithms)
 
 ### **3.2 Key Access Patterns** 
 The access patterns deployed in Vector Search significantly impact storage, query efficiency, and infrastructure alignment, which are consequential in optimizing your retrieval system for your intended application.
 
-[Read more about the different access patterns, here](https://hub.superlinked.com/32-key-access-patterns)
+[Read more about the different access patterns, here](building-blocks/vector-search/access-patterns)
 
 ### **3.3 Conclusions & Next Steps**
 So what does this all mean? 
 
-[Read our conclusions and recommended next steps, here](https://hub.superlinked.com/33-conclusion)
+[Read our conclusions and recommended next steps, here](building-blocks/vector-search/conclusion)
 
 ---
 ## Contributors

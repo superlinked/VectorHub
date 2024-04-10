@@ -55,17 +55,17 @@ Now let's dive into the details.
 ### **1.1 Data Velocity**
 The choice of data processing velocity is pivotal in determining the kind of data retrieval and vector compute tasks you can perform. Different velocities offer distinct advantages and make different use cases possible. 
 
-[Read more about different data velocities, here](https://hub.superlinked.com/11-data-velocity)
+[Read more about different data velocities, here](building-blocks/data-sources/data-modality)
 
 ### **1.2 Data Modality** 
 Whether your data is structured, unstructured, or hybrid is crucial when evaluating data sources. The nature of the data source your vector retrieval system uses shapes how that data should be managed and processed.
 
-[Read more about how to manage different data types/modalities, here](https://hub.superlinked.com/12-data-modality)
+[Read more about how to manage different data types/modalities, here](building-blocks/data-sources/data-velocity)
 
 ### **1.3 Conclusions & Next Steps**
 So what does this all mean? 
 
-[Read our conclusions and recommended next steps, here](https://hub.superlinked.com/13-conclusion)
+[Read our conclusions and recommended next steps, here](building-blocks/data-sources/conclusion)
 
 ## Contributors
 

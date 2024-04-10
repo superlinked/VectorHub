@@ -41,15 +41,15 @@ At the core of Vector Compute are embedding models – machine learning models a
 
 Embedding models turn features extracted from high-dimensional data, with large numbers of attributes or dimensions, like text, images, or audio, into lower-dimensional but dense mathematical representations – i.e., vectors. You can apply embedding models to structured data like tabular datasets or graphs.
 
-[Read more about embedding models, here](https://hub.superlinked.com/21-embedding-models)
+[Read more about embedding models, here](building-blocks/vector-compute/embedding-models)
 
 ### **2.2 Pre-Trained and Custom Models** 
 Your task's unique requirements will dictate when you should use a custom model, and when you should use a pre-trained model.
 
-[Read more about how to choose the right type of model for your use case, here](https://hub.superlinked.com/22-pre-trained-vs-custom-models)
+[Read more about how to choose the right type of model for your use case, here](building-blocks/vector-compute/pre-train-custom-models)
 
 ### **2.3 Applications of Vector Compute**
-So what does this all mean? Such robust homegrown solutions will be increasingly important given the broad and ever-expanding application of Vector Compute to solve real-world problems in a spectrum of domains, [partially discussed here](https://hub.superlinked.com/23-applications-of-vector-compute).
+So what does this all mean? Such robust homegrown solutions will be increasingly important given the broad and ever-expanding application of Vector Compute to solve real-world problems in a spectrum of domains, [partially discussed here](building-blocks/vector-compute/applications).
 
 ---
 ## Contributors
