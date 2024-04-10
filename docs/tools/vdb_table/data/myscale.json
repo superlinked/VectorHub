@@ -149,7 +149,7 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 205,
+    "value": 345,
     "source_url": "https://github.com/myscale/myscaledb",
     "comment": "",
     "value_90_days": 0
@@ -161,15 +161,21 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 21136,
+    "value": 21199,
     "source_url": "https://pypi.org/project/myscaledb-client/",
     "comment": "",
-    "value_90_days": 935
+    "value_90_days": 915
   },
   "npm_downloads": {
     "value": 0,
     "source_url": "",
     "comment": "Uses Clickhouse package",
+    "value_90_days": 0
+  },
+  "crates_io_downloads": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
     "value_90_days": 0
   }
 }
