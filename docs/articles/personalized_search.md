@@ -1,5 +1,3 @@
-<!-- TODO: Replace this text with a summary of article for SEO -->
-
 # Personalized Search: Harnessing the Power of Vector Embeddings
 
 <!-- TODO: Cover image: 
@@ -16,7 +14,7 @@ Vector embeddings let you return more _relevant_ results to your search queries 
 
 Let's look first at how vector embeddings improve the relevance of search query results generally, and then at how vector embeddings permit us to use the meaning of personal preferences to create truly personalized searches.
 
-<img src=assets/use_cases/personalized_search/vector_embeddings.png alt="Illustration of vector embeddings" data-size="100" />
+<img src="../assets/use_cases/personalized_search/vector_embeddings.png" alt="Illustration of vector embeddings" data-size="100" />
 
 ## Vector search vs. keyword-based search
 
@@ -85,7 +83,7 @@ biased_query_embedding = query_weight * query_embedding + user_preference_weight
 
 In this code example, we convert a search query into a vector using an [open-source, pretrained BERT model from Hugging Face](https://huggingface.co/bert-base-uncased) (you can try this out online yourself by following the link). We also have a user preference vector, which is usually based on a user's past clicks or choices. We then arithmetically "add" the query vector and the user preference vector to create a new query vector that reflects both the user input and user preferences.
 
-<img src=assets/use_cases/personalized_search/vector_space.png alt="Use cases of personalized search with vector embeddings" data-size="100" />
+<img src="../assets/use_cases/personalized_search/vector_space.png" alt="Use cases of personalized search with vector embeddings" data-size="100" />
 
 ## Conclusions and next steps 😊
 

@@ -1,6 +1,3 @@
-<!-- SEO: Retrieval-Augmented Generation (RAG) is revolutionizing traditional search engines and AI methodologies for information retrieval. However, standard RAG systems often lack efficiency and precision when dealing with extensive data repositories. Substituting the search approach with a hybrid method and reordering the outcomes using a semantic ranker considerably enhances performance, indicating potential for large-scale implementations.
--->
-
 # Optimizing RAG with Hybrid Search & Reranking
 
 Retrieval-Augmented Generation (RAG) is revolutionizing traditional search engines and AI methodologies for information retrieval. However, standard RAG systems employing simple semantic search often lack efficiency and precision when dealing with extensive data repositories. Hybrid search, on the other hand, combines the strengths of different search methods, unlocking new levels of efficiency and accuracy. **Hybrid search is flexible and can be adapted to tackle a wider range of information needs**. 
@@ -86,7 +83,7 @@ The hybrid score is a pure vector score when α is 1, and a pure keyword score w
 
 **Reciprocal Rank Fusion (RRF)** is one of several available methods for combining dense and sparse search scores. RRF ranks each passage according to its place in the keyword and vector outcome lists, and then merges these rankings to generate a unified result list. The RRF score is determined by summing the inverse rankings from each list. Positioning the document’s rank in the denominator imposes a penalty on documents that appear lower in the list.
 
-<img src="assets/use_cases/hybrid_search_&_rerank_rag/RRF.png" alt="Reciprocal Rank Fusion Equation"  data-size="25" />
+<img src="../assets/use_cases/hybrid_search_&_rerank_rag/RRF.png" alt="Reciprocal Rank Fusion Equation"  data-size="25" />
 
 where,
 - **D** represents the set of documents
@@ -254,7 +251,7 @@ response = PREFFERED_CHAIN.invoke("QUERY")
 Let’s check responses from both retrievers in various contexts. First, we will **query in a general context without keywords, abbreviations, or location filters**.
 
 
-```
+```markdown
 Query: What are the two strategic challenges that the United States faces according to the National Security Strategy?
 
 Semantic Search
@@ -266,7 +263,7 @@ Result: According to the 2022 National Security Strategy, the United States face
 
 Both results are somewhat accurate and satisfactory. Now, let us try again, **this time incorporating abbreviations and name filters** to see how that works.
 
-```
+```markdown
 Query: How did Joe Biden help deepen NATO relationship?
 
 Semantic Search
@@ -278,7 +275,7 @@ Result: Under Joe Biden's leadership, the United States has worked to deepen NAT
 
 The results of the hybrid search are more detailed, provide a more comprehensive response, including the names of countries and other specific information. Now, **let’s add specific locations to see how each approach fares**.
 
-```
+```markdown
 Query: How is Strait of Hormuz important in Biden's strategy?
 
 Semantic Search
