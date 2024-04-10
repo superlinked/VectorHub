@@ -1,6 +1,4 @@
-<!-- TODO: Replace this text with a summary of article for SEO -->
-
-## Introduction
+# Data Sources: Introduction
 
 A robust vector retrieval system relies on a thoughtful selection of data sources that align with the system’s objectives. Different use cases demand different kinds and combinations of data. 
 
@@ -29,7 +27,7 @@ Pinterest uses diverse data types to improve the recommendation performance of i
 
 Below is an overview of the data & ML stack Pinterest uses to convert all this data (above) to product value.
 
-<img src=assets/building_blocks/data_sources/bb1-1.png alt="Pinterest Tech Stack" data-size="70" />
+<img src="../../assets/building_blocks/data_sources/bb1-1.png" alt="Pinterest Tech Stack" data-size="70" />
 
 1. **Event Streaming Platform**:
     - Pinterest relies on an **event streaming platform**, [Flink](https://medium.com/pinterest-engineering/unified-flink-source-at-pinterest-streaming-data-processing-c9d4e89f2ed6#:~:text=To%20best%20serve%20Pinners%2C%20creators,as%20its%20stream%20processing%20engine), to collect real-time event data. This platform allows them to easily collect, enrich, and transform event attributes.
@@ -57,17 +55,17 @@ Now let's dive into the details.
 ### **1.1 Data Velocity**
 The choice of data processing velocity is pivotal in determining the kind of data retrieval and vector compute tasks you can perform. Different velocities offer distinct advantages and make different use cases possible. 
 
-[Read more about different data velocities, here](https://hub.superlinked.com/11-data-velocity)
+[Read more about different data velocities, here](data-modality)
 
 ### **1.2 Data Modality** 
 Whether your data is structured, unstructured, or hybrid is crucial when evaluating data sources. The nature of the data source your vector retrieval system uses shapes how that data should be managed and processed.
 
-[Read more about how to manage different data types/modalities, here](https://hub.superlinked.com/12-data-modality)
+[Read more about how to manage different data types/modalities, here](data-velocity)
 
 ### **1.3 Conclusions & Next Steps**
 So what does this all mean? 
 
-[Read our conclusions and recommended next steps, here](https://hub.superlinked.com/13-conclusion)
+[Read our conclusions and recommended next steps, here](conclusion)
 
 ## Contributors
 

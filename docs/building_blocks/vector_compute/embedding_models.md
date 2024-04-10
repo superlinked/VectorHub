@@ -1,3 +1,5 @@
+# Embedding Models
+
 At the core of Vector Compute are embedding models – machine learning models applied to raw data to generate vector embeddings.
 
 Embedding models turn features extracted from high-dimensional data, with large numbers of attributes or dimensions, like text, images, or audio, into lower-dimensional but dense mathematical representations – i.e., vectors. You can apply embedding models to structured data like tabular datasets or graphs. 
@@ -14,7 +16,7 @@ However, you can *use image embedding to work on computer vision tasks yourself*
 
 Furthermore, compared to complex raw data, vectors have far fewer dimensions, making them more efficient for tasks like storage, transfer, and retrieval. A low dimensional vector (i.e., an array of numerical values) such as [102, 000, 241, 317, 004] encodes a wealth of semantic features and relationships. **The continuity of the embedding space enables gradient-based optimization, which is central to Machine Learning modelling**.
 
-<img src=assets/building_blocks/vector_compute/bb2-4.png alt="Image Embeddings" data-size="100" />
+<img src="../../assets/building_blocks/vector_compute/bb2-4.png" alt="Image Embeddings" data-size="100" />
 
 In summary, embedding models can efficiently turn obscure raw data into structured vector representations that reveal otherwise hidden patterns – patterns that computers can effectively model using ML.
 
@@ -24,7 +26,7 @@ But what does the embedding process look like?
 
 Embedding maps data onto a high-dimensional vector space, often between 500-2000 dimensions, depending on the complexity of the underlying data. However, for visualization purposes, popular dimensionality reduction techniques like [UMAP](https://umap-learn.readthedocs.io/en/latest/) (Uniform Manifold Approximation and Projection) or [t-SNE](https://lvdmaaten.github.io/tsne/) (t-Distributed Stochastic Neighbor Embedding) can be used to project these dense vectors into 2D scatterplots that approximate the relative distances and relationships between data points, as shown in [this embedding projector](https://projector.tensorflow.org).
 
-<img src=assets/building_blocks/vector_compute/bb2-5.png alt="Embedding process" data-size="100" />
+<img src="../../assets/building_blocks/vector_compute/bb2-5.png" alt="Embedding process" data-size="100" />
 
 If, for example, your vector space represented restaurant reviews, these could be embedded based on ratings, food quality, and customer responses. **Similar reviews would cluster together in the vector space, while dissimilar ones would be further apart**. Reviews mentioning “good food” and “tasty dishes” would be close together, as their meaning is similar.
 

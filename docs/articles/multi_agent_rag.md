@@ -1,9 +1,6 @@
-<!-- SEO: Retrieval-augmented generation (RAG) has shown great promise for powering conversational AI. However, existing implementations of RAG struggle with relevance, latency, and coherence. A multi-agent architecture that divides responsibilities across specialized retrieval, ranking, reading, and orchestration agents can overcome these limitations and unlock further gains.
- -->
-
 # Enhancing RAG with a Multi-Agent System
 
-<img src=assets/use_cases/multi_agent_rag/cover.png alt="Multi agent RAG cover" data-size="100" />
+<img src="../assets/use_cases/multi_agent_rag/cover.png" alt="Multi agent RAG cover" data-size="100" />
 
 ## Multi-Agent RAG
 

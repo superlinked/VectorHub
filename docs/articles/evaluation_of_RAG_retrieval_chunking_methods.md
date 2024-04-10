@@ -1,5 +1,3 @@
-<!-- SEO: We evaluate some Retrieval methods in Retrieval-Augmented Generation (RAG), comparing different popular chunking techniques, leaderboard single- and multi-vector embedding models, and reranking to see how they affect outcome accuracy and relevance on benchmark datasets - HotpotQA, SQUAD, and QuAC. Impressive results achieved by models ColBERT v2, WhereIsAI/UAE-Large-V1, BAAI/bge-large-en-v1.5, SentenceSplitter chunking, and TinyBERT-L-2-v2 reranker.-->
-
 # An evaluation of RAG Retrieval Chunking Methods
 
 Choosing a RAG Retrieval method that suits your use case can be daunting. Are some methods better suited to specific tasks and types of datasets than others? Are there trade-offs between performance and resource requirements you need to be aware of? How do different chunking techniques, embedding models, and reranking interact to impact performance results? Evaluation can help answer these questions.
@@ -58,7 +56,12 @@ Finally, we also tested the effect on performance of different **rerankers** aft
 
 The **SentenceSplitter** performed better than the other chunking methods, contrary to our expectations. We had intuitively assumed that the naive **SentenceSplitter** (which takes in chunk_size and overlap parameters) would be the _least_ efficient chunking method, and that instead the **SemanticSplitterNodeParser**’s performance would be _superior_ - because, for any given sentence, the latter method creates chunks based on breakpoints computed from semantic dissimilarities of the preceding and succeeding sentences. This assumption turned out to be false. **Why?**
 
-The **superior performance of SentenceSplitter over SemanticSplitterNodeParser** appears to illustrate that, despite the advantages of semantic evaluation: 1) a sentence is a very natural level of granularity for containing meaningful information, and 2) high semantic similarity measures can result from noise rather than meaningful similarities. Vector representations of semantically similar sentences (provided there is no word overlap) are often more distant from each other than we might expect based on the sentences’ meaning. Words can mean different things in different contexts, and word embeddings basically encode the "average" meaning of a word, so they can miss context-specific meaning in particular instances. In addition, sentence embeddings are aggregates of word embeddings, which further "averages away" some meaning.
+The **superior performance of SentenceSplitter over SemanticSplitterNodeParser** appears to illustrate that, despite the advantages of semantic evaluation:
+
+1) a sentence is a very natural level of granularity for containing meaningful information, and
+2) high semantic similarity measures can result from noise rather than meaningful similarities.
+
+Vector representations of semantically similar sentences (provided there is no word overlap) are often more distant from each other than we might expect based on the sentences’ meaning. Words can mean different things in different contexts, and word embeddings basically encode the "average" meaning of a word, so they can miss context-specific meaning in particular instances. In addition, sentence embeddings are aggregates of word embeddings, which further "averages away" some meaning.
 
 As a result, retrieval performance can suffer when we 1) do our chunking by splitting text on the basis of something other than the borders of sentences, 2) merge text segments into groups on the basis of semantic similarity rather than using a fixed length (i.e., basically 1-2 sentences).
 
@@ -70,7 +73,7 @@ Now, let’s take a look at our dataset-specific outcomes.
 
 ## Dataset HotpotQA results
 
-![Chunking methods performance results on HotpotQA dataset](assets/use_cases/evaluation_of_RAG_retrieval_chunking_methods/mlflow_hotpotqa.png)
+![Chunking methods performance results on HotpotQA dataset](../assets/use_cases/evaluation_of_RAG_retrieval_chunking_methods/mlflow_hotpotqa.png)
 
 _Chunking methods performance results on HotpotQA dataset (above)_
 
@@ -82,7 +85,7 @@ The single-vector embedding models performed about as well as each other whether
 
 ## Dataset SQUAD results
 
-![Chunking methods performance on SQUAD dataset](assets/use_cases/evaluation_of_RAG_retrieval_chunking_methods/mlflow_squad.png)
+![Chunking methods performance on SQUAD dataset](../assets/use_cases/evaluation_of_RAG_retrieval_chunking_methods/mlflow_squad.png)
 
 _Chunking methods performance results on SQUAD dataset (above)_
 
@@ -96,7 +99,7 @@ We tested multiple rerankers on this dataset of 278M-560M parameters, but they p
 
 ## Dataset QuAC results
 
-![Chunking methods performance on QuAC dataset](assets/use_cases/evaluation_of_RAG_retrieval_chunking_methods/mlflow_quac.png)
+![Chunking methods performance on QuAC dataset](../assets/use_cases/evaluation_of_RAG_retrieval_chunking_methods/mlflow_quac.png)
 
 _Chunking methods performance results on QuAC dataset (above)_
 
