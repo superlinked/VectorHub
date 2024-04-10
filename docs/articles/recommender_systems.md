@@ -1,8 +1,6 @@
-<!--SEO SUMMARY: Personalized product recommendations, according to a study by IBM, can lead to a 10-30% increase in revenue. But creating truly personalized experiences requires extensive user and product data, which is not always available. For example, providers with restrictions on collecting user data may only have basic product information, like genre and popularity. While collaborative filtering approaches work reasonably well when extensive user and product data is scarce, they leave significant gains on the table. Incorporating side data with a recommender based on collaborative filtering can significantly increase recommendation quality (>20% gains in precision), leading to greater customer satisfaction, more traffic, and millions in additional revenue.-->
-
 # A Recommender System: Collaborative Filtering with Sparse Metadata
 
-<img src=assets/use_cases/recommender_systems/recommender.png alt="Cover" data-size="100" />
+<img src="../assets/use_cases/recommender_systems/recommender.png" alt="Cover" data-size="100" />
 
 ## Introduction
 
@@ -18,7 +16,7 @@ But not everyone has access to the kind or amount of metadata fashion retailers 
 
 Developers often disregard this side information because it is scarce. While CF (i.e., extrapolating user preferences via similarities of all users' browsing/purchasing history) works reasonably well in this use case, we can improve the recommendation quality (thereby increasing user engagement) of CF by adding available side information, even if it's scarce. 
 
-More precisely, there are libraries that allow us to "inject" side information ([LightFM](https://making.lyst.com/lightfm/docs/home.html), for example). Even the most efficient and effective collaborative filtering models, such as [ALS Matrix Factorization (MF)](http://yifanhu.net/PUB/cf.pdf) (the Python ["implicit"](https://github.com/benfred/implicit) library) or [EASE] (https://arxiv.org/abs/1905.03375) (Embarrassingly Shallow Autoencoder), can be extended and improved using side information.
+More precisely, there are libraries that allow us to "inject" side information ([LightFM](https://making.lyst.com/lightfm/docs/home.html), for example). Even the most efficient and effective collaborative filtering models, such as [ALS Matrix Factorization (MF)](http://yifanhu.net/PUB/cf.pdf) (the Python ["implicit"](https://github.com/benfred/implicit) library) or [EASE](https://arxiv.org/abs/1905.03375) (Embarrassingly Shallow Autoencoder), can be extended and improved using side information.
 
 ## Recommender systems as graphs
 
@@ -28,7 +26,7 @@ We can represent this process using a graph, in which users and items are graph 
 ​
 When understood from a graph perspective, it is easy to see how matrix factorization can be extended to include additional metadata. What we want is to somehow let the algorithm know about the new links, which help group similar items or users together. In other words, we want to "inject" new nodes – nodes that link nodes belonging to the same group. How do we do this? Let's take a look at the illustration below:
 
-<img src=assets/use_cases/recommender_systems/dummy_nodes.jpg alt="Node structure" data-size="100" />
+<img src="../assets/use_cases/recommender_systems/dummy_nodes.jpg" alt="Node structure" data-size="100" />
 
 There are three users: u1, u2 and u3; and four items: i1, i2, i3, i4. The user u1 has interacted with items i1 and i3. There is a dummy user, who links items that have the same color (i1, i3, i4). By coupling similar items, the dummy user helps the model identify related content. This increases the chances of item i4 being recommended to user u1.
 
