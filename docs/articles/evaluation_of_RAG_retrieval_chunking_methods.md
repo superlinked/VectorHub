@@ -56,7 +56,12 @@ Finally, we also tested the effect on performance of different **rerankers** aft
 
 The **SentenceSplitter** performed better than the other chunking methods, contrary to our expectations. We had intuitively assumed that the naive **SentenceSplitter** (which takes in chunk_size and overlap parameters) would be the _least_ efficient chunking method, and that instead the **SemanticSplitterNodeParser**’s performance would be _superior_ - because, for any given sentence, the latter method creates chunks based on breakpoints computed from semantic dissimilarities of the preceding and succeeding sentences. This assumption turned out to be false. **Why?**
 
-The **superior performance of SentenceSplitter over SemanticSplitterNodeParser** appears to illustrate that, despite the advantages of semantic evaluation: 1) a sentence is a very natural level of granularity for containing meaningful information, and 2) high semantic similarity measures can result from noise rather than meaningful similarities. Vector representations of semantically similar sentences (provided there is no word overlap) are often more distant from each other than we might expect based on the sentences’ meaning. Words can mean different things in different contexts, and word embeddings basically encode the "average" meaning of a word, so they can miss context-specific meaning in particular instances. In addition, sentence embeddings are aggregates of word embeddings, which further "averages away" some meaning.
+The **superior performance of SentenceSplitter over SemanticSplitterNodeParser** appears to illustrate that, despite the advantages of semantic evaluation:
+
+1) a sentence is a very natural level of granularity for containing meaningful information, and
+2) high semantic similarity measures can result from noise rather than meaningful similarities.
+
+Vector representations of semantically similar sentences (provided there is no word overlap) are often more distant from each other than we might expect based on the sentences’ meaning. Words can mean different things in different contexts, and word embeddings basically encode the "average" meaning of a word, so they can miss context-specific meaning in particular instances. In addition, sentence embeddings are aggregates of word embeddings, which further "averages away" some meaning.
 
 As a result, retrieval performance can suffer when we 1) do our chunking by splitting text on the basis of something other than the borders of sentences, 2) merge text segments into groups on the basis of semantic similarity rather than using a fixed length (i.e., basically 1-2 sentences).
 
