@@ -31,7 +31,7 @@ Before we dive into advanced RAG and pre-retrieval, let's **set up** everything 
 We'll build a [Haystack](https://docs.haystack.deepset.ai/docs/intro) pipeline using open source (sentence-transformers) embeddings and models from Huggingface. In addition, we'll need "accelerate" and "bitsandbytes" libraries to load our generative large language model (LLM) in 4-bit. This set up will enable us to run our RAG system efficiently. Indeed, this tutorial is optimized to work within free [Google Colab](https://colab.research.google.com/) GPU environments. **Note** that if you're on Windows or Mac, you may run into trouble setting up [bitsandbytes](https://github.com/TimDettmers/bitsandbytes), as neither are supported yet. There are, however, several free virtual linux enviroments available, such as Google Colab and Kaggle.
 
 ```bash
-pip install haystack-ai sentence-transformers accelerate -i <https://pypi.org/simple/> bitsandbytes
+pip install haystack-ai sentence-transformers bitsandbytes accelerate -i https://pypi.org/simple/
 ```
 
 We'll fetch **our data** from [VectorHub](https://superlinked.com/vectorhub/all-articles) articles, and convert the html files to documents.
@@ -119,7 +119,7 @@ Indexing organizes the pre-processed data in a structured format that can be qui
 
 ## Retrieval
 
-Because we are using an in-memory database, we import the in-memory retriever. To query our vector database, we need to encode the query texts with the same embedding model we used for our document embeddings (SentenceTransformersTextEmbedder("BAAI/bge-small-en-v1.5")). The only difference is that for simple text queries, we will be using the `SentenceTransformersTextEmbedder` instead of the document version.
+Because we are using an in-memory database, we import the in-memory retriever. To query our vector database, we need to encode the query texts with the same embedding model we used for our document embeddings (SentenceTransformersDocumentEmbedder("BAAI/bge-small-en-v1.5")). In the case of simple text queries, we use the `SentenceTransformersTextEmbedder` instead of the document version.
 
 ```python
 from haystack.components.retrievers.in_memory import InMemoryEmbeddingRetriever
@@ -131,9 +131,11 @@ text_embedder = SentenceTransformersTextEmbedder("BAAI/bge-small-en-v1.5")
 text_embedder.warm_up()
 ```
 
+This approach is often referred to as **dense retrieval**.
+
 ### Hybrid Search
 
-Besides using the InMemoryEmbeddingRetriever and SentenceTransformersTextEmbedder to perform dense retrieval (above), we can enhance retrieval accuracy through [hybrid search](https://superlinked.com/vectorhub/optimizing-rag-with-hybrid-search-and-reranking) techniques. Traditional keyword search, such as BM25, has its merits in certain contexts due to its high precision, and can be combined with dense retrieval to improve retrieval results overall. Though hybrid search is not a direct Haystack component, it can be implemented by querying with both retrievers, and then merging results in your pipeline, as we indicate in the snippet below.
+We can enhance retrieval accuracy beyond what we can achieve using dense retrieval (InMemoryEmbeddingRetriever and SentenceTransformersTextEmbedder) by employing [hybrid search](https://superlinked.com/vectorhub/optimizing-rag-with-hybrid-search-and-reranking). Traditional keyword search, such as BM25, is highly precise in certain contexts, and can be combined with dense retrieval to improve retrieval results overall. Though hybrid search is not an inherent Haystack component, it can be implemented by querying with both retrievers, and then merging results in your pipeline, as we indicate in the snippet below.
 
 ```python
 from haystack.components.retrievers.in_memory import InMemoryBM25Retriever
