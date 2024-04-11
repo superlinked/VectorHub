@@ -1,16 +1,16 @@
-<!-- SEO SUMMARY: This comprehensive tutorial explores the intricacies of Advanced Retrieval-Augmented Generation (RAG) systems, demonstrating their capacity to enhance natural language processing tasks by integrating retrieval-based techniques with generative AI models. The article covers essential components such as document cleaning, chunking, embedding, and the strategic assembly of pipelines for efficient data processing and generation. By emphasizing the importance of fine-tuning, post-retrieval optimizations, and the dynamic assembly of components, it offers insights into creating high-quality, contextually relevant text outputs. This guide is targeted at developers looking to leverage the full potential of RAG techniques, ensuring effectiveness in real-world applications. -->
+<!-- SEO SUMMARY: Our comprehensive tutorial explores the intricacies of Advanced Retrieval-Augmented Generation (RAG) systems, demonstrating their capacity to enhance natural language processing tasks by integrating retrieval-based techniques with generative AI models. We examine and provide code snippets for essential components such as document cleaning, chunking, embedding, and the strategic (dynamic) assembly of pipelines for efficient data processing and generation. We emphasize these components, along with fine-tuning and post-retrieval optimizations, to guide developers who want to generate high-quality, contextually relevant text output for effective real-world applications.-->
 
 # Advanced Retrieval-augmented Generation (RAG)
 
-## Advanced RAG and why we need it
-Retrieval-Augmented Generation (RAG) is a technique that aims to improve the quality and effectiveness of language models by augmenting them with retrieved information from external sources. Recently, the [terminology](https://arxiv.org/abs/2312.10997) of naive RAG and advanced RAG has evolved to distinguish between different levels of technological maturity. In case you're not familiar with RAG yet, I would recommend to first read my [introduction to RAG](https://superlinked.com/vectorhub/retrieval-augmented-generation).
+## Advanced RAG - why we need it
+Retrieval-Augmented Generation (RAG) aims to improve the quality and effectiveness of language models by augmenting them with retrieved information from external sources. To familiarize yourself with the basics, read our [Introduction to RAG](https://superlinked.com/vectorhub/retrieval-augmented-generation). In its most basic version, RAG often suffers from low retrieval precision, hallucination in generated responses, and ineffective integration of retrieved context into generated output. These problems are especially limiting for applications that require reliable and informative generated content, such as question answering systems, chatbots, and content creation tools. 
 
-Basic RAG, or naive RAG, refers to the minimal RAG pipeline that consists of retrieval and generation. This naive approach often suffers from issues such as low retrieval precision, hallucination in generated responses, and challenges in effectively integrating retrieved context into the generated output. 
+To address these issues, advances in RAG methods have evolved, as reflected in RAG [terminology](https://arxiv.org/abs/2312.10997). "Advanced RAG" employs pre-retrieval and post-retrieval strategies, refined indexing approaches, and optimized retrieval processes to improve the quality and relevance of the retrieved information. By addressing the challenges faced by "basic" or "naive RAG" in retrieval, generation, and augmentation, advanced RAG enables language models to generate more accurate, comprehensive, and coherent responses.
 
-Advanced RAG addresses the limitations of naive RAG by introducing targeted enhancements to overcome these drawbacks. It employs pre-retrieval and post-retrieval strategies, refined indexing approaches, and optimized retrieval processes to improve the quality and relevance of the retrieved information. By addressing the challenges in retrieval, generation, and augmentation, advanced RAG enables language models to generate more accurate, comprehensive, and coherent responses. This is crucial for applications that require reliable and informative generated content, such as question answering systems, chatbots, and content creation tools.
+### Tutorial Overview
+This Advanced RAG tutorial examines and provides code examples of pre-retrieval, retrieval, and post-retrieval techniques employed in Advanced RAG systems, including document cleaning, chunking, embedding, and the strategic, dynamic assembly of pipelines for efficient data processing and generation. We emphasize these components, along with fine-tuning and post-retrieval optimization, so that you can set up your RAG pipeline to generate high-quality, contextually relevant text outputs.
 
-### Overview
-In this tutorial, we will cover the following components, including code examples:
+Here's what we cover below:
 
 1. Pre-retrieval 
 - Document cleaning
@@ -22,17 +22,19 @@ In this tutorial, we will cover the following components, including code example
 3. Post-retrieval
 - Reranking
 
-### Set up
+Let's get started.
 
-Before we start diving into advanced RAG and pre-retrieval, let's set up everything we will need for this tutorial. Note that if you're on Windows, you might run into trouble setting up [bitsandbytes](https://github.com/TimDettmers/bitsandbytes), as there is no Windows support yet.
+## Set up
+
+Before we dive into advanced RAG and pre-retrieval, let's **set up** everything we'll need for this tutorial. 
+
+We'll build a [Haystack](https://docs.haystack.deepset.ai/docs/intro) pipeline using open source (sentence-transformers) embeddings and models from Huggingface. In addition, we'll need "accelerate" and "bitsandbytes" libraries to load our generative large language model (LLM) in 4-bit. This set up will enable us to run our RAG system efficiently. Indeed, this tutorial is optimized to work within free [Google Colab](https://colab.research.google.com/) GPU environments. (Note: if you're on Windows, you may run into trouble setting up [bitsandbytes](https://github.com/TimDettmers/bitsandbytes), as there is no Windows support yet.)
 
 ```bash
 pip install haystack-ai sentence-transformers accelerate -i <https://pypi.org/simple/> bitsandbytes
 ```
 
-We will build a [Haystack](https://docs.haystack.deepset.ai/docs/intro) pipeline using open source embeddings and models from Huggingface. Additionally, "accelerate" and "bitsandbytes" libraries will be necessary for loading our generative large language model (LLM) in 4 bit. This will enable us to run our pipeline in an efficient way - in fact, this tutorial is optimized to work within free [Google Colab](https://colab.research.google.com/) GPU environments.
-
-As for the data, we will fetch information from Vector Hub articles and convert the html files to documents.
+We'll fetch **our data** from [VectorHub](https://superlinked.com/vectorhub) articles, and convert the html files to documents.
 
 ```python
 from haystack.components.fetchers import LinkContentFetcher
@@ -41,21 +43,29 @@ from haystack.components.converters import HTMLToDocument
 link_fetcher = LinkContentFetcher()
 converter = HTMLToDocument()
 ```
-One great thing about Haystack is that it offers a wide selection of pipeline components, including the LinkContentFetcher and HTMLToDocument modules, which are exactly what we need. Typically, components in Haystack are first defined, then added to a pipeline. We can build and configure our pipeline with these building blocks and they will all be executed once the pipeline is run. If we wanted to run our components individually, we could do that like this:
+
+Haystack provides a wide variety of pipeline components. For our purposes, we require Haystack's LinkContentFetcher and HTMLToDocument modules. Typically, components in Haystack are first defined, then added to a pipeline. Constructing and configuring our pipeline with these building blocks ensures that they'll all be executed automatically when the pipeline is run.
+
+**If**, on the other hand, **we wanted to run our components individually**, we could do that as follows. But this approach is **not advised** outside of the development environment.
 
 ```python
-# What would be better than fetching Vector Hub texts in a tutorial on Vector Hub?
+# What better to fetching in a VectorHub tutorial than VectorHub text?
 fetched = link_fetcher.run(urls=["<https://superlinked.com/vectorhub/>"])
 converted = converter.run(sources=fetched["streams"])
 ```
-However, this is not advised outside of development, as pipelines offer a cleaner, more streamlined interface for executing our code.
+We recommend _not_ running your components individually. Pipelines offer a cleaner, more streamlined interface for executing all the modules in our code.
+
+Now that we have our pipeline and data source set up, let's turn to specific Advanced RAG pre-retrieval, retrieval, and post-retrieval techniques that will improve the quality and relevance of the retrieved information, and solve the issues that plague naive RAG: low retrieval precision, hallucination in generated responses, and ineffective integration of retrieved context into generated output. 
+
+First, pre-retrieval techniques.
 
 ## Pre-retrieval
 
 ### Document cleaning
-Data is the lifeblood of any Machine Learning (ML) model, and its quality directly impacts the performance of RAG systems. Cleaning involves removing noise such as irrelevant information, correcting typos, and standardizing formats to ensure the data is optimized for machine processing. Clean data not only improves the efficiency of retrieval and generation but also significantly enhances the quality of the generated text.
 
-For this tutorial, we will be using a simple document cleaner that removes empty lines and extra whitespaces. If we would be working with messier data, could remove repeated substrings, such as html tags or even write custom scripts to standardize words and correct typos. Your cleaning routine will depend heavily on your specific use case and goals.
+Data is the lifeblood of any Machine Learning (ML) model, and its quality directly impacts the performance of RAG systems. Cleaning data includes removing noise such as irrelevant information, correcting typos, and standardizing formats - in short, optimizing it for machine processing. Clean data not only improves the efficiency of retrieval and generation but also significantly enhances the quality of the generated text.
+
+For the purposes of this tutorial, we can use a simple document cleaner that removes empty lines and extra whitespaces. If we were working with messier data, we could also remove repeated substrings, such as html tags, or even write custom scripts to standardize words and correct typos. The cleaning routine you choose depends heavily on your specific use case and goals.
 
 ```python
 from haystack.components.preprocessors import DocumentCleaner
@@ -67,7 +77,8 @@ cleaner = DocumentCleaner(
 ```
 
 ### Chunking
-Chunking refers to the process of breaking down large pieces of text into more manageable, logically coherent units. This step is crucial for efficient retrieval, as it enables the system to focus on the most relevant segments of text when generating responses. Effective chunking strategies can dramatically improve the relevance and cohesion of the generated content.
+
+Chunking breaks large pieces of text down into more manageable, logically coherent units. Chunking can improve efficiency by focusing your RAG system on the most relevant segments of text when generating responses. Effective chunking strategies dramatically improve the relevance and cohesion of the generated content.
 
 ```python
 from haystack.components.preprocessors import DocumentSplitter
@@ -75,12 +86,13 @@ from haystack.components.preprocessors import DocumentSplitter
 splitter = DocumentSplitter(split_by="sentence", split_length=3, split_overlap=2)
 ```
 
-In this setup, we chose "sentence" for `split_by`, a choice driven to maintain granular control over the chunking process. The `split_length` is set to 3 sentences to ensure each chunk is sufficiently detailed yet concise, while a `split_overlap` of 2 sentences helps maintain context continuity between adjacent chunks. There exists no golden rule for these hyperparameters, I would advise that you try out different configurations based on the structure and type of your documents. For a thorough evaluation of chunking methods, check out this [article](https://superlinked.com/vectorhub/an-evaluation-of-rag-retrieval-chunking-methods).
+To maintain granular control over the chunking process, we choose to `split_by` "sentence". We set  `split_length` to 3 sentences to ensure each chunk is sufficiently detailed yet concise, but also retain continuity between adjacent chunks by setting `split_overlap` to 2 sentences. There is no universal, golden rule for these hyperparameters. We suggest you try out different configurations based on your documents' structure and type. For a thorough evaluation of chunking methods, check out [this article](https://superlinked.com/vectorhub/an-evaluation-of-rag-retrieval-chunking-methods).
 
 ### Document embeddings
-Embeddings are a central component of the pre-processing stage, serving as the bridge between raw text data and the sophisticated algorithms that drive RAG systems, typically Large Language Models (LLMs). By converting words into numerical vectors, embeddings capture the semantic relationships between different terms, enabling models to understand context and generate relevant responses. Selecting the right embeddings and models is critical for achieving high-quality retrieval and generation, laying the groundwork for RAG's success.
 
-We will be using the `SentenceTransformersDocumentEbedder`, which is a sentence embedding model. This means that instead of only looking at individual words in isolation, the model considers the full context of sentences or even larger text snippets to generate embeddings. This approach allows for a deeper understanding of the text, capturing nuances and meanings that might be lost in word-level embeddings.
+Embeddings are central to pre-processing, connecting raw text data to the sophisticated algorithms - typically, LLMs - that drive RAG systems. By converting words into numerical vectors, embeddings capture the semantic relationships between different terms, enabling models to understand context and generate relevant responses. Selecting the right embeddings and models is critical for achieving high-quality retrieval and generation.
+
+We use a `SentenceTransformersDocumentEmbedder` model that considers the full context of sentences or even larger text snippets, rather than individual words in isolation, to generate embeddings. This permits a deeper understanding of the text, capturing nuances and meanings that might be lost in word-level embeddings.
 
 ```python
 from haystack.components.embedders import SentenceTransformersDocumentEmbedder
@@ -89,12 +101,11 @@ doc_embedder = SentenceTransformersDocumentEmbedder("BAAI/bge-small-en-v1.5")
 doc_embedder.warm_up()
 ```
 
-The model we are using, "BAAI/bge-small-en-v1.5", has been selected based on its performance in recent evaluations, striking a balance between retrieval accuracy and computational efficiency. For more information, see Huggingface [MTEB leaderboard](https://huggingface.co/spaces/mteb/leaderboard). Before you use another model with this class, make sure that it's [compatible](https://docs.haystack.deepset.ai/docs/sentencetransformersdocumentembedder#compatible-models) with sentence embeddings first.
+Specifically, we selected "BAAI/bge-small-en-v1.5", a model that strikes a balance between retrieval accuracy and computational efficiency, according to recent performance  evaluations in the Huggingface [MTEB leaderboard](https://huggingface.co/spaces/mteb/leaderboard). Make sure that the model you choose is [compatible](https://docs.haystack.deepset.ai/docs/sentencetransformersdocumentembedder#compatible-models) with sentence embeddings.
 
 ### Indexing
-To facilitate swift and accurate retrieval of information, indexing organizes the pre-processed data in a structured format that can be quickly accessed by the RAG system. This step involves creating an optimized database of chunks, where each piece of information is tagged and categorized for easy retrieval.
 
-Before we can index, we need to create a database that we will write our documents and document embeddings to. For this tutorial, we will use a simple `InMemoryDocumentStore`. You can easily replace it with the database you are using, as long as it is [supported by Haystack](https://docs.haystack.deepset.ai/docs/inmemorydocumentstore).
+Before we can index, we need to create a database to write our documents and document embeddings to. We use a simple `InMemoryDocumentStore`. You can easily replace it with the database you are using, as long as it is [supported by Haystack](https://docs.haystack.deepset.ai/docs/inmemorydocumentstore).
 
 ```python
 from haystack.document_stores.in_memory import InMemoryDocumentStore
@@ -104,8 +115,10 @@ document_store = InMemoryDocumentStore()
 writer = DocumentWriter(document_store=document_store)
 ```
 
+Indexing organizes the pre-processed data in a structured format that can be quickly and accurately retrieved by the RAG system. This step involves creating an optimized database of tagged and categorized chunks.
+
 ## Retrieval
-Since we use an in-memory database, we import the in-memory retriever. To query our vector database, we need to encode the query texts with the same embedding model used for our document embeddings. The only difference is that for simple text queries, we will be using the `SentenceTransformersTextEmbedder` instead of the document version.
+Because we are using an in-memory database, we import the in-memory retriever. To query our vector database, we need to encode the query texts with the same embedding model used for our document embeddings. The only difference is that for simple text queries, we will be using the `SentenceTransformersTextEmbedder` instead of the document version.
 
 ```python
 from haystack.components.retrievers.in_memory import InMemoryEmbeddingRetriever
