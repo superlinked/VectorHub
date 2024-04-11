@@ -3,12 +3,14 @@
 # Advanced Retrieval-augmented Generation (RAG)
 
 ## Advanced RAG - why we need it
+
 Retrieval-Augmented Generation (RAG) aims to improve the quality and effectiveness of language models by augmenting them with retrieved information from external sources. To familiarize yourself with the basics, read our [Introduction to RAG](https://superlinked.com/vectorhub/retrieval-augmented-generation). In its most basic version, RAG often suffers from low retrieval precision, hallucination in generated responses, and ineffective integration of retrieved context into generated output. These problems are especially limiting for applications that require reliable and informative generated content, such as question answering systems, chatbots, and content creation tools. 
 
 To address these issues, advances in RAG methods have evolved, as reflected in RAG [terminology](https://arxiv.org/abs/2312.10997). "Advanced RAG" employs pre-retrieval and post-retrieval strategies, refined indexing approaches, and optimized retrieval processes to improve the quality and relevance of the retrieved information. By addressing the challenges faced by "basic" or "naive RAG" in retrieval, generation, and augmentation, advanced RAG enables language models to generate more accurate, comprehensive, and coherent responses.
 
 ### Tutorial Overview
-This Advanced RAG tutorial examines and provides code examples of pre-retrieval, retrieval, and post-retrieval techniques employed in Advanced RAG systems, including document cleaning, chunking, embedding, and the strategic, dynamic assembly of pipelines for efficient data processing and generation. We emphasize these components, along with fine-tuning and post-retrieval optimization, so that you can set up your RAG pipeline to generate high-quality, contextually relevant text outputs.
+
+This advanced RAG tutorial examines and provides code examples of pre-retrieval, retrieval, and post-retrieval techniques employed in advanced RAG systems, including document cleaning, chunking, embedding, and the strategic, dynamic assembly of pipelines for efficient data processing and generation. We emphasize these components, along with fine-tuning and post-retrieval optimization, so that you can set up your RAG pipeline to generate high-quality, contextually relevant text outputs.
 
 Here's what we cover below:
 
@@ -28,7 +30,7 @@ Let's get started.
 
 Before we dive into advanced RAG and pre-retrieval, let's **set up** everything we'll need for this tutorial. 
 
-We'll build a [Haystack](https://docs.haystack.deepset.ai/docs/intro) pipeline using open source (sentence-transformers) embeddings and models from Huggingface. In addition, we'll need "accelerate" and "bitsandbytes" libraries to load our generative large language model (LLM) in 4-bit. This set up will enable us to run our RAG system efficiently. Indeed, this tutorial is optimized to work within free [Google Colab](https://colab.research.google.com/) GPU environments. **Note** that if you're on Windows or Mac, you may run into trouble setting up [bitsandbytes](https://github.com/TimDettmers/bitsandbytes), as neither are supported yet. There are, however, several free virtual linux enviroments available, such as Google Colab and Kaggle.
+We'll build a [Haystack](https://docs.haystack.deepset.ai/docs/intro) pipeline using open source (sentence-transformers) embeddings and models from Huggingface. In addition, we'll need "accelerate" and "bitsandbytes" libraries to load our generative large language model (LLM) in 4-bit. This set-up will enable us to run our RAG system efficiently. Indeed, this tutorial is optimized to work within free [Google Colab](https://colab.research.google.com/) GPU environments. **Note** that if you're on Windows or Mac, you may run into trouble setting up [bitsandbytes](https://github.com/TimDettmers/bitsandbytes), as neither are supported yet. There are, however, several free virtual linux enviroments available, such as Google Colab and Kaggle.
 
 ```bash
 pip install haystack-ai sentence-transformers bitsandbytes accelerate -i https://pypi.org/simple/
@@ -46,16 +48,17 @@ converter = HTMLToDocument()
 
 Haystack provides a wide variety of pipeline components. For our purposes, we require Haystack's LinkContentFetcher and HTMLToDocument modules. Typically, components in Haystack are first defined, then added to a pipeline. Constructing and configuring our pipeline with these building blocks ensures that they'll all be executed automatically when the pipeline is run.
 
-**If**, on the other hand, **we wanted to run our components individually**, we could do that as follows. But this approach is **not advised** outside of the development environment.
+**If**, on the other hand, **we wanted to run our components individually**, we could do that as follows, though this approach is **not advised** outside of the development environment.
 
 ```python
 # In VectorHub tutorial, What better to fetch than text from VectorHub itself?
 fetched = link_fetcher.run(urls=["<https://superlinked.com/vectorhub/>"])
 converted = converter.run(sources=fetched["streams"])
 ```
+
 We recommend _not_ running your components individually. Pipelines offer a cleaner, more streamlined interface for executing all the modules in our code.
 
-Now that we have our pipeline and data source set up, let's turn to specific Advanced RAG pre-retrieval, retrieval, and post-retrieval techniques that will improve the quality and relevance of the retrieved information, and solve the issues that plague naive RAG: low retrieval precision, hallucination in generated responses, and ineffective integration of retrieved context into generated output. 
+Now that we have our pipeline and data source set up, let's turn to specific advanced RAG pre-retrieval, retrieval, and post-retrieval techniques that will improve the quality and relevance of the retrieved information, and solve the issues that plague naive RAG: low retrieval precision, hallucination in generated responses, and ineffective integration of retrieved context into generated output. 
 
 First, pre-retrieval techniques.
 
@@ -86,7 +89,7 @@ from haystack.components.preprocessors import DocumentSplitter
 splitter = DocumentSplitter(split_by="sentence", split_length=3, split_overlap=2)
 ```
 
-To maintain granular control over the chunking process, we choose to `split_by` "sentence". We set  `split_length` to 3 sentences to ensure each chunk is sufficiently detailed yet concise, but also retain continuity between adjacent chunks by setting `split_overlap` to 2 sentences. There is no universal, golden rule for these hyperparameters. We suggest you try out different configurations based on your documents' structure and type. For a thorough evaluation of chunking methods, check out [this article](https://superlinked.com/vectorhub/an-evaluation-of-rag-retrieval-chunking-methods).
+To maintain granular control over the chunking process, we choose to `split_by` "sentence". We set  `split_length` to 3 sentences to ensure each chunk is sufficiently detailed yet concise, but also retain continuity between adjacent chunks by setting `split_overlap` to 2 sentences. There is no universal, golden rule for setting these hyperparameters. We suggest you try out different configurations based on your documents' structure and type. For a thorough evaluation of chunking methods, check out [this article](https://superlinked.com/vectorhub/an-evaluation-of-rag-retrieval-chunking-methods).
 
 ### Document embeddings
 
@@ -115,11 +118,11 @@ document_store = InMemoryDocumentStore()
 writer = DocumentWriter(document_store=document_store)
 ```
 
-Indexing organizes the pre-processed data in a structured format that can be quickly and accurately retrieved by the RAG system. Indexing creates an optimized database of tagged and categorized chunks.
+**Indexing** organizes the pre-processed data in a structured format that can be quickly and accurately retrieved by the RAG system. Indexing creates an optimized database of tagged and categorized chunks, and is **handled automatically**, based on the structure of our data. Because we split our documents into chunks and then encode those, every data point will be written to the database with a document id, a chunk id, and both the raw text and the corresponding vector. This automatic indexing process will enable us to retrieve exactly what we need.
 
 ## Retrieval
 
-Because we are using an in-memory database, we import the in-memory retriever. To query our vector database, we need to encode the query texts with the same embedding model we used for our document embeddings (SentenceTransformersDocumentEmbedder("BAAI/bge-small-en-v1.5")). In the case of simple text queries, we use the `SentenceTransformersTextEmbedder` instead of the document version.
+Because we are using an in-memory database, we import the in-memory retriever. To query our vector database, we need to encode the query texts with the same embedding model we used for our document embeddings `SentenceTransformersDocumentEmbedder`. In the case of simple text queries, we use the `SentenceTransformersTextEmbedder` instead of the document version.
 
 ```python
 from haystack.components.retrievers.in_memory import InMemoryEmbeddingRetriever
@@ -135,7 +138,7 @@ This approach is often referred to as **dense retrieval**.
 
 ### Hybrid Search
 
-We can enhance retrieval accuracy beyond what we can achieve using dense retrieval (InMemoryEmbeddingRetriever and SentenceTransformersTextEmbedder) by employing [hybrid search](https://superlinked.com/vectorhub/optimizing-rag-with-hybrid-search-and-reranking). Traditional keyword search, such as BM25, is highly precise in certain contexts, and can be combined with dense retrieval to improve retrieval results overall. Though hybrid search is not an inherent Haystack component, it can be implemented by querying with both retrievers, and then merging results in your pipeline, as we indicate in the snippet below.
+We can enhance retrieval accuracy beyond what we can achieve using dense retrieval by employing [hybrid search](https://superlinked.com/vectorhub/optimizing-rag-with-hybrid-search-and-reranking). Traditional keyword search, such as BM25, is highly precise in certain contexts, and can be combined with dense retrieval to improve retrieval results overall. Though hybrid search is not an inherent Haystack component, it can be implemented by querying with both retrievers, and then merging results in your pipeline, as we indicate in the snippet below.
 
 ```python
 from haystack.components.retrievers.in_memory import InMemoryBM25Retriever
@@ -270,12 +273,11 @@ results = rag.run({
 answer = results["llm"]["replies"][0]
 ```
 
-Let's see what our Advanced RAG system came up with:
+Let's see what our advanced RAG system came up with:
 
-"Hallucinations in generative models, specifically in LLMs (Large Language Models), can be dangerous as they create false or inaccurate pieces of information, also known as machine hallucinations. These hallucinations can have disastrous consequences in customer support and content creation, as they can lead to incorrect information being generated. In industry settings, hallucinations can
-be a major blocker and concern for the adoption of Generative AI and LLMs, as they can result in incorrect or misleading information being presented to users. This was demonstrated in February 2023 when Google's Chatbot presented made-up information, resulting in a 7% fall in Alphabet's stock price. Therefore, it's crucial to balance retrieval and generation in LLMs to prevent hallucinations and ensure the accuracy and reliability of the information generated."
+"Hallucinations in generative models, specifically in LLMs (Large Language Models), can be dangerous as they create false or inaccurate pieces of information, also known as machine hallucinations. These hallucinations can have disastrous consequences in customer support and content creation, as they can lead to incorrect information being generated. In industry settings, hallucinations can be a major blocker and concern for the adoption of Generative AI and LLMs, as they can result in incorrect or misleading information being presented to users. This was demonstrated in February 2023 when Google's Chatbot presented made-up information, resulting in a 7% fall in Alphabet's stock price. Therefore, it's crucial to balance retrieval and generation in LLMs to prevent hallucinations and ensure the accuracy and reliability of the information generated."
 
-Our Advanced RAG pipeline result appears to be relatively precise, avoid hallucinations, and effectively integrate of retrieved context into generated output. **Note**: generation is not a fully deterministic process, so if you run this code yourself, you may receive slightly different output.
+Our advanced RAG pipeline result appears to be relatively precise, avoid hallucinations, and effectively integrate of retrieved context into generated output. **Note**: generation is not a fully deterministic process, so if you run this code yourself, you may receive slightly different output.
 
 ## Conclusion
 
@@ -288,7 +290,7 @@ In this tutorial, we've covered several critical aspects of setting up an advanc
 -   **Pipeline Assembly:** Bringing together various components into a cohesive pipeline that processes queries end-to-end.
 -   **Visualization and Execution:** Creating an overview image of the pipeline with all its components, and running it to obtain answers to specific queries.
 
-In short, an Advanced RAG system should be highly customizable, letting you tweak each component and incorporate different models and strategies at various stages of the pipeline. Such a system is powerful, and capable of tackling a wide range of tasks, from answering questions to generating content based on complex criteria.
+In short, an advanced RAG system should be highly customizable, letting you tweak each component and incorporate different models and strategies at various stages of the pipeline, and thus address the weaknesses of naive RAG. Such a system is powerful, and capable of tackling a wide range of tasks, from answering questions to generating content based on complex criteria.
 
 ---
 ## Contributors
