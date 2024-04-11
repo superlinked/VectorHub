@@ -28,13 +28,13 @@ Let's get started.
 
 Before we dive into advanced RAG and pre-retrieval, let's **set up** everything we'll need for this tutorial. 
 
-We'll build a [Haystack](https://docs.haystack.deepset.ai/docs/intro) pipeline using open source (sentence-transformers) embeddings and models from Huggingface. In addition, we'll need "accelerate" and "bitsandbytes" libraries to load our generative large language model (LLM) in 4-bit. This set up will enable us to run our RAG system efficiently. Indeed, this tutorial is optimized to work within free [Google Colab](https://colab.research.google.com/) GPU environments. (Note: if you're on Windows, you may run into trouble setting up [bitsandbytes](https://github.com/TimDettmers/bitsandbytes), as there is no Windows support yet.)
+We'll build a [Haystack](https://docs.haystack.deepset.ai/docs/intro) pipeline using open source (sentence-transformers) embeddings and models from Huggingface. In addition, we'll need "accelerate" and "bitsandbytes" libraries to load our generative large language model (LLM) in 4-bit. This set up will enable us to run our RAG system efficiently. Indeed, this tutorial is optimized to work within free [Google Colab](https://colab.research.google.com/) GPU environments. **Note** that if you're on Windows or Mac, you may run into trouble setting up [bitsandbytes](https://github.com/TimDettmers/bitsandbytes), as neither are supported yet. There are, however, several free virtual linux enviroments available, such as Google Colab and Kaggle.
 
 ```bash
 pip install haystack-ai sentence-transformers accelerate -i <https://pypi.org/simple/> bitsandbytes
 ```
 
-We'll fetch **our data** from [VectorHub](https://superlinked.com/vectorhub) articles, and convert the html files to documents.
+We'll fetch **our data** from [VectorHub](https://superlinked.com/vectorhub/all-articles) articles, and convert the html files to documents.
 
 ```python
 from haystack.components.fetchers import LinkContentFetcher
@@ -49,7 +49,7 @@ Haystack provides a wide variety of pipeline components. For our purposes, we re
 **If**, on the other hand, **we wanted to run our components individually**, we could do that as follows. But this approach is **not advised** outside of the development environment.
 
 ```python
-# What better to fetching in a VectorHub tutorial than VectorHub text?
+# In VectorHub tutorial, What better to fetch than text from VectorHub itself?
 fetched = link_fetcher.run(urls=["<https://superlinked.com/vectorhub/>"])
 converted = converter.run(sources=fetched["streams"])
 ```
@@ -105,7 +105,7 @@ Specifically, we selected "BAAI/bge-small-en-v1.5", a model that strikes a balan
 
 ### Indexing
 
-Before we can index, we need to create a database to write our documents and document embeddings to. We use a simple `InMemoryDocumentStore`. You can easily replace it with the database you are using, as long as it is [supported by Haystack](https://docs.haystack.deepset.ai/docs/inmemorydocumentstore).
+Before we can index, we need to **create a database** to write our documents and document embeddings to. We use a simple `InMemoryDocumentStore`. You can easily replace it with the database you are using, as long as it is [supported by Haystack](https://docs.haystack.deepset.ai/docs/inmemorydocumentstore).
 
 ```python
 from haystack.document_stores.in_memory import InMemoryDocumentStore
@@ -115,10 +115,11 @@ document_store = InMemoryDocumentStore()
 writer = DocumentWriter(document_store=document_store)
 ```
 
-Indexing organizes the pre-processed data in a structured format that can be quickly and accurately retrieved by the RAG system. This step involves creating an optimized database of tagged and categorized chunks.
+Indexing organizes the pre-processed data in a structured format that can be quickly and accurately retrieved by the RAG system. Indexing creates an optimized database of tagged and categorized chunks.
 
 ## Retrieval
-Because we are using an in-memory database, we import the in-memory retriever. To query our vector database, we need to encode the query texts with the same embedding model used for our document embeddings. The only difference is that for simple text queries, we will be using the `SentenceTransformersTextEmbedder` instead of the document version.
+
+Because we are using an in-memory database, we import the in-memory retriever. To query our vector database, we need to encode the query texts with the same embedding model we used for our document embeddings (SentenceTransformersTextEmbedder("BAAI/bge-small-en-v1.5")). The only difference is that for simple text queries, we will be using the `SentenceTransformersTextEmbedder` instead of the document version.
 
 ```python
 from haystack.components.retrievers.in_memory import InMemoryEmbeddingRetriever
@@ -132,7 +133,7 @@ text_embedder.warm_up()
 
 ### Hybrid Search
 
-Another way to enhance retrieval accuracy is through [hybrid search](https://superlinked.com/vectorhub/optimizing-rag-with-hybrid-search-and-reranking) techniques. Traditional keyword search, such as BM25, has its merits in certain contexts due to its high precision. Hybrid search is not a direct Haystack component but can be implemented by querying with both retrievers and merging results in your pipeline.
+Besides using the InMemoryEmbeddingRetriever and SentenceTransformersTextEmbedder to perform dense retrieval (above), we can enhance retrieval accuracy through [hybrid search](https://superlinked.com/vectorhub/optimizing-rag-with-hybrid-search-and-reranking) techniques. Traditional keyword search, such as BM25, has its merits in certain contexts due to its high precision, and can be combined with dense retrieval to improve retrieval results overall. Though hybrid search is not a direct Haystack component, it can be implemented by querying with both retrievers, and then merging results in your pipeline, as we indicate in the snippet below.
 
 ```python
 from haystack.components.retrievers.in_memory import InMemoryBM25Retriever
@@ -143,10 +144,16 @@ bm25_retriever = InMemoryBM25Retriever(document_store)
 document_joiner = DocumentJoiner()
 ```
 
-This approach allows for a more nuanced retrieval process, capturing both the semantic richness of embeddings and the direct match precision of keyword search, leading to improved relevance in retrieved documents.
+This hybrid approach captures both the semantic richness of embeddings and the direct match precision of keyword search, leading to improved relevance in retrieved documents.
+
+So far we've seen how careful preretrieval (document cleaning, chunking, embedding, indexing) and retrieval (hybrid search) can help improve RAG retrieval results. What about **after** we've done our retrieval?
 
 ## Post-retrieval
-Reranking can be a critical step that reassesses the initial set of retrieved documents to refine the selection based on relevance and context. This process often employs more sophisticated or computationally intensive methods that were impractical for the initial retrieval due to the larger dataset. For this reason, you should always evaluate the performance of your system on **your data** with *and* without reranking to not add unnecessary latency and cost. 
+
+### Reranking
+
+Reranking lets us reassess the initial set of retrieved documents and refine the selection based on relevance and context. Reranking often employs more sophisticated or computationally intensive methods that would have been impractical in the initial retrieval because its dataset is larger (than our retrieved set). Reranking still takes time - you should always evaluate the performance of your system on **your data** with *and* without reranking to make sure the additional latency and cost of reranking are worth it.
+In our case, we rerank using a TransformersSimilarityRanker model.
 
 ```python
 from haystack.components.rankers import TransformersSimilarityRanker
@@ -156,7 +163,7 @@ ranker = TransformersSimilarityRanker(model="BAAI/bge-reranker-base")
 
 ## Generation
 
-The generation phase in the pipeline is where the prepared context will be integrated into a prompt to produce the final output. This is achieved by using a large language model (LLM) to generate answers based on the context provided by the previous components of the pipeline. The preparation for this phase involves setting up a prompt builder to format the input in a way that's optimized for the LLM to understand and respond to.
+In the generation phase of our pipeline, the prepared context will be integrated into a prompt to produce the final output. Here, an LLM will generate answers based on context provided by our pipeline's previous components. To prepare for generation, we set up a **prompt builder** to format the input so that it's optimized for the LLM to understand and respond to.
 
 ```python
 from haystack.components.builders import PromptBuilder
@@ -177,7 +184,7 @@ Context:
 prompt_builder = PromptBuilder(template=template)
 ```
 
-For our generator, we will be using Zephyr-7b-beta, which is a popular fine-tuned model based on [Mistral 7B](https://huggingface.co/mistralai/Mistral-7B-v0.1). It's a comparatively small yet performant choice. The model settings include various optimizations to improve efficiency and performance, such as loading the model in 4-bit quantization to save memory and processing power.
+Our generator is Zephyr-7b-beta, a popular, fine-tuned model based on [Mistral 7B](https://huggingface.co/mistralai/Mistral-7B-v0.1). Zephyr-7b-beta is relatively small but highly performant. We choose certain model settings to optimize efficiency and performance. For example, we load the model in 4-bit quantization to save memory and processing power.
 
 ```python
 import torch
@@ -196,7 +203,7 @@ generator.warm_up()
 
 ### Assembling the Pipeline
 
-Now that we have defined all necessary components, we can assemble our pipeline. To review, this includes components for fetching links, converting formats, cleaning and splitting text, embedding documents and queries, retrieving relevant documents, reranking them, building prompts, and finally generating the answer.
+Now that we have defined all necessary components, we can assemble our pipeline. Per above, we need to include components for fetching links, converting formats, cleaning and splitting text, embedding documents and queries, retrieving relevant documents, reranking them, building prompts, and finally generating the answer.
 
 ```python
 from haystack import Pipeline
@@ -230,17 +237,19 @@ rag.connect("ranker.documents",  "prompt_builder.documents")
 rag.connect("prompt_builder.prompt",  "llm.prompt")
 ```
 
-The cherry on top is the `.draw` feature that let's us visualize the pipeline, illustrating how each component is connected and the flow of data through the pipeline. This is helpful for debugging and understanding the overall structure.
+So that we can visualize, understand, and debug the overall structure, we also add a `.draw` feature, which illustrates how each component is connected and the flow of data through the pipeline.
 
 ```python
 rag.draw("rag.png")
 ```
 
-As you can see, this creates an image file that maps out all the components and their connections, offering a clear overview of the entire pipeline process.
+As you can see below, `rag.draw` creates an image file, clearly mapping out the entire pipeline with all its components and connections.
 
 ![](../assets/use_cases/advanced_retrieval_augmented_generation/pipeline_graph.png)
 
-That's a lot of components! Let's write a query and try it out. We will be asking questions about my previous tutorials on Vector Hub: [An introduction to RAG](https://superlinked.com/vectorhub/retrieval-augmented-generation) and [scaling RAG for production with Ray](https://superlinked.com/vectorhub/scaling-rag-for-production).
+That's a lot of components!
+
+Now, let's try it out. Our example questions will query my previous tutorials on VectorHub: [An Introduction to RAG](https://superlinked.com/vectorhub/retrieval-augmented-generation) and [Scaling RAG for Production with Ray](https://superlinked.com/vectorhub/scaling-rag-for-production).
 
 ```python
 query = "Based on these articles, what are the dangers of hallucination?"
@@ -259,28 +268,29 @@ results = rag.run({
 answer = results["llm"]["replies"][0]
 ```
 
-Finally! Let's take a look at our answer:
+Let's see what our Advanced RAG system came up with:
 
 "Hallucinations in generative models, specifically in LLMs (Large Language Models), can be dangerous as they create false or inaccurate pieces of information, also known as machine hallucinations. These hallucinations can have disastrous consequences in customer support and content creation, as they can lead to incorrect information being generated. In industry settings, hallucinations can
 be a major blocker and concern for the adoption of Generative AI and LLMs, as they can result in incorrect or misleading information being presented to users. This was demonstrated in February 2023 when Google's Chatbot presented made-up information, resulting in a 7% fall in Alphabet's stock price. Therefore, it's crucial to balance retrieval and generation in LLMs to prevent hallucinations and ensure the accuracy and reliability of the information generated."
 
-Keep in mind that this is not a fully deterministic process, so if you will be running this code yourself, you might receive a slightly different answer.
+Our Advanced RAG pipeline result appears to be relatively precise, avoid hallucinations, and effectively integrate of retrieved context into generated output. **Note**: generation is not a fully deterministic process, so if you run this code yourself, you may receive slightly different output.
 
 ## Conclusion
-In this tutorial, we've covered several critical aspects of setting up an advanced RAG system using the Haystack library:
+
+In this tutorial, we've covered several critical aspects of setting up an advanced RAG system:
 
 -   **Document Cleaning and Preparation:** Ensuring the data is in the right format and free of noise for optimal processing.
--   **Chunking and Embedding:** Breaking down the text into manageable pieces and converting them into numerical vectors to capture semantic meanings.
+-   **Chunking and Embedding:** Breaking the text down into manageable pieces, and converting them into vectors to capture semantic meanings.
 -   **Retrieval:** Finding the most relevant documents based on the query.
 -   **Prompt Building and Generation:** Crafting a prompt that guides the language model to generate a relevant and accurate answer.
 -   **Pipeline Assembly:** Bringing together various components into a cohesive pipeline that processes queries end-to-end.
--   **Visualization and Execution:** Visualizing the pipeline for a clear overview and running it to obtain answers to specific queries.
+-   **Visualization and Execution:** Creating an overview image of the pipeline with all its components, and running it to obtain answers to specific queries.
 
-The ability to tweak each component and the flexibility to incorporate different models and strategies at various stages of the pipeline allows for a highly customizable and powerful system capable of tackling a wide range of tasks, from answering questions to generating content based on complex criteria.
-
-This exploration into RAG systems highlights the ongoing advancements in NLP and AI, offering a glimpse into how these technologies are being used to process and understand human language more effectively than ever before. As we continue to refine these systems, we can expect even more sophisticated and nuanced interactions between humans and machines, opening up new possibilities for information retrieval, content generation, and beyond.
+In short, an Advanced RAG system should be highly customizable, letting you tweak each component and incorporate different models and strategies at various stages of the pipeline. Such a system is powerful, and capable of tackling a wide range of tasks, from answering questions to generating content based on complex criteria.
 
 ---
 ## Contributors
 
 - [Pascal Biese, author](https://www.linkedin.com/in/pascalbiese/)
+- [Mór Kapronczay, Editor](https://www.linkedin.com/in/mór-kapronczay-49447692)
+- [Robert Turner, Editor](https://www.linkedin.com/in/robertdhayanturner/)
