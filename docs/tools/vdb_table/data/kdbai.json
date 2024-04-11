@@ -32,14 +32,14 @@
     "comment": ""
   },
   "hybrid_search": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "facets": {
     "support": "",
     "source_url": "",
-    "comment": ""
+    "comment": "we have built in aggregations"
   },
   "geo_search": {
     "support": "",
@@ -52,12 +52,12 @@
     "comment": ""
   },
   "sparse_vectors": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "bm25": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
@@ -67,17 +67,17 @@
     "comment": ""
   },
   "embeddings_text": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "embeddings_image": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "embeddings_structured": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
@@ -97,7 +97,7 @@
     "comment": ""
   },
   "llamaindex": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
@@ -107,7 +107,7 @@
     "comment": ""
   },
   "pricing": {
-    "value": "Cloud = Free, limited memory/storage\n\nOn-Prem = Contact Sales",
+    "value": "Cloud = Free, OnPrem = 90-day trial, contact sales",
     "source_url": "",
     "comment": ""
   },
@@ -122,7 +122,7 @@
     "comment": ""
   },
   "disk_index": {
-    "support": "full",
+    "support": "partial",
     "source_url": "",
     "comment": ""
   },
