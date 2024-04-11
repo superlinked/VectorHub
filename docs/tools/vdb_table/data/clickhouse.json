@@ -174,7 +174,7 @@
   },
   "crates_io_downloads": {
     "value": 0,
-    "source_url": "",
+    "source_url": "https://crates.io/crates/clickhouse",
     "comment": "",
     "value_90_days": 0
   }
