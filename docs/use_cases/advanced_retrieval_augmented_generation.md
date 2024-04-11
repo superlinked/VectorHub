@@ -118,7 +118,7 @@ document_store = InMemoryDocumentStore()
 writer = DocumentWriter(document_store=document_store)
 ```
 
-**Indexing** organizes the pre-processed data in a structured format that can be quickly and accurately retrieved by the RAG system. Indexing creates an optimized database of tagged and categorized chunks, and is **handled automatically**, based on the structure of our data. Because we split our documents into chunks and then encode those, every data point will be written to the database with a document id, a chunk id, and both the raw text and the corresponding vector. This automatic indexing process will enable us to retrieve exactly what we need.
+**Indexing** organizes the pre-processed data in a structured format that can be quickly and accurately retrieved by the RAG system. Indexing creates an optimized database of tagged and categorized chunks, and - in this case - is **handled automatically** by the pipeline, based on the structure of our data. Because we split our documents into chunks and then encode those, every data point will be written to the database with a document id, a chunk id, and both the raw text and the corresponding vector. This automatic indexing process will enable us to retrieve exactly what we need.
 
 ## Retrieval
 
