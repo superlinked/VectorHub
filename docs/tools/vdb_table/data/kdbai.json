@@ -33,12 +33,12 @@
   },
   "hybrid_search": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://code.kx.com/kdbai/use/hybrid-search.html",
     "comment": ""
   },
   "facets": {
-    "support": "",
-    "source_url": "",
+    "support": "partial",
+    "source_url": "https://code.kx.com/kdbai/use/query.html",
     "comment": "we have built in aggregations"
   },
   "geo_search": {
@@ -53,12 +53,12 @@
   },
   "sparse_vectors": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://code.kx.com/kdbai/reference/hybrid.html",
     "comment": ""
   },
   "bm25": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://code.kx.com/kdbai/reference/hybrid.html",
     "comment": ""
   },
   "full_text": {
@@ -67,17 +67,17 @@
     "comment": ""
   },
   "embeddings_text": {
-    "support": "full",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "embeddings_image": {
-    "support": "full",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "embeddings_structured": {
-    "support": "full",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
@@ -93,12 +93,12 @@
   },
   "langchain": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://code.kx.com/kdbai/integrations/langchain.html",
     "comment": ""
   },
   "llamaindex": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://code.kx.com/kdbai/integrations/llamaindex.html",
     "comment": ""
   },
   "managed_cloud": {
