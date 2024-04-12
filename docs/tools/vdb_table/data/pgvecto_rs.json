@@ -59,7 +59,7 @@
     "bm25": {
       "support": "partial",
       "source_url": "https://docs.pgvecto.rs/use-case/hybrid-search.html",
-      "comment": "Support scoring by TF, not exactly BM25"
+      "comment": "Support scoring by TF, fully BM25 support can be achieved by the https://github.com/paradedb/paradedb/tree/dev/pg_search extension."
     },
     "full_text": {
       "support": "full",
