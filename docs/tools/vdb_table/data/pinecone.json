@@ -161,21 +161,21 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 10635447,
+    "value": 10916799,
     "source_url": "https://pypi.org/project/pinecone-client/",
     "comment": "",
-    "value_90_days": 3063885
+    "value_90_days": 3161593
   },
   "npm_downloads": {
-    "value": 6187059,
+    "value": 6314873,
     "source_url": "https://www.npmjs.com/package/@pinecone-database/pinecone",
     "comment": "",
-    "value_90_days": 1529060
+    "value_90_days": 1551939
   },
   "crates_io_downloads": {
-    "value": 853,
+    "value": 883,
     "source_url": "https://crates.io/crates/pinecone-rs",
     "comment": "",
-    "value_90_days": 853
+    "value_90_days": 883
   }
 }

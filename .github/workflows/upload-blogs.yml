@@ -1,0 +1,36 @@
+name: Upload blogs to Strapi
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-script:
+    if: ${{ github.repository == 'superlinked/VectorHub' }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Set up Python 3.x
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Set file timestamps
+      run: |
+        ./blog/update-timestamps.sh
+      shell: bash
+  
+    - name: Set STRAPI secrets
+      run: |
+        echo "STRAPI_URL=${{ secrets.STRAPI_URL }}" >> $GITHUB_ENV
+        echo "STRAPI_API_KEY=${{ secrets.STRAPI_API_KEY }}" >> $GITHUB_ENV
+
+    - name: Install dependencies
+      run: |
+        pip install -r blog/requirements.txt
+    - name: Run script
+      run: python blog/main.py --directories blog/directories.json
