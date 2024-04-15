@@ -63,13 +63,13 @@
     "comment": ""
   },
   "full_text": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://milvus.io/docs/release_notes.md#Inverted-Index-and-Fuzzy-Match",
     "comment": ""
   },
   "embeddings_text": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://milvus.io/docs/embeddings.md",
     "comment": ""
   },
   "embeddings_image": {
@@ -108,8 +108,8 @@
     "comment": ""
   },
   "pricing": {
-    "value": "",
-    "source_url": "",
+    "value": "Zilliz Cloud",
+    "source_url": "https://zilliz.com/pricing",
     "comment": ""
   },
   "in_process": {
