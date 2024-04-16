@@ -6,7 +6,7 @@
 
 In this part , building on our theoretical concepts of RAG we will put them into practice to walk you through our first in series RAG evaluation framework [RAGAS](https://docs.ragas.io/).
 
-If you haven’t read the first part, read it [here](https://www.google.com/url?q=https://superlinked.com/vectorhub/evaluating-retrieval-augmented-generation-a-framework-for-assessment).
+If you haven’t read the first part, read it [here](https://superlinked.com/vectorhub/articles/evaluating-retrieval-augmented-generation-framework).
 
 This framework is based on the [paper](https://arxiv.org/pdf/2309.15217) from the authors , highly recommended to read through. Ragas aims to provide useful and actionable metrics using as little annotated data as possible, cheaper, and faster using LLMs to evaluate your RAG pipeline.
 
