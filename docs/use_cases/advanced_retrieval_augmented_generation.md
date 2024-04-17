@@ -4,23 +4,24 @@
 
 ## Advanced RAG - why we need it
 
-Retrieval-Augmented Generation (RAG) aims to improve the quality and effectiveness of language models by augmenting them with retrieved information from external sources. To familiarize yourself with the basics, read our [Introduction to RAG](https://superlinked.com/vectorhub/retrieval-augmented-generation). In its most basic version, RAG often suffers from low retrieval precision, hallucination in generated responses, and ineffective integration of retrieved context into generated output. These problems are especially limiting for applications that require reliable and informative generated content, such as question answering systems, chatbots, and content creation tools. 
+Retrieval-Augmented Generation (RAG) aims to improve the quality and effectiveness of language models by augmenting them with retrieved information from external sources. To familiarize yourself with the basics, read our [Introduction to RAG](https://superlinked.com/vectorhub/retrieval-augmented-generation). In its most basic version, RAG often suffers from low retrieval precision, hallucination in generated responses, and ineffective integration of retrieved context into generated output. These problems are especially limiting for applications that require reliable and informative generated content, such as question answering systems, chatbots, and content creation tools.
 
 To address these issues, advances in RAG methods have evolved, as reflected in RAG [terminology](https://arxiv.org/abs/2312.10997). "Advanced RAG" employs pre-retrieval and post-retrieval strategies, refined indexing approaches, and optimized retrieval processes to improve the quality and relevance of the retrieved information. By addressing the challenges faced by "basic" or "naive RAG" in retrieval, generation, and augmentation, advanced RAG enables language models to generate more accurate, comprehensive, and coherent responses.
 
 ### Tutorial Overview
 
-This advanced RAG tutorial examines and provides code examples of pre-retrieval, retrieval, and post-retrieval techniques employed in advanced RAG systems, including document cleaning, chunking, embedding, and the strategic, dynamic assembly of pipelines for efficient data processing and generation. We emphasize these components, along with fine-tuning and post-retrieval optimization, so that you can set up your RAG pipeline to generate high-quality, contextually relevant text outputs.
+This Advanced RAG tutorial examines and provides code examples of pre-retrieval, retrieval, and post-retrieval techniques employed in Advanced RAG systems, including document cleaning, chunking, embedding, and the strategic, dynamic assembly of pipelines for efficient data processing and generation. We emphasize these components, along with fine-tuning and post-retrieval optimization, so that you can set up your RAG pipeline to generate high-quality, contextually relevant text outputs.
 
 Here's what we cover below:
 
-1. Pre-retrieval 
-- Document cleaning
+1. Pre-retrieval
 - Chunking
 - Document embeddings
 - Indexing
+
 2. Retrieval
 - Hybrid search
+
 3. Post-retrieval
 - Reranking
 
@@ -28,271 +29,256 @@ Let's get started.
 
 ## Set up
 
-Before we dive into advanced RAG and pre-retrieval, let's **set up** everything we'll need for this tutorial. 
+Before we dive into advanced RAG and pre-retrieval, let's **set up** everything we'll need for this tutorial.
 
-We'll build a [Haystack](https://docs.haystack.deepset.ai/docs/intro) pipeline using open source (sentence-transformers) embeddings and models from Huggingface. In addition, we'll need "accelerate" and "bitsandbytes" libraries to load our generative large language model (LLM) in 4-bit. This set-up will enable us to run our RAG system efficiently. Indeed, this tutorial is optimized to work within free [Google Colab](https://colab.research.google.com/) GPU environments. **Note** that if you're on Windows or Mac, you may run into trouble setting up [bitsandbytes](https://github.com/TimDettmers/bitsandbytes), as neither are supported yet. There are, however, several free virtual linux enviroments available, such as Google Colab and Kaggle.
+We'll build a RAG system with [LlamaIndex](https://docs.llamaindex.ai/en/stable/) using open source (sentence-transformers) embeddings and models from Huggingface. In addition, we'll need the "accelerate" and "bitsandbytes" libraries to load our generative large language model (LLM) in 4-bit. This set up will enable us to run our RAG system efficiently. Indeed, this tutorial is optimized to work within free [Google Colab](https://colab.research.google.com/) GPU environments. **Note** that if you're on Windows or Mac, you may run into trouble setting up [bitsandbytes](https://github.com/TimDettmers/bitsandbytes), as neither are supported yet. There are, however, several free virtual linux enviroments available, such as Google Colab and Kaggle.
 
 ```bash
-pip install haystack-ai sentence-transformers bitsandbytes accelerate -i https://pypi.org/simple/
+!pip install llama-index boilerpy3 sentence-transformers fastembed qdrant_client llama-index-vector-stores-qdrant llama-index-embeddings-huggingface llama-index-llms-huggingface accelerate bitsandbytes
 ```
 
-We'll fetch **our data** from [VectorHub](https://superlinked.com/vectorhub/all-articles) articles, and convert the html files to documents.
-
-```python
-from haystack.components.fetchers import LinkContentFetcher
-from haystack.components.converters import HTMLToDocument
-
-link_fetcher = LinkContentFetcher()
-converter = HTMLToDocument()
-```
-
-Haystack provides a wide variety of pipeline components. For our purposes, we require Haystack's LinkContentFetcher and HTMLToDocument modules. Typically, components in Haystack are first defined, then added to a pipeline. Constructing and configuring our pipeline with these building blocks ensures that they'll all be executed automatically when the pipeline is run.
-
-**If**, on the other hand, **we wanted to run our components individually**, we could do that as follows, though this approach is **not advised** outside of the development environment.
-
-```python
-# In VectorHub tutorial, What better to fetch than text from VectorHub itself?
-fetched = link_fetcher.run(urls=["<https://superlinked.com/vectorhub/>"])
-converted = converter.run(sources=fetched["streams"])
-```
-
-We recommend _not_ running your components individually. Pipelines offer a cleaner, more streamlined interface for executing all the modules in our code.
-
-Now that we have our pipeline and data source set up, let's turn to specific advanced RAG pre-retrieval, retrieval, and post-retrieval techniques that will improve the quality and relevance of the retrieved information, and solve the issues that plague naive RAG: low retrieval precision, hallucination in generated responses, and ineffective integration of retrieved context into generated output. 
-
-First, pre-retrieval techniques.
-
-## Pre-retrieval
-
-### Document cleaning
+### Getting and cleaning the data
 
 Data is the lifeblood of any Machine Learning (ML) model, and its quality directly impacts the performance of RAG systems. Cleaning data includes removing noise such as irrelevant information, correcting typos, and standardizing formats - in short, optimizing it for machine processing. Clean data not only improves the efficiency of retrieval and generation but also significantly enhances the quality of the generated text.
 
-For the purposes of this tutorial, we can use a simple document cleaner that removes empty lines and extra whitespaces. If we were working with messier data, we could also remove repeated substrings, such as html tags, or even write custom scripts to standardize words and correct typos. The cleaning routine you choose depends heavily on your specific use case and goals.
+For the purposes of this tutorial,  we'll fetch **our data** from [VectorHub](https://superlinked.com/vectorhub) articles, and use a simple extraction pipeline that removes all HTML tags. If we were working with messier data, we could write custom scripts to standardize words and correct typos. The cleaning routine you choose depends heavily on your specific use case and goals. 
 
 ```python
-from haystack.components.preprocessors import DocumentCleaner
+import requests
+from boilerpy3 import extractors
+from llama_index.core import Document
 
-cleaner = DocumentCleaner(
-	remove_empty_lines=True,
-	remove_extra_whitespaces=True,
-	remove_repeated_substrings=False)
+# You can add more articles if you have >15GB of RAM available
+urls = ['https://superlinked.com/vectorhub/retrieval-augmented-generation']
+
+extractor = extractors.KeepEverythingExtractor()
+
+# Make request to URLs
+responses = []
+for url in urls:
+  response = requests.get(url)
+  responses.append(response)
+
+# Pass HTML to Extractor
+contents = []
+for resp in responses:
+  content = extractor.get_content(resp.text)
+  contents.append(content)
+
+# Convert raw texts to a LlamaIndex documents
+documents = [Document(text=content) for content in contents]
 ```
+[boilerpy3](https://github.com/jmriebold/BoilerPy3) provides a variety of extractors for extracting content from HTML files. This pre-processing step removes all the HTML tags for us and only keeps relevant content. In this case, we use the KeepEverythingExtractor, which - as the name suggests - keeps everything that is tagged as content. 
+  
+Now that we have our data source set up, let's turn to specific Advanced RAG pre-retrieval, retrieval, and post-retrieval techniques that will improve the quality and relevance of the retrieved information, and solve the issues that plague naive RAG: low retrieval precision, hallucination in generated responses, and ineffective integration of retrieved context into generated output.
+
+## Pre-retrieval
 
 ### Chunking
 
 Chunking breaks large pieces of text down into more manageable, logically coherent units. Chunking can improve efficiency by focusing your RAG system on the most relevant segments of text when generating responses. Effective chunking strategies dramatically improve the relevance and cohesion of the generated content.
 
 ```python
-from haystack.components.preprocessors import DocumentSplitter
+from llama_index.core.node_parser import SentenceWindowNodeParser
 
-splitter = DocumentSplitter(split_by="sentence", split_length=3, split_overlap=2)
+# Creating chunks of sentences with a window function
+node_parser = SentenceWindowNodeParser.from_defaults(
+	window_size=3,
+	window_metadata_key="window",
+	original_text_metadata_key="original_text",
+)
 ```
 
-To maintain granular control over the chunking process, we choose to `split_by` "sentence". We set  `split_length` to 3 sentences to ensure each chunk is sufficiently detailed yet concise, but also retain continuity between adjacent chunks by setting `split_overlap` to 2 sentences. There is no universal, golden rule for setting these hyperparameters. We suggest you try out different configurations based on your documents' structure and type. For a thorough evaluation of chunking methods, check out [this article](https://superlinked.com/vectorhub/an-evaluation-of-rag-retrieval-chunking-methods).
+To maintain granular control over the chunking process, we choose to split our documents into sentences with overlapping windows. We set the `window_size` to 3 sentences to ensure each chunk is sufficiently detailed yet concise. There is no universal, golden rule for these hyperparameters. We suggest you try out different configurations based on your documents' structure and type. For a thorough evaluation of chunking methods, check out [this article](https://superlinked.com/vectorhub/an-evaluation-of-rag-retrieval-chunking-methods).
 
 ### Document embeddings
 
 Embeddings are central to pre-processing, connecting raw text data to the sophisticated algorithms - typically, LLMs - that drive RAG systems. By converting words into numerical vectors, embeddings capture the semantic relationships between different terms, enabling models to understand context and generate relevant responses. Selecting the right embeddings and models is critical for achieving high-quality retrieval and generation.
 
-We use a `SentenceTransformersDocumentEmbedder` model that considers the full context of sentences or even larger text snippets, rather than individual words in isolation, to generate embeddings. This permits a deeper understanding of the text, capturing nuances and meanings that might be lost in word-level embeddings.
+We use a sentence transformer from [HuggingFace](https://huggingface.co/mixedbread-ai/mxbai-embed-large-v1) that considers the full context of sentences or even larger text snippets, rather than individual words in isolation, to generate embeddings. This permits a deeper understanding of the text, capturing nuances and meanings that might be lost in word-level embeddings.
 
 ```python
-from haystack.components.embedders import SentenceTransformersDocumentEmbedder
+from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+from llama_index.core import Settings
 
-doc_embedder = SentenceTransformersDocumentEmbedder("BAAI/bge-small-en-v1.5")
-doc_embedder.warm_up()
+# loads mixedbread-ai/mxbai-embed-large-v1
+embed_model = HuggingFaceEmbedding(model_name="mixedbread-ai/mxbai-embed-large-v1")
+
+# Settings.embed_model defined the model we will use for our embeddings
+Settings.embed_model = embed_model
 ```
 
-Specifically, we selected "BAAI/bge-small-en-v1.5", a model that strikes a balance between retrieval accuracy and computational efficiency, according to recent performance  evaluations in the Huggingface [MTEB leaderboard](https://huggingface.co/spaces/mteb/leaderboard). Make sure that the model you choose is [compatible](https://docs.haystack.deepset.ai/docs/sentencetransformersdocumentembedder#compatible-models) with sentence embeddings.
+Specifically, we selected "mixedbread-ai/mxbai-embed-large-v1", a model that strikes a balance between retrieval accuracy and computational efficiency, according to recent performance evaluations in the Huggingface [MTEB leaderboard](https://huggingface.co/spaces/mteb/leaderboard). 
 
 ### Indexing
 
-Before we can index, we need to **create a database** to write our documents and document embeddings to. We use a simple `InMemoryDocumentStore`. You can easily replace it with the database you are using, as long as it is [supported by Haystack](https://docs.haystack.deepset.ai/docs/inmemorydocumentstore).
+Before we can index, we need to create a database to write our documents and document embeddings to. We use a simple in-memory `QdrantClient`. You can easily replace it with the storage you are using, as long as it is [supported by LlamaIndex](https://docs.llamaindex.ai/en/stable/module_guides/storing/).
 
 ```python
-from haystack.document_stores.in_memory import InMemoryDocumentStore
-from haystack.components.writers import DocumentWriter
+import qdrant_client
 
-document_store = InMemoryDocumentStore()
-writer = DocumentWriter(document_store=document_store)
+# We are using :memory: mode for fast and light-weight experimentation
+client = qdrant_client.QdrantClient(
+	location=":memory:"
+)
 ```
 
-**Indexing** organizes the pre-processed data in a structured format that can be quickly and accurately retrieved by the RAG system. Indexing creates an optimized database of tagged and categorized chunks, and - in this case - is **handled automatically** by the pipeline, based on the structure of our data. Because we split our documents into chunks and then encode those, every data point will be written to the database with a document id, a chunk id, and both the raw text and the corresponding vector. This automatic indexing process will enable us to retrieve exactly what we need.
+Now, let's create our vector store, define a collection name and finally, index our documents. **Note:** it's import to create the vector store with `enable_hybrid=True` here because we will use a hybrid search technique in this tutorial. 
+
+```python
+from llama_index.core import VectorStoreIndex, StorageContext
+from llama_index.vector_stores.qdrant import QdrantVectorStore
+
+vector_store = QdrantVectorStore(
+	client=client, 
+	collection_name="tutorial", 
+	enable_hybrid=True
+)
+	
+storage_context = StorageContext.from_defaults(vector_store=vector_store)
+
+index = VectorStoreIndex(
+	documents,
+	storage_context=storage_context
+)
+```
+
+Indexing organizes the pre-processed data in a structured format that can be quickly and accurately retrieved by the RAG system. Indexing creates an optimized database of tagged and categorized chunks, and - in this case - is **handled automatically** by the pipeline, based on the structure of our data. Because we split our documents into chunks and then encode those, every data point will be written to the database with a document id, a chunk id, and both the raw text and the corresponding vector. This automatic indexing process will enable us to retrieve exactly what we need.
 
 ## Retrieval
 
-Because we are using an in-memory database, we import the in-memory retriever. To query our vector database, we need to encode the query texts with the same embedding model we used for our document embeddings `SentenceTransformersDocumentEmbedder`. In the case of simple text queries, we use the `SentenceTransformersTextEmbedder` instead of the document version.
-
-```python
-from haystack.components.retrievers.in_memory import InMemoryEmbeddingRetriever
-from haystack.components.embedders import SentenceTransformersTextEmbedder
-
-retriever = InMemoryEmbeddingRetriever(document_store=document_store)
-
-text_embedder = SentenceTransformersTextEmbedder("BAAI/bge-small-en-v1.5")
-text_embedder.warm_up()
-```
-
-This approach is often referred to as **dense retrieval**.
-
 ### Hybrid Search
 
-We can enhance retrieval accuracy beyond what we can achieve using dense retrieval by employing [hybrid search](https://superlinked.com/vectorhub/optimizing-rag-with-hybrid-search-and-reranking). Traditional keyword search, such as BM25, is highly precise in certain contexts, and can be combined with dense retrieval to improve retrieval results overall. Though hybrid search is not an inherent Haystack component, it can be implemented by querying with both retrievers, and then merging results in your pipeline, as we indicate in the snippet below.
+Another way to enhance retrieval accuracy is through [hybrid search](https://superlinked.com/vectorhub/optimizing-rag-with-hybrid-search-and-reranking) techniques. Traditional keyword search, such as BM25, has its merits in certain contexts due to its high precision. Using hybrid search with LlamaIndex is very straightforward, we simply set `vector_store_query_mode` to "hybrid" and choose a value for the `alpha` parameter. Alpha controls the weighting the two search methods and ranges from 0 for pure keyword search to 1 for pure vector search.
 
 ```python
-from haystack.components.retrievers.in_memory import InMemoryBM25Retriever
-from haystack.components.joiners import DocumentJoiner
-
-bm25_retriever = InMemoryBM25Retriever(document_store)
-# DocumentJoiner will be used for merging and averaging the two retriever outputs
-document_joiner = DocumentJoiner()
+	# set Logging to DEBUG for more detailed outputs
+	query_engine = index.as_query_engine(
+	...,
+	vector_store_query_mode="hybrid",
+	alpha=0.5,
+	...
+)
 ```
 
 This hybrid approach captures both the semantic richness of embeddings and the direct match precision of keyword search, leading to improved relevance in retrieved documents.
 
-So far we've seen how careful preretrieval (document cleaning, chunking, embedding, indexing) and retrieval (hybrid search) can help improve RAG retrieval results. What about **after** we've done our retrieval?
+So far we've seen how careful preretrieval (data preparation, chunking, embedding, indexing) and retrieval (hybrid search) can help improve RAG retrieval results. What about after we've done our retrieval?
 
 ## Post-retrieval
 
 ### Reranking
 
-Reranking lets us reassess the initial set of retrieved documents and refine the selection based on relevance and context. Reranking often employs more sophisticated or computationally intensive methods that would have been impractical in the initial retrieval because its dataset is larger (than our retrieved set). Reranking still takes time - you should always evaluate the performance of your system on **your data** with *and* without reranking to make sure the additional latency and cost of reranking are worth it.
-In our case, we rerank using a TransformersSimilarityRanker model.
+Reranking lets us reassess the initial set of retrieved documents and refine the selection based on relevance and context. Reranking often employs more sophisticated or computationally intensive methods that would have been impractical in the initial retrieval because its dataset is larger (than our retrieved set). Reranking still takes time - you should always evaluate the performance of your system on your data with and without reranking to make sure the additional latency and cost of reranking are worth it. In our case, we rerank using a TransformersSimilarityRanker model.
 
 ```python
-from haystack.components.rankers import TransformersSimilarityRanker
+from llama_index.core.postprocessor import SentenceTransformerRerank
 
-ranker = TransformersSimilarityRanker(model="BAAI/bge-reranker-base")
+# Define reranker model
+rerank = SentenceTransformerRerank(
+	top_n = 10,
+	model = "mixedbread-ai/mxbai-embed-large-v1"
+)
 ```
+
+We use the same embedding model that we previously used for embedding our document chunks. We set  `top_n` to 10, which means we will keep the top 10 documents after reranking. Keep in mind that the retrieved chunks have to fit into the context limits of your large language model (LLM). 
 
 ## Generation
 
-In the generation phase of our pipeline, the prepared context will be integrated into a prompt to produce the final output. Here, an LLM will generate answers based on context provided by our pipeline's previous components. To prepare for generation, we set up a **prompt builder** to format the input so that it's optimized for the LLM to understand and respond to.
+The generation phase is where the prepared context will be integrated into a prompt to produce the final output. This is achieved by using a LLM to generate answers based on the context provided by the previous components of the pipeline. To prepare for generation, we set up a prompt template to format the input so that it's optimized for the LLM to understand and respond to.
 
 ```python
-from haystack.components.builders import PromptBuilder
+from llama_index.core import PromptTemplate
 
-template = """<|system|>Using the information contained in the context, 
-give a comprehensive answer to the question.
-If the answer cannot be deduced from the context, do not give an answer.</s>
-<|user|>
-Context:
-  {% for doc in documents %}
-  {{ doc.content }}
-  {% endfor %};
-  Question: {{query}}
-  </s>
-<|assistant|>
-"""
-
-prompt_builder = PromptBuilder(template=template)
+query_wrapper_prompt = PromptTemplate("""
+  <|system|>
+  Using the information contained in the context, 
+  give a comprehensive answer to the question.
+  If the answer cannot be deduced from the context, do not give an answer.</s>
+  <|user|>
+  {query_str}</s>
+  <|assistant|>"""
+)
 ```
 
-Our generator is Zephyr-7b-beta, a popular, fine-tuned model based on [Mistral 7B](https://huggingface.co/mistralai/Mistral-7B-v0.1). Zephyr-7b-beta is relatively small but highly performant. We choose certain model settings to optimize efficiency and performance. For example, we load the model in 4-bit quantization to save memory and processing power.
+Our generator is [Zephyr-7B-Beta](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta), a popular, fine-tuned model based on [Mistral 7B](https://huggingface.co/mistralai/Mistral-7B-v0.1). Zephyr-7B-Beta is relatively small but highly performant.
 
 ```python
-import torch
-from haystack.components.generators import HuggingFaceLocalGenerator
+from llama_index.llms.huggingface import HuggingFaceLLM
 
-generator = HuggingFaceLocalGenerator("HuggingFaceH4/zephyr-7b-beta",
-                                      huggingface_pipeline_kwargs={"device_map":"auto",
-                                                       "model_kwargs":{"load_in_4bit":True,
-                                                                       "bnb_4bit_use_double_quant":True,
-                                                                       "bnb_4bit_quant_type":"nf4",
-                                                                       "bnb_4bit_compute_dtype":torch.bfloat16}},
-                                      generation_kwargs={"max_new_tokens": 350}
-                                      )
-generator.warm_up()
+llm = HuggingFaceLLM(
+    context_window=2048,
+    max_new_tokens=256,
+    generate_kwargs={"temperature": 0.25, "do_sample": False},
+    query_wrapper_prompt=query_wrapper_prompt,
+    tokenizer_name="HuggingFaceH4/zephyr-7b-beta",
+    model_name="HuggingFaceH4/zephyr-7b-beta",
+    device_map="auto",
+    tokenizer_kwargs={"max_length": 2048},
+    # uncomment this if using CUDA to reduce memory usage
+    model_kwargs={"torch_dtype": torch.float16}
+)
+
+Settings.chunk_size = 512
+Settings.llm = llm
 ```
 
-### Assembling the Pipeline
+### Assembling the Query Engine
 
-Now that we have defined all necessary components, we can assemble our pipeline. Per above, we need to include components for fetching links, converting formats, cleaning and splitting text, embedding documents and queries, retrieving relevant documents, reranking them, building prompts, and finally generating the answer.
+Now that we have defined all necessary components, we can assemble our LlamaIndex query engine. To review, this includes hybrid search, a LLM for generation and a reranker. The `similarity_top_k` setting defines how many results will be retrieved by the (hybrid) search. 
 
 ```python
-from haystack import Pipeline
-
-rag = Pipeline()
-
-rag.add_component("link_fetcher", link_fetcher)
-rag.add_component("converter", converter)
-rag.add_component("cleaner", cleaner)
-rag.add_component("splitter", splitter)
-rag.add_component("doc_embedder", doc_embedder)
-rag.add_component("writer", writer)
-rag.add_component("text_embedder", text_embedder)
-rag.add_component("retriever", retriever)
-rag.add_component("bm25_retriever", bm25_retriever)
-rag.add_component("document_joiner", document_joiner)
-rag.add_component("ranker", ranker)
-rag.add_component("prompt_builder", prompt_builder)
-rag.add_component("llm", generator)
-
-rag.connect("link_fetcher",  "converter")
-rag.connect("converter",  "cleaner")
-rag.connect("cleaner",  "splitter")
-rag.connect("splitter",  "doc_embedder")
-rag.connect("doc_embedder",  "writer")
-rag.connect("text_embedder.embedding",  "retriever.query_embedding")
-rag.connect("bm25_retriever",  "document_joiner")
-rag.connect("retriever",  "document_joiner")
-rag.connect("document_joiner",  "ranker")
-rag.connect("ranker.documents",  "prompt_builder.documents")
-rag.connect("prompt_builder.prompt",  "llm.prompt")
+# set Logging to DEBUG for more detailed outputs
+query_engine = index.as_query_engine(
+	llm=llm,
+	similarity_top_k=10,
+	# Rerankers are node_postprocessors in LlamaIndex
+	node_postprocessors=[rerank],
+	vector_store_query_mode="hybrid",
+	alpha=0.5,
+)
 ```
 
-So that we can visualize, understand, and debug the overall structure, we also add a `.draw` feature, which illustrates how each component is connected and the flow of data through the pipeline.
-
-```python
-rag.draw("rag.png")
-```
-
-As you can see below, `rag.draw` creates an image file, clearly mapping out the entire pipeline with all its components and connections.
-
-![](../assets/use_cases/advanced_retrieval_augmented_generation/pipeline_graph.png)
-
-That's a lot of components!
-
-Now, let's try it out. Our example questions will query my previous tutorials on VectorHub: [An Introduction to RAG](https://superlinked.com/vectorhub/retrieval-augmented-generation) and [Scaling RAG for Production with Ray](https://superlinked.com/vectorhub/scaling-rag-for-production).
+Now, let's try it out. Our example questions will query one of my previous tutorials on VectorHub: [An introduction to RAG](https://superlinked.com/vectorhub/retrieval-augmented-generation).
 
 ```python
 query = "Based on these articles, what are the dangers of hallucination?"
 
-results = rag.run({
-	"link_fetcher":  {"urls": 
-		["https://superlinked.com/vectorhub/retrieval-augmented-generation", 
-		"https://superlinked.com/vectorhub/scaling-rag-for-production"]},
-	"text_embedder":  {"text": query},
-	"bm25_retriever":  {"query": query},
-	"ranker":  {"query": query},
-	"prompt_builder":  {"query": query}
-	}
-)
-
-answer = results["llm"]["replies"][0]
+response = query_engine.query(query)
 ```
 
 Let's see what our advanced RAG system came up with:
 
-"Hallucinations in generative models, specifically in LLMs (Large Language Models), can be dangerous as they create false or inaccurate pieces of information, also known as machine hallucinations. These hallucinations can have disastrous consequences in customer support and content creation, as they can lead to incorrect information being generated. In industry settings, hallucinations can be a major blocker and concern for the adoption of Generative AI and LLMs, as they can result in incorrect or misleading information being presented to users. This was demonstrated in February 2023 when Google's Chatbot presented made-up information, resulting in a 7% fall in Alphabet's stock price. Therefore, it's crucial to balance retrieval and generation in LLMs to prevent hallucinations and ensure the accuracy and reliability of the information generated."
+```python
+from IPython.display import Markdown, display
 
-Our advanced RAG pipeline result appears to be relatively precise, avoid hallucinations, and effectively integrate of retrieved context into generated output. **Note**: generation is not a fully deterministic process, so if you run this code yourself, you may receive slightly different output.
+display(Markdown(f"<b>{response}</b>"))
+```
+
+"Based on the context provided, the dangers of hallucinations in the context of machine learning and natural language processing are that they can lead to inaccurate or incorrect results, particularly in customer support and content creation. These hallucinations, which are false pieces of information generated by a generative model, can have disastrous consequences in use cases where there's more at stake than simple internet searches. In short, machine hallucinations can be dangerous because they can lead to false information being presented as fact, which can have serious consequences in real-world applications."
+
+Our advanced RAG pipeline result appears to be relatively precise, avoid hallucinations, and effectively integrate of retrieved context into generated output. Note: generation is not a fully deterministic process, so if you run this code yourself, you may receive slightly different output.
 
 ## Conclusion
 
 In this tutorial, we've covered several critical aspects of setting up an advanced RAG system:
 
--   **Document Cleaning and Preparation:** Ensuring the data is in the right format and free of noise for optimal processing.
--   **Chunking and Embedding:** Breaking the text down into manageable pieces, and converting them into vectors to capture semantic meanings.
--   **Retrieval:** Finding the most relevant documents based on the query.
--   **Prompt Building and Generation:** Crafting a prompt that guides the language model to generate a relevant and accurate answer.
--   **Pipeline Assembly:** Bringing together various components into a cohesive pipeline that processes queries end-to-end.
--   **Visualization and Execution:** Creating an overview image of the pipeline with all its components, and running it to obtain answers to specific queries.
+-  **Data Preparation:** Ensuring the data is in the right format and free of noise for optimal processing.
+
+-  **Chunking and Embedding:** Breaking down the text into manageable pieces and converting them into numerical vectors to capture semantic meanings.
+
+-  **Retrieval:** Finding the most relevant documents based on the query.
+
+-  **Generation:** Crafting a prompt that guides the language model to generate a relevant and accurate answer.
+
+-  **Pipeline Assembly:** Bringing together various components into a cohesive query engine that processes queries end-to-end.
+
+-  **Execution:** Running the query engine to obtain answers to specific queries.
 
 In short, an advanced RAG system should be highly customizable, letting you tweak each component and incorporate different models and strategies at various stages of the pipeline, and thus address the weaknesses of naive RAG. Such a system is powerful, and capable of tackling a wide range of tasks, from answering questions to generating content based on complex criteria.
 
 ---
+
 ## Contributors
 
 - [Pascal Biese, author](https://www.linkedin.com/in/pascalbiese/)
