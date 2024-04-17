@@ -6,9 +6,9 @@ VectorHub is a community-driven learning hub. Our style guide aims to help you s
 
 ### 1. Give value to your readers
 
-:::hint
-Who are you writing for, and what problem are you solving?
-:::
+
+> Who are you writing for, and what problem are you solving?
+
 
 Ask yourself why your article is **valuable** to your readers.
 Set the context: say who your article is relevant to and why. What **problem** of theirs are you helping to **solve**?
@@ -19,9 +19,9 @@ Front load your first paragraph with **keywords**.
 
 ### 2. Be hierarchical
 
-:::hint
-Organize your content like a building, and show us the blueprint first.
-:::
+
+> Organize your content like a building, and show us the blueprint first.
+
 
 **Give vectorhub editors a one-sentence-per-section outline showing us what you want to communicate. This is a huge timesaver, and helps us make sure your article does what you want it to.**
 
@@ -31,9 +31,9 @@ Link (scroll-to-anchor) between concepts in your article (or to other articles o
 
 ### 3. Be clear, substantive, and brief
 
-:::hint
-Use simple language, short sentences, write only what's essential. 800-2500 words.
-:::
+
+> Use simple language, short sentences, write only what's essential. 800-2500 words.
+
 
 **Length**: Articles must be **at least 800 but less than max 2500 words**.
 
@@ -56,17 +56,17 @@ Don't add extra **spaces** anywhere. One space between sentences and words.
 
 ### 4. Be visual
 
-:::hint
-Save a thousand words. Use a picture.
-:::
+
+> Save a thousand words. Use a picture.
+
 
 Text only goes so far. Complement your words with **diagrams**, **graphs**, **charts**, **code snippets**, **images** and any other visual tools that explain your work more efficiently.
 
 ### 5. Be conversational, friendly, and use action verbs
 
-:::hint
-Write how you speak. Be personal. In an active voice.
-:::
+
+> Write how you speak. Be personal. In an active voice.
+
 
 Write with a **friendly** tone. Call your audience "you" and yourselves "we."
 
@@ -85,9 +85,9 @@ Use consistent verb tenses.
 
 ### 6. Cite (hyperlink) all sources
 
-:::hint
-Give credit where credit is due. Always.
-:::
+
+> Give credit where credit is due. Always.
+
 
 **Hyperlink to sources**, rather than including the source url. Don't use footnote or endnotes.
 
@@ -113,9 +113,9 @@ e.g. "We explain our approach in more depth [here](https://learn.microsoft.com/e
 
 ### 7. Edit and proofread
 
-:::hint
-Nail down your logic. Step back, outline, and revise.
-:::
+
+> Nail down your logic. Step back, outline, and revise.
+
 
 As early as possible (when your article is still in point form), go through it, summarize each paragraph in one (concise) sentence. Now, put all your summary sentences together and see if they tell a story. Is there a logical flow? If not, rearrange, remove, or add content until the article makes sense. This exercise saves a lot of time and energy, and ensures your headings and subheadings are accurate.
 
@@ -123,17 +123,17 @@ Use a spell and grammar checker.
 
 ### 8. Technical terminology
 
-:::hint
-It's an article about tech. Use relevant, familiar technical terms.
-:::
+
+> It's an article about tech. Use relevant, familiar technical terms.
+
 
 Use technology-specific terminology. If you think the thing you're describing is unfamiliar to most readers, it probably is. Link to external resources that provide more in-depth explanations of terms you don't have space to explain in your article.
 
 ### 9. Accessibility
 
-:::hint
-Hierarchize and tag.
-:::
+
+> Hierarchize and tag.
+
 
 Improve accessibility by creating headings and subheadings that are clear and accurately descriptive.
 
@@ -141,9 +141,9 @@ Include alt text for all images and graphics.
 
 ### 10. Inclusive language
 
-:::hint
-The VectorHub community is diverse. Be non-biased and gender neutral.
-:::
+
+> The VectorHub community is diverse. Be non-biased and gender neutral.
+
 
 The VectorHub community is international and heterogeneous. Avoid words and phrases with negative connotations. Err on the side of **caution** - if you think a term might be offensive, don't use it.
 
