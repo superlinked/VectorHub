@@ -41,7 +41,7 @@ We'll build a RAG system with [LlamaIndex](https://docs.llamaindex.ai/en/stable/
 
 Data is the lifeblood of any Machine Learning (ML) model, and its quality directly impacts the performance of RAG systems. Cleaning data includes removing noise such as irrelevant information, correcting typos, and standardizing formats - in short, optimizing it for machine processing. Clean data not only improves the efficiency of retrieval and generation but also significantly enhances the quality of the generated text.
 
-For the purposes of this tutorial,  we'll fetch **our data** from [VectorHub](https://superlinked.com/vectorhub) articles, and use a simple extraction pipeline that removes all HTML tags. If we were working with messier data, we could write custom scripts to standardize words and correct typos. The cleaning routine you choose depends heavily on your specific use case and goals. 
+For the purposes of this tutorial, we'll fetch **our data** from [VectorHub](https://superlinked.com/vectorhub) articles, and use a simple extraction pipeline that removes all HTML tags. If we were working with messier data, we could write custom scripts to standardize words and correct typos. The cleaning routine you choose depends heavily on your specific use case and goals.
 
 ```python
 import requests
@@ -65,12 +65,13 @@ for resp in responses:
   content = extractor.get_content(resp.text)
   contents.append(content)
 
-# Convert raw texts to a LlamaIndex documents
+# Convert raw texts to LlamaIndex documents
 documents = [Document(text=content) for content in contents]
 ```
-[boilerpy3](https://github.com/jmriebold/BoilerPy3) provides a variety of extractors for extracting content from HTML files. This pre-processing step removes all the HTML tags for us and only keeps relevant content. In this case, we use the KeepEverythingExtractor, which - as the name suggests - keeps everything that is tagged as content. 
+
+In the pre-processing step above, we using [boilerpy3](https://github.com/jmriebold/BoilerPy3)'s KeepEverythingExtractor to remove all HTML tags but keep relevant content from HTML files. The KeepEverythingExtractor keeps everything that is tagged as content.
   
-Now that we have our data source set up, let's turn to specific Advanced RAG pre-retrieval, retrieval, and post-retrieval techniques that will improve the quality and relevance of the retrieved information, and solve the issues that plague naive RAG: low retrieval precision, hallucination in generated responses, and ineffective integration of retrieved context into generated output.
+Now that we have our data source set up and pre-processed, let's turn to some specific Advanced RAG pre-retrieval, retrieval, and post-retrieval techniques that will improve the quality and relevance of the retrieved information, and solve the issues that plague naive RAG: low retrieval precision, hallucination in generated responses, and ineffective integration of retrieved context into generated output.
 
 ## Pre-retrieval
 
@@ -123,7 +124,7 @@ client = qdrant_client.QdrantClient(
 )
 ```
 
-Now, let's create our vector store, define a collection name and finally, index our documents. **Note:** it's import to create the vector store with `enable_hybrid=True` here because we will use a hybrid search technique in this tutorial. 
+Now, let's create our vector store, define a collection name and, finally, index our documents. **Note:** because we use a hybrid search technique in this tutorial, it's important to create our vector store with `enable_hybrid=True`. This generates a single index that can handle both sparse and dense vectors.
 
 ```python
 from llama_index.core import VectorStoreIndex, StorageContext
@@ -143,13 +144,13 @@ index = VectorStoreIndex(
 )
 ```
 
-Indexing organizes the pre-processed data in a structured format that can be quickly and accurately retrieved by the RAG system. Indexing creates an optimized database of tagged and categorized chunks, and - in this case - is **handled automatically** by the pipeline, based on the structure of our data. Because we split our documents into chunks and then encode those, every data point will be written to the database with a document id, a chunk id, and both the raw text and the corresponding vector. This automatic indexing process will enable us to retrieve exactly what we need.
+Indexing organizes the pre-processed data in a structured format, creating an optimized database of tagged and categorized chunks. In our case, indexing is **handled automatically** by the pipeline, based on the structure of our data. Because we split our documents into chunks and then encode those, every data point will be written to the database with a document id, a chunk id, and both the raw text and the corresponding vector. This automatic indexing process will enable our RAG system to retrieve relevant information quickly and accurately.
 
 ## Retrieval
 
 ### Hybrid Search
 
-Another way to enhance retrieval accuracy is through [hybrid search](https://superlinked.com/vectorhub/optimizing-rag-with-hybrid-search-and-reranking) techniques. Traditional keyword search, such as BM25, has its merits in certain contexts due to its high precision. Using hybrid search with LlamaIndex is very straightforward, we simply set `vector_store_query_mode` to "hybrid" and choose a value for the `alpha` parameter. Alpha controls the weighting the two search methods and ranges from 0 for pure keyword search to 1 for pure vector search.
+Another way to enhance retrieval accuracy is through [hybrid search](https://superlinked.com/vectorhub/optimizing-rag-with-hybrid-search-and-reranking) techniques. In certain contexts, the high precision of a traditional keyword search method like BM25 makes it a valuable addition to vector search. Adopting a hybrid keyword and vector search is very straightforward with LlamaIndex; we simply set `vector_store_query_mode` to "hybrid", and choose a value for the `alpha` parameter, which controls the weighting of the two search methods. Alpha ranges from 0 for pure keyword search to 1 for pure vector search.
 
 ```python
 	# set Logging to DEBUG for more detailed outputs
@@ -163,13 +164,13 @@ Another way to enhance retrieval accuracy is through [hybrid search](https://sup
 
 This hybrid approach captures both the semantic richness of embeddings and the direct match precision of keyword search, leading to improved relevance in retrieved documents.
 
-So far we've seen how careful preretrieval (data preparation, chunking, embedding, indexing) and retrieval (hybrid search) can help improve RAG retrieval results. What about after we've done our retrieval?
+So far we've seen how careful preretrieval (data preparation, chunking, embedding, indexing) and retrieval (hybrid search) can help improve RAG retrieval results. What about _after_ we've done our retrieval?
 
 ## Post-retrieval
 
 ### Reranking
 
-Reranking lets us reassess the initial set of retrieved documents and refine the selection based on relevance and context. Reranking often employs more sophisticated or computationally intensive methods that would have been impractical in the initial retrieval because its dataset is larger (than our retrieved set). Reranking still takes time - you should always evaluate the performance of your system on your data with and without reranking to make sure the additional latency and cost of reranking are worth it. In our case, we rerank using a TransformersSimilarityRanker model.
+Reranking lets us reassess the initial set of retrieved documents and refine the selection based on relevance and context. It often employs more sophisticated or computationally intensive methods that would have been impractical in the initial retrieval (because the initial dataset is larger than our retrieved set). Reranking still takes time - you should always evaluate the performance of your system on your data with _and_ without reranking to make sure the additional latency and cost of reranking are worth it. In our case, we rerank using a TransformersSimilarityRanker model.
 
 ```python
 from llama_index.core.postprocessor import SentenceTransformerRerank
@@ -181,11 +182,11 @@ rerank = SentenceTransformerRerank(
 )
 ```
 
-We use the same embedding model that we previously used for embedding our document chunks. We set  `top_n` to 10, which means we will keep the top 10 documents after reranking. Keep in mind that the retrieved chunks have to fit into the context limits of your large language model (LLM). 
+We use the same embedding model that we previously used for embedding our document chunks. Setting `top_n` to 10 keeps the top 10 documents after reranking. Keep in mind that the retrieved chunks have to fit into the context (token) limits of your large language model (LLM). We need to choose a `top_n` number that keeps the combined chunks length within the LLM's context window limits, so that the LLM can process them in a single pass.
 
 ## Generation
 
-The generation phase is where the prepared context will be integrated into a prompt to produce the final output. This is achieved by using a LLM to generate answers based on the context provided by the previous components of the pipeline. To prepare for generation, we set up a prompt template to format the input so that it's optimized for the LLM to understand and respond to.
+In the generation phase, we integrate the prepared context into a prompt to produce the final output. To do this, we use an LLM to generate answers based on the context provided by the previous components of the pipeline. To prepare for generation, we set up a prompt template to format the input so that it's optimized for the LLM to understand and respond to.
 
 ```python
 from llama_index.core import PromptTemplate
@@ -225,7 +226,7 @@ Settings.llm = llm
 
 ### Assembling the Query Engine
 
-Now that we have defined all necessary components, we can assemble our LlamaIndex query engine. To review, this includes hybrid search, a LLM for generation and a reranker. The `similarity_top_k` setting defines how many results will be retrieved by the (hybrid) search. 
+Now that we have defined all necessary components, we can assemble our LlamaIndex query engine. To review, this includes hybrid search, an LLM for generation, and a reranker. The `similarity_top_k` setting defines how many results will be retrieved by the (hybrid) search. 
 
 ```python
 # set Logging to DEBUG for more detailed outputs
@@ -239,7 +240,8 @@ query_engine = index.as_query_engine(
 )
 ```
 
-Now, let's try it out. Our example questions will query one of my previous tutorials on VectorHub: [An introduction to RAG](https://superlinked.com/vectorhub/retrieval-augmented-generation).
+Now, **let's try it out**.
+Our example questions will query one of our previous VectorHub tutorials, [An introduction to RAG](https://superlinked.com/vectorhub/retrieval-augmented-generation).
 
 ```python
 query = "Based on these articles, what are the dangers of hallucination?"
@@ -247,7 +249,7 @@ query = "Based on these articles, what are the dangers of hallucination?"
 response = query_engine.query(query)
 ```
 
-Let's see what our advanced RAG system came up with:
+Let's see what our advanced RAG system generated:
 
 ```python
 from IPython.display import Markdown, display
@@ -257,7 +259,7 @@ display(Markdown(f"<b>{response}</b>"))
 
 "Based on the context provided, the dangers of hallucinations in the context of machine learning and natural language processing are that they can lead to inaccurate or incorrect results, particularly in customer support and content creation. These hallucinations, which are false pieces of information generated by a generative model, can have disastrous consequences in use cases where there's more at stake than simple internet searches. In short, machine hallucinations can be dangerous because they can lead to false information being presented as fact, which can have serious consequences in real-world applications."
 
-Our advanced RAG pipeline result appears to be relatively precise, avoid hallucinations, and effectively integrate of retrieved context into generated output. Note: generation is not a fully deterministic process, so if you run this code yourself, you may receive slightly different output.
+Our advanced RAG pipeline result appears to be relatively precise, avoid hallucinations, and effectively integrate retrieved context into generated output. Note: generation is not a fully deterministic process, so if you run this code yourself, you may receive slightly different output.
 
 ## Conclusion
 
@@ -265,7 +267,7 @@ In this tutorial, we've covered several critical aspects of setting up an advanc
 
 -  **Data Preparation:** Ensuring the data is in the right format and free of noise for optimal processing.
 
--  **Chunking and Embedding:** Breaking down the text into manageable pieces and converting them into numerical vectors to capture semantic meanings.
+-  **Chunking and Embedding:** Breaking down the text into manageable pieces, and converting them into numerical vectors to capture semantic meaning.
 
 -  **Retrieval:** Finding the most relevant documents based on the query.
 
@@ -275,7 +277,7 @@ In this tutorial, we've covered several critical aspects of setting up an advanc
 
 -  **Execution:** Running the query engine to obtain answers to specific queries.
 
-In short, an advanced RAG system should be highly customizable, letting you tweak each component and incorporate different models and strategies at various stages of the pipeline, and thus address the weaknesses of naive RAG. Such a system is powerful, and capable of tackling a wide range of tasks, from answering questions to generating content based on complex criteria.
+In short, an advanced RAG system should be highly customizable, letting you tweak each component and incorporate different models and strategies at various stages of the pipeline, in order to address the weaknesses of naive RAG. Thus, an advanced RAG system can help tackle a wide range of tasks, from answering questions to generating content based on complex criteria, in a way that addresses the challenges faced by "basic" or "naive RAG" in retrieval, generation, and augmentation.
 
 ---
 
