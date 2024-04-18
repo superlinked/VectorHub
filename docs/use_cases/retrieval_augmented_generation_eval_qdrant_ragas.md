@@ -14,17 +14,7 @@ As [summarised](https://superlinked.com/vectorhub/evaluating-retrieval-augmented
 
 *An effective framework is essential to evaluate similarity and content overlap between generated response and ground-truths. To facilitate the same the first step is to create an evaluation dataset with questions , answers / ground truth with relevant context.*
 
-Also , a lot has happened since the first article , explicitly, the debate about if RAG is [still valuable](https://qdrant.tech/articles/rag-is-dead) when we have long-context LLMs (Large Language Models) like Gemini.
-
-While Large Language Models (LLMs) exhibit impressive memory capacities, the incorporation of Retrieval Augmented Generation (RAG) introduces a specialised framework for tracing data lineage, a crucial facet in various scenarios.
-
-The extensive context windows of LLMs could potentially synergize with RAGs, bolstering their aptitude for handling multifaceted tasks or addressing concurrent challenges. Beyond mere information retrieval, RAGs encompass a spectrum of functionalities including ranking, privacy management, and access control.
-
-However, LLMs equipped with elongated context windows may grapple with focusing on pertinent details amidst expansive information repositories, notwithstanding their comprehensive scope facilitating thorough data analysis.
-
-RAGs play a particularly pivotal role in enterprise applications, offering essential features such as control, auditability, and security that may not be fully addressed through direct interactions with LLMs alone.
-
-Now that we have reemphasised the importance and relevance of RAG, let's look at what this article plans to cover.
+Let's look at what this article plans to cover.
 
 1) **Synthetic Evaluation Dataset**<br>
    a) Significance of evaluation dataset<br>
@@ -37,22 +27,23 @@ Now that we have reemphasised the importance and relevance of RAG, let's look at
 3) **Learning to use evaluation dataset to evaluate given metrics**<br>
 4) **Code walkthrough and reference notebook**<br>
 
->  💡 In this article, we utilize two Hugging Face datasets: [qdrant_doc](https://huggingface.co/datasets/atitaarora/qdrant_doc) and [qdrant_doc_qna](https://huggingface.co/datasets/atitaarora/qdrant_doc_qna). The dataset [qdrant_doc](https://huggingface.co/datasets/atitaarora/qdrant_doc) serves as the reference dataset upon which our Retrieval-Augmented Generation (RAG) solution is built. On the other hand, the dataset [qdrant_doc_qna](https://huggingface.co/datasets/atitaarora/qdrant_doc_qna) is employed as the golden-set for evaluation purposes. Keep this distinction in mind as you follow along with our analysis and results.
-
 
 ### **Synthetic Evaluation Dataset**
 
 Right from the ages of relevance evaluation and assessment of information retrieval systems we have known and acknowledged the importance of the golden set or evaluation dataset.
 Usually , this set contains triplets of queries , document id , relevance scores , in the similar way for RAG evaluation our queries are replaced by questions , document id is replaced by chunk_id or chunk text or an answer or a ground truth and instead of relevance scores - we leverage context texts to provide an optimal evaluation record. Optionally we could add a complexity of the question which is useful for categorising the performance of our RAG system as covered in the first article.
-Addressing the elephant-in-the-room , how do we get on and create one of these evaluation dataset for a problem like RAG.
+Generating numerous Question-Context-Answer samples by hand from reference data is not only tedious but also inefficient. Furthermore, questions crafted by individuals may not achieve the complexity needed for effective evaluations, thereby diminishing the assessment's accuracy.
+Addressing the elephant-in-the-room -- how do we get on and create one of these evaluation dataset for a problem like RAG.
 
 We got you covered , and here are some techniques you can use to create one of your own.
 
->  💡 Note: Some of the techniques below may involve using **OpenAI** to generate the questions on the chunked document.
+>  💡 In this article, we walk you through building and evaluating a Naive-RAG application on the documentation. We built two Hugging Face datasets: [Source Documentation Dataset](https://huggingface.co/datasets/atitaarora/qdrant_doc) - the dataset with all documentation text with their sources and [Evaluation Dataset](https://huggingface.co/datasets/atitaarora/qdrant_doc_qna) which is the reference golden-set leveraged for evaluation purposes.
 
 To make some sensible set of questions - we need to use targeted snippets to ensure our questions as well as answers are crisp.
 
-#### 1) **Method 1 - Using T5**
+>  💡 Note: Some of the techniques below may involve using **OpenAI** to generate the questions on the chunked document.
+
+#### **Method 1 - Using T5**
 
 So our first method involves using the [T5](https://huggingface.co/docs/transformers/en/model_doc/t5) model. Make sure to have `pip install transformers` before you use it.
 
@@ -87,24 +78,23 @@ def hf_run_model(input_string, **generator_args):
 Using it to create a question for the given text as :
 
 ```python
-text_passage = "What is Qdrant? [Qdrant](http://qdrant.tech) is a vector similarity search engine that provides a \
-production-ready service with a convenient API to store, search, and manage points (i.e. vectors) with an additional payload.\
-You can think of the payloads as additional pieces of information that can help you hone in on your search and also receive \
-useful information that you can give to your users. You can get started using Qdrant with the Python `qdrant-client`, \
-by pulling the latest docker image of `qdrant` and connecting to it locally, or by trying out [Qdrant's Cloud](https://cloud.qdrant.io/) \
-free tier option until you are ready to make the full switch. With that out of the way, let's talk about what are vector databases."
+text_passage = """HNSW is the approximate nearest neighbor search. 
+          This means our accuracy improves up to a point of diminishing returns, as we check the index for more similar candidates. 
+          In the context of binary quantization, this is referred to as the oversampling rate."""
 
 hf_run_model(text_passage)
 
 ##Outputs 
-#[['What is Qdrant?',
-# ' How can you get started using Qrant with the Python qdrant-client']]
+#[['What is the approximate nearest neighbor search?',
+#  ' What does HNSW mean in terms of accuracy?',
+#  ' In binary quantization what is the oversampling rate?',
+#  '']]
 ```
 
 As you can see it gives you a pretty sensible set of questions, provided you can surface the answers manually.
 
 
-#### 2) **Method 2 -  Using OpenAI.**
+#### **Method 2 -  Using OpenAI.**
 
 ```python
 import openai
@@ -148,24 +138,22 @@ Using the subroutine above to generate question and answer/ground-truth pairs as
 ```python
 # Generate question-answer pairs for the given chunk
 
-context = "What is Qdrant? [Qdrant](http://qdrant.tech) is a vector similarity search engine that provides a \
-production-ready service with a convenient API to store, search, and manage points (i.e. vectors) with an additional payload.\
-You can think of the payloads as additional pieces of information that can help you hone in on your search and also receive \
-useful information that you can give to your users. You can get started using Qdrant with the Python `qdrant-client`, \
-by pulling the latest docker image of `qdrant` and connecting to it locally, or by trying out [Qdrant's Cloud](https://cloud.qdrant.io/) \
-free tier option until you are ready to make the full switch. With that out of the way, let's talk about what are vector databases."
+context = context = """HNSW is the approximate nearest neighbor search. 
+          This means our accuracy improves up to a point of diminishing returns, as we check the index for more similar candidates. 
+          In the context of binary quantization, this is referred to as the oversampling rate."""
 
 question_answer_pair = generate_question_answer(context)
 print(question_answer_pair)
 
 ## Outputs 
-# Q . What is Qdrant and how can it be used in vector similarity search?
-# A . Qdrant is a vector similarity search engine that offers a production-ready service with an API for storing, searching, and managing points (vectors) along with additional payload information. The payloads can provide extra details to refine searches and offer valuable information to users. Qdrant can be utilized through the Python `qdrant-client`, by downloading the latest docker image of `qdrant` and connecting to it locally, or by exploring the free tier option of [Qdrant's Cloud](https://cloud.qdrant.io/) before transitioning to the full version.
+#Question: How does the oversampling rate relate to the accuracy of approximate nearest neighbor search in the context of binary quantization?
+#Answer: In the context of binary quantization, the oversampling rate refers to the number of similar candidates that are checked in the index during an approximate nearest neighbor search. As we increase the oversampling rate, we are essentially checking more candidates for similarity, which can improve the accuracy of the search up to a certain point. However, there is a point of diminishing returns where further increasing the oversampling rate may not significantly improve the accuracy any further. Therefore, the oversampling rate plays a crucial role in balancing the trade-off between accuracy and computational efficiency in approximate nearest neighbor search using binary quantization.
 ```
 
 We saw another way to generate questions along with answers/ground-truth using OpenAI prompts this time.
 
-However , as we are discussing about RAGAS , it comes with an easier way to generate Question-Context-Ground_Truth set and rather a complete baseline evaluation dataset [utility](https://docs.ragas.io/en/latest/getstarted/testset_generation.html) in RAGAS , using your dataset in just a couple of lines of code as below.
+#### **Method 3 -  Using RAGAS.**
+As we are discussing about RAGAS , it comes with an easier way to generate Question-Context-Ground_Truth set and rather a complete baseline evaluation dataset [utility](https://docs.ragas.io/en/latest/getstarted/testset_generation.html) , using your dataset in just a couple of lines of code as below.
 
 ```python
 ## Test Evaluation Dataset Generation using Ragas
@@ -339,7 +327,7 @@ Ragas focuses on evaluating mainly Retrieval and Generation phases of your RAG p
 - **Evaluate Retrieval**: *context_relevancy* and *context_recall*, which give you the fair measure of the efficiency of your retrieval system.
 - **Evaluate Generation**: *faithfulness* to measure the most important aspect when working with LLM i.e. hallucinations and *answer_relevancy* which measures the relevancy of the generated answer wrt to the question.
 
-The harmonic mean of these 4 aspects gives you the ragas score which is a single measure of the performance of your RAG system on the aspects of retrieval and generation.
+The mean score of these 4 aspects gives you the `ragas score` which is a single measure of the performance of your RAG system on the aspects of retrieval and generation.
 
 #### **RAGAS in action**
 
@@ -503,18 +491,21 @@ def query_with_context(query):
         "document:"+r.document+",source:"+r.metadata['source'] for r in search_result
     ]
     prompt_start = (
-        "You are a friendly assistant that answers the user's Qdrant vector database related queries\
-        in a direct and straightforward way using the provided context. \
-        Sometimes you may get 'Hi' or such general queries from the user, \
-        in which case, you will ignore the context and just greet them normally. \
-        Only use the context if the user query is anything aside from regular pleasantries. \
-        Every context item will have \"document:\" and \"source:\" values. \
-        Mention the value of \"source\" as 'references' fetched from the value of the 'source:' \
-        in the context passed along with your answer. \
-        Provide detailed answers to the user's query. \
-        If you can't find the answer, do not pretend you know it, but answer 'I don't know'.\n "
+       """ You're assisting a user who has a question based on the documentation.
+        Your goal is to provide a clear and concise response that addresses their query while referencing relevant information 
+        from the documentation.
+        Remember to: 
+        Understand the user's question thoroughly.
+        If the user's query is general (e.g., "hi," "good morning"), 
+        greet them normally and avoid using the context from the documentation.
+        If the user's query is specific and related to the documentation, locate and extract the pertinent information.
+        Craft a response that directly addresses the user's query and provides accurate information
+        referring the relevant source and page from the 'source' field of fetched context from the documentation to support your answer.
+        Use a friendly and professional tone in your response.
+        If you cannot find the answer in the provided context, do not pretend to know it.
+        Instead, respond with "I don't know".
         
-        "Context:\n"
+        Context:\n"""
     )
     
     prompt_end = (
@@ -546,12 +537,14 @@ Try out running your first query through your RAG pipeline as :
 print (query_with_context(query = "what is quantization?"))
 
 ##Outputs 
-#Quantization is a feature in Qdrant that allows for efficient storage and search of high-dimensional vectors by transforming them into a new representation while preserving relative distances between vectors. This feature leverages the power of quantum computing and quantum entanglement to create highly efficient vector search algorithms.
+#Quantization is a process that converts traditional float32 vectors into qbit vectors, which can then be used in quantum computing to speed up the search process in ANNs. 
+#This is explained in detail in the article "Quantum Quantization and Entanglement" (source: articles/quantum-quantization.md). 
+#Additionally, you can also check out the blog post "Binary Quantization and Vector Space Talk" by Andrey Vasnetsov (source: blog/binary-quantization-andrey-vasnetsov-vector-space-talk-001.md) for more information on how this process works.
 ```
 
 One key thing to understand is that RAGAS work inherently with datasets for evaluations for it is a good idea to create a set of questions and ground truth to help create an evaluation dataset to assess our RAG system. We are leveraging the dataset [https://huggingface.co/datasets/atitaarora/qdrant_doc_qna](https://huggingface.co/datasets/atitaarora/qdrant_doc_qna) to create our evaluation set from our RAG pipeline and execute it as shown [before](https://www.notion.so/Evaluating-RAG-with-RAGAS-ef0de436a00748c7bba9fd7161cd76cc?pvs=21).
 
-### Lets evaluate , how good is our RAG !!
+**Lets evaluate , how good is our RAG !!**
 
 Its as simple as importing the desired metrics:
 
@@ -599,7 +592,7 @@ This issue could be impacted by :
 - Chunk overlap size
 - Choice of Embedding model
 
-Let’s try to change the document chunk retrieval from **4** to **5** and find out if it improves our metrics. We will make a change to our RAG with a context method to retrieve **5** instead of **4** chunks and recreate the evaluation dataset.
+Let’s try to change the size of document chunk retrieval from **4** to **5** and find out if it improves our metrics. We will make a change to our RAG with a context method to retrieve **5** instead of **4** chunks and recreate the evaluation dataset.
 Followed by re-running the RAGAS evaluations.
 
 We add some visualisations to enable smoother comparison and this is what it looks after the changes.
