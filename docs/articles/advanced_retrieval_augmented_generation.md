@@ -1,3 +1,5 @@
+# A Comprehensive Tutorial on Advanced Retrieval Augmented Generation
+
 <!-- SEO SUMMARY: Our comprehensive tutorial explores the intricacies of Advanced Retrieval-Augmented Generation (RAG) systems, demonstrating their capacity to enhance natural language processing tasks by integrating retrieval-based techniques with generative AI models. We examine and provide code snippets for essential components such as document cleaning, chunking, embedding, and the strategic (dynamic) assembly of pipelines for efficient data processing and generation. We emphasize these components, along with fine-tuning and post-retrieval optimizations, to guide developers who want to generate high-quality, contextually relevant text output for effective real-world applications.-->
 
 ## Advanced RAG - why we need it
