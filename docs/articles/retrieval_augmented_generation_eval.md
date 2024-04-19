@@ -116,6 +116,6 @@ We've laid a general foundation for discussing RAG evaluation. In the next artic
 
 ## Contributors 
  
-[Atita Arora, Author](https://www.linkedin.com/in/atitaarora/) 
-[Mór Kapronczay, Editor](https://www.linkedin.com/in/mór-kapronczay-49447692) 
-[Robert Turner, Editor](https://robertturner.co/copyedit) 
+- [Atita Arora, Author](https://www.linkedin.com/in/atitaarora/) 
+- [Mór Kapronczay, Editor](https://www.linkedin.com/in/mór-kapronczay-49447692) 
+- [Robert Turner, Editor](https://robertturner.co/copyedit) 
