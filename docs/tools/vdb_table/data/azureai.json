@@ -148,6 +148,11 @@
     "source_url": "https://learn.microsoft.com/azure/search/vector-search-how-to-generate-embeddings",
     "comment": ""
   },
+    "int8_quantization": {
+    "support": "full",
+    "source_url": "https://learn.microsoft.com/azure/search/vector-search-how-to-configure-compression-storage#option-3-configure-scalar-quantization?",
+    "comment": ""
+  },
   "github_stars": {
     "value": 0,
     "source_url": "",
