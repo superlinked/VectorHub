@@ -133,21 +133,21 @@
     "comment": ""
   },
   "sharding": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://milvus.io/docs/glossary.md#Sharding",
     "comment": ""
   },
   "doc_size": {
-    "bytes": 0,
-    "unlimited": false,
+    "bytes": "Unlimited",
+    "unlimited": true,
     "source_url": "",
     "comment": ""
   },
   "vector_dims": {
-    "value": 32768,
+    "value": "Unlimited",
     "unlimited": false,
     "source_url": "",
-    "comment": ""
+    "comment": "change via proxy.MaxDimension in config.yaml"
   },
   "int8_quantization": {
     "support": "partial",
