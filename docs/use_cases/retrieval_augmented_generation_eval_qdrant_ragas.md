@@ -1,51 +1,44 @@
-<!--Second of a three-part (monthly) series on RAG evaluation. In this article, we introduce RAG evaluation and its challenges, outline the broad strokes of an effective evaluation framework, and provide an overview of the kinds of evaluation tools and approaches you can use to evaluate your RAG application. We also provide useful links to articles on RAG, RAG evaluation, a vector database feature matrix, and discuss Golden Sets, BLEU and ROUGE, and more. -->
+<!--Second of a three-part (monthly) series on RAG evaluation. In this article, we'll demystify an existing evaluation framework (RAGAS), and see how well it does at covering all the layers (model, data ingestion, semantic retrieval, E2E) of evaluation we introduced in our first article.... -->
+
 
 # Evaluating Retrieval Augmented Generation using RAGAS
 
-*In this second article of a three-part (monthly) series, we will leverage the knowledge and concepts we built in part one where we introduced RAG evaluation, challenges, proposed an evaluation framework, and provided an overview of the various tools and approaches you can use to evaluate your RAG application.*
+*In our [first article](https://superlinked.com/vectorhub/articles/evaluating-retrieval-augmented-generation-framework), we introduced RAG evaluation and its challenges, proposed an evaluation framework, and provided an overview of the various tools and approaches you can use to evaluate your RAG application. In this **second** of three articles (one a month), **we leverage the knowledge and concepts we built in part one to walk you through our first RAG evaluation framework, [RAGAS](https://docs.ragas.io/)**, which is based on Es et al.'s [introductory paper](https://arxiv.org/pdf/2309.15217). RAGAS aims to provide useful and actionable metrics but relies on as little annotated data as possible, making it cheaper and faster than using LLMs to evaluate your RAG pipeline.
 
-In this part , building on our theoretical concepts of RAG we will put them into practice to walk you through our first in series RAG evaluation framework [RAGAS](https://docs.ragas.io/).
+To set up our RAGAS evaluation framework, we apply a concept we discussed in the [first article](https://superlinked.com/vectorhub/articles/evaluating-retrieval-augmented-generation-framework) - ground truth. Some ground truth data - a golden set - is needed for evaluating our RAG pipeline's generated responses. It provides a meaningful context for our evaluation metrics. Our first step, therefore, in setting up RAGAS is creating an evaluation dataset, complete with questions, answers, and ground-truth data that takes account of relevant context. Next, we'll look more closely at evaluation metrics, indicating which ones make sense for specific use cases, and how to interpret them. Finally, we'll look at how to use our evaluation dataset to assess our chosen metrics.
 
-If you haven’t read the first part, read it [here](https://superlinked.com/vectorhub/articles/evaluating-retrieval-augmented-generation-framework).
+This article will take you through:
 
-This framework is based on the [paper](https://arxiv.org/pdf/2309.15217) from the authors , highly recommended to read through. Ragas aims to provide useful and actionable metrics using as little annotated data as possible, cheaper, and faster using LLMs to evaluate your RAG pipeline.
-
-As [summarised](https://superlinked.com/vectorhub/evaluating-retrieval-augmented-generation-a-framework-for-assessment%23S1bk_&sa=D&source=editors&ust=1712248322105041&usg=AOvVaw2HS8eHu-8FLtIIF6qwFB7e) in the first article:
-
-*An effective framework is essential to evaluate similarity and content overlap between generated response and ground-truths. To facilitate the same the first step is to create an evaluation dataset with questions , answers / ground truth with relevant context.*
-
-Let's look at what this article plans to cover.
-
-1) **Synthetic Evaluation Dataset**<br>
-   a) Significance of evaluation dataset<br>
-   b. Different way to build it<br>
-   c. FAQs and Suggestions<br>
-2) **Metrics**<br>
-   a. Different metrics provided by the framework<br>
-   b. Choosing the right metrics for your use cases<br>
-   c. Learning to decode the metric values<br>
-3) **Learning to use evaluation dataset to evaluate given metrics**<br>
-4) **Code walkthrough and reference notebook**<br>
+1) **Creating a synthetic evaluation dataset**
+   a. evaluation dataset = the basics
+   b. different ways to build one
+   c. FAQs and suggestions
+2) **Metrics**
+   a. different metrics provided by RAGAS
+   b. choosing the right metrics for your use cases
+   c. learning to decode the metric values
+3) **Using the evaluation dataset to assess given metrics**
+4) **Code walkthrough and reference notebook**
 
 
-### **Synthetic Evaluation Dataset**
+## Synthetic evaluation dataset
 
-Right from the ages of relevance evaluation and assessment of information retrieval systems we have known and acknowledged the importance of the golden set or evaluation dataset.
-Usually , this set contains triplets of queries , document id , relevance scores , in the similar way for RAG evaluation our queries are replaced by questions , document id is replaced by chunk_id or chunk text or an answer or a ground truth and instead of relevance scores - we leverage context texts to provide an optimal evaluation record. Optionally we could add a complexity of the question which is useful for categorising the performance of our RAG system as covered in the first article.
-Generating numerous Question-Context-Answer samples by hand from reference data is not only tedious but also inefficient. Furthermore, questions crafted by individuals may not achieve the complexity needed for effective evaluations, thereby diminishing the assessment's accuracy.
-Addressing the elephant-in-the-room -- how do we get on and create one of these evaluation dataset for a problem like RAG.
+### The basics of evaluation datasets
 
-We got you covered , and here are some techniques you can use to create one of your own.
+Golden or evaluation datasets are crucial in the assessment of information retrieval systems. Often, evaluation datasets contain triplets of queries, document ids, and relevance scores. In RAG evaluation, queries are replaced by **questions**, document id is replaced by **chunk_id, chunk text, an answer, or a ground truth**, and instead of relevance scores, we leverage **context texts** to provide an optimal evaluation record. Optionally, we could add **question complexity level** - our RAG system may perform better answering questions of a certain difficulty level.
 
->  💡 In this article, we walk you through building and evaluating a Naive-RAG application on the documentation. We built two Hugging Face datasets: [Source Documentation Dataset](https://huggingface.co/datasets/atitaarora/qdrant_doc) - the dataset with all documentation text with their sources and [Evaluation Dataset](https://huggingface.co/datasets/atitaarora/qdrant_doc_qna) which is the reference golden-set leveraged for evaluation purposes.
+But generating numerous Question-Context-Answer samples by hand from reference data would not only be tedious but also inefficient. Furthermore, questions crafted by individuals may not achieve the complexity needed for effective evaluation, thereby diminishing the assessment's accuracy. If manually creating RAG evaluation dataset is not a feasible solution, what would be? **What's an efficient and effective way of creating our RAG evaluation dataset**?
 
-To make some sensible set of questions - we need to use targeted snippets to ensure our questions as well as answers are crisp.
+Fortunately, we can use the Hugging Face Datasets library to build our evaluation datasets efficiently and effectively. Using this library, we build two Hugging Face datasets: [Source Documentation Dataset](https://huggingface.co/datasets/atitaarora/qdrant_doc) - a dataset with all documentation text with their sources, and an [Evaluation Dataset](https://huggingface.co/datasets/atitaarora/qdrant_doc_qna) - our "golden set" or reference standard, leveraged for evaluation purposes.
+
+**Generating the questions
+To make a set of questions that are clear, concise, and related to the information in the source documents, we need to use targeted snippets - selected because they contain relevant information.
 
 >  💡 Note: Some of the techniques below may involve using **OpenAI** to generate the questions on the chunked document.
 
-#### **Method 1 - Using T5**
+### Method 1 - Using T5
 
-So our first method involves using the [T5](https://huggingface.co/docs/transformers/en/model_doc/t5) model. Make sure to have `pip install transformers` before you use it.
+Our first method uses the [T5](https://huggingface.co/docs/transformers/en/model_doc/t5) model. Make sure to have `pip install transformers` before you try using T5.
 
 ```python
 from transformers import T5ForConditionalGeneration, T5TokenizerFast
@@ -75,7 +68,7 @@ def hf_run_model(input_string, **generator_args):
   return output
 ```
 
-Using it to create a question for the given text as :
+We use T5 to create a question for the given text:
 
 ```python
 text_passage = """HNSW is the approximate nearest neighbor search. 
@@ -91,10 +84,10 @@ hf_run_model(text_passage)
 #  '']]
 ```
 
-As you can see it gives you a pretty sensible set of questions, provided you can surface the answers manually.
+Though we still need to identify and extract the correct answers manually, _this method handles question generation efficiently and effectively_, creating a pretty sensible set of questions in the process.
 
 
-#### **Method 2 -  Using OpenAI.**
+### **Method 2 -  Using OpenAI.**
 
 ```python
 import openai
@@ -152,7 +145,7 @@ print(question_answer_pair)
 
 We saw another way to generate questions along with answers/ground-truth using OpenAI prompts this time.
 
-#### **Method 3 -  Using RAGAS.**
+### **Method 3 -  Using RAGAS.**
 As we are discussing about RAGAS , it comes with an easier way to generate Question-Context-Ground_Truth set and rather a complete baseline evaluation dataset [utility](https://docs.ragas.io/en/latest/getstarted/testset_generation.html) , using your dataset in just a couple of lines of code as below.
 
 ```python
@@ -250,7 +243,7 @@ Now that we have a baseline as well as the subroutine to create evaluation datas
 
 Let us understand what all can you measure with RAGAS.
 
-### Metrics
+## Metrics
 
 It is a good idea to check out [core concepts](https://docs.ragas.io/en/latest/concepts/index.html) of RAGAS , at this stage.
 
@@ -258,7 +251,9 @@ RAGAS is focused on retrieval and generation stages of RAG along with End-to-End
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_metrics.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_metrics.png)
 
-The key metrics you can evaluate currently using RAGAS are as below :
+### RAGAS's key evaluation metrics
+
+The key evaluation metrics offered by RAGAS are:
 
 - [Faithfulness](https://docs.ragas.io/en/latest/concepts/metrics/faithfulness.html) - Scaled between 0 and 1, it measures factual consistency of the answer. The preference given to faithfulness score being closer to 1 signifying higher consistency. It is measured as :
 
@@ -320,7 +315,7 @@ Where factual correctness is the F1 score calculated using ground truth and gene
 ```
 
 
-#### **Choosing the right metrics for your use cases**
+### **Choosing the right metrics for your use cases**
 
 Ragas focuses on evaluating mainly Retrieval and Generation phases of your RAG pipeline and offers metrics to :
 
@@ -601,7 +596,7 @@ We add some visualisations to enable smoother comparison and this is what it loo
 
 We can see the metrics impacted by this change and can assess if they are moving in the desired direction. Please remember this is an iterative process and you can try our other suggested changes to evaluate what works better for your given usecase.
 
-The complete version of this code and notebook is available at  - [https://github.com/qdrant/qdrant-rag-eval/tree/master/workshop-rag-eval-qdrant-ragas](https://github.com/qdrant/qdrant-rag-eval/tree/master/workshop-rag-eval-qdrant-ragas).
+The complete version of this code and notebook is available at - [https://github.com/qdrant/qdrant-rag-eval/tree/master/workshop-rag-eval-qdrant-ragas](https://github.com/qdrant/qdrant-rag-eval/tree/master/workshop-rag-eval-qdrant-ragas).
 
 Don’t forget to star and contribute your experiments. Goes without saying that any feedback or improvement is very welcome.
 
@@ -609,3 +604,8 @@ The next in series is the similar code walk through of using [Arize Phoenix](htt
 
 Until next time - *Stay tuned* !
 
+## Contributors 
+ 
+- [Atita Arora, Author](https://www.linkedin.com/in/atitaarora/) 
+- [Mór Kapronczay, Editor](https://www.linkedin.com/in/mór-kapronczay-49447692) 
+- [Robert Turner, Editor](https://www.linkedin.com/in/robertdhayanturner) 
