@@ -112,7 +112,7 @@ While our proposed evaluation strategy is meant to improve RAG evaluation, we sh
 
 ## What's next
 
-We've laid a general foundation for discussing RAG evaluation. In the next article (next month), we'll demystify an existing evaluation framework (RAGAS), and see how well it does at covering all the layers of evaluation we've discused. Looking forward to seeing you in the next part!
+We've laid a general foundation for discussing RAG evaluation. In the next article (next month), we'll demystify an existing evaluation framework (RAGAS), and see how well it does at covering all the layers of evaluation we've discussed. Looking forward to seeing you in the next part!
 
 ## Contributors 
  
