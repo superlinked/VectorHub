@@ -138,16 +138,16 @@
     "comment": ""
   },
   "doc_size": {
-    "bytes": "Unlimited",
+    "bytes": "0",
     "unlimited": true,
     "source_url": "",
-    "comment": ""
+    "comment": "Milvus is a distributed system, no hard limitations for counts of entities in one collection"
   },
   "vector_dims": {
-    "value": "Unlimited",
-    "unlimited": false,
+    "value": "0",
+    "unlimited": true,
     "source_url": "",
-    "comment": "change via proxy.MaxDimension in config.yaml"
+    "comment": "change via proxy.MaxDimension in config.yaml, this value can be unlimited"
   },
   "int8_quantization": {
     "support": "partial",
