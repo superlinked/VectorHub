@@ -33,7 +33,7 @@
   },
   "hybrid_search": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://weaviate.io/developers/weaviate/search/hybrid",
     "comment": "RRF*+RSF*"
   },
   "facets": {
