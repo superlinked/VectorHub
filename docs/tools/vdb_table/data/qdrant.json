@@ -153,6 +153,11 @@
     "source_url": "https://qdrant.tech/articles/scalar-quantization/#scalar-quantization",
     "comment": "via Scalar Quantization of index"
   },
+  "binary_quantization": {
+    "support": "partial",
+    "source_url": "https://qdrant.tech/documentation/guides/quantization/#binary-quantization",
+    "comment": "via Binary Quantization of index"
+  },
   "github_stars": {
     "value": 17835,
     "source_url": "https://github.com/qdrant/qdrant",
