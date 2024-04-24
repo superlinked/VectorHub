@@ -148,6 +148,11 @@
     "source_url": "",
     "comment": ""
   },
+  "binary_quantization": {
+    "support": "full",
+    "source_url": "https://github.com/ashvardanian/usearch-binary",
+    "comment": ""
+  },
   "github_stars": {
     "value": 1624,
     "source_url": "https://github.com/unum-cloud/usearch",
