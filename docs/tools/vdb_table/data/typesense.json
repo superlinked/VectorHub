@@ -33,7 +33,7 @@
   },
   "hybrid_search": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://typesense.org/docs/0.25.0/api/vector-search.html#hybrid-search",
     "comment": ""
   },
   "facets": {
