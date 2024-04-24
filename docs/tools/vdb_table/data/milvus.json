@@ -133,21 +133,21 @@
     "comment": ""
   },
   "sharding": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://milvus.io/docs/glossary.md#Sharding",
     "comment": ""
   },
   "doc_size": {
     "bytes": 0,
-    "unlimited": false,
-    "source_url": "",
-    "comment": ""
+    "unlimited": true,
+    "source_url": "https://milvus.io/docs/product_faq.md#What-is-the-maximum-dataset-size-Milvus-can-handle",
+    "comment": "Milvus is a distributed system, no hard limitations for counts of entities in one collection"
   },
   "vector_dims": {
-    "value": 32768,
-    "unlimited": false,
-    "source_url": "",
-    "comment": ""
+    "value": 0,
+    "unlimited": true,
+    "source_url": "https://milvus.io/docs/latest/configure_proxy.md#proxymaxDimension",
+    "comment": "change via proxy.MaxDimension in config.yaml, this value can be unlimited"
   },
   "int8_quantization": {
     "support": "partial",
