@@ -11,14 +11,14 @@ This article will take you through:
 
 1) **Creating a synthetic evaluation dataset**
    a. evaluation dataset = the basics
-   b. different ways to build one
+   b. methods of generating questions
    c. FAQs and suggestions
-2) **Metrics**
+3) **Metrics**
    a. different metrics provided by RAGAS
    b. choosing the right metrics for your use cases
    c. learning to decode the metric values
-3) **Using the evaluation dataset to assess given metrics**
-4) **Code walkthrough and reference notebook**
+4) **Using the evaluation dataset to assess given metrics**
+5) **Code walkthrough and reference notebook**
 
 
 ## Synthetic evaluation dataset
@@ -27,18 +27,21 @@ This article will take you through:
 
 Golden or evaluation datasets are crucial in the assessment of information retrieval systems. Often, evaluation datasets contain triplets of queries, document ids, and relevance scores. In RAG evaluation, queries are replaced by **questions**, document id is replaced by **chunk_id, chunk text, an answer, or a ground truth**, and instead of relevance scores, we leverage **context texts** to provide an optimal evaluation record. Optionally, we could add **question complexity level** - our RAG system may perform better answering questions of a certain difficulty level.
 
-But generating numerous Question-Context-Answer samples by hand from reference data would not only be tedious but also inefficient. Furthermore, questions crafted by individuals may not achieve the complexity needed for effective evaluation, thereby diminishing the assessment's accuracy. If manually creating RAG evaluation dataset is not a feasible solution, what would be? **What's an efficient and effective way of creating our RAG evaluation dataset**?
+But generating numerous Question-Context-Answer samples by hand from reference data would not only be tedious but also inefficient. Furthermore, questions crafted by individuals may not achieve the complexity needed for effective evaluation, thereby diminishing the assessment's accuracy. If manually creating a RAG evaluation dataset is not a feasible solution, what should you do instead? **What's an efficient and effective way of creating our RAG evaluation dataset**?
 
 Fortunately, we can use the Hugging Face Datasets library to build our evaluation datasets efficiently and effectively. Using this library, we build two Hugging Face datasets: [Source Documentation Dataset](https://huggingface.co/datasets/atitaarora/qdrant_doc) - a dataset with all documentation text with their sources, and an [Evaluation Dataset](https://huggingface.co/datasets/atitaarora/qdrant_doc_qna) - our "golden set" or reference standard, leveraged for evaluation purposes.
 
-**Generating the questions
+Now that we have our datasets in place, let's turn to generating question - answer (ground-truth) pairs.
+
+### Generating question - answer (ground truth) pairs
+
 To make a set of questions that are clear, concise, and related to the information in the source documents, we need to use targeted snippets - selected because they contain relevant information.
 
->  💡 Note: Some of the techniques below may involve using **OpenAI** to generate the questions on the chunked document.
+We compare three methods of generating question-answer pairs. Our first two methods - T5 and OpenAI - are well-known and widely used. These are alternatives to our third method - RAGAS. T5 is cost free, but requires some manual effort. ~OpenAI lets you define prompts and questions on the basis of intended use. T5 and OpenAI provide a good comparison context for RAGAS.
 
-### Method 1 - Using T5
+**Method 1 - using T5**
 
-Our first method uses the [T5](https://huggingface.co/docs/transformers/en/model_doc/t5) model. Make sure to have `pip install transformers` before you try using T5.
+Our first method employs the [T5 model](https://huggingface.co/docs/transformers/en/model_doc/t5). Make sure to have `pip install transformers` before you try using T5.
 
 ```python
 from transformers import T5ForConditionalGeneration, T5TokenizerFast
@@ -84,10 +87,13 @@ hf_run_model(text_passage)
 #  '']]
 ```
 
-Though we still need to identify and extract the correct answers manually, _this method handles question generation efficiently and effectively_, creating a pretty sensible set of questions in the process.
+Though we still need to identify and extract the correct answers manually, _this method (using T5) handles question generation efficiently and effectively_, creating a pretty sensible set of questions in the process. 
+
+What about OpenAI?
 
 
-### **Method 2 -  Using OpenAI.**
+**Method 2 - using OpenAI**
+Note that using **OpenAI** to generate questions on the chunked document may incur associated fees.
 
 ```python
 import openai
@@ -126,7 +132,7 @@ def generate_question_answer(context):
   return response.choices[0].message.content
 ```
 
-Using the subroutine above to generate question and answer/ground-truth pairs as :
+We use the subroutine above to generate question and answer (ground-truth) pairs as follows:
 
 ```python
 # Generate question-answer pairs for the given chunk
@@ -143,10 +149,13 @@ print(question_answer_pair)
 #Answer: In the context of binary quantization, the oversampling rate refers to the number of similar candidates that are checked in the index during an approximate nearest neighbor search. As we increase the oversampling rate, we are essentially checking more candidates for similarity, which can improve the accuracy of the search up to a certain point. However, there is a point of diminishing returns where further increasing the oversampling rate may not significantly improve the accuracy any further. Therefore, the oversampling rate plays a crucial role in balancing the trade-off between accuracy and computational efficiency in approximate nearest neighbor search using binary quantization.
 ```
 
-We saw another way to generate questions along with answers/ground-truth using OpenAI prompts this time.
+Using OpenAI to generate your evaluation dataset lets you define the prompt and questions based on the intended use case. Still, like T5, OpenAI requires a nontrivial amount of manual effort to identify and extract correct answers. Let's see how RAGAS compares.
 
-### **Method 3 -  Using RAGAS.**
-As we are discussing about RAGAS , it comes with an easier way to generate Question-Context-Ground_Truth set and rather a complete baseline evaluation dataset [utility](https://docs.ragas.io/en/latest/getstarted/testset_generation.html) , using your dataset in just a couple of lines of code as below.
+
+**Method 3 -  Using RAGAS**
+
+Compared with T5 and OpenAI, RAGAS is an easier way of generating a Question-Context-Ground_Truth set and a complete baseline evaluation dataset - [utility](https://docs.ragas.io/en/latest/getstarted/testset_generation.html) - that can be created from your data in just a couple of lines of code, as we demonstrate below. 
+In RAGAS, questions with different characteristics such as reasoning, conditioning, multi-context, etc. are systematically crafted from a set of documents. This ensures a more robust evaluation process by providing comprehensive coverage of the performance of various components within your RAG pipeline.
 
 ```python
 ## Test Evaluation Dataset Generation using Ragas
@@ -173,22 +182,26 @@ df = testset.to_pandas()
 df.head(10)
 ```
 
-Which gives us a reasonable set of baseline question-context-ground_truth set as below which could later be used to generate response from our RAG pipeline for evaluation :
+This method provides us with a reasonable baseline question-context-ground_truth set, which can be used to generate responses from our RAG pipeline for evaluation. And RAGAS generates this set with less effort than T5 and OpenAI.
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_baseline_eval_dataset_preview.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_baseline_eval_dataset_preview.png)
 
-Let's zoom into one of the rows to see what did RAGAS generate for us: 
+Let's zoom in to one of the rows to see what RAGAS generated for us (below): 
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_sample_question.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_sample_question.png)
 
-The first column is the `question` generated based on the given list of values of `contexts` along with value of `ground_truth` used to evaluate our `answer` which is going to be surfaced as we run the `question` through our RAG pipeline.
-It is a good idea to export them as a hugging-face dataset to be utilised later during the evaluation step.
-The techniques above let you build a good evaluation dataset including reasonably good questions and ground-truths to evaluate your RAG system.
----
+The first column (above), `question` is generated on the basis of the given list of `contexts`, along with value of `ground_truth` which we use to evaluate the `answer` - surfaced when we run the `question` through our RAG pipeline. 
 
-> 💡 An essential aspect to consider is the creation of an evaluation dataset with `answer` for each tuning cycle. This suggests developing a subroutine that facilitates the construction of evaluation dataset in the expected RAGAS format, as illustrated above, utilizing the provided questions and executing them through your RAG system.
+To ensure ease of use, efficiency, and interoperability, it's a good idea to export the generated Question-Context-Ground_Truth sets as a hugging-face dataset, for
+use later during the evaluation step.
 
-A sample subroutine may look like this below :
+Though each of the techniques above - T5, OpenAI, and RAGAS - confers certain advantages and disadvantages, all of them let you build a good evaluation dataset including reasonably good questions and ground-truths to evaluate your RAG system. Which you decide to use depends on the specifics of your use case.
+
+### Tuning with answers
+
+In each tuning cycle (i.e., adjusting model parameters, training the model, evaluating the model), your evaluation dataset should be tuned using RAG pipeline-generated `answer`s. This requires developing a subroutine that facilitates the construction of an evaluation dataset in the expected RAGAS format (`question`, `answer`, `contexts`, `ground_truths` - as indicated in the above code snippet) executing the provided questions through your RAG system.
+
+Such a subroutine might look like this:
 
 ```python
 ## Prepare the evaluation dataset to evaluate our RAG system
@@ -229,15 +242,15 @@ rag_response_data = {
     "ground_truths": ground_truths
 }
 
-## The dataset used to evaluate RAG using RAGAS
-## Note this is the dataset needed for evaluation hence has to be recreated everytime changes to RAG config is made
+## This dataset 'rag_response_dataset', is created to evaluate the RAG system using the RAGAS format.
+## Note: this dataset is specifically for evaluation purposes. Therefore, it needs to be recreated every time changes are made to the RAG config.
 rag_response_dataset = Dataset.from_dict(rag_response_data)
-# Might as well export it as a csv with some recognizable experiment name like chunk size 512
-rag_response_dataset.to_csv('rag_chunk_512.csv')
+# The dataset is then exported as a CSV file, with a filename that includes details of the experiment for easy identification, such as the chunk size used in this case -  rag_response_dataset.to_csv('rag_chunk_512.csv')
 ```
- 
 
-The subroutine here uses an abstraction of your RAG pipeline `query_with_context()` method , we will show a sample naive-rag example in a bit. It uses the older format with `ground_truths` which is the list on ground_truth strings while the latest format asserts to use `ground_truth` as a string value. You can choose your preferred format. 
+The subroutine above uses an abstraction of the RAG pipeline method `query_with_context()`. The `rag_response_dataset` uses an older format in which `ground_truths` is a list of strings, while the latest format uses `ground_truth` as a single string value (representing the correct answer to a question). 
+We will show a sample naive-rag example in a bit.
+You can choose your preferred format. 
 
 Now that we have a baseline as well as the subroutine to create evaluation dataset .
 
