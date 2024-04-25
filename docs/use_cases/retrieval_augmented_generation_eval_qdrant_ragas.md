@@ -199,7 +199,7 @@ Though each of the techniques above - T5, OpenAI, and RAGAS - confers certain ad
 
 ### Tuning with answers
 
-In each tuning cycle (i.e., adjusting model parameters, training the model, evaluating the model), your evaluation dataset should be tuned using RAG pipeline-generated `answer`s. This requires developing a subroutine that facilitates the construction of an evaluation dataset in the expected RAGAS format (`question`, `answer`, `contexts`, `ground_truths` - as indicated in the above code snippet) executing the provided questions through your RAG system.
+In each tuning cycle (i.e., adjusting model parameters, training the model, evaluating the model), your evaluation dataset should be tuned using RAG pipeline-generated `answer`s. This requires developing a subroutine that facilitates the construction of an evaluation dataset in the expected RAGAS format (`question`, `answer`, `contexts`, `ground_truth` - as indicated in the code snippet) executing the provided questions through your RAG system.
 
 Such a subroutine might look like this:
 
@@ -210,47 +210,58 @@ from datasets import Dataset
 # RAGAS Expect ['question', 'answer', 'contexts', 'ground_truths'] format
 '''
 {
-    "question": ['What is quantization?', ...], 
+    "question": ['What is quantization?', ...],
     "answer": [], ## answer
     "contexts": [], ## context
-    "ground_truths": [] ## answer expected
+    "ground_truth": ## answer expected
 }
 '''
+def create_eval_dataset(dataset, eval_size,retrieval_window_size):
+   questions = []
+   answers = []
+   contexts = []
+   ground_truths = []
+
+   # Iterate over the first 10 entries
+   for i in range(eval_size):
+      entry = dataset[i]
+      question = entry['question']
+      answer = entry['answer']
+      questions.append(question)
+      ground_truths.append(answer)
+      context , rag_response = query_with_context(question,retrieval_window_size)
+      contexts.append(context)
+      answers.append(rag_response)
+
+   rag_response_data = {
+      "question": questions,
+      "answer": answers,
+      "contexts": contexts,
+      "ground_truth": ground_truths
+   }
+
+return rag_response_data
+
+## Define the Config for generating the Eval dataset as below :
+
 # loading the eval dataset from HF
-qdrant_qa = load_dataset("atitaarora/qdrant_doc_qna", split="train")
+qdrant_qna_dataset = load_dataset("atitaarora/qdrant_doc_qna", split="train")
 
-questions = []
-answers = []
-contexts = []
-ground_truths = []
+EVAL_SIZE = 10
 
-for query in qdrant_qa:
-    question = query["question"]
-    questions.append(question)
-    ground_truths.append([query["answer"]])
-    
-    rag_response = query_with_context(question)
-    answers.append(rag_response)
-    search_result_context = client.query(collection_name=COLLECTION_NAME, query_text=question,limit=4)
-    context = ["document:"+r.document+",source:"+r.metadata['source'] for r in search_result_context]
-    contexts.append(context)    
+RETRIEVAL_SIZE_4 = 4
 
-rag_response_data = {
-    "question": questions,
-    "answer": answers,
-    "contexts": contexts,
-    "ground_truths": ground_truths
-}
-
-## This dataset 'rag_response_dataset', is created to evaluate the RAG system using the RAGAS format.
-## Note: this dataset is specifically for evaluation purposes. Therefore, it needs to be recreated every time changes are made to the RAG config.
-rag_response_dataset = Dataset.from_dict(rag_response_data)
-# The dataset is then exported as a CSV file, with a filename that includes details of the experiment for easy identification, such as the chunk size used in this case -  rag_response_dataset.to_csv('rag_chunk_512.csv')
+## The dataset used to evaluate RAG using RAGAS
+## Note this is the dataset needed for evaluation hence has to be recreated everytime changes to RAG config is made
+rag_eval_dataset_512_4 = create_eval_dataset(qdrant_qna_dataset,EVAL_SIZE,RETRIEVAL_SIZE_4)
+# The dataset is then exported as a CSV file, with a filename that includes details of the experiment for easy identification, such as the chunk size along with retrieval window used in this case  
+rag_response_dataset_512_4 = Dataset.from_dict(rag_eval_dataset_512_4)
+rag_response_dataset_512_4.to_csv('rag_response_512_4.csv')
 ```
 
-The subroutine above uses an abstraction of the RAG pipeline method `query_with_context()`. The `rag_response_dataset` uses an older format in which `ground_truths` is a list of strings, while the latest format uses `ground_truth` as a single string value (representing the correct answer to a question). 
+The subroutine above uses an abstraction of the RAG pipeline method `query_with_context()`. The `rag_response_dataset` uses `ground_truth` as a single string value (representing the correct answer to a question) , the older format (RAGAS < v0.1.1) used `ground_truths` which expected answers to be provided as the list of string answers. 
 We will show a sample naive-rag example in a bit.
-You can choose your preferred format. 
+You can choose your preferred format for `grouth_truth` based on the RAGAS version. 
 
 Now that we have a baseline as well as the subroutine to create evaluation dataset .
 
@@ -275,10 +286,10 @@ Faithfulness score = (Number of claims in the generated answer that can be infer
 										 (Total number of claims in the generated answer)
 ```
 
-and uses context and answer fields from .
+and uses context and answer fields.
 
 - [Answer relevancy](https://docs.ragas.io/en/latest/concepts/metrics/answer_relevance.html) - Answer relevance of an answer is based on direct alignment with the original question, not factuality. The assessment penalizes incomplete or redundant responses using cosine similarity with questions generated from the answer to gauge alignment with the original question. This metric essentially is expected to range between 0 and 1 although due to the nature of cosine similarity it can be expected in the range of -1 to 1.
-  This metric is computed using the question, the context and the answer.
+  This metric is computed using the question, the context and the answer from the evaluation dataset.
 
 
 - [Context recall](https://docs.ragas.io/en/latest/concepts/metrics/context_recall.html) - It is computed based on the ground truth and the retrieved context. The values range between 0 and 1, with higher values indicating better performance. To accurately estimate context recall from the ground truth answer, each sentence in the ground truth answer is analyzed to determine if it aligns with the retrieved context or not. It is calculated as :
@@ -490,64 +501,70 @@ for res in search_result:
 Now that we’re all set with our knowledge store to provide context to our RAG , lets quickly build it. We are going to write a small sub routine to wrap our prompt , context and response collections.
 
 ```python
-def query_with_context(query):
-    
-    ## Fetch context from Qdrant
-    search_result = client.query(collection_name=COLLECTION_NAME, query_text=query, limit=4)
-    
-    contexts = [
-        "document:"+r.document+",source:"+r.metadata['source'] for r in search_result
-    ]
-    prompt_start = (
-       """ You're assisting a user who has a question based on the documentation.
-        Your goal is to provide a clear and concise response that addresses their query while referencing relevant information 
-        from the documentation.
-        Remember to: 
-        Understand the user's question thoroughly.
-        If the user's query is general (e.g., "hi," "good morning"), 
-        greet them normally and avoid using the context from the documentation.
-        If the user's query is specific and related to the documentation, locate and extract the pertinent information.
-        Craft a response that directly addresses the user's query and provides accurate information
-        referring the relevant source and page from the 'source' field of fetched context from the documentation to support your answer.
-        Use a friendly and professional tone in your response.
-        If you cannot find the answer in the provided context, do not pretend to know it.
-        Instead, respond with "I don't know".
-        
-        Context:\n"""
-    )
-    
-    prompt_end = (
-        f"\n\nQuestion: {query}\nAnswer:"
-    )
-    
-    prompt = (
-        prompt_start + "\n\n---\n\n".join(contexts) + 
-        prompt_end
-    )
+ddef query_with_context(query,limit):
 
-    res = openai_client.completions.create(
-        model="gpt-3.5-turbo-instruct",
-        prompt=prompt,
-        temperature=0,
-        max_tokens=636,
-        top_p=1,
-        frequency_penalty=0,
-        presence_penalty=0,
-        stop=None
-    )
-    
-    return (res.choices[0].text)
+## Fetch context from Qdrant
+search_result = client.query(collection_name=COLLECTION_NAME, query_text=query, limit=limit)
+
+contexts = [
+   "document:"+r.document+",source:"+r.metadata['source'] for r in search_result
+]
+prompt_start = (
+   """ You're assisting a user who has a question based on the documentation.
+   Your goal is to provide a clear and concise response that addresses their query while referencing relevant information 
+   from the documentation.
+   Remember to: 
+   Understand the user's question thoroughly.
+   If the user's query is general (e.g., "hi," "good morning"), 
+   greet them normally and avoid using the context from the documentation.
+   If the user's query is specific and related to the documentation, locate and extract the pertinent information.
+   Craft a response that directly addresses the user's query and provides accurate information
+   referring the relevant source and page from the 'source' field of fetched context from the documentation to support your answer.
+   Use a friendly and professional tone in your response.
+   If you cannot find the answer in the provided context, do not pretend to know it.
+   Instead, respond with "I don't know".
+   
+   Context:\n"""
+)
+
+prompt_end = (
+   f"\n\nQuestion: {query}\nAnswer:"
+)
+
+prompt = (
+        prompt_start + "\n\n---\n\n".join(contexts) +
+        prompt_end
+)
+
+res = openai_client.completions.create(
+   model="gpt-3.5-turbo-instruct",
+   prompt=prompt,
+   temperature=0,
+   max_tokens=636,
+   top_p=1,
+   frequency_penalty=0,
+   presence_penalty=0,
+   stop=None
+)
+
+return (contexts , res.choices[0].text)
 ```
 
 Try out running your first query through your RAG pipeline as :
 
 ```python
-print (query_with_context(query = "what is quantization?"))
+question1 = "what is quantization?"
+RETRIEVAL_WINDOW_SIZE_5 = 5
+context1 , rag_response1 = query_with_context(question1,RETRIEVAL_WINDOW_SIZE_5)
+#print(context)
+print(rag_response1)
 
 ##Outputs 
-#Quantization is a process that converts traditional float32 vectors into qbit vectors, which can then be used in quantum computing to speed up the search process in ANNs. 
-#This is explained in detail in the article "Quantum Quantization and Entanglement" (source: articles/quantum-quantization.md). 
-#Additionally, you can also check out the blog post "Binary Quantization and Vector Space Talk" by Andrey Vasnetsov (source: blog/binary-quantization-andrey-vasnetsov-vector-space-talk-001.md) for more information on how this process works.
+#Quantization is an optional feature in Qdrant that enables efficient storage and search of high-dimensional vectors. 
+# It compresses data while preserving relative distances between vectors, making vector search algorithms more efficient. 
+# This is achieved by converting traditional float32 vectors into qbit vectors and creating quantum entanglement between them. 
+# This unique phenomenon in quantum systems allows for highly efficient vector search algorithms. 
+# For more information on quantization methods and their mechanics, please refer to the documentation on quantization at https://qdrant.tech/documentation/guides/quantization.html.
 ```
 
 One key thing to understand is that RAGAS work inherently with datasets for evaluations for it is a good idea to create a set of questions and ground truth to help create an evaluation dataset to assess our RAG system. We are leveraging the dataset [https://huggingface.co/datasets/atitaarora/qdrant_doc_qna](https://huggingface.co/datasets/atitaarora/qdrant_doc_qna) to create our evaluation set from our RAG pipeline and execute it as shown [before](https://www.notion.so/Evaluating-RAG-with-RAGAS-ef0de436a00748c7bba9fd7161cd76cc?pvs=21).
@@ -569,8 +586,8 @@ from ragas.metrics import (
 And running the evaluation as :
 
 ```python
-result = evaluate(
-    rag_response_dataset,
+result_512_4 = evaluate(
+   rag_response_dataset_512_4,
     metrics=[
         answer_correctness,
         answer_relevancy,
@@ -582,9 +599,9 @@ result = evaluate(
 
 ## Lets look at our results
 
-evaluation_result_df_chunk_size_512 = result.to_pandas()
+evaluation_result_df_512_4 = result_512_4.to_pandas()
 
-evaluation_result_df_chunk_size_512.head(5)
+evaluation_result_df_512_4.head(5)
 ```
 
 Which outputs as below :
@@ -598,16 +615,18 @@ This issue could be impacted by :
 - Number of chunks retrieved
 - Size of chunks
 - Chunk overlap size
+- Missing relevance reranking
 - Choice of Embedding model
+- Missing data preprocessing / enrichment
 
-Let’s try to change the size of document chunk retrieval from **4** to **5** and find out if it improves our metrics. We will make a change to our RAG with a context method to retrieve **5** instead of **4** chunks and recreate the evaluation dataset.
+Each of the mentioned problems above may require you to reprocess the vectors into your vector database except tuning the document retrieval window or applying reranking. Let’s try to change the size of document chunk retrieval window from **4** to **5** and find out if it improves our metrics. We will make a change to our RAG with a context method to retrieve **5** instead of **4** chunks and recreate the evaluation dataset.
 Followed by re-running the RAGAS evaluations.
 
 We add some visualisations to enable smoother comparison and this is what it looks after the changes.
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/algo_comparison_chart.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/algo_comparison_chart.png)
 
-We can see the metrics impacted by this change and can assess if they are moving in the desired direction. Please remember this is an iterative process and you can try our other suggested changes to evaluate what works better for your given usecase.
+We can see the metrics impacted by this change and can assess if they are moving in the desired direction. Please remember this is an iterative process and you can try our other suggested changes to evaluate what works better for your given use-case.
 
 The complete version of this code and notebook is available at - [https://github.com/qdrant/qdrant-rag-eval/tree/master/workshop-rag-eval-qdrant-ragas](https://github.com/qdrant/qdrant-rag-eval/tree/master/workshop-rag-eval-qdrant-ragas).
 
