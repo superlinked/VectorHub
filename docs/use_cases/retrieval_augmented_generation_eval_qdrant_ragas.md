@@ -261,7 +261,7 @@ rag_response_dataset_512_4.to_csv('rag_response_512_4.csv')
 
 The subroutine above uses an abstraction of the RAG pipeline method `query_with_context()`. The `rag_response_dataset` uses `ground_truth` as a single string value (representing the correct answer to a question); the older format (RAGAS < v0.1.1) used `ground_truths`, which expected answers to be provided as a list of strings. 
 We will show a sample naive-rag example in a bit.
-You can choose your preferred format for `grouth_truth` based on the RAGAS version you use.
+You can choose your preferred format for `ground_truth` based on the RAGAS version you use.
 
 Now that we've created a baseline along with a subroutine to create an evaluation dataset, let's see what we can measure using RAGAS.
 
@@ -625,7 +625,7 @@ Here we've added some visualisations to allow easier comparison and evaluation. 
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/algo_comparison_chart.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/algo_comparison_chart.png)
 
-4 of our 5 metrics move in the desired direction (towards 1.0). Please remember, this is an iterative process. It's good to try changing all of the potentially determining factors (number of chunks retrieved, chunks size, chunk overlap size, embedding model) to see how your results differ. The performance will very much depend on your use case.
+4 of our 5 metrics move in the desired direction (towards 1.0). Please remember, this is an iterative process. It's good to try changing all of the potentially determining factors to see how your results differ. The performance will very much depend on your use case.
 
 ## In sum
 
