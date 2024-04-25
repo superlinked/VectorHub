@@ -13,12 +13,12 @@ This article will take you through:
    a. evaluation dataset = the basics
    b. methods of generating questions
    c. FAQs and suggestions
-3) **Metrics**
+2) **Metrics**
    a. different metrics provided by RAGAS
    b. choosing the right metrics for your use cases
    c. learning to decode the metric values
-4) **Using the evaluation dataset to assess given metrics**
-5) **Code walkthrough and reference notebook**
+3) **Using the evaluation dataset to assess given metrics**
+4) **Code walkthrough and reference notebook**
 
 
 ## Synthetic evaluation dataset
@@ -33,9 +33,9 @@ Fortunately, we can use the Hugging Face Datasets library to build our evaluatio
 
 Now that we have our datasets in place, let's turn to generating question - answer (ground-truth) pairs.
 
-### Generating question - answer (ground truth) pairs
+### Generating question-answer (ground truth) pairs - three different methods
 
-To make a set of questions that are clear, concise, and related to the information in the source documents, we need to use targeted snippets - selected because they contain relevant information.
+To make a set of questions that are clear, concise, and related to the information in the source documents, we need to use targeted snippets - selected because they contain relevant information. This selection is manual.
 
 We compare three methods of generating question-answer pairs. Our first two methods - T5 and OpenAI - are well-known and widely used. These are alternatives to our third method - RAGAS. T5 is cost free, but requires some manual effort. ~OpenAI lets you define prompts and questions on the basis of intended use. T5 and OpenAI provide a good comparison context for RAGAS.
 
@@ -195,11 +195,11 @@ The first column (above), `question` is generated on the basis of the given list
 To ensure ease of use, efficiency, and interoperability, it's a good idea to export the generated Question-Context-Ground_Truth sets as a hugging-face dataset, for
 use later during the evaluation step.
 
-Though each of the techniques above - T5, OpenAI, and RAGAS - confers certain advantages and disadvantages, all of them let you build a good evaluation dataset including reasonably good questions and ground-truths to evaluate your RAG system. Which you decide to use depends on the specifics of your use case.
+Though each of the techniques above - T5, OpenAI, and RAGAS - confers certain advantages and disadvantages, all of them let you build a good evaluation dataset with reasonably good questions and ground-truths to evaluate your RAG system. Which you decide to use depends on the specifics of your use case.
 
 ### Tuning with answers
 
-In each tuning cycle (i.e., adjusting model parameters, training the model, evaluating the model), your evaluation dataset should be tuned using RAG pipeline-generated `answer`s. This requires developing a subroutine that facilitates the construction of an evaluation dataset in the expected RAGAS format (`question`, `answer`, `contexts`, `ground_truth` - as indicated in the code snippet) executing the provided questions through your RAG system.
+In each tuning cycle (i.e., adjusting model parameters, training the model, evaluating the model), your evaluation dataset should be tuned using RAG pipeline-generated `answer`s. This requires developing a subroutine that facilitates the construction of an evaluation dataset in the expected RAGAS format (`question`, `answer`, `contexts`, `ground_truths` - as indicated in the above code snippet) executing the provided questions through your RAG system.
 
 Such a subroutine might look like this:
 
@@ -210,10 +210,10 @@ from datasets import Dataset
 # RAGAS Expect ['question', 'answer', 'contexts', 'ground_truths'] format
 '''
 {
-    "question": ['What is quantization?', ...],
+    "question": ['What is quantization?', ...], 
     "answer": [], ## answer
     "contexts": [], ## context
-    "ground_truth": ## answer expected
+    "ground_truths": [] ## answer expected
 }
 '''
 def create_eval_dataset(dataset, eval_size,retrieval_window_size):
@@ -259,27 +259,23 @@ rag_response_dataset_512_4 = Dataset.from_dict(rag_eval_dataset_512_4)
 rag_response_dataset_512_4.to_csv('rag_response_512_4.csv')
 ```
 
-The subroutine above uses an abstraction of the RAG pipeline method `query_with_context()`. The `rag_response_dataset` uses `ground_truth` as a single string value (representing the correct answer to a question) , the older format (RAGAS < v0.1.1) used `ground_truths` which expected answers to be provided as the list of string answers. 
+The subroutine above uses an abstraction of the RAG pipeline method `query_with_context()`. The `rag_response_dataset` uses `ground_truth` as a single string value (representing the correct answer to a question); the older format (RAGAS < v0.1.1) used `ground_truths`, which expected answers to be provided as a list of strings. 
 We will show a sample naive-rag example in a bit.
-You can choose your preferred format for `grouth_truth` based on the RAGAS version. 
+You can choose your preferred format for `grouth_truth` based on the RAGAS version you use.
 
-Now that we have a baseline as well as the subroutine to create evaluation dataset .
-
-Let us understand what all can you measure with RAGAS.
+Now that we've created a baseline along with a subroutine to create an evaluation dataset, let's see what we can measure using RAGAS.
 
 ## Metrics
 
-It is a good idea to check out [core concepts](https://docs.ragas.io/en/latest/concepts/index.html) of RAGAS , at this stage.
-
-RAGAS is focused on retrieval and generation stages of RAG along with End-to-End evaluation of RAG and it relies on concept of [metrics driven development](https://docs.ragas.io/en/latest/concepts/metrics_driven.html)
+As we enter our discussion of metrics, we suggest checking out RAGAS' [core concepts](https://docs.ragas.io/en/latest/concepts/index.html). RAGAS is focused on the retrieval and generation stages of RAG, and aims to provide End-to-End RAG system evaluation. RAGAS follows a [metrics driven development](https://docs.ragas.io/en/latest/concepts/metrics_driven.html) approach. Let's take a closer look at the metrics that drive development in RAGAS.
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_metrics.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_metrics.png)
 
-### RAGAS's key evaluation metrics
+### RAGAS' key evaluation metrics
 
-The key evaluation metrics offered by RAGAS are:
+The first of RAGAS' key evaluation metrics is:
 
-- [Faithfulness](https://docs.ragas.io/en/latest/concepts/metrics/faithfulness.html) - Scaled between 0 and 1, it measures factual consistency of the answer. The preference given to faithfulness score being closer to 1 signifying higher consistency. It is measured as :
+- [Faithfulness](https://docs.ragas.io/en/latest/concepts/metrics/faithfulness.html) - Scaled from 0 to 1, faithfulness measures the factual consistency of the answer. 1 represents complete consistency, 0 represents complete inconsistency. Faithfulness is measured as follows:
 
 ```notion
 Faithfulness score = (Number of claims in the generated answer that can be inferred from given context) / 
@@ -288,18 +284,18 @@ Faithfulness score = (Number of claims in the generated answer that can be infer
 
 and uses context and answer fields.
 
-- [Answer relevancy](https://docs.ragas.io/en/latest/concepts/metrics/answer_relevance.html) - Answer relevance of an answer is based on direct alignment with the original question, not factuality. The assessment penalizes incomplete or redundant responses using cosine similarity with questions generated from the answer to gauge alignment with the original question. This metric essentially is expected to range between 0 and 1 although due to the nature of cosine similarity it can be expected in the range of -1 to 1.
-  This metric is computed using the question, the context and the answer from the evaluation dataset.
+The next key evaluation metrics are Answer relevancy, Context precision, and Context recall.
 
+- [Answer relevancy](https://docs.ragas.io/en/latest/concepts/metrics/answer_relevance.html) - Based on direct alignment with the original question, not factuality. This assessment penalizes incomplete or redundant responses. Answer relevancy uses cosine similarity as a measure of alignment between a) new questions generated on the basis of the answer and b) the original question. In most cases, answer relevancy will range between 0 (no relevance) and 1 (perfect relevance), though cosine similarity can theoretically range from -1 (opposite relevance) to 1 (perfect). Answer relevancy is computed using the question, the context, and the answer.
 
-- [Context recall](https://docs.ragas.io/en/latest/concepts/metrics/context_recall.html) - It is computed based on the ground truth and the retrieved context. The values range between 0 and 1, with higher values indicating better performance. To accurately estimate context recall from the ground truth answer, each sentence in the ground truth answer is analyzed to determine if it aligns with the retrieved context or not. It is calculated as :
+- [Context recall](https://docs.ragas.io/en/latest/concepts/metrics/context_recall.html) - Computed based on ground_truth and the retrieved context. Context recall values range between 0 and 1. Higher values represent better performance (higher relevance). To accurately estimate context recall from the ground_truth answer, each sentence in the ground_truth answer is analyzed to determine if it aligns with the retrieved context or not. It's calculated as follows:
 
 ```notion
 context recall = (Ground truth sentences that can be attributed to context) / 
 								 (Number of sentences in Ground truth)
 ```
 
-- [Context precision](https://docs.ragas.io/en/latest/concepts/metrics/context_precision.html) - It is computed based on question, ground_truth and the contexts from the evaluation dataset. The value ranges between 0 and 1, with higher values indicating better performance.Context Precision is used to evaluate whether all relevant items in a given context are ranked highly. It is calculated as :
+- [Context precision](https://docs.ragas.io/en/latest/concepts/metrics/context_precision.html) - Computed based on question, ground_truth, and the contexts from the evaluation dataset. As with our other metrics, context precision ranges between 0 and 1, with higher values indicating better performance. Context Precision is used to evaluate whether all relevant items in a given context are ranked highly. It's calculated as follows:
 
 ```notion
 Context Precision@K = (Precision@K * Relevance of K) / 
@@ -310,27 +306,27 @@ Relevance of K =  1 for relevant / 0 for irrelevant items
 K = number of chunks
 ```
 
-- [Context relevancy](https://docs.ragas.io/en/latest/concepts/metrics/context_relevancy.html) - It is computed based on the relevancy of the retrieved context with respect to the question. The value ranges between 0 and 1, with higher values indicating better relevancy. It is calculated as :
+- [Context relevancy](https://docs.ragas.io/en/latest/concepts/metrics/context_relevancy.html) - Computed based on how relevant the retrieved context is to the question. Context relevancy ranges between 0 and 1, with higher values indicating better relevancy. It's calculated as follows:
 
 ```notion
 context relevancy = (Number of relevant sentences within the retrieved) / 
 										(Total number of sentences in retrieved context)
 ```
 
-- [Context entity recall](https://docs.ragas.io/en/latest/concepts/metrics/context_entities_recall.html) - This metric evaluates entity retrieval based on comparison with ground truth entities to ensure relevant context coverage.The value ranges between 0 and 1, with higher values indicating better entity recall. It is calculated as :
+- [Context entity recall](https://docs.ragas.io/en/latest/concepts/metrics/context_entities_recall.html) - Evaluates entity retrieval based on comparison with ground truth entities to ensure relevant context coverage. Context entity recall ranges between 0 and 1, with higher values indicating better entity recall. It's calculated as follows:
 
 ```notion
 context entity recall = (Entities in context ∩ Entities in Ground Truth) / 
 												(Entities in Ground Truth)
 ```
 
-- [Answer semantic similarity](https://docs.ragas.io/en/latest/concepts/metrics/semantic_similarity.html) - This metric evaluates the semantic similarity between the generated answer and the ground truth. This evaluation is based on the ground truth and the answer, with values ranging between 0 and 1. It is calculated as :
+- [Answer semantic similarity](https://docs.ragas.io/en/latest/concepts/metrics/semantic_similarity.html) - Evaluates semantic similarity between the generated answer and the ground_truth. Values range between 0 and 1. Answer semantic similarity is calculated as follows:
 
 ```notion
 answer similarity score = cosine similarity (Vector of ground truth , Vector of generated answer)
 ```
 
-- [Answer correctness](https://docs.ragas.io/en/latest/concepts/metrics/answer_correctness.html) - This metric evaluates the accuracy between the generated answer and the ground truth. This evaluation is based on the ground truth and the answer, with values ranging between 0 and 1. It is calculated as :
+- [Answer correctness](https://docs.ragas.io/en/latest/concepts/metrics/answer_correctness.html) - Evaluates how much agreement there is between the generated answer and the ground_truth. Values range between 0 and 1, and it's calculated as follows:
 
 ```notion
 answer correctness = factual correctness (ground truth , generated answer ) + answer similarity score
@@ -339,23 +335,24 @@ Where factual correctness is the F1 score calculated using ground truth and gene
 ```
 
 
-### **Choosing the right metrics for your use cases**
+### Choosing the right metrics for your use cases
 
-Ragas focuses on evaluating mainly Retrieval and Generation phases of your RAG pipeline and offers metrics to :
+As we've said above, RAGAS focuses mainly on evaluating your RAG pipeline's Retrieval and Generation phases, and the `ragas score` reflects this. It's based on 4 primary metrics that evaluate retrieval and generation.
 
-- **Evaluate Retrieval**: *context_relevancy* and *context_recall*, which give you the fair measure of the efficiency of your retrieval system.
-- **Evaluate Generation**: *faithfulness* to measure the most important aspect when working with LLM i.e. hallucinations and *answer_relevancy* which measures the relevancy of the generated answer wrt to the question.
+- **Evaluating Retrieval**: here, *context_relevancy* and *context_recall* give you a fair measure of your retrieval system's efficiency.
+- **Evaluating Generation**: *faithfulness* is a measure of _the_ crucial concern when using LLMs - hallucinations. *Answer_relevancy* measures how relevant the generated answer is to the question.
 
-The mean score of these 4 aspects gives you the `ragas score` which is a single measure of the performance of your RAG system on the aspects of retrieval and generation.
+The mean of these 4 metrics gives you the `ragas score` - a single measure evaluating your RAG system's retrieval and generation.
 
-#### **RAGAS in action**
+### RAGAS in action
 
-To understand this further lets build a RAG system on top of Qdrant’s documentation and run the evaluations on top of it.
-We are going to be using the pre compiled [hugging-face dataset](https://www.google.com/url?q=https://huggingface.co/datasets/atitaarora/qdrant_doc&sa=D&source=editors&ust=1712248322130408&usg=AOvVaw0Bl7gKES2qQyo88tFWPaZZ) consisting of ‘text’ and ‘source’ of the documentation.
+To get a practical understanding of how to obtain these metrics and an overall `ragas score`, let's build a RAG system on top of Qdrant’s documentation, and perform our evaluations using this system.
+
+We'll use the pre-compiled [hugging-face dataset](https://www.google.com/url?q=https://huggingface.co/datasets/atitaarora/qdrant_doc&sa=D&source=editors&ust=1712248322130408&usg=AOvVaw0Bl7gKES2qQyo88tFWPaZZ), which consists of ‘text’ and ‘source’, derived the documentation.
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/dataset_preview.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/dataset_preview.png)
 
-We process this dataset using the choice of our text splitter , chunks size and chunk overlap.
+We process our pre-compiled dataset, choosing a text splitter, chunk size, and chunk overlap, below:
 
 ```python
 # Retrieve the documents / dataset to be used
@@ -386,7 +383,7 @@ for doc in langchain_docs:
     docs_processed += text_splitter.split_documents([doc])
 ```
 
-We are using [Fastembed](https://qdrant.github.io/fastembed) to make the encoding process of these document chunks lighter and simpler. FastEmbed is a lightweight, fast, Python library built for embedding generation and natively supports embedding creation suitable to use with Qdrant.
+We use [Fastembed](https://qdrant.github.io/fastembed) to make the encoding process of these document chunks lighter and simpler. FastEmbed is a lightweight, fast, Python library built for embedding generation, and natively supports creating embeddings that are compatible and efficient for use with Qdrant.
 
 ```python
 ## Declaring the intended Embedding Model with Fastembed
@@ -395,10 +392,10 @@ from fastembed.embedding import TextEmbedding
 pd.DataFrame(TextEmbedding.list_supported_models())
 ```
 
-You can execute above to get the list of all supported embedding models including the one for generating sparse vector encoding through [SPLADE++](https://huggingface.co/prithivida/Splade_PP_en_v1). We are using default model in this case.
+Executing the code above will give you a list of all supported embedding models, including the one for generating sparse vector encoding through [SPLADE++](https://huggingface.co/prithivida/Splade_PP_en_v1). In this case, we use the default model.
 
 ```python
-##Initilising embedding model
+##Initialising embedding model
 embedding_model = TextEmbedding()
 
 ## For custom model supported by Fastembed
@@ -408,7 +405,7 @@ embedding_model = TextEmbedding()
 embedding_model.model_name
 ```
 
-We process the document chunks into text to be processed by Fastembed as :
+We process the document chunks into text, so they can be processed by Fastembed, as follows:
 
 ```python
 docs_contents = []
@@ -426,7 +423,7 @@ print("content : ",len(docs_contents))
 print("metadata : ",len(docs_metadatas))
 ```
 
-Now we set up qdrant client to ingest these document chunk encoding into our knowledge store which is Qdrant in this case :
+Now we set up the qdrant client to ingest these document chunk encodings into our knowledge store - Qdrant, in this case.
 
 ```python
 
@@ -445,14 +442,14 @@ client = qdrant_client.QdrantClient(
 #client = qdrant_client.QdrantClient("http://localhost:6333")
 ```
 
-And define our `collection name`
+And define our `collection name`:
 
 ```python
 ## Collection name that will be used throughtout in the notebook
 COLLECTION_NAME = "qdrant-docs-ragas"
 ```
 
-There are some collection level operations which are **Good-to-know** in case they are needed :
+Here are some additional collection level operations that are good be aware of, in case they are needed:
 
 ```python
 ## General Collection level operations
@@ -468,13 +465,13 @@ client.get_collections()
 #client.delete_collection(COLLECTION_NAME)
 ```
 
-Following this , to add the document chunks into Qdrant Collection is as straightforward as :
+Now we're set up to add document chunks into the Qdrant Collection. This process is as straightforward as:
 
 ```python
 client.add(collection_name=COLLECTION_NAME, metadata=docs_metadatas, documents=docs_contents)
 ```
 
-We can verify the total number of document chunks indexed as :
+We can also verify the total number of document chunks indexed:
 
 ```python
 ## Ensuring we have expected number of document chunks
@@ -484,7 +481,7 @@ client.count(collection_name=COLLECTION_NAME)
 #CountResult(count=4431)
 ```
 
-You can test searching for the document as :
+Now you're able to test searching for a document, as follows:
 
 ```python
 ## Searching for document chunks similar to query for context
@@ -498,10 +495,10 @@ for res in search_result:
     print("Source : " , res.metadata['source'])
 ```
 
-Now that we’re all set with our knowledge store to provide context to our RAG , lets quickly build it. We are going to write a small sub routine to wrap our prompt , context and response collections.
+At this point, we have in place our knowledge store to provide context to our RAG system. So, let's quickly build our RAG system. To do this, we write a small sub-routine to wrap our prompt, context, and response collections.
 
 ```python
-ddef query_with_context(query,limit):
+def query_with_context(query,limit):
 
 ## Fetch context from Qdrant
 search_result = client.query(collection_name=COLLECTION_NAME, query_text=query, limit=limit)
@@ -550,7 +547,7 @@ res = openai_client.completions.create(
 return (contexts , res.choices[0].text)
 ```
 
-Try out running your first query through your RAG pipeline as :
+You are ready to try **running your first query** through your RAG pipeline:
 
 ```python
 question1 = "what is quantization?"
@@ -567,11 +564,13 @@ print(rag_response1)
 # For more information on quantization methods and their mechanics, please refer to the documentation on quantization at https://qdrant.tech/documentation/guides/quantization.html.
 ```
 
-One key thing to understand is that RAGAS work inherently with datasets for evaluations for it is a good idea to create a set of questions and ground truth to help create an evaluation dataset to assess our RAG system. We are leveraging the dataset [https://huggingface.co/datasets/atitaarora/qdrant_doc_qna](https://huggingface.co/datasets/atitaarora/qdrant_doc_qna) to create our evaluation set from our RAG pipeline and execute it as shown before in the method `create_eval_dataset()` above.
+### Evaluating our RAG system using RAGAS
 
-**Lets evaluate , how good is our RAG !!**
+We leverage our [original dataset ([https://huggingface.co/datasets/atitaarora/qdrant_doc_qna](https://huggingface.co/datasets/atitaarora/qdrant_doc_qna)) to create our evaluation set (questions and ground_truth) from our RAG pipeline, and execute it shown in the method `create_eval_dataset()` above.
 
-Its as simple as importing the desired metrics:
+**Let's evaluate how well our RAG system performs.**
+
+To do this, we simply import the desired metrics:
 
 ```python
 from ragas.metrics import (
@@ -583,7 +582,7 @@ from ragas.metrics import (
 )
 ```
 
-And running the evaluation as :
+And then run our evaluation as follows:
 
 ```python
 result_512_4 = evaluate(
@@ -597,40 +596,44 @@ result_512_4 = evaluate(
     ],
 )
 
-## Lets look at our results
+## Let's look at our results
 
 evaluation_result_df_512_4 = result_512_4.to_pandas()
 
 evaluation_result_df_512_4.head(5)
 ```
 
-Which outputs as below :
+Our results output as follows:
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/rag_eval_ragas.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/rag_eval_ragas.png)
 
-We notice in some of our queries the context precision and answer correctness is quite low (or even zero). Which indicates the prospective issue with the retrieval chain of our RAG system.
+Notice that in some of our queries, the context precision and answer correctness are quite low, or even zero. This indicates a possible issue with the retrieval chain of our RAG system.
 
-This issue could be impacted by :
+This issue could be caused by:
 
 - Number of chunks retrieved
 - Size of chunks
 - Chunk overlap size
+- Choice of Embedding model
 - Missing relevance reranking
 - Choice of Embedding model
 - Missing data preprocessing / enrichment
 
-Each of the mentioned problems above may require you to reprocess the vectors into your vector database except tuning the document retrieval window or applying reranking. Let’s try to change the size of document chunk retrieval window from **4** to **5** and find out if it improves our metrics. We will make a change to our RAG with a context method to retrieve **5** instead of **4** chunks and recreate the evaluation dataset.
-Followed by re-running the RAGAS evaluations.
+Issues resulting from anything of this list (except tuning the document retrieval window or applying reranking) may require you to reprocess the vectors into your vector database. Let’s try changing the size of document chunk retrieval from **4** to **5**, and see if this improves our metrics. To do this. we change our RAG using a context method (retrieving **5** instead of **4** chunks), and then recreate the evaluation dataset. Finally, we re-run the RAGAS evaluations.
 
-We add some visualisations to enable smoother comparison and this is what it looks after the changes.
+Here we've added some visualisations to allow easier comparison and evaluation. Here's what changed following our document chunk retrieval parameter:
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/algo_comparison_chart.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/algo_comparison_chart.png)
 
-We can see the metrics impacted by this change and can assess if they are moving in the desired direction. Please remember this is an iterative process and you can try our other suggested changes to evaluate what works better for your given use-case.
+4 of our 5 metrics move in the desired direction (towards 1.0). Please remember, this is an iterative process. It's good to try changing all of the potentially determining factors (number of chunks retrieved, chunks size, chunk overlap size, embedding model) to see how your results differ. The performance will very much depend on your use case.
+
+## In sum
+
+
 
 The complete version of this code and notebook is available at - [https://github.com/qdrant/qdrant-rag-eval/tree/master/workshop-rag-eval-qdrant-ragas](https://github.com/qdrant/qdrant-rag-eval/tree/master/workshop-rag-eval-qdrant-ragas).
 
-Don’t forget to star and contribute your experiments. Goes without saying that any feedback or improvement is very welcome.
+Don’t forget to star and contribute your experiments. Any feedback or improvement is very welcome.
 
 The next in series is the similar code walk through of using [Arize Phoenix](https://phoenix.arize.com/) with your RAG system.
 
