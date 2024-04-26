@@ -1,0 +1,64 @@
+name: Check Authorization for schema changes
+
+on:
+  pull_request:
+    branches:
+    - main
+
+jobs:
+  check_changes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Get list of changed files
+        id: files
+        uses: jitterbit/get-changed-files@v1
+      
+      - name: Check if vendor.schema.json has changes
+        id: check_dir
+        run: |
+          CHANGED_FILES="${{ steps.files.outputs.all }}"
+          DIRECTORY='docs/tools/vdb_table/vendor.schema.json'
+          for FILE in $CHANGED_FILES; do
+            if [[ "$FILE" == "$DIRECTORY"* ]]; then
+              echo "Directory has changes"
+              echo "::set-output name=directory_changed::true"
+              break
+            fi
+          done
+      
+      - name: Get Commit Author Username
+        id: get_username
+        run: |
+          AUTHOR_EMAIL=$(git log -1 --pretty=format:'%ae')
+          echo "Querying for username with email: $AUTHOR_EMAIL"
+          QUERY="query { search(query: \"type:user $AUTHOR_EMAIL\", type: USER, first: 1) { edges { node { ... on User { login } } } } }"
+          RESPONSE=$(curl -s -H "Authorization: bearer ${{ secrets.GITHUB_TOKEN }}" -X POST -d "{\"query\":\"$QUERY\"}" https://api.github.com/graphql)
+          USERNAME=$(echo $RESPONSE | jq -r '.data.search.edges[0].node.login')
+          echo "::set-output name=username::$USERNAME"
+          echo "Retrieved username: $USERNAME"
+            
+      - name: Check if commit author is from approved superlinked team
+        uses: octokit/request-action@v2.x
+        id: check_team
+        with:
+          route: GET /orgs/{org}/teams/{team_slug}/memberships/{username}
+          org: superlinked
+          team_slug: vdb-table-maintainers
+          username: ${{ steps.get_username.outputs.username }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        continue-on-error: true
+      
+      - name: Fail action if not approved
+        run: |
+          TEAM_STATE=$(echo '${{ steps.check_team.outputs.data }}' | jq -r '.state')
+          if [[ "${{ steps.check_dir.outputs.directory_changed }}" == "true" && "$TEAM_STATE" != "active" ]]; then
+            echo "Unauthorized change detected"
+            exit 1
+          else
+            echo "Change is authorized or not in specified directory"
+          fi
+        shell: bash
