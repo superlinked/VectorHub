@@ -50,7 +50,6 @@ jobs:
           username: ${{ steps.get_username.outputs.username }}
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        continue-on-error: true
       
       - name: Fail action if not approved
         run: |
