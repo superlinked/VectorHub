@@ -160,7 +160,7 @@
     "comment": "via BIN_FLAT, BIN_IVF_FLAT index type"
   },
   "github_stars": {
-    "value": 26749,
+    "value": 26916,
     "source_url": "https://github.com/milvus-io/milvus",
     "comment": "",
     "value_90_days": 0
@@ -172,21 +172,21 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 8770336,
+    "value": 8878274,
     "source_url": "https://pypi.org/project/pymilvus/",
     "comment": "",
-    "value_90_days": 1854291
+    "value_90_days": 1849726
   },
   "npm_downloads": {
-    "value": 397564,
+    "value": 413427,
     "source_url": "https://www.npmjs.com/package/@zilliz/milvus2-sdk-node",
     "comment": "",
-    "value_90_days": 158174
+    "value_90_days": 164980
   },
   "crates_io_downloads": {
-    "value": 1130,
+    "value": 1179,
     "source_url": "https://crates.io/crates/milvus",
     "comment": "",
-    "value_90_days": 742
+    "value_90_days": 787
   }
 }
