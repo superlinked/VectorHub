@@ -153,34 +153,39 @@
     "source_url": "https://opensearch.org/blog/byte-quantized-vectors-in-opensearch/",
     "comment": ""
   },
+  "binary_quantization": {
+    "support": "full",
+    "source_url": "https://opensearch.org/docs/latest/search-plugins/knn/knn-score-script/#getting-started-with-the-score-script-for-binary-data",
+    "comment": ""
+  },
   "github_stars": {
-    "value": 8594,
+    "value": 8725,
     "source_url": "https://github.com/opensearch-project/OpenSearch",
     "comment": "",
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 64480826,
+    "value": 67538480,
     "source_url": "https://hub.docker.com/r/opensearchproject/opensearch",
     "comment": "",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 316766,
+    "value": 321132,
     "source_url": "https://pypi.org/project/opensearch/",
     "comment": "",
-    "value_90_days": 31197
+    "value_90_days": 29681
   },
   "npm_downloads": {
-    "value": 18274171,
+    "value": 18998086,
     "source_url": "https://www.npmjs.com/package/@opensearch-project/opensearch",
     "comment": "",
-    "value_90_days": 4356902
+    "value_90_days": 4489940
   },
   "crates_io_downloads": {
-    "value": 245349,
+    "value": 272666,
     "source_url": "https://crates.io/crates/opensearch",
     "comment": "",
-    "value_90_days": 45415
+    "value_90_days": 65039
   }
 }

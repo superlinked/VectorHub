@@ -1,6 +1,4 @@
-<!-- TODO: Replace this text with a summary of article for SEO -->
-
-# 2.0 Vector Compute
+# Vector Compute: Introduction
 
 ## Introduction 
 
@@ -8,7 +6,7 @@ Back in 2011, Marc Andreessen told us “Software is eating the world.” Now, m
 
 But Machine Learning shouldn't just ingest and create haphazardly. To build a good ML-powered system, you have to overcome two common problems: **organizing** your data in a way that lets you quickly retrieve relevant information, and, relatedly, **representing** your data in a way that makes it easy to feed into your ML models.
 
-<img src=assets/building_blocks/vector_compute/bb2-1.png alt="Meme" data-size="100" />
+<img src="../../assets/building_blocks/vector_compute/bb2-1.png" alt="Meme" data-size="100" />
 
 These two problems are related. Indeed, they converge as parts of what is, in essence, _the_ defining challenge of many ML systems: turning your data into vector embeddings – that is, **connecting** your [Data Sources](https://hub.superlinked.com/data-sources) to your [Vector Search & Management](https://hub.superlinked.com/vector-search) system.
 
@@ -20,11 +18,11 @@ In basic terms, Vector Compute is the infrastructure responsible for the **train
 
 ## Vector Compute and ETL, not the same thing
 
-<img src=assets/building_blocks/vector_compute/bb2-2-2.png alt="How Vector Compute and ETL are analogous" data-size="100" />
+<img src="../../assets/building_blocks/vector_compute/bb2-2-2.png" alt="How Vector Compute and ETL are analogous" data-size="100" />
 
 The role Vector Compute fills for your information retrieval system is similar to the role ETL tools like fivetran fill for your data warehouse. As in ETL, in Vector Compute you have to Extract the right information, Transform it into Vector Embeddings, and Load it into your Vector Search solution or cloud storage. 
 
-<img src=assets/building_blocks/vector_compute/bb2-3-3.png alt="How Vector Compute and ETL work together" data-size="100" />
+<img src="../../assets/building_blocks/vector_compute/bb2-3-3.png" alt="How Vector Compute and ETL work together" data-size="100" />
 
 There are, however, **two important distinctions** between ETL and Vector Compute:
 
@@ -43,15 +41,15 @@ At the core of Vector Compute are embedding models – machine learning models a
 
 Embedding models turn features extracted from high-dimensional data, with large numbers of attributes or dimensions, like text, images, or audio, into lower-dimensional but dense mathematical representations – i.e., vectors. You can apply embedding models to structured data like tabular datasets or graphs.
 
-[Read more about embedding models, here](https://hub.superlinked.com/21-embedding-models)
+[Read more about embedding models, here](embedding-models)
 
 ### **2.2 Pre-Trained and Custom Models** 
 Your task's unique requirements will dictate when you should use a custom model, and when you should use a pre-trained model.
 
-[Read more about how to choose the right type of model for your use case, here](https://hub.superlinked.com/22-pre-trained-vs-custom-models)
+[Read more about how to choose the right type of model for your use case, here](pre-train-custom-models)
 
 ### **2.3 Applications of Vector Compute**
-So what does this all mean? Such robust homegrown solutions will be increasingly important given the broad and ever-expanding application of Vector Compute to solve real-world problems in a spectrum of domains, [partially discussed here](https://hub.superlinked.com/23-applications-of-vector-compute).
+So what does this all mean? Such robust homegrown solutions will be increasingly important given the broad and ever-expanding application of Vector Compute to solve real-world problems in a spectrum of domains, [partially discussed here](applications).
 
 ---
 ## Contributors

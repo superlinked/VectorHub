@@ -1,6 +1,4 @@
-<!-- TODO: Replace this text with a summary of article for SEO -->
-
-# 3.0 Vector Search & Management
+# Vector Search & Management: Introduction
 
 <!-- TODO: Cover image: 
 1. You can create your own cover image and put it in the correct asset directory,
@@ -45,7 +43,7 @@ What you choose to prioritize affects your retrieval system's architecture and t
 
 An efficient and effective Vector Search & Management approach must carefully consider and quantify the retrieval system’s update frequency, access patterns, and priorities to meet the requirements of the intended use case, whether it’s providing instant e-commerce product recommendations, facilitating real-time decision-making, conducting in-depth data analysis, or something else entirely.
 
-<img src=assets/building_blocks/vector_search/bb3-1.png alt="Three core considerations of Vector Search" data-size="100" />
+<img src="../../assets/building_blocks/vector_search/bb3-1.png" alt="Three core considerations of Vector Search" data-size="100" />
 
 The above visual's key takeaway: Our three corners (priorities, update frequency, access patterns) interact to determine the design of our system. Depending on our project, we may privilege one or two corners over the other/s. For example, if we're building a recommendation system for an online store, we would emphasize "real-time" interactions and "speed" to offer customers instant, personalized recommendations.
 
@@ -54,17 +52,17 @@ Now let's dive into the details.
 ### **3.1 Nearest Neighbor Search Algorithms**
 Scanning to calculate the similarity between vectors quickly is at the heart of Vector Search. Vector similarity scores encoded by your embedding model/s store valuable feature or characteristic information about your data that can be used in various applications (e.g., content recommendation, clustering, data analysis). There are several ways to perform nearest neighbor search.
 
-[Read more about different vector search algorithms, here](https://hub.superlinked.com/31-nearest-neighbor-search-algorithms)
+[Read more about different vector search algorithms, here](nearest-neighbor-algorithms)
 
 ### **3.2 Key Access Patterns** 
 The access patterns deployed in Vector Search significantly impact storage, query efficiency, and infrastructure alignment, which are consequential in optimizing your retrieval system for your intended application.
 
-[Read more about the different access patterns, here](https://hub.superlinked.com/32-key-access-patterns)
+[Read more about the different access patterns, here](access-patterns)
 
 ### **3.3 Conclusions & Next Steps**
 So what does this all mean? 
 
-[Read our conclusions and recommended next steps, here](https://hub.superlinked.com/33-conclusion)
+[Read our conclusions and recommended next steps, here](conclusion)
 
 ---
 ## Contributors
