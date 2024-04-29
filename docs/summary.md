@@ -33,7 +33,6 @@
   - [Optimizing RAG with Hybrid Search & Reranking](use_cases/hybrid_search_&_rerank_rag.md)
   - [RecSys for Beginners](use_cases/recSys-basic.md)
   - [An Evaluation of RAG Retrieval Chunking Methods](use_cases/evaluation_of_RAG_retrieval_chunking_methods.md)
-  - [How to Build a Recommender System From Clickstream Data](use_cases/recommender_from_clickstreams.md)
 
 <!-- - [Toolbox](tools/readme.md)
 - [TestPage](tools/testpage.md) -->
