@@ -161,7 +161,7 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 222108,
+    "value": 222124,
     "source_url": "https://pypi.org/project/vald-client-python/",
     "comment": "",
     "value_90_days": 9754

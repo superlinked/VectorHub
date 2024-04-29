@@ -166,7 +166,7 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 9185457,
+    "value": 9223434,
     "source_url": "https://pypi.org/project/weaviate-client/",
     "comment": "",
     "value_90_days": 4130386
