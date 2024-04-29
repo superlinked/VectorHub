@@ -2,10 +2,10 @@
   "name": "Redis Search",
   "links": {
     "docs": "https://redis.io/docs/get-started/vector-database/",
-    "github": "https://github.com/RedisAI/VectorSimilarity",
+    "github": "https://github.com/RediSearch/RediSearch",
     "website": "https://redis.com/solutions/use-cases/vector-database/",
     "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/81",
-    "poc_github": "https://github.com/tylerhutcherson",
+    "poc_github": "https://github.com/adrianoamaral",
     "slug": "redis"
   },
   "oss": {
@@ -127,8 +127,8 @@
     "comment": ""
   },
   "ephemeral": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://redis.io/blog/the-case-for-ephemeral-search/",
     "comment": ""
   },
   "sharding": {
@@ -149,28 +149,28 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 34,
-    "source_url": "https://github.com/RedisAI/VectorSimilarity",
-    "comment": "",
+    "value": 5225,
+    "source_url": "https://github.com/RediSearch/RediSearch",
+    "comment": "Vector Search library is part of RediSearch https://github.com/RediSearch/RediSearch/tree/master/deps",
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 0,
-    "source_url": "",
-    "comment": "",
+    "value": 5496075,
+    "source_url": "https://hub.docker.com/r/redis/redis-stack",
+    "comment": "Vector Search is part of the Redis Stack",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 794095,
+    "value": 798173,
     "source_url": "https://pypi.org/project/redisearch/",
     "comment": "",
-    "value_90_days": 45550
+    "value_90_days": 46732
   },
   "npm_downloads": {
-    "value": 87456916,
+    "value": 88680372,
     "source_url": "https://www.npmjs.com/package/@redis/search",
     "comment": "",
-    "value_90_days": 21122476
+    "value_90_days": 21385648
   },
   "crates_io_downloads": {
     "value": 0,
