@@ -166,7 +166,7 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 831594,
+    "value": 832704,
     "source_url": "https://pypi.org/project/usearch/",
     "comment": "",
     "value_90_days": 246654
@@ -178,9 +178,9 @@
     "value_90_days": 22559
   },
   "crates_io_downloads": {
-    "value": 35741,
+    "value": 35742,
     "source_url": "https://crates.io/crates/usearch",
     "comment": "",
-    "value_90_days": 1172
+    "value_90_days": 960
   }
 }
