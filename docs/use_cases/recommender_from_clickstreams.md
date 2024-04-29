@@ -23,7 +23,7 @@ In this article, I want to show you how you can get these embeddings with only a
 2. clean it if necessary, and
 3. use libraries such as [Gensim](https://radimrehurek.com/gensim/).
 
-Let's see how this works!
+Let's see how this works! But before we start, let's install some libraries via `pip install gensim umap-learn pandas matplotlib`.
 
 
 ## Gather Your Data
@@ -197,9 +197,9 @@ It is probably one of the easiest projects to set up, and still, you get really 
 As an example, you can use PCA, t-SNE, or UMAP to project the embeddings into two dimensions like this:
 ```python
 import matplotlib.pyplot as plt
-from sklearn.manifold import TSNE
+from umap import UMAP
 
-t = TSNE(random_state=0).fit(model.wv.vectors)
+t = UMAP(random_state=0).fit(model.wv.vectors)
 plt.scatter(t.embedding_[:, 0], t.embedding_[:, 1])
 ```
 
