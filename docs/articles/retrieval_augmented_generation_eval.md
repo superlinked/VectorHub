@@ -1,12 +1,10 @@
-<!--First of a three-part (monthly) series on RAG evaluation. In this article, we introduce RAG evaluation and its challenges, outline the broad strokes of an effective evaluation framework, and provide an overview of the kinds of evaluation tools and approaches you can use to evaluate your RAG application. We also provide useful links to articles on RAG, RAG evaluation, a vector database feature matrix, and discuss Golden Sets, BLEU and ROUGE, and more. -->
-
 # Evaluating Retrieval Augmented Generation - a framework for assessment
 
 *In this first article of a three-part (monthly) series, we introduce RAG evaluation, outline its challenges, propose an effective evaluation framework, and provide a rough overview of the various tools and approaches you can use to evaluate your RAG application.*
 
 ## Why evaluate RAG?
 
-Retrieval Augmented Generation (RAG) is probably the most useful application of large language models today. RAG enhances content generation by leveraging existing information effectively. It can amalgamate specific, relevant details from multiple sources to generate more accurate and relevant query results. This makes RAG potentially invaluable in various domains, including content creation, question & answer applications, and information synthesis. RAG does this by combining the strengths of retrieval, usually using dense vector search, and text generation models, like GPT. For a more in-depth introduction to RAG, read [here](https://hub.superlinked.com/retrieval-augmented-generation). 
+Retrieval Augmented Generation (RAG) is probably the most useful application of large language models today. RAG enhances content generation by leveraging existing information effectively. It can amalgamate specific, relevant details from multiple sources to generate more accurate and relevant query results. This makes RAG potentially invaluable in various domains, including content creation, question & answer applications, and information synthesis. RAG does this by combining the strengths of retrieval, usually using dense vector search, and text generation models, like GPT. For a more in-depth introduction to RAG, read [here](retrieval-augmented-generation). 
 
 ![Implementation of RAG using Qdrant as a vector database](../assets/use_cases/retrieval_augmented_generation_eval/rag_qdrant.jpg)
 
@@ -18,7 +16,7 @@ In article 2, we'll look at RAGAS ([RAG Assessment](https://github.com/exploding
 
 ## Why do we need RAG?
 
-RAG significantly enhances [vector search](https://hub.superlinked.com/vector-search) with the power of Large Language Models (LLM), by enabling dynamic content generation based on  retrieved knowledge. RAG is indispensable when users seek to generate new content rather than interact with documents or search results directly. It excels in providing contextually rich, informative, and human-like responses. For tasks requiring detailed, coherent explanations, summaries, or responses that transcend the explicit data stored in vectors, RAG is invaluable. _Before setting up a RAG system, you should consider conducting feasibility studies to determine how and whether RAG aligns with your specific needs and value expectations._
+RAG significantly enhances [vector search](../building-blocks/vector-search/introduction) with the power of Large Language Models (LLM), by enabling dynamic content generation based on  retrieved knowledge. RAG is indispensable when users seek to generate new content rather than interact with documents or search results directly. It excels in providing contextually rich, informative, and human-like responses. For tasks requiring detailed, coherent explanations, summaries, or responses that transcend the explicit data stored in vectors, RAG is invaluable. _Before setting up a RAG system, you should consider conducting feasibility studies to determine how and whether RAG aligns with your specific needs and value expectations._
 
 While vector search efficiently retrieves relevant similar documents/chunks from a document corpus, RAG permits content synthesis and a deeper level of understanding, providing essential context to queries and results generation. In this way, RAG can ensure that answers are unique and tailored to each query, in essence personalized to the user.
 
@@ -114,10 +112,10 @@ While our proposed evaluation strategy is meant to improve RAG evaluation, we sh
 
 ## What's next
 
-We've laid a general foundation for discussing RAG evaluation. In the next article (next month), we'll demystify an existing evaluation framework (RAGAS), and see how well it does at covering all the layers of evaluation we've discused. Looking forward to seeing you in the next part!
+We've laid a general foundation for discussing RAG evaluation. In the next article (next month), we'll demystify an existing evaluation framework (RAGAS), and see how well it does at covering all the layers of evaluation we've discussed. Looking forward to seeing you in the next part!
 
 ## Contributors 
  
-[Atita Arora, Author](https://www.linkedin.com/in/atitaarora/) 
-[Mór Kapronczay, Editor](https://www.linkedin.com/in/mór-kapronczay-49447692) 
-[Robert Turner, Editor](https://robertturner.co/copyedit) 
+- [Atita Arora, Author](https://www.linkedin.com/in/atitaarora/) 
+- [Mór Kapronczay, Editor](https://www.linkedin.com/in/mór-kapronczay-49447692) 
+- [Robert Turner, Editor](https://robertturner.co/copyedit) 

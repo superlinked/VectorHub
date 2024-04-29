@@ -32,14 +32,14 @@
     "comment": ""
   },
   "hybrid_search": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://code.kx.com/kdbai/use/hybrid-search.html",
     "comment": ""
   },
   "facets": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "partial",
+    "source_url": "https://code.kx.com/kdbai/use/query.html",
+    "comment": "we have built in aggregations"
   },
   "geo_search": {
     "support": "",
@@ -52,13 +52,13 @@
     "comment": ""
   },
   "sparse_vectors": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://code.kx.com/kdbai/reference/hybrid.html",
     "comment": ""
   },
   "bm25": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://code.kx.com/kdbai/reference/hybrid.html",
     "comment": ""
   },
   "full_text": {
@@ -93,12 +93,12 @@
   },
   "langchain": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://code.kx.com/kdbai/integrations/langchain.html",
     "comment": ""
   },
   "llamaindex": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://code.kx.com/kdbai/integrations/llamaindex.html",
     "comment": ""
   },
   "managed_cloud": {
@@ -107,7 +107,7 @@
     "comment": ""
   },
   "pricing": {
-    "value": "Cloud = Free, limited memory/storage\n\nOn-Prem = Contact Sales",
+    "value": "Cloud = Free: 4 GB memory per instance, 30 GB data storage, OnPrem = 90-day trial, contact sales",
     "source_url": "",
     "comment": ""
   },
@@ -122,7 +122,7 @@
     "comment": ""
   },
   "disk_index": {
-    "support": "full",
+    "support": "partial",
     "source_url": "",
     "comment": ""
   },
@@ -161,10 +161,10 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 4250,
+    "value": 4904,
     "source_url": "https://pypi.org/project/kdbai-client/",
     "comment": "",
-    "value_90_days": 1998
+    "value_90_days": 2448
   },
   "npm_downloads": {
     "value": 0,

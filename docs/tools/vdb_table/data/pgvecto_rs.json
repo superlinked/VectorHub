@@ -1,12 +1,12 @@
 {
-  "name": "pgvector",
+  "name": "pgvecto.rs",
   "links": {
-    "docs": "",
-    "github": "https://github.com/pgvector/pgvector",
-    "website": "https://github.com/pgvector/pgvector",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/69",
-    "poc_github": "https://github.com/jkatz",
-    "slug": "pgvector"
+    "docs": "https://docs.pgvecto.rs/",
+    "github": "https://github.com/tensorchord/pgvecto.rs",
+    "website": "https://docs.pgvecto.rs/",
+    "vendor_discussion": "",
+    "poc_github": "https://github.com/kemingy",
+    "slug": "pgvecto.rs"
   },
   "oss": {
     "support": "full",
@@ -14,18 +14,18 @@
     "comment": ""
   },
   "license": {
-    "value": "PostgreSQL Licence https://opensource.org/license/postgresql/",
-    "source_url": "https://opensource.org/license/postgresql/",
+    "value": "Apache-2.0",
+    "source_url": "https://github.com/tensorchord/pgvecto.rs/blob/main/LICENSE",
     "comment": ""
   },
   "dev_languages": {
     "value": [
-      "c"
+      "rust"
     ],
     "source_url": "",
     "comment": ""
   },
-  "vector_launch_year": 2021,
+  "vector_launch_year": 2023,
   "metadata_filter": {
     "support": "full",
     "source_url": "",
@@ -33,8 +33,8 @@
   },
   "hybrid_search": {
     "support": "full",
-    "source_url": "https://github.com/pgvector/pgvector",
-    "comment": "https://github.com/pgvector/pgvector#hybrid-search"
+    "source_url": "https://docs.pgvecto.rs/use-case/hybrid-search.html",
+    "comment": ""
   },
   "facets": {
     "support": "",
@@ -42,7 +42,7 @@
     "comment": ""
   },
   "geo_search": {
-    "support": "full",
+    "support": "partial",
     "source_url": "",
     "comment": "Postgis"
   },
@@ -52,22 +52,22 @@
     "comment": ""
   },
   "sparse_vectors": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://docs.pgvecto.rs/use-case/sparse-vector.html",
+    "comment": "v0.3.0"
   },
   "bm25": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
+    "support": "partial",
+    "source_url": "https://docs.pgvecto.rs/use-case/hybrid-search.html",
+    "comment": "Support scoring by TF, fully BM25 support can be achieved by the https://github.com/paradedb/paradedb/tree/dev/pg_search extension."
   },
   "full_text": {
     "support": "full",
     "source_url": "https://www.postgresql.org/docs/current/textsearch.html",
-    "comment": "https://www.postgresql.org/docs/current/textsearch.html via GIST"
+    "comment": "via core Postgres and GIST"
   },
   "embeddings_text": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
@@ -93,18 +93,18 @@
   },
   "langchain": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://python.langchain.com/docs/integrations/vectorstores/pgvecto_rs/",
     "comment": ""
   },
   "llamaindex": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://docs.llamaindex.ai/en/stable/examples/vector_stores/PGVectoRsDemo/",
     "comment": ""
   },
   "managed_cloud": {
-    "support": "full",
+    "support": "",
     "source_url": "",
-    "comment": "(supabase)"
+    "comment": ""
   },
   "pricing": {
     "value": "",
@@ -118,7 +118,7 @@
   },
   "multi_tenancy": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://docs.pgvecto.rs/use-case/multi-tenancy.html",
     "comment": ""
   },
   "disk_index": {
@@ -127,55 +127,55 @@
     "comment": ""
   },
   "ephemeral": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "sharding": {
     "support": "none",
     "source_url": "",
-    "comment": "While pgvector does not provide this natively, you can get this either from PostgreSQL functionality like \"postgres_fdw\" or from extensions. You can also choose to subdivide your index through partitioning."
+    "comment": "While pgvecto.rs does not provide this natively, you can get this either from PostgreSQL functionality like \"postgres_fdw\" or from extensions. You can also choose to subdivide your index through partitioning."
   },
   "doc_size": {
     "bytes": 0,
-    "unlimited": false,
+    "unlimited": true,
     "source_url": "",
     "comment": ""
   },
   "vector_dims": {
-    "value": 2000,
+    "value": 65535,
     "unlimited": false,
     "source_url": "",
     "comment": ""
   },
   "github_stars": {
-    "value": 9263,
-    "source_url": "https://github.com/pgvector/pgvector",
+    "value": 1389,
+    "source_url": "https://github.com/tensorchord/pgvecto.rs",
     "comment": "",
     "value_90_days": 0
   },
   "docker_pulls": {
+    "value": 1972691,
+    "source_url": "https://hub.docker.com/r/tensorchord/pgvecto-rs",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "pypi_downloads": {
+    "value": 13408,
+    "source_url": "https://pypi.org/project/pgvecto-rs/",
+    "comment": "",
+    "value_90_days": 9603
+  },
+  "npm_downloads": {
     "value": 0,
     "source_url": "",
     "comment": "",
     "value_90_days": 0
   },
-  "pypi_downloads": {
-    "value": 3982676,
-    "source_url": "https://pypi.org/project/pgvector/",
-    "comment": "",
-    "value_90_days": 2074149
-  },
-  "npm_downloads": {
-    "value": 447896,
-    "source_url": "https://www.npmjs.com/package/pgvector",
-    "comment": "",
-    "value_90_days": 302508
-  },
   "crates_io_downloads": {
-    "value": 45487,
-    "source_url": "https://crates.io/crates/pgvector",
+    "value": 0,
+    "source_url": "",
     "comment": "",
-    "value_90_days": 20313
+    "value_90_days": 0
   }
 }
