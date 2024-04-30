@@ -22,17 +22,19 @@ An embedding is a numerical representation of categories that carry more meaning
 But what could these embeddings mean? Well, it depends on how the users interact with your website. In the special case of hotels, maybe you know this behavior from yourself or your partner: You want to stay close to some location and check out many hotels that look interesting to you.
 Now, if we assume that most customers behave like this, then the embeddings of similar hotels are similar. So, we could build a **recommender for similar hotels** with this!
 
-In this article, we'll show you how you can create these embeddings with only a few lines of code using techniques from NLP (natural language processing). All you need to do is:
-1. to collect the clickstream data, which is usually quite simple
-2. clean it, if necessary, and
+In this article, we'll show you how - with only a few lines of code using techniques from NLP (natural language processing) - you can create embeddings that embody clickstream data, and use these embeddings to set up a simple recommendation system. All you need to do is:
+
+1. collect the clickstream data (usually very simple)
+2. clean it, if necessary
 3. use libraries such as [Gensim](https://radimrehurek.com/gensim/) to train an algorithm (e.g., Word2Vec) and generate our hotel embeddings on our clickstream data.
 
-Let's see how this works! 
-Before we start, we need to install some requisite libraries:
+Before we show you how this works, we need to install some requisite libraries:
 `pip install gensim umap-learn pandas matplotlib`.
 
+Now that those are in place, let's get started!
 
-## Gather Your Data
+## Gather and clean your data
+
 To set up our example, we'll use [this artificial dataset](../assets/use_cases/recommender_from_clickstreams/clickstreams.txt). The first few lines out of 10,000 look like this:
 
 ```text
@@ -65,7 +67,7 @@ Your data looks like this now:
  ...
  ```
 
- ## Train a Model
+ ## Train a model, create embeddings
 Once we have the data in this format, we can just type
 
 ```python
@@ -81,7 +83,7 @@ model = Word2Vec(
 
 to get the training going. Note that Gensim's Word2Vec model has [many more parameters](https://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec) to check out.
 
-Before I explain what this model does under the hood, let us see what comes out of the training. We can access the learned embeddings like this:
+The training creates learned embeddings, which we can access like this:
 
 ```python
 import pandas as pd
@@ -102,9 +104,9 @@ The first five rows look like this:
 | 800 | 0.93 |  1.04 |  0.7  |  0.05 |  0.75 | -0.23 |  0.31 |  0.72 |  0.79 |  0.37 |  0.05 |  1.32 |  0.3  |  1.03 |  0.19 | -1.18 |
 | 199 | 1.5  | -0.75 | -0.07 | -1.02 | -1.29 |  0.23 | -0.6  |  0.06 |  1.04 | -0.15 |  0.77 |  0.53 | -0.47 |  0.62 |  0.38 | -0.18 |
 
-The index consists of the hotel ID, and next to it, you find the 16 (since we have set `vector_size=16`) numbers that represent the learned embedding.
+The index consists of the hotel ID (in the first column), and then (cols 0-15) the 16 (because we set `vector_size=16`) numbers that represent the learned embedding.
 
-### Recommend alternative hotels
+## Recommendation system: suggesting other hotels
 Since we have an embedding for each hotel, we can now ask for **closest embeddings** given an embedding for a hotel. This should give us hotels that are similar to the ones we query.
 
 Using Gensim, you can easily do it via 
@@ -127,26 +129,27 @@ and you receive
  (numbers might differ for you). Here is how to read it: Hotel 131 is most similar to Hotel 123, with a *cosine similarity* of about 0.91. The second most similar is Hotel 127 with a cosine similarity of about 0.9, and so on. So, here you have similar hotels according to the clickstreams of the users!
 
 :::hint
-The cosine similarity is a measure of how similar two vectors are. It can be between -1 and 1, similar to the Pearson correlation coefficient. It is rather large if both vectors point in the same direction. 
+Cosine similarity is a measure of how similar two vectors are. It can range from -1 to 1 (similar to the Pearson correlation coefficient). If both vectors point in the same direction, cosine similarity is at the high end (closer to 1).
 
 The formula is $\text{Cosine Similarity}(\mathbf{A}, \mathbf{B}) = \frac{\mathbf{A} \cdot \mathbf{B}}{\|\mathbf{A}\|\cdot \|\mathbf{B}\|}=\frac{\sum_{i=1}^{n} A_i \cdot B_i}{\sqrt{\sum_{i=1}^{n} A_i^2} \cdot \sqrt{\sum_{i=1}^{n} B_i^2}}$, where $\mathbf{A}=(A_1, \ldots, A_n)$ and $\mathbf{B}=(B_1, \ldots, B_n)$ are two vectors.
 :::
 ![Cosine Similarity](../assets/use_cases/recommender_from_clickstreams/cossim.png)
 
-## How Does It Work?
-So, what is Gensim's Word2Vec model doing under the hood? Basically, it is a fast implementation of the ideas of Mikolov et al. in their paper [Efficient Estimation of Word Representations in Vector Space](https://arxiv.org/abs/1301.3781) from 2013, a true classic that changed the world of NLP forever (before transformers came around and disrupted it again).
+## Under the hood
 
-The authors' Word2Vec comes in two flavors:
-- CBOW
-- Skipgram (we have used this with `sg=1` in the model!)
+Gensim's Word2Vec model is, basically, a fast implementation of ideas in Mikolov et al.'s groundbreaking 2013 NLP paper, [Efficient Estimation of Word Representations in Vector Space](https://arxiv.org/abs/1301.3781).
 
-Let us take a look at how the Skipgram version works. So, assume that we have the clickstream from the introduction.
+We use the Skipgram version `sg=1` of the authors' Word2Vec model (there's also a CBOW (Continuous Bag of Words) version), which works like this.
+
+So, assume that we have the clickstream from the introduction.
+
 ```mermaid
 graph LR;
       id1[Tranquil Haven Resort]-->id2[Summit Vista Inn];
       id2[Summit Vista Inn]-->id3[Azure Sands Hotel];
       id3[Azure Sands Hotel]-->id4[Evergreen Retreat Lodge];
 ```
+
 > **The fundamental idea**: For each hotel in this stream, we try to predict the hotel right before and after it.
 
 In the example, we would create the following table:
