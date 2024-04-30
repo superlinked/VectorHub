@@ -3,7 +3,7 @@
 
 # Evaluating Retrieval Augmented Generation using RAGAS
 
-In our [first article](https://superlinked.com/vectorhub/articles/evaluating-retrieval-augmented-generation-framework), we introduced RAG evaluation and its challenges, proposed an evaluation framework, and provided an overview of the various tools and approaches you can use to evaluate your RAG application. In this **second** of three articles (one a month), **we leverage the knowledge and concepts we built in part one to walk you through our first RAG evaluation framework, [RAGAS](https://docs.ragas.io/)**, which is based on Es et al.'s [introductory paper](https://arxiv.org/pdf/2309.15217). RAGAS aims to provide useful and actionable metrics but relies on as little annotated data as possible, making it cheaper and faster than using LLMs to evaluate your RAG pipeline.
+In our [first article](https://superlinked.com/vectorhub/articles/evaluating-retrieval-augmented-generation-framework), we introduced RAG evaluation and its challenges, proposed an evaluation framework, and provided an overview of the various tools and approaches you can use to evaluate your RAG application. In this **second** of three articles (one a month), **we leverage the knowledge and concepts we introduced in the first article, to walk you through our a RAG evaluation framework, [RAGAS](https://docs.ragas.io/)**, which is based on Es et al.'s [introductory paper](https://arxiv.org/pdf/2309.15217). RAGAS aims to provide useful and actionable metrics but relies on as little annotated data as possible, making it a cheaper and faster way of evaluating your RAG pipeline than using LLMs.
 
 To set up our RAGAS evaluation framework, we apply a concept we discussed in the [first article](https://superlinked.com/vectorhub/articles/evaluating-retrieval-augmented-generation-framework) - ground truth. Some ground truth data - a golden set - is needed for evaluating our RAG pipeline's generated responses. It provides a meaningful context for our evaluation metrics. Our first step, therefore, in setting up RAGAS is creating an evaluation dataset, complete with questions, answers, and ground-truth data that takes account of relevant context. Next, we'll look more closely at evaluation metrics, indicating which ones make sense for specific use cases, and how to interpret them. Finally, we'll look at how to use our evaluation dataset to assess our chosen metrics.
 
@@ -259,21 +259,17 @@ rag_response_dataset_512_4 = Dataset.from_dict(rag_eval_dataset_512_4)
 rag_response_dataset_512_4.to_csv('rag_response_512_4.csv')
 ```
 
-The subroutine above uses an abstraction of the RAG pipeline method `query_with_context()`. The `rag_response_dataset` uses `ground_truth` as a single string value (representing the correct answer to a question); the older format (RAGAS < v0.1.1) used `ground_truths`, which expected answers to be provided as a list of strings. 
-We will show a sample naive-rag example in a bit.
-You can choose your preferred format for `ground_truth` based on the RAGAS version you use.
+The subroutine above uses an abstraction of the RAG pipeline method `query_with_context()` for our sample naive RAG system. The `rag_response_dataset` uses `ground_truth` as a single string value (representing the correct answer to a question); the older format (RAGAS < v0.1.1) used `ground_truths`, which expected answers to be provided as a list of strings. You can choose your preferred format for `ground_truth` based on the RAGAS version you use.
 
-Now that we've created a baseline along with a subroutine to create an evaluation dataset, let's see what we can measure using RAGAS.
+Now that we've created a baseline along with a subroutine to produce an evaluation dataset, let's see what we can measure using RAGAS.
 
 ## Metrics
 
 As we enter our discussion of metrics, we suggest checking out RAGAS' [core concepts](https://docs.ragas.io/en/latest/concepts/index.html). RAGAS is focused on the retrieval and generation stages of RAG, and aims to provide End-to-End RAG system evaluation. RAGAS follows a [metrics driven development](https://docs.ragas.io/en/latest/concepts/metrics_driven.html) approach. Let's take a closer look at the metrics that drive development in RAGAS.
 
-![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_metrics.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_metrics.png)
-
 ### RAGAS' key evaluation metrics
 
-The first of RAGAS' key evaluation metrics is:
+The first of RAGAS' eight key evaluation metrics is:
 
 - [Faithfulness](https://docs.ragas.io/en/latest/concepts/metrics/faithfulness.html) - Scaled from 0 to 1, faithfulness measures the factual consistency of the answer. 1 represents complete consistency, 0 represents complete inconsistency. Faithfulness is measured as follows:
 
@@ -306,6 +302,8 @@ Relevance of K =  1 for relevant / 0 for irrelevant items
 K = number of chunks
 ```
 
+These first four metrics (above) are the `ragas score` metrics. Their harmonic mean provides a comprehensive evaluation of the most critical aspects of a QA system. The last four metrics enable more granular evaluation of your RAG pipeline, at an individual component and end-to-end level. The first of these last four is:
+
 - [Context relevancy](https://docs.ragas.io/en/latest/concepts/metrics/context_relevancy.html) - Computed based on how relevant the retrieved context is to the question. Context relevancy ranges between 0 and 1, with higher values indicating better relevancy. It's calculated as follows:
 
 ```notion
@@ -319,6 +317,8 @@ context relevancy = (Number of relevant sentences within the retrieved) /
 context entity recall = (Entities in context ∩ Entities in Ground Truth) / 
 												(Entities in Ground Truth)
 ```
+
+The last two RAGAS evaluation metrics are focused on the E2E performance of a RAG system.
 
 - [Answer semantic similarity](https://docs.ragas.io/en/latest/concepts/metrics/semantic_similarity.html) - Evaluates semantic similarity between the generated answer and the ground_truth. Values range between 0 and 1. Answer semantic similarity is calculated as follows:
 
@@ -334,15 +334,16 @@ answer correctness = factual correctness (ground truth , generated answer ) + an
 Where factual correctness is the F1 score calculated using ground truth and generated answer.
 ```
 
+### The ragas score
 
-### Choosing the right metrics for your use cases
+RAGAS is focused on evaluating retrieval and generation. The `ragas score` reflects this. It's a single measure evaluating the most critical aspects of a RAG system's retrieval and generation. The `ragas score` is, as we've said above, the harmonic mean of Faithfulness, Answer relevancy, Context recall, and Context precision.
 
-As we've said above, RAGAS focuses mainly on evaluating your RAG pipeline's Retrieval and Generation phases, and the `ragas score` reflects this. It's based on 4 primary metrics that evaluate retrieval and generation.
+![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_metrics.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_metrics.png)
 
 - **Evaluating Retrieval**: here, *context_relevancy* and *context_recall* give you a fair measure of your retrieval system's efficiency.
 - **Evaluating Generation**: *faithfulness* is a measure of _the_ crucial concern when using LLMs - hallucinations. *Answer_relevancy* measures how relevant the generated answer is to the question.
 
-The mean of these 4 metrics gives you the `ragas score` - a single measure evaluating your RAG system's retrieval and generation.
+
 
 ### RAGAS in action
 
@@ -566,7 +567,7 @@ print(rag_response1)
 
 ### Evaluating our RAG system using RAGAS
 
-We leverage our [original dataset ([https://huggingface.co/datasets/atitaarora/qdrant_doc_qna](https://huggingface.co/datasets/atitaarora/qdrant_doc_qna)) to create our evaluation set (questions and ground_truth) from our RAG pipeline, and execute it shown in the method `create_eval_dataset()` above.
+We leverage our [original dataset](https://huggingface.co/datasets/atitaarora/qdrant_doc_qna) to create our evaluation set (questions and ground_truth) from our RAG pipeline, and execute it shown in the method `create_eval_dataset()` above.
 
 **Let's evaluate how well our RAG system performs.**
 
