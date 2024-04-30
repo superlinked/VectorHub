@@ -1,5 +1,7 @@
 # How to Build a Recommender System From Clickstream Data
 
+<!-- test comment -->
+
 Whenever you have a website with products that customers can browse, you can hardly save yourself from the flood of **clickstream data**. For example, a user of a hotel website might produce the following data when browsing different hotels:
 
 ```mermaid
