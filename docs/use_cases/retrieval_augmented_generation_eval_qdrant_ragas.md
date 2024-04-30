@@ -159,9 +159,9 @@ In RAGAS, questions with different characteristics such as reasoning, conditioni
 
 ```python
 ## Test Evaluation Dataset Generation using Ragas
-from langchain.docstore.document import Document as LangchainDocument
 from ragas.testset.generator import TestsetGenerator
 from ragas.testset.evolutions import simple, reasoning, multi_context
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
 # load dataset from which the questions have to be created 
 dataset = load_dataset("atitaarora/qdrant_doc", split="train")
@@ -172,17 +172,20 @@ langchain_docs = [
     for doc in tqdm(dataset)
 ]
 
-generator = TestsetGenerator.with_openai()
-# using the first 10 docs as langchain_docs[:10] to check the sample questions
-testset = generator.generate_with_langchain_docs(langchain_docs[:10], test_size=10, 
-                                                 raise_exceptions=False, with_debugging_logs=False,
-                                                 distributions={simple: 0.5, reasoning: 0.25, multi_context: 0.25}) 
+# generator with openai models
+generator_llm = ChatOpenAI(model="gpt-3.5-turbo-16k")
+critic_llm = ChatOpenAI(model="gpt-4")
+embeddings = OpenAIEmbeddings()
+generator = TestsetGenerator.from_langchain(generator_llm , critic_llm , embeddings)
 
+# using the first 10 docs as langchain_docs[:10] to check the sample questions
+testset = generator.generate_with_langchain_docs(langchain_docs[:10], test_size=10,
+                                                 distributions={simple: 0.5, reasoning: 0.25, multi_context: 0.25})
 df = testset.to_pandas()
 df.head(10)
 ```
 
-This method provides us with a reasonable baseline question-context-ground_truth set, which can be used to generate responses from our RAG pipeline for evaluation. And RAGAS generates this set with less effort than T5 and OpenAI.
+This method provides us with a reasonable baseline question-context-ground_truth set, which can be used to generate responses from our RAG pipeline for evaluation. RAGAS generates this set with less effort than T5 and OpenAI along with the fact that it takes the variety of characteristics such as *reasoning, conditioning and multi-context* in account when creation evaluation dataset (read more [here](https://docs.ragas.io/en/latest/concepts/testset_generation.html#how-does-ragas-differ-in-test-data-generation)).
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_baseline_eval_dataset_preview.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_baseline_eval_dataset_preview.png)
 
@@ -249,14 +252,14 @@ qdrant_qna_dataset = load_dataset("atitaarora/qdrant_doc_qna", split="train")
 
 EVAL_SIZE = 10
 
-RETRIEVAL_SIZE_4 = 4
+RETRIEVAL_SIZE_3 = 3
 
 ## The dataset used to evaluate RAG using RAGAS
 ## Note this is the dataset needed for evaluation hence has to be recreated everytime changes to RAG config is made
-rag_eval_dataset_512_4 = create_eval_dataset(qdrant_qna_dataset,EVAL_SIZE,RETRIEVAL_SIZE_4)
+rag_eval_dataset_512_3 = create_eval_dataset(qdrant_qna_dataset,EVAL_SIZE,RETRIEVAL_SIZE_3)
 # The dataset is then exported as a CSV file, with a filename that includes details of the experiment for easy identification, such as the chunk size along with retrieval window used in this case  
-rag_response_dataset_512_4 = Dataset.from_dict(rag_eval_dataset_512_4)
-rag_response_dataset_512_4.to_csv('rag_response_512_4.csv')
+rag_response_dataset_512_3 = Dataset.from_dict(rag_eval_dataset_512_3)
+rag_response_dataset_512_3.to_csv('rag_response_512_3.csv')
 ```
 
 The subroutine above uses an abstraction of the RAG pipeline method `query_with_context()`. The `rag_response_dataset` uses `ground_truth` as a single string value (representing the correct answer to a question); the older format (RAGAS < v0.1.1) used `ground_truths`, which expected answers to be provided as a list of strings. 
@@ -495,7 +498,7 @@ for res in search_result:
     print("Source : " , res.metadata['source'])
 ```
 
-At this point, we have in place our knowledge store to provide context to our RAG system. So, let's quickly build our RAG system. To do this, we write a small sub-routine to wrap our prompt, context, and response collections.
+At this point, we have in place, our knowledge store to provide context to our RAG system. So, let's quickly build our RAG system. To do this, we write a small sub-routine to wrap our prompt, context, and response collections.
 
 ```python
 def query_with_context(query,limit):
@@ -566,52 +569,63 @@ print(rag_response1)
 
 ### Evaluating our RAG system using RAGAS
 
-We leverage our [original dataset ([https://huggingface.co/datasets/atitaarora/qdrant_doc_qna](https://huggingface.co/datasets/atitaarora/qdrant_doc_qna)) to create our evaluation set (questions and ground_truth) from our RAG pipeline, and execute it shown in the method `create_eval_dataset()` above.
+We leverage our [baseline question-answer dataset](https://huggingface.co/datasets/atitaarora/qdrant_doc_qna) to create our evaluation set (questions , answer , contexts and ground_truth) from our RAG pipeline, and execute it shown in the method `create_eval_dataset()` above.
 
 **Let's evaluate how well our RAG system performs.**
 
-To do this, we simply import the desired metrics:
+To do this, we simply import the desired metrics :
 
 ```python
 from ragas.metrics import (
-    answer_relevancy,
-    faithfulness,
-    context_recall,
-    context_precision,
-    answer_correctness
+   faithfulness,
+   answer_relevancy,
+   context_recall,
+   context_precision,
+   context_relevancy,
+   context_entity_recall,
+   answer_similarity,
+   answer_correctness
 )
 ```
 
 And then run our evaluation as follows:
 
 ```python
-result_512_4 = evaluate(
-   rag_response_dataset_512_4,
-    metrics=[
-        answer_correctness,
-        answer_relevancy,
-        faithfulness,
-        context_recall,
-        context_precision
-    ],
-)
+## Method to encapsulate ragas evaluate method with all the 8 metrics
+def evaluate_with_ragas(rag_response_dataset_df):
+   result = evaluate(
+      rag_response_dataset_df,
+      metrics=[
+         faithfulness,
+         answer_relevancy,
+         context_recall,
+         context_precision,
+         context_relevancy,
+         context_entity_recall,
+         answer_similarity,
+         answer_correctness
+      ],
+      raise_exceptions=False
+   )
+   return result
+```
 
-## Let's look at our results
-
-evaluation_result_df_512_4 = result_512_4.to_pandas()
-
-evaluation_result_df_512_4.head(5)
+For simplicity of execution we will use the method above to evaluate our RAG pipeline response dataset we generated above in the method `create_eval_dataset()` before.
+```python
+result_512_3 = evaluate_with_ragas(rag_response_dataset_512_3)
+evaluation_result_df_512_3 = result_512_3.to_pandas()
+evaluation_result_df_512_3.head(5)
 ```
 
 Our results output as follows:
 
-![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/rag_eval_ragas.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/rag_eval_ragas.png)
+![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/eval_snapshot_512_3_1.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/eval_snapshot_512_3_1.png)
 
-Notice that in some of our queries, the context precision and answer correctness are quite low, or even zero. This indicates a possible issue with the retrieval chain of our RAG system.
+Notice that in some of our queries, the context precision , context relevancy and answer correctness are low. This indicates a possible issue with the retrieval chain of our RAG system.
 
 This issue could be caused by:
 
-- Number of chunks retrieved
+- Number of chunks retrieved (document retrieval window)
 - Size of chunks
 - Chunk overlap size
 - Choice of Embedding model
@@ -619,16 +633,46 @@ This issue could be caused by:
 - Choice of Embedding model
 - Missing data preprocessing / enrichment
 
-Issues resulting from anything of this list (except tuning the document retrieval window or applying reranking) may require you to reprocess the vectors into your vector database. Let’s try changing the size of document chunk retrieval from **4** to **5**, and see if this improves our metrics. To do this. we change our RAG using a context method (retrieving **5** instead of **4** chunks), and then recreate the evaluation dataset. Finally, we re-run the RAGAS evaluations.
+Issues resulting from any of the listed causes above (except tuning the document retrieval window or applying reranking) may require you to reprocess the vectors into your vector database. So let’s try experimenting with the value of document retrieval window from **3** to **4** to **5**, and see if this improves our metrics. To do this, we need to generate another set of RAG response evaluation datasets with *RETRIEVAL_SIZE* -- **4** and **5** chunks to observe the impact , following re-running the RAGAS evaluations using method `evaluate_with_ragas()`.
 
-Here we've added some visualisations to allow easier comparison and evaluation. Here's what changed following our document chunk retrieval parameter:
+Following is the evaluation results with *document retrieval window* - **4**
+![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/eval_snapshot_512_4.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/eval_snapshot_512_4.png)
 
-![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/algo_comparison_chart.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/algo_comparison_chart.png)
+Let us also look at the evaluation results with *document retrieval window* - **5**
+![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/eval_snapshot_512_5.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/eval_snapshot_512_5.png)
 
-4 of our 5 metrics move in the desired direction (towards 1.0). Please remember, this is an iterative process. It's good to try changing all of the potentially determining factors to see how your results differ. The performance will very much depend on your use case.
+We've added some visualisations to allow easier comparison and evaluation. Here's what changed following the change to our document (chunk) retrieval window parameter:
+
+![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/colab_results_visualisation.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/colab_results_visualisation.png)
+
+*RW_3* - Denotes evaluation results with retrieval window size 3 ; 
+*RW_4* - Denotes evaluation results with retrieval window size 4 ;
+*RW_5* - Denotes evaluation results with retrieval window size 5 respectively.
+
+Clearly , the retrieval window experiment affected **context_recall , context_relevancy , context_entity_recall and answer_correctness** metrics in the desired direction (towards 1.0). Please remember, this is an iterative process. It is recommended to try changing all of the potentially determining factors to see how your results are affected with each of the listed causes. The performance may vary and depend on your use case.  
+
+In addition to the metrics above RAGAs now supports [Aspect Critique](https://docs.ragas.io/en/latest/concepts/metrics/critique.html) to provide users with additional flexibility to define their own aspects for evaluating results on range of predefined aspects like **harmfulness, maliciousness, coherence, correctness, conciseness**.
+
+These could be evaluated as :
+```python
+from datasets import Dataset 
+from ragas.metrics.critique import harmfulness
+from ragas.metrics.critique import maliciousness
+from ragas.metrics.critique import coherence
+from ragas.metrics.critique import correctness
+from ragas.metrics.critique import conciseness
+from ragas import evaluate
+
+def show_aspect_critic(dataset):
+    return evaluate(dataset,metrics=[harmfulness, maliciousness, coherence, correctness, conciseness,])
+
+## Evaluating the aspect critique for evaluation results with `retrieval window = 4` as below
+show_aspect_critic(rag_response_dataset_512_4).to_pandas()
+```
+![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/aspect_critique_512_4.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/aspect_critique_512_4.png)
+
 
 ## In sum
-
 
 
 The complete version of this code and notebook is available at - [https://github.com/qdrant/qdrant-rag-eval/tree/master/workshop-rag-eval-qdrant-ragas](https://github.com/qdrant/qdrant-rag-eval/tree/master/workshop-rag-eval-qdrant-ragas).
