@@ -1,5 +1,7 @@
 # How to Build a Recommender System From Clickstream Data
 
+<!-- Test comment -->
+
 Whenever you have a website with products that customers can browse, you can hardly save yourself from the flood of **clickstream data**. For example, a user of a hotel website might produce the following data when browsing different hotels:
 
 ```mermaid
@@ -210,3 +212,5 @@ Here, you can see how certain hotels form clusters, and it might be interesting 
 ## Contributors
 
 - Dr. Robert Kübler ([LinkedIn](https://www.linkedin.com/in/robert-kuebler/) / [Medium](https://medium.com/@dr-robert-kuebler))
+
+<!-- test comment -->
