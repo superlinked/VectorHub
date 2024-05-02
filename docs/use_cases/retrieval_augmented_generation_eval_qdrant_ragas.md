@@ -25,7 +25,7 @@ Golden or evaluation datasets are essential for assessing information retrieval 
 
 But generating numerous Question-Context-Answer samples by hand from reference data would be not only tedious but also inefficient. Furthermore, questions crafted by individuals may not achieve the complexity needed for effective evaluation, thereby diminishing the assessment's accuracy. If manually creating a RAG evaluation dataset is not a feasible solution, what should you do instead? **What's an efficient and effective way of creating a RAG evaluation dataset**?
 
-Fortunately, we can use the Hugging Face Datasets library to build our evaluation datasets from our source documentation dataset efficiently and effectively. Using this library, we build two Hugging Face datasets: [Source Documentation Dataset](https://huggingface.co/datasets/atitaarora/qdrant_doc) - a dataset with all documentation text with their sources, and an [Evaluation Dataset](https://huggingface.co/datasets/atitaarora/qdrant_doc_qna) - our "golden set" or reference standard, leveraged for evaluation purposes.
+Below, we'll walk through how to handle this question, guiding you through how to build and evaluate a naive RAG application. We use the Hugging Face Datasets library to build our evaluation datasets from our source documentation dataset efficiently and effectively. Using this library, we build two Hugging Face datasets: [Source Documentation Dataset](https://huggingface.co/datasets/atitaarora/qdrant_doc) - a dataset with all documentation text with their sources, and an [Evaluation Dataset](https://huggingface.co/datasets/atitaarora/qdrant_doc_qna) - our "golden set" or reference standard, leveraged for evaluation purposes.
 
 Now that we have our datasets in place, let's turn to generating questions.
 
@@ -328,7 +328,7 @@ The `ragas score` reflects RAGAS' focus on evaluating RAG retrieval and generati
 
 To get a practical understanding of how to obtain these metrics, let's build a naive RAG system on top of [Qdrant’s documentation](https://qdrant.tech/documentation/), and perform our evaluations using this system.
 
-We'll use the pre-compiled [hugging-face dataset](https://www.google.com/url?q=https://huggingface.co/datasets/atitaarora/qdrant_doc&sa=D&source=editors&ust=1712248322130408&usg=AOvVaw0Bl7gKES2qQyo88tFWPaZZ), which consists of ‘text’ and ‘source’, derived the documentation.
+We'll use the pre-compiled [hugging-face dataset](https://huggingface.co/datasets/atitaarora/qdrant_doc), which consists of ‘text’ and ‘source’, derived the documentation.
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/dataset_preview.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/dataset_preview.png)
 
