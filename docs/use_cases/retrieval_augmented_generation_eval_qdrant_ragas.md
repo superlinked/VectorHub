@@ -27,8 +27,6 @@ But generating numerous Question-Context-Answer samples by hand from reference d
 
 Below, we'll walk through how to handle this question, guiding you through how to build and evaluate a naive RAG application. We use the Hugging Face Datasets library to build our evaluation datasets from our source documentation dataset efficiently and effectively. Using this library, we build two Hugging Face datasets: [Source Documentation Dataset](https://huggingface.co/datasets/atitaarora/qdrant_doc) - a dataset with all documentation text with their sources, and an [Evaluation Dataset](https://huggingface.co/datasets/atitaarora/qdrant_doc_qna) - our "golden set" or reference standard, leveraged for evaluation purposes.
 
-Now that we have our datasets in place, let's turn to generating questions.
-
 ### Generating questions - three different methods
 
 To make a set of questions that are clear, concise, and related to the information in the source documents, we need to use targeted snippets - selected because they contain relevant information. This selection is manual.
