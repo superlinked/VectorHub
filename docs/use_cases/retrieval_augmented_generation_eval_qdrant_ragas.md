@@ -291,7 +291,7 @@ where
 Relevance of K =  1 for relevant / 0 for irrelevant items
 K = number of chunks
 
-The harmonic mean of these first four metrics (above) are the `ragas score` metrics - a single comprehensive evaluation of the most critical aspects of a QA system. The last four metrics enable more granular evaluation of your RAG pipeline at an individual component level (Context relevancy and Context entity recall), and at an end-to-end level (Answer semantic similarity and Answer correctness). Let's take a quick look at these last four.
+The mean of these first four metrics (above) is the `ragas score` - a single comprehensive evaluation of the most critical aspects of a QA system. The last four metrics enable more granular evaluation of your RAG pipeline at an individual component level (Context relevancy and Context entity recall), and at an end-to-end level (Answer semantic similarity and Answer correctness). Let's take a quick look at these last four.
 
 - [Context relevancy](https://docs.ragas.io/en/latest/concepts/metrics/context_relevancy.html) - Computed based on how relevant the retrieved context is to the question. Context relevancy ranges between 0 and 1, with higher values indicating better relevancy. It's calculated as follows:
 
@@ -316,7 +316,7 @@ where factual correctness is the F1 score calculated using ground truth and gene
 
 ### The ragas score
 
-The `ragas score` reflects RAGAS' focus on evaluating RAG retrieval and generation. As we've just seen, the ragas score is the the harmonic mean of Faithfulness, Answer relevancy, Context recall, and Context precision - a single measure evaluating the most critical aspects of retrieval and generation in a RAG system.
+The `ragas score` reflects RAGAS' focus on evaluating RAG retrieval and generation. As we've just seen, the ragas score is the the mean of Faithfulness, Answer relevancy, Context recall, and Context precision - a single measure evaluating the most critical aspects of retrieval and generation in a RAG system.
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_metrics.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_metrics.png)
 
