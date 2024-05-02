@@ -7,13 +7,13 @@ To set up our RAGAS evaluation framework, we apply **ground truth** - a concept 
 This article will take you through:
 
 1) **Creating a synthetic evaluation dataset**
-   a. evaluation dataset basics
-   b. methods of generating questions
-   c. tuning with answers
+   - a. evaluation dataset basics
+   - b. methods of generating questions
+   - c. tuning with answers
 2) **Metrics**
-   a. different RAGAS metrics
-   b. ragas score
-   c. RAGAS in action
+   - a. different RAGAS metrics
+   - b. ragas score
+   - c. RAGAS in action
 3) **Using an evaluation dataset to assess RAGAS metrics**
 
 
@@ -196,7 +196,7 @@ Although each of the techniques above - T5, OpenAI, and RAGAS - confers certain 
 
 ### Tuning with answers
 
-In each tuning cycle (i.e., adjusting model parameters, training the model, evaluating the model), your evaluation dataset should be tuned using RAG pipeline-generated `answer`s. This requires developing a subroutine that facilitates the construction of an evaluation dataset in the expected RAGAS format (`question`, `answer`, `contexts`, `ground_truths` - as indicated in the above code snippet), executing the provided questions through your RAG system.
+For each RAG pipeline tuning cycle (i.e., adjusting chunk (text-splitting) algorithm, size of chunk, overlap or embedding model to generate encodings of chunk text), your evaluation dataset should be recreated using RAG pipeline-generated answers. This requires developing a subroutine that facilitates the construction of an evaluation dataset in the expected RAGAS format (`question`, `answer`, `contexts`, `ground_truths` - as indicated in the above code snippet), executing the provided questions through your RAG system.
 
 Such a subroutine might look like this:
 
@@ -270,10 +270,7 @@ The first of RAGAS' eight key evaluation metrics is:
 
 - [Faithfulness](https://docs.ragas.io/en/latest/concepts/metrics/faithfulness.html) - Scaled from 0 to 1, faithfulness measures the factual consistency of the answer. 1 represents complete consistency, 0 represents complete inconsistency. Faithfulness is measured as follows:
 
-```notion
-Faithfulness score = (Number of claims in the generated answer that can be inferred from given context) / 
-										 (Total number of claims in the generated answer)
-```
+$$ Faithfulness\ score = \frac{\text{Number of claims in the generated answer that can be inferred from given context}}{\text{Total number of claims in the generated answer}} $$
 
 and uses context and answer fields.
 
@@ -283,53 +280,38 @@ The next key evaluation metrics are Answer relevancy, Context precision, and Con
 
 - [Context recall](https://docs.ragas.io/en/latest/concepts/metrics/context_recall.html) - Computed based on ground_truth and the retrieved context. Context recall values range between 0 and 1. Higher values represent better performance (higher relevance). To accurately estimate context recall from the ground_truth answer, each sentence in the ground_truth answer is analyzed to determine if it aligns with the retrieved context or not. It's calculated as follows:
 
-```notion
-context recall = (Ground truth sentences that can be attributed to context) / 
-								 (Number of sentences in Ground truth)
-```
+$$ context\ recall = \frac{\text{Ground truth sentences that can be attributed to context}}{\text{Number of sentences in Ground truth}} $$
 
 - [Context precision](https://docs.ragas.io/en/latest/concepts/metrics/context_precision.html) - Computed based on question, ground_truth, and contexts from the evaluation dataset. As with our other metrics, context precision ranges between 0 and 1, with higher values indicating better performance. Context Precision is used to evaluate whether all relevant items in a given context are ranked highly. It's calculated as follows:
 
-```notion
-Context Precision@K = (Precision@K * Relevance of K) / 
-										  (Total number of relevant items in the top K)
+$$ Context\ Precision@K = \frac{\text{Precision@K * Relevance of K}}{\text{Total number of relevant items in the top K}} $$
 
 where
 Relevance of K =  1 for relevant / 0 for irrelevant items
 K = number of chunks
-```
 
 The harmonic mean of these first four metrics (above) are the `ragas score` metrics - a single comprehensive evaluation of the most critical aspects of a QA system. The last four metrics enable more granular evaluation of your RAG pipeline at an individual component level (Context relevancy and Context entity recall), and at an end-to-end level (Answer semantic similarity and Answer correctness). Let's take a quick look at these last four.
 
 - [Context relevancy](https://docs.ragas.io/en/latest/concepts/metrics/context_relevancy.html) - Computed based on how relevant the retrieved context is to the question. Context relevancy ranges between 0 and 1, with higher values indicating better relevancy. It's calculated as follows:
 
-```notion
-context relevancy = (Number of relevant sentences within the retrieved) / 
-										(Total number of sentences in retrieved context)
-```
+$$ context\ relevancy = \frac{\text{Number of relevant sentences within the retrieved}}{\text{Total number of sentences in retrieved context}} $$
 
 - [Context entity recall](https://docs.ragas.io/en/latest/concepts/metrics/context_entities_recall.html) - Evaluates entity retrieval based on comparison with ground truth entities to ensure relevant context coverage. Context entity recall ranges between 0 and 1, with higher values indicating better entity recall. It's calculated as follows:
 
-```notion
-context entity recall = (Entities in context ∩ Entities in Ground Truth) / 
-												(Entities in Ground Truth)
-```
+$$ context\ entity\ recall = \frac{\text{Entities in context ∩ Entities in Ground Truth}}{\text{Entities in Ground Truth}} $$
 
-The last two RAGAS evaluation metrics are focused on the E2E performance of a RAG system.
+The final two RAGAS evaluation metrics are focused on the E2E performance of a RAG system.
 
 - [Answer semantic similarity](https://docs.ragas.io/en/latest/concepts/metrics/semantic_similarity.html) - Evaluates semantic similarity between the generated answer and the ground_truth. Values range between 0 and 1. Answer semantic similarity is calculated as follows:
 
-```notion
-answer similarity score = cosine similarity (Vector of ground truth , Vector of generated answer)
-```
+$$ answer\ similarity\ score = \text{cosine similarity}(\text{Vector of ground truth}, \text{Vector of generated answer}) $$
 
 - [Answer correctness](https://docs.ragas.io/en/latest/concepts/metrics/answer_correctness.html) - Evaluates how much agreement there is between the generated answer and the ground_truth. Values range between 0 and 1, and it's calculated as follows:
 
-```notion
-answer correctness = factual correctness (ground truth, generated answer) + answer similarity score
+$$ \text{answer correctness} = \text{factual correctness}(\text{ground truth}, \text{generated answer}) + \text{answer similarity score} $$
 
-Where factual correctness is the F1 score calculated using ground truth and generated answer.
-```
+where factual correctness is the F1 score calculated using ground truth and generated answer.
+
 
 ### The ragas score
 
@@ -343,7 +325,7 @@ The `ragas score` reflects RAGAS' focus on evaluating RAG retrieval and generati
 
 ### RAGAS in action
 
-To get a practical understanding of how to obtain these metrics and an overall `ragas score`, let's build a naive RAG system on top of Qdrant’s documentation, and perform our evaluations using this system.
+To get a practical understanding of how to obtain these metrics, let's build a naive RAG system on top of [Qdrant’s documentation](https://qdrant.tech/documentation/), and perform our evaluations using this system.
 
 We'll use the pre-compiled [hugging-face dataset](https://www.google.com/url?q=https://huggingface.co/datasets/atitaarora/qdrant_doc&sa=D&source=editors&ust=1712248322130408&usg=AOvVaw0Bl7gKES2qQyo88tFWPaZZ), which consists of ‘text’ and ‘source’, derived the documentation.
 
@@ -389,7 +371,7 @@ from fastembed.embedding import TextEmbedding
 pd.DataFrame(TextEmbedding.list_supported_models())
 ```
 
-Executing the code above will give you a list of all supported embedding models, including the one for generating sparse vector encoding through [SPLADE++](https://huggingface.co/prithivida/Splade_PP_en_v1). Here, we use the default model.
+Executing the code above will give you a [list of all supported embedding models](https://qdrant.github.io/fastembed/examples/Supported_Models/), including the one for generating sparse vector encoding through [SPLADE++](https://huggingface.co/prithivida/Splade_PP_en_v1). Here, we use the default model.
 
 ```python
 ##Initialising embedding model
@@ -492,7 +474,7 @@ for res in search_result:
     print("Source : " , res.metadata['source'])
 ```
 
-At this point, we have our knowledge store in place to provide context to our RAG system. Now we can quickly build our RAG system. To do this, we write a small sub-routine to wrap our prompt, context, and response collections.
+At this point, we have our knowledge store in place to provide context to our RAG system. Now we can quickly build our RAG system. To do this, we write a small sub-routine to wrap our prompt, context, and response collections. This method processes the given query based on the limit, which defines the RETRIEVAL_WINDOW - that is, the number of document chunks to be retrieved to assist the LLM in response generation.
 
 ```python
 def query_with_context(query,limit):
@@ -625,10 +607,9 @@ This issue could be caused by:
 - Chunk overlap size
 - Choice of Embedding model
 - Missing relevance reranking
-- Choice of Embedding model
 - Missing data preprocessing / enrichment
 
-Issues resulting from any of these causes (except tuning the document retrieval window or applying reranking) may require you to reprocess the vectors into your vector database. Let’s experiment with the value of the document retrieval window, changing it from **3** to **4**, and to **5**, and see if this improves our metrics. To do this, we need to generate another set of RAG response evaluation datasets with *RETRIEVAL_SIZE* -- **4** and **5** chunks, then rerun the RAGAS evaluations (using `evaluate_with_ragas()`), and observe the outcomes.
+Issues resulting from any of these parameters (except tuning the document retrieval window or applying reranking) may require you to reprocess the vectors into your vector database. Let’s experiment with the value of the document retrieval window, changing it from **3** to **4**, and to **5**, and see if this improves our metrics. To do this, we need to generate another set of RAG response evaluation datasets with *RETRIEVAL_SIZE* -- **4** and **5** chunks, then rerun the RAGAS evaluations (using `evaluate_with_ragas()`), and observe the outcomes.
 
 Here (below) are the evaluation results with *document retrieval window* - **4**
 
@@ -638,17 +619,17 @@ Let's also look at the evaluation results with *document retrieval window* - **5
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/eval_snapshot_512_5.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/eval_snapshot_512_5.png)
 
-We've added a visualization to make our comparison and evaluation easier. Let's see what's changed as a result of changing  our document (chunk) retrieval window parameter:
+We've added a visualization to make our comparison and evaluation easier to comprehend. Let's see what's changed as a result of changing  our document (chunk) retrieval window parameter:
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/colab_results_visualisation.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/colab_results_visualisation.png)
 
-*RW_3* - denotes evaluation results with retrieval window size 3.
-*RW_4* - denotes evaluation results with retrieval window size 4.
-*RW_5* - denotes evaluation results with retrieval window size 5.
+- *RW_3* - denotes evaluation results with retrieval window size 3.
+- *RW_4* - denotes evaluation results with retrieval window size 4.
+- *RW_5* - denotes evaluation results with retrieval window size 5.
 
-Our retrieval window experiments clearly impact **context_recall, context_relevancy, context_entity_recall, and answer_correctness** metrics, in the desired direction (towards 1.0). 
+Our retrieval window experiments clearly impact **context_recall, context_relevancy, context_entity_recall, and answer_correctness** metrics in the desired direction (towards 1.0).
 
-Of course, retrieval window is not the only factor that you can experiment with. We recommend that you try different values for each and every variable in the retrieval chain, to see how your RAG system metrics are affected. Performance on different metrics may vary depending on your use case.
+Of course, retrieval window is not the only parameter that you can experiment with. We recommend that you also try experimenting with the other parameters listed above - chunk size, chunk overlap, embedding model, reranking - to tune the retrieval chain, and see how your RAG system metrics are affected. Performance on different metrics may vary depending on your use case.
 
 In addition to the metrics above, RAGAS now supports [Aspect Critique](https://docs.ragas.io/en/latest/concepts/metrics/critique.html) to permit users to evaluate RAG results on a range of predefined aspects, including **harmfulness, maliciousness, coherence, correctness, conciseness**, and, additionally, define their own aspects to evaluate results on other specific criteria. Aspect Critique output is binary, indicating whether results align with the aspect in question, or not.
 
@@ -678,7 +659,7 @@ We can see alignment on coherence, correctness, and conciseness, and (unsurprisi
 
 ## In sum
 
-We've walked you through an implementation of the RAGAS evaluation framework - from creating an evaluation dataset (questions, answers, and ground-truth data), through elucidating the RAGAS metrics and using them to evaluate a sample naive RAG system. Compared with using LLMs (T5 and OpenAI), RAGAS appeared to perform more efficiently, with more flexibility for evaluating ragas score (the most critical aspects of a QA system), granular metrics, and e2e metrics in RAG system retrieval and generation.
+We've walked you through an implementation of the RAGAS evaluation framework - from creating an evaluation dataset (questions, answers, and ground-truth data), through elucidating the RAGAS metrics and using them to evaluate a sample naive RAG system. Compared with using LLMs (T5 and OpenAI), RAGAS appeared to perform more efficiently, with more flexibility for evaluating the most critical aspects of a QA system, granular metrics, and e2e metrics in RAG system retrieval and generation.
 
 In our next article, we'll do a code walkthrough of [Arize Phoenix](https://phoenix.arize.com/) - another framework for evaluating RAG systems.
 
