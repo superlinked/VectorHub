@@ -133,9 +133,9 @@
     "comment": ""
   },
   "sharding": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://docs.vespa.ai/en/elasticity.html",
+    "comment": "Vespa distributes documents over nodes using buckets, see https://docs.vespa.ai/en/content/buckets.html"
   },
   "doc_size": {
     "bytes": 0,
