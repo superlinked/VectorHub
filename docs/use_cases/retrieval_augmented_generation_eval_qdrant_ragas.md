@@ -157,6 +157,7 @@ Compared with T5 and OpenAI, RAGAS is an easier way of generating a Question-Con
 from langchain.docstore.document import Document as LangchainDocument
 from ragas.testset.generator import TestsetGenerator
 from ragas.testset.evolutions import simple, reasoning, multi_context
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
 # load dataset from which the questions have to be created 
 dataset = load_dataset("atitaarora/qdrant_doc", split="train")
