@@ -14,8 +14,8 @@
     "comment": ""
   },
   "license": {
-    "value": "GNU AGPL v3.0",
-    "source_url": "",
+    "value": "SSPLv1",
+    "source_url": "https://github.com/mongodb/mongo/blob/master/LICENSE-Community.txt",
     "comment": ""
   },
   "dev_languages": {
