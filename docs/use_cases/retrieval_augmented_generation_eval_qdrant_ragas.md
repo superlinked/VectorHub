@@ -660,7 +660,7 @@ We can see alignment on coherence, correctness, and conciseness, and (unsurprisi
 
 ## In sum
 
-We've walked you through an implementation of the RAGAS evaluation framework - from creating an evaluation dataset (questions, answers, and ground-truth data), through elucidating the RAGAS metrics and using them to evaluate a sample naive RAG system. Compared with using LLMs (T5 and OpenAI), RAGAS appeared to perform more efficiently, with more flexibility for evaluating the most critical aspects of a QA system, granular metrics, and e2e metrics in RAG system retrieval and generation.
+We've walked you through an implementation of the RAGAS evaluation framework - from creating an evaluation dataset (questions, answers, and ground-truth data), through elucidating the RAGAS metrics, and using them to evaluate a sample naive RAG system. Compared with using LLMs (T5 and OpenAI), RAGAS appeared to perform more efficiently, with more flexibility for evaluating the most critical aspects of a QA system, granular metrics, and e2e metrics in RAG system retrieval and generation.
 
 In our next article, we'll do a code walkthrough of [Arize Phoenix](https://phoenix.arize.com/) - another framework for evaluating RAG systems.
 
