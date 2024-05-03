@@ -8,7 +8,7 @@
     "slug": "hyper-space"
   },
   "oss": {
-    "support": "None",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
@@ -37,7 +37,7 @@
     "comment": "Support complex logic, including mutliplication and division of vector and keyword based scores. No limitations on numer of keyword fields or vector fields"
   },
   "facets": {
-    "support": "Partial",
+    "support": "partial",
     "source_url": "https://docs.hyper-space.io/hyperspace-docs/flows/data-collections/python-query-interface/aggregations",
     "comment": ""
   },
