@@ -1,74 +1,73 @@
 {
-  "name": "Vespa",
+  "name": "Aerospike",
   "links": {
-    "docs": "https://docs.vespa.ai/",
-    "github": "https://github.com/vespa-engine/vespa",
-    "website": "https://vespa.ai/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/70",
-    "poc_github": "https://github.com/oyving",
-    "slug": "vespa"
+    "docs": "https://aerospike.com/docs/vector/",
+    "github": "https://github.com/aerospike/proximus-examples",
+    "website": "https://aerospike.com/vector/",
+    "vendor_discussion": "",
+    "poc_github": "https://github.com/hev",
+    "slug": "aerospike"
   },
   "oss": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "license": {
-    "value": "Apache-2.0",
+    "value": "Proprietary",
     "source_url": "",
     "comment": ""
   },
   "dev_languages": {
     "value": [
-      "java",
-      "c++"
+      "java"
     ],
     "source_url": "",
     "comment": ""
   },
-  "vector_launch_year": 2017,
+  "vector_launch_year": 2024,
   "metadata_filter": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "hybrid_search": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "facets": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "geo_search": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "multi_vec": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://aerospike.com/docs/vector/architecture/vector-data",
     "comment": ""
   },
   "sparse_vectors": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "bm25": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "full_text": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "embeddings_text": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
@@ -93,7 +92,7 @@
     "comment": ""
   },
   "langchain": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
@@ -108,8 +107,8 @@
     "comment": ""
   },
   "pricing": {
-    "value": "https://cloud.vespa.ai/price-calculator",
-    "source_url": "https://cloud.vespa.ai/price-calculator",
+    "value": "",
+    "source_url": "",
     "comment": ""
   },
   "in_process": {
@@ -124,8 +123,8 @@
   },
   "disk_index": {
     "support": "full",
-    "source_url": "https://docs.vespa.ai/en/proton.html",
-    "comment": "https://docs.vespa.ai/en/proton.html#index"
+    "source_url": "https://aerospike.com/docs/vector/architecture/vector-data#index-partitioning-in-aerospike",
+    "comment": "https://aerospike.com/docs/vector/architecture/vector-data#index-partitioning-in-aerospike"
   },
   "ephemeral": {
     "support": "",
@@ -134,8 +133,8 @@
   },
   "sharding": {
     "support": "full",
-    "source_url": "https://docs.vespa.ai/en/elasticity.html",
-    "comment": "Vespa distributes documents over nodes using buckets, see https://docs.vespa.ai/en/content/buckets.html"
+    "source_url": "",
+    "comment": ""
   },
   "doc_size": {
     "bytes": 0,
@@ -150,18 +149,18 @@
     "comment": ""
   },
   "int8_quantization": {
-    "support": "full",
-    "source_url": "https://docs.vespa.ai/en/reference/tensor.html#tensor-type-spec",
+    "support": "none",
+    "source_url": "",
     "comment": ""
   },
   "binary_quantization": {
     "support": "full",
-    "source_url": "https://blog.vespa.ai/scaling-large-vector-datasets-with-cohere-binary-embeddings-and-vespa/",
+    "source_url": "",
     "comment": ""
   },
   "github_stars": {
-    "value": 5349,
-    "source_url": "https://github.com/vespa-engine/vespa",
+    "value": 3,
+    "source_url": "https://github.com/aerospike/proximus-examples",
     "comment": "",
     "value_90_days": 0
   },
@@ -172,10 +171,10 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 133292,
-    "source_url": "https://pypi.org/project/VESPA/",
+    "value": 0,
+    "source_url": "https://pypi.org/project/aerospike-vector/",
     "comment": "",
-    "value_90_days": 2979
+    "value_90_days": 0
   },
   "npm_downloads": {
     "value": 0,
