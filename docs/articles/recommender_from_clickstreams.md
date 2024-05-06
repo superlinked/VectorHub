@@ -21,7 +21,7 @@ All you need to do is:
   2. clean it, if necessary
   3. use libraries such as [Gensim](https://radimrehurek.com/gensim/) to train an algorithm (e.g., Word2Vec) and generate our hotel embeddings on our clickstream data
 
-Before we begin building our recommendation system (recSys), we need to install some requisite libraries:
+Before we begin building our recommendation system (RecSys), we need to install some requisite libraries:
 `pip install gensim umap-learn pandas matplotlib`.
 
 Now that those are in place, let's get started!
@@ -100,7 +100,7 @@ The first five rows of the resulting index of embeddings looks like this:
 
 The index's first column is the hotel ID. The next 16 columns (numbered 0-15) represent the learned embedding. There are 16 numbers, because we set `vector_size=16`.
 
-Now that you have an embedding for each hotel, you're ready to implement your hotel recSys!
+Now that you have an embedding for each hotel, you're ready to implement your hotel RecSys!
 
 ## Recommendation system: suggesting other hotels
 
@@ -131,7 +131,7 @@ and you receive
 
 Here's how to read your output (above): Hotel 131 is most similar to Hotel 123, with a *cosine similarity* of about 0.91. The second most similar is Hotel 127, with a cosine similarity of about 0.9, and so on. 
 
-So, starting with just the clickstream data of your site visitors, you've successfully created a recSys!
+So, starting with just the clickstream data of your site visitors, you've successfully created a RecSys!
 
 > Cosine similarity is a measure of how similar two vectors are. It can range from -1 to 1 (similar to the Pearson correlation coefficient). If both vectors point in the same direction, cosine similarity is at the high end (closer to 1).
 > 
@@ -229,10 +229,11 @@ Here's just such a 2D visualization of our example hotel embeddings, generated w
 
 ![Projected Embeddings](../assets/use_cases/recommender_from_clickstreams/scatter.png)
 
-As you can see, certain hotels form clusters. 
+As you can see, certain hotels form clusters. Though we can't know just from clustering what about the hotels is similar, we can further investigate the clusters for shared characteristics, and thereby gain insights into our data.
 
-We encourage you to try this approach to create a recSys or just gain insights from your clickstream data now! Don't be a stranger. Let us know how it goes!
+If you want to take advantage of the value latent in your clickstream data, whether it's to glean insights, or even build a working recommendation system, we encourage you to give our code a try!
 
+Don't be a stranger. Let us know how it goes!
 
 ## Contributors
 
