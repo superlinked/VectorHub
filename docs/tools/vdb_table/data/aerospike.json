@@ -2,7 +2,7 @@
   "name": "Aerospike",
   "links": {
     "docs": "https://aerospike.com/docs/vector/",
-    "github": "https://github.com/aerospike/proximus-examples",
+    "github": "https://github.com/aerospike/aerospike-vector-search-examples",
     "website": "https://aerospike.com/vector/",
     "vendor_discussion": "",
     "poc_github": "https://github.com/hev",
