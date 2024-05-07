@@ -14,8 +14,8 @@
     "comment": ""
   },
   "license": {
-    "value": "GNU AGPL v3.0",
-    "source_url": "",
+    "value": "SSPLv1",
+    "source_url": "https://github.com/mongodb/mongo/blob/master/LICENSE-Community.txt",
     "comment": ""
   },
   "dev_languages": {
@@ -156,22 +156,22 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 4284895708,
+    "value": 4298087957,
     "source_url": "https://hub.docker.com/_/mongo",
     "comment": "",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 38498,
+    "value": 38685,
     "source_url": "https://pypi.org/project/mongodbatlas/",
     "comment": "",
-    "value_90_days": 2505
+    "value_90_days": 2467
   },
   "npm_downloads": {
-    "value": 355816,
+    "value": 359764,
     "source_url": "https://www.npmjs.com/package/mongodb-atlas-api-client",
     "comment": "",
-    "value_90_days": 92739
+    "value_90_days": 88884
   },
   "crates_io_downloads": {
     "value": 0,

@@ -159,7 +159,7 @@
     "comment": "via Binary Quantization of index"
   },
   "github_stars": {
-    "value": 17938,
+    "value": 18030,
     "source_url": "https://github.com/qdrant/qdrant",
     "comment": "",
     "value_90_days": 0
@@ -171,21 +171,21 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 4012619,
+    "value": 4285394,
     "source_url": "https://pypi.org/project/qdrant-client/",
     "comment": "",
-    "value_90_days": 1599110
+    "value_90_days": 1784388
   },
   "npm_downloads": {
-    "value": 24277,
+    "value": 25092,
     "source_url": "https://www.npmjs.com/package/@qdrant/js-client-grpc",
     "comment": "",
-    "value_90_days": 9923
+    "value_90_days": 10006
   },
   "crates_io_downloads": {
-    "value": 97670,
+    "value": 101048,
     "source_url": "https://crates.io/crates/qdrant-client",
     "comment": "",
-    "value_90_days": 33052
+    "value_90_days": 33113
   }
 }
