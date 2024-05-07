@@ -1,6 +1,6 @@
 # How to Build a Recommender System From Clickstream Data
 
-If you have a website with browsable products, your visitors generate a virtual flood of clickstream data. Say, for example, your site is for hotel bookings, and a site visitor browses hotels, starting with the Tranquil Haven Resort, ending at the Evergreen Retreat Lodge:
+If you have a website with browsable products, your visitors generate a virtual flood of clickstream data. Say, for example, your site is for hotel bookings, and a site visitor browses hotels, starting with the Tranquil Haven Resort, and ending at the Evergreen Retreat Lodge:
 
 ```mermaid
 graph LR;
@@ -50,7 +50,7 @@ with open("clickstreams.txt", "r") as f:
     clickstream = [line.split(">") for line in raw.split()]
 ```
 
-After this proprocessing step, your data looks like this:
+After this preprocessing step, your data looks like this:
 
 ```text
 [['554', '11', '956', '952', '108', '174', '587', '243', '153', '863', '935', '87', '841'],
@@ -88,7 +88,7 @@ embeddings = pd.DataFrame(
 )
 ```
 
-The first five rows of the resulting index of embeddings looks like this:
+The first five rows of the resulting index of embeddings look like this:
 
 |     |    0 |     1 |     2 |     3 |     4 |     5 |     6 |     7 |     8 |     9 |    10 |    11 |    12 |    13 |    14 |    15 |
 |----:|-----:|------:|------:|------:|------:|------:|------:|------:|------:|------:|------:|------:|------:|------:|------:|------:|
@@ -98,7 +98,7 @@ The first five rows of the resulting index of embeddings looks like this:
 | 800 | 0.93 |  1.04 |  0.7  |  0.05 |  0.75 | -0.23 |  0.31 |  0.72 |  0.79 |  0.37 |  0.05 |  1.32 |  0.3  |  1.03 |  0.19 | -1.18 |
 | 199 | 1.5  | -0.75 | -0.07 | -1.02 | -1.29 |  0.23 | -0.6  |  0.06 |  1.04 | -0.15 |  0.77 |  0.53 | -0.47 |  0.62 |  0.38 | -0.18 |
 
-The index's first column is the hotel ID. The next 16 columns (numbered 0-15) represent the learned embedding. There are 16 numbers, because we set `vector_size=16`.
+The index's first column is the hotel ID. The next 16 columns (numbered 0-15) represent the learned embedding. There are 16 numbers because we set `vector_size=16`.
 
 Now that you have an embedding for each hotel, you're ready to implement your hotel RecSys!
 
@@ -158,7 +158,7 @@ graph LR;
       id3[Azure Sands Hotel]-->id4[Evergreen Retreat Lodge];
 ```
 
-We are trying to make our model understand (and embed) the relationships between the clickstream entities (in our case, hotels). These relationships can be represented as **skip-gram** pairs. Skip-grams are a popular NLP method for training a model to predicting the context, or neighboring words, of a given target word. We want our model to be able to predict, for a given hotel ("focus"), who its immediate neighbors in a clickstream will be - i.e., the hotel right before it, and the hotel right after it. We can represent the clickstream data from our example above as a table of skip-gram pairs (below):
+We are trying to make our model understand (and embed) the relationships between the clickstream entities (in our case, hotels). These relationships can be represented as **skip-gram** pairs. Skip-grams are a popular NLP method for training a model to predict the context, or neighboring words, of a given target word. We want our model to be able to predict, for a given hotel ("focus"), who its immediate neighbors in a clickstream will be - i.e., the hotel right before it, and the hotel right after it. We can represent the clickstream data from our example above as a table of skip-gram pairs (below):
 
 | Focus                   | Prediction              |
 |-------------------------|-------------------------|
@@ -169,7 +169,7 @@ We are trying to make our model understand (and embed) the relationships between
 | Azure Sands Hotel       | Evergreen Retreat Lodge |
 | Evergreen Retreat Lodge | Azure Sands Hotel       |
 
-For predicting user behavior on websites... we want our model to learn the probability of that a user having clicked on one given hotel (e.g., Tranquil Haven Resort) will click on another given hotel (e.g., Summit Vista Inn), and not on another hotel (e.g., Evergreen Retreat Lodge). This is a binary classification problem, so our model should be trained on binary data. This allows the model to directly learn the probability of transitions between a specific hotel and another specific hotel, and makes the model architexture easier and more efficient. (Binary classification training can handle large numbers of items and sparse data, both of which are characteristic of clickstream data.) Here's how the clickstream data looks as binary training data for our model.
+For predicting user behavior on websites we want our model to learn a probability score that a user having clicked on one given hotel (e.g., Tranquil Haven Resort) will click on another given hotel (e.g., Summit Vista Inn), and not on another hotel (e.g., Evergreen Retreat Lodge). This is a binary classification problem, so our model should be trained on binary data. This allows the model to directly learn a probability score of transitions between a specific hotel and another specific hotel, and makes the model architecture easier and more efficient. Here's how the clickstream data looks as binary training data for our model.
 
 | Focus                   | Other Hotel             | Neighbor? |
 |-------------------------|-------------------------|-----------|
@@ -209,7 +209,7 @@ And this, in a nutshell, is what happens under the hood.
 
 ### Hyperparameters
 
-The ratio of positive to negative samples in the training data is a variable hyperparameter (a parameter whose value is set before the learning process begins) that can be optimized to fine tune to get better embeddings - i.e., better performanace. There are many other hyperparameters we can use to fine tune - for example, embedding size - called `vector_size` in Gensim, which we've seen already. Another important hyperparameter is `window_size`, which enlarges the focus of the model, allowing us to take account of not just the immediate clickstream hotel neighbors but also those two or three steps away from the "focus" hotel.
+The ratio of positive to negative samples in the training data is a variable hyperparameter (a parameter whose value is set before the learning process begins) that can be optimized to fine-tune to get better embeddings - i.e., better performance. There are many other hyperparameters we can use to fine-tune - for example, embedding size - called `vector_size` in Gensim, which we've seen already. Another important hyperparameter is `window_size`, which enlarges the focus of the model, allowing us to take account of not just the immediate clickstream hotel neighbors but also those two or three steps away from the "focus" hotel.
 
 ## Conclusion
 
