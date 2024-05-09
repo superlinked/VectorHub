@@ -1,7 +1,7 @@
-# Knowledge Graphs and Organizational Ontologies
+# Unlocking LLM Power with Organizational KG Ontologies
 
 ## Introduction
-Large Language Models (LLMs) exploit the power of continuous representations of data in a vector space. They can orchestrate workflows, analyze data, write letters, generate code, and a wide variety of other complex tasks. Heavy investment in LLM development by big tech - Google, Amazon, Apple, Meta, Microsoft - is testament to LLM power. The survival and well-being of organizations working in AI, and in data more generally, depends on harnessing this power. To do this, **AI organizations have to solve two related data issues**. In addition to **(1) reducing LLM hallucinations and returning relevant, accurate results in their data products**, every AI organization needs to **(2) harness and protect (maintain organizational boundaries around) the goldmine of data it possesses**.
+Large Language Models (LLMs) exploit the power of continuous representations of data in a vector space. They can orchestrate workflows, analyze data, write letters, generate code, and perform a wide variety of other complex tasks. Heavy investment in LLM development by big tech - Google, Amazon, Apple, Meta, Microsoft - is testament to LLM power. The survival and well-being of organizations working in AI, and in data more generally, depends on harnessing this power. To do this, **AI organizations have to solve two related data issues**. In addition to **(1) reducing LLM hallucinations and returning relevant, accurate results in their data products**, every AI organization needs to **(2) harness and protect (maintain organizational boundaries around) the goldmine of data it possesses**.
 
 For both of these tasks, **Knowledge Graphs (KGs) and their ontologies (schema layers) can help**.
 
@@ -23,13 +23,13 @@ Imagine a two-dimensional space (see diagram below), with fruitiness on the y-ax
 
 An LLM is basically a compression of the web. The LLM reads docs on web, and tries to do next word prediction. It looks back using the transformer model to see how one word relates to another, and creates embedding vectors that are like coordinates.
 
-A vector is like a coordinate - e.g., the coordinate for “king” will “zoom” me to the coordinate position for “king”. But I can also take the embedding vector for king, take away the embedding vector for “man”, and add the embedding vector for “woman”, and this new coordinate will now zoom me to the position of queen. This is a very powerful way of representing these terms. But this is a continuous space; the coordinate (vector) will take me *roughly (not precisely)* to the relevant area of the vector space.
+A vector is like a coordinate - e.g., the coordinate for “king” will “zoom” me to the coordinate position for “king”. But I can also take the embedding vector for king, take away the embedding vector for “man”, and add the embedding vector for “woman”, and this new coordinate will now zoom me to the position of queen. This is a very powerful way of representing these terms. It lets us capture and quantify relationships between data points when the data and relationships aren't explicitly defined - such as in natural language text or images. But the vector space is a continuous one; the coordinate (vector) will take me only *roughly (not precisely)* to the relevant area of the vector space.
 
-So how does the representation of data in a Knowledge Graph (KG) differ from the representation of data in an LLM?
+So how does the representation of data in a Knowledge Graph differ from the representation of data in an LLM?
 
 ### KGs and discrete knowledge representation
 
-LLMs represent data (mostly text) continuously. Vector embeddings in LLMs are continuous, fuzzy. “One fact or concept flows into the next in a continuous multi-dimensional space.” LLMs are powerful, flexible, but not always reliable, and ultimately incomprehensible. KGs, on the other hand, are precise and discrete. KGs make each data item into a distinct node, and connections between data items into discrete edges. KGs are less flexible than LLMs, but they are **reliable and explicable**.
+Vector embeddings in LLMs are "fuzzy." “One fact or concept flows into the next in a continuous multi-dimensional space.” LLMs are powerful, flexible, but not always reliable, and ultimately incomprehensible. KGs, on the other hand, are precise and discrete. KGs make each data item into a distinct node, and connections between data items into discrete edges. KGs are less flexible than LLMs, but they are **reliable and explicable**.
 
 ![Schema.org representation of Queen, and general KG representation](../assets/use_cases/schema.org-queen-KG-general.png/)
 
@@ -37,11 +37,11 @@ KGs are built for the integration of factual data. In addition to text (the doma
 
 ![KGs-data-integration](../assets/use_cases/KGs-data-integration.png/)
 
-### Ontology / schema layer
+### Ontologies and schema layers
 
-The key to a KG’s power is its ontology, or schema layer. A KG’s ontology structures the KG and makes it intelligible. KGs are created by applying an ontology (or schema layer) to a set of data points. This schema layer permits the KG to represent linked entities in a domain. The ontology is a semantic data model defining the types of things in a domain. Ontologies include classes, relationships, and attributes. Schemas allow searches to use the classes, relationships, and attributes in an ontology (schema layer) to inform searches with precise definitions.
+The key to a KG’s power is its ontology or schema layer. A KG’s ontology structures the KG and makes it intelligible. KGs are created by applying an ontology or schema layer to a set of data points. This schema layer permits the KG to represent linked entities in a domain. The ontology is a semantic data model defining the types of things in a domain. Ontologies include classes, relationships, and attributes. Schemas allow searches to use the classes, relationships, and attributes in an ontology (schema layer) to inform searches with precise definitions.
 
-Over 44% of the web takes advantage of the power of KG schemas by tagging data items with JSON-LDs (Javascript Object Notation for Linked Data). Every data item tagged in this way can be connected by their formal relationship as set out in the schema’s classes, relationships, and attributes.
+Over 44% of the web takes advantage of the power of KG schemas by tagging data items with JSON-LDs (Javascript Object Notation for Linked Data). Every data item tagged in this way can be connected by its formal relationship to others, as set out in the schema’s classes, relationships, and attributes.
 
 For example, if I want to indicate that Jane Doe and John Smith are colleagues, I can do it using their JSON-LDs, and obtain a distributed graph. Simplified, such a graph would look like this:
 
@@ -49,7 +49,7 @@ Jane Doe <--- Colleagues ---> John Smith
 
 ![jsonLD-schema](../assets/use_cases/jsonLD-schema.png/)
 
-Each island of JSON-LD points back to schema.org (maintained by the JSON-LD Working Group), with contributions from a broad community. Schema.org has a common set of schemas for things people mostly search for on web - e.g., products, flights, bookings. For example, if I search for a specific recipe on google, I get very specific results based on the google knowledge graph constructed from islands of JSON-LDs.
+Each island of JSON-LD points back to schema.org (maintained by the JSON-LD Working Group), with contributions from a broad community. Schema.org has a common set of schemas for things people mostly search for on the web - e.g., products, flights, bookings. For example, if I search for a specific recipe on google, I get very specific results based on the google knowledge graph constructed from islands of JSON-LDs.
 
 ![schema.org-recipe](../assets/use_cases/schema.org-recipe.png/)
 
@@ -58,7 +58,7 @@ Each island of JSON-LD points back to schema.org (maintained by the JSON-LD Work
 So, how should AI organizations take advantage of the power of graphs to survive?
 
 1) By using KGs in your organization’s data products to insert ontological context into LLM prompts - thereby reducing hallucination and returning relevant, accurate results. And,
-2) By unifying the organization’s data into a comprehensive organizational KG that harnesses and protects the organization’s goldmine of data.
+2) By unifying the organization’s data into a comprehensive organizational KG that harnesses and protects the organization’s trove of data.
 
 Let’s take a closer look at each of these, in turn.
 
@@ -120,7 +120,7 @@ In addition to 1) using your KG to insert context into my prompts (above), you c
 
 ### 2) Creating a unified org KG, and connecting it to LLM
 
-KGs can harness and protect (maintain organizational boundaries around) the goldmine of data your organization is sitting on. Using a cellular analogy, an organization should erect a cellular membrane - i.e., a data boundary, a firewall, that contains and selectively (safely) exposes its proprietary data products. The cellular membrane contains the organization’s semantic data mesh.
+KGs can harness and protect (maintain organizational boundaries around) latent value of your organization's data. Using a cellular analogy, an organization should erect a cellular membrane - i.e., a data boundary, a firewall, that contains and selectively (safely) exposes its proprietary data products. The cellular membrane contains the organization’s semantic data mesh.
 
 This organizational semantic data mesh should be powered by organizational KGs, allowing the organization to use LLMs to realize and capture the free energy bound up in the chaotic jumble of its databases. An organization’s KGs (structured by the organization’s ontology) can act as a kind of Markov Blanket - the minimal subset of variables containing all the information needed to infer / predict a target random variable - anything that’s useful for organizational purposes.
 
