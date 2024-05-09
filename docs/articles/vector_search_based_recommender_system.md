@@ -16,7 +16,7 @@ There are a wide range of capable vector databases (VDBs). To see which VDB fits
 
 **The workflow - an overview**
 
-The workflow of our web application (see image below) starts with unstructured data - game reviews in our case (1.), generate vector embeddings for them using an OpenAI model (2.), and store them in our database (R). Then we use the same OpenAI model to generate vector embeddings (4.) for our search query (3.), and use a similarity function (5.) (such as nearest neighbor search, dot product, or approximate neighbor search) to find embeddings of relevant game reviews (Semantic Search Results), which we display as our top 10 recommendations.
+The workflow of our web application (see image below) starts with unstructured data - game reviews in our case (1.), generate vector embeddings for them using an OpenAI model (2.), and store them in our database (R). Then we use the same OpenAI model to generate vector embeddings (4.) for our search query (3.), and use a similarity function (5.) within an algorithm such as nearest neighbor search, dot product, or approximate neighbor search to find embeddings of relevant game reviews (Semantic Search Results), which we display as our top 10 recommendations.
 
 ![overview](../assets/use_cases/vector_search_based_recommender_system/image3.png)
 
@@ -35,9 +35,7 @@ os.environ["ROCKSET_API_KEY"] = "XveaN8L9mUFgaOkffpv6tX6VSPHz####"
 
 ### Step 2: Create a new collection, and upload data
 
-In this tutorial, we use [Amazon product review data](https://drive.google.com/file/d/1EEvCUqKIH6LuLLGRjo6ayCEXqT4Z-ZVE/view?usp=drive_link). Download this data onto your local machine, so it can be uploaded to your collection.
-
-We'll be uploading the [sample_data.json](https://drive.google.com/file/d/1EEvCUqKIH6LuLLGRjo6ayCEXqT4Z-ZVE/view?usp=drive_link) file to Rockset.
+In this tutorial, we use [Amazon product review data](https://drive.google.com/file/d/1EEvCUqKIH6LuLLGRjo6ayCEXqT4Z-ZVE/view?usp=drive_link). Download this data onto your local machine, so you can upload it (as a json file) to Rockset.
 
 Note: In practice, data is usually ingested from a streaming service. To keep things simple for our demo, we instead use a sample from a public dataset.
 
@@ -267,7 +265,7 @@ In summary, the Flask backend processes user input and interacts with external s
 
 ## Running your Vector-Search-based recommendation system
 
-Now that you have your recommendation system set up, you're ready to run the flask server and access it via your internet browser. Et voilà! Your application is up and running. Let's add some parameters in the bar and get some recommendations. The results will be displayed on an HTML template, as shown below.
+Now that you have your recommendation system set up, you're ready to run the flask server and access it via your internet browser. Et voilà! Your application is up and running. Let's add some parameters in the "search filters" bar and get some recommendations. The results will be displayed on an HTML template, as shown below.
 
 ![frontend](../assets/use_cases/vector_search_based_recommender_system/image2.png)
 
