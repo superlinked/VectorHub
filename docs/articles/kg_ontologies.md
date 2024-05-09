@@ -21,7 +21,7 @@ Imagine a two-dimensional space (see diagram below), with fruitiness on the y-ax
 ![Simplified representation of vector embeddings (on 2 dimensions) and (inset) knowledge graph](../assets/use_cases/fruit-techiness.jpeg)
 *Simplified representation of vector embeddings (on 2 dimensions) and (inset) knowledge graph*
 
-An LLM is basically a compression of the web. The LLM reads docs on web, and tries to do next word prediction. It looks back using the transformer model to see how one word relates to another, and creates embedding vectors that are like coordinates.
+An LLM is basically a compression of the web. The LLM reads docs on web, and tries to do next word prediction. It looks back using the transformer model to see how one word relates to another, and creates embedding vectors.
 
 A vector is like a coordinate - e.g., the coordinate for “king” will “zoom” me to the coordinate position for “king”. But I can also take the embedding vector for king, take away the embedding vector for “man”, and add the embedding vector for “woman”, and this new coordinate will now zoom me to the position of queen. This is a very powerful way of representing these terms. It lets us capture and quantify relationships between data points when the data and relationships aren't explicitly defined - such as in natural language text or images. But the vector space is a continuous one; the coordinate (vector) will take me only *roughly (not precisely)* to the relevant area of the vector space.
 
@@ -39,26 +39,17 @@ KGs are built for the integration of factual data. In addition to text (the doma
 
 ### Ontologies and schema layers
 
-The key to a KG’s power is its ontology or schema layer. A KG’s ontology structures the KG and makes it intelligible. KGs are created by applying an ontology or schema layer to a set of data points. This schema layer permits the KG to represent linked entities in a domain. The ontology is a semantic data model defining the types of things in a domain. Ontologies include classes, relationships, and attributes. Schemas allow searches to use the classes, relationships, and attributes in an ontology (schema layer) to inform searches with precise definitions.
+The keys to a KG’s power are its schema layer and ontology. The schema layer and ontology **make the KG intelligible**. The schema layer provides a basic structure to the KG, defining the types of entities and relationships that can exist in the graph. The schema layer is concretely tied to the KG's actual data. A KG's ontology, on the other hand, is a more formal, abstract, and comprehensive representation of the graph's data, including the rules, axioms, and constraints governing these entities and relationships. The ontology provides an intelligible, semantic framework (which includes classes, relationships, and attributes) for the data in the KG. This lets you inform your searches with ontological context (classes, relationships, and attributes) to make them more precise, and enables you to infer new knowledge from existing graph data.
 
-Over 44% of the web takes advantage of the power of KG schemas by tagging data items with JSON-LDs (Javascript Object Notation for Linked Data). Every data item tagged in this way can be connected by its formal relationship to others, as set out in the schema’s classes, relationships, and attributes.
+These KG capabilities make KGs a valuable tool for safeguarding your organization's well-being.
 
-For example, if I want to indicate that Jane Doe and John Smith are colleagues, I can do it using their JSON-LDs, and obtain a distributed graph. Simplified, such a graph would look like this:
+## Using KGs for organization survival
 
-Jane Doe <--- Colleagues ---> John Smith
-
-![jsonLD-schema](../assets/use_cases/jsonLD-schema.png/)
-
-Each island of JSON-LD points back to schema.org (maintained by the JSON-LD Working Group), with contributions from a broad community. Schema.org has a common set of schemas for things people mostly search for on the web - e.g., products, flights, bookings. For example, if I search for a specific recipe on google, I get very specific results based on the google knowledge graph constructed from islands of JSON-LDs.
-
-![schema.org-recipe](../assets/use_cases/schema.org-recipe.png/)
-
-## Using KGs for data organization survival
-
-So, how should AI organizations take advantage of the power of graphs to survive?
+Your organization's use of KGs can ensure its very survival in a competitive data landscape. 
+How?
 
 1) By using KGs in your organization’s data products to insert ontological context into LLM prompts - thereby reducing hallucination and returning relevant, accurate results. And,
-2) By unifying the organization’s data into a comprehensive organizational KG that harnesses and protects the organization’s trove of data.
+2) By unifying the organization’s data into a comprehensive organizational KG that harnesses and protects the latent value of the organization’s data, and connecting that organizational KG to an LLM.
 
 Let’s take a closer look at each of these, in turn.
 
@@ -155,6 +146,26 @@ Your semantic layer enables you to go from this:
 Through the semantic layer, I can use business concepts to access data which is in a graph format (working memory graph).
 
 Now that you have a complete organizational KG, you can take full advantage of the value of your organization’s internal data by connecting it to an instance of an LLM. Connecting your KG to an LLM can: 1) enrich your own data, providing more comprehensive information, 2) achieve semantic interoperability - your data can be understood not just by your org but across different systems that recognize the URIs, 3) provide more complete views of entities represented by the well-known URIs, 4) improve the ability to query your data, using the URIs as hooks to pull in relevant data from various sources), and 5) maintain consistency and standardization in your data.
+
+
+
+#### begin section 
+#### web uses schemas (JSON-LD).. you can connect to; move to below
+Over 44% of the web takes advantage of the power of KG schemas by tagging data items with JSON-LDs (Javascript Object Notation for Linked Data). Every data item tagged in this way can be connected by its formal relationship to others.
+
+For example, if I want to indicate that Jane Doe and John Smith are colleagues, I can do it using their JSON-LDs, and obtain a distributed graph. Simplified, such a graph would look like this:
+
+Jane Doe <--- Colleagues ---> John Smith
+
+![jsonLD-schema](../assets/use_cases/jsonLD-schema.png/)
+
+Each island of JSON-LD points back to schema.org (maintained by the JSON-LD Working Group), with contributions from a broad community. Schema.org has a common set of schemas for things people mostly search for on the web - e.g., products, flights, bookings. For example, if I search for a specific recipe on google, I get very specific results based on the google knowledge graph constructed from islands of JSON-LDs.
+
+![schema.org-recipe](../assets/use_cases/schema.org-recipe.png/)
+#### end section
+
+
+
 
 ### Connecting your KG to LLM graph data
 
