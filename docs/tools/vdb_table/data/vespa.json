@@ -94,12 +94,12 @@
   },
   "langchain": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://python.langchain.com/v0.1/docs/integrations/retrievers/vespa/",
     "comment": ""
   },
   "llamaindex": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://docs.llamaindex.ai/en/stable/examples/vector_stores/VespaIndexDemo/",
     "comment": ""
   },
   "managed_cloud": {
