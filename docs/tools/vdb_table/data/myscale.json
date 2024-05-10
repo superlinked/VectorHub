@@ -44,7 +44,7 @@
   "geo_search": {
     "support": "full",
     "source_url": "https://myscale.com/docs/en/functions/geospatial-functions/",
-    "comment": "via https://myscale.com/docs/en/functions/geospatial-functions/"
+    "comment": ""
   },
   "multi_vec": {
     "support": "full",
@@ -134,13 +134,13 @@
   "sharding": {
     "support": "full",
     "source_url": "https://clickhouse.com/docs/en/engines/table-engines/special/distributed",
-    "comment": ""
+    "comment": "MyScale is a fork of ClickHouse and supports sharding through the Distributed Table Engine."
   },
   "doc_size": {
     "bytes": 0,
     "unlimited": true,
     "source_url": "",
-    "comment": ""
+    "comment": "As a SQL database, MyScale does not limit the size of each row. However, larger row sizes will impact the performance of selecting related columns."
   },
   "vector_dims": {
     "value": 0,
