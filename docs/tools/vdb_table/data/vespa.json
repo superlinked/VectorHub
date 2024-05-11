@@ -73,12 +73,12 @@
     "comment": ""
   },
   "embeddings_image": {
-    "support": "full",
+    "support": "partial",
     "source_url": "https://github.com/vespa-engine/sample-apps/tree/master/text-image-search",
     "comment": ""
   },
   "embeddings_structured": {
-    "support": "full",
+    "support": "partial",
     "source_url": "",
     "comment": "Through the support for custom ONNX models, Vespa also supports structured embeddings"
   },
