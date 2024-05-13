@@ -1,7 +1,7 @@
 {
   "name": "Couchbase",
   "links": {
-    "docs": "https://docs.couchbase.com/couchbase-lite/3.2/java/vector-search.html",
+    "docs": "https://docs.couchbase.com/cloud/vector-search/vector-search.html",
     "github": "https://github.com/couchbase",
     "website": "https://www.couchbase.com/products/vector-search/",
     "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/xx",
@@ -9,24 +9,24 @@
     "slug": "couchbase"
   },
   "oss": {
-    "support": "none",
+    "support": "partial",
     "source_url": "",
     "comment": ""
   },
   "license": {
-    "value": "",
+    "value": "Proprietary",
     "source_url": "",
     "comment": ""
   },
   "dev_languages": {
     "value": [
-      "c++",
-      "java"
+      "Python", "C++", "Erlang", "Go", "Java"
     ],
     "source_url": "",
-    "comment": ""
+    "comment": "SDK client support: Python, C++, C, Go, Java, Kotlin, Node, PHP, Ruby, Scala, .Net
+"
   },
-  "vector_launch_year": 2023,
+  "vector_launch_year": 2024,
   "metadata_filter": {
     "support": "full",
     "source_url": "",
@@ -53,12 +53,12 @@
     "comment": ""
   },
   "sparse_vectors": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "bm25": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
@@ -68,24 +68,24 @@
     "comment": ""
   },
   "embeddings_text": {
-    "support": "none",
+    "support": "partial",
     "source_url": "",
-    "comment": ""
+    "comment": "via external embedding models"
   },
   "embeddings_image": {
-    "support": "",
+    "support": "partial",
     "source_url": "",
-    "comment": ""
+    "comment": "via external embedding models"
   },
   "embeddings_structured": {
-    "support": "",
+    "support": "partial",
     "source_url": "",
-    "comment": ""
+    "comment": "via external embedding models"
   },
   "rag": {
-    "support": "",
+    "support": "partial",
     "source_url": "",
-    "comment": ""
+    "comment": "via external LLMs"
   },
   "recsys": {
     "support": "",
@@ -94,12 +94,12 @@
   },
   "langchain": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://python.langchain.com/v0.1/docs/integrations/vectorstores/couchbase/",
     "comment": ""
   },
   "llamaindex": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://docs.llamaindex.ai/en/stable/api_reference/readers/couchbase/",
     "comment": ""
   },
   "managed_cloud": {
@@ -120,7 +120,7 @@
   "multi_tenancy": {
     "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "via collections and RBAC"
   },
   "disk_index": {
     "support": "full",
@@ -128,54 +128,54 @@
     "comment": ""
   },
   "ephemeral": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "sharding": {
     "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "Both internode and intranode"
   },
   "doc_size": {
-    "bytes": 0,
+    "bytes": 20000000,
     "unlimited": false,
     "source_url": "",
     "comment": ""
   },
   "vector_dims": {
-    "value": 0,
+    "value": 2048,
     "unlimited": false,
     "source_url": "",
-    "comment": ""
+    "comment": "4096 in 7.6.2"
   },
   "github_stars": {
-    "value": 0,
-    "source_url": "",
+    "value": 6000,
+    "source_url": "https://github.com/couchbase",
     "comment": "",
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 0,
-    "source_url": "",
-    "comment": "",
+    "value": 50000000,
+    "source_url": "https://hub.docker.com/_/couchbase",
+    "comment": "50M+",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 0,
-    "source_url": "",
+    "value": 394797,
+    "source_url": "https://pypi.org/project/couchbase/",
     "comment": "",
-    "value_90_days": 2467
+    "value_90_days": 0
   },
   "npm_downloads": {
-    "value": 0,
+    "value": 16249,
     "source_url": "https://www.npmjs.com/package/couchbase",
     "comment": "",
     "value_90_days": 0
   },
   "crates_io_downloads": {
-    "value": 0,
-    "source_url": "",
+    "value": 35373,
+    "source_url": "https://crates.io/crates/couchbase",
     "comment": "",
     "value_90_days": 0
   }
