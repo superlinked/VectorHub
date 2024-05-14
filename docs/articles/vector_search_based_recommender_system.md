@@ -35,7 +35,7 @@ os.environ["ROCKSET_API_KEY"] = "XveaN8L9mUFgaOkffpv6tX6VSPHz####"
 
 ### Step 2: Create a new collection, and upload data
 
-In this tutorial, we use [Amazon product review data](https://drive.google.com/file/d/1EEvCUqKIH6LuLLGRjo6ayCEXqT4Z-ZVE/view?usp=drive_link). Download this data onto your local machine, so you can upload it (as a json file) to Rockset.
+In this tutorial, we use [Amazon product review data](https://drive.google.com/file/d/1EEvCUqKIH6LuLLGRjo6ayCEXqT4Z-ZVE/view?usp=drive_link) as our game reviews source. Download this data onto your local machine, so you can upload it (as a json file) to Rockset.
 
 Note: In practice, data is usually ingested from a streaming service. To keep things simple for our demo, we instead use a sample from a public dataset.
 
@@ -43,10 +43,9 @@ Note: In practice, data is usually ingested from a streaming service. To keep th
 
 We use an OpenAI model to convert our data into [embeddings](https://platform.openai.com/docs/api-reference/embeddings/create).
 
-After signing up for OpenAI, go to [API Keys](https://platform.openai.com/api-keys) and create a secret key. Don't forget to copy and save your key. It will look similar to "sk-***********************". Like Rockset's API key, save your OpenAI key in the environment so you can use it easily throughout your code:
+After signing up for OpenAI, go to [API Keys](https://platform.openai.com/api-keys) and create a secret key. Don't forget to copy and save your key, which will look something like this: "sk-***********************". Like Rockset's API key, save your OpenAI key in the environment so you can use it easily throughout your code:
 
 ```python
-import os
 os.environ["OPENAI_API_KEY"] = "sk-####"
 ```
 
@@ -109,7 +108,7 @@ Now, let's turn to our **backend**.
 
 We've chosen Flask because [its backend code](https://github.com/ankit1khare/rockset-vector-search/blob/main/app.py) makes creating web applications in Python easier by rendering the HTML and CSS files via single-line commands.
 
-Initially, the GET method will be called and the HTML file rendered. At this point, no recommendation will be made, so the basic structure of the page will display on the browser. After this is executed, we can fill in the form and submit it, thereby utilizing the POST method to get some recommendations.
+Initially, the GET method will be called and the HTML file rendered. At this point, no recommendation will be made, so the basic structure of the page will display on the browser. After executing this, we can fill in the html form (i.e., left panel "Search" fields) and submit it, thereby utilizing the POST method to get some recommendations.
 
 Let's take a closer look at the main components of the backend code, the same way we did for our front-end:
 
@@ -162,7 +161,7 @@ def index():
     return render_template('index.html', request=request)
 ```
 
-1. **Data Processing Functions:**
+3. **Data Processing Functions:**
     1. get_inputs(): Extracts form data from the request.
 
     ```python
@@ -276,6 +275,6 @@ The methodology outlined in this tutorial is a viable foundation for not just re
 
 ## Contributors
 
-- [????, Author](https://www.linkedin.com/in/?????????)
+- [Ankit Khare, Author](https://www.linkedin.com/in/deeplearnerak/)
 - [Mór Kapronczay, Editor](https://www.linkedin.com/in/mór-kapronczay-49447692)
 - [Robert Turner, Editor](https://www.linkedin.com/in/robertdhayanturner/)
