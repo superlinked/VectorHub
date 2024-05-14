@@ -23,8 +23,7 @@
       "Python", "C++", "Erlang", "Go", "Java"
     ],
     "source_url": "",
-    "comment": "SDK client support: Python, C++, C, Go, Java, Kotlin, Node, PHP, Ruby, Scala, .Net
-"
+    "comment": "SDK client support: Python, C++, C, Go, Java, Kotlin, Node, PHP, Ruby, Scala, .Net"
   },
   "vector_launch_year": 2024,
   "metadata_filter": {
@@ -49,11 +48,6 @@
   },
   "multi_vec": {
     "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "sparse_vectors": {
-    "support": "",
     "source_url": "",
     "comment": ""
   },
