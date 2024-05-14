@@ -20,7 +20,7 @@
   },
   "dev_languages": {
     "value": [
-      "Python", "c++", "erlang", "go", "java"
+      "python", "c++", "erlang", "go", "java"
     ],
     "source_url": "https://docs.couchbase.com/home/sdk.html",
     "comment": "SDK client support: Python, C++, C, Go, Java, Kotlin, Node, PHP, Ruby, Scala, .Net"
