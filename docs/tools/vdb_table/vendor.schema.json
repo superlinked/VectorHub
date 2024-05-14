@@ -10,7 +10,7 @@
     "license": {"allOf": [{"$ref": "#/$defs/stringWithSource"}], "$comment": "About | License | The license the source code is released under." },
     "dev_languages": {"allOf": [{"$ref": "#/$defs/devLanguageListWithSource"}], "$comment": "About | Dev Lang | The language the database is developed in." },
     "vector_launch_year": {"type": "integer", "$comment": "About | VSS Launch | The year of the first release for the vector search functionality." },
-    "metadata_filter": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | Filters | Metadata filtering support within vector search - allowing users to refine results based on additional contextual informatio and enhancing precision in search queries. Not to be confused with filters/faceting in Lucene based keyword search." },
+    "metadata_filter": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | Filters | Metadata filtering support within vector search - allowing users to refine results based on additional contextual information and enhancing precision in search queries. Not to be confused with filters/faceting in Lucene based keyword search." },
     "hybrid_search": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | Hybrid Search | Built-in blending of the 2 lists (keyword & vector search results) being done natively within the DB using something like Reciprocal Rank Fusion." },
     "facets": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | Facets | Built-in aggregations on facets and facet cardinality calculation (similar to Lucene)." },
     "geo_search": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | Geo Search | Built-in geospatial index for location queries." },
