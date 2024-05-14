@@ -63,7 +63,7 @@ SELECT
   description,
   estimated_price,
   brand_tokens,
-  image_ur1,
+  image_url,
   APPROX_DOT_PRODUCT(embedding, VECTOR_ENFORCE(:embedding, 1536, 'float')) as similarity
 FROM
     commons.sample s
@@ -75,12 +75,12 @@ LIMIT :limit;
 
 This parameterized query (above) does the following:
 
-- It retrieves data from the "sample" table in the "commons" schema. And selects specific columns, like ASIN, title, brand, description, estimated_price, brand_tokens, and image_ur1.
+- It retrieves data from the "sample" table in the "commons" schema. And selects specific columns, like ASIN, title, brand, description, estimated_price, brand_tokens, and image_url.
 - It also computes the similarity between the provided embedding and the embedding stored in the database using the **APPROX_DOT_PRODUCT** function.
 - The query filters results whose estimated_price falls within the provided range, and whose brand contains the specified value; it then sorts the results in order of descending similarity (i.e., the most similar results come first).
 - Finally, it limits the number of returned rows based on the provided limit parameter.
 
-To finish building our Query Lambda, we query the collection made in step 2 by clicking on **Query this collection** and pasting the parameterized query above into the [Rockset query editor](https://console.rockset.com/query).
+To finish building our Query Lambda, simply query the collection made in step 2 by pasting the parameterized query above into the [Rockset query editor](https://console.rockset.com/query).
 
 ### Step 5: Implement a Frontend and Backend
 
@@ -250,7 +250,7 @@ def index():
         for record in api_response["results"]:
             record_data = {
                 "title": record['title'],
-                "image_url": record['image_ur1'],
+                "image_url": record['image_url'],
                 "brand": record['brand'],
                 "estimated_price": record['estimated_price'],
                 "description": record['description']
