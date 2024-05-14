@@ -73,33 +73,33 @@
     "comment": ""
   },
   "embeddings_image": {
-    "support": "none",
-    "source_url": "",
+    "support": "partial",
+    "source_url": "https://github.com/vespa-engine/sample-apps/tree/master/text-image-search",
     "comment": ""
   },
   "embeddings_structured": {
-    "support": "",
+    "support": "partial",
     "source_url": "",
-    "comment": ""
+    "comment": "Through the support for custom ONNX models, Vespa also supports structured embeddings"
   },
   "rag": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.vespa.ai/en/llms-rag.html",
     "comment": ""
   },
   "recsys": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.vespa.ai/en/tutorials/news-4-embeddings.html",
     "comment": ""
   },
   "langchain": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://python.langchain.com/v0.1/docs/integrations/retrievers/vespa/",
     "comment": ""
   },
   "llamaindex": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.llamaindex.ai/en/stable/examples/vector_stores/VespaIndexDemo/",
     "comment": ""
   },
   "managed_cloud": {
@@ -166,14 +166,14 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 0,
-    "source_url": "",
+    "value": 12000000,
+    "source_url": "https://hub.docker.com/r/vespaengine/vespa",
     "comment": "",
     "value_90_days": 0
   },
   "pypi_downloads": {
     "value": 133394,
-    "source_url": "https://pypi.org/project/VESPA/",
+    "source_url": "https://pypi.org/project/pyvespa/",
     "comment": "",
     "value_90_days": 2882
   },
