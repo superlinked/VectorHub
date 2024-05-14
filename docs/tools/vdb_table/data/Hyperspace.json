@@ -136,7 +136,7 @@
     "comment": ""
   },
   "doc_size": {
-    "bytes": 100M,
+    "bytes": 100000000,
     "unlimited": false,
     "source_url": "",
     "comment": ""
