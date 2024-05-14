@@ -168,3 +168,8 @@ Your comprehensive organizational KG, connected to an instance of an LLM, can pr
 ## Conclusion
 
 In sum, KGs present an organizational opportunity to companies who work with LLMs. They provide a way of ameliorating LLM hallucinations, but also a method for unifying the trove of data your organization houses but may not yet reap the full potential benefits of. By building a strong ontology and schema layer in your KG, you indicate the classes, relationships, and attributes that are priorities for you. You can then use your KG (its discrete representation of your priorities) to more judiciously harness the power of an LLM’s continuous vector space to improve, protect, and develop your data and data products.
+
+## Contributors
+
+- [Tony Seale, Author](https://www.linkedin.com/in/tonyseale/)
+- [Robert Turner, Author](https://www.linkedin.com/in/robertdhayanturner/)
