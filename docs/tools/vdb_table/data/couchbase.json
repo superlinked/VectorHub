@@ -20,7 +20,7 @@
   },
   "dev_languages": {
     "value": [
-      "Python", "C++", "Erlang", "Go", "Java"
+      "Python", "c++", "go", "java"
     ],
     "source_url": "",
     "comment": "SDK client support: Python, C++, C, Go, Java, Kotlin, Node, PHP, Ruby, Scala, .Net"
