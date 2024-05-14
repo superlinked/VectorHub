@@ -10,45 +10,45 @@
   },
   "oss": {
     "support": "partial",
-    "source_url": "",
+    "source_url": "https://www.couchbase.com/blog/couchbase-adopts-bsl-license/",
     "comment": ""
   },
   "license": {
     "value": "Proprietary",
-    "source_url": "",
-    "comment": ""
+    "source_url": "https://www.couchbase.com/blog/couchbase-adopts-bsl-license/",
+    "comment": "Vector search currently only part of Enterprise and DBaaS editions"
   },
   "dev_languages": {
     "value": [
-      "Python", "c++", "go", "java"
+      "Python", "c++", "erlang", "go", "java"
     ],
-    "source_url": "",
+    "source_url": "https://docs.couchbase.com/home/sdk.html",
     "comment": "SDK client support: Python, C++, C, Go, Java, Kotlin, Node, PHP, Ruby, Scala, .Net"
   },
   "vector_launch_year": 2024,
   "metadata_filter": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://www.prnewswire.com/news-releases/couchbase-announces-new-features-to-accelerate-ai-powered-adaptive-applications-for-customers-302074941.html",
     "comment": ""
   },
   "hybrid_search": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://docs.couchbase.com/cloud/vector-search/run-vector-search-ui.html#hybrid",
     "comment": ""
   },
   "facets": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://docs.couchbase.com/server/current/fts/fts-search-response-facets.html",
     "comment": ""
   },
   "geo_search": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://docs.couchbase.com/cloud/search/geo-search-ui.html",
     "comment": ""
   },
   "multi_vec": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://docs.couchbase.com/cloud/vector-search/create-vector-search-index-ui.html",
     "comment": ""
   },
   "bm25": {
@@ -58,12 +58,12 @@
   },
   "full_text": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://docs.couchbase.com/c-sdk/current/concept-docs/full-text-search-overview.html",
     "comment": ""
   },
   "embeddings_text": {
     "support": "partial",
-    "source_url": "",
+    "source_url": "https://docs.couchbase.com/cloud/vector-search/run-vector-search-ui.html#large",
     "comment": "via external embedding models"
   },
   "embeddings_image": {
@@ -78,7 +78,7 @@
   },
   "rag": {
     "support": "partial",
-    "source_url": "",
+    "source_url": "https://docs.couchbase.com/cloud/vector-search/run-vector-search-ui.html#large",
     "comment": "via external LLMs"
   },
   "recsys": {
@@ -98,7 +98,7 @@
   },
   "managed_cloud": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://www.couchbase.com/products/capella/",
     "comment": ""
   },
   "pricing": {
@@ -123,25 +123,25 @@
   },
   "ephemeral": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://docs.couchbase.com/server/current/learn/buckets-memory-and-storage/buckets.html#replication-dcp-and-xdcr",
     "comment": ""
   },
   "sharding": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://docs.couchbase.com/server/current/learn/buckets-memory-and-storage/vbuckets.html",
     "comment": "Both internode and intranode"
   },
   "doc_size": {
     "bytes": 20000000,
     "unlimited": false,
-    "source_url": "",
+    "source_url": "https://docs.couchbase.com/server/current/learn/views/views-writing-views.html#limits-on-document-sizes-for-indexing",
     "comment": ""
   },
   "vector_dims": {
     "value": 2048,
     "unlimited": false,
-    "source_url": "",
-    "comment": "4096 in 7.6.2"
+    "source_url": "https://docs.couchbase.com/server/current/vector-search/create-vector-search-index-ui.html#procedure",
+    "comment": "Increasing to 4096 in pending 7.6.2 release"
   },
   "int8_quantization": {
     "support": "partial",
