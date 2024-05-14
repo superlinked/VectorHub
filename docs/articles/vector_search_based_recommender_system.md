@@ -16,7 +16,7 @@ There are a wide range of capable vector databases (VDBs). To see which VDB fits
 
 **The workflow - an overview**
 
-The workflow of our web application (see image below) starts with unstructured data - game reviews in our case (1.), generate vector embeddings for them using an OpenAI model (2.), and store them in our database (R). Then we use the same OpenAI model to generate vector embeddings (4.) for our search query (3.), and use a similarity function (5.) within an algorithm such as nearest neighbor search, dot product, or approximate neighbor search to find embeddings of relevant game reviews (Semantic Search Results), which we display as our top 10 recommendations.
+The workflow of our web application (see image below) starts with unstructured data - game reviews in our case (1.), generate vector embeddings for them using an OpenAI model (2.), and store them in our database (R). Then we use the same OpenAI model to generate vector embeddings (4.) for our search query (3.), and use a similarity measure (5.) such as approximate neighbor search to find embeddings of relevant game reviews (Semantic Search Results), which we display as our top 10 recommendations.
 
 ![overview](../assets/use_cases/vector_search_based_recommender_system/image3.png)
 
