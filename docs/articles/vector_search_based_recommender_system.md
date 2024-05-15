@@ -1,4 +1,4 @@
-# Building a Vector-Search-based Recommender System
+# Building a Vector-based Movie Search System
 
 ## Overview
 
