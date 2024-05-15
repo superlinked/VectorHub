@@ -113,7 +113,7 @@ Initially, the GET method will be called and the HTML file rendered. At this poi
 Let's take a closer look at the main components of the backend code, the same way we did for our front-end:
 
 1. **Flask App Setup:**
-    1. A Flask application named app is defined along with a route for both GET and POST requests at the root URL ("/").
+    1. A Flask application named `app` is defined along with a route for both GET and POST requests at the root URL ("/").
 
 2. **Index function:**
     1. Function built to primarily handle both GET and POST requests.
@@ -268,9 +268,9 @@ Now that you have your recommendation system set up, you're ready to run the fla
 
 ![frontend](../assets/use_cases/vector_search_based_recommender_system/image2.png)
 
-**Note: The entire code for this tutorial is available on** [**GitHub**](https://github.com/ankit1khare/rockset-vector-search/tree/main)**. For a quick-start online implementation, an end-to-end runnable** [**Colab notebook**](https://colab.research.google.com/drive/1WcJggQWYayVIQpKFQVZ80H74x0tky8Pa?usp=sharing#scrollTo=XzggkmXJ_Bly) **is also configured.**
+**Note: The entire code for this tutorial is available on [GitHub](https://github.com/ankit1khare/rockset-vector-search/tree/main)**. For a quick-start online implementation, an end-to-end runnable **[Colab notebook](https://colab.research.google.com/drive/1WcJggQWYayVIQpKFQVZ80H74x0tky8Pa?usp=sharing#scrollTo=XzggkmXJ_Bly)** is also configured.
 
-The methodology outlined in this tutorial is a viable foundation for not just recommendation systems but a wide range of other applications as well. Leveraging the same set of concepts, and using embedding models and a vector database, you're now equipped to build a wide variety of applications - including semantic search engines, customer support chatbots, and real-time data analytics dashboards.
+The methodology outlined in this tutorial is a viable foundation not just for recommendation systems but a wide range of other applications as well. Leveraging the same set of concepts, and using embedding models and a vector database, you're now equipped to build a wide variety of applications - including semantic search engines, customer support chatbots, and real-time data analytics dashboards.
 
 
 ## Contributors
