@@ -7,6 +7,8 @@ import pypistats
 import requests
 from tqdm.auto import tqdm
 
+from datetime import date
+
 # Constants for the script
 DIRECTORY = "docs/tools/vdb_table/data"
 
@@ -151,9 +153,22 @@ def get_rust_downloads_last_90(crate_name):
         return None
 
 
+def upload_zapier_hook_data(data, zap_id):
+    url = f"https://hooks.zapier.com/hooks/catch/{zap_id}/"
+    requests.post(url, json=data)
+
+
 def update_json_files(directory, headers=None):
     if headers is None:
         headers = {}
+
+    today = date.today()
+
+    github_zap = {'time': str(today)}
+    docker_zap = {'time': str(today)}
+    npm_zap = {'time': str(today)}
+    pypi_zap = {'time': str(today)}
+    crates_zap = {'time': str(today)}
 
     sources = ["github_stars", "docker_pulls", "npm_downloads", "pypi_downloads", "crates_io_downloads"]
 
@@ -167,6 +182,7 @@ def update_json_files(directory, headers=None):
                 npm_url = data.get("npm_downloads", {}).get("source_url", "")
                 pypi_url = data.get("pypi_downloads", {}).get("source_url", "")
                 rust_url = data.get("crates_io_downloads", {}).get("source_url", "")
+                slug = data.get("links", {}).get("slug", "")
 
                 for source in sources:
                     if "value_90_days" not in data[source]:
@@ -185,11 +201,17 @@ def update_json_files(directory, headers=None):
                     pulls = get_docker_pulls(docker_namespace, docker_repo_name)
                     if pulls is not None:
                         data["docker_pulls"]["value"] = pulls
+                        docker_zap[slug] = pulls
+                    else:
+                        docker_zap[slug] = None
 
                 if github_url:
                     stars = get_github_stars(github_url, headers)
                     if stars is not None:
                         data["github_stars"]["value"] = stars
+                        github_zap[slug] = stars
+                    else:
+                        github_zap[slug] = None
 
                 if npm_url:
                     npm_package_name = list(
@@ -198,6 +220,9 @@ def update_json_files(directory, headers=None):
                     downloads = get_npm_downloads(npm_package_name, headers)
                     if downloads is not None:
                         data["npm_downloads"]["value"] = downloads
+                        npm_zap[slug] = downloads
+                    else:
+                        npm_zap[slug] = None
 
                     start_date = datetime.now() - timedelta(days=90)
                     downloads = get_npm_downloads(npm_package_name, headers, start_date)
@@ -213,6 +238,9 @@ def update_json_files(directory, headers=None):
                     downloads = get_pypi_downloads(pypi_package_name, headers)
                     if downloads is not None:
                         data["pypi_downloads"]["value"] = downloads
+                        pypi_zap[slug] = downloads
+                    else:
+                        pypi_zap[slug] = None
 
                     end_date = datetime.now()
                     start_date = end_date - timedelta(days=90)
@@ -234,6 +262,9 @@ def update_json_files(directory, headers=None):
                     downloads = get_rust_downloads(rust_crate_name)
                     if downloads is not None:
                         data["crates_io_downloads"]["value"] = downloads
+                        crates_zap[slug] = downloads
+                    else:
+                        crates_zap[slug] = None
 
                     downloads_last_90 = get_rust_downloads_last_90(rust_crate_name)
                     if downloads_last_90 is not None:
@@ -244,6 +275,12 @@ def update_json_files(directory, headers=None):
                 json.dump(data, json_file, indent=2)
                 json_file.truncate()  # Remove any leftover content
 
+    # Upload Zaps
+    upload_zapier_hook_data(github_zap, "5388531/3766466")
+    upload_zapier_hook_data(npm_zap, "5388531/376ulj3")
+    upload_zapier_hook_data(docker_zap, "5388531/3766hea")
+    upload_zapier_hook_data(pypi_zap, "5388531/37661qm")
+    upload_zapier_hook_data(crates_zap, "5388531/3766reo")
 
 if __name__ == "__main__":
     update_json_files(DIRECTORY)
