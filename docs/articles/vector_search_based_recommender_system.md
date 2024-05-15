@@ -1,10 +1,10 @@
-# Building a Vector-Search-based Recommender System
+# Building a Vector-based Search System for recommendations
 
 ## Overview
 
 In this article, you will:
 
-- Learn how to build a recommendation engine with a database optimized for vectors (Rockset), using OpenAI embeddings
+- Learn how to build a vector-based search engine you can use for recommendations with a database optimized for vectors (Rockset), using OpenAI embeddings
 - Build a dynamic web application using vanilla CSS, HTML, JavaScript, and Flask, that seamlessly integrates with Rockset and OpenAI APIs
 - Find an end-to-end Colab notebook - [Recsys_workshop](https://colab.research.google.com/drive/1rD08fTiCGJiKFDDNZyJh92QN4_dz6Hcu) - that you can run without any dependencies on your local operating system
 
