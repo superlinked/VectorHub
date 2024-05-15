@@ -1,4 +1,4 @@
-# Building a Vector-based Search System for recommendations
+# Step-by-Step Tutorial on Vector-Powered Movie Search for Beginners 
 
 ## Overview
 
@@ -12,7 +12,7 @@ In this article, you will:
 
 If you have a web or mobile app, and want to improve personalization, user engagement, and user satisfaction, your recommendation system has to be capable of finding accurate, relevant, and similar items from within a large, high-dimensional dataset, and doing it in real-time. You need an *optimized and efficient [architecture](https://rockset.com/blog/a-blueprint-for-a-real-world-recommendation-system/)*. This architecture has to include a robust database that can handle vectorization, vector indexing, search, and retrieval.
 
-There are a wide range of capable vector databases (VDBs). To see which VDB fits your use case, take a look at [this comparison tool](https://vdbs.superlinked.com/). Our build in this article uses Rockset VDB, and OpenAI embedding models to vectorize our dataset. Of the many [vector search components](https://superlinked.com/vectorhub/building-blocks/vector-search/introduction) required to build a recommendation system, here we'll focus just on what's key for our purposes: metadata filtering, vector search, and keyword search, supporting sub-second search, aggregations, and joins at scale.
+There are a wide range of capable vector databases (VDBs). To see which VDB fits your use case, take a look at [this comparison tool](https://vdbs.superlinked.com/). Our build in this article uses Rockset VDB, and OpenAI embedding models to vectorize our dataset. Of the many [vector search components](https://superlinked.com/vectorhub/building-blocks/vector-search/introduction) required to build a recommendation system, here we'll focus just on what's key for our purposes: metadata filtering and vector search.
 
 **The workflow - an overview**
 
