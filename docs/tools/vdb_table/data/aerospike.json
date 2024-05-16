@@ -124,7 +124,7 @@
   "disk_index": {
     "support": "full",
     "source_url": "https://aerospike.com/docs/vector/architecture/vector-data#index-partitioning-in-aerospike",
-    "comment": "https://aerospike.com/docs/vector/architecture/vector-data#index-partitioning-in-aerospike"
+    "comment": ""
   },
   "ephemeral": {
     "support": "",
