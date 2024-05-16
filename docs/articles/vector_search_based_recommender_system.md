@@ -1,4 +1,4 @@
-# Step-by-Step Tutorial on Vector-Powered Movie Search for Beginners 
+# Step-by-Step Tutorial on Vector-Powered Video Game Search for Beginners 
 
 ## Overview
 
