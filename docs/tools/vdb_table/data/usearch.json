@@ -175,19 +175,19 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 855140,
+    "value": 899768,
     "source_url": "https://pypi.org/project/usearch/",
     "comment": "",
-    "value_90_days": 257290
+    "value_90_days": 264877
   },
   "npm_downloads": {
     "value": 66345,
     "source_url": "https://www.npmjs.com/package/usearch",
     "comment": "",
-    "value_90_days": 20695
+    "value_90_days": 21074
   },
   "crates_io_downloads": {
-    "value": 40170,
+    "value": 40171,
     "source_url": "https://crates.io/crates/usearch",
     "comment": "",
     "value_90_days": 1339
