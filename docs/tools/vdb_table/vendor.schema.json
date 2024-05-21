@@ -121,6 +121,7 @@
               "IVF-SQ",
               "FLAT-BQ",
               "HNSW-PQ",
+              "HNSW-SQ",
               "HNSW-BQ",
               "DiskANN",
               "FreshDiskANN",
