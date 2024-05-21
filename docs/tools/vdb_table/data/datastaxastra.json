@@ -155,7 +155,7 @@
       "HNSW",
       "FreshDiskANN"
     ],
-    "source_url": "",
+    "source_url": "https://docs.datastax.com/en/astra-db-serverless/get-started/concepts.html",
     "comment": "Their vector index implementation has many of the features of FreshDiskANN and is open-sourced as the JVector search engine."
   },
   "github_stars": {
