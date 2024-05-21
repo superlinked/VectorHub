@@ -149,6 +149,13 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "HNSW"
+    ],
+    "source_url": "https://github.com/nuclia/nucliadb/tree/main/nucliadb_vectors",
+    "comment": ""
+  },
   "github_stars": {
     "value": 577,
     "source_url": "https://github.com/nuclia/nucliadb",

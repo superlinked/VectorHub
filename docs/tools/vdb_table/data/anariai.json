@@ -148,6 +148,13 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "Proprietary"
+    ],
+    "source_url": "https://anari.ai/vector-acceleration-engine/",
+    "comment": "uses FPGA"
+  },
   "github_stars": {
     "value": 0,
     "source_url": "",

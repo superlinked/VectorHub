@@ -149,6 +149,13 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "HNSW"
+    ],
+    "source_url": "https://www.activeloop.ai/resources/deep-lake-hnsw-index-rapidly-query-35-m-vectors-save-80/",
+    "comment": ""
+  },
   "github_stars": {
     "value": 7730,
     "source_url": "https://github.com/activeloopai/deeplake",

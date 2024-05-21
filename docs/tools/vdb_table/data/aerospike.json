@@ -148,6 +148,13 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "HNSW"
+    ],
+    "source_url": "https://aerospike.com/docs/vector/architecture/hnsw",
+    "comment": ""
+  },
   "int8_quantization": {
     "support": "none",
     "source_url": "",

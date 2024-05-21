@@ -148,6 +148,14 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "HNSW"
+    ],
+    "source_url": "https://redis.io/docs/latest/develop/interact/search-and-query/advanced-concepts/vectors/",
+    "comment": ""
+  },
   "github_stars": {
     "value": 5239,
     "source_url": "https://github.com/RediSearch/RediSearch",
