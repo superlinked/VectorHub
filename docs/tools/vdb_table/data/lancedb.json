@@ -151,7 +151,6 @@
   "index_types": {
     "value": [
       "FLAT",
-      "IVF",
       "IVF-PQ"
     ],
     "source_url": "https://lancedb.github.io/lancedb/ann_indexes/#how-to-choose-num_partitions-and-num_sub_vectors-for-ivf_pq-index",
