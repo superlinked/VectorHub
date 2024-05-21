@@ -156,7 +156,7 @@
       "FreshDiskANN"
     ],
     "source_url": "",
-    "comment": "Their FreshDiskANN implementation is open-sourced in JVector"
+    "comment": "Their vector index implementation has many of the features of FreshDiskANN and is open-sourced as the JVector search engine."
   },
   "github_stars": {
     "value": 0,
