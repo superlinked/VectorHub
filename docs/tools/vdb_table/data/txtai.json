@@ -148,6 +148,16 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "FAISS",
+      "HNSW",
+      "ANNOY"
+    ],
+    "source_url": "https://neuml.github.io/txtai/embeddings/configuration/ann/",
+    "comment": ""
+  },
   "github_stars": {
     "value": 7044,
     "source_url": "https://github.com/neuml/txtai",

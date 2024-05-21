@@ -159,6 +159,16 @@
     "source_url": "https://blog.vespa.ai/scaling-large-vector-datasets-with-cohere-binary-embeddings-and-vespa/",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "HNSW",
+      "HNSW-BQ",
+      "SPANN"
+    ],
+    "source_url": "https://blog.vespa.ai/vespa-hybrid-billion-scale-vector-search/#vector-indexing-and-serving-architecture",
+    "comment": ""
+  },
   "github_stars": {
     "value": 5367,
     "source_url": "https://github.com/vespa-engine/vespa",
