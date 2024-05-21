@@ -148,6 +148,13 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "HNSW"
+    ],
+    "source_url": "https://cookbook.chromadb.dev/core/concepts/#vector-index-hnsw-index",
+    "comment": ""
+  },
   "github_stars": {
     "value": 12427,
     "source_url": "https://github.com/chroma-core/chroma",

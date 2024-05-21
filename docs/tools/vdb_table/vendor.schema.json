@@ -111,12 +111,10 @@
           "items": {
             "type": "string",
             "enum": [
-              "",
               "FLAT",
               "HNSW",
               "FAISS",
               "ANNOY",
-              "nmslib",
               "IVF",
               "IVF-PQ",
               "IVF-BQ",
@@ -130,7 +128,9 @@
               "SCANN",
               "SPANN",
               "NGT",
+              "MSTG",
               "FAISS-IVF",
+              "Tree-AH",
               "not known"
             ]
           }

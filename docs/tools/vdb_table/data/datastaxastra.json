@@ -149,6 +149,15 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "HNSW",
+      "FreshDiskANN"
+    ],
+    "source_url": "",
+    "comment": "Their FreshDiskANN implementation is open-sourced in JVector"
+  },
   "github_stars": {
     "value": 0,
     "source_url": "",

@@ -150,7 +150,7 @@
   },
   "index_types": {
     "value": [
-      "HNSW",
+      "HNSW"
     ],
     "source_url": "https://aerospike.com/docs/vector/architecture/hnsw",
     "comment": ""

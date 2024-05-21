@@ -148,6 +148,14 @@
     "source_url": "https://issues.apache.org/jira/browse/SOLR-16836",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "HNSW"
+    ],
+    "source_url": "https://solr.apache.org/guide/solr/latest/query-guide/dense-vector-search.html",
+    "comment": "via Lucene"
+  },
   "github_stars": {
     "value": 1019,
     "source_url": "https://github.com/apache/solr",

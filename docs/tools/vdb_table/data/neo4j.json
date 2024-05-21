@@ -149,6 +149,13 @@
     "source_url": "",
     "comment": "Expecting an increase to 4096"
   },
+  "index_types": {
+    "value": [
+      "HNSW"
+    ],
+    "source_url": "https://neo4j.com/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/",
+    "comment": "via Lucene"
+  },
   "github_stars": {
     "value": 0,
     "source_url": "",
