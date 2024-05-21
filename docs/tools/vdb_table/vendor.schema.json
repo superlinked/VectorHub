@@ -114,7 +114,7 @@
               "",
               "FLAT",
               "HNSW",
-              "faiss",
+              "FAISS",
               "ANNOY",
               "nmslib",
               "IVF",
@@ -128,6 +128,9 @@
               "FreshDiskANN",
               "GPU Index",
               "SCANN",
+              "SPANN",
+              "NGT",
+              "FAISS-IVF",
               "not known"
             ]
           }
