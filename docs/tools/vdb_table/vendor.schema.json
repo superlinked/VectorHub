@@ -120,6 +120,14 @@
               "IVF",
               "IVF-PQ",
               "IVF-BQ",
+              "IVF-SQ8",
+              "FLAT-BQ",
+              "HNSW-PQ",
+              "HNSW-BQ",
+              "DiskANN",
+              "FreshDiskANN",
+              "GPU Index",
+              "SCANN",
               "not known"
             ]
           }

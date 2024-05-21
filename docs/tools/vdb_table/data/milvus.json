@@ -159,6 +159,22 @@
     "source_url": "https://milvus.io/docs/index.md#binary",
     "comment": "via BIN_FLAT, BIN_IVF_FLAT index type"
   },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "HNSW",
+      "ANNOY",
+      "IVF",
+      "IVF-PQ",
+      "IVF-BQ",
+      "IVF-SQ8",
+      "SCANN",
+      "DiskANN",
+      "GPU Index"
+    ],
+    "source_url": "https://milvus.io/docs/index.md",
+    "comment": ""
+  },
   "github_stars": {
     "value": 27017,
     "source_url": "https://github.com/milvus-io/milvus",

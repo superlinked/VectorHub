@@ -153,6 +153,17 @@
     "source_url": "https://weaviate.io/developers/weaviate/configuration/bq-compression",
     "comment": "via Binary Quantization of index"
   },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "FLAT-BQ",
+      "HNSW",
+      "HNSW-PQ",
+      "HNSW-BQ"
+    ],
+    "source_url": "https://weaviate.io/developers/weaviate/concepts/vector-index",
+    "comment": "Option to dynamically switch from Flat to HNSW"
+  },
   "github_stars": {
     "value": 9607,
     "source_url": "https://github.com/weaviate/weaviate",
