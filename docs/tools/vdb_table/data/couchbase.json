@@ -57,17 +57,17 @@
     "comment": ""
   },
   "embeddings_text": {
-    "support": "partial",
-    "source_url": "https://docs.couchbase.com/cloud/vector-search/run-vector-search-ui.html#large",
+    "support": "none",
+    "source_url": "",
     "comment": "via external embedding models"
   },
   "embeddings_image": {
-    "support": "partial",
+    "support": "none",
     "source_url": "",
     "comment": "via external embedding models"
   },
   "embeddings_structured": {
-    "support": "partial",
+    "support": "none",
     "source_url": "",
     "comment": "via external embedding models"
   },
