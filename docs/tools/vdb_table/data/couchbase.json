@@ -28,12 +28,12 @@
   "vector_launch_year": 2024,
   "metadata_filter": {
     "support": "full",
-    "source_url": "https://www.prnewswire.com/news-releases/couchbase-announces-new-features-to-accelerate-ai-powered-adaptive-applications-for-customers-302074941.html",
+    "source_url": "https://docs.couchbase.com/server/current/vector-search/run-vector-search-rest-api.html#example",
     "comment": ""
   },
   "hybrid_search": {
     "support": "full",
-    "source_url": "https://docs.couchbase.com/cloud/vector-search/run-vector-search-ui.html#hybrid",
+    "source_url": "https://docs.couchbase.com/cloud/search/search-request-params.html#compound-queries",
     "comment": ""
   },
   "facets": {
@@ -59,22 +59,22 @@
   "embeddings_text": {
     "support": "none",
     "source_url": "",
-    "comment": "via external embedding models"
+    "comment": ""
   },
   "embeddings_image": {
     "support": "none",
     "source_url": "",
-    "comment": "via external embedding models"
+    "comment": ""
   },
   "embeddings_structured": {
     "support": "none",
     "source_url": "",
-    "comment": "via external embedding models"
+    "comment": ""
   },
   "rag": {
-    "support": "partial",
-    "source_url": "https://docs.couchbase.com/cloud/vector-search/run-vector-search-ui.html#large",
-    "comment": "via external LLMs"
+    "support": "none",
+    "source_url": "",
+    "comment": ""
   },
   "langchain": {
     "support": "full",
@@ -107,7 +107,7 @@
     "comment": ""
   },
   "ephemeral": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
