@@ -174,10 +174,10 @@
     "value_90_days": 540937
   },
   "npm_downloads": {
-    "value": 9440,
+    "value": 9324,
     "source_url": "https://www.npmjs.com/package/rockset",
     "comment": "",
-    "value_90_days": 1079
+    "value_90_days": 1197
   },
   "crates_io_downloads": {
     "value": 0,
