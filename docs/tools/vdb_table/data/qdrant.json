@@ -163,6 +163,7 @@
       "FLAT",
       "HNSW",
       "HNSW-PQ",
+      "HNSW-SQ",
       "HNSW-BQ"
     ],
     "source_url": "https://qdrant.tech/documentation/concepts/indexing/",
