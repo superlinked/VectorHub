@@ -119,6 +119,7 @@
               "java",
               "scala",
               "rust",
+              "erlang",
               "typescript",
               "not known"
             ]
