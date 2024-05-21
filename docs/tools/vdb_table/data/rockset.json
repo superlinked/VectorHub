@@ -148,6 +148,13 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "FAISS-IVF"
+    ],
+    "source_url": "https://rockset.com/blog/vector-search-scale/",
+    "comment": ""
+  },
   "github_stars": {
     "value": 0,
     "source_url": "",

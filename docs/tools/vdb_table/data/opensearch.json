@@ -158,6 +158,14 @@
     "source_url": "https://opensearch.org/docs/latest/search-plugins/knn/knn-score-script/#getting-started-with-the-score-script-for-binary-data",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "HNSW"
+    ],
+    "source_url": "https://opensearch.org/docs/1.0/search-plugins/knn/approximate-knn/",
+    "comment": "via Lucene"
+  },
   "github_stars": {
     "value": 8765,
     "source_url": "https://github.com/opensearch-project/OpenSearch",

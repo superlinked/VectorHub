@@ -153,6 +153,15 @@
     "source_url": "https://github.com/ashvardanian/usearch-binary",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "HNSW",
+      "HNSW-BQ"
+    ],
+    "source_url": "",
+    "comment": ""
+  },
   "github_stars": {
     "value": 1685,
     "source_url": "https://github.com/unum-cloud/usearch",

@@ -148,6 +148,13 @@
     "source_url": "https://turbopuffer.com/docs/get-started/limits",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "SPANN"
+    ],
+    "source_url": "https://turbopuffer.com/architecture#:~:text=on%20SPANN.-,SPANN,-is%20a%20centroid",
+    "comment": ""
+  },
   "github_stars": {
     "value": 0,
     "source_url": "",

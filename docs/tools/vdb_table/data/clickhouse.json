@@ -148,6 +148,13 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "HNSW"
+    ],
+    "source_url": "",
+    "comment": "HNSW via USearch"
+  },
   "github_stars": {
     "value": 34308,
     "source_url": "https://github.com/ClickHouse/ClickHouse",

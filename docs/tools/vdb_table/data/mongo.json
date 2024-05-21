@@ -149,6 +149,14 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "HNSW"
+    ],
+    "source_url": "https://www.mongodb.com/community/forums/t/index-creation-for-vector-search/265477/2",
+    "comment": "via Lucene"
+  },
   "github_stars": {
     "value": 0,
     "source_url": "",
