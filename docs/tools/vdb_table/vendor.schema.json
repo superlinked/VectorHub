@@ -2,7 +2,6 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "vdb_table/schema/vendor",
   "type": "object",
-
   "properties": {
     "name": {"type": "string", "$comment": "About | Vendor | " },
     "links": {"allOf": [{"$ref": "#/$defs/links"}], "$comment": "About | Links | " },
@@ -43,27 +42,49 @@
     "npm_downloads": {"allOf": [{"$ref": "#/$defs/statsWithSource"}], "$comment": "Stats | NPM Downloads | The number of downloads (in last 90 days) for the core product's NPM package." },
     "crates_io_downloads": {"allOf": [{"$ref": "#/$defs/statsWithSource"}], "$comment": "Stats | Rust Crates Downloads | The number of downloads (in last 90 days) for the core product's Rust crate." }
   },
-
   "$defs": {
     "links": {
       "$id": "links",
       "type": "object",
       "properties": {
-        "docs": {"type": "string"},
-        "github": {"type": "string"},
-        "website": {"type": "string"},
-        "vendor_discussion": {"type": "string"},
-        "poc_github": {"type": "string"},
-        "slug": {"type": "string"}
+        "docs": {
+          "type": "string"
+        },
+        "github": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        },
+        "vendor_discussion": {
+          "type": "string"
+        },
+        "poc_github": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
       }
     },
     "featureWithSource": {
       "$id": "featureWithSource",
       "type": "object",
       "properties": {
-        "support": {"enum": ["", "none", "partial", "full"]},
-        "source_url": {"type": "string"},
-        "comment": {"type": "string"}
+        "support": {
+          "enum": [
+            "",
+            "none",
+            "partial",
+            "full"
+          ]
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        }
       }
     },
     "indexTypeWithSource": {
@@ -96,9 +117,34 @@
       "$id": "stringWithSource",
       "type": "object",
       "properties": {
-        "value": {"type": "string"},
-        "source_url": {"type": "string"},
-        "comment": {"type": "string"}
+        "value": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        }
+      }
+    },
+    "indexTypesListWithSource": {
+      "$id": "indexTypesListWithSource",
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "FLAT",
+              "HNSW",
+              "ANNOY",
+              "IVF",
+              "IVF-PQ"
+            ]
+          }
+        }
       }
     },
     "devLanguageListWithSource": {
@@ -125,38 +171,66 @@
             ]
           }
         },
-        "source_url": {"type": "string"},
-        "comment": {"type": "string"}
+        "source_url": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        }
       }
     },
     "integerWithSource": {
       "$id": "integerWithSource",
       "type": "object",
       "properties": {
-        "value": {"type": "integer"},
-        "unlimited": {"type": "boolean"},
-        "source_url": {"type": "string"},
-        "comment": {"type":"string"}
+        "value": {
+          "type": "integer"
+        },
+        "unlimited": {
+          "type": "boolean"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        }
       }
     },
     "statsWithSource": {
       "$id": "statsWithSource",
       "type": "object",
       "properties": {
-        "value": {"type": "integer"},
-        "value_90_days": {"type": "integer"},
-        "source_url": {"type": "string"},
-        "comment": {"type":"string"}
+        "value": {
+          "type": "integer"
+        },
+        "value_90_days": {
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        }
       }
     },
     "bytesWithSource": {
       "$id": "bytesWithSource",
       "type": "object",
       "properties": {
-        "bytes": {"type": "integer"},
-        "unlimited": {"type": "boolean"},
-        "source_url": {"type": "string"},
-        "comment": {"type":"string"}
+        "bytes": {
+          "type": "integer"
+        },
+        "unlimited": {
+          "type": "boolean"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        }
       }
     }
   }
