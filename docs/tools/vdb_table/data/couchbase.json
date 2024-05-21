@@ -103,7 +103,7 @@
   },
   "disk_index": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://docs.couchbase.com/server/current/learn/services-and-indexes/indexes/storage-modes.html#standard-index-storage",
     "comment": ""
   },
   "ephemeral": {
