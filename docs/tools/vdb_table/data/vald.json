@@ -148,6 +148,14 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "FAISS",
+      "NGT"
+    ],
+    "source_url": "https://blog.vespa.ai/vespa-hybrid-billion-scale-vector-search/#vector-indexing-and-serving-architecture",
+    "comment": ""
+  },
   "github_stars": {
     "value": 1463,
     "source_url": "https://github.com/vdaas/vald",

@@ -153,6 +153,14 @@
     "source_url": "https://learn.microsoft.com/azure/search/vector-search-how-to-configure-compression-storage#option-3-configure-scalar-quantization?",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "HNSW"
+    ],
+    "source_url": "https://learn.microsoft.com/en-us/azure/search/vector-search-overview",
+    "comment": ""
+  },
   "github_stars": {
     "value": 0,
     "source_url": "",

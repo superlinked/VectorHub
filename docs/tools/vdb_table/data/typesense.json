@@ -148,6 +148,14 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "HNSW"
+    ],
+    "source_url": "https://typesense.org/docs/26.0/api/vector-search.html#brute-force-searching",
+    "comment": ""
+  },
   "github_stars": {
     "value": 18108,
     "source_url": "https://github.com/typesense/typesense",

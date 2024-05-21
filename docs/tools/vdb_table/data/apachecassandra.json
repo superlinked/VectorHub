@@ -148,6 +148,14 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "HNSW"
+    ],
+    "source_url": "https://cwiki.apache.org/confluence/display/CASSANDRA/CEP-30%3A+Approximate+Nearest+Neighbor%28ANN%29+Vector+Search+via+Storage-Attached+Indexes",
+    "comment": "via Lucene"
+  },
   "github_stars": {
     "value": 8523,
     "source_url": "https://github.com/apache/cassandra",

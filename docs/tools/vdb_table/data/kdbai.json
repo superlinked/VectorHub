@@ -148,6 +148,16 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "IVF",
+      "IVF-PQ",
+      "HNSW"
+    ],
+    "source_url": "https://code.kx.com/kdbai/reference/supported-indexes.html",
+    "comment": ""
+  },
   "github_stars": {
     "value": 0,
     "source_url": "",

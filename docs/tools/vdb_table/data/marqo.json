@@ -148,6 +148,13 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "HNSW"
+    ],
+    "source_url": "https://www.marqo.ai/blog/how-to-dramatically-improve-search-speed-in-marqo",
+    "comment": ""
+  },
   "github_stars": {
     "value": 4152,
     "source_url": "https://github.com/marqo-ai/marqo",
