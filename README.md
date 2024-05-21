@@ -19,10 +19,6 @@ Read more about our philosophy in our [Manifesto](manifesto.md).
 
 Please read [CONTRIBUTING.md](https://www.superlinked.com/vectorhub/contributing) for details on our code of conduct, and the process for submitting pull requests to us.
 
-### Built With
-
-* [Archbee](https://www.archbee.com/) - Frontend for markdown files
-
 ## License
 This work is licensed under a
 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License][cc-by-nc-sa].
