@@ -158,6 +158,16 @@
     "source_url": "https://qdrant.tech/documentation/guides/quantization/#binary-quantization",
     "comment": "via Binary Quantization of index"
   },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "HNSW",
+      "HNSW-PQ",
+      "HNSW-BQ"
+    ],
+    "source_url": "https://qdrant.tech/documentation/concepts/indexing/",
+    "comment": ""
+  },
   "github_stars": {
     "value": 18030,
     "source_url": "https://github.com/qdrant/qdrant",
