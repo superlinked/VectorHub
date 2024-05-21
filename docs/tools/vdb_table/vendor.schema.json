@@ -35,7 +35,7 @@
     "vector_dims": {"allOf": [{"$ref": "#/$defs/integerWithSource"}], "$comment": "Ops | Vector Dims | Maximum number of vector dimensions." },
     "int8_quantization": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | Int8 Quantization | Vectors can be stored and indexed in int8 quantized format in the index. Full support requires that the float versions of the vectors need not be stored in the DB at all." },
     "binary_quantization": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | Binary Quantization | Vectors can be stored and indexed in binary quantized format in the index. Full support requires that the float versions of the vectors need not be stored in the DB at all." },
-    "index_types": {"allOf": [{"$ref": "#/$defs/stringWithSource"}], "$comment": "Ops | Index Types | The types of vector indexes supported by the database." },
+    "index_types": {"allOf": [{"$ref": "#/$defs/indexTypesListWithSource"}], "$comment": "Ops | Index Types | The types of vector indexes supported by the database." },
     "github_stars": {"allOf": [{"$ref": "#/$defs/statsWithSource"}], "$comment": "Stats | GitHub ⭐ | The total number of stars for the core product repository." },
     "docker_pulls": {"allOf": [{"$ref": "#/$defs/statsWithSource"}],"$comment": "Stats | Docker Pulls | The total number of pulls for the core product's docker image." },
     "pypi_downloads": {"allOf": [{"$ref": "#/$defs/statsWithSource"}], "$comment": "Stats | PyPi Downloads | The number of downloads (in last 90 days) for the core product's python package." },
@@ -87,32 +87,6 @@
         }
       }
     },
-    "indexTypeWithSource": {
-      "$id": "indexTypeListWithSource",
-      "type": "object",
-      "properties": {
-        "value": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": [
-              "",
-              "FLAT",
-              "HNSW",
-              "faiss",
-              "ANNOY",
-              "nmslib",
-              "IVF",
-              "IVF-PQ",
-              "IVF-BQ",
-              "not known"
-            ]
-          }
-        },
-        "source_url": {"type": "string"},
-        "comment": {"type": "string"}
-      }
-    },
     "stringWithSource": {
       "$id": "stringWithSource",
       "type": "object",
@@ -137,11 +111,16 @@
           "items": {
             "type": "string",
             "enum": [
+              "",
               "FLAT",
               "HNSW",
+              "faiss",
               "ANNOY",
+              "nmslib",
               "IVF",
-              "IVF-PQ"
+              "IVF-PQ",
+              "IVF-BQ",
+              "not known"
             ]
           }
         }
