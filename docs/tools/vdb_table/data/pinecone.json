@@ -149,7 +149,9 @@
     "comment": ""
   },
   "index_types": {
-    "value": ["FreshDiskANN"],
+    "value": [
+      "FreshDiskANN"
+    ],
     "source_url": "https://www.pinecone.io/blog/hnsw-not-enough/#:~:text=its%20similarities%20end.-,FreshDiskANN,-PGA%20is%20based",
     "comment": "Proprietary variant of Microsoft's Vamana"
   },
@@ -172,15 +174,15 @@
     "value_90_days": 3881568
   },
   "npm_downloads": {
-    "value": 6736344,
+    "value": 7083521,
     "source_url": "https://www.npmjs.com/package/@pinecone-database/pinecone",
     "comment": "",
-    "value_90_days": 1633196
+    "value_90_days": 1733253
   },
   "crates_io_downloads": {
-    "value": 1015,
+    "value": 1103,
     "source_url": "https://crates.io/crates/pinecone-rs",
     "comment": "",
-    "value_90_days": 870
+    "value_90_days": 672
   }
 }

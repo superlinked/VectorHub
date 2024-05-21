@@ -20,7 +20,8 @@
   },
   "dev_languages": {
     "value": [
-      "c++", "erlang"
+      "c++",
+      "erlang"
     ],
     "source_url": "",
     "comment": ""
@@ -133,8 +134,14 @@
     "source_url": "https://docs.couchbase.com/couchbase-lite/3.2/java/working-with-vector-search.html#create-a-vector-index",
     "comment": "Automatic algorithm selection between: IdMap2,Flat, IVF,Flat, IVF,SQ8"
   },
+  "github_stars": {
+    "value": 1615,
+    "source_url": "https://github.com/couchbase/couchbase-lite-ios",
+    "comment": "",
+    "value_90_days": 0
+  },
   "docker_pulls": {
-    "value": 50000000,
+    "value": 86276899,
     "source_url": "https://hub.docker.com/_/couchbase",
     "comment": "50M+",
     "value_90_days": 0
@@ -146,15 +153,15 @@
     "value_90_days": 0
   },
   "npm_downloads": {
-    "value": 16249,
+    "value": 1038059,
     "source_url": "https://www.npmjs.com/package/couchbase",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 197766
   },
   "crates_io_downloads": {
-    "value": 35373,
+    "value": 35472,
     "source_url": "https://crates.io/crates/couchbase",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 1325
   }
 }
