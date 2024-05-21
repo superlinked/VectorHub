@@ -148,6 +148,14 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "HNSW"
+    ],
+    "source_url": "https://cratedb.com/blog/unlocking-the-power-of-vector-support-and-knn-search-in-cratedb",
+    "comment": "via Lucene"
+  },
   "github_stars": {
     "value": 3966,
     "source_url": "https://github.com/crate/crate",

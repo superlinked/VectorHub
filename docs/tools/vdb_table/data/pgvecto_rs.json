@@ -148,6 +148,25 @@
     "source_url": "",
     "comment": ""
   },
+  "int8_quantization": {
+    "support": "full",
+    "source_url": "https://docs.pgvecto.rs/reference/vector-types.html",
+    "comment": ""
+  },
+  "binary_quantization": {
+    "support": "full",
+    "source_url": "https://docs.pgvecto.rs/reference/vector-types.html",
+    "comment": ""
+  },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "IVF",
+      "HNSW"
+    ],
+    "source_url": "",
+    "comment": ""
+  },
   "github_stars": {
     "value": 1403,
     "source_url": "https://github.com/tensorchord/pgvecto.rs",
