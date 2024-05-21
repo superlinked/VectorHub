@@ -1,12 +1,12 @@
 {
-  "name": "KDB.AI",
+  "name": "Aerospike",
   "links": {
-    "docs": "https://code.kx.com/kdbai/",
-    "github": "https://github.com/KxSystems",
-    "website": "http://kdb.ai/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/103",
-    "poc_github": "https://github.com/sshanks-kx",
-    "slug": "kdbai"
+    "docs": "https://aerospike.com/docs/vector/",
+    "github": "https://github.com/aerospike/aerospike-vector-search-examples",
+    "website": "https://aerospike.com/vector/",
+    "vendor_discussion": "",
+    "poc_github": "https://github.com/hev",
+    "slug": "aerospike"
   },
   "oss": {
     "support": "none",
@@ -20,59 +20,59 @@
   },
   "dev_languages": {
     "value": [
-      "python"
+      "java"
     ],
     "source_url": "",
     "comment": ""
   },
-  "vector_launch_year": 2023,
+  "vector_launch_year": 2024,
   "metadata_filter": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "hybrid_search": {
-    "support": "full",
-    "source_url": "https://code.kx.com/kdbai/use/hybrid-search.html",
+    "support": "none",
+    "source_url": "",
     "comment": ""
   },
   "facets": {
-    "support": "partial",
-    "source_url": "https://code.kx.com/kdbai/use/query.html",
-    "comment": "we have built in aggregations"
+    "support": "none",
+    "source_url": "",
+    "comment": ""
   },
   "geo_search": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "multi_vec": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://aerospike.com/docs/vector/architecture/vector-data#vector-bins--index-storage",
     "comment": ""
   },
   "sparse_vectors": {
-    "support": "full",
-    "source_url": "https://code.kx.com/kdbai/reference/hybrid.html",
+    "support": "none",
+    "source_url": "",
     "comment": ""
   },
   "bm25": {
-    "support": "full",
-    "source_url": "https://code.kx.com/kdbai/reference/hybrid.html",
+    "support": "none",
+    "source_url": "",
     "comment": ""
   },
   "full_text": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "embeddings_text": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "embeddings_image": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
@@ -92,13 +92,13 @@
     "comment": ""
   },
   "langchain": {
-    "support": "full",
-    "source_url": "https://code.kx.com/kdbai/integrations/langchain.html",
+    "support": "none",
+    "source_url": "",
     "comment": ""
   },
   "llamaindex": {
-    "support": "full",
-    "source_url": "https://code.kx.com/kdbai/integrations/llamaindex.html",
+    "support": "none",
+    "source_url": "",
     "comment": ""
   },
   "managed_cloud": {
@@ -107,7 +107,7 @@
     "comment": ""
   },
   "pricing": {
-    "value": "Cloud = Free: 4 GB memory per instance, 30 GB data storage, OnPrem = 90-day trial, contact sales",
+    "value": "",
     "source_url": "",
     "comment": ""
   },
@@ -122,8 +122,8 @@
     "comment": ""
   },
   "disk_index": {
-    "support": "partial",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://aerospike.com/docs/vector/architecture/vector-data#index-partitioning-in-aerospike",
     "comment": ""
   },
   "ephemeral": {
@@ -132,7 +132,7 @@
     "comment": ""
   },
   "sharding": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
@@ -145,6 +145,16 @@
   "vector_dims": {
     "value": 0,
     "unlimited": true,
+    "source_url": "",
+    "comment": ""
+  },
+  "int8_quantization": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "binary_quantization": {
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
@@ -161,10 +171,10 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 5082,
-    "source_url": "https://pypi.org/project/kdbai-client/",
+    "value": 0,
+    "source_url": "https://pypi.org/project/aerospike-vector/",
     "comment": "",
-    "value_90_days": 2508
+    "value_90_days": 0
   },
   "npm_downloads": {
     "value": 0,
