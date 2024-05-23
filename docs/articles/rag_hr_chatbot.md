@@ -127,7 +127,7 @@ text_df.head()
 
 
 
-![../assets/use_cases/rag_hr_chatbot](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_baseline_eval_dataset_preview.png)
+![../assets/use_cases/rag_hr_chatbot/dataframepreview.png](../assets/use_cases/rag_hr_chatbot/dataframepreview.png)
 
 
 
@@ -228,7 +228,7 @@ present_result(only_relevance_result)
 
 Here are our results:
 
-
+![../assets/use_cases/rag_hr_chatbot/results1.png](../assets/use_cases/rag_hr_chatbot/results1.png)
 
 Look closely at the elements with ids 16 and 6. These documents say essentially the same thing. But the older document (16) prescribes a “bi-annual review” of policies and procedures. The new document (6), on the other hand, prescribes an annual review.
 
@@ -247,8 +247,7 @@ mild_recency_result = app.query(
 present_result(mild_recency_result)
 ```
 
-
-
+![../assets/use_cases/rag_hr_chatbot/result2.png](../assets/use_cases/rag_hr_chatbot/result2.png)
 
 With recency weighted more heavily, element 16 (from 2023) drops down to the bottom of our returned results.
 
@@ -270,6 +269,7 @@ norm_recency_result_df = present_result(normal_recency_result)
 Norm_recency_result_df
 ```
 
+![../assets/use_cases/rag_hr_chatbot/result3.png](../assets/use_cases/rag_hr_chatbot/result3.png)
 
 
 
@@ -290,8 +290,7 @@ normal_recency_result = app.query(
 maternity_result = present_result(normal_recency_result)
 maternity_result
 ```
-
-
+![../assets/use_cases/rag_hr_chatbot/result4.png](../assets/use_cases/rag_hr_chatbot/result4.png)
 
 Now that we’re happy with the retrieval, let’s set up the generation.
 
@@ -326,8 +325,7 @@ QUESTION: {initial_query_text}
 
 print(query)
 ```
-
-
+![../assets/use_cases/rag_hr_chatbot/rag_results2.png](../assets/use_cases/rag_hr_chatbot/rag_results2.png)
 
 With the query template in place, let’s prompt the LLM for a text answer.
 
@@ -358,6 +356,7 @@ for seq in sequences:
    print(f"Result: {seq['generated_text']}")
 ```
 
+![../assets/use_cases/rag_hr_chatbot/rag_results.png](../assets/use_cases/rag_hr_chatbot/rag_results.png)
 
 
 ### Evaluating the answer
