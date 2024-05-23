@@ -319,7 +319,27 @@ QUESTION: {initial_query_text}
 print(query)
 ```
 
-![RAG query](../assets/use_cases/rag_hr_chatbot/RAG_query.png)
+```text
+
+<s>[INST] <<SYS>>
+You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.
+
+If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information.
+<</SYS>>
+
+Please answer the following question by using information from the provided context information!
+CONTEXT_INFORMATION: 
+Management shall be responsible for ensuring that information security policies and procedures are reviewed annually, distributed and available, and that employees and contractors abide by those policies and procedures for the duration of their employment or engagement. Annual policy review shall include a review of any linked or referenced procedures, standards or guidelines.
+Management shall ensure that information security responsibilities are communicated to individuals, through written job descriptions, policies or some other documented method which is accurately updated and maintained. Compliance with information security policies and procedures and fulfillment of information security responsibilities shall be evaluated as part of the performance review process wherever applicable.
+Management shall consider excessive pressures, and opportunities for fraud when establishing incentives and segregating roles, responsibilities, and authorities.
+To ensure that employees and contractors meet security requirements, understand their responsibilities, and are suitable for their roles.
+All <Company Name> employees will undergo an annual performance review which will include an assessment of job performance, competence in the role, adherence to company policies and code of conduct, and achievement of role-specific objectives.
+
+QUESTION: What should management monitor?
+[/INST]
+
+```
+
 
 With the query template in place, let’s prompt the LLM for a text answer.
 
@@ -350,7 +370,34 @@ for seq in sequences:
    print(f"Result: {seq['generated_text']}")
 ```
 
-![RAG answer](../assets/use_cases/rag_hr_chatbot/RAG_answer.png)
+```text
+
+Result: <s>[INST] <<SYS>>
+You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.
+
+If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information.
+<</SYS>>
+
+Please answer the following question by using information from the provided context information!
+CONTEXT_INFORMATION: 
+Management shall be responsible for ensuring that information security policies and procedures are reviewed annually, distributed and available, and that employees and contractors abide by those policies and procedures for the duration of their employment or engagement. Annual policy review shall include a review of any linked or referenced procedures, standards or guidelines.
+Management shall ensure that information security responsibilities are communicated to individuals, through written job descriptions, policies or some other documented method which is accurately updated and maintained. Compliance with information security policies and procedures and fulfillment of information security responsibilities shall be evaluated as part of the performance review process wherever applicable.
+Management shall consider excessive pressures, and opportunities for fraud when establishing incentives and segregating roles, responsibilities, and authorities.
+To ensure that employees and contractors meet security requirements, understand their responsibilities, and are suitable for their roles.
+All <Company Name> employees will undergo an annual performance review which will include an assessment of job performance, competence in the role, adherence to company policies and code of conduct, and achievement of role-specific objectives.
+
+QUESTION: What should management monitor?
+[/INST]  Based on the provided context information, management should monitor the following:
+
+1. Information security policies and procedures: Management should review and update these policies and procedures annually to ensure they are relevant and effective in protecting the company's information assets.
+2. Employee and contractor compliance: Management should ensure that employees and contractors are aware of and comply with the company's information security policies and procedures throughout their employment or engagement.
+3. Performance reviews: Management should include an assessment of employee and contractor compliance with information security policies and procedures as part of their annual performance reviews.
+4. Job descriptions and responsibilities: Management should ensure that job descriptions accurately reflect the information security responsibilities of each role and are updated as necessary.
+5. Incentives and segregation of roles: Management should consider excessive pressures and opportunities for fraud when establishing incentives and segregating roles, responsibilities, and authorities to ensure that employees and contractors are suitable for their roles.
+6. Employee competence: Management should assess employee competence in their roles to ensure that they have the necessary skills and knowledge to perform their duties effectively and securely.
+7. Role-specific objectives: Management should establish role-specific objectives for employees and contractors to ensure that they are working towards common goals and are aligned with the company's overall information security strategy.
+
+```
 
 ### Evaluating the answer
 
