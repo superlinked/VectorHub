@@ -1,7 +1,9 @@
 # Unlocking LLM Power with Organizational KG Ontologies
 
 ## Introduction
-Large Language Models (LLMs) exploit the power of continuous representations of data in a vector space. They can orchestrate workflows, analyze data, write letters, generate code, and perform a wide variety of other complex tasks. Heavy investment in LLM development by big tech - Google, Amazon, Apple, Meta, Microsoft - is testament to LLM power. The survival and well-being of organizations working in AI, and in data more generally, depends on harnessing this power. To do this, **AI organizations have to solve two related data issues**. In addition to **(1) reducing LLM hallucinations and returning relevant, accurate results in their data products**, every AI organization needs to **(2) harness and protect (maintain organizational boundaries around) the goldmine of data it possesses**.
+Large Language Models (LLMs) exploit the power of continuous representations of data in a vector space. They can orchestrate workflows, analyze data, write letters, generate code, and perform a wide variety of other complex tasks. Heavy investment in LLM development by big tech - Google, Amazon, Apple, Meta, Microsoft - is testament to LLM power.
+
+The survival and well-being of organizations working in AI, and in data more generally, depends on harnessing LLM power. To do this, **AI organizations have to solve two related data issues**. In addition to **(1) reducing LLM hallucinations and returning relevant, accurate results in their data products**, every AI organization needs to **(2) harness and protect (maintain organizational boundaries around) the goldmine of data it possesses**.
 
 For both of these tasks, **Knowledge Graphs (KGs) with schema layers and ontologies can help**.
 
@@ -48,16 +50,16 @@ These KG capabilities make KGs a valuable tool for safeguarding your organizatio
 In our competitive data landscape, your organization's use of KGs can help it survive.
 How?
 
-1) by using KGs in your organization’s data products (both internal and client-facing), to insert ontological context into LLM prompts - thereby reducing hallucination and returning relevant, accurate results.
-2) by unifying the organization’s data into a comprehensive organizational KG, you can A) protect the organization’s data, and, B) on an organizational scale, realize your data's latent power.
+1) You can use KGs in your organization’s data products (both internal and client-facing), to insert ontological context into LLM prompts - thereby reducing hallucination and returning relevant, accurate results.
+2) You can unify the organization’s data into a comprehensive organizational KG, you can A) protect the organization’s data, and, B) on an organizational scale, realize your data's latent power.
 
 Let’s take a closer look at each of these, in turn.
 
-### 1) Using a KG to insert ontological context into the prompt
+### 1) Use a KG to insert ontological context into the prompt
 
 A question comes in. That question can be referred back to classes in the ontology or facts in the KG (e,g., in your organizational repository). These classes or facts can be injected into the context of the prompt of the LLM, influencing the way the LLM responds. This is Retrieval Augmented Generation (RAG).
 
-RAG adds context to your queries using the node descriptions contained in the KG. In almost every KG, each node has a short RDFS (Resource Description Framework Schema) label description and a longer DC (Dublin Core) description. The RDFS is a human readable description of a node’s URI. The DC metadata elements include title, creator, subject, description, etc., and are often represented in the URI itself. We can do a direct query and pull out every single description, then do a call out to openAI to get an embedding vector for each of those descriptions.
+RAG adds context to your queries using the node descriptions contained in the KG. In almost every KG, each node has a short RDFS (Resource Description Framework Schema) label description and a longer DC (Dublin Core) description. The RDFS is a human readable description of a node’s URI. The DC metadata elements include title, creator, subject, description, etc., and are often represented in the URI itself. We can do a direct query and pull out every single node's description, then do a call out to openAI to get an embedding vector for each of those descriptions.
 
 In its simplest form, RAG employs the basic, step-by-step approach to connecting a KG to an LLM outlined below.
 
@@ -103,23 +105,25 @@ d, i = index.search(question_embedding, 100)
 # To further enhance the user experience, apply post-processing techniques to the retrieved related nodes. This step refines the results and presents information in a way that best provides users with actionable insights.
 ```
 
-For example, I pass the description text for “Jennifer Aniston” into my LLM, and now can store the fact that this discrete node (representing “Jennifer Aniston”) in my KG relates to the Jennifer Aniston textual description in embedding vector space (in the LLM). After this, when a user comes and does a query for “Jennifer Aniston”, I can turn the query into an embedding vector, locate the closest embedding vectors in the continuous vector space, and then find the related node within the discrete KG, and return a relevant result.
+For **example**, I pass the description text from my KG for the “Jennifer Aniston” node into my LLM, and now can store the fact that my discrete KG node (representing “Jennifer Aniston”) relates to the Jennifer Aniston textual description in embedding vector space (in the LLM). After this, when a user comes and does a query for “Jennifer Aniston”, I can turn the query into an embedding vector, locate the closest embedding vectors in the continuous vector space, and then find the related node within the discrete KG, and return a relevant result.
 
 ![Jennifer Aniston KG](../assets/use_cases/j-aniston-KG.png/)
 
 Because you have control over and can modify your KG, you can limit your query results to exclude / reduce hallucination, and improve result precision and accuracy.
 
-In addition to 1) using your KG to insert context into your prompts (above), you can also harness and protect (maintain organizational boundaries around) the goldmine of data your corporation is sitting on by 2) creating a unified organizational KG using schema.org, and connecting it to your LLM.
+Great! But in addition to 1) using your KG to insert context into your prompts (above), you can also harness and protect (maintain organizational boundaries around) the goldmine of data your corporation is sitting on by 2) creating a unified organizational KG using schema.org, and connecting it to your LLM.
 
 ![organizational Markov blanket](../assets/use_cases/org-markov-blanket.png/)
 
-### 2) Creating a unified organizational KG, and connecting it to an LLM
+### 2) Create a unified organizational KG, and connect it to an LLM
 
 KGs can harness and protect (maintain organizational boundaries around) the value of your organization's data. Using a cellular analogy, an organization should erect a cellular membrane - i.e., a data boundary that contains and selectively (safely) exposes its proprietary data products. The cellular membrane contains the organization’s semantic data mesh.
 
-This organizational semantic data mesh should be powered by organizational KGs that enable the organization to use LLMs to realize and capture the free energy bound up in the chaotic jumble of its databases. An organization’s KGs (structured by the organization’s ontology) can act as a kind of Markov Blanket - the minimal subset of variables containing all the information needed to infer / predict a target random variable - anything that’s useful for organizational purposes. It lets you query your organizational data, and gain more control over it.
+This organizational semantic data mesh should be powered by organizational KGs that enable the organization to use LLMs to realize and capture the free energy bound up in the chaotic jumble of its databases. An organization’s KGs (structured by the organization’s ontology) can act as a kind of Markov Blanket - the minimal subset of variables containing all the information needed to infer / predict a target random variable (i.e., next term prediction) - anything that’s useful for organizational purposes. It lets you query your organizational data, and gain more control over it.
 
 With the blanket / membrane in place, an AI organization can safely expose - i.e., distribute - selected parts of its internal network-shaped data (a large connected graph), at the membrane surface. Having a well-defined ontology can enable your organization to use its KG to securely cooperate with other organizations, and maintain private networks with informational boundaries.
+
+**Creating a unified organizational KG using schema.org**
 
 **Any organization can use schema.org to create a unified KG with their own data resources**, thereby integrating them in a comprehensible, defined way - i.e., in a schema layer with an ontology (which can be amended as needed) that represents the connections between data items. Schema.org is maintained by the JSON-LD Working Group, is open source, and can be [downloaded from github](https://github.com/schemaorg/schemaorg), and then secured behind a firewall within your organization.
 
@@ -167,7 +171,7 @@ Your comprehensive organizational KG, connected to an instance of an LLM, can pr
 
 ## Conclusion
 
-In sum, KGs present an organizational opportunity to companies who work with LLMs. They provide a way of ameliorating LLM hallucinations, but also a method for unifying the trove of data your organization houses but may not yet reap the full potential benefits of. By building a strong ontology and schema layer in your KG, you indicate the classes, relationships, and attributes that are priorities for you. You can then use your KG (its discrete representation of your priorities) to more judiciously harness the power of an LLM’s continuous vector space to improve, protect, and develop your data and data products.
+In sum, KGs present an organizational opportunity to companies who work with LLMs. They provide a way of ameliorating LLM hallucinations, but also a method for unifying the trove of data your organization houses but whose potential benefits you probably don't yet fully realize. By building a strong ontology and schema layer in your KG, you indicate the classes, relationships, and attributes that are priorities for you. You can then use your KG (its discrete representation of your priorities) to more judiciously harness the power of an LLM’s continuous vector space to improve, protect, and develop your data and data products.
 
 ## Contributors
 
