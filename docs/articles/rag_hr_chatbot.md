@@ -124,13 +124,7 @@ text_df["creation_date"] = [int(datetime(2024, 1, 1).timestamp())] * len(text_ne
 text_df.head()
 ```
 
-
-
-
-![../assets/use_cases/rag_hr_chatbot](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_baseline_eval_dataset_preview.png)
-
-
-
+![Data frame preview](../assets/use_cases/rag_hr_chatbot/dataframepreview.png)
 
 ### Superlinked-powered retrieval
 
@@ -228,7 +222,7 @@ present_result(only_relevance_result)
 
 Here are our results:
 
-
+![Results 1](../assets/use_cases/rag_hr_chatbot/)
 
 Look closely at the elements with ids 16 and 6. These documents say essentially the same thing. But the older document (16) prescribes a “bi-annual review” of policies and procedures. The new document (6), on the other hand, prescribes an annual review.
 
@@ -247,8 +241,7 @@ mild_recency_result = app.query(
 present_result(mild_recency_result)
 ```
 
-
-
+![Results 2](../assets/use_cases/rag_hr_chatbot/result2.png)
 
 With recency weighted more heavily, element 16 (from 2023) drops down to the bottom of our returned results.
 
@@ -270,8 +263,7 @@ norm_recency_result_df = present_result(normal_recency_result)
 Norm_recency_result_df
 ```
 
-
-
+![Results 3](../assets/use_cases/rag_hr_chatbot/result3.png)
 
 Et voila! Now all results are fresh; doc 16 (2023) is completely removed from the result set, and only doc 6 remains. (Doc 18 was removed already by our initial recency upweighting (recency_weight=0.15).) In this way, we can use Superlinked’s Recency space, TextSimilarity space, and Query time weights to supply a nice and clean context for the generation model.
 
@@ -291,7 +283,7 @@ maternity_result = present_result(normal_recency_result)
 maternity_result
 ```
 
-
+![Results 4](../assets/use_cases/rag_hr_chatbot/result4.png)
 
 Now that we’re happy with the retrieval, let’s set up the generation.
 
@@ -327,7 +319,7 @@ QUESTION: {initial_query_text}
 print(query)
 ```
 
-
+![RAG query](../assets/use_cases/rag_hr_chatbot/RAG_query.png)
 
 With the query template in place, let’s prompt the LLM for a text answer.
 
@@ -358,13 +350,12 @@ for seq in sequences:
    print(f"Result: {seq['generated_text']}")
 ```
 
-
+![RAG answer](../assets/use_cases/rag_hr_chatbot/RAG_answer.png)
 
 ### Evaluating the answer
 
-The text answer is structured, contains information from your context documents, and is tailored to your question. Based on our hardware, the query will generate results in a manageable time. 
-In 3), we can see that the generated text contains the correct annual term. This is mainly because our Superlinked-powered retrieval feeds our HR chatbot the right thing as context information.
+The text answer is structured, contains information from your context documents, and is tailored to your question. Based on our hardware, the query will generate results in a manageable time. In 3), we can see that the generated text contains the correct annual term. This is mainly because our Superlinked-powered retrieval feeds our HR chatbot the right thing as context information.
 
 Using Superlinked’s Recency space, TextSimilarity space, and Query time weights to power retrieval enables semantic search to achieve high quality nuanced outcomes at scale, even in cases where accurate results require prioritizing both recency and relevance. This HR chatbot example is just one example of what you can do with the Superlinked library.
 
-Now [try out our notebook yourself!](https://colab.research.google.com/github/superlinked/superlinked/blob/main/notebook/rag_hr_knowledgebase.ipynb)
+Now, go ahead and [try out our notebook yourself!](https://colab.research.google.com/github/superlinked/superlinked/blob/main/notebook/rag_hr_knowledgebase.ipynb)
