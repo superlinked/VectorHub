@@ -63,7 +63,7 @@
   },
   "llamaindex": {
     "support": "full",
-    "source_url": "https://docs.llamaindex.ai/en/stable/api_reference/readers/couchbase/",
+    "source_url": "https://docs.llamaindex.ai/en/stable/api_reference/storage/vector_store/couchbase/",
     "comment": ""
   },
   "managed_cloud": {
@@ -84,11 +84,6 @@
   "disk_index": {
     "support": "full",
     "source_url": "https://docs.couchbase.com/server/current/learn/services-and-indexes/indexes/storage-modes.html#standard-index-storage",
-    "comment": ""
-  },
-  "ephemeral": {
-    "support": "none",
-    "source_url": "",
     "comment": ""
   },
   "sharding": {
