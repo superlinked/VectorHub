@@ -222,7 +222,7 @@ present_result(only_relevance_result)
 
 Here are our results:
 
-![Results 1](../assets/use_cases/rag_hr_chatbot/)
+![Results 1](../assets/use_cases/rag_hr_chatbot/results1.png)
 
 Look closely at the elements with ids 16 and 6. These documents say essentially the same thing. But the older document (16) prescribes a “bi-annual review” of policies and procedures. The new document (6), on the other hand, prescribes an annual review.
 
