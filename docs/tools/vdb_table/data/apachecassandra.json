@@ -148,34 +148,42 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "HNSW"
+    ],
+    "source_url": "https://cwiki.apache.org/confluence/display/CASSANDRA/CEP-30%3A+Approximate+Nearest+Neighbor%28ANN%29+Vector+Search+via+Storage-Attached+Indexes",
+    "comment": "via Lucene"
+  },
   "github_stars": {
-    "value": 8523,
+    "value": 8542,
     "source_url": "https://github.com/apache/cassandra",
     "comment": "",
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 209640426,
+    "value": 210374073,
     "source_url": "https://hub.docker.com/_/cassandra",
     "comment": "",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 70375668,
+    "value": 71276842,
     "source_url": "https://pypi.org/project/cassandra-driver/",
     "comment": "",
-    "value_90_days": 5107170
+    "value_90_days": 5368624
   },
   "npm_downloads": {
-    "value": 4173915,
+    "value": 4194417,
     "source_url": "https://www.npmjs.com/package/cassandra-driver",
     "comment": "",
-    "value_90_days": 803880
+    "value_90_days": 808403
   },
   "crates_io_downloads": {
-    "value": 79202,
+    "value": 79846,
     "source_url": "https://crates.io/crates/cassandra",
     "comment": "",
-    "value_90_days": 1089
+    "value_90_days": 1139
   }
 }

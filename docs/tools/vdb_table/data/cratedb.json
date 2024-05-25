@@ -148,34 +148,42 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "HNSW"
+    ],
+    "source_url": "https://cratedb.com/blog/unlocking-the-power-of-vector-support-and-knn-search-in-cratedb",
+    "comment": "via Lucene"
+  },
   "github_stars": {
-    "value": 3966,
+    "value": 3971,
     "source_url": "https://github.com/crate/crate",
     "comment": "",
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 18567239,
+    "value": 18577883,
     "source_url": "https://hub.docker.com/_/crate",
     "comment": "",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 1232609,
+    "value": 1240918,
     "source_url": "https://pypi.org/project/crate/",
     "comment": "",
-    "value_90_days": 66577
+    "value_90_days": 56804
   },
   "npm_downloads": {
-    "value": 26215,
+    "value": 26042,
     "source_url": "https://www.npmjs.com/package/node-crate",
     "comment": "",
-    "value_90_days": 3549
+    "value_90_days": 3725
   },
   "crates_io_downloads": {
-    "value": 5119,
+    "value": 5232,
     "source_url": "https://crates.io/crates/cratedb",
     "comment": "",
-    "value_90_days": 1007
+    "value_90_days": 1024
   }
 }

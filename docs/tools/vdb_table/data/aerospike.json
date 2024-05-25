@@ -1,12 +1,12 @@
 {
-  "name": "Turbopuffer",
+  "name": "Aerospike",
   "links": {
-    "docs": "https://turbopuffer.com/docs",
-    "github": "https://github.com/sirupsen",
-    "website": "http://turbopuffer.com/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/92",
-    "poc_github": "https://github.com/sirupsen",
-    "slug": "turbopuffer"
+    "docs": "https://aerospike.com/docs/vector/",
+    "github": "https://github.com/aerospike/aerospike-vector-search-examples",
+    "website": "https://aerospike.com/vector/",
+    "vendor_discussion": "",
+    "poc_github": "https://github.com/hev",
+    "slug": "aerospike"
   },
   "oss": {
     "support": "none",
@@ -20,15 +20,15 @@
   },
   "dev_languages": {
     "value": [
-      "rust"
+      "java"
     ],
     "source_url": "",
     "comment": ""
   },
-  "vector_launch_year": 2023,
+  "vector_launch_year": 2024,
   "metadata_filter": {
-    "support": "full",
-    "source_url": "https://turbopuffer.com/docs/reference/query",
+    "support": "none",
+    "source_url": "",
     "comment": ""
   },
   "hybrid_search": {
@@ -47,8 +47,8 @@
     "comment": ""
   },
   "multi_vec": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://aerospike.com/docs/vector/architecture/vector-data#vector-bins--index-storage",
     "comment": ""
   },
   "sparse_vectors": {
@@ -87,7 +87,7 @@
     "comment": ""
   },
   "recsys": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
@@ -107,8 +107,8 @@
     "comment": ""
   },
   "pricing": {
-    "value": "$1/million vecs, $4/million queries",
-    "source_url": "https://turbopuffer.com/",
+    "value": "",
+    "source_url": "",
     "comment": ""
   },
   "in_process": {
@@ -117,17 +117,17 @@
     "comment": ""
   },
   "multi_tenancy": {
-    "support": "full",
-    "source_url": "",
-    "comment": ""
-  },
-  "disk_index": {
     "support": "",
     "source_url": "",
     "comment": ""
   },
+  "disk_index": {
+    "support": "full",
+    "source_url": "https://aerospike.com/docs/vector/architecture/vector-data#index-partitioning-in-aerospike",
+    "comment": ""
+  },
   "ephemeral": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
@@ -137,22 +137,32 @@
     "comment": ""
   },
   "doc_size": {
-    "bytes": 65536,
-    "unlimited": false,
+    "bytes": 0,
+    "unlimited": true,
     "source_url": "",
     "comment": ""
   },
   "vector_dims": {
-    "value": 10752,
-    "unlimited": false,
-    "source_url": "https://turbopuffer.com/docs/get-started/limits",
+    "value": 0,
+    "unlimited": true,
+    "source_url": "",
     "comment": ""
   },
   "index_types": {
     "value": [
-      "SPANN"
+      "HNSW"
     ],
-    "source_url": "https://turbopuffer.com/architecture#:~:text=on%20SPANN.-,SPANN,-is%20a%20centroid",
+    "source_url": "https://aerospike.com/docs/vector/architecture/hnsw",
+    "comment": ""
+  },
+  "int8_quantization": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "binary_quantization": {
+    "support": "none",
+    "source_url": "",
     "comment": ""
   },
   "github_stars": {
@@ -168,16 +178,16 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 368493,
-    "source_url": "https://pypi.org/project/turbopuffer/",
+    "value": 478,
+    "source_url": "https://pypi.org/project/aerospike-vector/",
     "comment": "",
-    "value_90_days": 364115
+    "value_90_days": 475
   },
   "npm_downloads": {
-    "value": 76418,
-    "source_url": "https://www.npmjs.com/package/@turbopuffer/turbopuffer",
+    "value": 0,
+    "source_url": "",
     "comment": "",
-    "value_90_days": 76418
+    "value_90_days": 0
   },
   "crates_io_downloads": {
     "value": 0,
