@@ -148,6 +148,13 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "Tree-AH"
+    ],
+    "source_url": "https://cloud.google.com/vertex-ai/docs/vector-search/configuring-indexes#tree-ah-config",
+    "comment": ""
+  },
   "github_stars": {
     "value": 0,
     "source_url": "",
