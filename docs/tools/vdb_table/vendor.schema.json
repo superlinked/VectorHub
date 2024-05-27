@@ -2,7 +2,6 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "vdb_table/schema/vendor",
   "type": "object",
-
   "properties": {
     "name": {"type": "string", "$comment": "About | Vendor | " },
     "links": {"allOf": [{"$ref": "#/$defs/links"}], "$comment": "About | Links | " },
@@ -10,7 +9,7 @@
     "license": {"allOf": [{"$ref": "#/$defs/stringWithSource"}], "$comment": "About | License | The license the source code is released under." },
     "dev_languages": {"allOf": [{"$ref": "#/$defs/devLanguageListWithSource"}], "$comment": "About | Dev Lang | The language the database is developed in." },
     "vector_launch_year": {"type": "integer", "$comment": "About | VSS Launch | The year of the first release for the vector search functionality." },
-    "metadata_filter": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | Filters | Metadata filtering support within vector search - allowing users to refine results based on additional contextual informatio and enhancing precision in search queries. Not to be confused with filters/faceting in Lucene based keyword search." },
+    "metadata_filter": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | Filters | Metadata filtering support within vector search - allowing users to refine results based on additional contextual information and enhancing precision in search queries. Not to be confused with filters/faceting in Lucene based keyword search." },
     "hybrid_search": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | Hybrid Search | Built-in blending of the 2 lists (keyword & vector search results) being done natively within the DB using something like Reciprocal Rank Fusion." },
     "facets": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | Facets | Built-in aggregations on facets and facet cardinality calculation (similar to Lucene)." },
     "geo_search": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Search | Geo Search | Built-in geospatial index for location queries." },
@@ -36,42 +35,108 @@
     "vector_dims": {"allOf": [{"$ref": "#/$defs/integerWithSource"}], "$comment": "Ops | Vector Dims | Maximum number of vector dimensions." },
     "int8_quantization": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | Int8 Quantization | Vectors can be stored and indexed in int8 quantized format in the index. Full support requires that the float versions of the vectors need not be stored in the DB at all." },
     "binary_quantization": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "Ops | Binary Quantization | Vectors can be stored and indexed in binary quantized format in the index. Full support requires that the float versions of the vectors need not be stored in the DB at all." },
+    "index_types": {"allOf": [{"$ref": "#/$defs/indexTypesListWithSource"}], "$comment": "Ops | Index Types | The types of vector indexes supported by the database." },
     "github_stars": {"allOf": [{"$ref": "#/$defs/statsWithSource"}], "$comment": "Stats | GitHub ⭐ | The total number of stars for the core product repository." },
     "docker_pulls": {"allOf": [{"$ref": "#/$defs/statsWithSource"}],"$comment": "Stats | Docker Pulls | The total number of pulls for the core product's docker image." },
     "pypi_downloads": {"allOf": [{"$ref": "#/$defs/statsWithSource"}], "$comment": "Stats | PyPi Downloads | The number of downloads (in last 90 days) for the core product's python package." },
     "npm_downloads": {"allOf": [{"$ref": "#/$defs/statsWithSource"}], "$comment": "Stats | NPM Downloads | The number of downloads (in last 90 days) for the core product's NPM package." },
     "crates_io_downloads": {"allOf": [{"$ref": "#/$defs/statsWithSource"}], "$comment": "Stats | Rust Crates Downloads | The number of downloads (in last 90 days) for the core product's Rust crate." }
   },
-
   "$defs": {
     "links": {
       "$id": "links",
       "type": "object",
       "properties": {
-        "docs": {"type": "string"},
-        "github": {"type": "string"},
-        "website": {"type": "string"},
-        "vendor_discussion": {"type": "string"},
-        "poc_github": {"type": "string"},
-        "slug": {"type": "string"}
+        "docs": {
+          "type": "string"
+        },
+        "github": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        },
+        "vendor_discussion": {
+          "type": "string"
+        },
+        "poc_github": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
       }
     },
     "featureWithSource": {
       "$id": "featureWithSource",
       "type": "object",
       "properties": {
-        "support": {"enum": ["", "none", "partial", "full"]},
-        "source_url": {"type": "string"},
-        "comment": {"type": "string"}
+        "support": {
+          "enum": [
+            "",
+            "none",
+            "partial",
+            "full"
+          ]
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        }
       }
     },
     "stringWithSource": {
       "$id": "stringWithSource",
       "type": "object",
       "properties": {
-        "value": {"type": "string"},
-        "source_url": {"type": "string"},
-        "comment": {"type": "string"}
+        "value": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        }
+      }
+    },
+    "indexTypesListWithSource": {
+      "$id": "indexTypesListWithSource",
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "FLAT",
+              "HNSW",
+              "FAISS",
+              "ANNOY",
+              "IVF",
+              "IVF-PQ",
+              "IVF-BQ",
+              "IVF-SQ",
+              "FLAT-BQ",
+              "HNSW-PQ",
+              "HNSW-SQ",
+              "HNSW-BQ",
+              "DiskANN",
+              "FreshDiskANN",
+              "GPU Index",
+              "SCANN",
+              "SPANN",
+              "NGT",
+              "MSTG",
+              "FAISS-IVF",
+              "Tree-AH",
+              "Proprietary",
+              "not known"
+            ]
+          }
+        }
       }
     },
     "devLanguageListWithSource": {
@@ -92,43 +157,72 @@
               "java",
               "scala",
               "rust",
+              "erlang",
               "typescript",
               "not known"
             ]
           }
         },
-        "source_url": {"type": "string"},
-        "comment": {"type": "string"}
+        "source_url": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        }
       }
     },
     "integerWithSource": {
       "$id": "integerWithSource",
       "type": "object",
       "properties": {
-        "value": {"type": "integer"},
-        "unlimited": {"type": "boolean"},
-        "source_url": {"type": "string"},
-        "comment": {"type":"string"}
+        "value": {
+          "type": "integer"
+        },
+        "unlimited": {
+          "type": "boolean"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        }
       }
     },
     "statsWithSource": {
       "$id": "statsWithSource",
       "type": "object",
       "properties": {
-        "value": {"type": "integer"},
-        "value_90_days": {"type": "integer"},
-        "source_url": {"type": "string"},
-        "comment": {"type":"string"}
+        "value": {
+          "type": "integer"
+        },
+        "value_90_days": {
+          "type": "integer"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        }
       }
     },
     "bytesWithSource": {
       "$id": "bytesWithSource",
       "type": "object",
       "properties": {
-        "bytes": {"type": "integer"},
-        "unlimited": {"type": "boolean"},
-        "source_url": {"type": "string"},
-        "comment": {"type":"string"}
+        "bytes": {
+          "type": "integer"
+        },
+        "unlimited": {
+          "type": "boolean"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        }
       }
     }
   }

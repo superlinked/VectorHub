@@ -148,6 +148,13 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "HNSW"
+    ],
+    "source_url": "",
+    "comment": ""
+  },
   "github_stars": {
     "value": 0,
     "source_url": "",
@@ -161,16 +168,16 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 124619,
+    "value": 126632,
     "source_url": "https://pypi.org/project/aperturedb/",
     "comment": "",
-    "value_90_days": 15036
+    "value_90_days": 14162
   },
   "npm_downloads": {
-    "value": 24500,
+    "value": 24184,
     "source_url": "https://www.npmjs.com/package/aperture",
     "comment": "",
-    "value_90_days": 2922
+    "value_90_days": 2754
   },
   "crates_io_downloads": {
     "value": 0,
