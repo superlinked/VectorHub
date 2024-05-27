@@ -43,13 +43,13 @@
   },
   "geo_search": {
     "support": "full",
-    "source_url": "https://myscale.com/docs/en/functions/geo-functions/",
-    "comment": "via https://myscale.com/docs/en/functions/geospatial-functions/"
+    "source_url": "https://myscale.com/docs/en/functions/geospatial-functions/",
+    "comment": ""
   },
   "multi_vec": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://myscale.com/docs/en/release-notes/#myscaledb-v1-4-0",
+    "comment": "MyScale added support for creating vector indexes for different columns in one table in v1.4.0."
   },
   "sparse_vectors": {
     "support": "none",
@@ -57,14 +57,14 @@
     "comment": ""
   },
   "bm25": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://myscale.com/blog/text-search-and-hybrid-search-in-myscale/",
+    "comment": "MyScale added full-text search index with BM25 support in v1.5.0."
   },
   "full_text": {
     "support": "full",
-    "source_url": "",
-    "comment": ""
+    "source_url": "https://myscale.com/blog/text-search-and-hybrid-search-in-myscale/",
+    "comment": "MyScale added full-text search index with BM25 support in v1.5.0."
   },
   "embeddings_text": {
     "support": "full",
@@ -132,15 +132,15 @@
     "comment": ""
   },
   "sharding": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://clickhouse.com/docs/en/engines/table-engines/special/distributed",
+    "comment": "MyScale is a fork of ClickHouse and supports sharding through the Distributed Table Engine."
   },
   "doc_size": {
     "bytes": 0,
-    "unlimited": false,
+    "unlimited": true,
     "source_url": "",
-    "comment": ""
+    "comment": "As a SQL database, MyScale does not limit the size of each row. However, larger row sizes will impact the performance of selecting related columns."
   },
   "vector_dims": {
     "value": 0,
@@ -148,23 +148,36 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "MSTG",
+      "IVF",
+      "IVF-PQ",
+      "IVF-SQ",
+      "SCANN",
+      "HNSW"
+    ],
+    "source_url": "https://myscale.com/docs/en/vector-search/#mstg-binarymstg-parameters",
+    "comment": "MSTG is a proprietary index type developed by MyScale, available in MyScale Cloud only"
+  },
   "github_stars": {
-    "value": 656,
-    "source_url": "https://github.com/myscale/myscaledb",
+    "value": 681,
+    "source_url": "https://github.com/myscale/MyscaleDB",
     "comment": "",
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 0,
-    "source_url": "",
+    "value": 383,
+    "source_url": "https://hub.docker.com/r/myscale/myscaledb",
     "comment": "",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 21458,
+    "value": 21561,
     "source_url": "https://pypi.org/project/myscaledb-client/",
     "comment": "",
-    "value_90_days": 860
+    "value_90_days": 833
   },
   "npm_downloads": {
     "value": 0,
