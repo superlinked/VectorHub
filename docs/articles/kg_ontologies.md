@@ -3,7 +3,7 @@
 ## Introduction
 Large Language Models (LLMs) exploit the power of continuous representations of data in a vector space. They can orchestrate workflows, analyze data, write letters, generate code, and perform a wide variety of other complex tasks. Heavy investment in LLM development by big tech - Google, Amazon, Apple, Meta, Microsoft - is testament to LLM power.
 
-The survival and well-being of organizations working in AI, and in data more generally, depends on harnessing LLM power. To do this, **AI organizations have to solve two related data issues**. In addition to **(1) reducing LLM hallucinations and returning relevant, accurate results in their data products**, every AI organization needs to **(2) harness and protect (maintain organizational boundaries around) the goldmine of data it possesses**.
+The survival and well-being of organizations who work with AI depends on harnessing LLM power. To do this, **organizations working with AI have to solve two related data issues**. In addition to **(1) reducing LLM hallucinations and returning relevant, accurate results in their data products**, every AI organization needs to **(2) harness and protect (maintain organizational boundaries around) the goldmine of data it possesses**.
 
 For both of these tasks, **Knowledge Graphs (KGs) with schema layers and ontologies can help**.
 
@@ -117,7 +117,7 @@ Great! But in addition to 1) using your KG to insert context into your prompts (
 
 ### 2) Create a unified organizational KG, and connect it to an LLM
 
-KGs can harness and protect (maintain organizational boundaries around) the value of your organization's data. Using a cellular analogy, an organization should erect a cellular membrane - i.e., a data boundary that contains and selectively (safely) exposes its proprietary data products. The cellular membrane contains the organization’s semantic data mesh.
+KGs can harness and protect (maintain organizational boundaries around) the value of your organization's data. Most organizations don't possess the kind of vast ocean of data that a data-rich internet platform like Google or Amazon does. But most organizations' data resources amount to more than enough to train AI on, data resources that should be protected (and unified, in place). Using a cellular analogy, an organization should erect a cellular membrane - i.e., a data boundary that contains and selectively (safely) exposes its proprietary data products. The cellular membrane contains the organization’s semantic data mesh.
 
 This organizational semantic data mesh should be powered by organizational KGs that enable the organization to use LLMs to realize and capture the free energy bound up in the chaotic jumble of its databases. An organization’s KGs (structured by the organization’s ontology) can act as a kind of Markov Blanket - the minimal subset of variables containing all the information needed to infer / predict a target random variable (i.e., next term prediction) - anything that’s useful for organizational purposes. It lets you query your organizational data, and gain more control over it.
 
@@ -139,15 +139,28 @@ Each island of JSON-LD points back to schema.org, with contributions from a broa
 
 ![schema.org-recipe](../assets/use_cases/schema.org-recipe.png/)
 
-To create **your organization's schema layer**, you can take schema.org’s base types as your starting model. But you also need to ensure you include semantics - related to the specifics of your business. If you're a bank, your semantics will include “trade” and “risk”, if you’re a railway, “tracks” and “trains”, if you’re a hospital, “patients”, “beds”, “medicines”. If you give a URI (which is, functionally, a URL on the web) to each and every item in the graph, it becomes globally identifiable. Each data node is a data item, a unique network address, and an artificial neuron in a neural network, linked together by their edges (defined in the JSON-LD).
+To create **your organization's schema layer**, first, register an internal schema domain within your organization - e.g., https://schema.your.org. This site will host your organization's semantics - the core concepts that are most relevant to the specifics of your business. Use industry standards. You can take schema.org’s base types as your starting model. If you're a bank, your semantics will include “trade”, “risk”, and "fraud"; if you’re a railway, “tracks” and “trains”; if you’re a hospital, “patients”, “beds”, "diseases", and “medicines”. Remember, your objective is to make your organization's useful data readable and therefore searchable by query.
 
-Embed the definitions salient to your own particular business into your own version of schema.org, sticking as close as possible to the actual, working semantics of the real people in your business. In a large organization, there’ll be between 5000-100000 separate apps and databases, each with 1000s of different tables, each table with 100s of different columns - in sum, a vast complex of data. By publishing the data in each application or database in JSON-LD, referencing the well-defined semantics in your schema.org, you have your organizational KG.
+In almost every KG, each node has a short RDFS (Resource Description Framework Schema) label description and a longer DC (Dublin Core) description. The RDFS is a human readable description of a node’s URI. The DC metadata elements include title, creator, subject, description, etc., and are often represented in the URI itself. We can do a direct query and pull out every single node's description, then do a call out to openAI to get an embedding vector for each of those descriptions.
+
+To build your corporate KG, therefore, we start with each department of your organization mapping its data in RDF format.
+
+![RDFs and Corporate KG](../assets/use_cases/RDFs-corporateKG.png)
+
+Take for example, "trade". Each department in your organization takes on the task of mapping its "trade"-related data and putting it in RDF format. If you give a URI (which is, functionally, a URL on the web) to each and every data item, it becomes globally identifiable. By identifying each data item in RDF format, it can be a data node, and a unique network address.
+
+![Entity-RDF-URL](../assets/use_cases/entity-RDF-URI.png)
+
+Embed the definitions salient to your own particular business into your own version of schema.org, sticking as close as possible to the actual, working semantics of the real people in your business. In a large organization, there’ll be between 5000-100000 separate apps and databases, each with 1000s of different tables, each table with 100s of different columns - in sum, a vast complex of data. 
+
+Each department's data can be made available as a webAPI to your central data department, and represented in JSON-LD. Your central data department can then publish the data in each application or database in JSON-LD. As long as each deparment has referenced the well-defined semantics in your schema.org, you will have a good, queryable organizational KG.
 
 Your organizational KG should not be treated as a new database. Rather, for each use case, you need only download the chunk of the graph (pre-connected, pre-integrated) that you want. In other words, “within your organization, let a thousand knowledge graphs bloom.”
 
+
 ### Completing your Organizational KG - the data catalog
 
-To realize the full potential of your organizational KG, you need to make sure it represents the data assets of all departments of your organization. It needs to incorporate a **data catalog**. The data catalog inventories your data assets, to facilitate data management and use (data discovery, collaboration and knowledge sharing, quality and metadata management, etc.). Each semantic data product/department within the organization should publish a catalog of its data - whatever might be of value to other departments and the organization as a whole. Once every department has published their own data catalog, collect and connect them together via a schema, incorporating it into the organizational KG.
+To realize the full potential of your organizational KG, you need to a way of making sure it represents the data assets of all departments of your organization. It needs to incorporate a **data catalog**. The data catalog inventories your data assets, to facilitate data management and use (data discovery, collaboration and knowledge sharing, quality and metadata management, etc.). Each semantic data product/department within the organization should publish a catalog of its data - whatever might be of value to other departments and the organization as a whole. Once every department has published their own data catalog, collect and connect them together via a schema, incorporating it into the organizational KG.
 
 Your organizational KG enables you to go from this:
 
@@ -161,7 +174,10 @@ Through the semantic layer, I can use concepts - both general and particular to 
 
 ![departmental queries](../assets/use_cases/dept-queries.jpeg)
 
-Your comprehensive organizational KG, connected to an instance of an LLM, can protect and realize the full value of your organization’s  data. Connecting your KG to an LLM can:
+
+## Conclusion
+
+Your comprehensive organizational KG, connected to an instance of an LLM, can protect and realize the full value of your organization’s data. Connecting your KG to an LLM can:
 
 1) enrich your own data, providing more comprehensive information,
 2) achieve semantic interoperability - your data can be understood not just by your organization but across different systems that recognize the URIs,
@@ -169,11 +185,9 @@ Your comprehensive organizational KG, connected to an instance of an LLM, can pr
 4) improve the ability to query your data, using the URIs as hooks to pull in relevant data from various sources, and
 5) maintain consistency and standardization in your data.
 
-## Conclusion
-
 In sum, KGs present an organizational opportunity to companies who work with LLMs. They provide a way of ameliorating LLM hallucinations, but also a method for unifying the trove of data your organization houses but whose potential benefits you probably don't yet fully realize. By building a strong ontology and schema layer in your KG, you indicate the classes, relationships, and attributes that are priorities for you. You can then use your KG (its discrete representation of your priorities) to more judiciously harness the power of an LLM’s continuous vector space to improve, protect, and develop your data and data products.
 
 ## Contributors
 
 - [Tony Seale, Author](https://www.linkedin.com/in/tonyseale/)
-- [Robert Turner, Author](https://www.linkedin.com/in/robertdhayanturner/)
+- [Robert Turner, Contributor](https://www.linkedin.com/in/robertdhayanturner/)
