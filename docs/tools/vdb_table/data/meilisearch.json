@@ -72,9 +72,9 @@
     "comment": ""
   },
   "embeddings_image": {
-    "support": "full",
-    "source_url": "https://www.meilisearch.com/docs/learn/experimental/vector_search",
-    "comment": "Custom vectors can be linked to documents and provided during search"
+    "support": "none",
+    "source_url": "",
+    "comment": ""
   },
   "embeddings_structured": {
     "support": "",

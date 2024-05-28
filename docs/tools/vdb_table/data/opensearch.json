@@ -72,9 +72,9 @@
     "comment": ""
   },
   "embeddings_image": {
-    "support": "full",
+    "support": "partial",
     "source_url": "https://opensearch.org/docs/2.11/ml-commons-plugin/custom-local-models/",
-    "comment": "https://opensearch.org/docs/2.11/ml-commons-plugin/custom-local-models/"
+    "comment": ""
   },
   "embeddings_structured": {
     "support": "",
