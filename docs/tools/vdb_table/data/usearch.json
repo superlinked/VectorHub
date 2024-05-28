@@ -122,7 +122,7 @@
     "comment": ""
   },
   "disk_index": {
-    "support": "partial",
+    "support": "full",
     "source_url": "https://github.com/unum-cloud/usearch/#serialization--serving-index-from-disk",
     "comment": ""
   },
