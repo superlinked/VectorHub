@@ -73,8 +73,8 @@
   },
   "embeddings_image": {
     "support": "full",
-    "source_url": "https://typesense.org/docs/0.25.1/api/vector-search.html",
-    "comment": "https://typesense.org/docs/0.25.1/api/vector-search.html#use-cases:~:text=E%2D5-,CLIP,-OpenAI%27s%20Text%20Embeddings"
+    "source_url": "https://typesense.org/docs/0.25.1/api/vector-search.html#use-cases:~:text=E%2D5-,CLIP,-OpenAI%27s%20Text%20Embeddings",
+    "comment": "Supported models at https://huggingface.co/typesense/models/tree/main"
   },
   "embeddings_structured": {
     "support": "",
