@@ -311,7 +311,7 @@ result = app.query(
 present_result(result)
 ```
 
-![Advanced Query results 1](../assets/use_cases/semantic_search-netflix/advanced_query_results1.png)
+![Advanced Query results 1](../assets/use_cases/semantic_search-netflix/white_xmas_family_results.png)
 
 But now that I see my results, I realize I’m actually more in the mood for something light-hearted and funny. Let’s adjust my query accordingly:
 
@@ -333,7 +333,7 @@ Result = app.query(
 present_result(result)
 ```
 
-![Advanced Query results 2](../assets/use_cases/semantic_search-netflix/advanced_query_results2.png)
+![Advanced Query results 2](../assets/use_cases/semantic_search-netflix/white_xmas-comedy_results.png)
 
 Okay, those results are better. I’ll pick one of these. Put the popcorn on!
 
