@@ -283,7 +283,7 @@ present_result(result)
 
 ### Search using a specific movie
 
-Say in my last movie results I found a movie I’ve already seen and would like to see something similar. Let’s assume I like White Christmas, a 1954 romantic comedy (id = tm16479) about singer-dancers coming together for a stage show to draw guests to a struggling Vermont inn. By adding an extra `with_vector` clause (with a `movie_id` parameter), Advanced query lets me search using this movie (or any movie I like), and gives me all the fine-grained control of separate subsearch query text and weighting.
+Say in my last movie results I found a movie I’ve already seen and would like to see something similar. Let’s assume I like White Christmas, a 1954 romantic comedy (id = tm16479) about singer-dancers coming together for a stage show to draw guests to a struggling Vermont inn. By adding an extra `with_vector` clause (with a `movie_id` parameter) to advanced_query, with_movie_query lets me search using this movie (or any movie I like), and gives me all the fine-grained control of separate subsearch query text and weighting.
 
 First, we add our movie_id parameter:
 
