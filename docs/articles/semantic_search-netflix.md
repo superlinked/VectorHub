@@ -2,7 +2,7 @@
 
 Netflix’s recommendation algorithm does a pretty good job of suggesting relevant content - given the sheer volume of options (~16k movies and TV programs in 2023) and how quickly it has to propose shows to users. How does Netflix do it? In a word, **semantic search**.
 
-Semantic search comprehends the meaning and context behind user queries and movie / TV show descriptions, and can therefore provide better personalization in its queries and recommendations than traditional keyword-based approaches. But semantic search poses certain **challenges** - foremost among them: 1) ensuring accurate search results, 2) interpretability, and 3) scalability - challenges any successful content recommendation strategy will have to address. Using Superlinked’s library, you can **overcome** these difficulties.
+Semantic search comprehends the meaning and context (both attributes and consumption patterns) behind user queries and movie / TV show descriptions, and can therefore provide better personalization in its queries and recommendations than traditional keyword-based approaches. But semantic search poses certain **challenges** - foremost among them: 1) ensuring accurate search results, 2) interpretability, and 3) scalability - challenges any successful content recommendation strategy will have to address. Using Superlinked’s library, you can **overcome** these difficulties.
 
 In this article, we’ll show you how to **use the Superlinked library to set up your own semantic search** and **generate a list of relevant movies** based on your preferences.
 
@@ -19,9 +19,9 @@ The Superlinked library enables you to address these challenges. Below, we’ll 
 ## Creating a fast and reliable search experience with Superlinked
 
 Below, you’ll perform semantic search on the Netflix movie dataset using the following elements of the Superlinked library:
-Recency space - to understand the freshness (currency and relevancy) of your data, identifying newer movies
-TextSimilarity space - to interpret the various pieces of metadata you have about the movie, such as description, title, and genre 
-Query time weights - letting you choose what’s most important in your data when you run the query, thereby optimizing without needing to re-embed the whole dataset, do postprocessing, or employ a custom reranking model (i.e., reducing latency)
+- Recency space - to understand the freshness (currency and relevancy) of your data, identifying newer movies
+- TextSimilarity space - to interpret the various pieces of metadata you have about the movie, such as description, title, and genre 
+- Query time weights - letting you choose what’s most important in your data when you run the query, thereby optimizing without needing to re-embed the whole dataset, do postprocessing, or employ a custom reranking model (i.e., reducing latency)
 
 ### The Netflix dataset, and what we’ll do with it
 
@@ -158,9 +158,51 @@ def present_result(
    return df[cols_to_keep]
 ```
 
+### Simple and advanced queries
+
+The Superlinked library lets you perform two different kinds of queries. Both types of query (simple and advanced) let me weight individual spaces (description, title, genre, and of course recency) according to my preferences. The **difference between simple and advanced queries** is - with simple query, I set one query text and then surface similar results in the description, title, and genre spaces. With advanced query, I have more fine-grained control. If I want, I can enter different query texts in each of the description, title, and genre spaces. Here's the query code:
+
+```python
+query_text_param = Param("query_text")
+
+simple_query = (
+    Query(
+        movie_index,
+        weights={
+            description_space: Param("description_weight"),
+            title_space: Param("title_weight"),
+            genre_space: Param("genre_weight"),
+            recency_space: Param("recency_weight"),
+        },
+    )
+    .find(movie)
+    .similar(description_space.text, query_text_param)
+    .similar(title_space.text, query_text_param)
+    .similar(genre_space.text, query_text_param)
+    .limit(Param("limit"))
+)
+
+advanced_query = (
+    Query(
+        movie_index,
+        weights={
+            description_space: Param("description_weight"),
+            title_space: Param("title_weight"),
+            genre_space: Param("genre_weight"),
+            recency_space: Param("recency_weight"),
+        },
+    )
+    .find(movie)
+    .similar(description_space.text, Param("description_query_text"))
+    .similar(title_space.text, Param("title_query_text"))
+    .similar(genre_space.text, Param("genre_query_text"))
+    .limit(Param("limit"))
+)
+```
+
 ### Simple query
 
-With the simple query, I can search with my text in all of the fields
+In simple queries, I set my query text and apply different weights depending on their importance to me.
 
 ```python
 result: Result = app.query(
@@ -239,9 +281,9 @@ result = app.query(
 present_result(result)
 ```
 
-### Search using a movie
+### Search using a specific movie
 
-Say in my last movie results I found a movie I’ve already seen and would like to see something similar. Let’s assume I like White Christmas, a 1954 romantic comedy (id = tm16479) about singer-dancers coming together for a stage show to draw guests to a struggling Vermont inn. Advanced query lets me search using this movie, and allows me all the fine-grained control of separate subsearch query text and weighting.
+Say in my last movie results I found a movie I’ve already seen and would like to see something similar. Let’s assume I like White Christmas, a 1954 romantic comedy (id = tm16479) about singer-dancers coming together for a stage show to draw guests to a struggling Vermont inn. By adding an extra `with_vector` clause (with a `movie_id` parameter), Advanced query lets me search using this movie (or any movie I like), and gives me all the fine-grained control of separate subsearch query text and weighting.
 
 First, we add our movie_id parameter:
 
@@ -295,7 +337,7 @@ present_result(result)
 
 Okay, those results are better. I’ll pick one of these. Put the popcorn on!
 
-### Conclusion
+## Conclusion
 
 Superlinked makes it easy to test, iterate, and improve your retrieval quality. Above, we’ve walked you through how to use the Superlinked library to do semantic search on a vector space, the way Netflix does, and return accurate, relevant movie results. We’ve also seen how to fine-tune our results, tweaking weights and search terms until we get to just the right outcome.
 
