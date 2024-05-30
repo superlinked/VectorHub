@@ -160,7 +160,7 @@ def present_result(
 
 ### Simple and advanced queries
 
-The Superlinked library lets you perform two different kinds of queries. Both types of query (simple and advanced) let me weight individual spaces (description, title, genre, and of course recency) according to my preferences. The **difference between simple and advanced queries** is - with simple query, I set one query text and then surface similar results in the description, title, and genre spaces. With advanced query, I have more fine-grained control. If I want, I can enter different query texts in each of the description, title, and genre spaces. Here's the query code:
+The Superlinked library lets you perform various kinds of queries; here we define two. Both of our query types of query (simple and advanced) let me weight individual spaces (description, title, genre, and of course recency) according to my preferences. The **difference between them** is that with **simple query**, I set one query text and then surface similar results in the description, title, and genre spaces. With **advanced query**, I have more fine-grained control. If I want, I can enter different query texts in each of the description, title, and genre spaces. Here's the query code:
 
 ```python
 query_text_param = Param("query_text")
