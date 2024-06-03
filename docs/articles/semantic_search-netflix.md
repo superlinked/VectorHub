@@ -1,4 +1,6 @@
-# Finding better movies using semantic search, built with Superlinked - a [notebook](https://github.com/superlinked/superlinked/blob/main/notebook/semantic_search_netflix_titles.ipynb) article
+# Finding better movies using semantic search, built with Superlinked
+
+We'll be following this [notebook](https://github.com/superlinked/superlinked/blob/main/notebook/semantic_search_netflix_titles.ipynb) throughout the article.
 
 Netflix’s recommendation algorithm does a pretty good job of suggesting relevant content - given the sheer volume of options (~16k movies and TV programs in 2023) and how quickly it has to propose shows to users. How does Netflix do it? In a word, **semantic search**.
 
