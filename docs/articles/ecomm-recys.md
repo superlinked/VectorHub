@@ -1,35 +1,27 @@
 # Creating personalized, real-time recommendation systems - a [notebook](https://github.com/superlinked/superlinked/blob/main/notebook/recommendations_e_commerce.ipynb) article
 
-Pioneered by the likes of Google and AirBnB, vector embedding-powered recommendation systems are increasingly popular. In this article, we will walk you through how to use the Superlinked library to create a RecSys that provides more relevant matches, and can be updated in real-time, with feedback loops defined by user interactions.
+Pioneered by the likes of Google and AirBnB, embedding-powered recommendation systems have revolutionized recommendation systems by enabling more accurate and personalized recommendations than traditional methods. By representing users and items as high-dimensional vectors in a latent space, embeddings capture similarities and relationships between users and items, and can therefore be used to provide more relevant recommendations. Their compact and dense nature facilitates efficient computation and scalability, which is vital for real-time and large-scale scenarios.
 
-Vector embeddings have revolutionized recommendation systems by representing users and items as high-dimensional vectors in a latent space, capturing similarities and relationships. This approach surpasses traditional methods reliant on sparse categorical data, enabling more accurate and personalized recommendations. Their compact and dense nature facilitates efficient computation and scalability, which is vital for real-time and large-scale scenarios. 
+In this article, we'll walk you through how to use the Superlinked library to create an effective RecSys - specifically an e-commerce site that sells mainly clothing - that can be updated in real-time using feedback loops defined by user interactions.
 
-## Challenges of using vector embeddings for recommendations
+## Achieving personalization despite RecSys vector embedding challenges
 
-Using vector embeddings in building recommendation systems presents several challenges that need to be addressed for effective implementation. These challenges include:
-- Quality and relevance: Embedding generation process, architecture, and data must be carefully considered.
-- Sparse and noisy data: Embeddings may struggle with incomplete or noisy input. Sparse data is the crux of the cold-start problem.
-- Scalability: Efficient methods for large datasets are needed; otherwise latency will be an issue.
+While vector embeddings can vastly improve recommendation systems, effectively implementing them requires addressing several challenges, including:
+- **Quality and relevance**: The embedding generation process, architecture, and data must be carefully considered.
+- **Sparse and noisy data**: Embeddings are less effective when they have incomplete or noisy input. Sparse data is the crux of the cold-start problem.
+- **Scalability**: Efficient methods for large datasets are needed; otherwise latency will be an issue.
 
-Superlinked allows you to combine all the different pieces of information you have about an entity into a rich multimodal vector, making it easier for you capture what is important to users when making recommendations.
+With Superlinked, you can address these challenges by combining all available data about users and products into rich multimodal vectors. In our e-commerce RecSys example below, we do this using the following Superlinked library elements:
+- min_max number spaces: for understanding customer reviews and pricing information
+- text-similarity space: for semantic understanding of product information
+- Events schema and Effects to modify vectors
+- query time weights - to define how you want the data to be treated when you run the query, letting you optimize and scale without re-embedding the whole dataset (latency).
 
-## How Superlinked helps you create hyper-personalized experiences users love
-
-RecSys personalisation can be challenging because, typically, the available user-specific data is sparse. Using the Superlinked library, you can capture events data and use this information to create a feedback loop that lets you update vectors in real time to reflect user preferences.
-
-In the example below, you’ll use the following elements of the Superlinked library to build your recommendation system for e-commerce:
-min_max number spaces: for understanding customer reviews and pricing information
-text-similarity space: for semantic understanding of product information
-Events schema and Effects to modify vectors 
-Query time weights - to define how you want the data to be treated when you run the query, avoiding the need to re-embed the whole dataset to optimize your experiment
-
-This approach can tackle both the cold start problem and personalize recommendations. 
+By embedding the sparse user-specific data we have - the user's initial product preference - we can handle the cold start problem. And, as user behavior accrues, we can *hyper*-personalize recommendations by embedding this event data, creating a feedback loop that lets you update vectors with user preferences in real time. 
 
 ## Building an e-commerce recommendation engine with Superlinked
 
-We’re building a recommender system for an e-commerce site that sells mainly clothing.
-
-To start, we have the following product deta
+At the start, we have the following product data:
 - number of reviewers
 - product ratings
 - textual description
@@ -37,7 +29,7 @@ To start, we have the following product deta
 - category
   
 We have two users (user_1 and user_2) whom we can differentiate by either:
-- which of three products offered during registration they choose, or
+- which of three products offered during registration they chose, or
 - more general characteristics explained in the below paragraph (price, reviews)
  
 Users have preferences in textual characteristics of products (description, name, category), and (according to classical economics) ceteris paribus prefer products that:
@@ -88,29 +80,9 @@ alt.renderers.enable("mimetype")
 pd.set_option("display.max_colwidth", 190)
 ```
 
-Now that the library's installed and classes imported, we can explore the dataset. Per above, initial user preference data comes from the users' 
+We also define our datasets, and create a constant for storing the top 10 items - see [cell 3](https://github.com/superlinked/superlinked/blob/main/notebook/recommendations_e_commerce.ipynb) in the notebook.
 
-```python
-# the user preferences come from the user being prompted to select a product out of 3 - those will be the initial preferences
-# this is done in order to give somewhat personalised recommendations
-user_df: pd.DataFrame = pd.read_json(USER_DATASET_URL)
-user_df
-
-NROWS = int(os.getenv("NOTEBOOK_TEST_ROW_LIMIT", sys.maxsize))
-products_df: pd.DataFrame = (
-   pd.read_json(PRODUCT_DATASET_URL)
-   .reset_index()
-   .rename(columns={"index": "id"})
-   .head(NROWS)
-)
-# convert price data to int
-products_df["price"] = products_df["price"].astype(int)
-print(products_df.shape)
-products_df.head()
-```
-
-
-We have data on which of three products user_1 and user_2 chose on registration:
+Now that the library's installed, classes imported, and dataset locations identified, we can take a look at our dataset, to inform the way we set up our spaces. Initially, we have data from user registration - which of three products user_1 and user_2 chose, which we use to solve the cold start problem.
 
 ```python
 # the user preferences come from the user being prompted to select a product out of 3 - those will be the initial preferences
@@ -119,11 +91,13 @@ user_df: pd.DataFrame = pd.read_json(USER_DATASET_URL)
 user_df
 ```
 
-![User product pref at registration](..assets/use_cases/ecomm_recsys/user_product_pref-at_registration.png)
+![User product pref at registration](..assets/use_cases/ecomm-recsys/user_product_pref-at_registration.png)
 
-We all have distribution data showing how many products are at different price points, have different review counts, and have different ratings.
+We can also set up a close look at the ditribution data of our products - see [cell 5](https://github.com/superlinked/superlinked/blob/main/notebook/recommendations_e_commerce.ipynb). This lets us look at distribution data showing how many products are at different price points, have different review counts, and have different ratings.
 
+![Number of products vs price, review count, and rating distributions](../assets/use_cases/ecomm-recsys/products-vs-price_reviewcount_rating.png)
 
+The price bins for products are mostly below the $1000 price point. We may want to set the space range to 25-1000 to make the space representative, undistorted by outlier values. Products' review counts are evenly distributed, and review ratings relatively evenly distributed, so no additional treatment is required. See [cells 7-9](https://github.com/superlinked/superlinked/blob/main/notebook/recommendations_e_commerce.ipynb).
 
 ### Building out the index for vector search
 
@@ -145,18 +119,12 @@ class ProductSchema:
    review_rating: Integer
    id: IdField
 
-
-
-
 @schema
 class UserSchema:
    preference_description: String
    preference_name: String
    preference_category: String
    id: IdField
-
-
-
 
 @event_schema
 class EventSchema:
@@ -165,8 +133,7 @@ class EventSchema:
    event_type: String
    id: IdField
 
-
-# we instantiate schemas
+# we instantiate schemas as follows
 product = ProductSchema()
 user = UserSchema()
 event = EventSchema()
@@ -189,7 +156,6 @@ category_space = TextSimilaritySpace(
    model="sentence-transformers/all-distilroberta-v1",
 )
 
-
 # NumberSpaces encode numeric input in special ways to reflect a relationship
 # here we express relationships to price (lower the better), or ratings and review counts (more/higher the better)
 price_space = NumberSpace(
@@ -201,6 +167,7 @@ review_count_space = NumberSpace(
 review_rating_space = NumberSpace(
    number=product.review_rating, mode=Mode.MAXIMUM, min_value=0, max_value=4
 )
+
 # create the index using the defined spaces
 product_index = Index(
    spaces=[
@@ -212,12 +179,12 @@ product_index = Index(
        review_rating_space,
    ]
 )
+
 # parse our data into the schemas - not matching column names can be conformed to schemas using the mapping parameter
 product_df_parser = DataFrameParser(schema=product)
 user_df_parser = DataFrameParser(
    schema=user, mapping={user.preference_description: "preference_desc"}
 )
-
 
 # setup our application
 source_product: InMemorySource = InMemorySource(product, parser=product_df_parser)
@@ -227,19 +194,16 @@ executor: InMemoryExecutor = InMemoryExecutor(
 )
 app: InMemoryApp = executor.run()
 
-
 # load the actual data into our system
 source_product.put([products_df])
 source_user.put([user_df])
 ```
 
-Now that you’ve got your data defined in Spaces, you’re ready to play with your data and optimize the results.
+Now that you’ve got your data defined in Spaces, you’re ready to play with your data and optimize the results. Let's first showcase what we can do without events - our cold-start solution.
 
 ### Tackling the RecSys cold-start problem
 
-Let's first showcase what we can do without events - our cold-start solution.
-
-Here we define a user query that just searches with the user's preference vector configuration options are the importance (weights) of each input type (space)
+Here, we define a user query that searches just with the user's preference vector. We have configuration control over the importance (weights) of each input type (space).
 
 ```python
 user_query = (
@@ -258,8 +222,9 @@ user_query = (
    .with_vector(user, Param("user_id"))
    .limit(Param("limit"))
 )
+
 # simple recommendations for our user_1
-# these are only based on the initial product the user chose when first entering our site
+# these are based only on the initial product the user chose when first entering our site
 simple_result = app.query(
    user_query,
    user_id="user_1",
@@ -272,13 +237,14 @@ simple_result = app.query(
    limit=TOP_N,
 )
 
-
 simple_result.to_pandas()
 ```
 
+The results of this query reflect the fact that user_1 chose a handbag when they first registered on our ecomm site.
 
+![User 1 registration product choice-based recs](..assets/use_cases/ecomm-recsys/user_1-reg_prod_based_recs.png)
 
-We can also just give the user products that generally seem appealing. For example, items with a low price, and a lot of good reviews (we can play around with the weights to tune those relationships, too)
+It's also possible to recommend products to user_1 that are *generally* appealing - that is, based on their price being low, and having a lot of good reviews. Our results will now reflect both user_1's product choice at registration *and* the general popularity of products. (We can also play around with these weights to skew results in the direction of one space or another.)
 
 ```python
 general_result = app.query(
@@ -293,13 +259,14 @@ general_result = app.query(
    limit=TOP_N,
 )
 
-
 general_result.to_pandas() 
 ```
 
+![General product features-based recs](..assets/use_cases/ecomm-recsys/general_features_recs.png)
 
+A new user's search introduces query text as an input for our recommendation results - see [cell 20](https://github.com/superlinked/superlinked/blob/main/notebook/recommendations_e_commerce.ipynb).
 
-Then you can optimise further by giving additional weight to the category space, to reccomend more “women clothing jackets” products.
+In our example case, user_1 searched for "women clothing jackets". We can optimize our results by giving **additional weight to the category space** (`category_weight = 10`), to recommend more “women clothing jackets” products.
 
 ```python
 women_cat_result = app.query(
@@ -315,18 +282,22 @@ women_cat_result = app.query(
    limit=TOP_N,
 )
 
-
 women_cat_result.to_pandas()
 ```
 
+Our additional category weighting produces more women clothing results.
 
+![User 1 query for "women clothing jackets" recs.png](..assets/use_cases/ecomm-recsys/women_clothing_jackets-recs.png)
+
+We can also bias our recommendations to top-rated products (`review_rating_weight=5`), balancing our increased category weighting. The results now reflect user_1's initial preference for handbags, items that are generally popular, and products with low ratings are removed altogether. See [cell 22](https://github.com/superlinked/superlinked/blob/main/notebook/recommendations_e_commerce.ipynb).
 
 ### Using events data to create personalized experiences
 
-Now fast-forward a month. Our users made some interactions on our platform. User_1 did some more, while user_2 only did some.
-Let's now utilize their behavioral data, represented as events and their effects, for our two example users:
-- a user interested in casual and leisure products
-- a user interested in elegant products for going out and formal work occasions
+Now fast-forward a month. Our users have interacted with our platform - user_1 more, user_2 less so. 
+
+We can now make use of their behavioral data (see below), represented as events, for our two example users:
+- a user interested in casual and leisure products (user_2)
+- a user interested in elegant products for going out and formal work occasions (user_1)
 
 ```python
 events_df = (
@@ -338,12 +309,14 @@ events_df = (
 events_df = events_df.merge(
    products_df[["id"]], left_on="product", right_on="id", suffixes=("", "r")
 ).drop("idr", axis=1)
+events_df = events_df.assign(created_at=1715439600)
+
 events_df
 ```
 
+![user events](..assets/use_cases/ecomm-recsys/events_df.png)
 
-
-You can set up different actions to show certain levels of interest
+We can weight specific actions to register the user's level of interest in a particular product, and adjust the setup to take account of events when performing retrieval.
 
 ```python
 event_weights = {
@@ -352,15 +325,62 @@ event_weights = {
    "put_to_cart": 0.5,
    "removed_from_cart": -0.5,
 }
+
+# adjust the setup to events
+product_index_with_events = Index(
+    spaces=[
+        description_space,
+        category_space,
+        name_space,
+        price_space,
+        review_count_space,
+        review_rating_space,
+    ],
+    effects=[
+        Effect(
+            description_space,
+            event.user,
+            event_weight * event.product,
+            event.event_type == event_type,
+        )
+        for event_type, event_weight in event_weights.items()
+    ]
+    + [
+        Effect(
+            category_space,
+            event.user,
+            event_weight * event.product,
+            event.event_type == event_type,
+        )
+        for event_type, event_weight in event_weights.items()
+    ]
+    + [
+        Effect(
+            name_space,
+            event.user,
+            event_weight * event.product,
+            event.event_type == event_type,
+        )
+        for event_type, event_weight in event_weights.items()
+    ],
+)
+event_df_parser: DataFrameParser = DataFrameParser(schema=event)
+source_event: InMemorySource = InMemorySource(schema=event, parser=event_df_parser)
+executor_with_events: InMemoryExecutor = InMemoryExecutor(
+    sources=[source_product, source_user, source_event],
+    indices=[product_index_with_events],
+)
+app_with_events: InMemoryApp = executor_with_events.run()
 ```
 
-Then personalize your recommendations to the user by setting up events to impact the retrieval.
+Then we create a new index to take account of user events, and then personalize recommendations to the user accordingly. Even queries based on the user's vector are now much more personalized than before.
 
 ```python
 # for a new index, all data has to be put into the source again
 source_product.put([products_df])
 source_user.put([user_df])
 source_event.put([events_df])
+
 # a query only searching with the user's vector the preferences are now much more personalised thanks to the events
 personalised_query = (
    Query(
@@ -380,10 +400,10 @@ personalised_query = (
 )
 ```
 
-The following two snippets show the impact of a slight (vs. a large) personalisation weighting on your results.
+We can see the effect of including events by weighting the personalization just slightly or heavily. First, let's see the effect of weighting the spaces changed by including events compared to the baseline results.
 
 ```python
-# with small weight on the spaces the events affected, we mainly just alter the results below position 4
+# with small weight on event-affected spaces, we mainly just alter the results below position 4
 general_event_result = app_with_events.query(
    personalised_query,
    user_id="user_1",
@@ -396,18 +416,19 @@ general_event_result = app_with_events.query(
    limit=TOP_N,
 )
 
-
 general_event_result.to_pandas().join(
    simple_result.to_pandas(), lsuffix="", rsuffix="_base"
 )[["description", "id", "description_base", "id_base"]]
 ```
 
-You can see mainly the lower results have changed from the previous iteration
+With very little weight placed on spaces affected by events, we observe a change but mainly only in the latter half of our top 10, compared to the previous results ("id_base", on the right).
 
+![Slightly weighted events-affected spaces vs baseline](..assets/use_cases/ecomm-recsys/slight_weight-events-vs-baseline.png)
 
+But if we weight the event-affected spaces more heavily, we surface completely novel items in our recommendations list.
 
 ```python
-# with larger weight on the the event affected spaces, more totally new items appear in the TOP10
+# with larger weight on the the event-affected spaces, more totally new items appear in the TOP10
 event_weighted_result = app_with_events.query(
    personalised_query,
    user_id="user_1",
@@ -421,16 +442,17 @@ event_weighted_result = app_with_events.query(
    limit=TOP_N,
 )
 
-
 event_weighted_result.to_pandas().join(
    simple_result.to_pandas(), lsuffix="", rsuffix="_base"
 )[["description", "id", "description_base", "id_base"]]
 ```
 
-Whereas here the results are very different
+![More heavily weighted events-affected spaces vs baseline](..assets/use_cases/ecomm-recsys/heavier_weight-events-vs-baseline.png)
 
+We can also, of course, use weights to persoalize our recommendations based on a particular user's behavior (event data) and *simultaneously prioritize other product attributes* - for example, price (see [cell 31](https://github.com/superlinked/superlinked/blob/main/notebook/recommendations_e_commerce.ipynb)).
 
+## Conclusion
 
 And that’s how you can create personalised recommendation systems that account for both the semantic meaning of your user query and their preferences using Superlinked.
 
-[Try it out](https://colab.research.google.com/github/superlinked/superlinked/blob/main/notebook/recommendations_e_commerce.ipynb)
+Now it's your turn to [try our notebook out yourself](https://colab.research.google.com/github/superlinked/superlinked/blob/main/notebook/recommendations_e_commerce.ipynb).
