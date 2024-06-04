@@ -17,7 +17,7 @@ With Superlinked, you can address these challenges by combining all available da
 - **Events schema** and **Effects** to modify vectors
 - **query time weights** - to define how you want the data to be treated when you run the query, letting you optimize and scale without re-embedding the whole dataset (latency).
 
-By embedding the sparse user-specific data we have - the user's initial product preference - we can handle the cold start problem. As user behavior accrues, we can *hyper*-personalize recommendations by embedding this event data, creating a feedback loop that lets you update vectors with user preferences in real time.
+By embedding our initially sparse user-specific data (the user's initial product preference), we can handle the cold start problem. As user behavior accrues, we can go much further, *hyper*-personalizing recommendations by embedding this event data, creating a feedback loop that lets you update vectors with user preferences in real time. In addition, Superlinked's query time weights let you fine-tune your retrieval results bias results to match specific user preferences.
 
 Let's get started.
 
@@ -39,11 +39,7 @@ Users have preferences in textual characteristics of products (description, name
 - have a lot of reviews
 - have higher ratings
 
-We’ll set up our spaces up to reflect that.
-
-This initial setup can be used in cold-start scenarios - we’ll recommend items for users we know very little about. [only their on-registration product choice?]
-
-Once our RecSys is up and running, we’ll have behavioral data. Users will click on certain products, buy certain products, etc. We can capture this events data, and use it to create feedback loops, updating our vectors to reflect user preferences and improving the quality of recommendations. 
+We can set up our Spaces to reflect these things, so that we have a RecSys that works in cold-start scenarios - recommending items for users we know very little about. Once our RecSys is up and running, we’ll also have behavioral data. Users will click on certain products, buy certain products, etc. We can capture this event data, and use it to create feedback loops, updating our vectors to reflect user preferences and improving the quality of recommendations.
 
 ### Setting up Superlinked
 
