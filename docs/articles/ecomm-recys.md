@@ -12,16 +12,18 @@ While vector embeddings can vastly improve recommendation systems, effectively i
 - **Scalability**: Efficient methods for large datasets are needed; otherwise latency will be an issue.
 
 With Superlinked, you can address these challenges by combining all available data about users and products into rich multimodal vectors. In our e-commerce RecSys example below, we do this using the following Superlinked library elements:
-- min_max number spaces: for understanding customer reviews and pricing information
-- text-similarity space: for semantic understanding of product information
-- Events schema and Effects to modify vectors
-- query time weights - to define how you want the data to be treated when you run the query, letting you optimize and scale without re-embedding the whole dataset (latency).
+- **min_max number spaces**: for understanding customer reviews and pricing information
+- **text-similarity space**: for semantic understanding of product information
+- **Events schema** and **Effects** to modify vectors
+- **query time weights** - to define how you want the data to be treated when you run the query, letting you optimize and scale without re-embedding the whole dataset (latency).
 
-By embedding the sparse user-specific data we have - the user's initial product preference - we can handle the cold start problem. And, as user behavior accrues, we can *hyper*-personalize recommendations by embedding this event data, creating a feedback loop that lets you update vectors with user preferences in real time. 
+By embedding the sparse user-specific data we have - the user's initial product preference - we can handle the cold start problem. As user behavior accrues, we can *hyper*-personalize recommendations by embedding this event data, creating a feedback loop that lets you update vectors with user preferences in real time.
+
+Let's get started.
 
 ## Building an e-commerce recommendation engine with Superlinked
 
-At the start, we have the following product data:
+At the start of development, we have the following product data:
 - number of reviewers
 - product ratings
 - textual description
