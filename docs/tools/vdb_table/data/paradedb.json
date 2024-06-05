@@ -34,7 +34,7 @@
   "hybrid_search": {
     "support": "full",
     "source_url": "https://docs.paradedb.com/search/hybrid/basic",
-    "comment": "https://docs.paradedb.com/search/hybrid/basic"
+    "comment": ""
   },
   "facets": {
     "support": "",
