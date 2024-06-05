@@ -145,7 +145,7 @@
   "vector_dims": {
     "value": 2000,
     "unlimited": false,
-    "source_url": "",
+    "source_url": "https://docs.paradedb.com/search/dense/index",
     "comment": ""
   },
   "index_types": {
