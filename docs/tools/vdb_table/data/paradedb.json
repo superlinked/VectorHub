@@ -44,7 +44,7 @@
   "geo_search": {
     "support": "full",
     "source_url": "https://github.com/orgs/paradedb/discussions/1110",
-    "comment": "PostGIS"
+    "comment": "Available via the PostGIS extension"
   },
   "multi_vec": {
     "support": "full",
