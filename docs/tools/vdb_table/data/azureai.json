@@ -153,6 +153,11 @@
     "source_url": "https://learn.microsoft.com/azure/search/vector-search-how-to-configure-compression-storage#option-3-configure-scalar-quantization?",
     "comment": ""
   },
+  "binary_quantization": {
+    "support": "full",
+    "source_url": "https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/using-cohere-binary-embeddings-in-azure-ai-search-and-command-r/ba-p/4158111",
+    "comment": ""
+  },
   "index_types": {
     "value": [
       "FLAT",
