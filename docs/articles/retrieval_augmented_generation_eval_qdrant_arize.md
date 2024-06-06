@@ -81,7 +81,7 @@ vector_store = QdrantVectorStore(client=client, collection_name=COLLECTION_NAME)
 
 storage_context = StorageContext.from_defaults(vector_store=vector_store)
 
-##Uncomment if using FastEmbed
+## Uncomment if using FastEmbed
 Settings.embed_model = FastEmbedEmbedding(model_name="BAAI/bge-small-en-v1.5")
 
 ## Uncomment it if you'd like to use OpenAI Embeddings instead of FastEmbed
