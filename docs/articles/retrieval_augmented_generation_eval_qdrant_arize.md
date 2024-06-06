@@ -6,17 +6,10 @@ Following the series :
 
 [RAG Evaluation with RAGAS](https://superlinked.com/vectorhub/articles/retrieval-augmented-generation-eval-qdrant-ragas)
 
-For this article we will take you through RAG Evaluation using another popular framework tool called Arize Phoenix. It is an open source tool to evaluate and observe LLM applications, including capabilities to determine the relevance or irrelevance of the documents retrieved by RAG application. It also assists with monitoring models and LLM applications, providing LLMOps fast insights with zero-config observability.
+For this article we will take you through RAG Evaluation using another popular framework tool called [Arize Phoenix]((https://phoenix.arize.com/)).
 
-Please check out Phoenix [github]([https://github.com/Arize-ai/phoenix](https://github.com/Arize-ai/phoenix)) or [website]([https://phoenix.arize.com/](https://phoenix.arize.com/)) for more information.
-
-Let us talk about the RAG evaluation aspect of Phoenix in this article.
-
-Just like our [previous article]([https://superlinked.com/vectorhub/articles/retrieval-augmented-generation-eval-qdrant-ragas](https://superlinked.com/vectorhub/articles/retrieval-augmented-generation-eval-qdrant-ragas)) , we’ll be building a RAG pipeline and evaluate it using Phoenix.
-
-The code is available in the [github repo]([https://github.com/qdrant/qdrant-rag-eval/tree/master/workshop-rag-eval-qdrant-arize](https://github.com/qdrant/qdrant-rag-eval/tree/master/workshop-rag-eval-qdrant-arize)) if you prefer to follow along.
-
-There is also a walkthrough workshop [video]([https://www.youtube.com/watch?v=m_J0nFmnrPI](https://www.youtube.com/watch?v=m_J0nFmnrPI)) available for the reference.
+> The code is available in the [github repo](https://github.com/qdrant/qdrant-rag-eval/tree/master/workshop-rag-eval-qdrant-arize) if you prefer to follow along.<br/>
+> There is also a walkthrough workshop [video](https://www.youtube.com/watch?v=m_J0nFmnrPI) available for the reference.
 
 This Article will take you through :
 
@@ -31,7 +24,7 @@ Lets begin!
 
 **Learning about key concepts and metrics in Phoenix**
 
-Phoenix is an open-source observability library designed for experimentation, evaluation, and troubleshooting. It allows AI Engineers to quickly visualize their data, evaluate performance, track down issues and optimize.
+[Phoenix](https://phoenix.arize.com/) is an open-source observability library designed for experimentation, evaluation, and troubleshooting. It allows AI Engineers to quickly visualize their data, evaluate performance, track down issues and optimize.
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_arize/arize_products.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_arize/arize_products.png)
 
@@ -41,7 +34,7 @@ Arize offers a comprehensive suite of solutions to meet various needs, from open
 
 This includes tracing, prompt iteration, search and retrieval, [evaluating specific tasks](https://arize.com/blog-course/llm-evaluation-the-definitive-guide/), and ultimately improving your LLM through fine-tuning.
 
-This article covers **Phoenix**, which is the open-source solution.
+This article covers **Phoenix**, which is the [open-source](https://github.com/Arize-ai/phoenix) solution.
 
 The complexity that is involved in building an LLM application is why observability is so important. Each step of the response generation process needs to be monitored, evaluated and tuned to provide the best possible experience. Not only that, certain tradeoffs might need to be made to optimize for speed, cost, or accuracy. In the context of LLM applications, we need to be able to understand the internal state of the system by examining telemetry data such as LLM Traces.
 
@@ -117,7 +110,7 @@ dense_retriever = VectorIndexRetriever(
 
 which we’ll use through Phoenix to evaluate our Naive Rag pipeline.
 
-We'll use the pre-compiled **[hugging-face dataset](https://huggingface.co/datasets/atitaarora/qdrant_doc)**, which consists of `text` and `source`, derived from the documentation as before in our previous article, for the evaluation.
+We'll use the pre-compiled **[hugging-face dataset](https://huggingface.co/datasets/atitaarora/qdrant_doc)**,which consists of `text` and `source`, derived from the documentation as before in our previous article, for the evaluation.
 
 Let’s load our eval dataset as :
 
@@ -163,7 +156,7 @@ for query in tqdm(qdrant_qa_question['question'][:10]):
       pass
 ```
 
-Open the Phoenix UI with the [link]([http://localhost:6006/](http://localhost:6006/)) and click through the queries to better understand how the query engine is performing.
+Open the Phoenix UI with the [link](http://localhost:6006/) and click through the queries to better understand how the query engine is performing.
 
 Check the Phoenix UI as your queries run. Your traces should appear in real time.
 
@@ -175,14 +168,14 @@ For each trace notice a span breakdown and the list of all the spans can also be
 
 Phoenix can be used to understand and troubleshoot your application by surfacing:
 
-- **Application latency** - highlighting slow invocations of LLMs, retrievers, etc.
-- **Token Usage** - Displays the breakdown of token usage with LLMs to surface up your most expensive LLM calls
-- **Runtime Exceptions** - Critical runtime exceptions such as rate-limiting are captured as exception events.
-- **Retrieved Documents** - view all the documents retrieved during a retriever call and the score and order in which they were returned
-- **Embeddings** - view the embedding text used for retrieval and the underlying embedding model LLM parameters - view the parameters used when calling out to an LLM to debug things like temperature and the system prompts
-- **Prompt Templates** - Figure out what prompt template is used during the prompting step and what variables were used
-- **Tool Descriptions** - view the description and function signature of the tools your LLM has been given access to
-- **LLM Function Calls** - if using OpenAI or other a model with function calls, you can view the function selection and function messages in the input messages to the LLM.
+- **Application latency** - highlighting slow invocations of LLMs, retrievers, etc.
+- **Token Usage** - Displays the breakdown of token usage with LLMs to surface up your most expensive LLM calls
+- **Runtime Exceptions** - Critical runtime exceptions such as rate-limiting are captured as exception events.
+- **Retrieved Documents** - view all the documents retrieved during a retriever call and the score and order in which they were returned
+- **Embeddings** - view the embedding text used for retrieval and the underlying embedding model LLM parameters - view the parameters used when calling out to an LLM to debug things like temperature and the system prompts
+- **Prompt Templates** - Figure out what prompt template is used during the prompting step and what variables were used
+- **Tool Descriptions** - view the description and function signature of the tools your LLM has been given access to
+- **LLM Function Calls** - if using OpenAI or other a model with function calls, you can view the function selection and function messages in the input messages to the LLM.
 
 You can export your trace data as a pandas dataframe for further analysis and evaluation.
 
@@ -266,7 +259,7 @@ Lets build a new vector index for the same.
 COLLECTION_NAME_HYBRID = "qdrant_docs_arize_hybrid"
 ```
 
-For this purpose , we’ll need to use a sparse vector model , we’ll use [Splade++]([https://huggingface.co/prithivida/Splade_PP_en_v1](https://huggingface.co/prithivida/Splade_PP_en_v1)) in this case supported through Fastembed as we can verify below :
+For this purpose , we’ll need to use a sparse vector model , we’ll use [Splade++](https://huggingface.co/prithivida/Splade_PP_en_v1) in this case supported through Fastembed as we can verify below :
 
 ```python
 ##List of supported sparse vector models
@@ -510,7 +503,7 @@ seem to be already fixed.
 
 **Concluding thoughts**
 
-In the [previous article]([https://superlinked.com/vectorhub/articles/retrieval-augmented-generation-eval-qdrant-ragas](https://superlinked.com/vectorhub/articles/retrieval-augmented-generation-eval-qdrant-ragas)) we experimented improving RAG Evaluation score by experimenting with different *Retrieval Window sizes* while in this article we covered *Multivector / Hybrid vector* approach to improve and fix our RAG pipeline.
+In the [previous article](https://superlinked.com/vectorhub/articles/retrieval-augmented-generation-eval-qdrant-ragas) we experimented improving RAG Evaluation score by experimenting with different *Retrieval Window sizes* while in this article we covered *Multivector / Hybrid vector* approach to improve and fix our RAG pipeline.
 
 It is suggested to correlate these experiments with your use case.
 
@@ -521,6 +514,6 @@ There are other ways of improving your RAG pipeline ,  such as :
 - Experimenting with *rerankers* - based of preset or custom relevance criterion
 - Experimenting with *query and response enrichment* - based on level of enrichment required before and after retrieval state to help LLM generate the desired response.
 
-The complete code for this article can be found [here]([https://github.com/qdrant/qdrant-rag-eval/tree/master/workshop-rag-eval-qdrant-arize](https://github.com/qdrant/qdrant-rag-eval/tree/master/workshop-rag-eval-qdrant-arize)).
+The complete code for this article can be found [here](https://github.com/qdrant/qdrant-rag-eval/tree/master/workshop-rag-eval-qdrant-arize).
 
 We hope you found this series useful! Don’t forget to star and contribute your experiments. Feedback and suggestions are welcome.
