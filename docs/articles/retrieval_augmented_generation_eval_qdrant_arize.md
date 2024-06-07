@@ -168,14 +168,14 @@ For each trace notice a span breakdown and the list of all the spans can also be
 
 Phoenix can be used to understand and troubleshoot your application by surfacing:
 
-- **Application latency** - highlighting slow invocations of LLMs, retrievers, etc.
-- **Token Usage** - Displays the breakdown of token usage with LLMs to surface up your most expensive LLM calls
-- **Runtime Exceptions** - Critical runtime exceptions such as rate-limiting are captured as exception events.
-- **Retrieved Documents** - view all the documents retrieved during a retriever call and the score and order in which they were returned
-- **Embeddings** - view the embedding text used for retrieval and the underlying embedding model LLM parameters - view the parameters used when calling out to an LLM to debug things like temperature and the system prompts
-- **Prompt Templates** - Figure out what prompt template is used during the prompting step and what variables were used
-- **Tool Descriptions** - view the description and function signature of the tools your LLM has been given access to
-- **LLM Function Calls** - if using OpenAI or other a model with function calls, you can view the function selection and function messages in the input messages to the LLM.
+- **Application latency**
+- **Token Usage** 
+- **Runtime Exceptions**
+- **Retrieved Documents** 
+- **Embeddings**
+- **Prompt Templates**
+- **Tool Descriptions**
+- **LLM Function Calls**
 
 You can export your trace data as a pandas dataframe for further analysis and evaluation.
 
