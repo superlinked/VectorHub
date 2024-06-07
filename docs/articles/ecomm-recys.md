@@ -30,14 +30,13 @@ At the start of development, we have the following product data:
 - name of product (usually containing brand name)
 - category
   
-We have two users (user_1 and user_2) whom we can differentiate by either:
-- which of three products offered during registration they chose, or
-- more general characteristics explained in the below paragraph (price, reviews)
- 
-Users have preferences in textual characteristics of products (description, name, category), and (according to classical economics) ceteris paribus prefer products that:
-- cost less
-- have a lot of reviews
-- have higher ratings
+We have the following data about users and products:
+- 1. each user chooses one of three products offered on registration (product preference data)
+- 2. user behavior (after registration) provides additional event data - preferences for textual characteristics of products (description, name, category)
+- 3. all users (according to classical economics) ceteris parabis prefer products that:
+  - cost less
+  - have a lot of reviews
+  - have higher ratings
 
 We can set up our Spaces to reflect these things, so that we have a RecSys that works in cold-start scenarios - recommending items for users we know very little about. Once our RecSys is up and running, we’ll also have behavioral data. Users will click on certain products, buy certain products, etc. We can capture this event data, and use it to create feedback loops, updating our vectors to reflect user preferences and improving the quality of recommendations.
 
