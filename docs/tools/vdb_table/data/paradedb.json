@@ -47,8 +47,8 @@
     "comment": "Available via the PostGIS extension"
   },
   "multi_vec": {
-    "support": "full",
-    "source_url": "https://docs.paradedb.com/search/dense/overview",
+    "support": "none",
+    "source_url": "",
     "comment": ""
   },
   "sparse_vectors": {
