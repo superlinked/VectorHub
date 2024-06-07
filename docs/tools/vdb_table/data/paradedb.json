@@ -14,8 +14,8 @@
     "comment": ""
   },
   "license": {
-    "value": "AGPL-3.0 Licence https://opensource.org/license/agpl-v3",
-    "source_url": "https://opensource.org/license/agpl-v3",
+    "value": "AGPL-3.0 Licence",
+    "source_url": "https://github.com/paradedb/paradedb/blob/dev/LICENSE",
     "comment": ""
   },
   "dev_languages": {
