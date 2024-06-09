@@ -72,9 +72,9 @@
     "comment": ""
   },
   "embeddings_image": {
-    "support": "full",
-    "source_url": "https://www.meilisearch.com/docs/learn/experimental/vector_search",
-    "comment": "Custom vectors can be linked to documents and provided during search"
+    "support": "none",
+    "source_url": "",
+    "comment": ""
   },
   "embeddings_structured": {
     "support": "",
@@ -149,7 +149,7 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 43474,
+    "value": 43697,
     "source_url": "https://github.com/meilisearch/meilisearch",
     "comment": "",
     "value_90_days": 0
@@ -161,16 +161,16 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 979140,
+    "value": 1040464,
     "source_url": "https://pypi.org/project/meilisearch/",
     "comment": "",
-    "value_90_days": 301594
+    "value_90_days": 340033
   },
   "npm_downloads": {
-    "value": 5962691,
+    "value": 5885296,
     "source_url": "https://www.npmjs.com/package/meilisearch",
     "comment": "",
-    "value_90_days": 874174
+    "value_90_days": 877549
   },
   "crates_io_downloads": {
     "value": 0,

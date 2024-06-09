@@ -1,12 +1,11 @@
 {
-  "name": "Turbopuffer",
+  "name": "Hyperspace",
   "links": {
-    "docs": "https://turbopuffer.com/docs",
-    "github": "https://github.com/sirupsen",
-    "website": "http://turbopuffer.com/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/92",
-    "poc_github": "https://github.com/sirupsen",
-    "slug": "turbopuffer"
+    "docs": "https://docs.hyper-space.io/hyperspace-docs",
+    "github": "https://github.com/hyper-space-io/",
+    "website": "https://www.hyper-space.io/",
+    "poc_github": "https://github.com/YanivHyper-Space",
+    "slug": "hyper-space"
   },
   "oss": {
     "support": "none",
@@ -16,11 +15,12 @@
   "license": {
     "value": "Proprietary",
     "source_url": "",
-    "comment": ""
+    "comment": "Hyper-space-2.0"
   },
   "dev_languages": {
     "value": [
-      "rust"
+      "python",
+      "java"
     ],
     "source_url": "",
     "comment": ""
@@ -28,31 +28,31 @@
   "vector_launch_year": 2023,
   "metadata_filter": {
     "support": "full",
-    "source_url": "https://turbopuffer.com/docs/reference/query",
+    "source_url": "https://docs.hyper-space.io/hyperspace-docs/flows/data-collections/python-query-interface/candidate-filtering",
     "comment": ""
   },
   "hybrid_search": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://docs.hyper-space.io/hyperspace-docs/reference/hyperspace-hybrid-search#hybrid-search",
+    "comment": "Support complex logic, including mutliplication and division of vector and keyword based scores. No limitations on numer of keyword fields or vector fields"
   },
   "facets": {
-    "support": "none",
-    "source_url": "",
+    "support": "partial",
+    "source_url": "https://docs.hyper-space.io/hyperspace-docs/flows/data-collections/python-query-interface/aggregations",
     "comment": ""
   },
   "geo_search": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.hyper-space.io/hyperspace-docs/flows/es-dsl-query-interface/candidate-filtering#match-between-geo-coordinates",
     "comment": ""
   },
   "multi_vec": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://docs.hyper-space.io/hyperspace-docs/flows/setting-up/building-and-running-queries/building-a-vector-search-query",
+    "comment": "can support large number of vectors in same query"
   },
   "sparse_vectors": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
@@ -62,8 +62,8 @@
     "comment": ""
   },
   "full_text": {
-    "support": "none",
-    "source_url": "",
+    "support": "partial",
+    "source_url": "https://docs.hyper-space.io/hyperspace-docs/flows/data-collections/python-query-interface/candidate-filtering#exact-match-between-keywords",
     "comment": ""
   },
   "embeddings_text": {
@@ -87,17 +87,17 @@
     "comment": ""
   },
   "recsys": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "langchain": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "llamaindex": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
@@ -107,59 +107,45 @@
     "comment": ""
   },
   "pricing": {
-    "value": "$1/million vecs, $4/million queries",
-    "source_url": "https://turbopuffer.com/",
+    "value": "Per usage",
+    "source_url": "",
     "comment": ""
   },
   "in_process": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "multi_tenancy": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "disk_index": {
     "support": "",
-    "source_url": "",
-    "comment": ""
+    "source_url": ""
   },
   "ephemeral": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "sharding": {
-    "support": "full",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "doc_size": {
-    "bytes": 65536,
+    "bytes": 100000000,
     "unlimited": false,
     "source_url": "",
     "comment": ""
   },
   "vector_dims": {
-    "value": 10752,
+    "value": 8192,
     "unlimited": false,
-    "source_url": "https://turbopuffer.com/docs/get-started/limits",
-    "comment": ""
-  },
-  "index_types": {
-    "value": [
-      "SPANN"
-    ],
-    "source_url": "https://turbopuffer.com/architecture#:~:text=on%20SPANN.-,SPANN,-is%20a%20centroid",
-    "comment": ""
-  },
-  "github_stars": {
-    "value": 0,
     "source_url": "",
-    "comment": "",
-    "value_90_days": 0
+    "comment": ""
   },
   "docker_pulls": {
     "value": 0,
@@ -168,16 +154,16 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 368493,
-    "source_url": "https://pypi.org/project/turbopuffer/",
+    "value": 0,
+    "source_url": "",
     "comment": "",
-    "value_90_days": 364115
+    "value_90_days": 0
   },
   "npm_downloads": {
-    "value": 76418,
-    "source_url": "https://www.npmjs.com/package/@turbopuffer/turbopuffer",
+    "value": 0,
+    "source_url": "",
     "comment": "",
-    "value_90_days": 76418
+    "value_90_days": 0
   },
   "crates_io_downloads": {
     "value": 0,
