@@ -1,50 +1,50 @@
 {
-  "name": "Turbopuffer",
+  "name": "ParadeDB",
   "links": {
-    "docs": "https://turbopuffer.com/docs",
-    "github": "https://github.com/sirupsen",
-    "website": "http://turbopuffer.com/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/92",
-    "poc_github": "https://github.com/sirupsen",
-    "slug": "turbopuffer"
+    "docs": "https://docs.paradedb.com",
+    "github": "https://github.com/paradedb/paradedb",
+    "website": "https://paradedb.com",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/401",
+    "poc_github": "https://github.com/philippemnoel",
+    "slug": "paradedb"
   },
   "oss": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://github.com/paradedb/paradedb",
     "comment": ""
   },
   "license": {
-    "value": "Proprietary",
-    "source_url": "",
+    "value": "AGPL-3.0 Licence",
+    "source_url": "https://github.com/paradedb/paradedb/blob/dev/LICENSE",
     "comment": ""
   },
   "dev_languages": {
     "value": [
       "rust"
     ],
-    "source_url": "",
+    "source_url": "https://github.com/paradedb/paradedb",
     "comment": ""
   },
   "vector_launch_year": 2023,
   "metadata_filter": {
     "support": "full",
-    "source_url": "https://turbopuffer.com/docs/reference/query",
-    "comment": ""
-  },
-  "hybrid_search": {
-    "support": "none",
     "source_url": "",
     "comment": ""
   },
+  "hybrid_search": {
+    "support": "full",
+    "source_url": "https://docs.paradedb.com/search/hybrid/basic",
+    "comment": ""
+  },
   "facets": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "geo_search": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://github.com/orgs/paradedb/discussions/1110",
+    "comment": "Available via the PostGIS extension"
   },
   "multi_vec": {
     "support": "none",
@@ -52,18 +52,18 @@
     "comment": ""
   },
   "sparse_vectors": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.paradedb.com/search/sparse/overview",
     "comment": ""
   },
   "bm25": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.paradedb.com/search/full-text/overview",
     "comment": ""
   },
   "full_text": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.paradedb.com/search/full-text/overview",
     "comment": ""
   },
   "embeddings_text": {
@@ -72,7 +72,7 @@
     "comment": ""
   },
   "embeddings_image": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
@@ -87,32 +87,32 @@
     "comment": ""
   },
   "recsys": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "langchain": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "llamaindex": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "managed_cloud": {
-    "support": "full",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "pricing": {
-    "value": "$1/million vecs, $4/million queries",
-    "source_url": "https://turbopuffer.com/",
+    "value": "",
+    "source_url": "",
     "comment": ""
   },
   "in_process": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
@@ -122,62 +122,64 @@
     "comment": ""
   },
   "disk_index": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
-  },
-  "ephemeral": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
-  },
-  "sharding": {
     "support": "full",
     "source_url": "",
     "comment": ""
   },
+  "ephemeral": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "sharding": {
+    "support": "none",
+    "source_url": "",
+    "comment": "While ParadeDB does not provide this natively (yet), you can get this either from PostgreSQL functionality like \"postgres_fdw\" or from extensions. You can also choose to subdivide your index through partitioning."
+  },
   "doc_size": {
-    "bytes": 65536,
+    "bytes": 0,
     "unlimited": false,
     "source_url": "",
     "comment": ""
   },
   "vector_dims": {
-    "value": 10752,
+    "value": 2000,
     "unlimited": false,
-    "source_url": "https://turbopuffer.com/docs/get-started/limits",
+    "source_url": "https://docs.paradedb.com/search/dense/index",
     "comment": ""
   },
   "index_types": {
     "value": [
-      "SPANN"
+      "FLAT",
+      "IVF",
+      "HNSW"
     ],
-    "source_url": "https://turbopuffer.com/architecture#:~:text=on%20SPANN.-,SPANN,-is%20a%20centroid",
+    "source_url": "https://github.com/pgvector/pgvector#indexing",
     "comment": ""
   },
   "github_stars": {
-    "value": 0,
-    "source_url": "",
+    "value": 4357,
+    "source_url": "https://github.com/paradedb/paradedb",
     "comment": "",
     "value_90_days": 0
   },
   "docker_pulls": {
+    "value": 15140,
+    "source_url": "https://hub.docker.com/r/paradedb/paradedb",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "pypi_downloads": {
     "value": 0,
     "source_url": "",
     "comment": "",
     "value_90_days": 0
   },
-  "pypi_downloads": {
-    "value": 368493,
-    "source_url": "https://pypi.org/project/turbopuffer/",
-    "comment": "",
-    "value_90_days": 364115
-  },
   "npm_downloads": {
-    "value": 76418,
-    "source_url": "https://www.npmjs.com/package/@turbopuffer/turbopuffer",
+    "value": 0,
+    "source_url": "",
     "comment": "",
-    "value_90_days": 76418
+    "value_90_days": 0
   },
   "crates_io_downloads": {
     "value": 0,

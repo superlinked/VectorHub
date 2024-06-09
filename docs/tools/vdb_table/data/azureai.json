@@ -143,7 +143,7 @@
     "comment": "Limited by batch size. However, the maximum size of a document is 16 MB. There is no max document limit per index."
   },
   "vector_dims": {
-    "value": 3072,
+    "value": 4096,
     "unlimited": false,
     "source_url": "https://learn.microsoft.com/azure/search/vector-search-how-to-generate-embeddings",
     "comment": ""
@@ -151,6 +151,19 @@
   "int8_quantization": {
     "support": "full",
     "source_url": "https://learn.microsoft.com/azure/search/vector-search-how-to-configure-compression-storage#option-3-configure-scalar-quantization?",
+    "comment": ""
+  },
+  "binary_quantization": {
+    "support": "full",
+    "source_url": "https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/using-cohere-binary-embeddings-in-azure-ai-search-and-command-r/ba-p/4158111",
+    "comment": ""
+  },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "HNSW"
+    ],
+    "source_url": "https://learn.microsoft.com/en-us/azure/search/vector-search-overview",
     "comment": ""
   },
   "github_stars": {
@@ -166,16 +179,16 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 15426288,
+    "value": 16482817,
     "source_url": "https://pypi.org/project/azure-ai-ml/",
     "comment": "",
-    "value_90_days": 5959168
+    "value_90_days": 6386347
   },
   "npm_downloads": {
-    "value": 2987213,
+    "value": 3302128,
     "source_url": "https://www.npmjs.com/package/@azure/openai",
     "comment": "",
-    "value_90_days": 1479252
+    "value_90_days": 1600209
   },
   "crates_io_downloads": {
     "value": 0,

@@ -148,6 +148,13 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "HNSW"
+    ],
+    "source_url": "https://aerospike.com/docs/vector/architecture/hnsw",
+    "comment": ""
+  },
   "int8_quantization": {
     "support": "none",
     "source_url": "",
@@ -171,10 +178,10 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 0,
+    "value": 478,
     "source_url": "https://pypi.org/project/aerospike-vector/",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 475
   },
   "npm_downloads": {
     "value": 0,
