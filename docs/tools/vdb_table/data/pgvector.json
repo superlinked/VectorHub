@@ -52,9 +52,9 @@
     "comment": ""
   },
   "sparse_vectors": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "https://github.com/pgvector/pgvector#sparse-vectors"
   },
   "bm25": {
     "support": "full",
