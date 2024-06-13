@@ -1,17 +1,12 @@
 # RAG Evaluation with Arize Phoenix
 
-This is the third and final installation in a series on RAG Evaluation - picking up where we left off after [Principles of RAG Evaluation](https://superlinked.com/vectorhub/articles/evaluating-retrieval-augmented-generation-framework) (article one) and [RAG Evaluation with RAGAS](https://superlinked.com/vectorhub/articles/retrieval-augmented-generation-eval-qdrant-ragas) (article two).
+This is the third and final installation in a series on RAG Evaluation - picking up where we left off after [Principles of RAG Evaluation](https://superlinked.com/vectorhub/articles/evaluating-retrieval-augmented-generation-framework) (article one) and [RAG Evaluation with RAGAS](https://superlinked.com/vectorhub/articles/retrieval-augmented-generation-eval-qdrant-ragas) (article two) In this article we'll take you through RAG Evaluation using another popular framework tool called [Arize Phoenix](https://phoenix.arize.com/).
 
-In this article we'll take you through RAG Evaluation using another popular framework tool called [Arize Phoenix](https://phoenix.arize.com/).
-
-In this article, we'll cover:
+Below, we'll cover:
 - key concepts and metrics in Phoenix
-- evaluating a Naive [RAG](https://superlinked.com/vectorhub/articles/retrieval-augmented-generation) using Phoenix
-- key observations
-- building a [Hybrid RAG]([https://superlinked.com/vectorhub/articles/optimizing-rag-with-hybrid-search-reranking](https://superlinked.com/vectorhub/articles/optimizing-rag-with-hybrid-search-reranking))
-- evaluating a Hybrid RAG using Phoenix
-- key outcomes
-- concluding thoughts
+- evaluating a Naive [RAG](https://superlinked.com/vectorhub/articles/retrieval-augmented-generation) system using Phoenix
+- building a [Hybrid RAG](https://superlinked.com/vectorhub/articles/optimizing-rag-with-hybrid-search-reranking) system
+- evaluating a Hybrid RAG system using Phoenix
 
 > The code here is from our [github repo](https://github.com/qdrant/qdrant-rag-eval/tree/master/workshop-rag-eval-qdrant-arize).
 > There's also a walkthrough workshop [video](https://www.youtube.com/watch?v=m_J0nFmnrPI) available for reference.
@@ -26,9 +21,9 @@ Lets begin!
 
 ### Observing and optimizing using Phoenix
 
-Becuase LLM applications are complex, if you want to optimize them for speed, cost, or accuracy, you need to understand their internal state. Each step of the response generation process needs to be monitored, evaluated, and tuned. Phoenix lets us evaluate whether a retrieved chunk contains an answer to a query. This process involves tracing, prompt iteration, search and retrieval, and [evaluating specific tasks](https://arize.com/blog-course/llm-evaluation-the-definitive-guide/). Examining telemetry data such as LLM Traces is key.
+LLM applications are complex. To optimize them for speed, cost, or accuracy, you need to understand their internal state. Each step of the response generation process needs to be monitored, evaluated, and tuned. Phoenix lets us evaluate whether a retrieved chunk contains an answer to a query. This process involves tracing, prompt iteration, search and retrieval, and [evaluating specific tasks](https://arize.com/blog-course/llm-evaluation-the-definitive-guide/). Examining telemetry data such as LLM Traces is key.
 
-**Traces** are made up of a sequence of `spans`. Each span represents a unit of work or operation. Using traces, you can track specific operations that a request makes, painting a picture of what happened during the execution of each operation. Phoenix's [LLM tracing](https://docs.arize.com/phoenix/tracing/llm-traces-1) application, by capturing the building blocks of your application while it's running, can provide a complete topology of the inner workings of your applicationk, and ultimately improving your LLM through fine-tuning.
+**Traces** are made up of a sequence of `spans`, each of which represents a unit of work or operation. Using traces, you can track and peer into each of the specific operations involved in a request. Phoenix's [LLM tracing](https://docs.arize.com/phoenix/tracing/llm-traces-1) application, by monitoring the building blocks of your system while it's running, can provide a complete topology of its inner workings, enabling you to improve your LLM through fine-tuning.
 
 LLM Tracing supports the following span types:
 
@@ -36,7 +31,7 @@ LLM Tracing supports the following span types:
 
 Let's see what this looks like **in practice**.
 
-## Evaluating a Naive RAG using Phoenix
+## Evaluating Naive RAG using Phoenix
 
 We'll be using Phoenix to evaluate a Naive RAG application similar to the one we built in our [previous article](https://superlinked.com/vectorhub/articles/retrieval-augmented-generation-eval-qdrant-ragas).
 
@@ -93,9 +88,9 @@ dense_retriever = VectorIndexRetriever(
 )
 ```
 
-We'll use the above `dense_retriever` in Phoenix to evaluate our Naive RAG pipeline.
+We'll use the `dense_retriever` in Phoenix to evaluate our Naive RAG pipeline.
 
-For documentation, we'll employ the pre-compiled **[hugging-face dataset](https://huggingface.co/datasets/atitaarora/qdrant_doc)** (from our [previous article](https://superlinked.com/vectorhub/articles/retrieval-augmented-generation-eval-qdrant-ragas)), consisting of `text` and `source`.
+For documentation, we'll employ the pre-compiled **[hugging-face dataset](https://huggingface.co/datasets/atitaarora/qdrant_doc)** (from our [previous article](https://superlinked.com/vectorhub/articles/retrieval-augmented-generation-eval-qdrant-ragas)), which consists of `text` and `source`.
 
 Let’s load our evaluation dataset:
 
@@ -119,7 +114,7 @@ qdrant_qa_question['question'][:10]
  'What is the impact of ‘write_consistency_factor’ ?']
 ```
 
-Next, we define our `response_synthesizer` and associate it with `query_engine` to facilitate collection of traces for our evaluations.
+Next, we define our `response_synthesizer` and associate it with the `query_engine` to facilitate collection of traces for our evaluations.
 
 ```python
 from llama_index.core import get_response_synthesizer
@@ -141,18 +136,17 @@ for query in tqdm(qdrant_qa_question['question'][:10]):
       pass
 ```
 
-Now, we open the Phoenix UI locally using this [link](http://localhost:6006/), and click through the queries to see how the query engine is performing. Your traces should appear in real time.
+Now, we open the Phoenix UI locally using [this link](http://localhost:6006/), and click through the queries to see how the query engine is performing. Your traces should appear in real time.
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_arize/naive_rag_run1.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_arize/naive_rag_run1.png)
 
-For each trace, notice a span breakdown. Also, if you click on the spans tab, you can see a list of all the spans:
+For each trace, we can see a span breakdown. You can also click on the spans tab for a complete list:
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_arize/naive_rag_run1_spans.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_arize/naive_rag_run1_spans.png)
 
 ### What Phoenix can reveal
 
 You can use Phoenix to understand and troubleshoot your application by tracing:
-
 - Application latency
 - Token usage
 - Runtime exceptions
@@ -163,11 +157,11 @@ You can use Phoenix to understand and troubleshoot your application by tracing:
 - LLM function calls
 
 When you run Phoenix, you can **export your trace data as a pandas dataframe for further analysis and evaluation**. In this case, we'll export our retriever spans into **two separate dataframes**:
-- **queries_df**, in which the retrieved documents for each query are concatenated into a single column
-- **retrieved_documents_df**, in which each retrieved document is "exploded" into its own row to enable the evaluation of each query-document pair in isolation
+- **queries_df**, where the retrieved documents for each query are concatenated into a single column
+- **retrieved_documents_df**, where each retrieved document is "exploded" into its own row, letting you evaluate each query-document pair in isolation
 
 This will enable us to compute multiple kinds of **evaluations**, including:
-- relevance: Are the retrieved documents grounded in the response?
+- relevance: Are the retrieved documents pertinent to the query?
 - Q&A correctness: Are your application's responses grounded in the retrieved context?
 - hallucinations: Is your application making up false information?
 
@@ -178,13 +172,13 @@ queries_df = get_qa_with_reference(px.Client())
 retrieved_documents_df = get_retrieved_documents(px.Client())
 ```
 
-Next, we define our evaluation model and evaluators
+Next, we define our evaluation model and evaluators.
 
 ### Define evaluation model and evaluators
 
-Evaluators, built on top of LLMs, prompt the LLM to assess the quality of its responses, the relevance of retrieved documents, etc., without needing human-labeled data.
+Evaluators, built on top of LLMs, prompt the LLM to assess the quality of its responses, the relevance of retrieved documents, etc., *without requiring human-labeled data*.
 
-You can choose your preferred evaluator type and instantiate it with the LLM you want to use to perform evaluations. In our example case, we use three evaluators, to assess hallucinations, QA correctness, and relevance, as follows:
+You can choose your preferred evaluator type, and then instantiate it with the LLM you want to employ for evaluation. In our example case, we choose three evaluators to assess hallucinations, QA correctness, and relevance:
 
 ```python
 eval_model = OpenAIModel(
@@ -220,21 +214,19 @@ Here's the aggregated view of our evaluations:
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_arize/naive_rag_run_evals.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_arize/naive_rag_run_evals.png)
 
-Above, we can see `Total Traces` (which is essentially the total number of eval queries run), `Total Tokens` processed, `Latency P50`, `Latency P99`, `Hallucination`, and `QA Correctness`, along with Overall `Relevance` metrics like *nDCG*, *Precision*, and *Recall*.
+Above, we can see `Total Traces` (essentially, the total number of eval queries run), `Total Tokens` processed, `Latency P50`, `Latency P99`, `Hallucination`, and `QA Correctness`, along with Overall `Relevance` metrics like *nDCG*, *Precision*, and *Recall*.
 
-In our Naive RAG evaluation, we get `Hallucination` = 18% and `QA Correctness` = 91%. Decent, but our aim is **0%** Hallucination and **100%** QA Correctness. So let's see if we can discover which query/ies lead to our less than ideal outcomes, and address the issue/s.
+In our Naive RAG evaluation, `Hallucination` = 18% and `QA Correctness` = 91%. Decent, but our aim is **0% Hallucination** and **100% QA Correctness**. So, let's see if we can figure out which query/ies lead to our less than ideal outcomes, and address the issue/s.
 
-For each eval question, `evaluations` captures the `Hallucination` and `QA Correctness` metrics for each query, making it easy to instantly spot problematic queries.
-
-We can zoom into each trace and inspect the spans therein to provide us with further details on each query and the output from the configured retriever.
+For each eval question, `evaluations` captures the `Hallucination` and `QA Correctness` metrics, making it easy to spot problematic queries immediately. We can zoom into each trace, and inspect its spans to get further details on each query and the output from the configured retriever.
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_arize/naive_rag_run_trace_details.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_arize/naive_rag_run_trace_details.png)
 
-If we inspect the `Evaluations` tab, we’ll notice that the response was "hallucinated" even though it is "correct" according to QA Correctness metrics.
+If we take a look at the `Evaluations` tab, we can see that the response was "hallucinated" even though it is "correct" according to the QA Correctness metrics.
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_arize/naive_rag_run_trace_detail_eval.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_arize/naive_rag_run_trace_detail_eval.png)
 
-This can happen for various reasons, including domain- or use case-specific terminology requiring exact matches. To handle this, we can enrich our retriever to be powered by **dense** as well as **sparse vectors**, that is, to **retrieve content based on semantic similarity as well as exact matches**.
+This can happen for various reasons, including domain- or use case-specific terminology requiring exact matches. To handle this, we can enrich our retriever so that it's powered by *not just sparse but also dense vectors*. That is, in addition to exact matches, we can **retrieve content based on semantic similarity**. We can build a hybrid RAG system.
 
 ## Building a Hybrid RAG
 
@@ -312,9 +304,9 @@ with suppress_tracing():
     )
 ```
 
-At this point in building our system, we tell Phoenix to `suppress_tracing` to avoid unnecessary latency and superfluous log data.
+At this point, we tell Phoenix to `suppress_tracing` to avoid unnecessary latency and superfluous log data.
 
-As with our Naive RAG system, we'll build a retriever for this Hybrid index, a `hybrid_retriever`. But before experimenting with hybrid search, for comparison we can first try interacting with our Sparse index through a `sparse_retriever`, which should retrieve  ocuments based on `exact match`.
+As with our Naive RAG system, we'll build a retriever for this Hybrid index - i.e., a `hybrid_retriever`. But before experimenting with hybrid search, for comparison we can first try interacting with our Sparse index through a `sparse_retriever`, which should retrieve documents based on `exact match`.
 
 ```python
 ## Before trying Hybrid search , let's try Sparse Vector Search Retriever
@@ -349,9 +341,9 @@ hybrid_retriever = VectorIndexRetriever(
 )
 ```
 
-In the snippet above, the `alpha` parameter is our magic button for sliding between sparse and dense vector search. We set our retriever to `alpha=0.1` which means 90% of the relevance score of our query outcomes result from sparse vector search, and 10% from dense vector search. 
+In the snippet above, the `alpha` parameter is our magic button for sliding between sparse and dense vector search. We set our retriever to `alpha=0.1`, which means 90% of the relevance score of our query outcomes result from sparse vector search, and 10% from dense vector search.
 
-`alpha` is, of course, adjustible to your use case's requirements. It shouldn't be changed arbitrarily, but can be changed as follows:
+`alpha` is, of course, adjustible to your use case's requirements. Though it shouldn't be changed arbitrarily, if you were to change it, you would do it like this:
 
 ```python
 hybrid_retriever._alpha = 0.1
@@ -374,7 +366,7 @@ hybrid_query_engine = RetrieverQueryEngine(
                         response_synthesizer=response_synthesizer,)
 ```
 
-We use this `hybrid_query_engine` to perform an evaluation using the same set of eval questions as we used above to evaluate our Naive RAG system.
+We use this `hybrid_query_engine` to perform an evaluation using the same set of eval questions we used above to evaluate our Naive RAG system.
 
 ## Evaluating a Hybrid RAG system using Phoenix
 
@@ -460,7 +452,7 @@ Now, let's take a closer look at our hybrid-rag workspace.
 
 `Hallucination` is 0.00, and `QA Correctness` is 1.00.
 
-Also, importantly, the question `What is the purpose of ef_construct in HNSW ?` which in our Naive RAG hallucinated, now shows as "factual":
+Also, importantly, the question `What is the purpose of ef_construct in HNSW ?` which hallucinated in our Naive RAG system, now shows as "factual":
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_arize/hybrid_rag_trace_detail.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_arize/hybrid_rag_trace_detail.png)
 
@@ -471,9 +463,9 @@ We get the same improved result in the `Evaluation` tab:
 
 ## Concluding thoughts
 
-In the [previous article](https://superlinked.com/vectorhub/articles/retrieval-augmented-generation-eval-qdrant-ragas), we experimented with improving our RAG Evaluation score by trying different *Retrieval Window sizes*. In this article, on the other hand, we try a *Multi- / Hybrid vector* approach to improve our RAG pipeline.
+In the [previous article](https://superlinked.com/vectorhub/articles/retrieval-augmented-generation-eval-qdrant-ragas), we experimented with improving our RAG Evaluation score by trying different *Retrieval Window sizes*. In this article, on the other hand, we tried a *Multi- / Hybrid vector* approach to improve our RAG pipeline results.
 
-When you do your own experiments with Phoenix, pay careful attention to the requirements of your use case. In our example (above), we chose an LLM and sparse and dense embedding models (based on domain understanding and response capabilities), and an `alpha` parameter that achieved the right balance between sparse and dense vector search.
+When you do your own experiments with Phoenix, pay careful attention to the requirements of your use case. In the example above, we chose an LLM and sparse and dense embedding models based on domain understanding and response capabilities, and an `alpha` parameter that achieved the right balance between sparse and dense vector search.
 
 We should mention that there are other ways - outside the scope of this article - of improving your RAG pipeline. You can also experiment with, for example:
 - *different chunk sizes and overlaps* - based on the nature of queries and response expectations
