@@ -51,7 +51,7 @@ import llama_index
 from llama_index.core import Settings
 from llama_index.vector_stores.qdrant import QdrantVectorStore
 from phoenix.trace import suppress_tracing
-## Uncomment the following if you'd like to use OpenAI Embeddings instead of FastEmbed
+## Uncomment the following line if you'd like to use OpenAI Embeddings instead of FastEmbed
 #from llama_index.embeddings.openai import OpenAIEmbedding
 
 ## For the complete list of supported models, please check https://qdrant.github.io/fastembed/examples/Supported_Models/
@@ -63,7 +63,7 @@ storage_context = StorageContext.from_defaults(vector_store=vector_store)
 
 Settings.embed_model = FastEmbedEmbedding(model_name="BAAI/bge-small-en-v1.5")
 
-## Uncomment the following if you'd like to use OpenAI Embeddings instead of FastEmbed
+## Uncomment the following line if you'd like to use OpenAI Embeddings instead of FastEmbed
 # Settings.embed_model = OpenAIEmbedding(model="text-embedding-ada-002")
 
 Settings.llm = OpenAI(model="gpt-4-1106-preview", temperature=0.0)
@@ -224,7 +224,7 @@ Above, we can see `Total Traces` (which is essentially the total number of eval 
 
 In our Naive RAG evaluation, we get `Hallucination` = 18% and `QA Correctness` = 91%. Decent, but our aim is **0%** Hallucination and **100%** QA Correctness. So let's see if we can discover which query/ies lead to our less than ideal outcomes, and address the issue/s.
 
-Notice the `evaluations` for each eval questions, that captures the stated metrics for each query, making it easy to instantly spot problematic queries.
+For each eval question, `evaluations` captures the `Hallucination` and `QA Correctness` metrics for each query, making it easy to instantly spot problematic queries.
 
 We can zoom into each trace and inspect the spans therein to provide us with further details on each query and the output from the configured retriever.
 
