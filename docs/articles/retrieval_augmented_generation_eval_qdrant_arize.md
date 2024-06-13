@@ -224,7 +224,7 @@ Above, we can see `Total Traces` (which is essentially the total number of eval 
 
 In our Naive RAG evaluation, we get `Hallucination` = 18% and `QA Correctness` = 91%. Decent, but our aim is **0%** Hallucination and **100%** QA Correctness. So let's see if we can discover which query/ies lead to our less than ideal outcomes, and address the issue/s.
 
-Notice the `evaluations` for each eval questions which captures these for each query too which makes spotting the problematic queries instantly.
+Notice the `evaluations` for each eval questions, that captures the stated metrics for each query, making it easy to instantly spot problematic queries.
 
 We can zoom into each trace and inspect the spans therein to provide us with further details on each query and the output from the configured retriever.
 
