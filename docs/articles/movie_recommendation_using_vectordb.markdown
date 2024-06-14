@@ -1,6 +1,6 @@
-# Movie Recommendation using VectorDB
+# Movie Recommendation using vector database
 
-This article provides a comprehensive guide on creating a scalable and production-grade movie recommendation system by leveraging the power of Genre Spectrum Embeddings and VectorDB. Inspired by the implementation outlined in this [paper](https://arxiv.org/pdf/2309.08787), We'll explore how combining these two techniques can significantly enhance the recommendation experience, addressing key challenges faced by traditional systems.
+This article provides a comprehensive guide on creating a movie recommendation system by leveraging the power of vector embeddings and multi-lable genre classification. Inspired by the implementation outlined in this [paper](https://arxiv.org/pdf/2309.08787), We'll explore how combining these two techniques can significantly enhance the recommendation experience, addressing key challenges faced by traditional systems.
 
 Here's what we cover below:
 
@@ -17,11 +17,11 @@ Let's get started!
 
 ## Introduction to Genre Spectrum Embeddings
 
-Scrolling through streaming platforms can be frustrating when the movie suggestions don't match our interests. Building recommendation systems is a complex task as there isn't one metric that can measure the quality of recommendations. To improve this, we propose combining Genre Spectrum Embeddings and VectorDB for better recommendations.
+Scrolling through streaming platforms can be frustrating when the movie suggestions don't match our interests. Building recommendation systems is a complex task as there isn't one metric that can measure the quality of recommendations. To improve this, we propose combining Genre Spectrum Embeddings and vector database for better recommendations.
 
 The Genre Spectrum approach involves combining the various movie genres or characteristics of a movie to form Initial embeddings, which offer a comprehensive portrayal of the movie content. Then these embeddings are used as a input to train a Deep Learning model producing Genre Spectrum embeddings at the penultimate layer. 
 
-These embeddings serve dual purposes: they can either be directly inputted into a classification model for genre classification or stored in a VectorDB. By storing embeddings in a VectorDB, efficient retrieval and query search for recommendations become possible at a later stage. This architecture offers a holistic understanding of the underlying processes involved.
+These embeddings serve dual purposes: they can either be directly inputted into a classification model for genre classification or stored in a vector database. By storing embeddings in a vector database, efficient retrieval and query search for recommendations become possible at a later stage. This architecture offers a holistic understanding of the underlying processes involved.
 
 ![image](https://github.com/vipul-maheshwari/vipul-maheshwari.github.io/blob/main/images/movie-recommendation-using-rag/movie_recommendation_architecture.png?raw=true)
 
@@ -310,7 +310,7 @@ So far, we've developed a comprehensive architecture for classifying genres base
 
 When it comes to genre_embeddings, we can extract them from the final linear layer, which serves as the penultimate layer of the neural network. This layer encapsulates the entire context for each movie. In other words, we can extract the weights from the last linear layer and create vectors from those weights. These vectors will somehow encapsulate the information that the neural network captured from our input, which was the Doc2Vec embeddings of our movies metadata. 
  
-Following this, we can store these embeddings elsewhere, such as in a VectorDB, for future utilization. This setup allows us to conduct query searches and deliver better recommendations by leveraging the stored genre_embeddings.
+Following this, we can store these embeddings elsewhere, such as in a vector database, for future utilization. This setup allows us to conduct query searches and deliver better recommendations by leveraging the stored genre_embeddings.
 
 ## A movie recommendation system
 
@@ -388,7 +388,7 @@ Each row in the table corresponds to a single movie, with columns storing data s
 
 ## Using Genre Spectrum Embeddings to get the relevant recommendations.
 
-And now, after all the groundwork, we've arrived at the final piece of the puzzle. Let's generate some relevant recommendations using `genre_embeddings` and LanceDB VectorDB.
+And now, after all the groundwork, we've arrived at the final piece of the puzzle. Let's generate some relevant recommendations using `genre_embeddings` and LanceDB vector database.
 
 ```python
 movie_data_pd = pd.DataFrame(movie_data)
