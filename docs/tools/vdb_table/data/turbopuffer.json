@@ -32,9 +32,9 @@
     "comment": ""
   },
   "hybrid_search": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
+    "support": "partial",
+    "source_url": "https://turbopuffer.com/docs/hybrid-search",
+    "comment": "Fusion not supported in-DB at the moment"
   },
   "facets": {
     "support": "none",
@@ -57,13 +57,13 @@
     "comment": ""
   },
   "bm25": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://turbopuffer.com/docs/upsert#schema",
     "comment": ""
   },
   "full_text": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://turbopuffer.com/docs/upsert#schema",
     "comment": ""
   },
   "embeddings_text": {
@@ -168,16 +168,16 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 368493,
+    "value": 461053,
     "source_url": "https://pypi.org/project/turbopuffer/",
     "comment": "",
-    "value_90_days": 364115
+    "value_90_days": 498588
   },
   "npm_downloads": {
-    "value": 76418,
+    "value": 130271,
     "source_url": "https://www.npmjs.com/package/@turbopuffer/turbopuffer",
     "comment": "",
-    "value_90_days": 76418
+    "value_90_days": 130271
   },
   "crates_io_downloads": {
     "value": 0,
