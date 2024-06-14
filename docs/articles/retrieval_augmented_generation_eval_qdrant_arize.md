@@ -226,7 +226,7 @@ If we take a look at the `Evaluations` tab, we can see that the response was "ha
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_arize/naive_rag_run_trace_detail_eval.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_arize/naive_rag_run_trace_detail_eval.png)
 
-This can happen for various reasons, including domain- or use case-specific terminology requiring exact matches. To handle this, we can enrich our retriever so that it's powered by *not just sparse but also dense vectors*. That is, in addition to exact matches, we can **retrieve content based on semantic similarity**. We can build a hybrid RAG system.
+This can happen for various reasons, including domain- or use case-specific terminology requiring exact matches. To handle this, we can *enrich our retriever* so that it's powered by *not just dense but also sparse vectors*. That is, we can retrieve not just content based on semantic similarity, but also exact matches. In other words, we can build a hybrid RAG system.
 
 ## Building a Hybrid RAG
 
