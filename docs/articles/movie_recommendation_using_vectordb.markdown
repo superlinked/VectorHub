@@ -17,7 +17,7 @@ Scrolling through streaming platforms can be frustrating when the movie suggesti
 
 This architecture offers a holistic understanding of the underlying processes involved.
 
-![image](https://github.com/vipul-maheshwari/vipul-maheshwari.github.io/blob/main/images/movie-recommendation-using-rag/architecture_recommendation.png?raw=true)
+![image]()
 
 ## Data Ingestion and preprocessing techniques for movie metadata
 
@@ -340,4 +340,4 @@ def get_recommendations(title):
 get_recommendations("Toy Story")
 ```
 
-![results](https://github.com/vipul-maheshwari/vipul-maheshwari.github.io/blob/main/images/movie-recommendation-using-rag/toy_story_recommendation.png?raw=true)
+![results]()
