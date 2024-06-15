@@ -81,12 +81,12 @@ def preprocess_data(movie_data_chunk):
 
     return data, movie_info
 
-# Preprocess data and extract genres for the first 1000 movies
-chunk_size = 1000
+# Preprocess data and extract genres for the first 1000 moviesbat
+batch_size = 1000
 movie_info = []
 complete_data = []
-for chunk_start in tqdm(range(0, len(modified_movie_data), chunk_size), desc="Processing chunks..."):
-    movie_data_chunk = modified_movie_data.iloc[chunk_start:chunk_start+chunk_size]  # Ensure using modified_movie_data
+for chunk_start in tqdm(range(0, len(modified_movie_data), batch_size), desc="Processing chunks..."):
+    movie_data_chunk = modified_movie_data.iloc[chunk_start:chunk_start+batch_size]
     chunk_movie_data, chunk_movie_info = preprocess_data(movie_data_chunk)
     movie_info.extend(chunk_movie_info)
     complete_data.extend(chunk_movie_data)
