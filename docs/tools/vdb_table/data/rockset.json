@@ -168,16 +168,16 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 2483758,
+    "value": 2548519,
     "source_url": "https://pypi.org/project/rockset/",
     "comment": "",
-    "value_90_days": 525243
+    "value_90_days": 523968
   },
   "npm_downloads": {
-    "value": 9182,
+    "value": 8888,
     "source_url": "https://www.npmjs.com/package/rockset",
     "comment": "",
-    "value_90_days": 1181
+    "value_90_days": 1144
   },
   "crates_io_downloads": {
     "value": 0,

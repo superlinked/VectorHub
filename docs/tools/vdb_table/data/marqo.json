@@ -156,7 +156,7 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 4253,
+    "value": 4261,
     "source_url": "https://github.com/marqo-ai/marqo",
     "comment": "",
     "value_90_days": 0
@@ -168,16 +168,16 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 162112,
+    "value": 164712,
     "source_url": "https://pypi.org/project/marqo/",
     "comment": "",
-    "value_90_days": 34114
+    "value_90_days": 34130
   },
   "npm_downloads": {
-    "value": 161,
+    "value": 163,
     "source_url": "https://www.npmjs.com/package/marqo",
     "comment": "",
-    "value_90_days": 22
+    "value_90_days": 24
   },
   "crates_io_downloads": {
     "value": 0,
