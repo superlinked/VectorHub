@@ -135,33 +135,33 @@
     "comment": "Automatic algorithm selection between: IdMap2,Flat, IVF,Flat, IVF,SQ8"
   },
   "github_stars": {
-    "value": 1615,
+    "value": 1614,
     "source_url": "https://github.com/couchbase/couchbase-lite-ios",
     "comment": "",
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 86277369,
+    "value": 86534868,
     "source_url": "https://hub.docker.com/_/couchbase",
     "comment": "50M+",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 11474147,
+    "value": 11826793,
     "source_url": "https://pypi.org/project/couchbase/",
     "comment": "",
-    "value_90_days": 1468257
+    "value_90_days": 1328584
   },
   "npm_downloads": {
-    "value": 1038059,
+    "value": 1048502,
     "source_url": "https://www.npmjs.com/package/couchbase",
     "comment": "",
-    "value_90_days": 201021
+    "value_90_days": 189639
   },
   "crates_io_downloads": {
-    "value": 35473,
+    "value": 35971,
     "source_url": "https://crates.io/crates/couchbase",
     "comment": "",
-    "value_90_days": 1352
+    "value_90_days": 1163
   }
 }

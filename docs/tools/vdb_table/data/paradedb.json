@@ -1,39 +1,39 @@
 {
-  "name": "Vald",
+  "name": "ParadeDB",
   "links": {
-    "docs": "https://vald.vdaas.org/docs/",
-    "github": "https://github.com/vdaas/vald",
-    "website": "http://github.com/vdaas/vald",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/80",
-    "poc_github": "https://github.com/kpango",
-    "slug": "vald"
+    "docs": "https://docs.paradedb.com",
+    "github": "https://github.com/paradedb/paradedb",
+    "website": "https://paradedb.com",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/401",
+    "poc_github": "https://github.com/philippemnoel",
+    "slug": "paradedb"
   },
   "oss": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://github.com/paradedb/paradedb",
     "comment": ""
   },
   "license": {
-    "value": "Apache-2.0",
-    "source_url": "",
+    "value": "AGPL-3.0 Licence",
+    "source_url": "https://github.com/paradedb/paradedb/blob/dev/LICENSE",
     "comment": ""
   },
   "dev_languages": {
     "value": [
-      "go"
+      "rust"
     ],
-    "source_url": "",
+    "source_url": "https://github.com/paradedb/paradedb",
     "comment": ""
   },
-  "vector_launch_year": 2021,
+  "vector_launch_year": 2023,
   "metadata_filter": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "hybrid_search": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.paradedb.com/search/hybrid/basic",
     "comment": ""
   },
   "facets": {
@@ -42,32 +42,32 @@
     "comment": ""
   },
   "geo_search": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://github.com/orgs/paradedb/discussions/1110",
+    "comment": "Available via the PostGIS extension"
   },
   "multi_vec": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "sparse_vectors": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.paradedb.com/search/sparse/overview",
     "comment": ""
   },
   "bm25": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.paradedb.com/search/full-text/overview",
     "comment": ""
   },
   "full_text": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.paradedb.com/search/full-text/overview",
     "comment": ""
   },
   "embeddings_text": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
@@ -92,17 +92,17 @@
     "comment": ""
   },
   "langchain": {
-    "support": "full",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "llamaindex": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "managed_cloud": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
@@ -112,17 +112,17 @@
     "comment": ""
   },
   "in_process": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "multi_tenancy": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "disk_index": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
@@ -132,9 +132,9 @@
     "comment": ""
   },
   "sharding": {
-    "support": "",
+    "support": "none",
     "source_url": "",
-    "comment": ""
+    "comment": "While ParadeDB does not provide this natively (yet), you can get this either from PostgreSQL functionality like \"postgres_fdw\" or from extensions. You can also choose to subdivide your index through partitioning."
   },
   "doc_size": {
     "bytes": 0,
@@ -143,42 +143,43 @@
     "comment": ""
   },
   "vector_dims": {
-    "value": 0,
-    "unlimited": true,
-    "source_url": "",
+    "value": 2000,
+    "unlimited": false,
+    "source_url": "https://docs.paradedb.com/search/dense/index",
     "comment": ""
   },
   "index_types": {
     "value": [
-      "FAISS",
-      "NGT"
+      "FLAT",
+      "IVF",
+      "HNSW"
     ],
-    "source_url": "https://blog.vespa.ai/vespa-hybrid-billion-scale-vector-search/#vector-indexing-and-serving-architecture",
+    "source_url": "https://github.com/pgvector/pgvector#indexing",
     "comment": ""
   },
   "github_stars": {
-    "value": 1475,
-    "source_url": "https://github.com/vdaas/vald",
+    "value": 4569,
+    "source_url": "https://github.com/paradedb/paradedb",
     "comment": "",
     "value_90_days": 0
   },
   "docker_pulls": {
+    "value": 25391,
+    "source_url": "https://hub.docker.com/r/paradedb/paradedb",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "pypi_downloads": {
     "value": 0,
     "source_url": "",
     "comment": "",
     "value_90_days": 0
   },
-  "pypi_downloads": {
-    "value": 226172,
-    "source_url": "https://pypi.org/project/vald-client-python/",
-    "comment": "",
-    "value_90_days": 8744
-  },
   "npm_downloads": {
-    "value": 6890,
-    "source_url": "https://www.npmjs.com/package/vald-client-node",
+    "value": 0,
+    "source_url": "",
     "comment": "",
-    "value_90_days": 267
+    "value_90_days": 0
   },
   "crates_io_downloads": {
     "value": 0,
