@@ -33,7 +33,8 @@ At the start of development, we have the following **product data**:
 We also have the following **data about users and products**:
 - 1. each user chooses one of three products offered when they register (i.e., product preference data)
 - 2. user behavior (*after* registration) provides additional event data - preferences for textual characteristics of products (description, name, category)
-- 3. also, classical economics tells us that, on average, all users ceteris parabis prefer products that:
+
+Also, classical economics tells us that, on average, all users ceteris parabis prefer products that:
   - cost less
   - have a lot of reviews
   - have higher ratings
