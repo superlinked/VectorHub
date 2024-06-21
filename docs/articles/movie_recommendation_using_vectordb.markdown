@@ -17,13 +17,17 @@ Scrolling through streaming platforms can be frustrating when the movie suggesti
 
 This architecture offers a holistic understanding of the underlying processes involved.
 
-![image]()
+![image](../assets/use_cases/movie_recommendation_using_vectordatabase/architecture_recommendation.png)
 
 ## Data Ingestion and preprocessing techniques for movie metadata
 
-Our initial task involves gathering and organizing information about movies. This includes gathering extensive details such as the movie's type, plot summary, genres, audience ratings, and more. Thankfully, we have access to a robust dataset on [Kaggle](https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset) containing information from various sources for approximately 45,000 movies. Please dowload the data from the Kaggle and place it inside your working directory. Watch for a file named `movies_metadata.csv`. 
+Movie recommendation systems can leverage various types of data to create meaningful embeddings, including plot summaries, cast and crew information, user ratings, release dates, and more. However, for the sake of simplicity and to demonstrate the core concept, we will focus on creating embeddings based solely on the movie's title and genre data. By combining these two key pieces of information, we can generate recommendations that suggest movies with similar genres and titles. This approach, while not as comprehensive as using all available data, still provides a solid foundation for understanding how embedding-based recommendation systems work. 
 
-If you require additional data, you can supplement the dataset by extracting information from platforms like Rotten Tomatoes, IMDb, or even box-office records. Our next step involves extracting core details from the dataset and generating a universal summary for each movie. We will begin by combining the movie's title and genre into a single textual string. This text will then be tagged to create `TaggedDocument` instances, which will later be used to train the Doc2Vec model.
+Our initial task involves gathering and organizing information about movies. Thankfully, we have access to a robust dataset on [Kaggle](https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset) containing information from various sources for approximately 45,000 movies. Please dowload the data from the Kaggle and place it inside your working directory. Watch for a file named `movies_metadata.csv`. 
+
+If you require additional data, you can supplement the dataset by extracting information from platforms like Rotten Tomatoes, IMDb, or even box-office records. Our next step involves extracting core details from the dataset and generating a universal summary for each movie.  
+
+We will begin by combining the movie's title and genre into a single textual string. This text will then be tagged to create `TaggedDocument` instances, which will later be used to train the Doc2Vec model.
 
 Before moving forward, let's install the relevant libraries to make our life easier..
 
@@ -340,4 +344,4 @@ def get_recommendations(title):
 get_recommendations("Toy Story")
 ```
 
-![results]()
+![results](../assets/use_cases/movie_recommendation_using_vectordatabase/relevant_recommendation_results.png)
