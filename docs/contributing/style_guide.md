@@ -64,7 +64,7 @@ Don't add extra **spaces** anywhere. One space between sentences and words.
 
 Text only goes so far. Complement your words with **diagrams**, **graphs**, **charts**, **code snippets**, **equations**, **images** and any other visual tools that explain your work more efficiently.
 
-Write mathematical expressions using [Latex](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/writing-mathematical-expressions).
+Write mathematical expressions using [LaTex](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/writing-mathematical-expressions).
 
 ### 5. Be conversational, friendly, and use action verbs
 
