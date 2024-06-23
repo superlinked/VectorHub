@@ -148,6 +148,11 @@
     "source_url": "",
     "comment": ""
   },
+  "int8_quantization": {
+    "support": "full",
+    "source_url": "https://github.com/unum-cloud/usearch?tab=readme-ov-file#memory-efficiency-downcasting-and-quantization",
+    "comment": ""
+  },
   "binary_quantization": {
     "support": "full",
     "source_url": "https://github.com/ashvardanian/usearch-binary",
