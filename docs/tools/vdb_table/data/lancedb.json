@@ -157,7 +157,7 @@
     "comment": "Disk-based IVF_PQ index"
   },
   "github_stars": {
-    "value": 3362,
+    "value": 3411,
     "source_url": "https://github.com/lancedb/lancedb",
     "comment": "",
     "value_90_days": 0
@@ -169,21 +169,21 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 1133474,
+    "value": 1179002,
     "source_url": "https://pypi.org/project/lancedb/",
     "comment": "",
-    "value_90_days": 705896
+    "value_90_days": 706480
   },
   "npm_downloads": {
-    "value": 980799,
+    "value": 1001141,
     "source_url": "https://www.npmjs.com/package/@lancedb/vectordb-linux-x64-gnu",
     "comment": "",
-    "value_90_days": 432750
+    "value_90_days": 411153
   },
   "crates_io_downloads": {
-    "value": 6140,
+    "value": 6677,
     "source_url": "https://crates.io/crates/lancedb",
     "comment": "",
-    "value_90_days": 1594
+    "value_90_days": 1919
   }
 }
