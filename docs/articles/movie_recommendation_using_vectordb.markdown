@@ -1,41 +1,42 @@
 # Movie Recommendation using vector database
 
-This article presents a comprehensive guide on creating a movie recommendation system using vector similarity search and multi-label genre classification. By leveraging a vector database, we can streamline the whole process. I'll demonstrate how integrating these two techniques can significantly improve the recommendation experience. 
+This article presents a comprehensive guide on creating a movie recommendation system using vector similarity search and multi-label genre classification. By leveraging a vector database, we can streamline the whole process. I'll demonstrate how integrating these two techniques can significantly improve the recommendation experience.
 
 Here's what we cover below:
-
 1. Data ingestion and preprocessing techniques for movie metadata
-2. Training a Doc2Vec model for generating the embeddings
-3. Training a Neural network for genre classification task
-4. Using Doc2Vec, LanceDB vector database and the trained classifier to get the relevant recommendations
+2. Training a Doc2Vec model for generating embeddings
+3. Training a neural network for genre classification
+4. Using Doc2Vec, LanceDB vector database, and the trained classifier to surface relevant recommendations
 
 Let's get started!
 
 ## Why use embeddings for recommendation systems?
 
-Scrolling through streaming platforms can be frustrating when the movie suggestions don't match our interests. Building recommendation systems is a complex task, as there isn't one metric that can measure the quality of recommendations. To improve this, we can combine embeddings and vector database for better recommendations. These embeddings serve dual purposes: they can either be directly used as input to a classification model for genre classification or stored in a vector database for retrieval purposes. By storing embeddings in a vector database, efficient retrieval and query search for recommendations become possible at a later stage.
+Scrolling through movie streaming platforms can seem futile. What's the point if nothing they recommend looks interesting? Building quality recommendation systems, it turns out, is not easy. RecSys is complex - it has to optimize for multiple (sometimes conflicting) objectives, and there is no *one* metric that fully captures the quality of recommendations.
 
-This architecture offers a holistic understanding of the underlying processes involved.
+Below, we'll walk you through a solution to unsatifying RecSys. We generate quality recommendations by **creating high-dimensional embeddings** as input to a genre classification model. But **we also use a vector database**, permitting us to efficiently store and query our embeddings, producing high quality recommendations.
+
+The following architecture gives you an overview of the processes underlying our RecSys.
 
 ![image](../assets/use_cases/movie_recommendation_using_vectordatabase/architecture_recommendation.png)
 
-## Data Ingestion and preprocessing techniques for movie metadata
+## Data ingestion and preprocessing techniques for movie metadata
 
-Movie recommendation systems can leverage various types of data to create meaningful embeddings, including plot summaries, cast and crew information, user ratings, release dates, and more. However, for the sake of simplicity and to demonstrate the core concept, we will focus on creating embeddings based solely on the movie's title and genre data. By combining these two key pieces of information, we can generate recommendations that suggest movies with similar genres and titles. This approach, while not as comprehensive as using all available data, still provides a solid foundation for understanding how embedding-based recommendation systems work. 
+Movie recommendation systems can leverage various types of data to create meaningful embeddings, including plot summaries, cast and crew information, user ratings, release dates, and more. But to demonstrate more clearly and simply how an embedding-based RecSys works, we'll focus on creating embeddings based solely on the movie's title and genre data. By combining these two key pieces of information, we can generate recommendations that suggest movies with similar genres and titles.
 
-Our initial task involves gathering and organizing information about movies. Thankfully, we have access to a robust dataset on [Kaggle](https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset) containing information from various sources for approximately 45,000 movies. Please dowload the data from the Kaggle and place it inside your working directory. Watch for a file named `movies_metadata.csv`. 
+First, we gather and organize movie data. For this, we use a robust dataset from [Kaggle](https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset) that has information from various sources for approximately 45,000 movies. Download the data (`movies_metadata.csv`) from Kaggle and put it inside your working directory. (If you need additional data, you can supplement the dataset by extracting movie info from platforms like Rotten Tomatoes, IMDb, or even box-office records.)
 
-If you require additional data, you can supplement the dataset by extracting information from platforms like Rotten Tomatoes, IMDb, or even box-office records. Our next step involves extracting core details from the dataset and generating a universal summary for each movie.  
+Next, we extract core details from the dataset and generate a universal summary for each movie.  
 
-We will begin by combining the movie's title and genre into a single textual string. This text will then be tagged to create `TaggedDocument` instances, which will later be used to train the Doc2Vec model.
+We begin by combining the movie's title and genre into a single textual string. This text will then be tagged to create `TaggedDocument` instances, which we'll use later to train the Doc2Vec model.
 
-Before moving forward, let's install the relevant libraries to make our life easier..
+Before moving forward, let's install the relevant libraries:
 
 ```python
 pip install torch scikit-learn pylance lancedb nltk gensim lancedb scipy==1.12
 ```
 
-Next, we'll proceed with the ingestion and preprocessing of the data. To simplify the process, we'll work with chunks of 1000 movies at a time. For clarity, I'll only include movie indices with non-null values for genres and titles. This approach ensures that we're working with high-quality, relevant data for our analysis.
+Next, we'll ingest and preprocess our data. To simplify the process, we'll work with chunks of 1000 movies at a time, and include only movie indices with non-null values for genres and titles, to ensure that we're analyzing exclusively high-quality, relevant data.
 
 ```python
 import pandas as pd
@@ -103,7 +104,7 @@ tagged_data = [TaggedDocument(words=word_tokenize(doc.lower()),
 
 ## Generating embeddings using Doc2Vec
 
-Next, we'll utilize the Doc2Vec model to generate embeddings for each movie based on the preprocessed text. We'll allow the Doc2Vec model to train for several epochs to capture the essence of the various movies and their metadata in the multidimensional latent space. This process will help us represent each movie in a way that captures its unique characteristics and context.
+While it's possible to use an off-the-shelf model (e.g., sentence_transformers), we've opted for a custom Doc2Vec model so we can make transparent how embeddings work at the document or paragraph level. Our Doc2Vec model will generate embeddings for each movie based on the preprocessed text. We'll allow the Doc2Vec model to train for several epochs to capture the essence of the various movies and their metadata in the multidimensional latent space. This process will help us represent each movie in a way that captures its unique characteristics and context.
 
 ```python
 def train_doc2vec_model(tagged_data, num_epochs=10):
@@ -120,21 +121,19 @@ document_vectors = [doc2vec_model.infer_vector(
     word_tokenize(doc.lower())) for doc in complete_data]
 ```
 
-The `train_doc2vec_model` function trains a Doc2Vec model on the tagged movie data, producing 100-dimensional embeddings for each movie. These embeddings act as input features for the neural network. With our current training setup, we are sure that movies with similar genres will be positioned closer to each other in the latent space, reflecting their thematic and content similarities.
+The `train_doc2vec_model` function trains a Doc2Vec model on the tagged movie data, producing 100-dimensional embeddings for each movie. These embeddings act as input features for the neural network. With our current training setup, we are certain that movies with similar genres will be positioned closer to each other in the latent space, reflecting their thematic and content similarities.
 
-## Extracting the unique genre labels
+## Extracting unique genre labels
 
-Now, our focus shifts to compiling the names of relevant movies along with their genres. For doing that, we'll employ a tool called `MultiLabelBinarizer` to transform these genres into a more comprehensible format.
+To compile the names of relevant movies along with their genres, we use a tool called `MultiLabelBinarizer` that transforms genres into a more comprehensible format for easy analysis: 0s and 1s. If a movie belongs to a particular genre (e.g., drama', 'comedy', 'horror'), the `MultiLabelBinarizer` will assign it a 1; if it doesn't, a 0. Movies can of course belong to several genres at once. After this conversion to binary encoding, each row in our dataset will indicate all of the specific genres each movie belongs to. 
 
-To illustrate this, let's consider a movie with three genres: 'drama', 'comedy', and 'horror'. Using the `MultiLabelBinarizer`, we'll represent these genres with lists of 0s and 1s. If a movie belongs to a particular genre, it will be assigned a 1, and if it doesn't, it will receive a 0. Consequently, each row in our dataset will indicate which genres are associated with a specific movie. This approach simplifies the genre representation for easier analysis.
+Take "Top Gun Maverick", for example. The movie is categorized as belonging only to the 'drama' genre, not 'comedy' or 'horror'. The `MultiLabelBinarizer` represents Top Gun Maverick as: Drama: 1, Comedy: 0, Horror: 0. We apply `MultiLabelBinarizer` to all the movies in our dataset.
 
-Let's take the movie "Top Gun Maverick" as a reference. We'll associate its genres using binary encoding. Suppose this movie is categorized only under 'drama', not 'comedy' or 'horror'. When we apply the `MultiLabelBinarizer` the representation would be: Drama: 1, Comedy: 0, Horror: 0. This signifies that "Top Gun Maverick" is classified as a drama but not as a comedy or horror movie. We'll replicate this process for all the movies in our dataset to identify the unique genre labels present in our data.
+## Training a NN for genre_classification
 
-## Training a NN for genre_classification task
+We'll define a neural network consisting of four linear layers with ReLU activations. The final layer uses softmax activation to generate probability scores for various genres. If your objective is classification within the genre spectrum (inputting a movie description to determine its genres), you can establish a threshold value for the multi-label softmax output. This selects the top 'n' genres with the highest probabilities.
 
-We'll define a neural network consisting of four linear layers with ReLU activations. The final layer utilizes softmax activation to generate probability scores for various genres. If your objective is primarily classification within the genre spectrum, where you input a movie description to determine its relevant genres, you can establish a threshold value for the multi-label softmax output. This allows you to select the top 'n' genres with the highest probabilities.
-
-Here's the neural network class, hyperparameter settings, and the corresponding training loop for training our model.
+Here are the neural network class, hyperparameter settings, and corresponding model training loop.
 
 ```python
 import numpy as np
@@ -228,7 +227,7 @@ for epoch in range(epochs):
     print(f'Epoch [{epoch + 1}/{epochs}], Loss: {epoch_loss:.4f}')
 ```
 
-That's it! We've successfully trained a Neural network for our genre classification task. You can check if the model is performing well or not in terms of the genre classification.
+That's it! We've successfully trained a neural network for our genre classification task. You can check if the model is performing well or not in terms of the genre classification.
 
 ```python
 from sklearn.metrics import f1_score
@@ -266,13 +265,14 @@ print(f'F1-score: {f1:.4f}')
 torch.save(model.state_dict(), 'trained_model.pth')
 ```
 
-## A movie recommendation system
+## Implementing our movie RecSys
 
-To create our movie recommendation system, we'll implement a process where users input a movie title, and we generate relevant recommendations based on that input. Key to this approach is utilizing Doc2Vec embeddings, which we'll store in a vector database for efficient retrieval.
+To complete our movie recommendation system, we implement a process where users input a movie title as a query, for which we'll generate relevant recommendations. After the user enters their query, our system first retrieves Doc2Vec embeddings from our vector database, then uses similarity metrics such as cosine similarity or determines smallest Euclidian distances - to identify 'n' number of movies whose embeddings closely resemble those of the user's query movie.
+...provide users with personalized movie recommendations that are closely aligned with their initial movie interests. This approach ensures an intuitive and effective recommendation process tailored to individual preferences based on the genres.
 
-Here's how it works: When a user enters a movie title as a query, we'll first retrieve its embeddings from our vector database. With these embeddings in hand, our next step involves identifying 'n' number of movies whose embeddings closely resemble those of our query movie. We can achieve this by employing similarity metrics such as cosine similarity or by determining the smallest Euclidean distances. By leveraging these techniques, our system will provide users with personalized movie recommendations that are closely aligned with their initial movie interests. This approach ensures an intuitive and effective recommendation process tailored to individual preferences based on the genres.
+### Setting up our vector DB
 
-For simplification, I've opted to use [LanceDB](https://lancedb.com/), an open-source vector database known for its blazing speed, high-level security (since our data remains local), versioning, and built-in search capabilities.
+We're using [LanceDB](https://lancedb.com/) vector database because it's open source, fast, has high-level security (our data is local), versioning, and built-in search capabilities.
 
 ```python
 import lancedb
@@ -291,13 +291,11 @@ tbl = db.create_table("doc2vec_embeddings", data, mode="Overwrite")
 db["doc2vec_embeddings"].head()
 ```
 
-While this code may initially appear complex, it's essentially structured to handle each row in the table as a distinct movie entry. Within each row, you'll find columns dedicated to essential movie details such as title, genres, and embeddings.
+This code (above) handles each row in the table as a distinct movie entry, with columns for the movie's essential details - title, genres, and embeddings.
 
-## Using Doc2Vec Embeddings to get the relevant recommendations.
+### Using Doc2Vec embeddings to surface relevant recommendations
 
-Our recommendation engine combines a neural network-based genre prediction model with a vector similarity search to provide relevant movie recommendations.
-
-For a given query movie, first, we use our trained neural network to predict its genres. Based on these predicted genres, we filter our movie database to include only those movies that share at least one genre with the query movie, achieved by constructing an appropriate SQL filter. We then perform a vector similarity search on this filtered subset to retrieve the most similar movies based on their vector representations. This approach ensures that the recommended movies are not only similar in terms of their vector characteristics but also share genre preferences with the query movie, resulting in more relevant and personalized recommendations.
+For a given query movie, we first get our trained neural network to predict its genres. We then filter our movie database (using an appropriate SQL filter) to include only those movies that belong to at least one of the predicted genres. Next, we perform a vector similarity search on this filtered subset, retrieving the most similar movies based on their vector representations. This approach ensures that our movie recommendations will be not only similar in terms of their vector characteristics but also share genre preferences with the query movie, resulting in more relevant and personalized recommendations.
 
 ```python
 # Function to get genres for a single movie query
@@ -320,7 +318,7 @@ def movie_genre_prediction(movie_title):
     return predicted_genres
 ```
 
-And now, after all the groundwork, we've arrived at the final piece of the puzzle. Let's generate some relevant recommendations using embeddings and LanceDB.
+And now, let's test our RecSys by generating some relevant recommendations, using "Toy Story" as our query.
  
 ```python
 def get_recommendations(title):
@@ -345,3 +343,11 @@ get_recommendations("Toy Story")
 ```
 
 ![results](../assets/use_cases/movie_recommendation_using_vectordatabase/relevant_recommendation_results.png)
+
+Our recommendations...
+
+## Contributors
+
+- [Vipul Maheshwari, author](https://www.linkedin.com/in/vipulmaheshwarii)
+- [Mór Kapronczay, editor](https://www.linkedin.com/in/mór-kapronczay-49447692)
+- [Robert Turner, editor](https://www.linkedin.com/in/robertdhayanturner)
