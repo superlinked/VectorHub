@@ -158,13 +158,13 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 4435,
+    "value": 4625,
     "source_url": "https://github.com/paradedb/paradedb",
     "comment": "",
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 23231,
+    "value": 28079,
     "source_url": "https://hub.docker.com/r/paradedb/paradedb",
     "comment": "",
     "value_90_days": 0
