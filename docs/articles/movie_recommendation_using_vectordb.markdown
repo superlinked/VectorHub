@@ -1,4 +1,4 @@
-# Movie Recommendation using vector database
+# Movie Recommendations using a Vector Database
 
 This article presents a comprehensive guide to creating an effective movie recommendation system using vector similarity search and multi-label genre classification - along with a vector database that allows us to streamline the whole process.
 
