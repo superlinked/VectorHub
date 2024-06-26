@@ -23,11 +23,13 @@ Front load your first paragraph with **keywords**.
 > Organize your content like a building, and show us the blueprint first.
 
 
-**Give vectorhub editors a one-sentence-per-section outline showing us what you want to communicate. This is a huge timesaver, and helps us make sure your article does what you want it to.**
+**Give vectorhub editors a one-sentence-per-section outline, to show us what you want to communicate. This is a huge timesaver, and helps us make sure your article does what you want it to.**
 
 Give an overview of where you're going in your Introduction. In your article itself, add clear **headings** and **subheadings** that give information and an overview to your readers. This will enable readers to navigate to relevant sections and search engines to scan it.
 
 Link (scroll-to-anchor) between concepts in your article (or to other articles on the platform) where it makes sense.
+
+Use [github basic formatting](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax), rather than html.
 
 ### 3. Be clear, substantive, and brief
 
@@ -37,11 +39,11 @@ Link (scroll-to-anchor) between concepts in your article (or to other articles o
 
 **Length**: Articles must be **at least 800 but less than max 2500 words**.
 
-Write clearly and concisely. Aim for [crisp minimalism](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice).
+Be clear and concise. Aim for [crisp minimalism](https://learn.microsoft.com/en-us/style-guide/top-10-tips-style-voice).
 Use simple language wherever possible; write like you speak.
 Be minimal. Less is more. Use **adjectives** only when they add value. Avoid superlatives.
 
-Get the **substance** down **first**. Fine-tuned, stylized prose can come later. First, complete your article in **point form**. Make sure you've included everything that your article needs to make sense and convey value to your readers.
+Get the **substance** down **first**. First, complete your article in **point form**. Make sure you've included everything that your article needs to make sense and convey value to your readers. Don't try to be stylish - this usually obfuscates meaning.
 
 Use common **abbreviations**.
 e.g. "apps" instead of "applications"
@@ -60,7 +62,9 @@ Don't add extra **spaces** anywhere. One space between sentences and words.
 > Save a thousand words. Use a picture.
 
 
-Text only goes so far. Complement your words with **diagrams**, **graphs**, **charts**, **code snippets**, **images** and any other visual tools that explain your work more efficiently.
+Text only goes so far. Complement your words with **diagrams**, **graphs**, **charts**, **code snippets**, **equations**, **images** and any other visual tools that explain your work more efficiently.
+
+Write mathematical expressions using [LaTex](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/writing-mathematical-expressions).
 
 ### 5. Be conversational, friendly, and use action verbs
 
@@ -103,7 +107,7 @@ e.g. [Feed Recommendation Illustration, Arunesh Singh, 2023, superlinked.com.](h
 Source citations go underneath visual elements.
 e.g.
 
-![Figure 1. Conceptual illustration of our approach, from Graph embeddings for movie visualization and recommendation. M. Vlachos, 2012, ResearchGate. https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ](assets/misc/Figure1-Conceptual_illustration_of_our_approach.png)
+![Figure 1. Conceptual illustration of our approach](assets/misc/Figure1-Conceptual_illustration_of_our_approach.png)
 
 [Graph embeddings for movie visualization and recommendation.
 Figure 1. Conceptual illustration. M. Vlachos, 2012, ResearchGate.](https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ)
