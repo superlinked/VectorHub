@@ -171,8 +171,8 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 0,
-    "source_url": "",
+    "value": 4639680,
+    "source_url": "https://hub.docker.com/r/semitechnologies/weaviate",
     "comment": "",
     "value_90_days": 0
   },
