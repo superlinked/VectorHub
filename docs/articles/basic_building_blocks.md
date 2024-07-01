@@ -41,7 +41,7 @@ You use different Spaces for different data types. For example, TextSimilaritySp
 By prioritizing the creation of smarter vectors up front - and only then creating the index - we can achieve better quality retrieval, without costly and time-consuming reranking and general post-processing work.
 
 ```python
-relevance_space = TextSimilaritySpace(text=paragraph.body, model="all-MiniLM-L6-v2")
+relevance_space = TextSimilaritySpace(text=paragraph.body, model="Snowflake/snowflake-arctic-embed-s")
 ```
 
 ## Indexing
@@ -55,11 +55,11 @@ paragraph_index = Index(relevance_space)
 ## Executing your query to your chosen endpoints
 
 Before running your code, you need to structure your query using the following arguments:
-- Query: defines the index you want it to search
+- Query: defines the index you want it to search, and you can add Params here (details in our [nothebook](https://github.com/superlinked/superlinked/blob/main/notebook/feature/dynamic_parameters.ipynb))
 - .find: tells it what to look for
-- .similar: tells it how to identify relevant results
+- .similar: tells it how to identify relevant results (details in [notebook](https://github.com/superlinked/superlinked/blob/main/notebook/feature/basic_building_blocks.ipynb))
 
-Note that you can wait to fill out the specific Params until later.
+Note that you can wait to fill out the specific Params until later. (You can also add a `.with_vector` to search with an embedded vector of a specific element of your data (see details in [notebook](https://github.com/superlinked/superlinked/blob/main/notebook/feature/query_by_object.ipynb))).
 
 ```python
 query = (
@@ -116,6 +116,6 @@ result.to_pandas()
 
 ## In sum
 
-In sum, the Superlinked framework empowers you to create and tailor a modular system that suits your use case/s, repurposable for different deployments, saving you from resource-consuming re-implementation, reranking, and postprocessing.
+In sum, the Superlinked framework empowers you to create and tailor a modular system that suits your use case/s, repurposable for different deployments, saving you from resource- and time-consuming reimplementation, reranking, and postprocessing.
 
 Now for the fun part - try it out yourself! The notebook is [here](https://github.com/superlinked/superlinked/blob/main/notebook/feature/basic_building_blocks.ipynb). Experiment with your own sample data and query inputs, and give us a star!
