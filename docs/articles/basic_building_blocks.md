@@ -2,15 +2,15 @@
 
 ## Intro
 
-We’ve built out the Superlinked framework using @schema, Source, Spaces, Index, Query, and Executor - our building blocks. These building blocks let you build your system as a set of modules customized and repurposable to the requirements of your use case/s.
+We’ve built out the Superlinked framework using @schema, Source, Spaces, Index, Query, and Executor - our building blocks. These building blocks let you build your system as a set of modules, customized and repurposable to the requirements of your use case/s.
 
-You start from your desired use case endpoints - i.e., how you want your embeddings to represent your data - what attributes to represent, how to weight them, and so on. Your endpoints guide how you set up your system through a **specific tailoring of the modules *before* you run your query**. You might run the query with weights adjusted to, for example, a unique user’s interests or, alternatively, to the most recent item.
+You start from your desired use case endpoints - i.e., how you want your embeddings to represent your data - what attributes to represent, how to weight them, and so on. Your endpoints guide how you set up your system. You **custom tailor your modules *before* you run your query**. You might run the query with weights adjusted to, for example, a unique user’s interests or, alternatively, to the most recent item.
 
 In this way, Superlinked’s modularity **separates query description from query execution**, enabling you to run the same query in different environments without re-implementing a new solution each time. To build your Query, you use descriptive elements like @schema, Source, Spaces, Index, or Event. The **same descriptive components** can be re-used - **run using different Executors interchangeably**.
 
 By focusing on connectors (to data sources and databases) rather than starting over from scratch, Superlinked’s framework lets you transition easily across deployments (e.g., from in-memory to batch or real-time data pipelines). For example, you can have one Executor that runs in a notebook, another that provisions a rest API, and a different one that batch calculates with spark.
 
-In sum, Superlinked building blocks enable you to easily implement and deploy to fit your environment, maximizing your control over index creation and permitting rapid experimentation during embedding and retrieval.
+In sum, Superlinked building blocks let you easily implement and deploy to fit your environment, maximizing your control over index creation and permitting rapid experimentation during embedding and retrieval.
 
 Let’s take a look at how these building blocks do this in a little more detail.
 
@@ -27,7 +27,7 @@ class ParagraphSchema:
     id: IdField
 ```
 
-With your Schemas created, you are ready to move on to embedding and querying, which is where Superlinked’s building blocks approach really empower you. The Superlinked framework is based on the intuition that people doing semantic search using embedding vectors can better satisfy the requirements of their use case/s if they can customize how their system handles data and queries. **Spaces** is a declarative class developed with this in mind. The Space module encapsulates the vector creation logic that will be used at ingestion time, and again at query time.
+With your Schemas created, you are ready to move on to embedding and querying, which is where Superlinked’s building blocks approach really empowers you. The Superlinked framework is based on the intuition that people doing semantic search can better satisfy the requirements of their use case/s if they can customize how their system handles data and queries. **Spaces** is a declarative class developed with this in mind. The Space module encapsulates the vector creation logic that will be used at ingestion time, and again at query time.
 
 ## Declaring how to embed your data using Spaces
 
@@ -55,9 +55,9 @@ paragraph_index = Index(relevance_space)
 ## Executing your query to your chosen endpoints
 
 Before running your code, you need to structure your query using the following arguments:
-- Query: defines the index you want it to search, and you can add Params here (details in our [nothebook](https://github.com/superlinked/superlinked/blob/main/notebook/feature/dynamic_parameters.ipynb))
-- .find: tells it what to look for
-- .similar: tells it how to identify relevant results (details in [notebook](https://github.com/superlinked/superlinked/blob/main/notebook/feature/basic_building_blocks.ipynb))
+- `Query`: defines the index you want it to search, and you can add Params here (details in our [nothebook](https://github.com/superlinked/superlinked/blob/main/notebook/feature/dynamic_parameters.ipynb))
+- `.find`: tells it what to look for
+- `.similar`: tells it how to identify relevant results (details in [notebook](https://github.com/superlinked/superlinked/blob/main/notebook/feature/basic_building_blocks.ipynb))
 
 Note that you can wait to fill out the specific Params until later. (You can also add a `.with_vector` to search with an embedded vector of a specific element of your data (see details in [notebook](https://github.com/superlinked/superlinked/blob/main/notebook/feature/query_by_object.ipynb))).
 
@@ -105,7 +105,7 @@ Here's our result.
 
 ![Query result](../assets/use_cases/basic_building_blocks/bb_query-results.png)
 
-Changing the query text further demonstrates the relevancy of our system's output:
+Changing the query text further demonstrates how our system produces results that are relevant to each query.
 
 ```python
 result = app.query(query, query_text="This is a happy dog")
