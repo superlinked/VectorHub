@@ -33,11 +33,11 @@ So how does the representation of data in a Knowledge Graph differ from the repr
 
 Vector embeddings in LLMs are "fuzzy." “One fact or concept flows into the next in a continuous multi-dimensional space.” LLMs are powerful, flexible, but not always reliable, and ultimately incomprehensible. KGs, on the other hand, are precise and discrete. KGs make each data item into a distinct node, and connections between data items into discrete edges. KGs are less flexible than LLMs, but they are **reliable and explicable**.
 
-![Schema.org representation of Queen, and general KG representation](../assetskg_ontologies/schema.org-queen-KG-general.png/)
+![Schema.org representation of Queen, and general KG representation](../assets/use_cases/kg_ontologies/schema.org-queen-KG-general.png/)
 
 KGs are built for the integration of factual data. In addition to text (the domain of LLMs), KGs can easily capture data contained in tables, trees (e.g., json, xml), and images.
 
-![KGs-data-integration](../assetskg_ontologies/KGs-data-integration.png/)
+![KGs-data-integration](../assets/use_cases/kg_ontologies/KGs-data-integration.png/)
 
 ### Ontologies and schema layers
 
