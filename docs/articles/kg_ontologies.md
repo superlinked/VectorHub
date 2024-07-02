@@ -145,7 +145,7 @@ In almost every KG, each node has a short RDFS (Resource Description Framework S
 
 To build your corporate KG, therefore, we start with each department of your organization mapping its data in RDF format.
 
-![RDFs and Corporate KG](../assets/use_cases/kg_ontologies/RDFs-corporateKG.png)
+![RDFs and Corporate KG](../assets/use_cases/kg_ontologies/RDF-corporateKG.png)
 
 Take for example, "trade". Each department in your organization takes on the task of mapping its "trade"-related data and putting it in RDF format. If you give a URI (which is, functionally, a URL on the web) to each and every data item, it becomes globally identifiable. By identifying each data item in RDF format, it can be a data node, and a unique network address.
 
