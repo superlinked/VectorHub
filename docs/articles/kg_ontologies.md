@@ -7,7 +7,7 @@ The survival and well-being of organizations who work with AI depends on harness
 
 For both of these tasks, **Knowledge Graphs (KGs) with schema layers and ontologies can help**.
 
-![NLP Embeddings, illustrated by Arize AI](../assets/use_cases/nlp-embeddings-arize.png)
+![NLP Embeddings, illustrated by Arize AI](../assets/use_cases/kg_ontologies/nlp-embeddings-arize.png)
 *Inset (left) - NLP Embeddings, illustrated by [Arize AI](https://arize.com/blog-course/embeddings-meaning-examples-and-how-to-compute)*
 
 Indeed, if LLMs reflect one system of human thinking and data representation - continuous and fuzzy, “intuitive,” then KGs represent the other - discrete and reliable, ”abstract,” and knowable. KGs’ reliability and knowability allow them to reduce LLM hallucinations and efficiently return relevant, accurate results, and, in addition, harness and safeguard the inherent power of organizational data. All through connecting and consolidating (i.e., integrating) the data an organization already has, according to an ontology (i.e., common set of semantics).
@@ -20,7 +20,7 @@ To understand how KGs can work with LLMs to improve retrieval and harness organi
 
 Imagine a two-dimensional space (see diagram below), with fruitiness on the y-axis, and techiness on the x-axis. ‘Banana’ and ‘grape’ score high on fruitiness and low on techiness. Vice versa for ‘Microsoft’ and ‘Google’. ‘Apple,’ on the other hand, is more complex; it’s both a tech giant and a fruit. We need to add dimensions that capture more meaning and context to properly represent it. In fact, each term in an LLM typically occupies a unique position across thousands of dimensions, with each dimension representing a unique aspect of meaning. (Beyond two or three dimensions, a vector space becomes too complex for humans to comprehend.) Each word or word-part’s position in this “latent space” encodes its meaning.
 
-![Simplified representation of vector embeddings (on 2 dimensions) and (inset) knowledge graph](../assets/use_cases/fruit-techiness.jpeg)
+![Simplified representation of vector embeddings (on 2 dimensions) and (inset) knowledge graph](../assets/use_cases/kg_ontologies/fruit-techiness.jpeg)
 *Simplified representation of vector embeddings (on 2 dimensions) and (inset) knowledge graph*
 
 An LLM is basically a compression of the web. The LLM reads docs on web, and tries to do next word prediction. It looks back using the transformer model to see how one word relates to another, and creates embedding vectors.
@@ -33,11 +33,11 @@ So how does the representation of data in a Knowledge Graph differ from the repr
 
 Vector embeddings in LLMs are "fuzzy." “One fact or concept flows into the next in a continuous multi-dimensional space.” LLMs are powerful, flexible, but not always reliable, and ultimately incomprehensible. KGs, on the other hand, are precise and discrete. KGs make each data item into a distinct node, and connections between data items into discrete edges. KGs are less flexible than LLMs, but they are **reliable and explicable**.
 
-![Schema.org representation of Queen, and general KG representation](../assets/use_cases/schema.org-queen-KG-general.png/)
+![Schema.org representation of Queen, and general KG representation](../assetskg_ontologies/schema.org-queen-KG-general.png/)
 
 KGs are built for the integration of factual data. In addition to text (the domain of LLMs), KGs can easily capture data contained in tables, trees (e.g., json, xml), and images.
 
-![KGs-data-integration](../assets/use_cases/KGs-data-integration.png/)
+![KGs-data-integration](../assetskg_ontologies/KGs-data-integration.png/)
 
 ### Ontologies and schema layers
 
@@ -107,13 +107,13 @@ d, i = index.search(question_embedding, 100)
 
 For **example**, I pass the description text from my KG for the “Jennifer Aniston” node into my LLM, and now can store the fact that my discrete KG node (representing “Jennifer Aniston”) relates to the Jennifer Aniston textual description in embedding vector space (in the LLM). After this, when a user comes and does a query for “Jennifer Aniston”, I can turn the query into an embedding vector, locate the closest embedding vectors in the continuous vector space, and then find the related node within the discrete KG, and return a relevant result.
 
-![Jennifer Aniston KG](../assets/use_cases/j-aniston-KG.png/)
+![Jennifer Aniston KG](../assets/use_cases/kg_ontologies/j-aniston-KG.png/)
 
 Because you have control over and can modify your KG, you can limit your query results to exclude / reduce hallucination, and improve result precision and accuracy.
 
 Great! But in addition to 1) using your KG to insert context into your prompts (above), you can also harness and protect (maintain organizational boundaries around) the goldmine of data your corporation is sitting on by 2) creating a unified organizational KG using schema.org, and connecting it to your LLM.
 
-![organizational Markov blanket](../assets/use_cases/org-markov-blanket.png/)
+![organizational Markov blanket](../assets/use_cases/kg_ontologies/org-markov-blanket.png/)
 
 ### 2) Create a unified organizational KG, and connect it to an LLM
 
@@ -133,11 +133,11 @@ For example, if I want to indicate that Jane Doe and John Smith are colleagues, 
 
 Jane Doe <--- Colleagues ---> John Smith
 
-![jsonLD-schema](../assets/use_cases/jsonLD-schema.png/)
+![jsonLD-schema](../assets/use_cases/kg_ontologies/jsonLD-schema.png/)
 
 Each island of JSON-LD points back to schema.org, with contributions from a broad community. **Schema.org has a common set of schemas for things people mostly search for on the web** - e.g., products, flights, bookings. For example, if I search for a specific recipe on google, I get very specific results based on the google knowledge graph constructed from islands of JSON-LDs.
 
-![schema.org-recipe](../assets/use_cases/schema.org-recipe.png/)
+![schema.org-recipe](../assets/use_cases/kg_ontologies/schema.org-recipe.png/)
 
 To create **your organization's schema layer**, first, register an internal schema domain within your organization - e.g., https://schema.your.org. This site will host your organization's semantics - the core concepts that are most relevant to the specifics of your business. Use industry standards. You can take schema.org’s base types as your starting model. If you're a bank, your semantics will include “trade”, “risk”, and "fraud"; if you’re a railway, “tracks” and “trains”; if you’re a hospital, “patients”, “beds”, "diseases", and “medicines”. Remember, your objective is to make your organization's useful data readable and therefore searchable by query.
 
@@ -145,11 +145,11 @@ In almost every KG, each node has a short RDFS (Resource Description Framework S
 
 To build your corporate KG, therefore, we start with each department of your organization mapping its data in RDF format.
 
-![RDFs and Corporate KG](../assets/use_cases/RDFs-corporateKG.png)
+![RDFs and Corporate KG](../assets/use_cases/kg_ontologies/RDFs-corporateKG.png)
 
 Take for example, "trade". Each department in your organization takes on the task of mapping its "trade"-related data and putting it in RDF format. If you give a URI (which is, functionally, a URL on the web) to each and every data item, it becomes globally identifiable. By identifying each data item in RDF format, it can be a data node, and a unique network address.
 
-![Entity-RDF-URL](../assets/use_cases/entity-RDF-URI.png)
+![Entity-RDF-URL](../assets/use_cases/kg_ontologies/entity-RDF-URI.png)
 
 Embed the definitions salient to your own particular business into your own version of schema.org, sticking as close as possible to the actual, working semantics of the real people in your business. In a large organization, there’ll be between 5000-100000 separate apps and databases, each with 1000s of different tables, each table with 100s of different columns - in sum, a vast complex of data. 
 
@@ -164,15 +164,15 @@ To realize the full potential of your organizational KG, you need to a way of ma
 
 Your organizational KG enables you to go from this:
 
-![chaos - embrace complexity diagram](../assets/use_cases/embrace-complexity-part2.jpeg)
+![chaos - embrace complexity diagram](../assets/use_cases/kg_ontologies/embrace-complexity-part2.jpeg)
 
 ...to this:
 
-![organizational semantic layer](../assets/use_cases/semantic-layer.jpeg)
+![organizational semantic layer](../assets/use_cases/kg_ontologies/semantic-layer.jpeg)
 
 Through the semantic layer, I can use concepts - both general and particular to my business - to access organizational data in a graph format.
 
-![departmental queries](../assets/use_cases/dept-queries.jpeg)
+![departmental queries](../assets/use_cases/kg_ontologies/dept-queries.jpeg)
 
 
 ## Conclusion
