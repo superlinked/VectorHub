@@ -189,86 +189,101 @@ def update_json_files(directory, headers=None):
                         data[source]["value_90_days"] = 0
 
                 if dockerhub_url:
-                    parsed_dockerhub_path = str(urlparse(dockerhub_url).path)
-                    docker_namespace = (
-                        list(parsed_dockerhub_path.strip().split("/"))[-2]
-                        if "/_/" not in parsed_dockerhub_path
-                        else "library"
-                    )
-                    docker_repo_name = list(parsed_dockerhub_path.strip().split("/"))[
-                        -1
-                    ]
-                    pulls = get_docker_pulls(docker_namespace, docker_repo_name)
-                    if pulls is not None:
-                        data["docker_pulls"]["value"] = pulls
-                        docker_zap[slug] = pulls
-                    else:
-                        docker_zap[slug] = None
+                    try:
+                        parsed_dockerhub_path = str(urlparse(dockerhub_url).path)
+                        docker_namespace = (
+                            list(parsed_dockerhub_path.strip().split("/"))[-2]
+                            if "/_/" not in parsed_dockerhub_path
+                            else "library"
+                        )
+                        docker_repo_name = list(parsed_dockerhub_path.strip().split("/"))[
+                            -1
+                        ]
+                        pulls = get_docker_pulls(docker_namespace, docker_repo_name)
+                        if pulls is not None:
+                            data["docker_pulls"]["value"] = pulls
+                            docker_zap[slug] = pulls
+                        else:
+                            docker_zap[slug] = None
+                    except Exception as _:
+                        pass
 
                 if github_url:
-                    stars = get_github_stars(github_url, headers)
-                    if stars is not None:
-                        data["github_stars"]["value"] = stars
-                        github_zap[slug] = stars
-                    else:
-                        github_zap[slug] = None
+                    try:
+                        stars = get_github_stars(github_url, headers)
+                        if stars is not None:
+                            data["github_stars"]["value"] = stars
+                            github_zap[slug] = stars
+                        else:
+                            github_zap[slug] = None
+                    except Exception as _:
+                        pass
 
                 if npm_url:
-                    npm_package_name = list(
-                        npm_url.split("https://www.npmjs.com/package/")
-                    )[1].strip()
-                    downloads = get_npm_downloads(npm_package_name, headers)
-                    if downloads is not None:
-                        data["npm_downloads"]["value"] = downloads
-                        npm_zap[slug] = downloads
-                    else:
-                        npm_zap[slug] = None
+                    try:
+                        npm_package_name = list(
+                            npm_url.split("https://www.npmjs.com/package/")
+                        )[1].strip()
+                        downloads = get_npm_downloads(npm_package_name, headers)
+                        if downloads is not None:
+                            data["npm_downloads"]["value"] = downloads
+                            npm_zap[slug] = downloads
+                        else:
+                            npm_zap[slug] = None
 
-                    start_date = datetime.now() - timedelta(days=90)
-                    downloads = get_npm_downloads(npm_package_name, headers, start_date)
-                    if downloads is not None:
-                        data["npm_downloads"]["value_90_days"] = downloads
+                        start_date = datetime.now() - timedelta(days=90)
+                        downloads = get_npm_downloads(npm_package_name, headers, start_date)
+                        if downloads is not None:
+                            data["npm_downloads"]["value_90_days"] = downloads
+                    except Exception as _:
+                        pass
 
                 if pypi_url:
-                    pypi_package_name = (
-                        list(pypi_url.split("https://pypi.org/project/"))[1]
-                        .strip()
-                        .strip("/")
-                    )
-                    downloads = get_pypi_downloads(pypi_package_name, headers)
-                    if downloads is not None:
-                        data["pypi_downloads"]["value"] = downloads
-                        pypi_zap[slug] = downloads
-                    else:
-                        pypi_zap[slug] = None
+                    try:
+                        pypi_package_name = (
+                            list(pypi_url.split("https://pypi.org/project/"))[1]
+                            .strip()
+                            .strip("/")
+                        )
+                        downloads = get_pypi_downloads(pypi_package_name, headers)
+                        if downloads is not None:
+                            data["pypi_downloads"]["value"] = downloads
+                            pypi_zap[slug] = downloads
+                        else:
+                            pypi_zap[slug] = None
 
-                    end_date = datetime.now()
-                    start_date = end_date - timedelta(days=90)
-                    downloads = get_pypi_downloads_last_90(
-                        pypi_package_name,
-                        headers,
-                        start_date.strftime("%Y-%m-%d"),
-                        end_date.strftime("%Y-%m-%d"),
-                    )
-                    if downloads is not None:
-                        data["pypi_downloads"]["value_90_days"] = downloads
+                        end_date = datetime.now()
+                        start_date = end_date - timedelta(days=90)
+                        downloads = get_pypi_downloads_last_90(
+                            pypi_package_name,
+                            headers,
+                            start_date.strftime("%Y-%m-%d"),
+                            end_date.strftime("%Y-%m-%d"),
+                        )
+                        if downloads is not None:
+                            data["pypi_downloads"]["value_90_days"] = downloads
+                    except Exception as _:
+                        pass
 
                 if rust_url:
-                    rust_crate_name = (
-                        list(rust_url.split("https://crates.io/crates/"))[1]
-                        .strip()
-                        .strip("/")
-                    )
-                    downloads = get_rust_downloads(rust_crate_name)
-                    if downloads is not None:
-                        data["crates_io_downloads"]["value"] = downloads
-                        crates_zap[slug] = downloads
-                    else:
-                        crates_zap[slug] = None
+                    try:
+                        rust_crate_name = (
+                            list(rust_url.split("https://crates.io/crates/"))[1]
+                            .strip()
+                            .strip("/")
+                        )
+                        downloads = get_rust_downloads(rust_crate_name)
+                        if downloads is not None:
+                            data["crates_io_downloads"]["value"] = downloads
+                            crates_zap[slug] = downloads
+                        else:
+                            crates_zap[slug] = None
 
-                    downloads_last_90 = get_rust_downloads_last_90(rust_crate_name)
-                    if downloads_last_90 is not None:
-                        data["crates_io_downloads"]["value_90_days"] = downloads_last_90
+                        downloads_last_90 = get_rust_downloads_last_90(rust_crate_name)
+                        if downloads_last_90 is not None:
+                            data["crates_io_downloads"]["value_90_days"] = downloads_last_90
+                    except Exception as _:
+                        pass
 
                 # Write the updated data back to the file
                 json_file.seek(0)  # Rewind to the start of the file
