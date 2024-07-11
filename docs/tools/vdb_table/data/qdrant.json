@@ -33,7 +33,7 @@
   },
   "hybrid_search": {
     "support": "full",
-    "source_url": "https://qdrant.tech/blog/qdrant-1.10.x/#native-hybrid-search-support",
+    "source_url": "https://qdrant.tech/documentation/concepts/hybrid-queries/",
     "comment": "Supports hybrid fusion searches with dense/sparse/multi vectors"
   },
   "facets": {
