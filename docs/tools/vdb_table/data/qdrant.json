@@ -54,17 +54,17 @@
   "sparse_vectors": {
     "support": "full",
     "source_url": "https://qdrant.tech/articles/sparse-vectors",
-    "comment": "https://qdrant.tech/articles/sparse-vectors"
+    "comment": ""
   },
   "bm25": {
-    "support": "full",
+    "support": "none",
     "source_url": "https://qdrant.tech/articles/sparse-vectors",
     "comment": "https://qdrant.tech/articles/sparse-vectors"
   },
   "full_text": {
     "support": "full",
-    "source_url": "https://qdrant.tech/documentation/concepts/indexing/",
-    "comment": "https://qdrant.tech/documentation/concepts/indexing/#full-text-index"
+    "source_url": "https://qdrant.tech/documentation/concepts/indexing/#full-text-index",
+    "comment": ""
   },
   "embeddings_text": {
     "support": "full",
