@@ -59,7 +59,7 @@
   "bm25": {
     "support": "none",
     "source_url": "https://qdrant.tech/articles/sparse-vectors",
-    "comment": "https://qdrant.tech/articles/sparse-vectors"
+    "comment": ""
   },
   "full_text": {
     "support": "full",
