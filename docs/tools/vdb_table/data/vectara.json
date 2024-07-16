@@ -57,9 +57,9 @@
     "comment": ""
   },
   "bm25": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://docs.vectara.com/docs/learn/hybrid-search",
+    "comment": "[Note setting lexical_interpolation=1 in Vectara API is equivalent to BM25]"
   },
   "full_text": {
     "support": "none",
@@ -87,23 +87,23 @@
     "comment": ""
   },
   "recsys": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.vectara.com/docs/learn/recommendation-systems/recommender-overview",
     "comment": ""
   },
   "langchain": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://python.langchain.com/v0.2/docs/integrations/providers/vectara/",
     "comment": ""
   },
   "llamaindex": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://docs.llamaindex.ai/en/stable/examples/managed/vectaraDemo/",
     "comment": ""
   },
   "managed_cloud": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://console.vectara.com/signup",
     "comment": ""
   },
   "pricing": {
@@ -137,10 +137,10 @@
     "comment": ""
   },
   "doc_size": {
-    "bytes": 50000000,
+    "bytes": 52428800,
     "unlimited": false,
     "source_url": "",
-    "comment": ""
+    "comment": "[Note: limit of 50MB for file upload]"
   },
   "vector_dims": {
     "value": 0,
@@ -155,8 +155,8 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 0,
-    "source_url": "",
+    "value": 6488,
+    "source_url": "https://hub.docker.com/r/vectara/vectara-answer",
     "comment": "",
     "value_90_days": 0
   },
@@ -167,10 +167,10 @@
     "value_90_days": 0
   },
   "npm_downloads": {
-    "value": 1285,
-    "source_url": "https://www.npmjs.com/package/@vectara/create-ui",
+    "value": 2928,
+    "source_url": "https://www.npmjs.com/package/@vectara/react-search",
     "comment": "",
-    "value_90_days": 986
+    "value_90_days": 571
   },
   "crates_io_downloads": {
     "value": 0,
