@@ -16,7 +16,7 @@ Interpolated datasets ran into a range of structural issues that proceed from th
 
 Instead, reformulation of few-document turned out to be one the most practical use cases for LLMs. The key properties were already built by design in word embeddings nearly a decade ago and have developed ever since. Cross-lingual transfer is surprisingly efficient: many models primarily trained in English can be successfully trained on downstream tasks in other languages. This extends to other forms of language transfer: from formal to informal, from standards to dialects, from generalist to specialized terminologies.
 
-The default paradigm for RAG emerged almost immediately after the release of chatGPT. One of the first systematic descriptions I’ve found is Simon Willison’s “semantic search answers pattern” from early January 2023 – search for texts in a semantic database, get the most relevant results, send this input to GPT-3 as an inspiration.
+The default paradigm for RAG emerged almost immediately after the release of chatGPT. One of the first systematic descriptions I’ve found is Simon Willison’s “(semantic search answers pattern)[https://simonwillison.net/2023/Jan/13/semantic-search-answers/]” from early January 2023 – search for texts in a semantic database, get the most relevant results, send this input to GPT-3 as an inspiration.
 
 Today, production RAG is increasingly a lot of flows and arrows and practitioners are confronted with the hard reality: there is no generic approach to RAG. Good applications need to anticipate a wide array of edge cases. There are simply just too many breaking points such as bad OCR, poor indexation, suboptimal tokenization, inconsistent document segment, unpredictable queries…
 
