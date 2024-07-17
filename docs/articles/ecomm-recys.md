@@ -91,7 +91,7 @@ user_df: pd.DataFrame = pd.read_json(USER_DATASET_URL)
 user_df
 ```
 
-![User product pref at registration](..assets/use_cases/ecomm-recsys/user_product_pref-at_registration.png)
+![User product pref at registration](../assets/use_cases/ecomm-recsys/user_product_pref-at_registration.png)
 
 We can also set up a close examination of the ditribution data of our products - see [cell 5](https://github.com/superlinked/superlinked/blob/main/notebook/recommendations_e_commerce.ipynb). This gives you a picture of how many products are at different price points, have different review counts, and have different ratings (including where the majority of products lie in these ranges).
 
@@ -240,7 +240,7 @@ simple_result.to_pandas()
 
 The results of this query reflect the fact that user_1 chose a handbag when they first registered on our ecomm site.
 
-![User 1 registration product choice-based recs](..assets/use_cases/ecomm-recsys/user_1-reg_prod_based_recs.png)
+![User 1 registration product choice-based recs](../assets/use_cases/ecomm-recsys/user_1-reg_prod_based_recs.png)
 
 It's also possible to recommend products to user_1 that are *generally* appealing - that is, based on their price being low, and having a lot of good reviews. Our results will now reflect both user_1's product choice at registration *and* the general popularity of products. (We can also play around with these weights to skew results in the direction of one Space or another.)
 
@@ -260,7 +260,7 @@ general_result = app.query(
 general_result.to_pandas() 
 ```
 
-![General product features-based recs](..assets/use_cases/ecomm-recsys/general_features_recs.png)
+![General product features-based recs](../assets/use_cases/ecomm-recsys/general_features_recs.png)
 
 A new user's search introduces query text as an input for our recommendation results - see [cell 20](https://github.com/superlinked/superlinked/blob/main/notebook/recommendations_e_commerce.ipynb).
 
@@ -285,7 +285,7 @@ women_cat_result.to_pandas()
 
 Our additional category weighting produces more women clothing results.
 
-![User 1 query for "women clothing jackets" recs.png](..assets/use_cases/ecomm-recsys/women_clothing_jackets-recs.png)
+![User 1 query for "women clothing jackets" recs.png](../assets/use_cases/ecomm-recsys/women_clothing_jackets-recs.png)
 
 We can also bias our recommendations to top-rated products (`review_rating_weight=5`), balancing our increased category weighting. The results now reflect user_1's initial preference for handbags and items that are generally popular, while products with low ratings are removed altogether. See [cell 22](https://github.com/superlinked/superlinked/blob/main/notebook/recommendations_e_commerce.ipynb).
 
@@ -310,7 +310,7 @@ events_df = events_df.assign(created_at=1715439600)
 events_df
 ```
 
-![user events](..assets/use_cases/ecomm-recsys/events_df.png)
+![user events](../assets/use_cases/ecomm-recsys/events_df.png)
 
 Let's weight specific actions to register the user's level of interest in a particular product, and adjust the setup to take account of events when performing retrieval.
 
@@ -419,7 +419,7 @@ general_event_result.to_pandas().join(
 
 With very little weight placed on Spaces affected by events, we observe a change but mainly only in the latter half of our top 10, compared to the previous results ("id_base", on the right).
 
-![Slightly weighted events-affected spaces vs baseline](..assets/use_cases/ecomm-recsys/slight_weight-events-vs-baseline.png)
+![Slightly weighted events-affected spaces vs baseline](../assets/use_cases/ecomm-recsys/slight_weight-events-vs-baseline.png)
 
 But if we weight the event-affected Spaces more heavily, we surface completely novel items in our recommendations list.
 
@@ -443,7 +443,7 @@ event_weighted_result.to_pandas().join(
 )[["description", "id", "description_base", "id_base"]]
 ```
 
-![More heavily weighted events-affected spaces vs baseline](..assets/use_cases/ecomm-recsys/heavier_weight-events-vs-baseline.png)
+![More heavily weighted events-affected spaces vs baseline](../assets/use_cases/ecomm-recsys/heavier_weight-events-vs-baseline.png)
 
 We can also, of course, use weights to personalize our recommendations based on a particular user's behavior (event data) and *simultaneously prioritize other product attributes* - for example, price (see [cell 31](https://github.com/superlinked/superlinked/blob/main/notebook/recommendations_e_commerce.ipynb)).
 
