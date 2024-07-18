@@ -109,7 +109,7 @@ Vector 10: [0.8207672  0.21424442 0.20621931]
 ```
 
 #### Distance Calculation
-Now we need to function to calculate the distance between the different vectors. We will implement the Euclidean Distance to approximate the relation between the vectors.
+Now we need a function to calculate the distance between the different vectors. We will implement the Euclidean Distance to approximate the relation between the vectors.
 ```python
 def calculate_euclidean_distance(point1, point2):
 
