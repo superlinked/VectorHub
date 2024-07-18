@@ -16,7 +16,7 @@ Let’s discuss some popular indexes involved in vector indexing.
 #### Flat Indexing
 Flat indexing is the most basic type of indexing, as it stores vectors in the database as they are. No special operation is performed for modification or optimization. When a query vector arrives, it is compared with every other vector within the database to generate a similarity score. Due to this, flat indexing is also considered a brute-force approach. Once the similarity scores are calculated, the top k closest matches are retrieved.
 
-Flat Indexing is a very precise algorithm, as it retrieves vectors with great accuracy. However, it is computationally expensive and not ideal in cases where the database consists of millions of records or more.
+Flat Indexing is a very precise algorithm, as it retrieves vectors with perfect accuracy. However, it is computationally expensive and not ideal in cases where the database consists of millions of records or more.
 
 #### Locality Sensitive Hashing (LSH)
 LSH optimizes the vector search operation by dividing the database elements into buckets. Here, we first use a hashing function to compute hashes for each vector element. Then, based on the hash’s similarity, the vectors are grouped together into buckets. Intuitively, each bucket contains a matching vector.
