@@ -31,7 +31,7 @@ The flat variation clusters the vectors and creates centroids but stores each ve
 ##### IVFPQ
 Inverted File Product Quantization (IVFPQ) improves the vector storage cost by quantizing the data. It begins by clustering the data points, but before storing the vectors, it quantizes the data. Each vector in a cluster is divided into sub-vectors, and each sub-vector is encoded into bits using product quantization.
 
-At search time, the query vector is first associated with a cluster. Then, it is quantified, and the encoded sub-vectors are compared with the encoded data within the cluster. This storage method has various benefits, such as it saves on space, and since we’re comparing smaller vectors, it improves vector search times.
+At search time, the query vector is first associated with a cluster. Then, it is quantized, and the encoded sub-vectors are compared with the encoded data within the cluster. This storage method has various benefits, such as it saves on space, and since we’re comparing smaller vectors, it improves vector search times.
 ##### IVFSQ
 Inverted File Scalar Quantization (IVFSQ) is similar to IVFPQ but uses a simpler quantization algorithm. It begins by clustering the data points and then quantizing each vector separately. The quantization algorithm quantizes each vector dimension. The first step is to create bins to map the vector elements to. Each element is mapped to a bin, and depending on the bin range, the floating point number is converted to a scalar integer.
 
