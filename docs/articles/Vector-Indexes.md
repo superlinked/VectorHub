@@ -20,7 +20,7 @@ Flat Indexing is a very precise algorithm, as it retrieves vectors with perfect 
 
 #### Locality Sensitive Hashing (LSH)
 LSH optimizes the vector search operation by dividing the database elements into buckets. Here, we first use a hashing function to compute hashes for each vector element. Then, based on the hash’s similarity, the vectors are grouped together into buckets. Intuitively, each bucket contains a matching vector.
-Now, when a query vector appears, it is first hashed using the same function. Then, based on a hash, it is assigned a bucket containing all its similar vectors. The query vector now only needs to be compared with the bucket vectors, reducing the search space and dramatically improving the efficiency.
+Now, when a query vector appears, it is first hashed using the same function. Then, based on a hash, it is assigned a bucket containing all its similar vectors. The query vector now only needs to be compared with the vectors in the assigned bucket, reducing the search space and dramatically improving the efficiency.
 
 #### Inverted File (IVF)
 IVF works similarly to LSH and creates groups of data. But rather than hashing it, it uses clustering techniques. The techniques can vary depending on the implementation, but simpler techniques may use K-means clustering and then use the cluster centroids as a reference for query vectors. The query vector is then compared with only its associated data cluster to improve efficiency. IVF has a few variations, each improving the storage and retrieval efficiency.
