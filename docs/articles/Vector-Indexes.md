@@ -70,7 +70,7 @@ The similarity-matching capabilities of vector databases are used in various int
 
 - **Retrieval Augmented Generation (RAG)**: [RAG](https://superlinked.com/vectorhub/articles/advanced-retrieval-augmented-generation) uses vector indexing techniques to query relevant documents from an external database. These allow the LLM to construct a well-thought-out, accurate, and informative response for the user.
 
-- **Image search using text queries**: Vector indexing powers semantic search in [image databases](https://superlinked.com/vectorhub/articles/retrieval-from-image-text-modalities) such as those in modern smartphones. This allows the user to input text queries and return images described by natural language.
+- **Image search using text queries**: Vector indexing powers [semantic search in image databases](https://superlinked.com/vectorhub/articles/retrieval-from-image-text-modalities) such as those in modern smartphones. This allows the user to input text queries and return images described by natural language.
 
 - **Searching through large text documents**: Conventional algorithms can be inefficient in searching large corpora. Vector indexes quickly sift through the text and retrieve exact and similar matching documents. This is helpful as text queries can be tricky sometimes. For example, if a user searches for ‘movies related to time travel’, the terms `movie` and `time travel` will help reach all relevant information in the text, even if the exact terms are not present.
 
