@@ -29,9 +29,12 @@ IVF works similarly to LSH and creates groups of data. But rather than hashing i
 The flat variation clusters the vectors and creates centroids but stores each vector as it is. It performs no additional processing beyond the clustering, and a brute-force approach is required to search through any given cluster.
 
 ##### IVFPQ
-Inverted File Product Quantization (IVFPQ) improves the vector storage cost by quantizing the data. It begins by clustering the data points, but before storing the vectors, it quantizes the data. Each vector in a cluster is divided into sub-vectors, and each sub-vector is encoded into bits using product quantization.
+Inverted File Product Quantization (IVFPQ) improves the vector storage cost by quantizing the data. It begins by clustering the data points, but before storing the vectors, it quantizes the data. The algorithm follows the following steps:
+1. Divide the vector space into clusters.
+2. Break vectors within the cluster into smaller chunks. For example, if the original vector consists of 12 elements, it can be broken into 3 chunks, each with 4 elements.
+3. Quantize the chunks (4-dimensional vectors) into bits using product quantization.
 
-At search time, the query vector is first associated with a cluster. Then, it is quantized, and the encoded sub-vectors are compared with the encoded data within the cluster. This storage method has various benefits, such as it saves on space, and since we’re comparing smaller vectors, it improves vector search times.
+At search time, the same algorithm is applied to the query vector. It is first associated with a cluster by calculating the distance between the query and the cluster centroids. Then, it is broken into chunks and quantized. The encoded sub-vectors are compared with the encoded data within the cluster using distance metrics. This storage method has various benefits, such as it saves on space, and since we’re comparing smaller vectors, it improves vector search times.
 ##### IVFSQ
 Inverted File Scalar Quantization (IVFSQ) is similar to IVFPQ but uses a simpler quantization algorithm. It begins by clustering the data points and then quantizing each vector separately. The quantization algorithm quantizes each vector dimension. The first step is to create bins to map the vector elements to. Each element is mapped to a bin, and depending on the bin range, the floating point number is converted to a scalar integer.
 
@@ -86,7 +89,7 @@ import numpy as np
 import pandas as pd
 ```
 #### Creating Data Vectors
-For this tutorial we will generate dummy random vectors and use them as data point in our algorithm.
+For this tutorial, we will generate dummy random vectors and use them as data points in our algorithm.
 ```python
 # Generate 10 random 3D vectors
 random_vectors = np.random.rand(10, 3)
