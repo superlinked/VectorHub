@@ -87,8 +87,8 @@
     "comment": ""
   },
   "recsys": {
-    "support": "full",
-    "source_url": "https://docs.vectara.com/docs/learn/recommendation-systems/recommender-overview",
+    "support": "",
+    "source_url": "",
     "comment": ""
   },
   "langchain": {
