@@ -1,14 +1,16 @@
 # Vector Indexes
-As large language models (LLMs), like ChatGPT, gain traction, vector data has become the new norm. A vector database stores data in the form of vectors, as opposed to scalars, in a conventional relational database management system (RDBMS). While scalar data is represented by a single element, vector data has multiple attributes that help build a semantic relationship between the different data elements.
 
-A major benefit of vector data is that it allows for similarity search using vector indexes. The similarity search opens avenues for various new applications like Retrieval Augmented Generation (RAG). This blog will discuss vector indexes in detail. We will also look at popular types of indexing and implement vector indexing in Python using LlamaIndex.
+This article takes you through the basics of implementating vector indexing in Python using LlamaIndex. 
+But first, let's briefly introduce vector indexes, why they're so important, different common types, and popular use cases.
 
-## Overview of Vector Indexes
-Vector data is often called [‘Embeddings’](https://superlinked.com/vectorhub/building-blocks/vector-compute/embedding-models), and these are generated via complex mathematical operations. The embeddings are a dense data representation, capturing key attributes describing the information. These attributes allow vectors to be arranged so that similar data points are closer. This operation, called vector indexing, has various benefits, including faster search operation, similarity matching, and pattern identification. The indexing operation requires specialized algorithms that understand the data and create groups of matching elements.
+## Why you need vector indexes
 
-Vector indexing also benefits Retrieval-Augmented Generation (RAG), allowing LLMs to sift extensive data and find relevant vectors efficiently. This is important since efficiency is key to modern AI application development. Moreover, it also allows LLMs to filter information similar to the user’s query so that the model can present all relevant information. Imagine an LLM is asked about the benefits of apples. The model will retrieve information from a vector database, and since it recognizes an apple as a fruit, it can also query information regarding bananas and oranges and construct a more information-rich response.
+Running AI applications depends on vectors, often called [embeddings](https://superlinked.com/vectorhub/building-blocks/vector-compute/embedding-models) - dense data representations, generated via complex mathematical operations to capture key attributes of source information. Vectors representing elements' attributes are arranged - "indexed" - so that similar data points are closer. 
+Vector indexing is performed with specialized algorithms that understand the data and create groups of matching elements. In order to perform all the operations we look for from AI applications, we need indexing. Indexing lets us perform similarity searches, pattern identification, and enables fast searches.
+...
+Similarity search finds similar vectors using an [Approximate Nearest Neighbour](https://superlinked.com/vectorhub/building-blocks/vector-search/nearest-neighbor-algorithms) (ANN) algorithm, which calculates the closeness of vectors using metrics like Euclidean distance or Jacobian distance. When a user submits a query, it's also embedded in the vector database, and vectors that are close to it are deemed relevant, and returned.
 
-The similarity search uses an [Approximate Nearest Neighbour](https://superlinked.com/vectorhub/building-blocks/vector-search/nearest-neighbor-algorithms) (ANN) algorithm to find matching data vectors. It calculates how close or distant vectors are using distance metrics like Euclidean distance or Jacobian distance. Closer points are grouped together and referenced in relevant queries.
+Vector indexing is crucial in Retrieval-Augmented Generation (RAG), which improves LLMs' ability to sift through extensive data and efficiently find relevant vectors. For example, a user submits a query asking about the "benefits of apples" to an LLM. Because the attritbutes of apples are stored in embeddings and indexed inside the vector database, the LLM can recognize an apple as a "fruit", and retrieve more general information about fruits - including, for example, bananas and oranges - to construct a more information-rich response.
 
 ### Types of Indexing
 Let’s discuss some popular indexes involved in vector indexing.
@@ -311,7 +313,6 @@ Closest Matches:  [array([0.1338926 , 0.04131207, 0.66420534]), array([0.0971932
 ```
 Since the algorithm only queries the matching cluster, it significantly reduces the search complexity. Instead of performing 100 computations (The size of the database), it only has to look through the cluster space. 
 
-
 ## Conclusion
 Vector indexing is a powerful technique for optimizing the retrieval of vectorized information. Various indexing techniques use clustering algorithms to group similar information and reduce the search space for efficient data search.
 
@@ -319,4 +320,7 @@ Moreover, the technique also allows the approximate nearest neighbor search (ANN
 
 Vector indexes empower some critical modern-day applications. Perhaps the most important one has been RAG, which allows LLMs to access additional information from an external vector store. The ANN search allows an LLM to retrieve all relevant information about a query and formulate an accurate response. Other benefits of vector indexes are found in search applications such as image search and eCommerce platforms.
 
-
+## Contributors
+[Haziqa Sajid, author](https://www.linkedin.com/in/haziqa-sajid-22b53245/)
+[Mór Kapronczay, editor](https://www.linkedin.com/in/m%C3%B3r-kapronczay-49447692/)
+[Robert Turner, editor](https://www.linkedin.com/in/robertdhayanturner/)
