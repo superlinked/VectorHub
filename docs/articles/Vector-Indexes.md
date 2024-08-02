@@ -1,11 +1,10 @@
 # Vector Indexes
 
-This article takes you through the basics of implementating vector indexing in Python using LlamaIndex. 
-But first, let's briefly introduce vector indexes, why they're so important, different common types, and popular use cases.
+This article takes you through the basics of implementating vector indexing in Python using LlamaIndex. But first, let's briefly introduce vector indexes, why they're so important, different common types, and popular use cases.
 
 ## Why you need vector indexes
 
-Running AI applications depends on vectors, often called [embeddings](https://superlinked.com/vectorhub/building-blocks/vector-compute/embedding-models) - dense data representations, generated via complex mathematical operations to capture key attributes of source information. When a user submits a query, it's also embedded in the vector database, and vectors that are close to it are deemed relevant (i.e., similar), and returned. It's possible to query these vectors *without* a vector index, but that would be a very inefficient, brute-force process, comparing the query vector to every single vector in the database, one by one. Which, if the database is large, takes a long time. Vector indexing, using specialized algorithms that understand the data and create groups of matching elements, speeds up our similarity searches.
+Running AI applications depends on vectors, often called [embeddings](https://superlinked.com/vectorhub/building-blocks/vector-compute/embedding-models) - dense data representations, generated via complex mathematical operations to capture key attributes of source information. When a user submits a query, it's also embedded in the vector database, and vectors that are close to it are deemed relevant (i.e., similar), and returned. It's possible to query these vectors *without* a vector index, but that would be a very inefficient, brute-force process, checking every single vector in the database to see if they match the query vector, one by one. Which, if the database is large, takes a long time. Vector indexing, using specialized algorithms that understand the data and create groups of matching elements, speeds up our similarity searches.
 
 Similarity searches use algorithms to calculate vector closeness using metrics like Euclidean or Jacobian distance. For small datasets, where accuracy is more important than efficiency, you can use K-Nearest Neighbors to pinpoint exactly the closest near neighbors to your query. But as datasets become larger, and your AI application requires efficiency, it's better to use [Approximate Nearest Neighbour](https://superlinked.com/vectorhub/building-blocks/vector-search/nearest-neighbor-algorithms) (ANN), which returns results that are accurate enough very quickly.
 
@@ -13,69 +12,90 @@ Vector indexing is crucial in Retrieval-Augmented Generation (RAG), which improv
 
 ## Types of indexing
 
-Not all vector indexes are the same. Let's take a look at some of the most commonly used indexes, and when it makes sense to use them.
+Not all vector indexes are the same. Let's take a look at some of the most commonly used ones, and when it makes sense to use them.
 
 ### Flat indexing
 
-Flat indexing is the most basic type of indexing - it stores vectors in the database as they are. No special operation is performed to modify or optimize them. Query vectors are compared with every other vector in the database to generate a similarity score. Flat indexing is a brute-force approach. Once the similarity scores are calculated, the top k closest matches are retrieved.
+Flat indexing is the most basic type of indexing - it stores vectors in the database as they are. No special operation is performed to modify or optimize them. Flat indexing is a brute-force approach: you generate similarity scores by comparing query vectors with every other vector in the database, but indexing enables you to do these computations in parallel, speeding up the process.
 
-Flat indexing employs a very precise algorithm, returning perfectly accurate results. However, it is computationally expensive and not ideal in cases where the database consists of millions of records or more.
+Flat indexing employs a very precise algorithm, returning perfectly accurate results as top k closest matches, but at a cost. Despite enabling parallel processing, flat indexing is computationally expensive and not ideal if your database consists of millions of records or more.
 
-### Locality Sensitive Hashing (LSH)
+### Locality-Sensitive Hashing (LSH)
 
-LSH optimizes the vector search operation by dividing database elements into buckets. Here, we first use a hashing function to compute hashes for each vector element. Then, based on the hash’s similarity, the vectors are grouped together into buckets. Intuitively, each bucket contains a matching vector.
+LSH uses a hashing function to compute a hash for each vector element, then groups vectors with similar hashes into buckets. The query vector is also hashed into a bucket with similar vectors thereby reducing the search space, and dramatically improving efficiency.
 
-Now, when a query vector appears, it is first hashed using the same function. Then, based on a hash, it is assigned a bucket containing all its similar vectors. The query vector now only needs to be compared with the vectors in the assigned bucket, reducing the search space and dramatically improving the efficiency.
+### Inverted File Index (IVF)
 
-### Inverted File (IVF)
+IVF, like LSH, groups data elements to improve vector search efficiency. But instead of hashing, IVF uses clustering techniques to prefilter data. Simpler IVF techniques may use K-means clustering to create cluster centroids. At query time, the query vector is compared to partition centroids to find the closest clusters, then vector search happens within those partitions. There are variations of IVF, each performing differently in terms of storage and retrieval efficiency. Let's take a look at a few: IVF_FLAT, IVF_PQ, and IVF_SQ.
 
-IVF works similarly to LSH and creates groups of data. But rather than hashing it, it uses clustering techniques. The techniques can vary depending on the implementation, but simpler techniques may use K-means clustering and then use the cluster centroids as a reference for query vectors. The query vector is then compared with only its associated data cluster to improve efficiency. IVF has a few variations, each improving the storage and retrieval efficiency.
+**IVF_FLAT**
 
-#### IVFFLAT
+The flat variation clusters the vectors and creates centroids but stores each vector as it is with no additional processing. As a result, IVF_FLAT searches within clusters linearly (i.e., brute-force), providing good accuracy. But IVF_FLAT stores whole vectors and requires more memory, so it becomes slow with large datasets.
 
-The flat variation clusters the vectors and creates centroids but stores each vector as it is. It performs no additional processing beyond the clustering, and a brute-force approach is required to search through any given cluster.
+**IVF_PQ**
 
-#### IVFPQ
+Inverted File Product Quantization (IVF_PQ) algorithm reduces storage requirements by:
 
-Inverted File Product Quantization (IVFPQ) improves the vector storage cost by quantizing the data. It begins by clustering the data points, but before storing the vectors, it quantizes the data. The algorithm follows the following steps:
+* 1. dividing the vector space into centroid clusters
+* 2. breaking each vector within the cluster into smaller chunks - e.g., a 12-dimensional vector can be broken into 3 chunks (sub-vectors), each with 4 dimensions
+* 3. quantizing the chunks (4-dimensional sub-vectors) into bits, significantly reducing storage requirements
 
-1. Divide the vector space into clusters.
-2. Break vectors within the cluster into smaller chunks. For example, if the original vector consists of 12 elements, it can be broken into 3 chunks, each with 4 elements.
-3. Quantize the chunks (4-dimensional vectors) into bits using product quantization.
+At query time, the same algorithm is applied to the query vector.
 
-At search time, the same algorithm is applied to the query vector. It is first associated with a cluster by calculating the distance between the query and the cluster centroids. Then, it is broken into chunks and quantized. The encoded sub-vectors are compared with the encoded data within the cluster using distance metrics. This storage method has various benefits, such as it saves on space, and since we’re comparing smaller vectors, it improves vector search times.
+IVF_PQ saves on space, and, because we’re comparing smaller vectors, improves vector search times. Some accuracy is lost.
 
-#### IVFSQ
+**IVF_SQ**
 
-Inverted File Scalar Quantization (IVFSQ) is similar to IVFPQ but uses a simpler quantization algorithm. It begins by clustering the data points and then quantizing each vector separately. The quantization algorithm quantizes each vector dimension. The first step is to create bins to map the vector elements to. Each element is mapped to a bin, and depending on the bin range, the floating point number is converted to a scalar integer.
+Inverted File Scalar Quantization uses a simpler algorithm than IVF_PQ.
 
-Suppose we have a vector x=[1.2,3.5,−0.7,2.1]. As it has 4 dimensions, we will define 4 quantization bins such as the following:
+* 1. divide the dataset, clustering the data points into smaller manageable chunks ("inverted lists")
+* 2. create bins: for each vector dimension, determine minimum (start values) and maximum values, calculate step sizes ( = (max - min) / # bins)
+* 3. convert floating-point vectors into scalar integer vectors by dividing each vector dimension into bins
+* 4. assign each quantized vector to nearest chunk (inverted list)
 
-- Bin 0: [−1.0,0.0)[-1.0,0.0)[−1.0,0.0)
-- Bin 1: [0.0,1.0)[0.0,1.0)[0.0,1.0)
-- Bin 2: [1.0,2.0)[1.0,2.0)[1.0,2.0)
-- Bin 3: [2.0,4.0)[2.0,4.0)[2.0,4.0)
+Suppose we have a vector, x=[1.2,3.5,−0.7,2.1]. It has 4 dimensions, so we'll define 4 quantization bins:
+
+* Bin 0: [−1.0,0.0)[-1.0,0.0)[−1.0,0.0)
+* Bin 1: [0.0,1.0)[0.0,1.0)[0.0,1.0)
+* Bin 2: [1.0,2.0)[1.0,2.0)[1.0,2.0)
+* Bin 3: [2.0,4.0)[2.0,4.0)[2.0,4.0)
 
 Each vector element will be distributed into a bin as follows:
 
-- For x1=1.2: It falls into Bin 2 [1.0,2.0), so it is quantized to 2.
-- For x2=3.5: It falls into Bin 3 [2.0,4.0), so it is quantized to 3.
-- For x3=−0.7: It falls into Bin 0 [−1.0,0.0), so it is quantized to 0.
-- For x4=2.1: It falls into Bin 3 [2.0,4.0), so it is quantized to 3.
+* x1=1.2, falls into Bin 2 [1.0,2.0), and quantizes to 2
+* x2=3.5, falls into Bin 3 [2.0,4.0), and quantizes to 3
+* x3=−0.7, falls into Bin 0 [−1.0,0.0), and quantizes to 0
+* x4=2.1, falls into Bin 3 [2.0,4.0), and quantizes to 3
 
 The final quantized vector becomes [2,3,0,3].
 
+IVF_SQ makes sense when dealing with medium to large datasets where memory efficiency is important.
+
 ### DiskANN
 
-Most ANN algorithms are designed for in-memory computation, which can be a bottleneck when working with big data. [DiskANN](https://suhasjs.github.io/files/diskann_neurips19.pdf) is built to leverage the large memory and high-speed capabilities of Solid-State Drives (SSDs). It uses a graph-based structure to index the vector data points. The graph nodes represent individual vectors and are connected to other nodes based on their similarity. For this implementation, the authors introduce Vamana, a special graph structure with a smaller "diameter" (the maximum number of hops needed to reach any two points), minimizing the number of sequential disk reads required during the search.
+Most ANN algorithms - including those above - are designed for in-memory computation. But when you're dealing with *big data*, in-memory computation can be a bottleneck. Disk-based ANN [DiskANN](https://suhasjs.github.io/files/diskann_neurips19.pdf) is built to leverage Solid-State Drives' (SSDs') large memory and high-speed capabilities. DiskANN indexes vectors using the Vamana algorithm, a graph-based indexing structure that minimizes the number of sequential disk reads required during, by creating a graph with a smaller search "diameter" - the max distance between any two nodes (representing vectors), measured as the least number of hops (edges) to get from one to the other. This makes the search process more efficient, especially for the kind of large-scale datasets that are stored on SSDs.
 
-The graph index is entirely stored on disk and accessed during search. The overall approach is cost-effective and scalable and implements an efficient search strategy.
+By using a SSD to store and search its graph index, DiskANN can be cost-effective, scalable, and efficient.
 
 ### Scalable Progressive Approximate Nearest Neighbor Search (SPANN)
 
-[SPANN](https://openreview.net/forum?id=-1rrzmJCp4) improves upon DiskANN by introducing a memory-disk hybrid approach designed for billion-scale datasets. The approach clusters the data and stores the centroids in memory, but data clusters (or pointing lists) on disk.
+[SPANN](https://openreview.net/forum?id=-1rrzmJCp4) can handle even larger datasets than DiskANN with high accuracy and low latency by taking a hybrid indexing approach that leverages both in-memory and disk-based storage. SPANN stores centroid points of posting lists in memory, and stores the posting lists (corresponding to clusters of similar vectors) themselves in the disk. SPANN can then very quickly - without accessing the disk - identify which clusters are relevant to a query.
 
-Since it involves read-write operations with the disk, these can also become a bottleneck. The authors use a few techniques to reduce disk read operations and storage costs. They use a balanced hierarchical clustering algorithm to ensure that posting lists are balanced in size. They also implement dynamic pruning to select clusters that match data points smartly. It first selects the top k closest clusters based on the distance between the centroids and the query. From the selected vectors, a relevance score between the pointing lists and the query is calculated to filter the search further and only retrieve the most relevant data points.
+To mitigate potential bottlenecks in disk read-write operations, SPANN builds its indexes using a hierarchical balanced clustering algorithm that ensures that posting lists are roughly the same length, and augments the posting list by including inside a cluster data points that are on the edges of that cluster. 
+
+improving recall by ensuring that the posting lists are more comprehensive and include points that are relevant but might be on the edge of the clusters.
+
+
+...
+to ensure that posting lists are balanced in size. They also implement dynamic pruning to select clusters that match data points smartly. It first selects the top k closest clusters based on the distance between the centroids and the query. From the selected vectors, a relevance score between the posting lists and the query is calculated to filter the search further and only retrieve the most relevant data points.
+...
+------
+ "balance the length of posting lists and augment the posting list by adding the points in the closure of the corresponding clusters. In the search stage, we use a query-aware scheme to dynamically prune the access of unnecessary posting lists."
+
+
+Taking this hybrid approach, in addition to scaling horizontally (by adding more machines), SPANN can achieve high performance levels while handling larger scale datasets than DiskANN.
+
+------
 
 ### Hierarchical Navigable Small Worlds (HNSW)
 
@@ -83,17 +103,17 @@ HNSW is a complicated but one of the most popular and efficient techniques for v
 
 During the search, the query vector is placed on the highest layer, which is matched with the closest vector using an ANN algorithm. We then move to the next layer based on the earlier selected closest neighbor and repeat the same process. This is continued until the final layer is reached.
 
-## Vector Indexes in Practical Use Cases
+## Vector indexes in practical use cases
 
 The similarity-matching capabilities of vector databases are used in various interesting applications. Some of these include:
 
-- **Retrieval Augmented Generation (RAG)**: [RAG](https://superlinked.com/vectorhub/articles/advanced-retrieval-augmented-generation) uses vector indexing techniques to query relevant documents from an external database. These allow the LLM to construct a well-thought-out, accurate, and informative response for the user.
+* **Retrieval Augmented Generation (RAG)**: [RAG](https://superlinked.com/vectorhub/articles/advanced-retrieval-augmented-generation) uses vector indexing techniques to query relevant documents from an external database. These allow the LLM to construct a well-thought-out, accurate, and informative response for the user.
 
-- **Image search using text queries**: Vector indexing powers [semantic search in image databases](https://superlinked.com/vectorhub/articles/retrieval-from-image-text-modalities) such as those in modern smartphones. This allows the user to input text queries and return images described by natural language.
+* **Image search using text queries**: Vector indexing powers [semantic search in image databases](https://superlinked.com/vectorhub/articles/retrieval-from-image-text-modalities) such as those in modern smartphones. This allows the user to input text queries and return images described by natural language.
 
-- **Searching through large text documents**: Conventional algorithms can be inefficient in searching large corpora. Vector indexes quickly sift through the text and retrieve exact and similar matching documents. This is helpful as text queries can be tricky sometimes. For example, if a user searches for ‘movies related to time travel’, the terms `movie` and `time travel` will help reach all relevant information in the text, even if the exact terms are not present.
+* **Searching through large text documents**: Conventional algorithms can be inefficient in searching large corpora. Vector indexes quickly sift through the text and retrieve exact and similar matching documents. This is helpful as text queries can be tricky sometimes. For example, if a user searches for ‘movies related to time travel’, the terms `movie` and `time travel` will help reach all relevant information in the text, even if the exact terms are not present.
 
-- **Advanced search on e-commerce websites**: E-commerce stores can employ vector indexing to improve user experience. Users can describe the product they want and the search algorithm can present all matching results. moreover, if a specific product is not available, the ANN algorithm can help retrieve similar items to keep the user intrigued.
+* **Advanced search on e-commerce websites**: E-commerce stores can employ vector indexing to improve user experience. Users can describe the product they want and the search algorithm can present all matching results. moreover, if a specific product is not available, the ANN algorithm can help retrieve similar items to keep the user intrigued.
 
 ## Basic Implementation of Vector Indexing using ANN
 
@@ -287,6 +307,7 @@ centroids
 ```
 
 #### Vector Querying
+
 Now, we need to query a test vector. The algorithm will
 1. Generate a random test point.
 2. Calculate the closest cluster to the test point using the centroid vectors.
