@@ -24,9 +24,9 @@ The default paradigm and basic conceptualization of RAG emerged almost immediate
 
 **But RAG doesn't solve LLM limitations once and for all**. *In production*:
 
-a) there's *no one-size-fits-all RAG solution*, as people working on production RAG today soon come to realize. Good applications are increasingly a lot of flows and arrows, anticipating a wide array of edge cases. There are simply too many breaking points - e.g., bad OCR, poor indexation, suboptimal tokenization, inconsistent document segmentation, unpredictable queries, etc. - to settle on one generic approach.
-b) *your solution to the last mile problem (indexing, retrieval, and generation) depends heavily on your use case*: This won't be easily handled by LLMs, despite major AI actors' eagerness to create innovative panacea platforms. Probably the only actual moat in finding the right fit for your use case, corpus, and specific user target is in applied generative AI - i.e., in a specifically and dynamically tailored RAG system.
-c) *RAG evaluation is tricky*: While you can use synthetic data to do preliminary evaluations and benchmarks for selecting and swapping models, the real challenge is evaluation in production of your system's different components, taking into account their level of specialization. Though we'd like to automate everything, including evaluation, here it continues to require qualitative human involvement.
+* a) there's *no one-size-fits-all RAG solution*, as people working on production RAG today soon come to realize. Good applications are increasingly a lot of flows and arrows, anticipating a wide array of edge cases. There are simply too many breaking points - e.g., bad OCR, poor indexation, suboptimal tokenization, inconsistent document segmentation, unpredictable queries, etc. - to settle on one generic approach.
+* b) *your solution to the last mile problem (indexing, retrieval, and generation) depends heavily on your use case*: This won't be easily handled by LLMs, despite major AI actors' eagerness to create innovative panacea platforms. Probably the only actual moat in finding the right fit for your use case, corpus, and specific user target is in applied generative AI - i.e., in a specifically and dynamically tailored RAG system.
+* c) *RAG evaluation is tricky*: While you can use synthetic data to do preliminary evaluations and benchmarks for selecting and swapping models, the real challenge is evaluation in production of your system's different components, taking into account their level of specialization. Though we'd like to automate everything, including evaluation, here it continues to require qualitative human involvement.
 
 These ongoing difficulties are at once challenges *and* opportunities for RAG applications *qua* communication systems - employing LLMs in a particular landscape of specific data and users. In a way, this has always been RAG's *raison d'etre*. As communication systems, RAG applications can perform better than even frontier LLMs alone, by taking advantage of a broad range of techniques, not all of them new, as we'll see below.
 
@@ -85,8 +85,8 @@ Generative AI within a RAG communication system shouldn't be looking to replace 
 A proper RAG communication system should treat data no longer as a passive reference stock but rather a living entity - in two ways. 
 Data should be:
 
-a) continuously transformed and reshaped to better fit the retrieval objective, and
-b) constantly circulated across different flows.
+* a) continuously transformed and reshaped to better fit the retrieval objective, and
+* b) constantly circulated across different flows.
 
 ### 3.1 You need bad data
 
