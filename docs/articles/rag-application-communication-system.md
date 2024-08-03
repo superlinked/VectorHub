@@ -184,6 +184,6 @@ With improving ROI on customization (increasingly the domain not of behemoth AI 
 
 ## Contributors
 
-[Pierre-Carl Langlais, author](https://www.linkedin.com/in/pierre-carl-langlais-b0105b10/) 
-[Mór Kapronczay, editor](https://www.linkedin.com/in/m%C3%B3r-kapronczay-49447692/) 
-[Robert Turner, editor](https://www.linkedin.com/in/robertdhayanturner)
+* [Pierre-Carl Langlais, author](https://www.linkedin.com/in/pierre-carl-langlais-b0105b10/) 
+* [Mór Kapronczay, editor](https://www.linkedin.com/in/m%C3%B3r-kapronczay-49447692/) 
+* [Robert Turner, editor](https://www.linkedin.com/in/robertdhayanturner)
