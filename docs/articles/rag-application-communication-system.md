@@ -16,17 +16,17 @@ LLMs are extremely good and efficient at language transfer - rephrasing and refo
 
 But LLMs are also limited by the fact that they are few doc-learners. LLMs have largely been conceived as “interpolated datasets” (holding in memory the collective knowledge of the Internet), and they share the challenges of interpolated datasets. (Even the inaugural RAG system was still a form of interpolated dataset: a clever design associating a seq2seq model with a dense layer trained on Wikipedia ([Lewis et al., 2020](https://proceedings.neurips.cc/paper/2020/file/6b493230205f780e1bc26945df7481e5-Paper.pdf)).) Like other interpolated datasets, LLMs are trained at a point in time on a finite set of data, and this creates problems. Problems that can to some degree be mitigated by RAG systems:
 
-* **Specialization**: professional resources are often not or only lightly included in pre-training data, resulting in high hallucination rates. *RAG systems can provide coverage of these resources*.
-* **Updatability**: while LLMs are limited by their cutoff date, *RAG systems can be continuously maintained in real time*.
-* **Explainability**: LLMs are a “black box”; *RAG systems can provide transparency, tracing statements to original sources*.
+* *Specialization*: professional resources are often not or only lightly included in pre-training data, resulting in high hallucination rates. *RAG systems can provide coverage of these resources*.
+* *Updatability*: while LLMs are limited by their cutoff date, *RAG systems can be continuously maintained in real time*.
+* *Explainability*: LLMs are a “black box”; *RAG systems can provide transparency, tracing statements to original sources*.
 
 The default paradigm and basic conceptualization of RAG emerged almost immediately after the release of chatGPT. Simon Willison’s “[semantic search answers pattern](https://simonwillison.net/2023/Jan/13/semantic-search-answers/)” (January 2023) is one of the first systematic descriptions: search for texts in a semantic database, get the most relevant results, send this input to GPT-3 as inspiration.Following this basic strategy, RAG helps mitigate the limitations of few document learning by grounding an LLM on existing data at inference time.
 
 **But RAG doesn't solve LLM limitations once and for all**. *In production*:
 
-* A. there's *no one-size-fits-all RAG solution*, as people working on production RAG today soon come to realize. Good applications are increasingly a lot of flows and arrows, anticipating a wide array of edge cases. There are simply too many breaking points - e.g., bad OCR, poor indexation, suboptimal tokenization, inconsistent document segmentation, unpredictable queries, etc. - to settle on one generic approach.
-* B. your solution to the last mile problem (indexing, retrieval, and generation) depends heavily on your use case: This won't be easily handled by LLMs, despite major AI actors' eagerness to create innovative panacea platforms. Probably the only actual moat in finding the right fit for your use case, corpus, and specific user target is in applied generative AI - i.e., in a specifically and dynamically tailored RAG system.
-* C. RAG evaluation is tricky: While you can use synthetic data to do preliminary evaluations and benchmarks for selecting and swapping models, the real challenge is evaluation in production of your system's different components, taking into account their level of specialization. Though we'd like to automate everything, including evaluation, here it continues to require qualitative human involvement.
+* a) there's *no one-size-fits-all RAG solution*, as people working on production RAG today soon come to realize. Good applications are increasingly a lot of flows and arrows, anticipating a wide array of edge cases. There are simply too many breaking points - e.g., bad OCR, poor indexation, suboptimal tokenization, inconsistent document segmentation, unpredictable queries, etc. - to settle on one generic approach.
+* b) *your solution to the last mile problem (indexing, retrieval, and generation) depends heavily on your use case*: This won't be easily handled by LLMs, despite major AI actors' eagerness to create innovative panacea platforms. Probably the only actual moat in finding the right fit for your use case, corpus, and specific user target is in applied generative AI - i.e., in a specifically and dynamically tailored RAG system.
+* c) *RAG evaluation is tricky*: While you can use synthetic data to do preliminary evaluations and benchmarks for selecting and swapping models, the real challenge is evaluation in production of your system's different components, taking into account their level of specialization. Though we'd like to automate everything, including evaluation, here it continues to require qualitative human involvement.
 
 These ongoing difficulties are at once challenges *and* opportunities for RAG applications *qua* communication systems - employing LLMs in a particular landscape of specific data and users. In a way, this has always been RAG's *raison d'etre*. As communication systems, RAG applications can perform better than even frontier LLMs alone, by taking advantage of a broad range of techniques, not all of them new, as we'll see below.
 
@@ -54,7 +54,7 @@ Inattentiion to user-design friction in LLMs and embedding models can result in 
 
 Like your users, your data won't necessarily comply with the constraints of LLMs and embedding models.
 
-**Context** window, though it's gradually gotten longer, is still a limiting factor - the indexation of long texts continues to underperform. This results directly from a mismatch between pre-training data and data in production: the vast majority of Common Crawl texts are less than 512 tokens, whereas organizations routinely deal with multi-page PDFs.
+Context window, though it's gradually gotten longer, is still a limiting factor - the indexation of long texts continues to underperform. This results directly from a mismatch between pre-training data and data in production: the vast majority of Common Crawl texts are less than 512 tokens, whereas organizations routinely deal with multi-page PDFs.
 
 Limited context windows require you to split or chunk your document, which is not trivial. Documents parts are not meant to be standalone units of content, and disambiguation requires some degree of cross-referencing. The biggest performance gain on my retrieval evaluation,especially on projects in the French public service sector, came from the systematic inclusion of title hierarchy (document > chapter > section, etc.); in long documents, general information on the topic is given at this scale, but not recalled in specific paragraphs.
 
@@ -100,9 +100,9 @@ But there are workarounds. The usual one is looking for placeholders, or generat
 
 For processing bad (and good) data, we take advantage of LLM data processing power. But here too the best approach is using the best LLMs for production use cases, and not simply the newest or most popular decoders. The previous generation of encoders and encoder-decoders provide much better parameters / performance / robustness ratios for many data tasks than GPT-4, Llama, or Mistral. I increasingly build RAG systems with classifiers or "reformulators" that can reliably handle:
 
-* Automated re-routing of user queries. A major issue for more generalist chat systems is deciding 1) whether or not to activate the retrieval of external resources, 2) which collection of resources to prioritize (maybe not all are needed; reducing volume can relieve stress to the system), and 3) when a new round of retrieval becomes necessary (e.g., when the topic of a conversation has changed).
-* Query expansion. LLM and embedding models, because they're trained primarily on complete sentences, struggle with unstructured queries. You may require further contextualization by adding elements (e.g., past queries).
-* Text segmentation (rather than just “chunking”). Proper segmentation has proven to be one of the most powerful performance boosts. But as user traffic increases, and more document coverage is needed, iteratively expanding your RAG system (typically by parsing different sets of resources with existing ones) can become prohibitively costly. Lately, I’ve been experimenting a lot with agnostic encoder models for token-classification tasks to reconstruct text parts (including titles, bibliography) from raw text comprehension, regardless of the original format.
+* _Automated re-routing of user queries_. A major issue for more generalist chat systems is deciding 1) whether or not to activate the retrieval of external resources, 2) which collection of resources to prioritize (maybe not all are needed; reducing volume can relieve stress to the system), and 3) when a new round of retrieval becomes necessary (e.g., when the topic of a conversation has changed).
+* _Query expansion_. LLM and embedding models, because they're trained primarily on complete sentences, struggle with unstructured queries. You may require further contextualization by adding elements (e.g., past queries).
+* _Text segmentation (rather than just “chunking”)_. Proper segmentation has proven to be one of the most powerful performance boosts. But as user traffic increases, and more document coverage is needed, iteratively expanding your RAG system (typically by parsing different sets of resources with existing ones) can become prohibitively costly. Lately, I’ve been experimenting a lot with agnostic encoder models for token-classification tasks to reconstruct text parts (including titles, bibliography) from raw text comprehension, regardless of the original format.
 
 For automated query rerouting, query expansion, and text segmentation, using an LLM is overkill; it results in performance lag and degradation. Once properly re-trained, encoder models yield results comparable to an LLM's, are very fast, not expensive to host, and better fitted to the overall purpose of classification. In addition, encoders don't require structured generation, regex, or data constraints - the data design is already built-in.
 
@@ -124,9 +124,9 @@ In a RAG context, fine-tuning is neither an alternative nor simply a good supple
 
 Fine-tuning has to come later in the cycle of development. In my experience, good instruction datasets need to be designed not only with RAG in mind but through (i.e., using) RAG. My standard protocol for RAG-based fine-tuning goes like this:
 
-* Generate queries based on indexed texts. This is a basic and universal approach when using synthetic data for fine-tuning: for a given text, invent a question it would answer. I recommend prompting the model to create questions “vague” enough to yield other valid answers (i.e., besides the seeding text). Also, to make the queries match those sent by your users, you should include in the prompt a random selection of past queries, constraining the model so it produces realistic synthetic data - i.e., with potential imperfections (all lower case, including syntax errors, etc.).
-* Retrieve a broad selection of documents. You might even voluntarily degrade retrieval performance (e.g., use only BM25) - to make the LLM more resilient to hard negatives.
-* Generate a cohesive, comprehensive response - as a synthesis based on the question and the retrieved documents. This creative and crucial part controls the final communication output of the model. You don’t have to get it right in one pass; LoRA fine-tuning is cheap. I start with a simple RAG prompt on an existing model, and then continuously reshape and rework this output.
+* _Generate queries based on indexed texts_. This is a basic and universal approach when using synthetic data for fine-tuning: for a given text, invent a question it would answer. I recommend prompting the model to create questions “vague” enough to yield other valid answers (i.e., besides the seeding text). Also, to make the queries match those sent by your users, you should include in the prompt a random selection of past queries, constraining the model so it produces realistic synthetic data - i.e., with potential imperfections (all lower case, including syntax errors, etc.).
+* _Retrieve a broad selection of documents_. You might even voluntarily degrade retrieval performance (e.g., use only BM25) - to make the LLM more resilient to hard negatives.
+* _Generate a cohesive, comprehensive response_ - as a synthesis based on the question and the retrieved documents. This creative and crucial part controls the final communication output of the model. You don’t have to get it right in one pass; LoRA fine-tuning is cheap. I start with a simple RAG prompt on an existing model, and then continuously reshape and rework this output.
 
 A good fine-tuning dataset, though it requires a significant amoung of careful manual tweaking, does *not* require a lot of examples. Most of my projects are in the 1,000-4,000 instructions range, sufficiently large to warrant text generation, sufficiently small to still be mostly an opinionated product. The instruction dataset is in many ways a miniature version of the entire RAG communication system. It needs to approximate in format and style the future queries your users will send, the existing and future documents you will use for grounding, and the expected output. In short, you are designing a translation process and - through the instructions - providing it all the use cases where the translation went right.
 
@@ -140,17 +140,17 @@ LLMs are built for general use, rather than specifically designed for your use c
 
 Robust RAG document synthesis requires:
 
-* **Content fidelity**: the model should generally not add more than what is presented in the retrieved document (i.e., hallucinate), at least beyond some general knowledge.
-* **Dealing with uncertainty**: queries can fail either because there are no proper answers in the RAG dataset, or because retrieval fails. A good model will anticipate this, and as a fallback acknowledge that it can't find a suitable answer.
-* **Tracking the information**: RAG-dedicated models have increasing support for providing citation and references for each statement they retrieve from a source. (This approach was probably introduced by Perplexity.)
-* **Setting the stage for verifiability**: further, references can be linked to specific quotations excerpted from the sources they were retrieved from, potentially improving accuracy and making it easier for users to navigate to original sources - for less cumbersome fact-checking.
+* _Content fidelity_: the model should generally not add more than what is presented in the retrieved document (i.e., hallucinate), at least beyond some general knowledge.
+* _Dealing with uncertainty_: queries can fail either because there are no proper answers in the RAG dataset, or because retrieval fails. A good model will anticipate this, and as a fallback acknowledge that it can't find a suitable answer.
+* _Tracking the information_: RAG-dedicated models have increasing support for providing citation and references for each statement they retrieve from a source. (This approach was probably introduced by Perplexity.)
+* _Setting the stage for verifiability_: further, references can be linked to specific quotations excerpted from the sources they were retrieved from, potentially improving accuracy and making it easier for users to navigate to original sources - for less cumbersome fact-checking.
 
 Our RAG projects at PleIAs were conceived in the context of severe constraints on verifiability (public sector, large legacy privacy companies). We took inspiration from Wikipedia, who faced similar constraints: because texts can't be attributed to individual authors who take responsibility for their publication and trustworthiness, accuracy stems mostly from verifiability - associating individual statements with exact passages in secondary sources. While frontier LLMs can achieve high quality performance without fine-tuning (and this was actually [our first approach](https://huggingface.co/AgentPublic/guillaumetell-7b)), we have opted for a RAG fine-tuning approach to avoid the **limitations of frontier LLMs**:
 
-* **Prompts won't work systematically**. While generating instruction datasets for RAG, I’ve had to discard 5-10% of the generated output, which, added to other stresses on your RAG system (retrieval failure, imprecise query), is non-trivial.
-* **Prompts can saturate**, especially if, on top of asking for an advanced verifiability check, you make style recommendations (see section 4.3 below).
-* **Prompts are vulnerable to injection and security issues** - e.g., a help support system that turns out to be a thin wrapper of ChatGPT.
-* **Assessing model robustness is tricky**. Standard benchmarks don't accurately reflect the performance of specialized models retrained for a special task, and instead register a general performance loss.
+* Prompts won't work systematically. While generating instruction datasets for RAG, I’ve had to discard 5-10% of the generated output, which, added to other stresses on your RAG system (retrieval failure, imprecise query), is non-trivial.
+* Prompts can saturate, especially if, on top of asking for an advanced verifiability check, you make style recommendations (see section 4.3 below).
+* Prompts are vulnerable to injection and security issues - e.g., a help support system that turns out to be a thin wrapper of ChatGPT.
+* Assessing model robustness is tricky. Standard benchmarks don't accurately reflect the performance of specialized models retrained for a special task, and instead register a general performance loss.
 
 The most straightforward way to measure accuracy is comparing the model output with the original documents. This works best when you're simply checking a system you've set up for attributing specific statements to their respective documents using generated references. You can use LLM-as-a-judge, or, if you provide actual quotes, a direct comparison with the original text (i.e., via a “text alignment” algorithm).
 
@@ -183,6 +183,7 @@ We're in the early stages of a *new generation of LLMs and SLMs made for RAG and
 With improving ROI on customization (increasingly the domain not of behemoth AI but rather mid-size organizations with advanced data expertise), and diminishing returns on gigantic, panacea models, RAG comm systems designed with more attention to production imperatives may well come to eclipse LLMs in importance.
 
 ## Contributors
-[Pierre-Carl Langlais, author](https://www.linkedin.com/in/pierre-carl-langlais-b0105b10/)
-[Mór Kapronczay, editor](https://www.linkedin.com/in/m%C3%B3r-kapronczay-49447692/)
-[Robert Turner, editor](https://www.linkedin.com/in/robertdhayanturner)
+
+* [Pierre-Carl Langlais, author](https://www.linkedin.com/in/pierre-carl-langlais-b0105b10/) 
+* [Mór Kapronczay, editor](https://www.linkedin.com/in/m%C3%B3r-kapronczay-49447692/) 
+* [Robert Turner, editor](https://www.linkedin.com/in/robertdhayanturner)
