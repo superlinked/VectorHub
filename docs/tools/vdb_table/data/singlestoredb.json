@@ -5,7 +5,7 @@
     "github": "https://github.com/singlestore-labs",
     "website": "https://www.singlestore.com/",
     "vendor_discussion": "",
-    "poc_github": "",
+    "poc_github": "apeng-singlestore",
     "slug": "singlestoredb"
   },
   "oss": {
@@ -15,7 +15,7 @@
   },
   "license": {
     "value": "Proprietary",
-    "source_url": "",
+    "source_url": "https://www.singlestore.com/assets/contracts/singlestore-main-services-agreeement.pdf",
     "comment": ""
   },
   "dev_languages": {
@@ -29,7 +29,7 @@
   "vector_launch_year": 2017,
   "metadata_filter": {
     "support": "full",
-    "source_url": "https://docs.singlestore.com/cloud/developer-resources/functional-extensions/working-with-vector-data/",
+    "source_url": "https://www.singlestore.com/blog/image-recognition-at-the-speed-of-memory-bandwidth/",
     "comment": ""
   },
   "hybrid_search": {
@@ -39,8 +39,8 @@
   },
   "facets": {
     "support": "full",
-    "source_url": "",
-    "comment": "Supported through SQL aggregations"
+    "source_url": "https://docs.singlestore.com/cloud/reference/sql-reference/aggregate-functions/",
+    "comment": ""
   },
   "geo_search": {
     "support": "full",
@@ -50,7 +50,7 @@
   "multi_vec": {
     "support": "full",
     "source_url": "",
-    "comment": "Multiple vector columns can be created and queried"
+    "comment": "Multiple input vectors can be compared"
   },
   "sparse_vectors": {
     "support": "none",
@@ -119,12 +119,12 @@
   },
   "multi_tenancy": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://www.singlestore.com/blog/multitenancy-in-singlestoredb/",
     "comment": ""
   },
   "disk_index": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://docs.singlestore.com/cloud/reference/sql-reference/vector-functions/vector-indexing/#searching-a-vector-index",
     "comment": ""
   },
   "ephemeral": {
@@ -138,24 +138,27 @@
     "comment": ""
   },
   "doc_size": {
-    "bytes": null,
+    "bytes": 0,
     "unlimited": true,
     "source_url": "",
     "comment": ""
   },
   "vector_dims": {
-    "value": 10000,
-    "unlimited": false,
+    "value": 0,
+    "unlimited": true,
     "source_url": "",
     "comment": ""
   },
   "index_types": {
     "value": [
-      "DOT_PRODUCT",
-      "EUCLIDEAN",
-      "COSINE"
+      "FLAT",
+      "IVF_FLAT",
+      "IVF_PQ",
+      "IVF_PQFS",
+      "HNSW_FLAT",
+      "HNSW_PQ"
     ],
-    "source_url": "https://docs.singlestore.com/cloud/developer-resources/functional-extensions/working-with-vector-data/",
+    "source_url": "https://docs.singlestore.com/cloud/reference/sql-reference/vector-functions/vector-indexing/",
     "comment": ""
   },
   "github_stars": {
@@ -165,25 +168,25 @@
     "value_90_days": null
   },
   "docker_pulls": {
-    "value": null,
-    "source_url": "",
+    "value": 0,
+    "source_url": "https://hub.docker.com/r/singlestore/cluster-in-a-box",
     "comment": "",
-    "value_90_days": null
+    "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": null,
-    "source_url": "",
+    "value": 0,
+    "source_url": "https://pypi.org/project/singlestoredb/",
     "comment": "",
     "value_90_days": null
   },
   "npm_downloads": {
-    "value": null,
-    "source_url": "",
+    "value": 0,
+    "source_url": "https://www.npmjs.com/package/@singlestore/http-client",
     "comment": "",
     "value_90_days": null
   },
   "crates_io_downloads": {
-    "value": null,
+    "value": 0,
     "source_url": "",
     "comment": "",
     "value_90_days": null
