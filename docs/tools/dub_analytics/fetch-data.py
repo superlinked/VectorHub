@@ -1,5 +1,4 @@
 import os
-import json
 import requests
 
 from tqdm.auto import tqdm
@@ -11,11 +10,12 @@ from urllib.parse import urljoin
 DUB_CO_API_TOKEN = os.getenv("DUB_CO_API_TOKEN")
 
 class DubLink:
-    def __init__(self, id, url, short_url) -> None:
+    def __init__(self, id, url, short_url, key) -> None:
         self.id = id
         self.url = url
         self.short_url = short_url
         self.count = -1
+        self.key = key
 
     def set_click_cnt(self, count) -> None:
         self.count = count
@@ -31,7 +31,8 @@ headers = {
 
 def upload_zapier_hook_data(data, zap_id) -> None:
     url = f"https://hooks.zapier.com/hooks/catch/{zap_id}/"
-    requests.post(url, json=data)
+    r = requests.post(url, json=data)
+    print(r.status_code)
 
 
 def get_shortened_url_objs() -> list:
@@ -44,12 +45,13 @@ def get_shortened_url_objs() -> list:
     req = requests.get(urljoin(BASE_URL, "links"), headers=headers)
     if req.status_code < 300:
         data = req.json()
-        for row in data:
+        for row in tqdm(data):
             url_objs.append(
                 DubLink(
                     id=row['id'],
                     url=row['url'],
-                    short_url=row['shortLink']
+                    short_url=row['shortLink'],
+                    key=row['key']
                 )
             )
     
@@ -77,14 +79,15 @@ def get_links_clicks(url_objs) -> list:
     print('Fetching click count for every URL', flush=True)
 
     today = date.today()
+    zap_data = {
+        "time": str(today)
+    }
 
     for obj in tqdm(url_objs):
         obj.set_click_cnt(get_link_click_cnt(obj.id))
-        zap_data = {
-            "time": str(today),
-            f"{obj.id}": f"{obj.count}"
-        }
-        upload_zapier_hook_data(zap_data, "5388531/2urr55c")
+        zap_data[f"{obj.key}"] = int(obj.count)
+
+    upload_zapier_hook_data(zap_data, "5388531/2urr55c")
 
 shortened_url_objs = get_shortened_url_objs()
 get_links_clicks(shortened_url_objs)

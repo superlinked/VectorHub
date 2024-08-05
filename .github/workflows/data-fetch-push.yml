@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  fetchAndUpdate:
+  fetchStars:
     runs-on: ubuntu-latest
 
     strategy:
@@ -49,3 +49,27 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.DATA_PUSH_TOKEN }}
+
+  fetchLinkAnalytics:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: [3.8]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Add dependencies
+      run: |
+        python -m pip install requests
+        python -m pip install tqdm
+
+    - name: Set dub.co API key
+      run: |
+        echo "DUB_CO_API_TOKEN=${{ secrets.DUB_CO_API_TOKEN }}" >> $GITHUB_ENV
+
+    - name: Update files after fetching data from APIs
+      run: |
+        python docs/tools/dub_analytics/fetch-data.py
