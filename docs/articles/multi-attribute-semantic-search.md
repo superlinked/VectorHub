@@ -328,15 +328,6 @@ app.query(
 )
 ```
 
-```python
-query = {
-  'name': 'Harmonic Coral',
-  'look': 'Branching, musical instrument-like structure with vibrating tendrils',
-  'habitat': 'Shallow seas and tidal pools',
-  'behavior': 'Creates complex melodies to communicate and influence emotions'
-}
-```
-
 | id                  |    score | look                                                                 | habitat                                  | behavior                                                       |
 |:--------------------|---------:|:---------------------------------------------------------------------|:-----------------------------------------|:---------------------------------------------------------------|
 | Harmonic Coral      | 1        | Branching, musical instrument-like structure with vibrating tendrils | Shallow seas and tidal pools             | Creates complex melodies to communicate and influence emotions |
