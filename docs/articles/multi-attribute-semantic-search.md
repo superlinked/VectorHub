@@ -390,8 +390,6 @@ weights = {
 | Thornvine Elemental | 0.252593 | Plant-like creature with a body of twisted vines and thorns          | Overgrown ruins and dense jungles  | Rapidly grows and controls surrounding plant life              |
 | Plasma Serpent      | 0.243241 | Snake-like creature made of crackling energy                         | Electrical storms and power plants | Feeds on electrical currents and can short-circuit technology  |
 
-**WARNING! Score is not 1 for the first result! It equals 1 / sqrt(3)**
-
 "Branching with vibrating tendrils", "Plant-like creature with a body of twisted vines and thorns", "Snake-like" -- for sure these descriptions share some common theme.
 
 Let's search by "habitat" and "behaviour" simultaneously:
