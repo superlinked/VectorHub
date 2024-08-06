@@ -106,25 +106,25 @@ class NaiveRetriever:
         self.ids = self.data.index.to_list()
         self.knns = {}
         for key in self.data:
-            embeddings = self.model.encode(self.data[key])
+            embeddings = self.model.encode(self.data[key].values)
             knn = NearestNeighbors(metric="cosine").fit(embeddings)
             self.knns[key] = knn
 
-    def search_key(
-        self, key: str, value: str, limit: int = LIMIT
-    ) -> pd.DataFrame:
+    def search_key(self, key: str, value: str, limit: int = LIMIT) -> pd.DataFrame:
         embedding = self.model.encode(value)
         knn = self.knns[key]
         distances, indices = knn.kneighbors(
             [embedding], n_neighbors=limit, return_distance=True
         )
         ids = [self.ids[i] for i in indices[0]]
-        
+
         similarities = (1 - distances).flatten()
         # by definition:
         # cosine distance = 1 - cosine similarity
 
-        result = pd.DataFrame({"id": ids, f"score_{key}": similarities, key: self.data[key][ids]})
+        result = pd.DataFrame(
+            {"id": ids, f"score_{key}": similarities, key: self.data[key][ids]}
+        )
         result.set_index("id", inplace=True)
 
         return result
