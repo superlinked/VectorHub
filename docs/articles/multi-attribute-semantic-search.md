@@ -56,7 +56,7 @@ Output format:
 }
 ```
 
-Let's examine a sample of our generated dataset. Note that your results may differ due to the non-deterministic nature of LLM generation. Original dataset is available [here](https://github.com/superlinked/article-multi-attribute-search).
+Let's examine a sample of our generated dataset. Note that your results may differ due to the non-deterministic nature of LLM generation.
 
 First five monsters:
 
@@ -79,6 +79,8 @@ And here are the queries:
 |  3 | crystalline   | mineral-rich areas   | energy absorption     |
 |  4 | ethereal      | atmospheric          | mind influence        |
 
+Original dataset and query examples are available [here](https://github.com/superlinked/article-multi-attribute-search).
+
 ## Retrieval
 
 Let's set up common parameters for both approaches we'll explore: the naive method and the Superlinked method.
@@ -90,7 +92,7 @@ LIMIT = 3
 MODEL_NAME = "sentence-transformers/all-mpnet-base-v2"
 ```
 
-For the complete code, including necessary imports and helper functions, please refer to the [accompanying notebook](https://github.com/superlinked/article-multi-attribute-search/blob/main/notebook.ipynb).
+For the complete code, including necessary imports and helper functions, please refer to the [accompanying notebook](https://github.com/superlinked/article-multi-attribute-search).
 
 If you're new to vector similarity search, don't worry! You can find definitions for key terms in the "Glossary" section at the end of this article.
 
