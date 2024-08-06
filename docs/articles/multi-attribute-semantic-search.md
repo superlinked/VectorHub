@@ -394,7 +394,7 @@ weights = {
 
 "Branching with vibrating tendrils", "Plant-like creature with a body of twisted vines and thorns", "Snake-like" -- for sure these descriptions share some common theme.
 
-Let's search by "habitat" and "behaviour" simultaniously:
+Let's search by "habitat" and "behaviour" simultaneously:
 
 ```python
 weights = {
