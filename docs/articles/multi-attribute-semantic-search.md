@@ -144,6 +144,9 @@ class NaiveRetriever:
         merged_results["score"] = merged_results.mean(axis=1, skipna=False)
         merged_results.sort_values("score", ascending=False, inplace=True)
         return merged_results
+
+
+naive_retriever = NaiveRetriever(df.set_index("name"))
 ```
 
 Let's take the first query from our list and search for monsters using the naive approach:
@@ -154,6 +157,8 @@ query = {
     'habitat': 'dark places',
     'behavior': 'light manipulation'
 }
+
+naive_retriever.search(query)
 ```
 
 Here are search results for each attribute:
@@ -259,13 +264,26 @@ behavior_space = TextSimilaritySpace(text=monster.behavior, model=MODEL_NAME)
 monster_index = Index([look_space, habitat_space, behavior_space])
 
 monster_query = (
-    Query(monster_index)
+    Query(
+        monster_index,
+        weights={
+            look_space: Param("look_weight"),
+            habitat_space: Param("habitat_weight"),
+            behavior_space: Param("behavior_weight"),
+        },
+    )
     .find(monster)
     .similar(look_space.text, Param("look"))
     .similar(habitat_space.text, Param("habitat"))
     .similar(behavior_space.text, Param("behavior"))
     .limit(LIMIT)
 )
+
+default_weights = {
+    "look_weight": 1.0,
+    "habitat_weight": 1.0,
+    "behavior_weight": 1.0
+}
 ```
 
 Finally, start executor and upload the data:
@@ -288,6 +306,13 @@ query = {
     'habitat': 'dark places',
     'behavior': 'light manipulation'
 }
+
+app.query(
+    monster_query,
+    limit=LIMIT,
+    **query,
+    **default_weights
+)
 ```
 
 | id               |    score | look                                                           | habitat                                             | behavior                                                      |
@@ -322,10 +347,8 @@ We can do it with `with_vector` method of the query object. Since moster's id is
 
 ```python
 app.query(
-    monster_query.with_vector(
-        monster,
-        "Harmonic Coral"
-    ),
+    monster_query.with_vector(monster, "Harmonic Coral"),
+    **default_weights,
     limit=LIMIT
 )
 ```
@@ -349,22 +372,7 @@ These common themes in habitat, behavior, and appearance explain why these monst
 
 Let's suppose that we want to give more importance to the "look" attribute.
 It's easy to do with Superlinked.
-All we need to do is to add weights to the query.
-
-```python
-monster_query_with_weights = (
-    Query(monster_index, weights={
-        look_space: Param("look_weight"),
-        habitat_space: Param("habitat_weight"),
-        behavior_space: Param("behavior_weight")
-    })
-    .find(monster)
-    .similar(look_space.text, Param("look"))
-    .similar(habitat_space.text, Param("habitat"))
-    .similar(behavior_space.text, Param("behavior"))
-    .limit(LIMIT)
-)
-```
+All we need to do is to adjust weights in the query.
 
 Let's again search for similar monsters to the "Harmonic Coral", but this time use weights for the attributes.
 First of all, let's find monsters with the most close appearance:
@@ -375,6 +383,12 @@ weights = {
     "habitat_weight": 0,
     "behavior_weight": 0
 }
+
+app.query(
+    monster_query.with_vector(monster, "Harmonic Coral"),
+    limit=LIMIT,
+    **weights
+)
 ```
 
 | id                  |    score | look                                                                 | habitat                            | behavior                                                       |
