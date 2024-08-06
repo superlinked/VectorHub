@@ -226,11 +226,12 @@ Let's try it with 6 monsters for each attribute instead of 3.
 
 In total, we retrieved 13 monsters (that is more than half of our tiny dataset!) and still have the same issue: no monster was retrieved for all three attributes simultaneously.
 We could try to increase the number of monsters further, but it would result in the following shortcomings:
-1. While not a problem for our toy task, in production it will result in noticeably longer search time.
+1. While not a problem for our toy task, in production it will result in noticeably longer search time. And generally, multiple KNN searches take more time than a single one with concatenated vectors ([redis benchmark](https://redis.io/blog/benchmarking-results-for-vector-databases/)).
 2. With more attributes, the number of monsters to retrieve for every attribute will grow exponentially.
 3. And there is still no guarantee that this will result in retrieval of monsters that satisfy all criteria at once.
+4. Even if we somehow manage to retrieve monsters that satisfy all criteria at once, we would still need to perform reconciliation of results that would result in additional overhead in a production system.
 
-This example is enough to show that the naive approach is not suitable for our task.
+This example is enough to show that the naive approach is not suitable for our task. 
 
 ### Superlinked approach
 
@@ -314,6 +315,18 @@ query = {
 Great!
 Maybe we would like to find monsters from the dataset similar to the existing one?
 Let's try it with the "Harmonic Coral" (very last row in our dataset).
+We could extract attributes for this monsters and create query parameters manually, but Superlinked provides better way to query records similar to already stored ones.
+We can do it with `with_vector` method of the query object. Since moster's id is its name, we can express our request as simple as this:
+
+```python
+app.query(
+    monster_query.with_vector(
+        monster,
+        "Harmonic Coral"
+    ),
+    limit=LIMIT
+)
+```
 
 ```python
 query = {
