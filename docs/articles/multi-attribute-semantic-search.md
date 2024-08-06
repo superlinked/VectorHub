@@ -15,7 +15,7 @@ By understanding these methods, you'll gain insights into creating more powerful
 
 Let's bring our example to life with an exciting scenario!
 
-Imagine it's game night, and you're the Dungeon Master for an epic Dungeons & Dragons adventure. Your friends are gathered around, eager to embark on their quest. As the storyteller, you're responsible for crafting thrilling encounters that challenge and excite your players.
+Imagine it's game night, and you're the Dungeon Master for an epic Dungeons & Dragons adventure. For those unfamiliar, Dungeons & Dragons (D&D) is a popular tabletop role-playing game where players create characters and embark on imaginary quests guided by a storyteller, known as the Dungeon Master. Your friends are gathered around, eager to start a new quest. As the Dungeon Master, you're responsible for crafting thrilling encounters that challenge and excite your players.
 
 Your trusty Monster Manual contains thousands of creatures, but finding the perfect monster for each situation can be overwhelming. The ideal foe needs to match the setting, difficulty, and narrative of the moment – all while surprising and delighting your players.
 
