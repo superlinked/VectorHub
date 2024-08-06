@@ -432,7 +432,7 @@ Such set of weights means that we want to find monsters that have similar behavi
 
 Two retrievel monsters (Luminoth and Zephyr Dancer) are indeed similar to the Harmonic Coral in terms of behaviour, but live in different habitats.
 In terms of look, there is little similarity between Harmonic Coral and Luminoth since antenna could look like tendrils, but it's not the same for sure.
-Anyway, this attribute was the least important for us, so it's okay.
+Anyway, this attribute was half-important for us, so we can compensate here.
 
 ## Conclusion
 
