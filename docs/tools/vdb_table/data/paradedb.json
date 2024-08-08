@@ -1,0 +1,190 @@
+{
+  "name": "ParadeDB",
+  "links": {
+    "docs": "https://docs.paradedb.com",
+    "github": "https://github.com/paradedb/paradedb",
+    "website": "https://paradedb.com",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/401",
+    "poc_github": "https://github.com/philippemnoel",
+    "slug": "paradedb"
+  },
+  "oss": {
+    "support": "full",
+    "source_url": "https://github.com/paradedb/paradedb",
+    "comment": ""
+  },
+  "license": {
+    "value": "AGPL-3.0 Licence",
+    "source_url": "https://github.com/paradedb/paradedb/blob/dev/LICENSE",
+    "comment": ""
+  },
+  "dev_languages": {
+    "value": [
+      "rust"
+    ],
+    "source_url": "https://github.com/paradedb/paradedb",
+    "comment": ""
+  },
+  "vector_launch_year": 2023,
+  "metadata_filter": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "hybrid_search": {
+    "support": "full",
+    "source_url": "https://docs.paradedb.com/search/hybrid/basic",
+    "comment": ""
+  },
+  "facets": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "geo_search": {
+    "support": "full",
+    "source_url": "https://github.com/orgs/paradedb/discussions/1110",
+    "comment": "Available via the PostGIS extension"
+  },
+  "multi_vec": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "sparse_vectors": {
+    "support": "full",
+    "source_url": "https://docs.paradedb.com/search/sparse/overview",
+    "comment": ""
+  },
+  "bm25": {
+    "support": "full",
+    "source_url": "https://docs.paradedb.com/search/full-text/overview",
+    "comment": ""
+  },
+  "full_text": {
+    "support": "full",
+    "source_url": "https://docs.paradedb.com/search/full-text/overview",
+    "comment": ""
+  },
+  "embeddings_text": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_image": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_structured": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "rag": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "recsys": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "langchain": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "llamaindex": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "pricing": {
+    "value": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "in_process": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_tenancy": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "disk_index": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "ephemeral": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "sharding": {
+    "support": "none",
+    "source_url": "",
+    "comment": "While ParadeDB does not provide this natively (yet), you can get this either from PostgreSQL functionality like \"postgres_fdw\" or from extensions. You can also choose to subdivide your index through partitioning."
+  },
+  "doc_size": {
+    "bytes": 0,
+    "unlimited": false,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 2000,
+    "unlimited": false,
+    "source_url": "https://docs.paradedb.com/search/dense/index",
+    "comment": ""
+  },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "IVF",
+      "HNSW"
+    ],
+    "source_url": "https://github.com/pgvector/pgvector#indexing",
+    "comment": ""
+  },
+  "github_stars": {
+    "value": 5026,
+    "source_url": "https://github.com/paradedb/paradedb",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "docker_pulls": {
+    "value": 36292,
+    "source_url": "https://hub.docker.com/r/paradedb/paradedb",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "pypi_downloads": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "npm_downloads": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "crates_io_downloads": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
+  }
+}
