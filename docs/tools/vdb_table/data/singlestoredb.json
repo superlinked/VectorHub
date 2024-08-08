@@ -48,9 +48,9 @@
     "comment": ""
   },
   "multi_vec": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
-    "comment": "Multiple input vectors can be compared"
+    "comment": ""
   },
   "sparse_vectors": {
     "support": "none",
