@@ -4,15 +4,17 @@ This article takes you through the basics of implementating vector indexing in P
 
 ## Why you need vector indexes
 
-Running AI applications depends on vectors, often called [embeddings](https://superlinked.com/vectorhub/building-blocks/vector-compute/embedding-models) - dense data representations, generated via complex mathematical operations to capture key attributes of source information. When a user submits a query, it's also embedded in the vector database, and vectors that are close to it are deemed relevant (i.e., similar), and returned. It's possible to query these vectors *without* a vector index, but that would be a very inefficient, brute-force process, checking every single vector in the database to see if they match the query vector, one by one. Which, if the database is large, takes a long time. Vector indexing, using specialized algorithms that understand the data and create groups of matching elements, speeds up our similarity searches.
+Running AI applications depends on vectors, often called [embeddings](https://superlinked.com/vectorhub/building-blocks/vector-compute/embedding-models) - dense data representations, generated via complex mathematical operations to capture key attributes of source information. When a user submits a query, it's also embedded in the vector database, and vectors that are close to it are deemed relevant (i.e., similar), and returned. It's possible to brute-force query these vectors *without* a vector index - i.e., checking every single vector in the database to see if they match the query vector, one by one. But if the database is large, this inefficient process takes too long. 
 
-Similarity searches use algorithms to calculate vector closeness using metrics like Euclidean or Jacobian distance. For small datasets, where accuracy is more important than efficiency, you can use K-Nearest Neighbors to pinpoint exactly the closest near neighbors to your query. But as datasets become larger, and your AI application requires efficiency, it's better to use [Approximate Nearest Neighbour](https://superlinked.com/vectorhub/building-blocks/vector-search/nearest-neighbor-algorithms) (ANN), which returns results that are accurate enough very quickly.
+Vector indexing, by creating groups of matching elements, speeds up similarity search - which calculate vector closeness using metrics like Euclidean or Jacobian distance. (In small datasets where accuracy is more important than efficiency, you can use K-Nearest Neighbors to pinpoint your query's closest near neighbors. As datasets get bigger and efficiency becomes an issue, an [Approximate Nearest Neighbour](https://superlinked.com/vectorhub/building-blocks/vector-search/nearest-neighbor-algorithms) (ANN) approach will *very quickly* return accurate-enough results.)
 
-Vector indexing is crucial in Retrieval-Augmented Generation (RAG), which improves LLMs' ability to sift through extensive data and efficiently find relevant vectors. Say a user queries an LLM about the "benefits of apples". Because the attritbutes of apples are stored in embeddings and indexed inside the vector database, the LLM can recognize an apple as a "fruit", and retrieve more general information about fruits - including, for example, bananas and oranges - to construct a more information-rich response.
+Vector indexes are crucial to efficient, relevant, and accurate search in various common applications, including Retrieval Augmented Generation ([RAG](https://superlinked.com/vectorhub/articles/advanced-retrieval-augmented-generation)), [semantic search in image databases](https://superlinked.com/vectorhub/articles/retrieval-from-image-text-modalities) (e.g., in smartphones), large text documents, advanced e-commerce websites, and so on.
+
+But not all vector indexes are the same.
+
+Let's take a look at some of the most commonly used types of vector indexing, and when it makes sense to use them. After that, we'll walk through how to index and query your data using flat indexing and a more efficient method - inverted file indexing (IVF).
 
 ## Types of indexing
-
-Not all vector indexes are the same. Let's take a look at some of the most commonly used ones, and when it makes sense to use them.
 
 ### Flat indexing
 
@@ -55,10 +57,10 @@ Inverted File Scalar Quantization uses a simpler algorithm than IVF_PQ.
 
 Suppose we have a vector, x=[1.2,3.5,−0.7,2.1]. It has 4 dimensions, so we'll define 4 quantization bins:
 
-* Bin 0: [−1.0,0.0)[-1.0,0.0)[−1.0,0.0)
-* Bin 1: [0.0,1.0)[0.0,1.0)[0.0,1.0)
-* Bin 2: [1.0,2.0)[1.0,2.0)[1.0,2.0)
-* Bin 3: [2.0,4.0)[2.0,4.0)[2.0,4.0)
+* Bin 0: [−1.0,0.0)
+* Bin 1: [0.0,1.0)
+* Bin 2: [1.0,2.0)
+* Bin 3: [2.0,4.0)
 
 Each vector element will be distributed into a bin as follows:
 
@@ -77,60 +79,38 @@ Most ANN algorithms - including those above - are designed for in-memory computa
 
 By using a SSD to store and search its graph index, DiskANN can be cost-effective, scalable, and efficient.
 
-### Scalable Progressive Approximate Nearest Neighbor Search (SPANN)
+### SPTAG-based Approximate Nearest Neighbor Search (SPANN)
 
-[SPANN](https://openreview.net/forum?id=-1rrzmJCp4) can handle even larger datasets than DiskANN with high accuracy and low latency by taking a hybrid indexing approach that leverages both in-memory and disk-based storage. SPANN stores centroid points of posting lists in memory, and stores the posting lists (corresponding to clusters of similar vectors) themselves in the disk. SPANN can then very quickly - without accessing the disk - identify which clusters are relevant to a query.
+[SPANN](https://openreview.net/forum?id=-1rrzmJCp4), by taking a hybrid indexing approach that leverages both in-memory and disk-based storage, can handle even larger datasets than DiskANN with high accuracy and low latency. SPANN stores centroid points of posting lists in memory, and stores the posting lists (corresponding to clusters of similar vectors) themselves in the disk. This enables SPANN to very quickly - without accessing the disk - identify which clusters are relevant to a query.
 
-To mitigate potential bottlenecks in disk read-write operations, SPANN builds its indexes using a hierarchical balanced clustering algorithm that ensures that posting lists are roughly the same length, and augments the posting list by including inside a cluster data points that are on the edges of that cluster. 
+To mitigate potential bottlenecks in disk read-write operations, SPANN builds its indexes using a hierarchical balanced clustering algorithm that ensures that posting lists are roughly the same length (no single post is so large or small that it diminishes disk-access efficiency), and augments the posting list by including a cluster's edge (i.e., potentially relevant) data points inside that cluster.
 
-improving recall by ensuring that the posting lists are more comprehensive and include points that are relevant but might be on the edge of the clusters.
+SPANN also employs dynamic pruning in the search process to reduce accessing of unnecessary posting lists - first identifying top k closest clusters based on distance between the centroids and the query, then calculating a relevance score (to the query) of corresponding posting lists, and retrieving only the most relevant data points.
 
-
-...
-to ensure that posting lists are balanced in size. They also implement dynamic pruning to select clusters that match data points smartly. It first selects the top k closest clusters based on the distance between the centroids and the query. From the selected vectors, a relevance score between the posting lists and the query is calculated to filter the search further and only retrieve the most relevant data points.
-...
-------
- "balance the length of posting lists and augment the posting list by adding the points in the closure of the corresponding clusters. In the search stage, we use a query-aware scheme to dynamically prune the access of unnecessary posting lists."
-
-
-Taking this hybrid approach, in addition to scaling horizontally (by adding more machines), SPANN can achieve high performance levels while handling larger scale datasets than DiskANN.
-
-------
+Taking this hybrid approach, in addition to scaling horizontally (by adding more machines), SPANN can achieve high performance levels while handling much larger datasets than DiskANN.
 
 ### Hierarchical Navigable Small Worlds (HNSW)
 
-HNSW is a complicated but one of the most popular and efficient techniques for vector indexing. It combines proximity graphs and skip lists to divide the vector search space into layers. The lowest layer of the graph represents every vector as a vertex. All the vertices are connected based on their distance. Vertices are also connected across different layers depending on the position of other vectors in that layer. As we move up the multi-layer graph, the data points are grouped together, leaving fewer vertices at each level (similar to a skip list).
+HNSW, a complex but popular, efficient vector indexing technique, builds layers of hierarchical proximity graphs structure like skip-lists, the lowest level with the highest granularity (every vector is a vertex), enabling precise, accurate navigation across short-range connections, and each higher layer vertex grouping (and connecting to) more and more lower level data points together (representing longer and longer connections between vertices). HNSW queries are rapidly ANN-matched to closest vectors in the highest layer, then again with slightly more accuracy in the next layer, and so on until search results are surfaced with the greatest accuracy from the lowest layer. 
 
-During the search, the query vector is placed on the highest layer, which is matched with the closest vector using an ANN algorithm. We then move to the next layer based on the earlier selected closest neighbor and repeat the same process. This is continued until the final layer is reached.
-
-## Vector indexes in practical use cases
-
-The similarity-matching capabilities of vector databases are used in various interesting applications. Some of these include:
-
-* **Retrieval Augmented Generation (RAG)**: [RAG](https://superlinked.com/vectorhub/articles/advanced-retrieval-augmented-generation) uses vector indexing techniques to query relevant documents from an external database. These allow the LLM to construct a well-thought-out, accurate, and informative response for the user.
-
-* **Image search using text queries**: Vector indexing powers [semantic search in image databases](https://superlinked.com/vectorhub/articles/retrieval-from-image-text-modalities) such as those in modern smartphones. This allows the user to input text queries and return images described by natural language.
-
-* **Searching through large text documents**: Conventional algorithms can be inefficient in searching large corpora. Vector indexes quickly sift through the text and retrieve exact and similar matching documents. This is helpful as text queries can be tricky sometimes. For example, if a user searches for ‘movies related to time travel’, the terms `movie` and `time travel` will help reach all relevant information in the text, even if the exact terms are not present.
-
-* **Advanced search on e-commerce websites**: E-commerce stores can employ vector indexing to improve user experience. Users can describe the product they want and the search algorithm can present all matching results. moreover, if a specific product is not available, the ANN algorithm can help retrieve similar items to keep the user intrigued.
+[insert vector indexing comparison table?]
 
 ## Basic Implementation of Vector Indexing using ANN
 
-In this section, we will implement vector indexing in Python to understand how vectors are stored and retrieved using the Approximate Nearest Neighbour approach. We will first implement flat indexing (Brute force) and then use clustering to implement Inverted File indexing and reduce retrieval time.
+Let's get a practical understanding of vector storage and retrieval using ANN by doing a basic implementation of vector indexing. First, we'll set up flat indexing (brute force), and then use clustering to optimize Inverted File indexing and reduce retrieval time.
 
 ### Flat Indexing
 
-This implementation will use the basic Pandas and Numpy libraries, so no additional installation is required. Let's import the required libraries.
+First we simply import basic Pandas and Numpy libraries.
 
 ```python
 import numpy as np
 import pandas as pd
 ```
 
-#### Creating Data Vectors
+**Creating Data Vectors**
 
-For this tutorial, we will generate dummy random vectors and use them as data points in our algorithm.
+Next, we generate random dummy vectors as data points to run our algorithm on. Our data points above could represent text, images, or any other encoded data form.
 
 ```python
 # Generate 10 random 3D vectors
@@ -154,9 +134,9 @@ Vector 9: [0.67403853 0.23895253 0.87895722]
 Vector 10: [0.8207672  0.21424442 0.20621931]
 ```
 
-#### Distance Calculation
+**Distance Calculation**
 
-Now we need a function to calculate the distance between the different vectors. We will implement the Euclidean Distance to approximate the relation between the vectors.
+Now we need a function to calculate the distance between our different vectors. We'll use Euclidean Distance to approximate it.
 
 ```python
 def calculate_euclidean_distance(point1, point2):
@@ -165,13 +145,15 @@ def calculate_euclidean_distance(point1, point2):
     return np.sqrt(sum((point1 - point2)**2))
 ```
 
-#### Vector Querying
+**Vector Querying**
 
-We now have everything in place to query the data store. We will now use a test data point and retrieve the top-k closest matches. The algorithm will:
+At this point, we have everything in place to query the data store. We'll retrieve the top-k closest matches for a test data point. Our algorithm will:
 
-1. Generate a random test point.
-2. Calculate the distances between the test point and all vectors in the data store (This is the brute force approach).
-3. Retreive the top k vectors closest to the test point.
+1. generate a random test point
+2. calculate distances between the test point and all vectors in the data store
+3. retrieve the top k vectors closest to the test point
+
+Our index is created in steps 2 and 3 (above).
 
 ```python
 # generate a random test vector
@@ -179,11 +161,13 @@ test_point = np.random.rand(1, 3)[0]
 print("Test Vector:", test_point)
 ```
 
+Here's our random test point:
+
 ```plaintext
 Test Vector: [0.98897054 0.03674464 0.59036213]
 ```
 
-The following loop will calculate the euclidean distance between the provided points.
+The following loop calculates the Euclidean distance between our `test_point` and each vector in `random_vectors`.
 
 ```python
 distances = []
@@ -214,7 +198,7 @@ Vector 9: 0.20437726721718957
 Vector 10: 0.801081734496685
 ```
 
-A quick glance shows that vector 3, 9, and 7 are the top 3 closest matches. Let's write the function to automatically retreive these.
+We can see that vectors 3, 9, and 7 (above) are the top three closest matches. Let's write a function to retreive these matches automatically:
 
 ```python
 # get top k vectors
@@ -241,49 +225,50 @@ top_matching_vectors = get_top_k(random_vectors, distances, 3)
 top_matching_vectors
 ```
 
+Here are our results:
+
 ```bash
 [array([0.47052236, 0.1559688 , 0.87332513]),
  array([0.67403853, 0.23895253, 0.87895722]),
  array([0.34715575, 0.41244063, 0.72056698])]
 ```
 
-The above data points can represent text, images, or any other encoded data form. This way, flat indexing can be used to implement similarity search.
+That's flat indexing in a similarity search. 
+But can we improve the efficiency of our process with a different kind of indexing?
 
 ### IVF
 
-Now we will see how we can improve the efficiency of search by clustering the vector data points. We will use the K-means clustering algorithm to create segements of the vector database and reduce the search space at runtime.
+We can improve search efficiency - reduce the search space at runtime - if we cluster our vector data points using a K-means algorithm. Let's go through this step by step.
 
-We will first need to import the Kmeans implementation from SkLearn.
+First, we import SkLearn's Kmeans implementation.
 
 ```python
 from sklearn.cluster import KMeans
 ```
 
-We will also increase the data store size just to make things interesting. Let's generate 100 random vectors this time.
+We'll also increase the data store size to 100 random vectors - to see how our algorithm performs on more datapoints.
 
 ```python
 # generate large number of data points
 data_points  = np.random.rand(100, 3)
 ```
 
-#### K-means Implementation
+**K-means Implementation**
 
-Now, we initialize the Kmeans algorithm.
+Now, we initialize the KMeans algorithm.
 
 ```python
 kmeans = KMeans(init="k-means++",n_clusters=3,n_init=10,max_iter=300,random_state=42)
 ```
 
-By default, here, we select the data to be seperated into 3 clusters. However, using algorithms like the elbow method to determine the optimal clusters is better. Let's create clusters using our initialized method.
+Note that it's better (and common) to use a heuristic algorithm (e.g., the elbow method) to determine optimal clusters. To keep things simple, we'll just use our initialized method to separate the data into 3 clusters. Clustering *can* increase time complexity for large databases. But it's a one-time operation, and will improve query times later.
 
 ```python
 # Fit k-means on our data points
 kmeans.fit(data_points)
 ```
 
-It is important to note that clustering can increase time complexity for large databases, but it is a one-time operation and will improve query times later.
-
-Let's store the cluster centroids and label data points according to the clusters.
+We've fitted the k-means algorithm to our data points. Next, we'll store the cluster centroids and label each data point according to its assigned cluster.
 
 ```python
 # store centroids and data point associations
@@ -296,6 +281,8 @@ for i, l in enumerate(kmeans.labels_):
     data_point_clusters[l].append(data_points[i])
 ```
 
+Let's display our output.
+
 ```python
 centroids
 ```
@@ -306,13 +293,14 @@ centroids
  2: array([0.23936467, 0.73028761, 0.3946528 ])}
 ```
 
-#### Vector Querying
+**Vector Querying**
 
-Now, we need to query a test vector. The algorithm will
-1. Generate a random test point.
-2. Calculate the closest cluster to the test point using the centroid vectors.
-3. Calculate the Euclidean distances with vectors in the closest cluster only.
-4. Retreive the closest vectors from the calculated distances.
+It's time to query a test vector. Our algorithm will:
+
+1. generate a random test point
+2. calculate which cluster's centroid is closest to the test point
+3. calculate Euclidean distances between the test point all vectors in the closest cluster only
+4. retrieve the closest vectors
 
 ```python
 # Generate a test point
@@ -324,7 +312,7 @@ test_point
 array([0.19125138, 0.01180168, 0.65204789])
 ```
 
-We need to implement functions that will calculate the closest matching cluster and retrieve the Top-k matching vectors.
+Next, we implement a function that calculates the closest matching cluster, and another that retrieves the Top-k matching vectors:
 
 ```python
 def get_closest_centroid(test_point, centroids):
@@ -371,7 +359,7 @@ def get_top_k_from_macthing_cluster(data_point_clusters, closest_cluster, test_p
     return top_matches
 ```
 
-Now, we just need to pass our test point to the above functions.
+Now, we just need to pass our test point to the `get_closest_centroid` and `get_top_k_from_macthing_cluster` functions above.
 
 ```python
 # get the closest cluster
@@ -389,15 +377,11 @@ Test Point:  [0.19125138 0.01180168 0.65204789]
 Closest Matches:  [array([0.1338926 , 0.04131207, 0.66420534]), array([0.09719324, 0.01207222, 0.80169845]), array([0.30091393, 0.14300888, 0.82777153])]
 ```
 
-Since the algorithm only queries the matching cluster, it significantly reduces the search complexity. Instead of performing 100 computations (The size of the database), it only has to look through the cluster space. 
+ Whereas our flat indexing algorithm had to perform 100 computations (the size of the database) to run a query, the IVF algorithm only queries the matching cluster space, significantly reducing the search complexity.
 
 ## Conclusion
 
-Vector indexing is a powerful technique for optimizing the retrieval of vectorized information. Various indexing techniques use clustering algorithms to group similar information and reduce the search space for efficient data search.
-
-Moreover, the technique also allows the approximate nearest neighbor search (ANN) to retrieve similar matching indexes. This allows users to retrieve matching information if an exact match is not found. It also enables an information-rich response as it can gather additional data from matching vectors.
-
-Vector indexes empower some critical modern-day applications. Perhaps the most important one has been RAG, which allows LLMs to access additional information from an external vector store. The ANN search allows an LLM to retrieve all relevant information about a query and formulate an accurate response. Other benefits of vector indexes are found in search applications such as image search and eCommerce platforms.
+Our walkthrough of two vector indexing techniques illustrates how indexing optimizes retrieval, and dramatically improves efficiency of ANN (Approximate Nearest Neighbor search), powering AI applications like RAG, large database semantic search, and e-commerce. Moreover, indexing techniques (like inverted file indexing (IVF), DiskANN, and SPANN) can handle larger datasets by employing clustering algorithms to group similar information, reducing the search space, and improving search efficiency over flat indexing, while achieving high accuracy and recall.
 
 ## Contributors
 
