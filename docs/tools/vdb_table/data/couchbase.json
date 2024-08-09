@@ -57,6 +57,26 @@
     "source_url": "https://docs.couchbase.com/c-sdk/current/concept-docs/full-text-search-overview.html",
     "comment": ""
   },
+  "embeddings_text": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_image": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_structured": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "rag": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
   "langchain": {
     "support": "full",
     "source_url": "https://python.langchain.com/v0.1/docs/integrations/vectorstores/couchbase/",
@@ -85,6 +105,11 @@
   "disk_index": {
     "support": "full",
     "source_url": "https://docs.couchbase.com/server/current/learn/services-and-indexes/indexes/storage-modes.html#standard-index-storage",
+    "comment": ""
+  },
+  "ephemeral": {
+    "support": "none",
+    "source_url": "",
     "comment": ""
   },
   "sharding": {
