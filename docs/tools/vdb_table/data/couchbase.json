@@ -84,7 +84,7 @@
   },
   "llamaindex": {
     "support": "full",
-    "source_url": "https://docs.llamaindex.ai/en/stable/api_reference/readers/couchbase/",
+    "source_url": "https://docs.llamaindex.ai/en/stable/api_reference/storage/vector_store/couchbase/",
     "comment": ""
   },
   "managed_cloud": {
@@ -124,10 +124,10 @@
     "comment": ""
   },
   "vector_dims": {
-    "value": 2048,
+    "value": 4096,
     "unlimited": false,
     "source_url": "https://docs.couchbase.com/server/current/vector-search/create-vector-search-index-ui.html#procedure",
-    "comment": "Increasing to 4096 in pending 7.6.2 release"
+    "comment": ""
   },
   "int8_quantization": {
     "support": "partial",
