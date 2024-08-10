@@ -107,7 +107,7 @@ e.g. [Feed Recommendation Illustration, Arunesh Singh, 2023, superlinked.com.](h
 Source citations go underneath visual elements.
 e.g.
 
-![Figure 1. Conceptual illustration of our approach](assets/misc/Figure1-Conceptual_illustration_of_our_approach.png)
+![Figure 1. Conceptual illustration of our approach](../assets/misc/Figure1-Conceptual_illustration_of_our_approach.png)
 
 [Graph embeddings for movie visualization and recommendation.
 Figure 1. Conceptual illustration. M. Vlachos, 2012, ResearchGate.](https://www.researchgate.net/publication/290580162_Graph_embeddings_for_movie_visualization_and_recommendation/download?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6Il9kaXJlY3QiLCJwYWdlIjoiX2RpcmVjdCJ9fQ)
