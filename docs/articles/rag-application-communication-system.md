@@ -10,23 +10,23 @@ RAG can be nothing less than a flexible, expert communication system - **a feedb
 
 First, we'll look at how RAG addresses information retrieval challenges faced by but predating LLMs. We'll discuss why production RAG is dynamic, always solving the last mile problem (including evaluation) - customizing around LLMs to close the loop between data and users. We then go into more detail on info retrieval issues as data friction problems, and how we need to take a hybrid approach - deploying the best tools even if they're not new tools. We discuss the intricacies of specializing for production data, how you need bad data, synthetic data, and classifiers for pre-training, and the ins and outs of fine-tuning for RAG in production. Let's get started.
 
-## 1. RAG - a comm system solution for few-doc learning (LLM) limitations
+## 1. RAG - a comm system solution for few-doc learning (i.e., LLM) limitations
 
-LLMs are extremely good and efficient at language transfer - rephrasing and reformulating an existing text in a new style or for a different audience. Many models trained primarily in English can be adapted successfully on downstream tasks in other languages. This capacity also extends to other linguistic aspects: formal to informal, standards to dialects, generalist to specialized terminologies.
+LLMs are extremely good and efficient at language transfer - rephrasing and reformulating an existing text in a new style, or for a different audience. Many models trained primarily in English can be adapted successfully on downstream tasks in other languages. This capacity also extends to other linguistic aspects: formal to informal, standards to dialects, generalist to specialized terminologies.
 
-But LLMs are also limited by the fact that they are few doc-learners. LLMs have largely been conceived as “interpolated datasets” (holding in memory the collective knowledge of the Internet), and they share the challenges of interpolated datasets. (Even the inaugural RAG system was still a form of interpolated dataset: a clever design associating a seq2seq model with a dense layer trained on Wikipedia ([Lewis et al., 2020](https://proceedings.neurips.cc/paper/2020/file/6b493230205f780e1bc26945df7481e5-Paper.pdf)).) Like other interpolated datasets, LLMs are trained at a point in time on a finite set of data, and this creates problems. Problems that can to some degree be mitigated by RAG systems:
+But LLMs are also limited. They are few doc-learners, largely conceived as “interpolated datasets” (holding in memory the collective knowledge of the Internet), and sharing the challenges of interpolated datasets. (Even the inaugural RAG system was still a form of interpolated dataset: a clever design associating a seq2seq model with a dense layer trained on Wikipedia ([Lewis et al., 2020](https://proceedings.neurips.cc/paper/2020/file/6b493230205f780e1bc26945df7481e5-Paper.pdf)).) LLMs (like other interpolated datasets) are trained at a point in time on a finite set of data, and this creates problems. Problems that can to some degree be mitigated by RAG systems:
 
-* *Specialization*: professional resources are often not or only lightly included in pre-training data, resulting in high hallucination rates. *RAG systems can provide coverage of these resources*.
-* *Updatability*: while LLMs are limited by their cutoff date, *RAG systems can be continuously maintained in real time*.
-* *Explainability*: LLMs are a “black box”; *RAG systems can provide transparency, tracing statements to original sources*.
+* *Specialization:* professional resources are often not (or only lightly) included in pre-training data, resulting in high hallucination rates. *RAG systems can provide coverage of these resources*.
+* *Updatability:* while LLMs are limited by their cutoff date, *RAG systems can be continuously maintained in real time*.
+* *Explainability:* LLMs are a “black box”; *RAG systems can provide transparency, tracing statements to original sources*.
 
-The default paradigm and basic conceptualization of RAG emerged almost immediately after the release of chatGPT. Simon Willison’s “[semantic search answers pattern](https://simonwillison.net/2023/Jan/13/semantic-search-answers/)” (January 2023) is one of the first systematic descriptions: search for texts in a semantic database, get the most relevant results, send this input to GPT-3 as inspiration.Following this basic strategy, RAG helps mitigate the limitations of few document learning by grounding an LLM on existing data at inference time.
+The default paradigm and basic conceptualization of RAG emerged almost immediately after the release of chatGPT. Simon Willison’s “[semantic search answers pattern](https://simonwillison.net/2023/Jan/13/semantic-search-answers/)” (January 2023) is one of the first systematic descriptions: search for texts in a semantic database, get the most relevant results, send this input to GPT-3 as inspiration. Following this basic strategy, RAG helps mitigate the limitations of few document learning by grounding an LLM on existing data at inference time.
 
 **But RAG doesn't solve LLM limitations once and for all**. *In production*:
 
-* a) there's *no one-size-fits-all RAG solution*, as people working on production RAG today soon come to realize. Good applications are increasingly a lot of flows and arrows, anticipating a wide array of edge cases. There are simply too many breaking points - e.g., bad OCR, poor indexation, suboptimal tokenization, inconsistent document segmentation, unpredictable queries, etc. - to settle on one generic approach.
-* b) *your solution to the last mile problem (indexing, retrieval, and generation) depends heavily on your use case*: This won't be easily handled by LLMs, despite major AI actors' eagerness to create innovative panacea platforms. Probably the only actual moat in finding the right fit for your use case, corpus, and specific user target is in applied generative AI - i.e., in a specifically and dynamically tailored RAG system.
-* c) *RAG evaluation is tricky*: While you can use synthetic data to do preliminary evaluations and benchmarks for selecting and swapping models, the real challenge is evaluation in production of your system's different components, taking into account their level of specialization. Though we'd like to automate everything, including evaluation, here it continues to require qualitative human involvement.
+a) there's *no one-size-fits-all RAG solution*, as people working on production RAG today soon come to realize. Good applications are increasingly a lot of flows and arrows, anticipating a wide array of edge cases. There are simply too many breaking points - e.g., bad OCR, poor indexation, suboptimal tokenization, inconsistent document segmentation, unpredictable queries, etc. - to settle on one generic approach.
+b) *your solution to the last mile problem (indexing, retrieval, and generation) depends heavily on your use case*: This won't be easily handled by LLMs, despite major AI actors' eagerness to create innovative panacea platforms. Probably the only actual moat in finding the right fit for your use case, corpus, and specific user target is in applied generative AI - i.e., in a specifically and dynamically tailored RAG system.
+c) *RAG evaluation is tricky*: While you can use synthetic data to do preliminary evaluations and benchmarks for selecting and swapping models, the real challenge is evaluation in production of your system's different components, taking into account their level of specialization. Though we'd like to automate everything, including evaluation, here it continues to require qualitative human involvement.
 
 These ongoing difficulties are at once challenges *and* opportunities for RAG applications *qua* communication systems - employing LLMs in a particular landscape of specific data and users. In a way, this has always been RAG's *raison d'etre*. As communication systems, RAG applications can perform better than even frontier LLMs alone, by taking advantage of a broad range of techniques, not all of them new, as we'll see below.
 
@@ -38,15 +38,15 @@ RAG is a new solution, and not the only one, to an issue that LLMs aimed to solv
 
 Expert systems and knowledge infrastructures have existed for decades, and dealt with the same data frictions RAG applications have to deal with today. On the data ingestion side, you still need to do additional work to fit new content to mandatory formats. On the query side, users don't act the way the search infrastructure expects.
 
-The first expert systems emerged in the 1960s, with the expectation that professionals themselves would access them seamlessly. They wildly underestimated the intermediation needed to get them working. MEDLINE, for example, was designed for medical researchers and clinicians, and NASA/RECON, for aerospace engineers and scientists. But most MEDLINE and NASA/RECON users through the 1970s were librarians and trained intermediaries, working on behalf of end users.
+Creators of the first expert systems in the 1960s expected that professionals would access them directly and seamlessly. They wildly underestimated how much intermediation would be required. Though MEDLINE, for example, was designed for medical researchers and clinicians, and NASA/RECON, for aerospace engineers and scientists, most MEDLINE and NASA/RECON users through the 1970s were librarians and trained intermediaries, working on behalf of end users.
 
-The advent of LLMs and RAG also promised a radical simplification of information retrieval - taking whatever content there is (via embedding models), and outputting (via LLMs) whatever content the user wants. Despite the fact that embeddings are natively multilingual, theoretically resilient to synonyms, variations of language standards, and document artifacts, the radical promise made by LLMs and RAG (as with previous expert systems) was not fulfilled, and on the same two fronts: understanding users, and understanding data.
+Like these early systems, the advent of LLMs and RAG promised a radical simplification of information retrieval - taking whatever content there is (via embedding models), and outputting (via LLMs) whatever the user wants. While it's true that embeddings are natively multilingual, theoretically resilient to synonyms, variations of language standards, and document artifacts, the radical promise made by LLMs and RAG was _not_ fulfilled, and on the same two fronts as the earlier systems: understanding users, and understanding data.
 
 ### 2.2 Know your users
 
-It may seem obvious that knowing what your users are doing with your system is a necessary prerequisite to designing good information retrieval. But until recently, user behavior in the context of RAG has barely been discussed.
+It may seem obvious that knowing what your users are doing with your system is a necessary prerequisite to designing good information retrieval. But until recently, user behavior in the context of RAG had barely been discussed.
 
-In general, RAG applications underestimate the inertia of user practices; users continue behaving the same way they did with older expert systems. I recently analyzed a set of internal user queries in a production chatbot, and was surpised to see that many users were not submitting questions but unstructured keywords. This practice works perfectly in a standard information retrieval system, but instruction-based LLM and embedding models are designed to be trained on question/answer pairs.
+In general, RAG applications underestimate the inertia of user practices; users continue behaving the same way they did with older expert systems. I recently analyzed a set of internal user queries in a production chatbot, and was surprised to see that many users were not submitting questions but unstructured keywords. This practice works perfectly in a standard information retrieval system, but instruction-based LLM and embedding models are designed to be trained on question/answer pairs.
 
 Inattentiion to user-design friction in LLMs and embedding models can result in poor performance, disappointed user expectations, tokenization that fails to adequately represent data structure, incongruity of input vs output lengths, and an overall lack of control over the system's purpose.
 
@@ -85,8 +85,8 @@ Generative AI within a RAG communication system shouldn't be looking to replace 
 A proper RAG communication system should treat data no longer as a passive reference stock but rather a living entity - in two ways. 
 Data should be:
 
-* a) continuously transformed and reshaped to better fit the retrieval objective, and
-* b) constantly circulated across different flows.
+a) continuously transformed and reshaped to better fit the retrieval objective, and
+b) constantly circulated across different flows.
 
 ### 3.1 You need bad data
 
@@ -140,10 +140,10 @@ LLMs are built for general use, rather than specifically designed for your use c
 
 Robust RAG document synthesis requires:
 
-* _Content fidelity_: the model should generally not add more than what is presented in the retrieved document (i.e., hallucinate), at least beyond some general knowledge.
-* _Dealing with uncertainty_: queries can fail either because there are no proper answers in the RAG dataset, or because retrieval fails. A good model will anticipate this, and as a fallback acknowledge that it can't find a suitable answer.
-* _Tracking the information_: RAG-dedicated models have increasing support for providing citation and references for each statement they retrieve from a source. (This approach was probably introduced by Perplexity.)
-* _Setting the stage for verifiability_: further, references can be linked to specific quotations excerpted from the sources they were retrieved from, potentially improving accuracy and making it easier for users to navigate to original sources - for less cumbersome fact-checking.
+* _Content fidelity:_ the model should generally not add more than what is presented in the retrieved document (i.e., hallucinate), at least beyond some general knowledge.
+* _Dealing with uncertainty:_ queries can fail either because there are no proper answers in the RAG dataset, or because retrieval fails. A good model will anticipate this, and as a fallback acknowledge that it can't find a suitable answer.
+* _Tracking the information:_ RAG-dedicated models have increasing support for providing citation and references for each statement they retrieve from a source. (This approach was probably introduced by Perplexity.)
+* _Setting the stage for verifiability:_ further, references can be linked to specific quotations excerpted from the sources they were retrieved from, potentially improving accuracy and making it easier for users to navigate to original sources - for less cumbersome fact-checking.
 
 Our RAG projects at PleIAs were conceived in the context of severe constraints on verifiability (public sector, large legacy privacy companies). We took inspiration from Wikipedia, who faced similar constraints: because texts can't be attributed to individual authors who take responsibility for their publication and trustworthiness, accuracy stems mostly from verifiability - associating individual statements with exact passages in secondary sources. While frontier LLMs can achieve high quality performance without fine-tuning (and this was actually [our first approach](https://huggingface.co/AgentPublic/guillaumetell-7b)), we have opted for a RAG fine-tuning approach to avoid the **limitations of frontier LLMs**:
 
