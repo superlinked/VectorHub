@@ -156,7 +156,7 @@
     "comment": "Parallel graph traversal algorithm"
   },
   "github_stars": {
-    "value": 887,
+    "value": 889,
     "source_url": "https://github.com/epsilla-cloud/vectordb",
     "comment": "",
     "value_90_days": 0
@@ -168,10 +168,10 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 42821,
+    "value": 44058,
     "source_url": "https://pypi.org/project/pyepsilla/",
     "comment": "",
-    "value_90_days": 9543
+    "value_90_days": 8769
   },
   "npm_downloads": {
     "value": 0,
