@@ -2,7 +2,7 @@
 
 It's become routine for large organizations to employ Retrieval-Augmented Generation when using LLMs on their data. By grounding LLM generation in existing data, RAG ensures increasingly robust resistance to hallucinations, adaptation to in-domain knowledge, and updatability. Still, RAG is typically understood as a temporary workaround, to be made redundant after the eventual advent of LLMs with improved context length and better intelligence.
 
-After designing multiple RAG systems over the past year, I’ve come to believe they represent a radical transformation that will be here for years to come, more enduring than any LLM model they happen to integrate. RAG systems have the capacity to address the fundamental challenges of information retrieval, meeting the user and data where they're at. Effective RAG can take the best features of language models (adapatability, universal content translation) *and* moderate their shortcomings (misalignment, hallucinations, and lack of explainability), ingesting even heterogeneous, badly formatted data sources and contextualizing new knowledge on the fly.
+After designing multiple RAG systems over the past year, I’ve come to believe they represent a radical transformation that will be here for years to come, more enduring than any LLM model they happen to integrate. RAG systems have the capacity to address the fundamental challenges of information retrieval, meeting the user and data where they're at. Effective RAG can take the best features of language models (adaptability, universal content translation) *and* moderate their shortcomings (misalignment, hallucinations, and lack of explainability), ingesting even heterogeneous, badly formatted data sources and contextualizing new knowledge on the fly.
 
 The majority of vector search deployments today use RAG. It's become so integral that I recently not only find myself fine-tuning LLMs with RAG in mind, but also cofounded PleIAs to pre-train a new generation of LLMs for RAG end use and document-processing scenarios. RAG applications are not likely to be replaced by some disruptive revolution (e.g., long context) in LLMs. It's rather LLMs, as Yan et al. [predicted](https://applied-llms.org/#dont-forget-keyword-search-use-it-as-a-baseline-and-in-hybrid-search), that are "likely to be the least durable component in the system" - swapped, combined, disabled.
 
@@ -38,7 +38,7 @@ RAG is a new solution, and not the only one, to an issue that LLMs aimed to solv
 
 Expert systems and knowledge infrastructures have existed for decades, and dealt with the same data frictions RAG applications have to deal with today. On the data ingestion side, you still need to do additional work to fit new content to mandatory formats. On the query side, users don't act the way the search infrastructure expects.
 
-Creators of the first expert systems in the 1960s expected that professionals would access them directly and seamlessly. They wildly underestimated how much intermediation would be required. Though MEDLINE, for example, was designed for medical researchers and clinicians, and NASA/RECON, for aerospace engineers and scientists, most MEDLINE and NASA/RECON users through the 1970s were librarians and trained intermediaries, working on behalf of end users.
+Creators of the first expert systems in the 1960s expected that professionals would seamlessly access them. They wildly underestimated how much intermediation would be required. Though MEDLINE, for example, was designed for medical researchers and clinicians, and NASA/RECON, for aerospace engineers and scientists, most MEDLINE and NASA/RECON users through the 1970s were librarians and trained intermediaries, working on behalf of end users.
 
 Like these early systems, the advent of LLMs and RAG promised a radical simplification of information retrieval - taking whatever content there is (via embedding models), and outputting (via LLMs) whatever the user wants. While it's true that embeddings are natively multilingual, theoretically resilient to synonyms, variations of language standards, and document artifacts, the radical promise made by LLMs and RAG was _not_ fulfilled, and on the same two fronts as the earlier systems: understanding users, and understanding data.
 
@@ -48,7 +48,7 @@ It may seem obvious that knowing what your users are doing with your system is a
 
 In general, RAG applications underestimate the inertia of user practices; users continue behaving the same way they did with older expert systems. I recently analyzed a set of internal user queries in a production chatbot, and was surprised to see that many users were not submitting questions but unstructured keywords. This practice works perfectly in a standard information retrieval system, but instruction-based LLM and embedding models are designed to be trained on question/answer pairs.
 
-Inattentiion to user-design friction in LLMs and embedding models can result in poor performance, disappointed user expectations, tokenization that fails to adequately represent data structure, incongruity of input vs output lengths, and an overall lack of control over the system's purpose.
+Inattention to user-design friction in LLMs and embedding models can result in poor performance, disappointed user expectations, tokenization that fails to adequately represent data structure, incongruity of input vs output lengths, and an overall lack of control over the system's purpose.
 
 ### 2.3 Know your data
 
@@ -82,8 +82,7 @@ Generative AI within a RAG communication system shouldn't be looking to replace 
 
 ## 3. Keep the data alive
 
-A proper RAG communication system should treat data no longer as a passive reference stock but rather a living entity - in two ways. 
-Data should be:
+A proper RAG communication system should treat data no longer as a passive reference stock but rather a living entity - in two ways. Data should be:
 
 * a) continuously transformed and reshaped to better fit the retrieval objective, and
 * b) constantly circulated across different flows.
@@ -100,9 +99,9 @@ But there are workarounds. The usual one is looking for placeholders, or generat
 
 For processing bad (and good) data, we take advantage of LLM data processing power. But here too the best approach is using the best LLMs for production use cases, and not simply the newest or most popular decoders. The previous generation of encoders and encoder-decoders provide much better parameters / performance / robustness ratios for many data tasks than GPT-4, Llama, or Mistral. I increasingly build RAG systems with classifiers or "reformulators" that can reliably handle:
 
-* _Automated re-routing of user queries_. A major issue for more generalist chat systems is deciding 1) whether or not to activate the retrieval of external resources, 2) which collection of resources to prioritize (maybe not all are needed; reducing volume can relieve stress to the system), and 3) when a new round of retrieval becomes necessary (e.g., when the topic of a conversation has changed).
-* _Query expansion_. LLM and embedding models, because they're trained primarily on complete sentences, struggle with unstructured queries. You may require further contextualization by adding elements (e.g., past queries).
-* _Text segmentation (rather than just “chunking”)_. Proper segmentation has proven to be one of the most powerful performance boosts. But as user traffic increases, and more document coverage is needed, iteratively expanding your RAG system (typically by parsing different sets of resources with existing ones) can become prohibitively costly. Lately, I’ve been experimenting a lot with agnostic encoder models for token-classification tasks to reconstruct text parts (including titles, bibliography) from raw text comprehension, regardless of the original format.
+* _Automated re-routing of user queries._ A major issue for more generalist chat systems is deciding 1) whether or not to activate the retrieval of external resources, 2) which collection of resources to prioritize (maybe not all are needed; reducing volume can relieve stress to the system), and 3) when a new round of retrieval becomes necessary (e.g., when the topic of a conversation has changed).
+* _Query expansion._ LLM and embedding models, because they're trained primarily on complete sentences, struggle with unstructured queries. You may require further contextualization by adding elements (e.g., past queries).
+* _Text segmentation (rather than just “chunking”)._ Proper segmentation has proven to be one of the most powerful performance boosts. But as user traffic increases, and more document coverage is needed, iteratively expanding your RAG system (typically by parsing different sets of resources with existing ones) can become prohibitively costly. Lately, I’ve been experimenting a lot with agnostic encoder models for token-classification tasks to reconstruct text parts (including titles, bibliography) from raw text comprehension, regardless of the original format.
 
 For automated query rerouting, query expansion, and text segmentation, using an LLM is overkill; it results in performance lag and degradation. Once properly re-trained, encoder models yield results comparable to an LLM's, are very fast, not expensive to host, and better fitted to the overall purpose of classification. In addition, encoders don't require structured generation, regex, or data constraints - the data design is already built-in.
 
@@ -114,7 +113,7 @@ It's also possible to expand the original dataset to include the types of querie
 
 ## 4. Fine-tuning as a communication protocol
 
-In a RAG context, fine-tuning is neither an alternative nor simply a good supplement to content retrieval: LLM memory is inconsistent, even moreso when it relies on LoRA (Low-Rank Adaptation) rather than pretraining. Fine-tuning is better conceived as a **method for enhancing communication**, by tweaking the word probabilities of the base model in a specific direction:
+In a RAG context, fine-tuning is neither an alternative nor simply a good supplement to content retrieval: LLM memory is inconsistent, even more so when it relies on LoRA (Low-Rank Adaptation) rather than pretraining. Fine-tuning is better conceived as a **method for enhancing communication**, by tweaking the word probabilities of the base model in a specific direction:
 
 * communication between the model and the user,
 * communication between the resources and the output,
@@ -124,11 +123,11 @@ In a RAG context, fine-tuning is neither an alternative nor simply a good supple
 
 Fine-tuning has to come later in the cycle of development. In my experience, good instruction datasets need to be designed not only with RAG in mind but through (i.e., using) RAG. My standard protocol for RAG-based fine-tuning goes like this:
 
-* _Generate queries based on indexed texts_. This is a basic and universal approach when using synthetic data for fine-tuning: for a given text, invent a question it would answer. I recommend prompting the model to create questions “vague” enough to yield other valid answers (i.e., besides the seeding text). Also, to make the queries match those sent by your users, you should include in the prompt a random selection of past queries, constraining the model so it produces realistic synthetic data - i.e., with potential imperfections (all lower case, including syntax errors, etc.).
-* _Retrieve a broad selection of documents_. You might even voluntarily degrade retrieval performance (e.g., use only BM25) - to make the LLM more resilient to hard negatives.
+* _Generate queries based on indexed texts._ This is a basic and universal approach when using synthetic data for fine-tuning: for a given text, invent a question it would answer. I recommend prompting the model to create questions “vague” enough to yield other valid answers (i.e., besides the seeding text). Also, to make the queries match those sent by your users, you should include in the prompt a random selection of past queries, constraining the model so it produces realistic synthetic data - i.e., with potential imperfections (all lower case, including syntax errors, etc.).
+* _Retrieve a broad selection of documents._ You might even voluntarily degrade retrieval performance (e.g., use only BM25) - to make the LLM more resilient to hard negatives.
 * _Generate a cohesive, comprehensive response_ - as a synthesis based on the question and the retrieved documents. This creative and crucial part controls the final communication output of the model. You don’t have to get it right in one pass; LoRA fine-tuning is cheap. I start with a simple RAG prompt on an existing model, and then continuously reshape and rework this output.
 
-A good fine-tuning dataset, though it requires a significant amoung of careful manual tweaking, does *not* require a lot of examples. Most of my projects are in the 1,000-4,000 instructions range, sufficiently large to warrant text generation, sufficiently small to still be mostly an opinionated product. The instruction dataset is in many ways a miniature version of the entire RAG communication system. It needs to approximate in format and style the future queries your users will send, the existing and future documents you will use for grounding, and the expected output. In short, you are designing a translation process and - through the instructions - providing it all the use cases where the translation went right.
+A good fine-tuning dataset, though it requires a significant amount of careful manual tweaking, does *not* require a lot of examples. Most of my projects are in the 1,000-4,000 instructions range, sufficiently large to warrant text generation, sufficiently small to still be mostly an opinionated product. The instruction dataset is in many ways a miniature version of the entire RAG communication system. It needs to approximate in format and style the future queries your users will send, the existing and future documents you will use for grounding, and the expected output. In short, you are designing a translation process and - through the instructions - providing it with all the use cases where the translation went right.
 
 Preparation of the instruction dataset and base model improvement should be your main focus; these have the most impact on performance. I don't spend much time optimizing the training design beyond a few hyperparameters (learning rate, batch size, etc.). I've also generally stopped looking into preference fine-tuning (like DPO); the time spent was not worth the very few improvement points.
 
@@ -164,13 +163,13 @@ When fine-tuning, you should aim for the following kind of style alignment:
 
 * Generated queries should be as close as possible to real user queries, which probably means purposefully generating “bad” data (as discussed above). In my current instruction dataset, most queries have no punctuation, some are in all caps, are missing words, and/or have typos.
 * Generated answers should convey the general “brand” of your system. Do not hesitate to re-generate an answer, reformulate an existing one, or even rewrite it manually.
-* Anticipate your model's "persona". Interactive system users will ask meta-referential questions: Who are you? What can you do? New models' training data persona is typically ChatGPT, so some erroneously state that they are ChatGPT. To establish a unique persona for your model, build redudancy into it - with both prepared answers in the instruction dataset (i.e., fine-tuning) and a series of “biographical” documents in the RAG dataset (vector store, for reference at inference time).
+* Anticipate your model's "persona". Interactive system users will ask meta-referential questions: Who are you? What can you do? New models' training data persona is typically ChatGPT, so some erroneously state that they are ChatGPT. To establish a unique persona for your model, build redundancy into it - with both prepared answers in the instruction dataset (i.e., fine-tuning) and a series of “biographical” documents in the RAG dataset (vector store, for reference at inference time).
 
 The best way to assess style (and related) frictions is probably to simply collect feedback from your users. You don’t need anything fancy: an open-ended comment section somewhere (and green/red buttons) works just fine.
 
 ## 5. Will RAG redefine LLMs?
 
-Now, in mid-2024, we're probably at a crossroads. A major breakthrough in LLM research (e.g., Q*, Monte Carlo Tree Search, diffusion models, state space models, etc.), shifting the focus back to model architecture, is not impossible. But LLMs may be ceding center state to larger, more complex, production RAG systems that orchestrate and employ LLMs as embedding models and classifiers. (Once multiple decoder models are scalable for production, RAG will integrate them as well.)
+Now, in mid-2024, we're probably at a crossroads. A major breakthrough in LLM research (e.g., Q*, Monte Carlo Tree Search, diffusion models, state space models, etc.) that shifts the focus back to model architecture is not impossible. But LLMs may be ceding center state to larger, more complex, production RAG systems that orchestrate and employ LLMs as embedding models and classifiers. (Once multiple decoder models are scalable for production, RAG will integrate them as well.)
 
 RAG's ability to specialize through model orchestration positions it to solve multiple complex problems that plague LLMs in production:
 
