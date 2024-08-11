@@ -83,7 +83,7 @@ $P(\text{context}|\text{source}) = \frac{1}{Z}\exp(w_{c}^Tw_s)$
 
 Here, $w_c$ and $w_s$ are the embeddings of the context node $c$ and source node $s$ respectively. The variable $Z$ serves as a normalization constant, which, for computational efficiency, is never explicitly computed.
 
-The embeddings are learned by maximizing the co-occurence probability for (source,context) pairs drawn from the true data distribution (positive pairs), and at the same time minimizing for pairs drawn from a synthetic noise distribution. This process ensures that the embedding vectors of similar nodes are close in the embedding space, while dissimilar nodes are further apart (with respect to the dot product).
+The embeddings are learned by maximizing the co-occurrence probability for (source,context) pairs drawn from the true data distribution (positive pairs), and at the same time minimizing for pairs drawn from a synthetic noise distribution. This process ensures that the embedding vectors of similar nodes are close in the embedding space, while dissimilar nodes are further apart (with respect to the dot product).
 
 The random walks are sampled according to a policy, which is guided by 2 parameters: return $i$, and in-out $q$.
 
@@ -236,7 +236,7 @@ optimizer = torch.optim.Adam(sage.parameters(), lr=0.01)
 Next, we construct the **data loader**. This will generate training batches for us. We're aiming at an unsupervised approach, so the loader will: 
 1. Select a batch of node pairs that are connected by an edge (positive samples).
 2. Create negative samples by either modifying the head or tail of the positive samples. The number of negative samples per edge is defined by the `neg_sampling_ratio` parameter, which we set to 1. This means that for each positive sample we'll have exactly one negative sample, for use in training.
-3. We sample neighbors at a depth of 1 for each selected node. The `num_neighbors` parameter allows us to specify the number of sampled neighbors at each depth. This is particuarly useful when we are dealing with dense graphs and/or multi layer GNNs. Limiting the considered neighbors will decouple computational complexity from the actual node degree. However, in our particular case, we set the number to `-1` indicating that we want to sample all of the neighbors.
+3. We sample neighbors at a depth of 1 for each selected node. The `num_neighbors` parameter allows us to specify the number of sampled neighbors at each depth. This is particularly useful when we are dealing with dense graphs and/or multi layer GNNs. Limiting the considered neighbors will decouple computational complexity from the actual node degree. However, in our particular case, we set the number to `-1` indicating that we want to sample all of the neighbors.
 
 ```python
 from torch_geometric.loader import LinkNeighborLoader
@@ -328,7 +328,7 @@ Let's also see **how well LLM vectors represent citation data**, again plotting 
 
 ![LLM cosine similarity edge counts](../assets/use_cases/node_representation_learning/bins_llm.png)
 
-In LLM embeddings, positive (connected) citation pairs have higher cosine similarity values relative to all pairs, thus representing an improvement over BoW features in identifying positive pairs. However, negative (unconnected) pairs in LLM embeddings have a wide range of cosine similarity scores, making it difficult to distinguish connected from unconnected pairs. While LLM embeddings do better over all than BoW features at capturing the citation graph structure, they do not do as well as Node2Vec.
+In LLM embeddings, positive (connected) citation pairs have higher cosine similarity values relative to all pairs, thus representing an improvement over BoW features in identifying positive pairs. However, negative (unconnected) pairs in LLM embeddings have a wide range of cosine similarity scores, making it difficult to distinguish connected from unconnected pairs. While LLM embeddings do better overall than BoW features at capturing the citation graph structure, they do not do as well as Node2Vec.
 
 
 ## Conclusion: LLM, Node2Vec, GraphSAGE better at learning node and node relationship data than BoW
