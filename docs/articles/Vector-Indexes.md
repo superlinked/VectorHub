@@ -1,12 +1,12 @@
 # Vector Indexes
 
-This article takes you through the basics of implementating vector indexing in Python using LlamaIndex. But first, let's briefly introduce vector indexes, why they're so important, different common types, and popular use cases.
+This article takes you through the basics of implementing vector indexing in Python using LlamaIndex. But first, let's briefly introduce vector indexes, why they're so important, different common types, and popular use cases.
 
 ## Why you need vector indexes
 
 Running AI applications depends on vectors, often called [embeddings](https://superlinked.com/vectorhub/building-blocks/vector-compute/embedding-models) - dense data representations, generated via complex mathematical operations to capture key attributes of source information. When a user submits a query, it's also embedded in the vector database, and vectors that are close to it are deemed relevant (i.e., similar), and returned. It's possible to brute-force query these vectors *without* a vector index - i.e., checking every single vector in the database to see if they match the query vector, one by one. But if the database is large, this inefficient process takes too long. 
 
-Vector indexing, by creating groups of matching elements, speeds up similarity search - which calculate vector closeness using metrics like Euclidean or Jacobian distance. (In small datasets where accuracy is more important than efficiency, you can use K-Nearest Neighbors to pinpoint your query's closest near neighbors. As datasets get bigger and efficiency becomes an issue, an [Approximate Nearest Neighbour](https://superlinked.com/vectorhub/building-blocks/vector-search/nearest-neighbor-algorithms) (ANN) approach will *very quickly* return accurate-enough results.)
+Vector indexing, by creating groups of matching elements, speeds up similarity search - which calculate vector closeness using metrics like Euclidean or Jacobian distance. (In small datasets where accuracy is more important than efficiency, you can use K-Nearest Neighbors to pinpoint your query's closest near neighbors. As datasets get bigger and efficiency becomes an issue, an [Approximate Nearest Neighbor](https://superlinked.com/vectorhub/building-blocks/vector-search/nearest-neighbor-algorithms) (ANN) approach will *very quickly* return accurate-enough results.)
 
 Vector indexes are crucial to efficient, relevant, and accurate search in various common applications, including Retrieval Augmented Generation ([RAG](https://superlinked.com/vectorhub/articles/advanced-retrieval-augmented-generation)), [semantic search in image databases](https://superlinked.com/vectorhub/articles/retrieval-from-image-text-modalities) (e.g., in smartphones), large text documents, advanced e-commerce websites, and so on.
 
@@ -38,9 +38,9 @@ The flat variation clusters the vectors and creates centroids but stores each ve
 
 Inverted File Product Quantization (IVF_PQ) algorithm reduces storage requirements by:
 
-* 1. dividing the vector space into centroid clusters
-* 2. breaking each vector within the cluster into smaller chunks - e.g., a 12-dimensional vector can be broken into 3 chunks (sub-vectors), each with 4 dimensions
-* 3. quantizing the chunks (4-dimensional sub-vectors) into bits, significantly reducing storage requirements
+1. dividing the vector space into centroid clusters
+2. breaking each vector within the cluster into smaller chunks - e.g., a 12-dimensional vector can be broken into 3 chunks (sub-vectors), each with 4 dimensions
+3. quantizing the chunks (4-dimensional sub-vectors) into bits, significantly reducing storage requirements
 
 At query time, the same algorithm is applied to the query vector.
 
@@ -50,10 +50,10 @@ IVF_PQ saves on space, and, because we’re comparing smaller vectors, improves 
 
 Inverted File Scalar Quantization uses a simpler algorithm than IVF_PQ.
 
-* 1. divide the dataset, clustering the data points into smaller manageable chunks ("inverted lists")
-* 2. create bins: for each vector dimension, determine minimum (start values) and maximum values, calculate step sizes ( = (max - min) / # bins)
-* 3. convert floating-point vectors into scalar integer vectors by dividing each vector dimension into bins
-* 4. assign each quantized vector to nearest chunk (inverted list)
+1. divide the dataset, clustering the data points into smaller manageable chunks ("inverted lists")
+2. create bins: for each vector dimension, determine minimum (start values) and maximum values, calculate step sizes ( = (max - min) / # bins)
+3. convert floating-point vectors into scalar integer vectors by dividing each vector dimension into bins
+4. assign each quantized vector to nearest chunk (inverted list)
 
 Suppose we have a vector, x=[1.2,3.5,−0.7,2.1]. It has 4 dimensions, so we'll define 4 quantization bins:
 
@@ -198,7 +198,7 @@ Vector 9: 0.20437726721718957
 Vector 10: 0.801081734496685
 ```
 
-We can see that vectors 3, 9, and 7 (above) are the top three closest matches. Let's write a function to retreive these matches automatically:
+We can see that vectors 3, 9, and 7 (above) are the top three closest matches. Let's write a function to retrieve these matches automatically:
 
 ```python
 # get top k vectors
@@ -206,10 +206,10 @@ def get_top_k(random_vectors, distances, k):
 
     # sort the distances in ascending order
     sorted_distance = sorted(distances, key=lambda distances: distances[1])
-    # retreive the top k smallest distance indexes
+    # retrieve the top k smallest distance indexes
     top_k = sorted_distance[:k]
 
-    # top macthes
+    # top matches
     top_matches = []
     for idx in top_k:
         # Get the first element of the tuple as the index
@@ -220,7 +220,7 @@ def get_top_k(random_vectors, distances, k):
 ```
 
 ```python
-# Retreive the top 3 matches
+# Retrieve the top 3 matches
 top_matching_vectors = get_top_k(random_vectors, distances, 3)
 top_matching_vectors
 ```
@@ -332,7 +332,7 @@ def get_closest_centroid(test_point, centroids):
 ```
 
 ```python
-def get_top_k_from_macthing_cluster(data_point_clusters, closest_cluster, test_point, k = 3):
+def get_top_k_from_matching_cluster(data_point_clusters, closest_cluster, test_point, k = 3):
     '''
     Function to calculate nearest neighbors for test point but only in the selected cluster
     '''
@@ -346,7 +346,7 @@ def get_top_k_from_macthing_cluster(data_point_clusters, closest_cluster, test_p
 
     # sort the distances in ascending order
     sorted_distance = sorted(dist_for_cluster, key=lambda dist_for_cluster: dist_for_cluster[1])
-    # retreive the top k smallest distance indexes
+    # retrieve the top k smallest distance indexes
     top_k = sorted_distance[:k]
 
     # top matches
@@ -359,17 +359,17 @@ def get_top_k_from_macthing_cluster(data_point_clusters, closest_cluster, test_p
     return top_matches
 ```
 
-Now, we just need to pass our test point to the `get_closest_centroid` and `get_top_k_from_macthing_cluster` functions above.
+Now, we just need to pass our test point to the `get_closest_centroid` and `get_top_k_from_matching_cluster` functions above.
 
 ```python
 # get the closest cluster
 closest_cluster = get_closest_centroid(test_point, centroids)
 
 # get the top k vector from the closest cluster
-macthes = get_top_k_from_macthing_cluster(data_point_clusters, closest_cluster, test_point, k = 3)
+matches = get_top_k_from_matching_cluster(data_point_clusters, closest_cluster, test_point, k = 3)
 
 print("Test Point: ", test_point)
-print("Closest Matches: ", macthes)
+print("Closest Matches: ", matches)
 ```
 
 ```bash
