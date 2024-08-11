@@ -12,7 +12,7 @@ Recommender Systems are increasingly important, given the plethora of products o
 
 At the moment of this writing, fashion retailers have adopted more sophisticated recommendation systems that ingest not only users' purchasing/viewing history but also user metadata (age, location, spending habits, mood, etc.) and item metadata (category, popularity, etc.).
 
-But not everyone has access to the kind or amount of metadata fashion retailers do. Sometimes only scarce side is available. Public service providers with their own on-demand audio and video platform, for example, are legally restricted in collecting user metadata. Typically, they use collaborative filtering (CF) approaches, which employ historical interactions (data consisting of user-item pairs) to extrapolate user preferences via similarities of all users' browsing/purchasing history. Such companies still have item data - genre, popularity, and so on - that can be used to improve the quality of recommendations. 
+But not everyone has access to the kind or amount of metadata fashion retailers do. Sometimes only scarce side data is available. Public service providers with their own on-demand audio and video platform, for example, are legally restricted in collecting user metadata. Typically, they use collaborative filtering (CF) approaches, which employ historical interactions (data consisting of user-item pairs) to extrapolate user preferences via similarities of all users' browsing/purchasing history. Such companies still have item data - genre, popularity, and so on - that can be used to improve the quality of recommendations. 
 
 Developers often disregard this side information because it is scarce. While CF (i.e., extrapolating user preferences via similarities of all users' browsing/purchasing history) works reasonably well in this use case, we can improve the recommendation quality (thereby increasing user engagement) of CF by adding available side information, even if it's scarce. 
 
@@ -112,5 +112,5 @@ Overall, dummy nodes offer a transparent way to gain value from side data, with 
 ---
 ## Contributors
 
-- [Mirza Klimenta, PhD](https://www.linkedin.com/in/mirza-klimenta/)
+- [Mirza Klimenta, author](https://www.linkedin.com/in/mirza-klimenta/)
 - [Robert Turner, editor](https://robertturner.co/copyedit)
