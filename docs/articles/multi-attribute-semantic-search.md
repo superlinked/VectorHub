@@ -2,20 +2,20 @@
 
 ## Motivation
 
-Vector search has revolutionized data retrieval by leveraging semantic meaning. However, real-world scenarios often require searching across multiple attributes simultaneously, with varying degrees of importance for each. Two main approaches exist for multi-attribute vector search:
+Vector search represents a revolution in information retrieval. Vector embedding, by taking account of context and semantic meaning, empowers vector search to return more relevant and accurate results, handle unstructured data and multiple languages, and scale. But to generate high quality responses in real-world applications, we often need to assign different, simultaneous weights to specific attributes of our data.
 
-1. Search attributes separately, then combine weighted results.
-2. Combine weighted attribute vectors, then perform a single search.
+There are two common approaches to multi-attribute vector search:
 
-This article demonstrates why the first approach, despite its intuitive appeal, falls short even in simple cases. We'll explore why the second approach is superior and how to implement it efficiently using the Superlinked framework.
+1. embed objects as undifferentiated single vectors (*single-vector embedding*), search attributes separately, then weight and combine your results
+2. embed attributes separately (*multi-vector embedding*), weight and combine attribute vectors, then perform a single search
 
-By understanding these methods, you'll gain insights into creating more powerful and flexible search systems that can handle complex, multi-faceted queries with ease.
+Below, we'll walk through an implementation (using a role-play game scenario) of the single-vector embedding approach, which, despite its intuitive appeal, performs poorly even in simple cases. Then, we'll implement the multi-vector embedding approach using the Superlinked framework, which performs far better. Finally, we'll explain why.
+
+These simple implementations will illustrate how to create more powerful and flexible search systems, ones that can handle complex, multi-faceted queries with ease.
 
 ## Setting
 
-Let's bring our example to life with an exciting scenario!
-
-Imagine it's game night, and you're the Dungeon Master for an epic Dungeons & Dragons adventure. For those unfamiliar, Dungeons & Dragons (D&D) is a popular tabletop role-playing game where players create characters and embark on imaginary quests guided by a storyteller, known as the Dungeon Master. Your friends are gathered around, eager to start a new quest. As the Dungeon Master, you're responsible for crafting thrilling encounters that challenge and excite your players.
+It's game night, your friends are sitting eagerly around the game table, ready to become characters and embark on an epic quest of Dungeons & Dragons (D&D). Tonight, you're Dungeon Master (storyteller and guide), crafter of thrilling encounters that challenge and excite your players. 
 
 Your trusty Monster Manual contains thousands of creatures, but finding the perfect monster for each situation can be overwhelming. The ideal foe needs to match the setting, difficulty, and narrative of the moment – all while surprising and delighting your players.
 
@@ -475,3 +475,9 @@ Whether you're battling monsters in a fantasy realm or tackling real-world data 
 - **Query**: A request for information from a search system, often represented as a vector in vector search.
 
 - **Attribute Weighting**: Assigning different levels of importance to various attributes in a multi-attribute search.
+
+## Contributors
+
+- [Andrey Pikunov](https://www.linkedin.com/in/andrey-pikunov/)
+- [Mór Kapronczay, Editor](https://www.linkedin.com/in/mór-kapronczay-49447692)
+- [Robert Turner, Editor](https://www.linkedin.com/in/robertdhayanturner/)
