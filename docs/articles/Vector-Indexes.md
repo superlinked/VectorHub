@@ -91,22 +91,24 @@ Taking this hybrid approach, in addition to scaling horizontally (by adding more
 
 ### Hierarchical Navigable Small Worlds (HNSW)
 
-HNSW, a complex but popular, efficient vector indexing technique, builds layers of hierarchical proximity graphs structure like skip-lists, the lowest level with the highest granularity (every vector is a vertex), enabling precise, accurate navigation across short-range connections, and each higher layer vertex grouping (and connecting to) more and more lower level data points together (representing longer and longer connections between vertices). HNSW queries are rapidly ANN-matched to closest vectors in the highest layer, then again with slightly more accuracy in the next layer, and so on until search results are surfaced with the greatest accuracy from the lowest layer. 
+HNSW, a complex but popular, efficient vector indexing technique, builds layers of hierarchical proximity graphs structure like skip-lists, the lowest level with the highest granularity (every vector is a vertex), enabling precise, accurate navigation across short-range connections, and each higher layer vertex grouping (and connecting to) more and more lower level data points together (representing longer and longer connections between vertices). HNSW queries are rapidly ANN-matched to closest vectors in the highest layer, then again with slightly more accuracy in the next layer, and so on until search results are surfaced with the greatest accuracy from the lowest layer.
 
-| Indexing Method | Speed                                                                                        | Accuracy                                                                                                       | Database Size   | Memory Usage                                        |
-|-----------------|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|-----------------|-----------------------------------------------------|
-| Flat            | Slow, since the query is compared with each element.                                         | High due to exact matches                                                                                      | Small to Medium | High as the vectors are stored as it is in memory.  |
-| LSH             | Fast due to hashing queries into buckets for quicker retrieval.                              | Moderate because of approximate matches.                                                                       | Large           | Low as it stores hashes instead of vectors.         |
-| IVF_FLAT        | Moderate since it queries only relevant clusters but can vary depending on cluster size.     | High since it performs exact matches in the cluster.                                                           | Small to Medium | High as the vectors are stored as it is in memory.  |
-| IVF_PQ          | Fast due to clustering and compressing vectors into quantized codes for efficient retrieval. | Moderate as it is dependent on the quantization level.                                                         | Large           | Low because of compressed representation.           |
-| IVF_SQ          | Fast due to clustering and compressing vectors into quantized codes for efficient retrieval. | Moderate because of approximate matches in quantized space.                                                    | Large           | Low because of compressed representation.           |
-| DiskANN         | Fast as it uses high-speed SSDs and a special Graph Data Structure.                          | High. 95% reported in the original paper.                                                                      | Very Large      | Moderate due to storing graphs on disk.             |
-| SPANN           | Fast as it uses a disk-memory hybrid structure.                                              | High. 90% reported in the original paper.                                                                      | Very Large      | Moderate as it uses a memory-disk hybrid structure. |
-| HNSW            | Fast due to the hierarchical graph structure.                                                | Moderate due to progressive refinement of approximate results and can be improved with parameter optimization. | Large           | Moderate due to graph structure in memory.          |
+Here's a table summarizing these common vector indexing approaches in terms of speed, accuracy, database size, and memory usage.
+
+| Indexing Method | Speed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Accuracy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Database Size | Memory Usage&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+| :--- | :--- | :--- | :--- | :--- |
+| Flat | slow : query compared with each element | high : exact matches | small to medium | high : vectors stored as is in memory |
+| LSH | fast : hashing queries into buckets for quicker retrieval | moderate : approximate matches | large | low : stores hashes instead of vectors |
+| IVF_FLAT | moderate : queries only relevant clusters, but varies with cluster size | high : performs exact matches in the cluster | small to medium | high : vectors stored as is in memory |
+| IVF_PQ | fast : clustering and compressing vectors into quantized codes for efficient retrieval | moderate : dependent on the quantization level | large | low : compressed representation |
+| IVF_SQ | fast : clustering and compressing vectors into quantized codes for efficient retrieval | moderate : approximate matches in quantized space | large | low : compressed representation |
+| DiskANN | fast : uses high-speed SSDs and a special Graph Data Structure | high (95% reported in original paper) | very large | moderate : storing graphs on disk |
+| SPANN | fast : uses disk-memory hybrid structure | high (90% reported in original paper) | very large | moderate : uses a memory-disk hybrid structure |
+| HNSW | fast : hierarchical graph structure | moderate : progressive refinement of approximate results, improved with parameter optimization | large | moderate : graph structure in memory |
 
 ## Basic Implementation of Vector Indexing using ANN
 
-Let's get a practical understanding of vector storage and retrieval using ANN by doing a basic implementation of vector indexing. First, we'll set up flat indexing (brute force), and then use clustering to optimize Inverted File indexing and reduce retrieval time.
+Now that we've laid out a basic understanding of common vector indexing approached, let's see how vector storage and retrieval using ANN works in practice by walking through a basic implementation. First, we'll set up flat indexing (brute force), and then use clustering to optimize Inverted File indexing, reducing retrieval time.
 
 ### Flat Indexing
 
