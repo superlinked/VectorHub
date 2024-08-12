@@ -17,7 +17,7 @@ Happily, the answer to all of these concerns is No.
 
 You don't require high-end equipment, or powerful GPUs. You _don't_ need ML and data science experts. Thanks to pre-trained machine learning models, **you can create an intuitive component that generates and compares vector embeddings right within your browser, on a local machine, tailored to your data**. You also don't require library installations or complex configurations for end-users. You don't have to know Python; you can do it directly in TypeScript. And you can start immediately.
 
-The following tutorial in creating a small-scale AI application demonstrates just how straightforward and efficient the process can be. Though our component is a very specific use case, you can apply its basic approach to operationalizing vector embeddings for all kinds of practial applications.
+The following tutorial in creating a small-scale AI application demonstrates just how straightforward and efficient the process can be. Though our component is a very specific use case, you can apply its basic approach to operationalizing vector embeddings for all kinds of practical applications.
 
 Intrigued? Ready to start building?
 
@@ -27,7 +27,7 @@ Our component takes input content, produces vector embeddings from it, assesses 
 
 In our tutorial, we will take some user input text, split it into sentences, and derive vector embeddings for each sentence using TensorFlow.js. To assess the quality of our embeddings, we will generate a similarity matrix mapping the distance between vectors as a colorful heatmap. Our component enables this by managing all the necessary state and UI logic.
 
-Let's take a closer look at the our component's parts.
+Let's take a closer look at our component's parts.
 
 ## Specific parts of our application
 

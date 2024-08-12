@@ -69,7 +69,7 @@ for resp in responses:
 documents = [Document(text=content) for content in contents]
 ```
 
-In the pre-processing step above, we using [boilerpy3](https://github.com/jmriebold/BoilerPy3)'s KeepEverythingExtractor to remove all HTML tags but keep relevant content from HTML files. The KeepEverythingExtractor keeps everything that is tagged as content.
+In the pre-processing step above, we use [boilerpy3](https://github.com/jmriebold/BoilerPy3)'s KeepEverythingExtractor to remove all HTML tags but keep relevant content from HTML files. The KeepEverythingExtractor keeps everything that is tagged as content.
   
 Now that we have our data source set up and pre-processed, let's turn to some specific Advanced RAG pre-retrieval, retrieval, and post-retrieval techniques that will improve the quality and relevance of the retrieved information, and solve the issues that plague naive RAG: low retrieval precision, hallucination in generated responses, and ineffective integration of retrieved context into generated output.
 

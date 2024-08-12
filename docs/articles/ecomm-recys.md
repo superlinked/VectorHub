@@ -36,7 +36,7 @@ We also have the following **data about users and products**:
 - 1. each user chooses one of three products offered when they register (i.e., product preference data)
 - 2. user behavior (*after* registration) provides additional event data - preferences for textual characteristics of products (description, name, category)
 
-Also, classical economics tells us that, on average, all users ceteris parabis prefer products that:
+Also, classical economics tells us that, on average, all users ceteris paribus prefer products that:
   - cost less
   - have a lot of reviews
   - have higher ratings
@@ -93,7 +93,7 @@ user_df
 
 ![User product pref at registration](../assets/use_cases/ecomm-recsys/user_product_pref-at_registration.png)
 
-We can also set up a close examination of the ditribution data of our products - see [cell 5](https://github.com/superlinked/superlinked/blob/main/notebook/recommendations_e_commerce.ipynb). This gives you a picture of how many products are at different price points, have different review counts, and have different ratings (including where the majority of products lie in these ranges).
+We can also set up a close examination of the distribution data of our products - see [cell 5](https://github.com/superlinked/superlinked/blob/main/notebook/recommendations_e_commerce.ipynb). This gives you a picture of how many products are at different price points, have different review counts, and have different ratings (including where the majority of products lie in these ranges).
 
 ![Number of products vs price, review count, and rating distributions](../assets/use_cases/ecomm-recsys/products-v-price_reviewcount_rating.png)
 
@@ -291,7 +291,7 @@ We can also bias our recommendations to top-rated products (`review_rating_weigh
 
 ### Using events data to create personalized experiences
 
-Fast-forward a month. Our users have interacted with our platform - user_1 more, user_2 less so. We can now utliize our users' **behavioral data** (see below), represented as events:
+Fast-forward a month. Our users have interacted with our platform - user_1 more, user_2 less so. We can now utilize our users' **behavioral data** (see below), represented as events:
 - a user interested in casual and leisure products (user_2)
 - a user interested in elegant products for going out and formal work occasions (user_1)
 

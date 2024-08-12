@@ -237,6 +237,6 @@ Don't be a stranger. Let us know how it goes!
 
 ## Contributors
 
-- [Dr. Robert Kübler](https://www.linkedin.com/in/robert-kuebler/)
+- [Dr. Robert Kübler, Author](https://www.linkedin.com/in/robert-kuebler/)
 - [Mór Kapronczay, Editor](https://www.linkedin.com/in/mór-kapronczay-49447692)
 - [Robert Turner, Editor](https://www.linkedin.com/in/robertdhayanturner)

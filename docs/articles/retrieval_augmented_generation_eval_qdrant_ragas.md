@@ -190,7 +190,7 @@ Let's zoom in to one of the rows to see what RAGAS has generated for us (below):
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_sample_question.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_sample_question.png)
 
-In the first column (above), `question` is generated on the basis of the given list of `contexts`, along with value of `ground_truth`, which we use to evaluate the `answer` - surfaced when we run the `question` through our RAG pipeline.
+In the first column (above), `question` is generated on the basis of the given list of `contexts`, along with the value of `ground_truth`, which we use to evaluate the `answer` - surfaced when we run the `question` through our RAG pipeline.
 
 To ensure ease of use, efficiency, and interoperability, it's a good idea to export the generated Question-Context-Ground_Truth sets as a hugging-face dataset, for use later during the evaluation step.
 
@@ -317,7 +317,7 @@ $$ Answer\ correctness = \text{factual correctness}(\text{ground truth}, \text{g
 
 ### The ragas score
 
-The `ragas score` reflects RAGAS' focus on evaluating RAG retrieval and generation. As we've just seen, the ragas score is the the mean of Faithfulness, Answer relevancy, Context recall, and Context precision - a single measure evaluating the most critical aspects of retrieval and generation in a RAG system.
+The `ragas score` reflects RAGAS' focus on evaluating RAG retrieval and generation. As we've just seen, the ragas score is the mean of Faithfulness, Answer relevancy, Context recall, and Context precision - a single measure evaluating the most critical aspects of retrieval and generation in a RAG system.
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_metrics.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_metrics.png)
 
@@ -426,7 +426,7 @@ client = qdrant_client.QdrantClient(
 And define our `collection name`:
 
 ```python
-## Collection name that will be used throughtout in the notebook
+## Collection name that will be used throughout in the notebook
 COLLECTION_NAME = "qdrant-docs-ragas"
 ```
 
