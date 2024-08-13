@@ -192,4 +192,4 @@ In sum, KGs present an organizational opportunity to companies who work with LLM
 ## Contributors
 
 - [Tony Seale, Author](https://www.linkedin.com/in/tonyseale/)
-- [Robert Turner, Contributor](https://www.linkedin.com/in/robertdhayanturner/)
+- [Robert Turner, Author](https://www.linkedin.com/in/robertdhayanturner/)
