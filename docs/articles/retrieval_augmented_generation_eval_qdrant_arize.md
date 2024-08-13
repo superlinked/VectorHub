@@ -11,7 +11,7 @@ Below, we'll cover:
 > The code here is from our [github repo](https://github.com/qdrant/qdrant-rag-eval/tree/master/workshop-rag-eval-qdrant-arize).
 > There's also a walkthrough workshop [video](https://www.youtube.com/watch?v=m_J0nFmnrPI) available for reference.
 
-Lets begin!
+Let's begin!
 
 ## Key concepts and metrics in Phoenix
 
@@ -343,7 +343,7 @@ hybrid_retriever = VectorIndexRetriever(
 
 In the snippet above, the `alpha` parameter is our magic button for sliding between sparse and dense vector search. We set our retriever to `alpha=0.1`, which means 90% of the relevance score of our query outcomes result from sparse vector search, and 10% from dense vector search.
 
-`alpha` is, of course, adjustible to your use case's requirements. Though it shouldn't be changed arbitrarily, if you were to change it, you would do it like this:
+`alpha` is, of course, adjustable to your use case's requirements. Though it shouldn't be changed arbitrarily, if you were to change it, you would do it like this:
 
 ```python
 hybrid_retriever._alpha = 0.1
