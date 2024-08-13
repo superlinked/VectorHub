@@ -48,7 +48,7 @@ Like these early systems, the advent of LLMs and RAG promised a radical simplifi
 
 It may seem obvious that knowing what your users are doing with your system is a necessary prerequisite to designing good information retrieval. But until recently, user behavior in the context of RAG had barely been discussed.
 
-In general, RAG applications underestimate the inertia of user practices; users continue behaving the same way they did with older expert systems. I recently analyzed a set of internal user queries in a production chatbot, and was surprised to see that many users were not submitting questions but unstructured keywords. This practice works perfectly in a standard information retrieval system, but instruction-based LLM and embedding models are designed to be trained on question/answer pairs.
+In general, RAG applications underestimate the inertia of user practices; users continue behaving the same way they did with older expert systems. I recently analyzed a set of internal user queries in a production chatbot, and was surprised to see that many users were submitting not questions but rather unstructured keywords. This practice works perfectly in a standard information retrieval system, but instruction-based LLM and embedding models are designed to be trained on question/answer pairs.
 
 Inattention to user-design friction in LLMs and embedding models can result in poor performance, disappointed user expectations, tokenization that fails to adequately represent data structure, incongruity of input vs output lengths, and an overall lack of control over the system's purpose.
 
