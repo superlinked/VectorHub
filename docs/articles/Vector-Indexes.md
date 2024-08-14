@@ -77,7 +77,7 @@ IVF_SQ makes sense when dealing with medium to large datasets where memory effic
 
 ### DiskANN
 
-Most ANN algorithms - including those above - are designed for in-memory computation. But when you're dealing with *big data*, in-memory computation can be a bottleneck. Disk-based ANN [DiskANN](https://suhasjs.github.io/files/diskann_neurips19.pdf) is built to leverage Solid-State Drives' (SSDs') large memory and high-speed capabilities. DiskANN indexes vectors using the Vamana algorithm, a graph-based indexing structure that minimizes the number of sequential disk reads required during, by creating a graph with a smaller search "diameter" - the max distance between any two nodes (representing vectors), measured as the least number of hops (edges) to get from one to the other. This makes the search process more efficient, especially for the kind of large-scale datasets that are stored on SSDs.
+Most ANN algorithms - including those above - are designed for in-memory computation. But when you're dealing with *big data*, in-memory computation can be a bottleneck. Disk-based ANN ([DiskANN](https://suhasjs.github.io/files/diskann_neurips19.pdf)) is built to leverage Solid-State Drives' (SSDs') large memory and high-speed capabilities. DiskANN indexes vectors using the Vamana algorithm, a graph-based indexing structure that minimizes the number of sequential disk reads required during, by creating a graph with a smaller search "diameter" - the max distance between any two nodes (representing vectors), measured as the least number of hops (edges) to get from one to the other. This makes the search process more efficient, especially for the kind of large-scale datasets that are stored on SSDs.
 
 By using a SSD to store and search its graph index, DiskANN can be cost-effective, scalable, and efficient.
 
@@ -110,7 +110,7 @@ Here's a table summarizing these common vector indexing approaches in terms of s
 
 ## Basic Implementation of Vector Indexing using ANN
 
-Now that we've laid out a basic understanding of common vector indexing approached, let's see how vector storage and retrieval using ANN works in practice by walking through a basic implementation. First, we'll set up flat indexing (brute force), and then use clustering to optimize Inverted File indexing, reducing retrieval time.
+Now that we've laid out a basic understanding of common vector indexing approaches, let's see how vector storage and retrieval using ANN works in practice by walking through a basic implementation. First, we'll set up flat indexing (brute force), and then use clustering to optimize Inverted File indexing, reducing retrieval time.
 
 ### Flat Indexing
 
@@ -372,7 +372,7 @@ def get_top_k_from_matching_cluster(data_point_clusters, closest_cluster, test_p
     return top_matches
 ```
 
-Now, we just need to pass our test point to the `get_closest_centroid` and `get_top_k_from_matching_cluster` functions above.
+Now, we just need to pass our test point to the `get_closest_centroid` and `get_top_k_from_matching_cluster` functions defined above.
 
 ```python
 # get the closest cluster
