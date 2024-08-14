@@ -6,6 +6,8 @@ This article takes you through the basics of implementing vector indexing in Pyt
 
 Running AI applications depends on vectors, often called [embeddings](https://superlinked.com/vectorhub/building-blocks/vector-compute/embedding-models) - dense data representations, generated via complex mathematical operations to capture key attributes of source information. When a user submits a query, it's also embedded in the vector database, and vectors that are close to it are deemed relevant (i.e., similar), and returned. It's possible to brute-force query these vectors *without* a vector index - i.e., checking every single vector in the database to see if they match the query vector, one by one. But if the database is large, this inefficient process takes too long. 
 
+![What is a vector index](../assets/use_cases/vector_indexes/vector_index1.png)
+
 Vector indexing, by creating groups of matching elements, speeds up similarity search - which calculate vector closeness using metrics like Euclidean or Jacobian distance. (In small datasets where accuracy is more important than efficiency, you can use K-Nearest Neighbors to pinpoint your query's closest near neighbors. As datasets get bigger and efficiency becomes an issue, an [Approximate Nearest Neighbor](https://superlinked.com/vectorhub/building-blocks/vector-search/nearest-neighbor-algorithms) (ANN) approach will *very quickly* return accurate-enough results.)
 
 Vector indexes are crucial to efficient, relevant, and accurate search in various common applications, including Retrieval Augmented Generation ([RAG](https://superlinked.com/vectorhub/articles/advanced-retrieval-augmented-generation)), [semantic search in image databases](https://superlinked.com/vectorhub/articles/retrieval-from-image-text-modalities) (e.g., in smartphones), large text documents, advanced e-commerce websites, and so on.
@@ -396,6 +398,6 @@ Our walkthrough of two vector indexing techniques illustrates how indexing optim
 
 ## Contributors
 
-[Haziqa Sajid, author](https://www.linkedin.com/in/haziqa-sajid-22b53245/)
-[Mór Kapronczay, editor](https://www.linkedin.com/in/m%C3%B3r-kapronczay-49447692/)
-[Robert Turner, editor](https://www.linkedin.com/in/robertdhayanturner/)
+- [Haziqa Sajid, author](https://www.linkedin.com/in/haziqa-sajid-22b53245/)
+- [Mór Kapronczay, editor](https://www.linkedin.com/in/m%C3%B3r-kapronczay-49447692/)
+- [Robert Turner, editor](https://www.linkedin.com/in/robertdhayanturner/)
