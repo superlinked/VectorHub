@@ -89,7 +89,7 @@ A proper RAG communication system should treat data no longer as a passive refer
 1. continuously transformed and reshaped to better fit the retrieval objective, and
 2. constantly circulated across different flows
 
-> bad data + classifiers + synthetic data curation
+> A good RAG comm system includes: bad data + classifiers + synthetic data curation
 
 ### 3.1 You need bad data
 
