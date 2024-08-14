@@ -87,7 +87,9 @@ Generative AI within a RAG communication system shouldn't be looking to replace 
 A proper RAG communication system should treat data no longer as a passive reference stock but rather a living entity - in two ways. Data should be:
 
 1. continuously transformed and reshaped to better fit the retrieval objective, and
-2. constantly circulated across different flows.
+2. constantly circulated across different flows
+
+> bad data + classifiers + synthetic data curation
 
 ### 3.1 You need bad data
 
