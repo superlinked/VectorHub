@@ -9,7 +9,7 @@ There are two common approaches to multi-attribute vector search:
 1. embed objects as undifferentiated single vectors, search attributes separately, then weight and combine your results
 2. embed attributes separately, weight and combine attribute vectors, then perform a single search
 
-Below, we'll walk through an implementation (using a role-play game scenario) of the first approach. Despite its intuitive appeal, this "naive method" performs poorly even in simple cases. Next, for comparison, we'll implement the second approach - multi-attribute vector search - using the Superlinked framework. We'll explain why the Superlinked method works better.
+Below, we'll walk through an implementation (using a role-play game scenario) of the first approach. Despite its intuitive appeal, this "naive method" performs poorly even in simple cases. Next, for comparison, we'll implement the second approach using the Superlinked framework. We'll explain why the Superlinked method works better.
 
 These simple implementations, especially the second, will illustrate how to create more powerful and flexible search systems, ones that can handle complex, multi-faceted queries with ease.
 
@@ -27,7 +27,7 @@ Let's embark on a quest of our own: build the ultimate monster-finding system, u
 
 ## Dataset
 
-First, we'll generate a small synthetic dataset of monsters - by prompting a Large Language Model (LLM):
+First, we'll generate a small synthetic dataset of monsters, by prompting a Large Language Model (LLM):
 
 ```
 Generate two JSON lists: 'monsters' and 'queries'.
@@ -58,7 +58,7 @@ Output format:
 }
 ```
 
-Let's take a look at a sample of our generated dataset. Note: LLM generation is non-deterministic, so your results may differ.
+Let's take a look at a sample of the dataset our LLM generated. Note: LLM generation is non-deterministic, so your results may differ.
 
 Here are our first five monsters:
 
@@ -93,7 +93,7 @@ LIMIT = 3
 MODEL_NAME = "sentence-transformers/all-mpnet-base-v2"
 ```
 
-Now, let's get into our multi-attribute monster search. First, our naive search approach.
+Now, let's get our multi-attribute monster search under way! First, the *naive* multi-attribute search method.
 
 ## Naive approach
 
@@ -147,7 +147,7 @@ class NaiveRetriever:
 naive_retriever = NaiveRetriever(df.set_index("name"))
 ```
 
-Let's take the first query from our generated list above, and search for monsters using our `naive_retriever`:
+Let's use the first query from our generated list above, and search for monsters using our `naive_retriever`:
 
 ```python
 query = {
@@ -168,8 +168,9 @@ Our `naive_retriever` returns the following search results for each attribute:
 | Sandstorm Djinn  |     0.407344 | Swirling vortex of sand with glowing symbols      |
 | Luminoth         |     0.378619 | Moth-like creature with glowing wings and antenna |
 
-Awesome! Our returned monsters are relevant - all have something "glowing" in them as we asked for!
-Let's see what we can find for other two attributes.
+Awesome! Our returned monster results are relevant - they all have some "glowing" attribute.
+
+Let's see what the naive approach returns when we search the other two attributes.
 
 **Habitat: dark places**
 | id                  |   score_habitat | habitat                              |
@@ -185,7 +186,7 @@ Let's see what we can find for other two attributes.
 | Crystalwing Drake |         0.385211 | Hoards precious gems and can refract light into powerful beams |
 | Luminoth          |         0.345566 | Emits soothing light patterns to communicate and attract prey  |
 
-These results look promising at first glance, but we must remember our original goal: finding monsters that are relevant across all attributes simultaneously. This is where the limitations of our naive approach become apparent. Let's merge the results to see the full picture:
+All the retrieved monsters do possess the wanted attributes. At first glance, the naive search results may seem promising. But we need to find monsters that possess *all three attributes simultaneously*. Let's merge our results to see how well our monsters do at achieving this goal:
 
 | id                  |   score_look |   score_habitat |   score_behavior |
 |:--------------------|-------------:|----------------:|-----------------:|
@@ -197,7 +198,7 @@ These results look promising at first glance, but we must remember our original 
 | Living Graffiti     |              |                 |         0.385741 |
 | Crystalwing Drake   |              |                 |         0.385211 |
 
-What we have here:
+And here, the limits of the naive approach become obvious. Let's evaluate:
 
 1. Relevance by attribute:
    - "Look": Three monsters were retrieved (Whispering Shade, Sandstorm Djinn, and Luminoth).
@@ -206,12 +207,9 @@ What we have here:
 
 2. Overall relevance:
    - No single monster was retrieved for all three attributes simultaneously.
-   - The results are fragmented, with different monsters being relevant for different attributes.
+   - The results are fragmented: different monsters are relevant for different attributes.
 
-This fragmentation in the results highlights a potential issue with our current search approach, as it fails to find monsters that satisfy all criteria at once.
-
-Maybe we can fix this issue by proactively retrieving more monsters for each attribute?
-Let's try it with 6 monsters for each attribute instead of 3.
+In short, the naive search approach fails to find monsters that satisfy all criteria at once. **Maybe we can fix this issue by proactively retrieving more monsters for each attribute?** Let's try it with 6 monsters for each attribute instead of 3.
 
 | id                  |   score_look |   score_habitat |   score_behavior |
 |:--------------------|-------------:|----------------:|-----------------:|
@@ -229,20 +227,21 @@ Let's try it with 6 monsters for each attribute instead of 3.
 | Crystalwing Drake   |              |                 |         0.385211 |
 | Aqua Wraith         |              |                 |         0.283581 |
 
-In total, we retrieved 13 monsters (that is more than half of our tiny dataset!) and still have the same issue: no monster was retrieved for all three attributes simultaneously.
-We could try to increase the number of monsters further, but it would result in the following shortcomings:
-1. While not a problem for our toy task, in production it will result in noticeably longer search time. And generally, multiple KNN searches take more time than a single one with concatenated vectors ([redis benchmark](https://redis.io/blog/benchmarking-results-for-vector-databases/)).
-2. With more attributes, the number of monsters to retrieve for every attribute will grow exponentially.
-3. And there is still no guarantee that this will result in retrieval of monsters that satisfy all criteria at once.
-4. Even if we somehow manage to retrieve monsters that satisfy all criteria at once, we would still need to perform reconciliation of results that would result in additional overhead in a production system.
+We've now retrieved 13 monsters (more than half of our tiny dataset!), and still have the same issue: not one of these monsters was retrieved for all three attributes.
 
-This example is enough to show that the naive approach is not suitable for our task. 
+Increasing the number of retrieved monsters *might* solve our problem, but it creates additional issues:
+1. In production, retrieving more results (multiple KNN searches) lengthens search time noticeably.
+2. For each new attribute we introduce, we have to retrieve nearest neighbors (monsters), making the total number of retrieved monsters grow exponentially.
+3. We still have no guarantee we'll retrieve monsters that possess all our desired attributes.
+4. If we do manage to retrieve monsters that satisfy all criteria at once, we'll have to expend additional overhead reconciling results.
+
+In sum, the naive approach is too uncertain and inefficient for viable multi-attribute search, especially in production.
 
 ### Superlinked approach
 
-Let's implement the second approach using Superlinked framework.
+Let's implement our second approach - multi-vector indexing - using the Superlinked framework.
 
-First, let's define the schema, spaces, index and query:
+First, we define the schema, spaces, index, and query:
 
 ```python
 @schema
@@ -284,7 +283,7 @@ default_weights = {
 }
 ```
 
-Finally, start executor and upload the data:
+Now, we start the executor and upload the data:
 
 ```python
 monster_parser = DataFrameParser(monster, mapping={monster.id: "name"})
@@ -296,7 +295,7 @@ app = executor.run()
 source.put([df])
 ```
 
-Let's run the same query as before:
+Let's run the same query we ran using our first, naive approach (above):
 
 ```python
 query = {
@@ -319,9 +318,9 @@ app.query(
 | Luminoth         | 0.340084 | Moth-like creature with glowing wings and antenna              | Dense forests and jungles with bioluminescent flora | Emits soothing light patterns to communicate and attract prey |
 | Living Graffiti  | 0.330587 | Two-dimensional, colorful creature that inhabits flat surfaces | Urban areas, particularly walls and billboards      | Shapeshifts to blend with surroundings and absorbs pigments   |
 
-As you can see, the results contain monsters that satisfy all criteria at once.
+Et voila! This time, every one of our returned monsters possesses all three attributes at once! What an improvement.
 
-Let's try another query.
+Let's see if we can replicate. We'll try another query.
 
 ```python
 query = {
@@ -337,11 +336,12 @@ query = {
 | Zephyr Dancer    | 0.342075 | Graceful avian creature with iridescent feathers   | High mountain peaks and wind-swept plains | Creates mesmerizing aerial displays to attract mates |
 | Whispering Shade | 0.337434 | Shadowy, amorphous being with glowing eyes         | Dark forests and abandoned buildings      | Feeds on fear and whispers unsettling truths         |
 
-Great!
-Maybe we would like to find monsters from the dataset similar to the existing one?
+Great! Our outcomes are excellent again.
+
+What if we want to find monsters that are similar to a specific monster from our dataset?
 Let's try it with the "Harmonic Coral" (very last row in our dataset).
-We could extract attributes for this monsters and create query parameters manually, but Superlinked provides better way to query records similar to already stored ones.
-We can do it with `with_vector` method of the query object. Since moster's id is its name, we can express our request as simple as this:
+We *could* extract attributes for this monster and create query parameters manually. But Superlinked provides a better way to query records similar to already stored ones.
+We can do it with `with_vector` method of the query object. Since each monster's id is its name, we can express our request as simply as:
 
 ```python
 app.query(
@@ -357,23 +357,15 @@ app.query(
 | Dreamweaver Octopus | 0.402288 | Cephalopod with tentacles that shimmer like auroras                  | Deep ocean trenches and underwater caves | Influences the dreams of nearby creatures                      |
 | Aqua Wraith         | 0.330869 | Translucent humanoid figure made of flowing water                    | Rivers, lakes, and coastal areas         | Shapeshifts to blend with water bodies and controls currents   |
 
-The top result is the most relevant one, the "Harmonic Coral" itself which is pretty much expected.
-Let's see who are the other two monsters: "Dreamweaver Octopus" and "Aqua Wraith".
+The top result is the most relevant one, Harmonic Coral itself, as expected. The other two monsters our search retrieves are "Dreamweaver Octopus" and "Aqua Wraith". Both share important thematic (*attribute*) elements with Harmonic Coral:
 
-Both share important thematic elements with the Harmonic Coral:
-1. Aquatic habitats
-2. Ability to influence or manipulate their environment
-3. Dynamic or fluid visual characteristics
-These common themes in habitat, behavior, and appearance explain why these monsters were identified as most similar to the Harmonic Coral.
+1. Aquatic habitats (*habitat*)
+2. Ability to influence or manipulate their environment (*behavior*)
+3. Dynamic or fluid visual characteristics (*look*)
 
 ## Attribute weighing
 
-Let's suppose that we want to give more importance to the "look" attribute.
-It's easy to do with Superlinked.
-All we need to do is to adjust weights in the query.
-
-Let's again search for similar monsters to the "Harmonic Coral", but this time use weights for the attributes.
-First of all, let's find monsters with the most close appearance:
+Suppose, now, that we want to give more importance to the "look" attribute. The Superlinked framework lets us easily adjust weights at query time. For easy comparison, we'll search for monsters similar to Harmonic Coral, but with our weights adjusted to favor "look".
 
 ```python
 weights = {
@@ -395,9 +387,9 @@ app.query(
 | Thornvine Elemental | 0.252593 | Plant-like creature with a body of twisted vines and thorns          | Overgrown ruins and dense jungles  | Rapidly grows and controls surrounding plant life              |
 | Plasma Serpent      | 0.243241 | Snake-like creature made of crackling energy                         | Electrical storms and power plants | Feeds on electrical currents and can short-circuit technology  |
 
-"Branching with vibrating tendrils", "Plant-like creature with a body of twisted vines and thorns", "Snake-like" -- for sure these descriptions share some common theme.
+Our results all (appropriately) have similar appearances - "Branching with vibrating tendrils", "Plant-like creature with a body of twisted vines and thorns", "Snake-like".
 
-Let's search by "habitat" and "behaviour" simultaneously:
+Now, let's do another search, ignoring appearance, and looking instead for monsters that are similar in terms of "habitat" and "behavior" simultaneously:
 
 ```python
 weights = {
@@ -413,9 +405,9 @@ weights = {
 | Dreamweaver Octopus | 0.357656 | Cephalopod with tentacles that shimmer like auroras                  | Deep ocean trenches and underwater caves | Influences the dreams of nearby creatures                      |
 | Mist Phantom        | 0.288106 | Ethereal, fog-like humanoid with shifting features                   | Swamps, moors, and foggy coastlines      | Lures travelers astray with illusions and whispers             |
 
-All three monsters live in some watery habitats and have mind-controlling abilities.
+Again, the Superlinked method produces great results. All three monsters live in watery habitats and possess mind-controlling abilities.
 
-Lastly, let's try to use all attributes with different weights:
+Finally, let's try another search, weighting all three attributes differently - to find monsters that in comparison to Harmonic Coral look somewhat similar, have very different habitats, and very similar behavior:
 
 ```python
 weights = {
@@ -425,57 +417,37 @@ weights = {
 }
 ```
 
-Such set of weights means that we want to find monsters that have similar behaviour, somewhat similar look, but live in different habitats for the one Harmonic Coral prefers.
-
 | id             |    score | look                                                                 | habitat                                             | behavior                                                       |
 |:---------------|---------:|:---------------------------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------|
 | Harmonic Coral | 0.19245  | Branching, musical instrument-like structure with vibrating tendrils | Shallow seas and tidal pools                        | Creates complex melodies to communicate and influence emotions |
 | Luminoth       | 0.149196 | Moth-like creature with glowing wings and antenna                    | Dense forests and jungles with bioluminescent flora | Emits soothing light patterns to communicate and attract prey  |
 | Zephyr Dancer  | 0.136456 | Graceful avian creature with iridescent feathers                     | High mountain peaks and wind-swept plains           | Creates mesmerizing aerial displays to attract mates           |
 
-Two retrievel monsters (Luminoth and Zephyr Dancer) are indeed similar to the Harmonic Coral in terms of behaviour, but live in different habitats.
-In terms of look, there is little similarity between Harmonic Coral and Luminoth since antenna could look like tendrils, but it's not the same for sure.
-Anyway, this attribute was half-important for us, so we can compensate here.
+Great results again! Our two other retrieved monsters - Luminoth and Zephyr Dancer - have behavior similar to Harmonic Coral, and live in habitats different from Harmonic Coral's. They also look very different from Harmonic Coral. (Harmonic's tendrils and Luminoth's antenna are similar features, but we only down-weighted `look_weight` by 0.5, and the resemblance ends there.)
 
 ## Conclusion
 
-Multi-attribute vector search represents a significant advancement in information retrieval, offering a more nuanced and effective approach compared to traditional search methods.
-As demonstrated through our D&D monster example, this technique excels at finding relevant results when multiple criteria are involved.
+Multi-attribute vector search is a significant advance in information retrieval, offering more accuracy, contextual understanding, and flexibility than basic semantic similarity search. Still, our naive method (above) - embedding data objects (e.g., D&D monsters) as single vectors, doing *separate searches* for different attributes, then weighting and combining results - is limited in ability, subtlety, and efficiency when we need to retrieve objects with multiple simultaneous attributes. 
 
-Key takeaways:
-1. Vector embeddings capture semantic meaning, allowing for more intelligent searches.
-2. The Superlinked framework provides an efficient way to implement multi-attribute vector search.
-3. Attribute weighting adds flexibility, allowing users to prioritize certain criteria over others.
+To handle scenarios like this, and where users want to weight different attributes differently, it's better to embed attributes separately, weight and combine attribute vectors at query time, and perform *a single search* - the Superlinked method. This approach is more accurate, efficient, and scalable than the naive method for any application - from D&D monster-finding to production e-commerce and recommendation systems - that requires fast, reliable, nuanced, multi-attribute vector retrieval.
 
-As data continues to grow in complexity and volume, multi-attribute vector search will play an increasingly crucial role in various applications, from e-commerce to content recommendation systems.
-By understanding and implementing these techniques, developers and data scientists can create more powerful, intuitive, and user-friendly search experiences.
-
-Whether you're battling monsters in a fantasy realm or tackling real-world data challenges, multi-attribute vector search offers a powerful tool for finding the perfect match in a sea of possibilities.
+Whether you're battling monsters or tackling real-world data challenges, [a multi-vector indexing approach like Superlinked's] is a powerful tool for finding the perfect match in a sea of possibilities, especially as data continues to grow in complexity and volume.
 
 ## Glossary
 
 - **Vector Embedding**: A numerical representation of data (like text or images) in a high-dimensional space, capturing semantic meaning.
-
 - **Cosine Similarity**: A measure of similarity between two vectors, often used in vector search to determine how closely related two items are.
-
 - **Multi-attribute Search**: A search method that considers multiple characteristics or properties of items simultaneously.
-
 - **Semantic Meaning**: The underlying concept or idea represented by data, rather than just its literal interpretation.
-
 - **Nearest Neighbors**: In vector search, the items that are most similar or closest to a given query in the vector space.
-
 - **Large Language Model (LLM)**: An AI model trained on vast amounts of text data, capable of generating human-like text and performing various language tasks.
-
 - **Sentence Transformer**: A type of model that converts sentences or short texts into vector embeddings.
-
 - **Index**: In the context of vector search, a data structure that organizes vector embeddings for efficient retrieval.
-
 - **Query**: A request for information from a search system, often represented as a vector in vector search.
-
 - **Attribute Weighting**: Assigning different levels of importance to various attributes in a multi-attribute search.
 
 ## Contributors
 
-- [Andrey Pikunov](https://www.linkedin.com/in/andrey-pikunov/)
+- [Andrey Pikunov, Author](https://www.linkedin.com/in/andrey-pikunov/)
 - [Mór Kapronczay, Editor](https://www.linkedin.com/in/mór-kapronczay-49447692)
 - [Robert Turner, Editor](https://www.linkedin.com/in/robertdhayanturner/)
