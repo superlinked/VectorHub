@@ -95,7 +95,9 @@ Now, let's get our multi-attribute monster search under way! First, we'll try th
 
 ### Naive approach
 
-We start by defining a class `NaiveRetriever` to perform similarity-based search on our dataset, using our `all-mpnet-base-v2`-generated embeddings. In our naive approach, we embed a single vector per data object.
+In our naive approach, we embed attributes independently and store them in different indices. At query time, we run multiple kNN-searches on all the indices, and then combine all our partial results into one.
+
+We start by defining a class `NaiveRetriever` to perform similarity-based search on our dataset, using our `all-mpnet-base-v2`-generated embeddings.
 
 ```python
 class NaiveRetriever:
@@ -229,7 +231,7 @@ We've now retrieved 13 monsters (more than half of our tiny dataset!), and *stil
 
 Increasing the number of retrieved monsters (beyond 6) *might* solve our problem, but it creates additional issues:
 
-1. In production, retrieving more results (multiple KNN searches) lengthens search time noticeably.
+1. In production, retrieving more results (multiple kNN searches) lengthens search time noticeably.
 2. For each new attribute we introduce, we have to retrieve nearest neighbors (monsters), making the total number of retrieved monsters grow exponentially.
 3. We still have no guarantee we'll retrieve monsters that possess all our desired attributes.
 4. If we do manage to retrieve monsters that satisfy all criteria at once, we'll have to expend additional overhead reconciling results.
@@ -423,7 +425,7 @@ Great results again! Our two other retrieved monsters - Luminoth and Zephyr Danc
 
 ## Conclusion
 
-Multi-attribute vector search is a significant advance in information retrieval, offering more accuracy, contextual understanding, and flexibility than basic semantic similarity search. Still, our naive approach (above) - storing and searching attribute vectors separately, *then* combining results - is limited in ability, subtlety, and efficiency when we need to retrieve objects with multiple simultaneous attributes. (Moreover, [multiple KNN searches take more time than a single one with concatenated vectors](https://redis.io/blog/benchmarking-results-for-vector-databases/).)
+Multi-attribute vector search is a significant advance in information retrieval, offering more accuracy, contextual understanding, and flexibility than basic semantic similarity search. Still, our naive approach (above) - storing and searching attribute vectors separately, *then* combining results - is limited in ability, subtlety, and efficiency when we need to retrieve objects with multiple simultaneous attributes. (Moreover, [multiple kNN searches take more time than a single one with concatenated vectors](https://redis.io/blog/benchmarking-results-for-vector-databases/).)
 
 To handle scenarios like this, it's better to store all your attribute vectors in the same vector store and perform *a single search*, weighting your attributes at query time. The Superlinked approach is more accurate, efficient, and scalable than the naive approach for any application that requires fast, reliable, nuanced, multi-attribute vector retrieval - whether your use case is tackling real world data challenges in your e-commerce, recommendation system, or something entirely different, like battling monsters.
 
