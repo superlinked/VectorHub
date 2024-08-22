@@ -165,22 +165,22 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 0,
+    "value": 515864,
     "source_url": "https://hub.docker.com/r/singlestore/cluster-in-a-box",
     "comment": "",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 0,
+    "value": 1309739,
     "source_url": "https://pypi.org/project/singlestoredb/",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 274599
   },
   "npm_downloads": {
-    "value": 0,
+    "value": 381,
     "source_url": "https://www.npmjs.com/package/@singlestore/http-client",
     "comment": "",
-    "value_90_days": 0
+    "value_90_days": 54
   },
   "crates_io_downloads": {
     "value": 0,
