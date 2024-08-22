@@ -2,18 +2,18 @@
 
 ## Why do multi-attribute vector search
 
-[Vector search](https://superlinked.com/vectorhub/building-blocks/vector-search/introduction) represents a revolution in information retrieval. Vector embedding - by taking account of context and semantic meaning - empowers vector search to return more relevant and accurate results, handle not just structured but also unstructured data and multiple languages, and scale. But to generate high quality responses in real-world applications (e.g., e-comm, recSys, etc.), we often need to assign different weights to specific attributes of our data objects.
+[Vector search](https://superlinked.com/vectorhub/building-blocks/vector-search/introduction) represents a revolution in information retrieval. Vector embedding - by taking account of context and semantic meaning - empowers vector search to return more relevant and accurate results, handle not just structured but also unstructured data and multiple languages, and scale. But to generate high quality responses in real-world applications, we often need to assign different weights to specific attributes of our data objects.
 
 There are two common approaches to multi-attribute vector search. In both approaches, we start by embedding each attribute of a data object separately. The main difference between these two approaches is in how our embeddings are *stored* and *searched*.
 
 1. the *naive* approach - store each attribute vector in separate vector stores (one per attribute), perform a separate search for each attribute, combine search results, and post-process (e.g., weight) as required.
 2. the *Superlinked* approach - concatenate and store all attribute vectors in the same vector store (using Superlinked's built-in funtionality), which allows us to *search just once*, with attendant efficiency gains. Superlinked's `spaces` *also* let us weight each attribute at query time to surface more relevant results, with no post-processing.
 
-Below, we'll build a monster finder tool for Dungeons and Dragons using each of these two approaches to see how they compare. These simple implementations, especially the second, will illustrate how to create more powerful and flexible search systems, ones that can handle complex, multi-faceted queries with ease.
+Below, we'll use these two approaches to implement a multi-attribute vector search tool - a Dungeons and Dragons monster finder! Our simple implementations, especially the second, will illustrate how to create more powerful and flexible search systems, ones that can handle complex, multi-faceted queries with ease, whatever your use case.
 
 If you're new to vector similarity search, don't worry! We've got you covered - check out our [building blocks articles](https://superlinked.com/vectorhub/building-blocks).
 
-Okay, let's get into it.
+Okay, let's go monster hunting!
 
 ## A Dungeons & Dragons use case
 
@@ -168,7 +168,7 @@ Our `naive_retriever` returns the following search results for each attribute:
 | Sandstorm Djinn  |     0.407344 | Swirling vortex of sand with glowing symbols      |
 | Luminoth         |     0.378619 | Moth-like creature with glowing wings and antenna |
 
-Awesome! Our returned monster results are relevant - they all have some "glowing" attribute.
+Awesome! Our returned monster results are relevant - they all have some "glowing" characteristic.
 
 Let's see what the naive approach returns when we search the other two attributes.
 
@@ -232,7 +232,7 @@ We've now retrieved 13 monsters (more than half of our tiny dataset!), and *stil
 Increasing the number of retrieved monsters (beyond 6) *might* solve our problem, but it creates additional issues:
 
 1. In production, retrieving more results (multiple kNN searches) lengthens search time noticeably.
-2. For each new attribute we introduce, we have to retrieve nearest neighbors (monsters), making the total number of retrieved monsters grow exponentially.
+2. For each new attribute we introduce, our chances of finding a "complete" monster - with all the attributes in our query - drops exponentially. To prevent this, we have to retrieve many more nearest neighbors (monsters), making the total number of retrieved monsters grow exponentially.
 3. We still have no guarantee we'll retrieve monsters that possess all our desired attributes.
 4. If we do manage to retrieve monsters that satisfy all criteria at once, we'll have to expend additional overhead reconciling results.
 
@@ -427,7 +427,7 @@ Great results again! Our two other retrieved monsters - Luminoth and Zephyr Danc
 
 Multi-attribute vector search is a significant advance in information retrieval, offering more accuracy, contextual understanding, and flexibility than basic semantic similarity search. Still, our naive approach (above) - storing and searching attribute vectors separately, *then* combining results - is limited in ability, subtlety, and efficiency when we need to retrieve objects with multiple simultaneous attributes. (Moreover, [multiple kNN searches take more time than a single one with concatenated vectors](https://redis.io/blog/benchmarking-results-for-vector-databases/).)
 
-To handle scenarios like this, it's better to store all your attribute vectors in the same vector store and perform *a single search*, weighting your attributes at query time. The Superlinked approach is more accurate, efficient, and scalable than the naive approach for any application that requires fast, reliable, nuanced, multi-attribute vector retrieval - whether your use case is tackling real world data challenges in your e-commerce, recommendation system, or something entirely different, like battling monsters.
+To handle scenarios like this, it's better to store all your attribute vectors in the same vector store and perform *a single search*, weighting your attributes at query time. The Superlinked approach is more accurate, efficient, and scalable than the naive approach for any application that requires fast, reliable, nuanced, multi-attribute vector retrieval - whether your use case is tackling real world data challenges in your e-commerce or recommendation system... or something entirely different, like battling monsters.
 
 ## Contributors
 
