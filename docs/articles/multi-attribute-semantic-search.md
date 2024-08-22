@@ -9,6 +9,8 @@ There are two common approaches to multi-attribute vector search. In both approa
 1. the *naive* approach - store each attribute vector in separate vector stores (one per attribute), perform a separate search for each attribute, combine search results, and post-process (e.g., weight) as required.
 2. the *Superlinked* approach - concatenate and store all attribute vectors in the same vector store (using Superlinked's built-in funtionality), which allows us to *search just once*, with attendant efficiency gains. Superlinked's `spaces` *also* let us weight each attribute at query time to surface more relevant results, with no post-processing.
 
+![Two approaches to multi-attribute vector search](../assets/use_cases/multi-attribute-vector-search/graphic.png)
+
 Below, we'll use these two approaches to implement a multi-attribute vector search tool - a Dungeons and Dragons monster finder! Our simple implementations, especially the second, will illustrate how to create more powerful and flexible search systems, ones that can handle complex, multi-faceted queries with ease, whatever your use case.
 
 If you're new to vector similarity search, don't worry! We've got you covered - check out our [building blocks articles](https://superlinked.com/vectorhub/building-blocks).
