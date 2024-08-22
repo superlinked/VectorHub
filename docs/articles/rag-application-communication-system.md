@@ -44,20 +44,20 @@ Expert systems and knowledge infrastructures have existed for decades, and dealt
 
 Creators of the first expert systems in the 1960s expected that professionals would seamlessly access them. They wildly underestimated how much intermediation would be required. Though MEDLINE, for example, was designed for medical researchers and clinicians, and NASA/RECON, for aerospace engineers and scientists, most MEDLINE and NASA/RECON users through the 1970s were librarians and trained intermediaries, working on behalf of end users.
 
-**1960s-1970s: expert info retrieval systems - Intended vs. reality**
+**Expert info retrieval systems (1960s-70s) - intended vs. actual**
 
-| System | Intended user | Actual user | Training data |
-| ---- | ---- | ---- | ---- |
-| Medline | medical researchers, clinicians | librarians, trained intermediaries (complex search syntax - Boolean, MeSH, and UI) | (medical journal citations) |
-| NASA/RECON| aerospace engineers, scientists | librarians, trained intermediaries | (aerospace and engineering research papers, technical reports, scientific articles) |
+| System&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Intended user&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Actual user&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Training data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+| :---- | :---- | :---- | :---- |
+| Medline | medical researchers, clinicians | librarians, trained intermediaries (complex search syntax - Boolean, MeSH, and UI) | medical journal citations |
+| NASA/RECON| aerospace engineers, scientists | librarians, trained intermediaries | aerospace and engineering research papers, technical reports, scientific articles |
 
 Like these early systems, the advent of LLMs and RAG promised a radical simplification of information retrieval - taking whatever content there is (via embedding models), and outputting (via LLMs) whatever the user wants. While it's true that embeddings are natively multilingual, theoretically resilient to synonyms, variations of language standards, and document artifacts, the radical promise made by LLMs and RAG was _not_ fulfilled, and on the same two fronts as the earlier systems: understanding users, and understanding data.
 
-**2017, 2020 - now: LLM & RAG info retrieval - Intended vs. reality**
+**LLM & RAG info retrieval (2017, 2020-now) - intended vs. actual**
 
-| Time | System | Intended user query | Actual user query | Intended (training) data | Actual (use case) data |
-| ---- | ---- | ---- | ---- | ---- | ---- |
-| 2017, 2020 - now | LLM, early RAG | full question queries | unstructured keyword queries | web, average 512 tokens / generic data | multi-page pdfs / specialized data |
+| System&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Intended user query&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Actual user query&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Intended (training) data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Actual (use case) data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+| :---- | :---- | :---- | :---- | :---- |
+| LLM, early RAG | full question queries | unstructured keyword queries | web, average 512 tokens / generic data | multi-page pdfs / specialized data |
 
 ### 2.2 Know your users
 
@@ -95,10 +95,12 @@ In practical terms:
 
 In this time of LLMs, older information retrieval methods and indicators continue to hold a lot of unrealized value, especially now that it's possible to generate/extract many key data features at scale. Jo Kristian Bergum from Vespa, for example, has [convincingly demonstrated](https://blog.vespa.ai/improving-retrieval-with-llm-as-a-judge/) how classic info retrieval evaluation design and metrics (precision at k, recall) can be effectively repurposed using emerging practices in AI, such as LLM-as-a-Judge - grounded on a small but scalable relevant dataset. Intensive data work that would have been available only to large scale organizations is now scalable with far fewer resources.
 
+> &nbsp;
 >**GOING HYBRID**
 >- *Indexation*:  traditional keyword matching + modern embedding-based similarity
 >- *Searching*:  keyword-based search + vector search
 >- *Evaluation*:  precision at k, recall + LLM-as-a-judge
+> &nbsp;
 
 Generative AI within a RAG communication system shouldn't be looking to replace the classic approaches of retrieval evaluation; it should instead reshape their logistics to take full advantage of them.
 
@@ -109,7 +111,9 @@ A proper RAG communication system should treat data no longer as a passive refer
 1. continuously transformed and reshaped to better fit the retrieval objective, and
 2. constantly circulated across different flows
 
+> &nbsp;
 > A good RAG comm system includes: bad data + classifiers + synthetic data curation
+> &nbsp;
 
 ### 3.1 You need bad data
 
