@@ -162,7 +162,7 @@ A good fine-tuning dataset, though it requires a significant amount of careful m
 
 Preparation of the instruction dataset and base model improvement should be your main focus; these have the most impact on performance. I don't spend much time optimizing the training design beyond a few hyperparameters (learning rate, batch size, etc.). I've also generally stopped looking into preference fine-tuning (like DPO); the time spent was not worth the very few improvement points.
 
-![Fine-tuning for/through RAG](../assets/use_cases/rag_application_communication/fine-tuning-for-rag.png)
+![Fine-tuning for/through RAG](../assets/use_cases/rag_application_communication/fine-tuning-thru-rag.png)
 
 While it's far less common, you can also apply this approach (i.e., fine-tuning your instruction dataset using RAG-generated synthetic data) [to embedding models](https://huggingface.co/blog/davanstrien/synthetic-similarity-datasets). Synthetic data makes it considerably easier to create an instruction dataset that maps the expected format of the similarity dataset (including queries and “hard negatives”). Fine-tuning your embedding models with synthetic data will confer the same benefits as LLM fine-tuning: cost savings (a much smaller model that demonstrates the same level of performance as a big one) and appropriateness, by bringing the “similarity” score closer to the expectations of your retrieval system.
 
