@@ -86,7 +86,7 @@ See original dataset and query examples [here](https://github.com/superlinked/ar
 
 Let's set up parameters we'll use in both of our approaches - naive and Superlinked - below.
 
-We generate our vector embeddings with `sentence-transformers/all-mpnet-base-v2`. For simplicity's sake, we'll limit our output to the top 3 matches. (For complete code, including necessary imports and helper functions, see the [notebook](https://github.com/superlinked/article-multi-attribute-search).)
+We generate our vector embeddings with `sentence-transformers/all-mpnet-base-v2`. For simplicity's sake, we'll limit our output to the top 3 matches. (For complete code, including necessary imports and helper functions, see the [notebook](https://github.com/superlinked/article-multi-attribute-search/blob/main/notebook.ipynb).)
 
 ```python
 LIMIT = 3
