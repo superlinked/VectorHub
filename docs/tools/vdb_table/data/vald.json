@@ -169,16 +169,16 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 232857,
+    "value": 233504,
     "source_url": "https://pypi.org/project/vald-client-python/",
     "comment": "",
-    "value_90_days": 8386
+    "value_90_days": 8446
   },
   "npm_downloads": {
-    "value": 7169,
+    "value": 7180,
     "source_url": "https://www.npmjs.com/package/vald-client-node",
     "comment": "",
-    "value_90_days": 773
+    "value_90_days": 778
   },
   "crates_io_downloads": {
     "value": 0,
