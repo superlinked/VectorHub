@@ -95,12 +95,14 @@ In practical terms:
 
 In this time of LLMs, older information retrieval methods and indicators continue to hold a lot of unrealized value, especially now that it's possible to generate/extract many key data features at scale. Jo Kristian Bergum from Vespa, for example, has [convincingly demonstrated](https://blog.vespa.ai/improving-retrieval-with-llm-as-a-judge/) how classic info retrieval evaluation design and metrics (precision at k, recall) can be effectively repurposed using emerging practices in AI, such as LLM-as-a-Judge - grounded on a small but scalable relevant dataset. Intensive data work that would have been available only to large scale organizations is now scalable with far fewer resources.
 
+<div align="left">
 > &nbsp;
 >**GOING HYBRID**
 >- *Indexation*:  traditional keyword matching + modern embedding-based similarity
 >- *Searching*:  keyword-based search + vector search
 >- *Evaluation*:  precision at k, recall + LLM-as-a-judge
 > &nbsp;
+</div>
 
 Generative AI within a RAG communication system shouldn't be looking to replace the classic approaches of retrieval evaluation; it should instead reshape their logistics to take full advantage of them.
 
@@ -111,9 +113,12 @@ A proper RAG communication system should treat data no longer as a passive refer
 1. continuously transformed and reshaped to better fit the retrieval objective, and
 2. constantly circulated across different flows
 
+<div align="left">
 > &nbsp;
-> A good RAG comm system includes: bad data + classifiers + synthetic data curation
+> A good RAG comm system includes:
+> &nbsp;&nbsp;&nbsp;&nbsp;bad data + classifiers + synthetic data curation
 > &nbsp;
+</div>
 
 ### 3.1 You need bad data
 
