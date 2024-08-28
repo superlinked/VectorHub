@@ -321,7 +321,7 @@ app.query(
 | Luminoth         | 0.340084 | Moth-like creature with glowing wings and antenna              | Dense forests and jungles with bioluminescent flora | Emits soothing light patterns to communicate and attract prey |
 | Living Graffiti  | 0.330587 | Two-dimensional, colorful creature that inhabits flat surfaces | Urban areas, particularly walls and billboards      | Shapeshifts to blend with surroundings and absorbs pigments   |
 
-Et voila! This time, every one of our returned monsters possesses all three attributes at once! What an improvement.
+Et voila! This time, each of our returned monsters scores highly _on average_ across all three of the attributes we want to retrieve. Our second and third results possess all three attributes, and our top result (Whispering Shade) scores _very_ high on `look` and `habitat`, giving it the highest score overall. What an improvement!
 
 Can we can replicate our results? Let's try another query and find out.
 
