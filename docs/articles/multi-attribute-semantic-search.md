@@ -1,6 +1,6 @@
 # Multi-attribute search with vector embeddings
 
-## Why do multi-attribute vector search
+## Why do multi-attribute vector search?
 
 [Vector search](https://superlinked.com/vectorhub/building-blocks/vector-search/introduction) represents a revolution in information retrieval. Vector embedding - by taking account of context and semantic meaning - empowers vector search to return more relevant and accurate results, handle not just structured but also unstructured data and multiple languages, and scale. But to generate high quality responses in real-world applications, we often need to assign different weights to specific attributes of our data objects.
 
