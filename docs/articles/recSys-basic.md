@@ -6,7 +6,7 @@ Recommender Systems are central to nearly every web platform that offers things 
 
 Below, we'll show you how to build a very simple recommender system. The rationale for our RecSys comes from our general recipe for providing recommendations, which is based on user-type (activity level):
 
-| **interaction level** | ->&nbsp;&nsbp; | **recommendation approach** |
+| **interaction level** | -> | **recommendation approach** |
 | :----------------- | :-- | :---------------- |
 | no interactions (cold start) | -> | most popular items |
 | some interactions | -> | content-based items |
