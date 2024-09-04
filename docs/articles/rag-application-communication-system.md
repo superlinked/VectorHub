@@ -8,6 +8,8 @@ The majority of vector search deployments today use RAG. It's become so integral
 
 RAG can be nothing less than a flexible, expert communication system - **a feedback loop between LLMs and the data & user landscape of a company**. RAG applications, therefore, should serve as the focal end point of fine-tuning, whatever LLM your RAG uses. Let's see how, in more detail, below.
 
+![RAG communication diagram](../assets/use_cases/rag_application_communication/cover.png)
+
 First, we'll look at how RAG addresses information retrieval challenges faced by but predating LLMs. We'll discuss why production RAG is dynamic, always solving the last mile problem (including evaluation) - customizing around LLMs to close the loop between data and users. We then go into more detail on info retrieval issues as data friction problems, and how we need to take a hybrid approach - deploying the best tools even if they're not new tools. We discuss the intricacies of specializing for production data, how you need bad data, synthetic data, and classifiers for pre-training, and the ins and outs of fine-tuning for RAG in production. Let's get started.
 
 ## 1. RAG - a comm system solution for few-doc learning (i.e., LLM) limitations
@@ -42,13 +44,26 @@ Expert systems and knowledge infrastructures have existed for decades, and dealt
 
 Creators of the first expert systems in the 1960s expected that professionals would seamlessly access them. They wildly underestimated how much intermediation would be required. Though MEDLINE, for example, was designed for medical researchers and clinicians, and NASA/RECON, for aerospace engineers and scientists, most MEDLINE and NASA/RECON users through the 1970s were librarians and trained intermediaries, working on behalf of end users.
 
+**Expert info retrieval systems (1960s-70s) - intended vs. actual**
+
+| System&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Intended user&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Actual user&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Training data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+| :---- | :---- | :---- | :---- |
+| Medline | medical researchers, clinicians | librarians, trained intermediaries (complex search syntax - Boolean, MeSH, and UI) | medical journal citations |
+| NASA/RECON| aerospace engineers, scientists | librarians, trained intermediaries | aerospace and engineering research papers, technical reports, scientific articles |
+
 Like these early systems, the advent of LLMs and RAG promised a radical simplification of information retrieval - taking whatever content there is (via embedding models), and outputting (via LLMs) whatever the user wants. While it's true that embeddings are natively multilingual, theoretically resilient to synonyms, variations of language standards, and document artifacts, the radical promise made by LLMs and RAG was _not_ fulfilled, and on the same two fronts as the earlier systems: understanding users, and understanding data.
+
+**LLM & RAG info retrieval (2017, 2020-now) - intended vs. actual**
+
+| System&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Intended user query&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Actual user query&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Intended (training) data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Actual (use case) data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+| :---- | :---- | :---- | :---- | :---- |
+| LLM, early RAG | full question queries | unstructured keyword queries | web, average 512 tokens / generic data | multi-page pdfs / specialized data |
 
 ### 2.2 Know your users
 
 It may seem obvious that knowing what your users are doing with your system is a necessary prerequisite to designing good information retrieval. But until recently, user behavior in the context of RAG had barely been discussed.
 
-In general, RAG applications underestimate the inertia of user practices; users continue behaving the same way they did with older expert systems. I recently analyzed a set of internal user queries in a production chatbot, and was surprised to see that many users were not submitting questions but unstructured keywords. This practice works perfectly in a standard information retrieval system, but instruction-based LLM and embedding models are designed to be trained on question/answer pairs.
+In general, RAG applications underestimate the inertia of user practices; users continue behaving the same way they did with older expert systems. I recently analyzed a set of internal user queries in a production chatbot, and was surprised to see that many users were submitting not questions but rather unstructured keywords. This practice works perfectly in a standard information retrieval system, but instruction-based LLM and embedding models are designed to be trained on question/answer pairs.
 
 Inattention to user-design friction in LLMs and embedding models can result in poor performance, disappointed user expectations, tokenization that fails to adequately represent data structure, incongruity of input vs output lengths, and an overall lack of control over the system's purpose.
 
@@ -80,6 +95,13 @@ In practical terms:
 
 In this time of LLMs, older information retrieval methods and indicators continue to hold a lot of unrealized value, especially now that it's possible to generate/extract many key data features at scale. Jo Kristian Bergum from Vespa, for example, has [convincingly demonstrated](https://blog.vespa.ai/improving-retrieval-with-llm-as-a-judge/) how classic info retrieval evaluation design and metrics (precision at k, recall) can be effectively repurposed using emerging practices in AI, such as LLM-as-a-Judge - grounded on a small but scalable relevant dataset. Intensive data work that would have been available only to large scale organizations is now scalable with far fewer resources.
 
+> &nbsp;
+>**GOING HYBRID**
+>- *Indexation*:  traditional keyword matching + modern embedding-based similarity
+>- *Searching*:  keyword-based search + vector search
+>- *Evaluation*:  precision at k, recall + LLM-as-a-judge
+> &nbsp;
+
 Generative AI within a RAG communication system shouldn't be looking to replace the classic approaches of retrieval evaluation; it should instead reshape their logistics to take full advantage of them.
 
 ## 3. Keep the data alive
@@ -87,7 +109,11 @@ Generative AI within a RAG communication system shouldn't be looking to replace 
 A proper RAG communication system should treat data no longer as a passive reference stock but rather a living entity - in two ways. Data should be:
 
 1. continuously transformed and reshaped to better fit the retrieval objective, and
-2. constantly circulated across different flows.
+2. constantly circulated across different flows
+
+> &nbsp;
+> A good RAG comm system includes: bad data + classifiers + synthetic data curation
+> &nbsp;
 
 ### 3.1 You need bad data
 
@@ -136,7 +162,9 @@ A good fine-tuning dataset, though it requires a significant amount of careful m
 
 Preparation of the instruction dataset and base model improvement should be your main focus; these have the most impact on performance. I don't spend much time optimizing the training design beyond a few hyperparameters (learning rate, batch size, etc.). I've also generally stopped looking into preference fine-tuning (like DPO); the time spent was not worth the very few improvement points.
 
-While it's far less common, you can also apply this approach - fine-tuning your instruction dataset using RAG-generated synthetic data - [to embedding models](https://huggingface.co/blog/davanstrien/synthetic-similarity-datasets). Synthetic data makes it considerably easier to create an instruction dataset that maps the expected format of the similarity dataset (including queries and “hard negatives”). Fine-tuning your embedding models with synthetic data will confer the same benefits as LLM fine-tuning: cost savings (a much smaller model that demonstrates the same level of performance as a big one) and appropriateness, by bringing the “similarity” score closer to the expectations of your retrieval system.
+![Fine-tuning for/through RAG](../assets/use_cases/rag_application_communication/fine-tuning-thru-rag.png)
+
+While it's far less common, you can also apply this approach (i.e., fine-tuning your instruction dataset using RAG-generated synthetic data) [to embedding models](https://huggingface.co/blog/davanstrien/synthetic-similarity-datasets). Synthetic data makes it considerably easier to create an instruction dataset that maps the expected format of the similarity dataset (including queries and “hard negatives”). Fine-tuning your embedding models with synthetic data will confer the same benefits as LLM fine-tuning: cost savings (a much smaller model that demonstrates the same level of performance as a big one) and appropriateness, by bringing the “similarity” score closer to the expectations of your retrieval system.
 
 ### 4.2 Fine-tuning for robustness
 
