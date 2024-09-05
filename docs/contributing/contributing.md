@@ -55,9 +55,9 @@ However, some additional dos and don’ts for contributors are summarised below:
 
 We constantly release bounties looking for content contributions. Keep an eye out for items with bounty labels on our GitHub.
 
-### Other ways you can get involved
+### Other ways you can participate
 
 - [Report an error/bug/typo](https://github.com/superlinked/VectorHub/issues)
 - [Create new or update existing content](https://github.com/superlinked/VectorHub)
 
-Thank you for your suggestions! If you think anything needs improving on VectorHub, feel free to contact us on arunesh\@superlinked.com, or check our [GitHub repository](https://github.com/superlinked/VectorHub).
+We welcome your suggestions! If you think anything needs improving on VectorHub, feel free to contact us on arunesh\@superlinked.com, or check our [GitHub repository](https://github.com/superlinked/VectorHub).
