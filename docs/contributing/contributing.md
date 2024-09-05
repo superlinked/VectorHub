@@ -1,6 +1,6 @@
 # Contributing Guidelines
 
-VectorHub is a learning hub that lives on its contributors. We are always looking for people interested in educating others in the community, especially as we grow. You can contribute in many ways, either by creating new content or by letting us know if content needs updating.
+VectorHub is a learning hub that lives on its contributors. We are always looking for people interested in sharing their research and helping others in the community, especially as we grow. You can contribute in many ways, either by creating new content or by letting us know if content needs updating.
 
 VectorHub (VH)'s value is in its positioning as a neutral platform for high-quality educational content. Because of this, we do not actively discuss or promote Superlinked on VH.
 
