@@ -123,7 +123,7 @@ e.g. "We explain our approach in more depth [here](https://learn.microsoft.com/e
 
 As early as possible (when your article is still in point form), go through it, summarize each paragraph in one (concise) sentence. Now, put all your summary sentences together and see if they tell a story. Is there a logical flow? If not, rearrange, remove, or add content until the article makes sense. This exercise saves a lot of time and energy, and ensures your headings and subheadings are accurate.
 
-Use a spell and grammar checker.
+Use a [spell checker](https://github.com/streetsidesoftware/cspell).
 
 ### 8. Technical terminology
 
