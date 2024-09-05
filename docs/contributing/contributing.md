@@ -57,7 +57,7 @@ We constantly release bounties looking for content contributions. Keep an eye ou
 
 ### Other ways you can get involved
 
-[Report an error/bug/typo](https://github.com/superlinked/VectorHub/issues)
-[Create new or update existing content](https://github.com/superlinked/VectorHub)
+- [Report an error/bug/typo](https://github.com/superlinked/VectorHub/issues)
+- [Create new or update existing content](https://github.com/superlinked/VectorHub)
 
 Thank you for your suggestions! If you think anything needs improving on VectorHub, feel free to contact us on arunesh\@superlinked.com, or check our [GitHub repository](https://github.com/superlinked/VectorHub).
