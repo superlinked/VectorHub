@@ -4,7 +4,7 @@
 
 [Vector search](https://superlinked.com/vectorhub/building-blocks/vector-search/introduction) represents a revolution in information retrieval. Vector embedding - by taking account of context and semantic meaning - empowers vector search to return more relevant and accurate results, handle not just structured but also unstructured data and multiple languages, and scale. But to generate high quality responses in real-world applications, we often need to assign different weights to specific attributes of our data objects.
 
-There are two common approaches to multi-attribute vector search. In both approaches, we start by embedding each attribute of a data object separately. The main difference between these two approaches is in how our embeddings are *stored* and *searched*.
+There are two common approaches to multi-attribute vector search. Both start by separately embedding each attribute of a data object. The main difference between these two approaches is in how our embeddings are *stored* and *searched*.
 
 1. the *naive* approach - store each attribute vector in separate vector stores (one per attribute), perform a separate search for each attribute, combine search results, and post-process (e.g., weight) as required.
 2. the *Superlinked* approach - concatenate and store all attribute vectors in the same vector store (using Superlinked's built-in funtionality), which allows us to *search just once*, with attendant efficiency gains. Superlinked's `spaces` *also* let us weight each attribute at query time to surface more relevant results, with no post-processing.
