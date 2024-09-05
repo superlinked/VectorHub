@@ -25,11 +25,11 @@ Front load your first paragraph with **keywords**.
 
 **Give vectorhub editors a one-sentence-per-section outline, to show us what you want to communicate. This is a huge timesaver, and helps us make sure your article does what you want it to.**
 
-Give an overview of where you're going in your Introduction. In your article itself, add clear **headings** and **subheadings** that give information and an overview to your readers. This will enable readers to navigate to relevant sections and search engines to scan it.
+Provide an overview of where your article is going in your Introduction. In the article body, add meaningful **headings** and **subheadings** that clearly indicate what you're going to discuss next. This will help readers navigate to relevant sections, and enable search engines to scan your content.
 
 Link (scroll-to-anchor) between concepts in your article (or to other articles on the platform) where it makes sense.
 
-Use [github basic formatting](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax), rather than html.
+Use [github basic formatting](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax), not html.
 
 ### 3. Be clear, substantive, and brief
 
@@ -64,7 +64,7 @@ Don't add extra **spaces** anywhere. One space between sentences and words.
 
 Text only goes so far. Complement your words with **diagrams**, **graphs**, **charts**, **code snippets**, **equations**, **images** and any other visual tools that explain your work more efficiently.
 
-Write mathematical expressions using [LaTeX](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/writing-mathematical-expressions).
+Write **mathematical expressions** using [LaTeX](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/writing-mathematical-expressions).
 
 ### 5. Be conversational, friendly, and use action verbs
 
@@ -72,12 +72,12 @@ Write mathematical expressions using [LaTeX](https://docs.github.com/en/get-star
 > Write how you speak. Be personal. In an active voice.
 
 
-Write with a **friendly** tone. Call your audience "you" and yourselves "we."
+Write with a **friendly** tone. Call your audience "you" and yourself/ves "we."
 
 Use **contractions**.
 e.g. Instead of "We are," "it is," and "they are," use "We're," "it's", and "they're."
 
-As much as possible, use an **active voice** to explain events and relationships.
+Use an **active voice** to explain events and relationships.
 e.g. Instead of: "Deep neural networks are used by GPT to learn contextual embeddings."
 Write this: "GPT uses deep neural networks to learn contextual embeddings."
 
@@ -93,7 +93,7 @@ Use consistent verb tenses.
 > Give credit where credit is due. Always.
 
 
-**Hyperlink to sources**, rather than including the source url. Don't use footnote or endnotes.
+**Hyperlink to sources**, rather than including the source url. Don't use footnotes or endnotes.
 
 Make sure you have **permission** to reuse any images you include in your VectorHub article.
 Cite your own modified versions of images owned by someone else as a "Modified version of" the original source.
