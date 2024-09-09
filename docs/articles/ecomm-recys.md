@@ -47,6 +47,8 @@ We can set up our Spaces to take account of this data, so that our RecSys works 
 
 First, we need to install the Superlinked library and import the classes.
 
+(Note: Omit `alt.renderers.enable(“mimetype”)` if you’re running this in [google colab](https://colab.research.google.com/github/superlinked/superlinked/blob/main/notebook/recommendations_e_commerce.ipynb). Keep it if you’re executing in [github](https://github.com/superlinked/VectorHub/blob/main/docs/articles/ecomm-recys.md).)
+
 ```python
 %pip install superlinked==6.0.0
 
