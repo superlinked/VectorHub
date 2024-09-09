@@ -55,7 +55,7 @@ Now that we understand the basics of our data sources, let’s set up our soluti
 
 To start building your RAG-powered HR policy chatbot with Superlinked, your first step is to install the library and import the classes.
 
-(Note: Omit `alt.renderers.enable("mimetype")` if you're running this in [google colab](https://colab.research.google.com/github/superlinked/superlinked/blob/main/notebook/analytics_user_acquisition.ipynb#scrollTo=b4d5761d-fc8d-459a-95ce-f9e05e1c6716). Keep it if you're executing in [github](https://github.com/superlinked/superlinked/blob/main/notebook/rag_hr_knowledgebase.ipynb).)
+(Note: Omit `alt.renderers.enable("mimetype")` if you're running this in [google colab](https://colab.research.google.com/github/superlinked/superlinked/blob/main/notebook/rag_hr_knowledgebase.ipynb). Keep it if you're executing in [github](https://github.com/superlinked/superlinked/blob/main/notebook/rag_hr_knowledgebase.ipynb).)
 
 ```python
 %pip install superlinked==3.46.0
