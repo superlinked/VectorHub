@@ -2,7 +2,7 @@
 
 VectorHub is a learning hub that lives on its contributors. We are always looking for people interested in sharing their research and helping others in the community, especially as we grow. You can contribute in many ways, either by creating new content or by letting us know if content needs updating.
 
-VectorHub (VH)'s value is in its positioning as a neutral platform for high-quality educational content. Because of this, we do not actively discuss or promote Superlinked on VH.
+VectorHub (VH)'s value is in its positioning as a neutral platform for high-quality educational content.
 
 We have seen significant growth since VH's launch in late November 2023, now hitting over 30k views (Mar ‘24) monthly across VH assets. The audience is technical, >50% ML Engineer/Data Scientist, 7% CTO level, from startups to major infrastructure / ML platform executives.
 
