@@ -475,3 +475,9 @@ We should mention that there are other ways - outside the scope of this article 
 Now it's your turn to try! Don’t forget to star and contribute your experiments. We welcome your feedback and suggestions.
 
 The complete code for this article is [here](https://github.com/qdrant/qdrant-rag-eval/tree/master/workshop-rag-eval-qdrant-arize).
+
+## Contributors 
+ 
+- [Atita Arora, Author](https://www.linkedin.com/in/atitaarora/) 
+- [Mór Kapronczay, Editor](https://www.linkedin.com/in/mór-kapronczay-49447692) 
+- [Robert Turner, Editor](https://www.linkedin.com/in/robertdhayanturner) 
