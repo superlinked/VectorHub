@@ -29,7 +29,7 @@ Let's embark on a quest of our own: build the ultimate monster-finding system, u
 
 First, we'll generate a small synthetic dataset of monsters, by prompting a Large Language Model (LLM):
 
-```
+```markdown
 Generate two JSON lists: 'monsters' and 'queries'.
 
 1. 'monsters' list: Create 20 unique monsters with the following properties:
