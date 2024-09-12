@@ -75,9 +75,9 @@ news_articles.shape
 
 
 
-
+```markdown
     (200853, 6)
-
+```
 
 
 
@@ -92,9 +92,9 @@ news_articles.shape
 
 
 
-
+```markdown
     (8583, 6)
-
+```
 
 
 By filtering out articles published on or before 2018-01-01, we've refined our article set down from around 200K to roughly 8.5K.
@@ -109,9 +109,9 @@ news_articles.shape[0]
 
 
 
-
+```markdown
     8429
-
+```
 
 
 
@@ -121,8 +121,9 @@ news_articles = news_articles.sort_values('headline', ascending=False).drop_dupl
 print(f"Total number of articles after removing duplicates: {news_articles.shape[0]}")
 ```
 
+```markdown
     Total number of articles after removing duplicates: 8384
-
+```
 
 
 ```python
@@ -131,10 +132,11 @@ print("Total number of authors : ", news_articles["authors"].nunique())
 print("Total number of categories : ", news_articles["category"].nunique())
 ```
 
+```markdown
     Total number of articles :  8384
     Total number of authors :  876
     Total number of categories :  26
-
+```
 
 ## 1. Content-based recommender
 
@@ -236,17 +238,19 @@ print("Loading the model...")
 model_bert = SentenceTransformer(BERT_SENT)
 ```
 
+```markdown
     Loading the model...
-
+```
 
 
 ```python
 vectors = compute_vectors(corpus, model_bert)
 ```
 
+```markdown
     Calculating Embeddings of articles...
     Embeddings calculated!
-
+```
 
 
 ```python
