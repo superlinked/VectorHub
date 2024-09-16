@@ -34,8 +34,8 @@ Let's walk through how you can perform user acquisition analytics on different a
 We have data from two recent 2023 ad campaigns - one from August (with more generic ad messages), and another from December (assisted by a made-up influencer, "XYZCr$$d"). Our data (for 8000 users) includes:
 
 1. signup date, as unix timestamp
-2. the ad creative a user clicked on [before signing up?]
-3. average (user) daily activity, measured in API calls/day [what kind of user activity does this represent? and calls/day over how many days?]
+2. the ad creative a user clicked on
+3. average (user) daily activity, measured in API calls/day
 
 To make our ad campaigns smarter, we want to know which users to target with which kinds of ad messaging. We can discover this by embedding our data into a vectorspace, where we can cluster them and find meaningful user groups - using a UMAP visualization to examine the cluster labels' relationship to features of the ad creatives.
 
@@ -142,9 +142,9 @@ alt.Chart(user_df).mark_bar().encode(
 
 ![distribution by activity count](/user_distrib-activity_count.png)
 
-out[6]: activity = api calls / day?
+out[6]: 
 The activity distribution is bimodal. Here, the first activity level group may be largely new users, who - because they signed up in the most recent (December) campaign - have less time to accumulate activity than users who signed up earlier.
-Also, this informs NumberSpace parameters[=? how?]
+Also, this informs NumberSpace parameters.
 
 Now let's examine the distribution of new users per signup date.
 
@@ -162,7 +162,7 @@ alt.Chart(dates_to_plot).mark_bar().encode(
 
 [observations] First, the distribution confirms that our second campaign (December) works much better than the first (August).
 Second, the jump in signups at 2023-12-21 is due to the second campaign (our data is exclusively campaign-related). To analyze the two campaigns, we need two periods: a first period of 65 days and a second of 185 days seems appropriate.
-Of our 8k users, roughly 2k subscribed in the first campaign, and 6k in the second. "Maybe the second push brought in subscribers intrinsically, but also through spillover to old ads [??] as well - will see that by the ad_creatives..."
+Of our 8k users, roughly 2k subscribed in the first campaign, and 6k in the second. "Maybe the second push brought in subscribers intrinsically, but also through spillover to old ads as well - will see that by the ad_creatives..."
 ...
 
 summarize what we know, and what we don't know that embedding and Superlinked spaces will help reveal
@@ -378,10 +378,10 @@ alt.hconcat(*activity_histograms)
 
 From our histograms, we can observe that:
 
-- outliers (cluster -1)... [@mor - what does "outliers are the most active relatively - active users are rare" mean?]
-- cluster 2 and cluster 3 users are quite similar, positive[?], but low activity
+- outliers (cluster -1)... 
+- cluster 2 and cluster 3 users are quite similar, positive, but low activity
 - cluster 0 has the highest proportion of medium activity users
-- cluster 1 users are active, "are not outliers and have a fairly balanced activity profile" [meaning?]
+- cluster 1 users are active, "are not outliers and have a fairly balanced activity profile"
 
 To see the distribution of ad_creatives across different clusters, we create a DataFrame that shows each ad_creative's count value within each cluster:
 
