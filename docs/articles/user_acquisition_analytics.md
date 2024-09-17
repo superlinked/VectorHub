@@ -3,10 +3,9 @@ Notebook 4: Analytics
 
 # User Acquisition Analytics
 
-Organizations have until recently done their user acquisition analytics on structured data. But now, vector embeddings - because they capture semantic meaning and context - enable orgs to incorporate unstructured data formats such as text into their queries, permitting a more detailed understanding of what drives user behavior, to inform user targeting strategies. Still, vector embeddings present several challenges - including choosing the right embedding techniques, computational complexity, and interpretability.
+Organizations have until recently done most of their user acquisition analytics on structured data. Vector embeddings have changed this. Because vectors capture the semantic meaning and context of unstructured data such as text, they enable organizations to obtain more nuanced and detailed insight into what drives user behavior, to inform their user targeting strategies. Still, vectors present several challenges - including choosing the right embedding techniques, computational complexity, and interpretability.
 
-[outline...]
-In this article, we'll show you how to use the Superlinked library to overcome these challenges - letting you leverage vector embedding power to identify and analyze users on the basis of how they respond to particular ad messaging, target them more precisely, and improve conversion rates in your campaigns.
+In this article, we'll show you how to use the Superlinked library to overcome these challenges - letting you leverage vector embedding power to **identify and analyze users on the basis of how they respond to particular ad messaging, target them more precisely, and improve conversion rates in your campaigns**.
 
 ## Vector embedding - power & challenges
 
@@ -16,28 +15,28 @@ But while vector embeddings are a powerful tool for user analysis, they also int
 
 - *Quality and relevance* - to achieve good retrieval results and avoid postprocessing and reranking, embedding generation techniques and parameters need to be selected carefully
 - *Scalability with high-dimensional data* - rich data increases computational complexity and resource requirements, especially when working with large datasets
-- *Interpretability* - identifying underlying patterns and relationships (including how specific users respond to certain ad types) embedded in abstract vectors can be tricky
+- *Interpretability* - identifying underlying patterns and relationships (e.g., how specific users respond to certain ad types) embedded in abstract vectors can be tricky
 
 ## Smarter vectors
 
-Superlinked's framework helps overcome these challenges by: enabling you to create vectors that are smarter representations of your data and let you optimize retrieval - i.e., get high quality, actionable insights - without postprocessing or reranking. In the process, we'll visualize and understand how different users respond to different ad creatives.
+We can use Superlinked's framework to overcome these challenges by creating vectors that are smarter representations of your data and therefore let you retrieve high quality, actionable insights (e.g., understanding why different users respond to different ad creatives) without postprocessing or reranking.
 
-Let's walk through how you can perform user acquisition analytics on different ad sets using Superlinked library elements, namely:
+Let's walk through how you can perform user acquisition analytics on different ad sets from two ad campaigns using Superlinked library elements, namely:
 
 - **Recency space** - to understand the freshness of information
 - **Number space** - to interpret user activity
 - **TextSimilarity space** - to interpret the ad creatives
-- **Query time weights** - optimize your results by defining how you treat your data when you run a query, without needing to re-embed the whole dataset
+- **Query time weights** - to optimize results by defining how you treat your data when you run a query, without needing to re-embed the whole dataset
 
 ## User data
 
-We have data from two recent 2023 ad campaigns - one from August (with more generic ad messages), and another from December (assisted by a made-up influencer, "XYZCr$$d"). Our data (for 8000 users) includes:
+We have data from two 2023 ad campaigns - one from August (with more generic ad messages), and another from December (assisted by a made-up influencer, "XYZCr$$d"). Our data (for 8000 users) includes:
 
 1. signup date, as unix timestamp
-2. the ad creative a user clicked on
-3. average (user) daily activity, measured in API calls/day
+2. the ad creative a user clicked on before signing up
+3. average (user) daily activity, measured in API calls/day (over the user's lifetime)
 
-To make our ad campaigns smarter, we want to know which users to target with which kinds of ad messaging. We can discover this by embedding our data into a vectorspace, where we can cluster them and find meaningful user groups - using a UMAP visualization to examine the cluster labels' relationship to features of the ad creatives.
+To make our ad campaigns smarter, **we want to know which users to target with which kinds of ad messaging**. We can discover this by embedding our data into a vectorspace, where we can cluster users and find meaningful groups - using a UMAP visualization to examine the cluster labels' relationship to features of the ad creatives.
 
 Let's get started.
 
@@ -102,7 +101,7 @@ NOW_TS = 1708529056
 EXECUTOR_DATA = {CONTEXT_COMMON: {CONTEXT_COMMON_NOW: NOW_TS}}
 ```
 
-(If you're waiting something you're executing to finish, you can always find interesting reading in [VectorHub](https://superlinked.com/vectorhub/).)
+(If you're waiting for your code to finish running, you can always find other interesting reading in [VectorHub](https://superlinked.com/vectorhub/).)
 
 ## Read and explore our dataset
 
@@ -117,7 +116,7 @@ user_df.head()
 
 We have 8000 users and (as we can see from the first five rows) 4 columns of data:
 
-![first 5 rows of our dataset](/user_id-sign_up_date-ad_creative-activity.png)
+![first 5 rows of our dataset](../assets/use_cases/user_acquisition_analytics/user_id-sign_up_date-ad_creative-activity.png)
 
 To understand which ad creatives generated how many signups, we create a DataFrame:
 
@@ -127,11 +126,11 @@ pd.DataFrame(user_df["ad_creative"].value_counts())
 
 which looks like this:
 
-![ad_creatives by count](/ad_creative-count.png)
+![ad_creatives by count](../assets/use_cases/user_acquisition_analytics/ad_creative-count.png)
 
-observation: the influencer (XYZCr$$d) backed ad creatives seem to have worked better - generating many more [signups?] than the August ad creatives.
+observation: the influencer (XYZCr$$d) backed ad creatives seem to have worked better - generating many more signups than the August ad creatives. 
 
-Now, let's take a look at the distribution of users according to activity level.
+Now, let's take a look at the **distribution of users according to activity level** (api calls/day).
 
 ```python
 alt.Chart(user_df).mark_bar().encode(
@@ -140,11 +139,10 @@ alt.Chart(user_df).mark_bar().encode(
 ).properties(width=600, height=400)
 ```
 
-![distribution by activity count](/user_distrib-activity_count.png)
+![distribution by activity count](../assets/use_cases/user_acquisition_analytics/user_distrib-activity_count.png)
 
-out[6]: 
-The activity distribution is bimodal. Here, the first activity level group may be largely new users, who - because they signed up in the most recent (December) campaign - have less time to accumulate activity than users who signed up earlier.
-Also, this informs NumberSpace parameters.
+The activity (api calls/day) distribution is bimodal. Here, the first activity level group (0.00-0.40 api calls/day) may be largely new users, who - if they signed up in the most recent (December) campaign - have less time to accumulate activity than the smaller number of users (with 0.40-1.40 api calls/day) who signed up earlier.
+Also, we can derive our NumberSpace min and max from this distribution.
 
 Now let's examine the distribution of new users per signup date.
 
@@ -158,20 +156,29 @@ alt.Chart(dates_to_plot).mark_bar().encode(
 ).properties(height=400, width=1200)
 ```
 
-![new users per signup date](/new_users-signup_date.png)
+![new users per signup date](../assets/use_cases/user_acquisition_analytics/new_users-signup_date.png)
 
 [observations] First, the distribution confirms that our second campaign (December) works much better than the first (August).
 Second, the jump in signups at 2023-12-21 is due to the second campaign (our data is exclusively campaign-related). To analyze the two campaigns, we need two periods: a first period of 65 days and a second of 185 days seems appropriate.
-Of our 8k users, roughly 2k subscribed in the first campaign, and 6k in the second. "Maybe the second push brought in subscribers intrinsically, but also through spillover to old ads as well - will see that by the ad_creatives..."
-...
+Of our 8k users, roughly 2k subscribed in the first campaign period (65 days), and 6k in the second. ...It's possible that this 6k number includes subscriptions not just from new (December) campaign ad clicks, but clicks on old (August) campaign ads that occur after seeing new campaign ads. We'll see how this breaks out by... ad creatives [?]... (below)...
 
-summarize what we know, and what we don't know that embedding and Superlinked spaces will help reveal
+so far.. we know that:
+
+- many more users signed up in response to the influencer-backed ad creatives (second campaign) than the first campaign
+- the vast majority of users are low activity, and more recent subscribers
+
+We don't know....
+
+- what kind of ad creatives have similar meanings and possibly outcomes as a result
+- what kinds of users (in terms of activity level) responded to what kind of ad_creatives (in terms of semantic meaning)
+
+We can use embedding and Superlinked spaces to help reveal answers to our remaining questions..
 
 
 ## Embedding with Superlinked
 
-Now, let's use Superlinked to embed our data in a semantic space - 
-to 
+Now, let's use Superlinked to embed our data in a semantic space - to:
+ 
 1. inform the model re *which ad creatives* generated **signups**, and *which users* signed up... 
 2. group ad creatives that have similar meanings..
 
@@ -214,7 +221,7 @@ recency_plotter = RecencyPlotter(recency_space, context_data=EXECUTOR_DATA)
 recency_plotter.plot_recency_curve()
 ```
 
-![](/recency_scores-by-date.png)
+![](../assets/use_cases/user_acquisition_analytics/recency_scores-by-date.png)
 
 [how exactly do the recency scores work?] 
 
@@ -266,7 +273,7 @@ vector_df.shape
 
 Here are the first five rows (of 8000), and 776 columns, of the resulting dataframe:
 
-![](/collected_vectors.png)
+![](../assets/use_cases/user_acquisition_analytics/collected_vectors.png)
 
 ## Clustering
 
@@ -300,7 +307,7 @@ label_df = pd.DataFrame(
 label_df["cluster_label"].value_counts()
 ```
 
-![user distribution by cluster label](/user_distrib-by-cluster_label.png)
+![user distribution by cluster label](../assets/use_cases/user_acquisition_analytics/user_distrib-by-cluster_label.png)
 
 ## Visualizing the data
 
@@ -341,7 +348,7 @@ alt.Chart(umap_df).mark_circle(size=8).encode(
 )
 ```
 
-![cluster visualization](/cluster_visualization)
+![cluster visualization](../assets/use_cases/user_acquisition_analytics/cluster_visualization.png)
 
 
 The dark blue clusters (label -1) are outliers - not large or dense enough to form a distinct group. 
@@ -374,12 +381,12 @@ activity_histograms = [
 alt.hconcat(*activity_histograms)
 ```
 
-![histograms of clusters](/cluster_histograms.png)
+![histograms of clusters](../assets/use_cases/user_acquisition_analytics/cluster_histograms.png)
 
 From our histograms, we can observe that:
 
-- outliers (cluster -1)... 
-- cluster 2 and cluster 3 users are quite similar, positive, but low activity
+- outliers (cluster -1) - a small number of very active users
+- cluster 2 and cluster 3 users are quite similar, but low activity
 - cluster 0 has the highest proportion of medium activity users
 - cluster 1 users are active, "are not outliers and have a fairly balanced activity profile"
 
@@ -389,11 +396,11 @@ To see the distribution of ad_creatives across different clusters, we create a D
 pd.DataFrame(user_df.groupby("cluster_label")["ad_creative"].value_counts())
 ```
 
-![ad creatives distribution across clusters](ad_creatives-per-cluster.png)
+![ad creatives distribution across clusters](../assets/use_cases/user_acquisition_analytics/ad_creatives-per-cluster.png)
 
 observations:
 
-- outliers clicked on ad_creatives from both campaigns (as expected)
+- outliers (highly active users) clicked on ad_creatives from both campaigns (as expected)
 - cluster 3 clicked on only one distinct ad_creative - from the influencer based campaign
 - clusters 0 and 2 clicked on only two distinct influencer based creatives
 - cluster 1 clicked on both campaigns' ad_creatives, but more on the first (non-influencer) campaign
@@ -412,13 +419,16 @@ for col in desc.columns:
 desc
 ```
 
-![signup date per cluster group](/signup_date-per-cluster.png)
+![signup date per cluster group](../assets/use_cases/user_acquisition_analytics/signup_date-per-cluster.png)
 
 observations...
 
 - outliers' (cluster -1) have signup dates that are scattered
 - cluster 1's signups mostly (75%) came from clicks on the first campaign's ad_creatives
 - clusters 0, 2, and 3 signed up in response to the new (influencer-augmented) campaign only
+
+[question - how are these insights helpful for improving user acquisition?
+did we actually ascertain (let alone make use of) which ads' content is semantically similar?]
 
 ## In sum
 
@@ -427,4 +437,4 @@ Superlinked's framework enables you to perform more nuanced user acquisition ana
 lets you take advantage of the power of embedding structured *and* unstructured data (e.g., ad campaign text), giving you accurate, relevant results and insights - for more nuanced user acquisition and, more generally, behavioral analytics.. 
 so you can improve the effectiveness of your user acquisition (but also retention and engagement)...
 
-![summary of outcomes](/summary.png)
+![summary of outcomes](../assets/use_cases/user_acquisition_analytics/summary.png)
