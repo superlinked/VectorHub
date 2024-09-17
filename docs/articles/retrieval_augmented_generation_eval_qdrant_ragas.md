@@ -272,9 +272,7 @@ The first of RAGAS' eight key evaluation metrics is:
 
 - [Faithfulness](https://docs.ragas.io/en/latest/concepts/metrics/faithfulness.html) - scaled from 0 to 1, faithfulness measures the factual consistency of the answer. 1 represents complete consistency, 0 represents complete inconsistency. Faithfulness is measured as follows:
 
-<div style="overflow-x: auto; white-space: nowrap;">
 $$ Faithfulness\ score = \frac{\text{Number of claims in the generated answer that can be inferred from given context}}{\text{Total number of claims in the generated answer}} $$
-</div>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;using context and answer fields.
 
