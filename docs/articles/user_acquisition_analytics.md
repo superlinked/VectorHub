@@ -21,7 +21,7 @@ But while vector embeddings are a powerful tool for user analysis, they also int
 
 We can use Superlinked's framework to overcome these challenges by creating vectors that are smarter representations of your data and therefore let you retrieve high quality, actionable insights (e.g., understanding why different users respond to different ad creatives) without postprocessing or reranking.
 
-Let's walk through how you can perform user acquisition analytics on different ad sets from two ad campaigns using Superlinked library elements, namely:
+Let's walk through how you can perform user acquisition analytics on ad creatives using Superlinked library elements, namely:
 
 - **Recency space** - to understand the freshness of information
 - **Number space** - to interpret user activity
@@ -83,7 +83,7 @@ from superlinked.framework.dsl.space.number_space import NumberSpace
 from superlinked.framework.dsl.space.recency_space import RecencySpace
 
 
-alt.renderers.enable("mimetype")  # comment this line out when running in Colab to render altair plots
+alt.renderers.enable("mimetype")  # important: to render plots in colab, replace 'mimetype' with 'colab'
 alt.data_transformers.disable_max_rows()
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 pd.set_option("display.max_colwidth", 190)
@@ -214,7 +214,7 @@ recency_space = RecencySpace(
 )
 ```
 
-Now, let's plot our recency scores by date.
+Now, let's plot our recency scores by date. 
 
 ```python
 recency_plotter = RecencyPlotter(recency_space, context_data=EXECUTOR_DATA)
@@ -222,8 +222,6 @@ recency_plotter.plot_recency_curve()
 ```
 
 ![](../assets/use_cases/user_acquisition_analytics/recency_scores-by-date.png)
-
-[how exactly do the recency scores work?] 
 
 Next, we set up an in-memory data processing pipeline for indexing, parsing, and executing operations on user data, including clustering (where RecencySpace lets our model take account of user signup recency).
 
@@ -384,7 +382,7 @@ alt.hconcat(*activity_histograms)
 
 From our histograms, we can observe that:
 
-- outliers (cluster -1) - a small number of very active users
+- outliers (cluster -1) - a small number of very active users "it means that there are quite a few active users (generally the rates of users turning to active users on a site is quite low), so naturally active users are over-represented outliers"
 - cluster 2 and cluster 3 users are quite similar, but low activity
 - cluster 0 has the highest proportion of medium activity users
 - cluster 1 users are active, "are not outliers and have a fairly balanced activity profile"..."have activities from all over the distribution = meaning here are the active users that are not outliers"
