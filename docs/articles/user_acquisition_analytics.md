@@ -388,7 +388,7 @@ From our histograms, we can observe that:
 - outliers (cluster -1) - a small number of very active users
 - cluster 2 and cluster 3 users are quite similar, but low activity
 - cluster 0 has the highest proportion of medium activity users
-- cluster 1 users are active, "are not outliers and have a fairly balanced activity profile"
+- cluster 1 users are active, "are not outliers and have a fairly balanced activity profile"..."have activities from all over the distribution = meaning here are the active users that are not outliers"
 
 To see the distribution of ad_creatives across different clusters, we create a DataFrame that shows each ad_creative's count value within each cluster:
 
