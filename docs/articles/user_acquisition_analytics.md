@@ -291,8 +291,7 @@ workaround on colab
 %pip install hdbscan
 from scipy.spatial import distance
 from hdbscan import HDBSCAN
-from scipy.spatial import distance
-# Assuming vector_df is your DataFrame
+
 mat = distance.cdist(vector_df.values, vector_df.values, metric='cosine')
 hdbscan = HDBSCAN(min_cluster_size=500, metric='precomputed')
 hdbscan.fit(mat)
