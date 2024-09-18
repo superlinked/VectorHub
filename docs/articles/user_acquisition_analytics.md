@@ -286,10 +286,6 @@ hdbscan.fit(vector_df.values)
 
 workaround on colab
 ```python
-%pip install hdbscan
-from scipy.spatial import distance
-from hdbscan import HDBSCAN
-
 mat = distance.cdist(vector_df.values, vector_df.values, metric='cosine')
 hdbscan = HDBSCAN(min_cluster_size=500, metric='precomputed')
 hdbscan.fit(mat)
