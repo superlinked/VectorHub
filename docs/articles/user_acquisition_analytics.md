@@ -101,7 +101,7 @@ NOW_TS = 1708529056
 EXECUTOR_DATA = {CONTEXT_COMMON: {CONTEXT_COMMON_NOW: NOW_TS}}
 ```
 
-(If you're waiting for your code to finish running, you can always find other interesting reading in [VectorHub](https://superlinked.com/vectorhub/).)
+(This might take a few minutes. While you're waiting, you can always find other interesting reading in [VectorHub](https://superlinked.com/vectorhub/).)
 
 ## Read and explore our dataset
 
