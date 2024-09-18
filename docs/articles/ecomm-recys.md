@@ -78,7 +78,7 @@ from superlinked.framework.dsl.space.text_similarity_space import TextSimilarity
 from superlinked.framework.dsl.space.number_space import NumberSpace
 
 
-alt.renderers.enable("mimetype")
+alt.renderers.enable("mimetype") # NOTE: to render altair plots in colab, comment this line out
 pd.set_option("display.max_colwidth", 190)
 ```
 
