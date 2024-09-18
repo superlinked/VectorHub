@@ -45,7 +45,7 @@ Once we have our indexed vector space, we will:
 
 Your first step is to install the library and import the requisite classes.
 
-(Note: Below, change `alt.renderers.enable(“mimetype”)` to `alt.renderers.enable('colab')` if you’re running this in [google colab](https://colab.research.google.com/github/superlinked/superlinked/blob/main/notebook/semantic_search_netflix_titles.ipynb). Keep `alt.renderers.enable(“mimetype”)` if you’re executing in [github](https://github.com/superlinked/VectorHub/blob/main/docs/articles/semantic_search-netflix.md).)
+(Note: Below, change `alt.renderers.enable(“mimetype”)` to `alt.renderers.enable('colab')` if you’re running this in [google colab](https://colab.research.google.com/github/superlinked/superlinked/blob/main/notebook/semantic_search_netflix_titles.ipynb). Keep “mimetype” if you’re executing in [github](https://github.com/superlinked/VectorHub/blob/main/docs/articles/semantic_search-netflix.md).)
 
 ```python
 %pip install superlinked==5.3.0
