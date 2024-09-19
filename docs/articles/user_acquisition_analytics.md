@@ -42,6 +42,15 @@ Let's get started.
 
 ## Setup
 
+Before you do our installations and imports, make sure you have access to Llama2 in your environment. If you're working in google colab, sign in / up on [huggingface](https://huggingface.co/), get an access token [here](https://huggingface.co/settings/tokens/), and login:
+
+```python
+from huggingface_hub import notebook_login
+notebook_login() 
+```
+
+Now, let's get going on our installations and imports.
+
 First, we install superlinked and umap.
 
 ```python
