@@ -431,7 +431,7 @@ weights = {
 | Luminoth       | 0.149196 | Moth-like creature with glowing wings and antenna                    | Dense forests and jungles with bioluminescent flora | Emits soothing light patterns to communicate and attract prey  |
 | Zephyr Dancer  | 0.136456 | Graceful avian creature with iridescent feathers                     | High mountain peaks and wind-swept plains           | Creates mesmerizing aerial displays to attract mates           |
 
-Great results again! Our two other retrieved monsters—Luminoth and Zephyr Dancer—have behavior similar to Harmonic Coral and live in habitats different from Harmonic Coral's. They also look very different from Harmonic Coral. (While Harmonic Coral's tendrils and Luminoth's antenna are somewhat similar features, we only down-weighted the `look_weight` by 0.5, and the resemblance between the two monsters ends there.)
+Great results again! Our two other retrieved monsters — Luminoth and Zephyr Dancer — have behavior similar to Harmonic Coral and live in habitats different from Harmonic Coral's. They also look very different from Harmonic Coral. (While Harmonic Coral's tendrils and Luminoth's antenna are somewhat similar features, we only down-weighted the `look_weight` by 0.5, and the resemblance between the two monsters ends there.)
 
 Here's a detailed breakdown of the scores as we did above:
 
