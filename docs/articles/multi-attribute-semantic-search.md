@@ -62,23 +62,23 @@ Let's take a look at a sample of the dataset our LLM generated. Note: LLM genera
 
 Here are our first five monsters:
 
-|      | name             | look&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | habitat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | behavior&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
-| ---: | :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------- |
-|    0 | Luminoth         | Moth-like creature with glowing wings and antenna                                                                                                                | Dense forests and jungles with bioluminescent flora                                                                 | Emits soothing light patterns to communicate and attract prey                                                                          |
-|    1 | Aqua Wraith      | Translucent humanoid figure made of flowing water                                                                                                                | Rivers, lakes, and coastal areas                                                                                    | Shapeshifts to blend with water bodies and controls currents                                                                           |
-|    2 | Stoneheart Golem | Massive humanoid composed of interlocking rock formations                                                                                                        | Rocky mountains and ancient ruins                                                                                   | Hibernates for centuries, awakens to protect its territory                                                                             |
-|    3 | Whispering Shade | Shadowy, amorphous being with glowing eyes                                                                                                                       | Dark forests and abandoned buildings                                                                                | Feeds on fear and whispers unsettling truths                                                                                           |
-|    4 | Zephyr Dancer    | Graceful avian creature with iridescent feathers                                                                                                                 | High mountain peaks and wind-swept plains                                                                           | Creates mesmerizing aerial displays to attract mates                                                                                   |
+|    | name | look&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | habitat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | behavior&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+| ---: | :--- | :--- | :--- | :--- |
+|  0 | Luminoth | Moth-like creature with glowing wings and antenna | Dense forests and jungles with bioluminescent flora | Emits soothing light patterns to communicate and attract prey |
+|  1 | Aqua Wraith | Translucent humanoid figure made of flowing water | Rivers, lakes, and coastal areas | Shapeshifts to blend with water bodies and controls currents |
+|  2 | Stoneheart Golem | Massive humanoid composed of interlocking rock formations | Rocky mountains and ancient ruins | Hibernates for centuries, awakens to protect its territory |
+|  3 | Whispering Shade | Shadowy, amorphous being with glowing eyes | Dark forests and abandoned buildings | Feeds on fear and whispers unsettling truths |
+|  4 | Zephyr Dancer | Graceful avian creature with iridescent feathers | High mountain peaks and wind-swept plains | Creates mesmerizing aerial displays to attract mates |
 
 ...and our generated queries:
 
-|      | look          | habitat              | behavior              |
-| ---: | :------------ | :------------------- | :-------------------- |
-|    0 | glowing       | dark places          | light manipulation    |
-|    1 | elemental     | extreme environments | environmental control |
-|    2 | shapeshifting | varied landscapes    | illusion creation     |
-|    3 | crystalline   | mineral-rich areas   | energy absorption     |
-|    4 | ethereal      | atmospheric          | mind influence        |
+|    | look | habitat | behavior |
+|---:|:---|:---|:---|
+|  0 | glowing | dark places | light manipulation |
+|  1 | elemental | extreme environments | environmental control |
+|  2 | shapeshifting | varied landscapes | illusion creation |
+|  3 | crystalline | mineral-rich areas | energy absorption |
+|  4 | ethereal | atmospheric | mind influence |
 
 See original dataset and query examples [here](https://github.com/superlinked/article-multi-attribute-search).
 
@@ -164,41 +164,41 @@ naive_retriever.search(query)
 Our `naive_retriever` returns the following search results for each attribute:
 
 **Look: glowing**
-| id               | score_look | look                                              |
-| :--------------- | ---------: | :------------------------------------------------ |
-| Whispering Shade |   0.503578 | Shadowy, amorphous being with glowing eyes        |
-| Sandstorm Djinn  |   0.407344 | Swirling vortex of sand with glowing symbols      |
-| Luminoth         |   0.378619 | Moth-like creature with glowing wings and antenna |
+| id               |   score_look | look                                              |
+|:-----------------|-------------:|:--------------------------------------------------|
+| Whispering Shade |     0.503578 | Shadowy, amorphous being with glowing eyes        |
+| Sandstorm Djinn  |     0.407344 | Swirling vortex of sand with glowing symbols      |
+| Luminoth         |     0.378619 | Moth-like creature with glowing wings and antenna |
 
 Awesome! Our returned monster results are relevant - they all have some "glowing" characteristic.
 
 Let's see what the naive approach returns when we search the other two attributes.
 
 **Habitat: dark places**
-| id                  | score_habitat | habitat                              |
-| :------------------ | ------------: | :----------------------------------- |
-| Whispering Shade    |      0.609567 | Dark forests and abandoned buildings |
-| Fungal Network      |      0.438856 | Underground caverns and damp forests |
-| Thornvine Elemental |      0.423421 | Overgrown ruins and dense jungles    |
+| id                  |   score_habitat | habitat                              |
+|:--------------------|----------------:|:-------------------------------------|
+| Whispering Shade    |        0.609567 | Dark forests and abandoned buildings |
+| Fungal Network      |        0.438856 | Underground caverns and damp forests |
+| Thornvine Elemental |        0.423421 | Overgrown ruins and dense jungles    |
 
 **Behavior: light manipulation**
-| id                | score_behavior | behavior                                                       |
-| :---------------- | -------------: | :------------------------------------------------------------- |
-| Living Graffiti   |       0.385741 | Shapeshifts to blend with surroundings and absorbs pigments    |
-| Crystalwing Drake |       0.385211 | Hoards precious gems and can refract light into powerful beams |
-| Luminoth          |       0.345566 | Emits soothing light patterns to communicate and attract prey  |
+| id                |   score_behavior | behavior                                                       |
+|:------------------|-----------------:|:---------------------------------------------------------------|
+| Living Graffiti   |         0.385741 | Shapeshifts to blend with surroundings and absorbs pigments    |
+| Crystalwing Drake |         0.385211 | Hoards precious gems and can refract light into powerful beams |
+| Luminoth          |         0.345566 | Emits soothing light patterns to communicate and attract prey  |
 
 All the retrieved monsters do possess the wanted attributes. At first glance, the naive search results may seem promising. But we need to find monsters that possess *all three attributes simultaneously*. Let's merge our results to see how well our monsters do at achieving this goal:
 
-| id                  | score_look | score_habitat | score_behavior |
-| :------------------ | ---------: | ------------: | -------------: |
-| Whispering Shade    |   0.503578 |      0.609567 |                |
-| Sandstorm Djinn     |   0.407344 |               |                |
-| Luminoth            |   0.378619 |               |       0.345566 |
-| Fungal Network      |            |      0.438856 |                |
-| Thornvine Elemental |            |      0.423421 |                |
-| Living Graffiti     |            |               |       0.385741 |
-| Crystalwing Drake   |            |               |       0.385211 |
+| id                  |   score_look |   score_habitat |   score_behavior |
+|:--------------------|-------------:|----------------:|-----------------:|
+| Whispering Shade    |     0.503578 |        0.609567 |                  |
+| Sandstorm Djinn     |     0.407344 |                 |                  |
+| Luminoth            |     0.378619 |                 |         0.345566 |
+| Fungal Network      |              |        0.438856 |                  |
+| Thornvine Elemental |              |        0.423421 |                  |
+| Living Graffiti     |              |                 |         0.385741 |
+| Crystalwing Drake   |              |                 |         0.385211 |
 
 And here, the limits of the naive approach become obvious. Let's evaluate:
 
@@ -213,21 +213,21 @@ And here, the limits of the naive approach become obvious. Let's evaluate:
 
 In short, the naive search approach fails to find monsters that satisfy all criteria at once. **Maybe we can fix this issue by proactively retrieving more monsters for each attribute?** Let's try it with 6 monsters per attribute, instead of 3. Let's take a look at what this approach generates:
 
-| id                  | score_look | score_habitat | score_behavior |
-| :------------------ | ---------: | ------------: | -------------: |
-| Whispering Shade    |   0.503578 |      0.609567 |                |
-| Sandstorm Djinn     |   0.407344 |      0.365061 |                |
-| Luminoth            |   0.378619 |               |       0.345566 |
-| Nebula Jellyfish    |    0.36627 |               |       0.259969 |
-| Dreamweaver Octopus |   0.315679 |               |                |
-| Quantum Firefly     |   0.288578 |               |                |
-| Fungal Network      |            |      0.438856 |                |
-| Thornvine Elemental |            |      0.423421 |                |
-| Mist Phantom        |            |      0.366816 |       0.236649 |
-| Stoneheart Golem    |            |      0.342287 |                |
-| Living Graffiti     |            |               |       0.385741 |
-| Crystalwing Drake   |            |               |       0.385211 |
-| Aqua Wraith         |            |               |       0.283581 |
+| id                  |   score_look |   score_habitat |   score_behavior |
+|:--------------------|-------------:|----------------:|-----------------:|
+| Whispering Shade    |     0.503578 |        0.609567 |                  |
+| Sandstorm Djinn     |     0.407344 |        0.365061 |                  |
+| Luminoth            |     0.378619 |                 |         0.345566 |
+| Nebula Jellyfish    |     0.36627  |                 |         0.259969 |
+| Dreamweaver Octopus |     0.315679 |                 |                  |
+| Quantum Firefly     |     0.288578 |                 |                  |
+| Fungal Network      |              |        0.438856 |                  |
+| Thornvine Elemental |              |        0.423421 |                  |
+| Mist Phantom        |              |        0.366816 |         0.236649 |
+| Stoneheart Golem    |              |        0.342287 |                  |
+| Living Graffiti     |              |                 |         0.385741 |
+| Crystalwing Drake   |              |                 |         0.385211 |
+| Aqua Wraith         |              |                 |         0.283581 |
 
 We've now retrieved 13 monsters (more than half of our tiny dataset!), and *still* have the same issue: not one of these monsters was retrieved for all three attributes.
 
@@ -316,12 +316,12 @@ app.query(
 ```
 
 | id               |    score | look                                                           | habitat                                             | behavior                                                      |
-| :--------------- | -------: | :------------------------------------------------------------- | :-------------------------------------------------- | :------------------------------------------------------------ |
+|:-----------------|---------:|:---------------------------------------------------------------|:----------------------------------------------------|:--------------------------------------------------------------|
 | Whispering Shade | 0.376738 | Shadowy, amorphous being with glowing eyes                     | Dark forests and abandoned buildings                | Feeds on fear and whispers unsettling truths                  |
 | Luminoth         | 0.340084 | Moth-like creature with glowing wings and antenna              | Dense forests and jungles with bioluminescent flora | Emits soothing light patterns to communicate and attract prey |
 | Living Graffiti  | 0.330587 | Two-dimensional, colorful creature that inhabits flat surfaces | Urban areas, particularly walls and billboards      | Shapeshifts to blend with surroundings and absorbs pigments   |
 
-Et voila! This time, each of our top returned monsters ranks highly in a score that represents a kind of "mean" of all three characteristics we want our monster to have. Here's a detailed breakdown of the scores:
+Et voila! This time, each of our top returned monsters ranks highly in a score that represents a kind of "mean" of all three characteristics we want our monster to have. Let's break each monster's score out in detail:
 
 |                  |     look |  habitat | behavior |    total |
 | :--------------- | -------: | -------: | -------: | -------: |
@@ -329,7 +329,7 @@ Et voila! This time, each of our top returned monsters ranks highly in a score t
 | Luminoth         | 0.126206 | 0.098689 | 0.115189 | 0.340084 |
 | Living Graffiti  | 0.091063 | 0.110944 |  0.12858 | 0.330587 |
 
-Our second and third results, Luminoth and Living Graffiti, both possess all three characteristics, contributing to their respective total scores. The top result, Whispering Shade, though its `behavior` score (0.006) is less related to light manipulation, it excels in the `look` (0.168) with its glowing features and `habitat` (0.203) in dark places. This combination gives Whispering Shade the highest total score of 0.377, making it the most relevant monster overall. What an improvement!
+Our second and third results, Luminoth and Living Graffiti, both possess all three of the desired characteristics. The top result, Whispering Shade, though it's less relevant in terms of light manipulation - as reflected in its `behavior` score (0.006), has "glowing" features and a dark environment that make its `look` (0.168) and `habitat` (0.203) scores very high, giving it the highest total score (0.377), making it the most relevant monster overall. What an improvement!
 
 Can we can replicate our results? Let's try another query and find out.
 
@@ -342,7 +342,7 @@ query = {
 ```
 
 | id               |    score | look                                               | habitat                                   | behavior                                             |
-| :--------------- | -------: | :------------------------------------------------- | :---------------------------------------- | :--------------------------------------------------- |
+|:-----------------|---------:|:---------------------------------------------------|:------------------------------------------|:-----------------------------------------------------|
 | Mist Phantom     | 0.489574 | Ethereal, fog-like humanoid with shifting features | Swamps, moors, and foggy coastlines       | Lures travelers astray with illusions and whispers   |
 | Zephyr Dancer    | 0.342075 | Graceful avian creature with iridescent feathers   | High mountain peaks and wind-swept plains | Creates mesmerizing aerial displays to attract mates |
 | Whispering Shade | 0.337434 | Shadowy, amorphous being with glowing eyes         | Dark forests and abandoned buildings      | Feeds on fear and whispers unsettling truths         |
@@ -360,8 +360,8 @@ app.query(
 ```
 
 | id                  |    score | look                                                                 | habitat                                  | behavior                                                       |
-| :------------------ | -------: | :------------------------------------------------------------------- | :--------------------------------------- | :------------------------------------------------------------- |
-| Harmonic Coral      |        1 | Branching, musical instrument-like structure with vibrating tendrils | Shallow seas and tidal pools             | Creates complex melodies to communicate and influence emotions |
+|:--------------------|---------:|:---------------------------------------------------------------------|:-----------------------------------------|:---------------------------------------------------------------|
+| Harmonic Coral      | 1        | Branching, musical instrument-like structure with vibrating tendrils | Shallow seas and tidal pools             | Creates complex melodies to communicate and influence emotions |
 | Dreamweaver Octopus | 0.402288 | Cephalopod with tentacles that shimmer like auroras                  | Deep ocean trenches and underwater caves | Influences the dreams of nearby creatures                      |
 | Aqua Wraith         | 0.330869 | Translucent humanoid figure made of flowing water                    | Rivers, lakes, and coastal areas         | Shapeshifts to blend with water bodies and controls currents   |
 
@@ -390,8 +390,8 @@ app.query(
 ```
 
 | id                  |    score | look                                                                 | habitat                            | behavior                                                       |
-| :------------------ | -------: | :------------------------------------------------------------------- | :--------------------------------- | :------------------------------------------------------------- |
-| Harmonic Coral      |  0.57735 | Branching, musical instrument-like structure with vibrating tendrils | Shallow seas and tidal pools       | Creates complex melodies to communicate and influence emotions |
+|:--------------------|---------:|:---------------------------------------------------------------------|:-----------------------------------|:---------------------------------------------------------------|
+| Harmonic Coral      | 0.57735  | Branching, musical instrument-like structure with vibrating tendrils | Shallow seas and tidal pools       | Creates complex melodies to communicate and influence emotions |
 | Thornvine Elemental | 0.252593 | Plant-like creature with a body of twisted vines and thorns          | Overgrown ruins and dense jungles  | Rapidly grows and controls surrounding plant life              |
 | Plasma Serpent      | 0.243241 | Snake-like creature made of crackling energy                         | Electrical storms and power plants | Feeds on electrical currents and can short-circuit technology  |
 
@@ -408,7 +408,7 @@ weights = {
 ```
 
 | id                  |    score | look                                                                 | habitat                                  | behavior                                                       |
-| :------------------ | -------: | :------------------------------------------------------------------- | :--------------------------------------- | :------------------------------------------------------------- |
+|:--------------------|---------:|:---------------------------------------------------------------------|:-----------------------------------------|:---------------------------------------------------------------|
 | Harmonic Coral      | 0.816497 | Branching, musical instrument-like structure with vibrating tendrils | Shallow seas and tidal pools             | Creates complex melodies to communicate and influence emotions |
 | Dreamweaver Octopus | 0.357656 | Cephalopod with tentacles that shimmer like auroras                  | Deep ocean trenches and underwater caves | Influences the dreams of nearby creatures                      |
 | Mist Phantom        | 0.288106 | Ethereal, fog-like humanoid with shifting features                   | Swamps, moors, and foggy coastlines      | Lures travelers astray with illusions and whispers             |
@@ -426,14 +426,14 @@ weights = {
 ```
 
 | id             |    score | look                                                                 | habitat                                             | behavior                                                       |
-| :------------- | -------: | :------------------------------------------------------------------- | :-------------------------------------------------- | :------------------------------------------------------------- |
-| Harmonic Coral |  0.19245 | Branching, musical instrument-like structure with vibrating tendrils | Shallow seas and tidal pools                        | Creates complex melodies to communicate and influence emotions |
+|:---------------|---------:|:---------------------------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------|
+| Harmonic Coral | 0.19245  | Branching, musical instrument-like structure with vibrating tendrils | Shallow seas and tidal pools                        | Creates complex melodies to communicate and influence emotions |
 | Luminoth       | 0.149196 | Moth-like creature with glowing wings and antenna                    | Dense forests and jungles with bioluminescent flora | Emits soothing light patterns to communicate and attract prey  |
 | Zephyr Dancer  | 0.136456 | Graceful avian creature with iridescent feathers                     | High mountain peaks and wind-swept plains           | Creates mesmerizing aerial displays to attract mates           |
 
 Great results again! Our two other retrieved monsters — Luminoth and Zephyr Dancer — have behavior similar to Harmonic Coral and live in habitats different from Harmonic Coral's. They also look very different from Harmonic Coral. (While Harmonic Coral's tendrils and Luminoth's antenna are somewhat similar features, we only down-weighted the `look_weight` by 0.5, and the resemblance between the two monsters ends there.)
 
-Here's a detailed breakdown of the scores as we did above:
+Let's see how these monsters' overall scores break out in terms of individual attributes:
 
 |                |     look |   habitat | behavior |    total |
 | :------------- | -------: | --------: | -------: | -------: |
@@ -441,12 +441,11 @@ Here's a detailed breakdown of the scores as we did above:
 | Luminoth       | 0.052457 | -0.068144 | 0.164884 | 0.149196 |
 | Zephyr Dancer  | 0.050741 | -0.079734 | 0.165449 | 0.136456 |
 
-The negative score in the `habitat` attribute indicates a down-weighting, reflecting our intention to de-emphasize `habitat` similarity in this particular query.
+Our monsters' negative `habitat` scores result from our intentional down-weighting to de-emphasize `habitat` in this query.
 
-Both Luminoth and Zephyr Dancer maintain strong `behavior` scores comparable to Harmonic Coral, indicating similar behavioral traits. Their `look` scores are positive but lower, reflecting some visual similarities while still maintaining distinct appearances. The negative `habitat` scores emphasize their different living environments compared to Harmonic Coral.
+Both Luminoth and Zephyr Dancer have relatively strong `behavior` scores, indicating their behavioral similarity to Harmonic Coral. Their `look` scores are positive but lower, reflecting some visual similarities while still maintaining distinct appearances. The negative `habitat` scores emphasize their different living environments compared to Harmonic Coral.
 
-This weighting strategy effectively surfaces monsters that share key behavioral characteristics with Harmonic Coral while allowing for diversity in habitat and appearance. By adjusting the `look_weight`, we ensured that visual similarities are present but not overly dominant, resulting in a more nuanced and relevant set of search results.
-
+Our strategy of downweighting `habitat_weight` to -1.0 and `look_weight` to 0.5 but keeping `behavior_weight` at 1.0 proves effective in surfacing monsters that share key behavioral characteristics with Harmonic Coral while allowing for great diversity in environment and less but some diversity in appearance.
 
 ## Conclusion
 
