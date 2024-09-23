@@ -293,7 +293,8 @@ hdbscan = HDBSCAN(min_cluster_size=500, metric="cosine")
 hdbscan.fit(vector_df.values)
 ```
 
-workaround on colab
+If you're executing this in colab, which doesn't permit using "cosine" directly, you can use the following precompute workaround. The resulting distribution in the visualization will resemble the original result, but with a slightly different orientation in the space.
+
 ```python
 mat = distance.cdist(vector_df.values, vector_df.values, metric='cosine')
 hdbscan = HDBSCAN(min_cluster_size=500, metric='precomputed')
@@ -387,10 +388,10 @@ alt.hconcat(*activity_histograms)
 
 From our histograms, we can observe that:
 
-- outliers (cluster -1) - a small number of very active users "it means that there are quite a few active users (generally the rates of users turning to active users on a site is quite low), so naturally active users are over-represented outliers"
+- cluster -1 has an unusually large number of active users (typically, there are *very* few highly active application users)
 - cluster 2 and cluster 3 users are quite similar, but low activity
 - cluster 0 has the highest proportion of medium activity users
-- cluster 1 users are active, "are not outliers and have a fairly balanced activity profile"..."have activities from all over the distribution = meaning here are the active users that are not outliers"
+- cluster 1 users are moderately active, with relatively few very high activity users and very few low activity users
 
 To see the distribution of ad_creatives across different clusters, we create a DataFrame that shows each ad_creative's count value within each cluster:
 
@@ -402,7 +403,7 @@ pd.DataFrame(user_df.groupby("cluster_label")["ad_creative"].value_counts())
 
 observations:
 
-- outliers (highly active users) clicked on ad_creatives from both campaigns (as expected)
+- outliers (cluster -1, highly active users) clicked on ad_creatives from both campaigns (as expected)
 - cluster 3 clicked on only one distinct ad_creative - from the influencer based campaign
 - clusters 0 and 2 clicked on only two distinct influencer based creatives
 - cluster 1 clicked on both campaigns' ad_creatives, but more on the first (non-influencer) campaign
@@ -429,8 +430,8 @@ observations...
 - cluster 1's signups mostly (75%) came from clicks on the first campaign's ad_creatives
 - clusters 0, 2, and 3 signed up in response to the new (influencer-augmented) campaign only
 
-[question - how are these insights helpful for improving user acquisition?
-did we actually ascertain (let alone make use of) which ads' content is semantically similar?]
+
+![summary of outcomes](../assets/use_cases/user_acquisition_analytics/summary.png)
 
 ## In sum
 
@@ -439,4 +440,3 @@ Superlinked's framework enables you to perform more nuanced user acquisition ana
 lets you take advantage of the power of embedding structured *and* unstructured data (e.g., ad campaign text), giving you accurate, relevant results and insights - for more nuanced user acquisition and, more generally, behavioral analytics.. 
 so you can improve the effectiveness of your user acquisition (but also retention and engagement)...
 
-![summary of outcomes](../assets/use_cases/user_acquisition_analytics/summary.png)
