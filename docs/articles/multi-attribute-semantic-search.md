@@ -443,7 +443,7 @@ Let's see how these monsters' overall scores break out in terms of individual at
 
 By negatively weighting `habitat_weight` (-1.0), we deliberately "push away" monsters with similar habitats and instead surface monsters whose environments are different from Harmonic Coral's - as seen in Luminoth's and Zephyr Dancer's negative `habitat` scores. Luminoth's and Zephyr Dancer's `behavior` scores are relatively high, indicating their behavioral similarity to Harmonic Coral. Their `look` scores are positive but lower, reflecting *some* but not extreme visual similarity to Harmonic Coral.
 
-In short, our strategy of downweighting `habitat_weight` to -1.0 and `look_weight` to 0.5 but keeping `behavior_weight` at 1.0 proves effective in surfacing monsters that share key behavioral characteristics with Harmonic Coral while allowing for great diversity in environment and some diversity in appearance.
+In short, our strategy of downweighting `habitat_weight` to -1.0 and `look_weight` to 0.5 but keeping `behavior_weight` at 1.0 proves effective in surfacing monsters that share key behavioral characteristics with Harmonic Coral but have very different environments and look at least somewhat different.
 
 ## Conclusion
 
