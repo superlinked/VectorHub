@@ -45,7 +45,7 @@ Once we have our indexed vector space, we will:
 
 Your first step is to install the library and import the requisite classes.
 
-(Note: Omit `alt.renderers.enable(“mimetype”)` if you’re running this in [google colab](https://colab.research.google.com/github/superlinked/superlinked/blob/main/notebook/semantic_search_netflix_titles.ipynb). Keep it if you’re executing in [github](https://github.com/superlinked/VectorHub/blob/main/docs/articles/semantic_search-netflix.md).)
+(Note: Below, change `alt.renderers.enable(“mimetype”)` to `alt.renderers.enable('colab')` if you’re running this in [google colab](https://colab.research.google.com/github/superlinked/superlinked/blob/main/notebook/semantic_search_netflix_titles.ipynb). Keep “mimetype” if you’re executing in [github](https://github.com/superlinked/VectorHub/blob/main/docs/articles/semantic_search-netflix.md).)
 
 ```python
 %pip install superlinked==5.3.0
@@ -75,7 +75,7 @@ from superlinked.framework.dsl.source.in_memory_source import InMemorySource
 from superlinked.framework.dsl.space.text_similarity_space import TextSimilaritySpace
 from superlinked.framework.dsl.space.recency_space import RecencySpace
 
-alt.renderers.enable("mimetype")
+alt.renderers.enable("mimetype") # NOTE: to render altair plots in colab, change 'mimetype' to 'colab'
 alt.data_transformers.disable_max_rows()
 pd.set_option("display.max_colwidth", 190)
 ```
