@@ -177,18 +177,18 @@ So far, we know that:
 We don't know:
 
 - which ad creatives resulted in low vs medium vs high activity users?
+- how did users cluster in terms of activity levels *and* ad_creatives they clicked?
 
-We can use embedding and Superlinked spaces to help reveal answers to our remaining questions..
-
+Fortunately, embedding with Superlinked spaces will help provide answers to these questions, and empower us to adopt a more effective user acquisition strategy.
 
 ## Embedding with Superlinked
 
 Now, let's use Superlinked to embed our data in a semantic space - to:
  
-1. inform our model as to which ad creatives generated signups, and *which users* (with attendant activity levels) signed up
-2. group ad creatives that have similar meanings
+1. inform our model as to which ad creatives generated signups, and *which users* (with specific activity level distributions) signed up
+2. group specific ad creatives that have similar meanings, and possibly outcomes
 
-Define a schema for our user data:
+First, we define a schema for our user data:
 
 ```python
 class UserSchema(Schema):
@@ -202,17 +202,20 @@ class UserSchema(Schema):
 user = UserSchema()
 ```
 
-Now we create a semantic space for our ad_creatives using a text similarity model. Then encode user activity into a numerical space to represent users' activity level. We also encode the signup date into a recency space, allowing our clustering algorithm to take account of the two specific periods of signup activity (following our two campaign start dates).
+Now we create a semantic space for our ad_creatives using a text similarity model. Then, we encode user activity into a numerical space to represent users' activity level. We also encode the signup date into a recency space, allowing our clustering algorithm to take account of the two specific periods of signup activity (following our two campaign start dates).
 
 ```python
+# create a semantic space for our ad_creatives using a text similarity model
 creative_space = TextSimilaritySpace(
     text=user.ad_creative, model="sentence-transformers/all-mpnet-base-v2"
 )
 
+# encode user activity into a numerical space to represent users' activity level
 activity_space = NumberSpace(
     number=user.activity, mode=Mode.SIMILAR, min_value=0.0, max_value=1.0
 )
 
+# encode the signup date into a recency space
 recency_space = RecencySpace(
     timestamp=user.signup_date,
     period_time_list=[PeriodTime(timedelta(days=65)), PeriodTime(timedelta(days=185))],
@@ -220,7 +223,7 @@ recency_space = RecencySpace(
 )
 ```
 
-Now, let's plot our recency scores by date. 
+Let's plot our recency scores by date. 
 
 ```python
 recency_plotter = RecencyPlotter(recency_space, context_data=EXECUTOR_DATA)
@@ -259,7 +262,7 @@ app: InMemoryApp = executor.run()
 source_user.put([user_df])
 ```
 
- (The step above make take a few minutes. In the meantime, why not read more about vectors in [Vectorhub](https://superlinked.com/vectorhub/).)
+ (The step above make take a few minutes or more. In the meantime, why not learn more about vectors in [Vectorhub](https://superlinked.com/vectorhub/).)
 
 ## Load features
 
