@@ -166,7 +166,7 @@ alt.Chart(dates_to_plot).mark_bar().encode(
 
 This distribution confirms that our second campaign (December) works much better than the first (August). The jump in signups at 2023-12-21 coincides with our second campaign, and our data is exclusively users who signed up by clicking on campaign ad_creatives. To get more insights from our user acquisition analysis, we need two periods that fit our distribution. A first period of 65 days and a second of 185 days seem appropriate.
 
-Of our 8k users, roughly 2k subscribed in the first campaign period (65 days), and 6k in the second. Since we already know which ad_creatives users clicked on to go sign up (2855 on old campaign ads, 5145 on new campaign ads), we know that some of the roughly 6k users who signed up after the second (December) campaign started clicked on old (August) campaign ads *after* the new campaign ad began (possibly after seeing the new campaign ads). [We'll see how this breaks out below.]
+Of our 8k users, roughly 2k subscribed in the first campaign period (65 days), and 6k in the second. Since we already know which ad_creatives users clicked on to go sign up (2855 on old campaign ads, 5145 on new campaign ads), we know that some of the roughly 6k users who signed up after the second (December) campaign started clicked on old (August) campaign ads *after* the new campaign ad began (possibly after seeing the new campaign ads).
 
 So far, we know that:
 
@@ -177,7 +177,7 @@ So far, we know that:
 We don't know:
 
 - which ad creatives resulted in low vs medium vs high activity users?
-- how did users cluster in terms of activity levels *and* ad_creatives they clicked?
+- how did users cluster in terms of signup date, activity levels, *and* ad_creatives they clicked?
 
 Fortunately, embedding with Superlinked spaces will help provide answers to these questions, and empower us to adopt a more effective user acquisition strategy.
 
