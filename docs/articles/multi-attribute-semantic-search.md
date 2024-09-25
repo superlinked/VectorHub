@@ -203,9 +203,9 @@ All the retrieved monsters do possess the wanted attributes. At first glance, th
 And here, the limits of the naive approach become obvious. Let's evaluate:
 
 1. Relevance by attribute:
-   - "Look": Three monsters were retrieved (Whispering Shade, Sandstorm Djinn, and Luminoth).
-   - "Habitat": Only one monster from the "Look" results was relevant (Whispering Shade).
-   - "Behavior": Only one monster from the "Look" results was relevant (Luminoth), but it's different from the one relevant for "Habitat".
+   - `look`: Three monsters were retrieved (Whispering Shade, Sandstorm Djinn, and Luminoth).
+   - `habitat`: Only one monster from the `look` results was relevant (Whispering Shade).
+   - `behavior`: Only one monster from the `look` results was relevant (Luminoth), but it's different from the one relevant for `habitat`.
 
 2. Overall relevance:
    - No single monster was retrieved for all three attributes simultaneously.
@@ -321,7 +321,15 @@ app.query(
 | Luminoth         | 0.340084 | Moth-like creature with glowing wings and antenna              | Dense forests and jungles with bioluminescent flora | Emits soothing light patterns to communicate and attract prey |
 | Living Graffiti  | 0.330587 | Two-dimensional, colorful creature that inhabits flat surfaces | Urban areas, particularly walls and billboards      | Shapeshifts to blend with surroundings and absorbs pigments   |
 
-Et voila! This time, each of our top returned monsters' ranks highly in a score that represents a kind of "mean" of all three of the characteristics we want our monster to have. Our second and third results possess all three characteristics, and our top result (Whispering Shade), though it's `behavior` is less related to `light manipulation`, is _very_ relevant in `look` (`glowing`) and `habitat` (`dark places`) characteristics, giving it the highest score overall. What an improvement!
+Et voila! This time, each of our top returned monsters ranks highly in a score that represents a kind of "mean" of all three characteristics we want our monster to have. Let's break each monster's score out in detail:
+
+|                  |     look |  habitat | behavior |    total |
+| :--------------- | -------: | -------: | -------: | -------: |
+| Whispering Shade | 0.167859 | 0.203189 | 0.005689 | 0.376738 |
+| Luminoth         | 0.126206 | 0.098689 | 0.115189 | 0.340084 |
+| Living Graffiti  | 0.091063 | 0.110944 |  0.12858 | 0.330587 |
+
+Our second and third results, Luminoth and Living Graffiti, both possess all three of the desired characteristics. The top result, Whispering Shade, though it's less relevant in terms of light manipulation - as reflected in its `behavior` score (0.006), has "glowing" features and a dark environment that make its `look` (0.168) and `habitat` (0.203) scores very high, giving it the highest total score (0.377), making it the most relevant monster overall. What an improvement!
 
 Can we can replicate our results? Let's try another query and find out.
 
@@ -341,7 +349,7 @@ query = {
 
 Great! Our outcomes are excellent again.
 
-What if we want to find monsters that are similar to a specific monster from our dataset? Let's try it with a monster we haven't seen yet - "Harmonic Coral". We *could* extract attributes for this monster and create query parameters manually. But Superlinked has a `with_vector` method we can use on the query object. Because each monster's id is its name, we can express our request as simply as:
+What if we want to find monsters that are similar to a specific monster from our dataset? Let's try it with a monster we haven't seen yet - Harmonic Coral. We *could* extract attributes for this monster and create query parameters manually. But Superlinked has a `with_vector` method we can use on the query object. Because each monster's id is its name, we can express our request as simply as:
 
 ```python
 app.query(
@@ -357,15 +365,15 @@ app.query(
 | Dreamweaver Octopus | 0.402288 | Cephalopod with tentacles that shimmer like auroras                  | Deep ocean trenches and underwater caves | Influences the dreams of nearby creatures                      |
 | Aqua Wraith         | 0.330869 | Translucent humanoid figure made of flowing water                    | Rivers, lakes, and coastal areas         | Shapeshifts to blend with water bodies and controls currents   |
 
-The top result is the most relevant one, Harmonic Coral itself, as expected. The other two monsters our search retrieves are "Dreamweaver Octopus" and "Aqua Wraith". Both share important thematic (*attribute*) elements with Harmonic Coral:
+The top result is the most relevant one, Harmonic Coral itself, as expected. The other two monsters our search retrieves are Dreamweaver Octopus and Aqua Wraith. Both share important thematic (*attribute*) elements with Harmonic Coral:
 
-1. Aquatic habitats (*habitat*)
-2. Ability to influence or manipulate their environment (*behavior*)
-3. Dynamic or fluid visual characteristics (*look*)
+1. Aquatic habitats (`habitat`)
+2. Ability to influence or manipulate their environment (`behavior`)
+3. Dynamic or fluid visual characteristics (`look`)
 
 ## Attribute weighting
 
-Suppose, now, that we want to give more importance to the "look" attribute. The Superlinked framework lets us easily adjust weights at query time. For easy comparison, we'll search for monsters similar to Harmonic Coral, but with our weights adjusted to favor "look".
+Suppose, now, that we want to give more importance to the `look` attribute. The Superlinked framework lets us easily adjust weights at query time. For easy comparison, we'll search for monsters similar to Harmonic Coral, but with our weights adjusted to favor `look`.
 
 ```python
 weights = {
@@ -389,7 +397,7 @@ app.query(
 
 Our results all (appropriately) have similar appearances - "Branching with vibrating tendrils", "Plant-like creature with a body of twisted vines and thorns", "Snake-like".
 
-Now, let's do another search, ignoring appearance, and looking instead for monsters that are similar in terms of "habitat" and "behavior" simultaneously:
+Now, let's do another search, ignoring appearance, and looking instead for monsters that are similar in terms of `habitat` and `behavior` simultaneously:
 
 ```python
 weights = {
@@ -405,7 +413,7 @@ weights = {
 | Dreamweaver Octopus | 0.357656 | Cephalopod with tentacles that shimmer like auroras                  | Deep ocean trenches and underwater caves | Influences the dreams of nearby creatures                      |
 | Mist Phantom        | 0.288106 | Ethereal, fog-like humanoid with shifting features                   | Swamps, moors, and foggy coastlines      | Lures travelers astray with illusions and whispers             |
 
-Again, the Superlinked approach produces great results. All three monsters live in watery habitats and possess mind-controlling abilities.
+Again, the Superlinked approach produces great results. All three monsters live in watery environments and possess mind-controlling abilities.
 
 Finally, let's try another search, weighting all three attributes differently - to find monsters that in comparison to Harmonic Coral look somewhat similar, live in very different habitats, and possess very similar behavior:
 
@@ -423,7 +431,19 @@ weights = {
 | Luminoth       | 0.149196 | Moth-like creature with glowing wings and antenna                    | Dense forests and jungles with bioluminescent flora | Emits soothing light patterns to communicate and attract prey  |
 | Zephyr Dancer  | 0.136456 | Graceful avian creature with iridescent feathers                     | High mountain peaks and wind-swept plains           | Creates mesmerizing aerial displays to attract mates           |
 
-Great results again! Our two other retrieved monsters - Luminoth and Zephyr Dancer - have behavior similar to Harmonic Coral, and live in habitats different from Harmonic Coral's. They also look very different from Harmonic Coral. (Harmonic's tendrils and Luminoth's antenna are similar features, but we only down-weighted `look_weight` by 0.5, and the resemblance between the two monsters ends there.)
+Great results again! Our two other retrieved monsters — Luminoth and Zephyr Dancer — have behavior similar to Harmonic Coral and live in habitats different from Harmonic Coral's. They also look very different from Harmonic Coral. (While Harmonic Coral's tendrils and Luminoth's antenna are somewhat similar features, we only down-weighted the `look_weight` by 0.5, and the resemblance between the two monsters ends there.)
+
+Let's see how these monsters' overall scores break out in terms of individual attributes:
+
+|                |     look |   habitat | behavior |    total |
+| :------------- | -------: | --------: | -------: | -------: |
+| Harmonic Coral |  0.19245 |   -0.3849 |   0.3849 |  0.19245 |
+| Luminoth       | 0.052457 | -0.068144 | 0.164884 | 0.149196 |
+| Zephyr Dancer  | 0.050741 | -0.079734 | 0.165449 | 0.136456 |
+
+By negatively weighting `habitat_weight` (-1.0), we deliberately "push away" monsters with similar habitats and instead surface monsters whose environments are different from Harmonic Coral's - as seen in Luminoth's and Zephyr Dancer's negative `habitat` scores. Luminoth's and Zephyr Dancer's `behavior` scores are relatively high, indicating their behavioral similarity to Harmonic Coral. Their `look` scores are positive but lower, reflecting *some* but not extreme visual similarity to Harmonic Coral.
+
+In short, our strategy of downweighting `habitat_weight` to -1.0 and `look_weight` to 0.5 but keeping `behavior_weight` at 1.0 proves effective in surfacing monsters that share key behavioral characteristics with Harmonic Coral but have very different environments and look at least somewhat different.
 
 ## Conclusion
 
