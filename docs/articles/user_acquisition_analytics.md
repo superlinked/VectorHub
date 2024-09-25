@@ -3,7 +3,7 @@ Notebook 4: Analytics
 
 # User Acquisition Analytics
 
-Organizations have until recently done most of their user acquisition analytics on structured data. Vector embeddings have changed this. Because vectors capture the semantic meaning and context of unstructured data such as text, they enable organizations to obtain more nuanced and detailed insight into what drives user behavior, to inform their user targeting strategies. Still, vectors present several challenges - including choosing the right embedding techniques, computational complexity, and interpretability.
+Organizations have until recently done most of their user acquisition analytics on structured data. Vector embeddings have changed this. Because vectors capture the semantic meaning and context of unstructured data such as text, they enable organizations to inform their user targeting strategies with more nuanced and detailed insight into what drives user behavior. Still, if you want to use vectors to do nuanced user behavior analysis, you need to overcome several challenges - including computational complexity, interpretability, and finding the right embedding techniques.
 
 In this article, we'll show you how to use the Superlinked library to overcome these challenges - letting you leverage vector embedding power to **identify and analyze users on the basis of how they respond to particular ad messaging, target them more precisely, and improve conversion rates in your campaigns**.
 
@@ -26,7 +26,6 @@ Let's walk through how you can perform user acquisition analytics on ad creative
 - **Recency space** - to understand the freshness of information
 - **Number space** - to interpret user activity
 - **TextSimilarity space** - to interpret the ad creatives
-- **Query time weights** - to optimize results by defining how you treat your data when you run a query, without needing to re-embed the whole dataset
 
 ## User data
 
@@ -34,7 +33,7 @@ We have data from two 2023 ad campaigns - one from August (with more generic ad 
 
 1. signup date, as unix timestamp
 2. the ad creative a user clicked on before signing up
-3. average daily activity (users who signed up by clicking on a campaign ad_creative), measured in API calls/day (over the user's lifetime)
+3. average daily activity (for users who signed up by clicking on a campaign ad_creative), measured in API calls/day (over the user's lifetime)
 
 To make our ad campaigns smarter, **we want to know which users to target with which kinds of ad messaging**. We can discover this by embedding our data into a vectorspace, where we can cluster users and find meaningful groups - using a UMAP visualization to examine the cluster labels' relationship to features of the ad creatives.
 
@@ -42,7 +41,7 @@ Let's get started.
 
 ## Setup
 
-Before you do our installations and imports, make sure you have access to Llama2 in your environment. If you're working in google colab, sign in / up on [huggingface](https://huggingface.co/), get an access token [here](https://huggingface.co/settings/tokens/), and login:
+Before you do your installations and imports, make sure you have access to Llama2 in your environment. If you're working in google colab, sign in / up on [huggingface](https://huggingface.co/), get an access token [here](https://huggingface.co/settings/tokens/), and login:
 
 ```python
 from huggingface_hub import notebook_login
@@ -91,7 +90,6 @@ from superlinked.framework.dsl.space.text_similarity_space import TextSimilarity
 from superlinked.framework.dsl.space.number_space import NumberSpace
 from superlinked.framework.dsl.space.recency_space import RecencySpace
 
-
 alt.renderers.enable("mimetype")  # important: to render plots in colab, replace 'mimetype' with 'colab'
 alt.data_transformers.disable_max_rows()
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -123,7 +121,7 @@ print(f"User data dimensions: {user_df.shape}")
 user_df.head()
 ```
 
-We have 8000 users and (as we can see from the first five rows) 4 columns of data:
+We have 8000 users, and (as we can see from the first five rows) 4 columns of data:
 
 ![first 5 rows of our dataset](../assets/use_cases/user_acquisition_analytics/user_id-sign_up_date-ad_creative-activity.png)
 
@@ -133,13 +131,13 @@ To understand which ad creatives generated how many signups, we create a DataFra
 pd.DataFrame(user_df["ad_creative"].value_counts())
 ```
 
-which looks like this:
+...which looks like this:
 
 ![ad_creatives by count](../assets/use_cases/user_acquisition_analytics/ad_creative-count.png)
 
-observation: the influencer (XYZCr$$d) backed ad creatives seem to have worked better - generating many more signups than the August ad creatives. 
+The influencer (XYZCr$$d) backed ad creatives seem to have worked better - generating many more signups (total 5145) than the August campaign ad creatives (total 2855). 
 
-Now, let's take a look at the **distribution of users according to activity level** (api calls/day).
+Now, let's take a look at the **distribution of users by activity level** (api calls/day).
 
 ```python
 alt.Chart(user_df).mark_bar().encode(
@@ -150,8 +148,7 @@ alt.Chart(user_df).mark_bar().encode(
 
 ![distribution by activity count](../assets/use_cases/user_acquisition_analytics/user_distrib-activity_count.png)
 
-The activity (api calls/day) distribution is bimodal. Here, the first activity level group (0.00-0.40 api calls/day) may be largely new users, who - if they signed up in the most recent (December) campaign - have less time to accumulate activity than the smaller number of users (with 0.40-1.40 api calls/day) who signed up earlier.
-Also, we can derive our NumberSpace min and max from this distribution.
+The activity (api calls/day) distribution is bimodal. Here, it's possible that the first activity level group (0.00-0.40 api calls/day) may be largely new users, who - if they signed up in the most recent (December) campaign - have less time to accumulate activity than users who signed up earlier. (Note: we can use derive our NumberSpace min and max from this distribution.)
 
 Now let's examine the distribution of new users per signup date.
 
@@ -167,18 +164,19 @@ alt.Chart(dates_to_plot).mark_bar().encode(
 
 ![new users per signup date](../assets/use_cases/user_acquisition_analytics/new_users-signup_date.png)
 
-[observations] First, the distribution confirms that our second campaign (December) works much better than the first (August). Second, the jump in signups at 2023-12-21 is due to the second campaign (our data is exclusively campaign-related). To analyze the two campaigns, we need two periods: a first period of 65 days and a second of 185 days seems appropriate.
-Of our 8k users, roughly 2k subscribed in the first campaign period (65 days), and 6k in the second. Since we already know which ad_creatives users clicked on to go sign up (2855 on old campaign ads, 5145 on new campaign ads), we know that some of the roughly 6k users who signed up after the second (December) campaign started, clicked on old (August) campaign ads that occurred *after* the new campaign ad began, possibly after seeing the new campaign ads. [We'll see how this breaks out below.]
+This distribution confirms that our second campaign (December) works much better than the first (August). The jump in signups at 2023-12-21 coincides with our second campaign, and our data is exclusively users who signed up by clicking on campaign ad_creatives. To get more insights from our user acquisition analysis, we need two periods that fit our distribution. A first period of 65 days and a second of 185 days seem appropriate.
 
-so far.. we know that:
+Of our 8k users, roughly 2k subscribed in the first campaign period (65 days), and 6k in the second. Since we already know which ad_creatives users clicked on to go sign up (2855 on old campaign ads, 5145 on new campaign ads), we know that some of the roughly 6k users who signed up after the second (December) campaign started clicked on old (August) campaign ads *after* the new campaign ad began (possibly after seeing the new campaign ads). [We'll see how this breaks out below.]
+
+So far, we know that:
 
 - many more users signed up in response to the influencer-backed ad creatives (second campaign) than the first campaign
-- the vast majority of users are low activity, and more recent subscribers
+- which specific ad creatives generated the most user signups
+- the vast majority of users have low to moderate activity
 
-We don't know....
+We don't know:
 
-- what kind of ad creatives have similar meanings and possibly outcomes as a result
-- what kinds of users (in terms of activity level) responded to what kind of ad_creatives (in terms of semantic meaning)
+- which ad creatives resulted in low vs medium vs high activity users?
 
 We can use embedding and Superlinked spaces to help reveal answers to our remaining questions..
 
@@ -187,8 +185,8 @@ We can use embedding and Superlinked spaces to help reveal answers to our remain
 
 Now, let's use Superlinked to embed our data in a semantic space - to:
  
-1. inform the model re *which ad creatives* generated **signups**, and *which users* signed up... 
-2. group ad creatives that have similar meanings..
+1. inform our model as to which ad creatives generated signups, and *which users* (with attendant activity levels) signed up
+2. group ad creatives that have similar meanings
 
 Define a schema for our user data:
 
@@ -380,7 +378,7 @@ alt.hconcat(*activity_histograms)
 From our histograms, we can observe that:
 
 - cluster -1, though predominantly low activity users, has an unusually large number of extremely active users (outliers)
-- cluster 0 is largely medium activity users, with no high activity users
+- cluster 0 is largely medium activity users, with no very high activity users
 - cluster 1 users are moderately active, with relatively few very low and high activity users
 - clusters 2 and 3 are predominately low activity with no high activity users
 
@@ -421,22 +419,22 @@ observations...
 - cluster 0's signups came entirely from clicks on the first campaign's ad_creatives
 - clusters 1, 2, and 3 signed up in response to the new (influencer-augmented) campaign only
 
-## In sum
+## Our findings
 
-Let's summarize our findings...
+Let's summarize our findings.
 
 | cluster label | activity level | ad creative (-> signup) | signup date (campaign) | # users | % of total |
 | :--- | :----------------- | :---------------------- | :----------------------- | :---------- | -------: |
 | -1 (outliers) | all (mostly active) | both campaigns | all | 1088 | 14% |
-| 0 | medium active users | only first campaign | first campaign | 2178 | 27% |
-| 1 | moderately active | only 2 influencer campaign ads| influencer campaign | 2839 | 35% |
+| 0 | medium | only first campaign | first campaign | 2178 | 27% |
+| 1 | medium, balanced | only 2 influencer campaign ads| influencer campaign | 2839 | 35% |
 | 2 | low activity | only 2 influencer campaign ads | influencer campaign | 805 | 10% |
 | 3 | low activity | only 1 influencer campaign ad | influencer campaign | 1090 | 14% |
 
+Our outlier group (cluster -1) wasn't unified enough to draw any conclusions. Overall, however, we *can* conclude that the influencer backed (i.e., second) campaign performed better. Roughly 66% of user signups came *exclusively* from clicks on second campaign ad_creatives. These ads were influencer-based, included a call to action, emphasized benefits, and had motivating language. 
 
-Our outlier group (cluster -1) wasn't unified enough to draw any conclusions.
-Overall, however, we *can* conclude that the influencer backed campaign performed better at generating signups. 
-The ads that generated the most signups were influencer-based, included a call to action, emphasized benefits, and had motivating language.
-Users who signed up in response to ads that focused on enhanced performance, risk-free premium benefits, and community engagement (cluster 1) tended to be moderately active. These users also made up the largest segment of subscriptions (35%). Both these findings suggest that this kind of ad_creative provides the best ROI, and should inform our user acquisition strategy.
+Users who signed up in response to ads that focused on enhanced performance, risk-free premium benefits, and community engagement (cluster 1) tended to be predominantly medium activity users, but also included (fewer) low and high activity users. These users also made up the largest segment of subscriptions (35%). Both these findings suggest that this kind of ad_creative provides the best ROI, and should inform our user acquisition strategy.
 
-This kind of nuanced user acquisition analytic is a nice demonstration of how you can use Superlinked's framework to take advantage of the power of embedding structured *and* unstructured data (e.g., ad campaign text). Our accurate, relevant results and insights enable you to improve the effectiveness of your user acquisition, retention, and engagement.
+Cluster 0, though it signed up exclusively in response to the first (non-influencer) campaign, is still relatively low to moderate activity users - its overall distribution is balanced left of clusters 1, 2, and 3 - suggesting that our new campaign ads bring in users that are more active than users who subscribe in response to the non-influencer campaign ads. Still, we need to continue monitoring user activity over a longer period to see if these patterns continue to hold.
+
+This kind of nuanced user acquisition analytic is a nice demonstration of how you can use Superlinked's framework - namely our Number, Recency, and TextSimilarity Spaces - to take advantage of the power of embedding structured *and* unstructured data (e.g., ad campaign text). Our accurate, relevant results and insights enable you to improve the effectiveness of your user acquisition, retention, and engagement.
