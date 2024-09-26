@@ -414,13 +414,13 @@ desc
 
 ![signup date per cluster group](../assets/use_cases/user_acquisition_analytics/signup_date-per-cluster.png)
 
-observations...
+What do our clusters' signup dates data indicate?
 
 - outliers' (cluster -1) have signup dates that are scattered across both campaign periods
 - cluster 0's signups came entirely from clicks on the first campaign's ad_creatives
 - clusters 1, 2, and 3 signed up in response to the new (influencer-augmented) campaign only
 
-## Our findings
+## Our findings, in sum
 
 Let's summarize our findings.
 
@@ -428,7 +428,7 @@ Let's summarize our findings.
 | :--- | :----------------- | :---------------------- | :----------------------- | :---------- | -------: |
 | -1 (outliers) | all levels, with *many* highly active users | both campaigns (6 new, 6 old) | all | 1088 | 14% |
 | 0 | low to medium | only first campaign | first campaign (5 ads) | 2178 | 27% |
-| 1 | low to medium, balanced | only 2 influencer campaign ads | influencer campaign | 2839 | 35% |
+| 1 | low to medium,  but balanced | only 2 influencer campaign ads | influencer campaign | 2839 | 35% |
 | 2 | low to medium | only 2 influencer campaign ads | influencer campaign | 805 | 10% |
 | 3 | low to medium | only 1 influencer campaign ad | influencer campaign | 1090 | 14% |
 
