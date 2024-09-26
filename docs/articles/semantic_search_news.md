@@ -1,76 +1,62 @@
-Notebook 4: Analytics
-[Article built around this notebook: https://github.com/superlinked/superlinked/blob/main/notebook/analytics_user_acquisition.ipynb] 
+# Semantic search in business news
 
-# User Acquisition Analytics
+[Article built around this notebook: https://github.com/superlinked/superlinked/blob/main/notebook/semantic_search_news.ipynb] 
 
-Organizations have until recently done their user acquisition analytics on structured data. But now, vector embeddings - because they capture semantic meaning and context - enable orgs to incorporate unstructured data formats such as text into their queries, permitting a more detailed understanding of what drives user behavior, to inform user targeting strategies. Still, vector embeddings present several challenges - including choosing the right embedding techniques, computational complexity, and interpretability.
+Semantic search is revolutionizing how we discover and consume news articles, offering a more intuitive and efficient method for finding relevant content and curating personalized news feeds. By understanding the nuances of language and the underlying concepts within news articles, semantic search can surface articles that align closely with the user's interests, preferences, and browsing history. 
 
-[outline...]
-In this article, we'll show you how to use the Superlinked library to overcome these challenges - letting you leverage vector embedding power to identify and analyze users on the basis of how they respond to particular ad messaging, target them more precisely, and improve conversion rates in your campaigns.
+Still, implementing effective semantic search for news articles presents several challenges, including:
+Response optimisation: Balancing factors in semantic search algorithms requires complex optimisation processes.
+Scalability and performance: Efficient indexing and retrieval mechanisms are needed to handle the vast volume of news articles.
 
-## Vector embedding - power & challenges
+Superlinked is designed to handle these challenges, so that you can prioritize similarity or freshness when recommending articles to users.
 
-By capturing intricate relationships and patterns between data points and representing them as high-dimensional vectors in a latent space, embeddings empower you to extract deeper insights from complex datasets, thereby enabling more nuanced analysis, interpretation, and accurate predictions to inform your ad campaign decision-making.
+We’ll use the following parts of the Superlinked library to build a semantic search-powered application to identify news articles:
 
-But while vector embeddings are a powerful tool for user analysis, they also introduce **additional challenges**:
+- Recency space - for understanding the freshness of different news articles
+- TextSimilarity space - to interpret the meaning of different articles and identify similarities between them
+- Query time weights - top define how you want the data to be treated when you run the query, avoiding the need to re-embed the whole dataset to optimize your experiment
 
-- *Quality and relevance* - to achieve good retrieval results and avoid postprocessing and reranking, embedding generation techniques and parameters need to be selected carefully
-- *Scalability with high-dimensional data* - rich data increases computational complexity and resource requirements, especially when working with large datasets
-- *Interpretability* - identifying underlying patterns and relationships (including how specific users respond to certain ad types) embedded in abstract vectors can be tricky
+...
+This notebook implements semantic search in [news articles](https://www.kaggle.com/datasets/rmisra/news-category-dataset). The dataset is filtered for news in the 'BUSINESS' category.
 
-## Smarter vectors
+We are embedding
 
-Superlinked's framework helps overcome these challenges by: enabling you to create vectors that are smarter representations of your data and let you optimize retrieval - i.e., get high quality, actionable insights - without postprocessing or reranking. In the process, we'll visualize and understand how different users respond to different ad creatives.
+headlines
+news body (short description)
+and date
+to be able to search for
 
-Let's walk through how you can perform user acquisition analytics on different ad sets using Superlinked library elements, namely:
+notable events, or
+related articles to a specific story.
+There is a possibility to skew the results towards older or fresher news, and also to influence the results using a specific search term.
 
-- **Recency space** - to understand the freshness of information
-- **Number space** - to interpret user activity
-- **TextSimilarity space** - to interpret the ad creatives
-- **Query time weights** - optimize your results by defining how you treat your data when you run a query, without needing to re-embed the whole dataset
+In [2], change `mimetype` to ‘colab’ in alt.renderers.enable
 
-## User data
+## Boilerplate
 
-We have data from two recent 2023 ad campaigns - one from August (with more generic ad messages), and another from December (assisted by a made-up influencer, "XYZCr$$d"). Our data (for 8000 users) includes:
-
-1. signup date, as unix timestamp
-2. the ad creative a user clicked on [before signing up?]
-3. average (user) daily activity, measured in API calls/day [what kind of user activity does this represent? and calls/day over how many days?]
-
-To make our ad campaigns smarter, we want to know which users to target with which kinds of ad messaging. We can discover this by embedding our data into a vectorspace, where we can cluster them and find meaningful user groups - using a UMAP visualization to examine the cluster labels' relationship to features of the ad creatives.
-
-Let's get started.
-
-## Setup
-
-First, we install superlinked and umap.
+First, we'll install Superlinked.
 
 ```python
-%pip install superlinked==9.32.1
-%pip install umap-learn
+%pip install superlinked==9.43.0
 ```
 
-Next, import all our components and constants.
+And then do our imports and constants...
 
-(Note: Omit `alt.renderers.enable(“mimetype”)` if you’re running this in [google colab](https://colab.research.google.com/github/superlinked/superlinked/blob/main/notebook/recommendations_e_commerce.ipynb). Keep it if you’re executing in [github](https://github.com/superlinked/VectorHub/blob/main/docs/articles/ecomm-recys.md).)
+(Note: Below, change `alt.renderers.enable(“mimetype”)` to `alt.renderers.enable('colab')` if you’re running this in google colab. Keep “mimetype” if you’re executing in github.)
 
 ```python
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
+
 import os
 import sys
 import altair as alt
-import numpy as np
 import pandas as pd
-from sklearn.cluster import HDBSCAN
-import umap
 
 from superlinked.evaluation.charts.recency_plotter import RecencyPlotter
-from superlinked.evaluation.vector_sampler import VectorSampler
 from superlinked.framework.common.dag.context import CONTEXT_COMMON, CONTEXT_COMMON_NOW
 from superlinked.framework.common.dag.period_time import PeriodTime
-from superlinked.framework.common.embedding.number_embedding import Mode
 from superlinked.framework.common.schema.schema import Schema
-from superlinked.framework.common.schema.schema_object import String, Float, Timestamp
+from superlinked.framework.common.schema.schema_object import String, Timestamp
 from superlinked.framework.common.schema.id_schema_object import IdField
 from superlinked.framework.common.parser.dataframe_parser import DataFrameParser
 from superlinked.framework.dsl.executor.in_memory.in_memory_executor import (
@@ -78,353 +64,267 @@ from superlinked.framework.dsl.executor.in_memory.in_memory_executor import (
     InMemoryApp,
 )
 from superlinked.framework.dsl.index.index import Index
+from superlinked.framework.dsl.query.param import Param
+from superlinked.framework.dsl.query.query import Query
+from superlinked.framework.dsl.query.result import Result
 from superlinked.framework.dsl.source.in_memory_source import InMemorySource
 from superlinked.framework.dsl.space.text_similarity_space import TextSimilaritySpace
-from superlinked.framework.dsl.space.number_space import NumberSpace
 from superlinked.framework.dsl.space.recency_space import RecencySpace
 
-
-alt.renderers.enable("mimetype")  # comment this line out when running in Colab to render altair plots
+alt.renderers.enable("mimetype") # NOTE: to render altair plots in colab, change 'mimetype' to 'colab'
 alt.data_transformers.disable_max_rows()
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
+alt.data_transformers.disable_max_rows()
 pd.set_option("display.max_colwidth", 190)
-pd.options.display.float_format = "{:.2f}".format
 ```
-
-Now we import our dataset. 
 
 ```python
-dataset_repository_url = (
-    "https://storage.googleapis.com/superlinked-notebook-user-acquisiton-analytics"
-)
-USER_DATASET_URL = f"{dataset_repository_url}/user_acquisiton_data.csv"
-NOW_TS = 1708529056
-EXECUTOR_DATA = {CONTEXT_COMMON: {CONTEXT_COMMON_NOW: NOW_TS}}
+YEAR_IN_DAYS = 365
+TOP_N = 10
+DATASET_URL = "https://storage.googleapis.com/superlinked-notebook-news-dataset/business_news.json"
+# as the dataset contains articles from 2022 and before, we can set our application's "NOW" to this date
+END_OF_2022_TS = int(datetime(2022, 12, 31, 23, 59).timestamp())
+EXECUTOR_DATA = {CONTEXT_COMMON: {CONTEXT_COMMON_NOW: END_OF_2022_TS}}
 ```
 
-(If you're waiting something you're executing to finish, you can always find interesting reading in [VectorHub](https://superlinked.com/vectorhub/).)
-
-## Read and explore our dataset
-
-Now that our dataset's imported, let's take a closer look at it:
+### Prepare & explore dataset
 
 ```python
 NROWS = int(os.getenv("NOTEBOOK_TEST_ROW_LIMIT", str(sys.maxsize)))
-user_df: pd.DataFrame = pd.read_csv(USER_DATASET_URL, nrows=NROWS)
-print(f"User data dimensions: {user_df.shape}")
-user_df.head()
+business_news = pd.read_json(DATASET_URL, convert_dates=True).head(NROWS)
 ```
 
-We have 8000 users and (as we can see from the first five rows) 4 columns of data:
-
-![first 5 rows of our dataset](/user_id-sign_up_date-ad_creative-activity.png)
-
-To understand which ad creatives generated how many signups, we create a DataFrame:
-
 ```python
-pd.DataFrame(user_df["ad_creative"].value_counts())
+# we are going to need an id column
+business_news = business_news.reset_index().rename(columns={"index": "id"})
+# we need to handle the timestamp being set in milliseconds
+business_news["date"] = [
+    int(date.replace(tzinfo=timezone.utc).timestamp()) for date in business_news.date
+]
 ```
 
-which looks like this:
-
-![ad_creatives by count](/ad_creative-count.png)
-
-observation: the influencer (XYZCr$$d) backed ad creatives seem to have worked better - generating many more [signups?] than the August ad creatives.
-
-Now, let's take a look at the distribution of users according to activity level.
-
 ```python
-alt.Chart(user_df).mark_bar().encode(
-    alt.X("activity:Q", bin=True, title="Activity count"),
-    alt.Y("count()", title="# of users"),
-).properties(width=600, height=400)
+# a sneak peak into the data
+business_news.head()
 ```
 
-![distribution by activity count](/user_distrib-activity_count.png)
+![sneak peak into data](../assets/use_cases/semantic_search_news/sneak_peek.png)
 
-out[6]: activity = api calls / day?
-The activity distribution is bimodal. Here, the first activity level group may be largely new users, who - because they signed up in the most recent (December) campaign - have less time to accumulate activity than users who signed up earlier.
-Also, this informs NumberSpace parameters[=? how?]
-
-Now let's examine the distribution of new users per signup date.
+### Understand release date distribution
 
 ```python
-dates: pd.DataFrame = pd.DataFrame(
-    {"date": [str(datetime.fromtimestamp(ts).date()) for ts in user_df["signup_date"]]}
+# some quick transformations and an altair histogram
+years_to_plot: pd.DataFrame = pd.DataFrame(
+    {
+        "year_of_publication": [
+            int(datetime.fromtimestamp(ts).year) for ts in business_news["date"]
+        ]
+    }
 )
-dates_to_plot = pd.DataFrame(dates.value_counts(), columns=["count"]).reset_index()
-alt.Chart(dates_to_plot).mark_bar().encode(
-    alt.X("date", title="Signup date"), alt.Y("count", title="Number of subscribers")
-).properties(height=400, width=1200)
+alt.Chart(years_to_plot).mark_bar().encode(
+    alt.X("year_of_publication:N", bin=True, title="Year of publication"),
+    y=alt.Y("count()", title="Count of articles"),
+).properties(width=400, height=400)
 ```
 
-![new users per signup date](/new_users-signup_date.png)
+![count of articles by year of publication](../assets/use_cases/semantic_search_news/count_article-by-year_publication.png)
 
-[observations] First, the distribution confirms that our second campaign (December) works much better than the first (August).
-Second, the jump in signups at 2023-12-21 is due to the second campaign (our data is exclusively campaign-related). To analyze the two campaigns, we need two periods: a first period of 65 days and a second of 185 days seems appropriate.
-Of our 8k users, roughly 2k subscribed in the first campaign, and 6k in the second. "Maybe the second push brought in subscribers intrinsically, but also through spillover to old ads [??] as well - will see that by the ad_creatives..."
-...
+The largest period time should be around 11 years as the oldest article is from 2012.
 
-summarize what we know, and what we don't know that embedding and Superlinked spaces will help reveal
+As most articles are between 2012-2017, therefore, it also makes sense to differentiate across the relatively scarce recent period of 4 years.
 
+It can also make sense to give additional weight to more populous time periods - small differences can be amplified by adding extra weight compared to regions where the data is scarce and differences are larger on average.
 
-## Embedding with Superlinked
-
-Now, let's use Superlinked to embed our data in a semantic space - 
-to 
-1. inform the model re *which ad creatives* generated **signups**, and *which users* signed up... 
-2. group ad creatives that have similar meanings..
-
-Define a schema for our user data:
+## Set up Superlinked
 
 ```python
-class UserSchema(Schema):
-    ad_creative: String
-    activity: Float
-    signup_date: Timestamp
+# set up schema to accommodate our inputs
+class NewsSchema(Schema):
+    description: String
+    headline: String
+    release_timestamp: Timestamp
     id: IdField
 ```
 
 ```python
-user = UserSchema()
+news = NewsSchema()
 ```
 
-Now we create a semantic space for our ad_creatives using a text similarity model. Then encode user activity into a numerical space to represent users' activity level. We also encode the signup date into a recency space, allowing our clustering algorithm to take account of the two specific periods of signup activity (following our two campaign start dates).
-
 ```python
-creative_space = TextSimilaritySpace(
-    text=user.ad_creative, model="sentence-transformers/all-mpnet-base-v2"
+# textual characteristics are embedded using a sentence-transformers model
+description_space = TextSimilaritySpace(
+    text=news.description, model="sentence-transformers/all-mpnet-base-v2"
 )
-
-activity_space = NumberSpace(
-    number=user.activity, mode=Mode.SIMILAR, min_value=0.0, max_value=1.0
+headline_space = TextSimilaritySpace(
+    text=news.headline, model="sentence-transformers/all-mpnet-base-v2"
 )
-
+# release date is encoded using our recency embedding algorithm
 recency_space = RecencySpace(
-    timestamp=user.signup_date,
-    period_time_list=[PeriodTime(timedelta(days=65)), PeriodTime(timedelta(days=185))],
+    timestamp=news.release_timestamp,
+    period_time_list=[
+        PeriodTime(timedelta(days=4 * YEAR_IN_DAYS), weight=1),
+        PeriodTime(timedelta(days=11 * YEAR_IN_DAYS), weight=2),
+    ],
     negative_filter=0.0,
 )
 ```
 
-Now, let's plot our recency scores by date.
+```python
+# we create an index of our spaces
+news_index = Index(spaces=[description_space, headline_space, recency_space])
+```
+
+```python
+# simple query will serve us right when we simply want to search the dataset with a search term
+# the term will search in both textual fields
+# and we will have to option to weight certain inputs' importance
+simple_query = (
+    Query(
+        news_index,
+        weights={
+            description_space: Param("description_weight"),
+            headline_space: Param("headline_weight"),
+            recency_space: Param("recency_weight"),
+        },
+    )
+    .find(news)
+    .similar(description_space.text, Param("query_text"))
+    .similar(headline_space.text, Param("query_text"))
+    .limit(Param("limit"))
+)
+
+# news query on the other hand will search in the database with the vector of a news article
+# weighting possibility is still there
+news_query = (
+    Query(
+        news_index,
+        weights={
+            description_space: Param("description_weight"),
+            headline_space: Param("headline_weight"),
+            recency_space: Param("recency_weight"),
+        },
+    )
+    .find(news)
+    .with_vector(news, Param("news_id"))
+    .limit(Param("limit"))
+)
+```
+
+```python
+dataframe_parser = DataFrameParser(
+    schema=news,
+    mapping={news.release_timestamp: "date", news.description: "short_description"},
+)
+```
+
+```python
+source: InMemorySource = InMemorySource(news, parser=dataframe_parser)
+executor: InMemoryExecutor = InMemoryExecutor(
+    sources=[source], indices=[news_index], context_data=EXECUTOR_DATA
+)
+app: InMemoryApp = executor.run()
+```
+
+```python
+source.put([business_news])
+```
+
+## Understanding recency
 
 ```python
 recency_plotter = RecencyPlotter(recency_space, context_data=EXECUTOR_DATA)
 recency_plotter.plot_recency_curve()
 ```
 
-![](/recency_scores-by-date.png)
-
-[how exactly do the recency scores work?] 
-
-Next, we set up an in-memory data processing pipeline for indexing, parsing, and executing operations on user data, including clustering (where RecencySpace lets our model take account of user signup recency).
-
-First, we create our index with the spaces we use for clustering.
+## Queries
 
 ```python
-user_index = Index(spaces=[creative_space, activity_space, recency_space])
+# quick helper to present the results in a notebook
+def present_result(
+    result_to_present: Result,
+    cols_to_keep: list[str] | None = None,
+) -> pd.DataFrame:
+    if cols_to_keep is None:
+        cols_to_keep = [
+            "description",
+            "headline",
+            "release_date",
+            "id",
+            "similarity_score",
+        ]
+    # parse result to dataframe
+    df: pd.DataFrame = result_to_present.to_pandas()
+    # transform timestamp back to release year. Ts is in milliseconds originally hence the division
+    df["release_date"] = [
+        datetime.fromtimestamp(timestamp, tz=timezone.utc).date()
+        for timestamp in df["release_timestamp"]
+    ]
+    return df[cols_to_keep]
 ```
 
-Now for dataframe parsing.
+Let's search for one of the biggest acquisitions of the last decade! We are going to set recency's weight to 0 as it does not matter at this point.
 
 ```python
-user_df_parser = DataFrameParser(schema=user)
-```
-
-We create an `InMemorySource` object to hold the user data in memory, and set up our executor (with our user data source and index) so that it takes account of context data.
-
-```python
-source_user: InMemorySource = InMemorySource(user, parser=user_df_parser)
-executor: InMemoryExecutor = InMemoryExecutor(
-    sources=[source_user], indices=[user_index], context_data=EXECUTOR_DATA
+result = app.query(
+    simple_query,
+    query_text="Microsoft acquires LinkedIn",
+    description_weight=1,
+    headline_weight=1,
+    recency_weight=0,
+    limit=TOP_N,
 )
-app: InMemoryApp = executor.run()
+
+present_result(result)
 ```
 
-And then input our user data. (This step make take a few minutes. In the meantime, why not read more about vectors in [Vectorhub](https://superlinked.com/vectorhub/).)
+![microsoft acquires linkedin](../assets/use_cases/semantic_search_news/microsoft_acquires_linkedin.png)
+
+The first result is about the deal, others are related to some aspect of the query. Let's try upweighting recency to see a recent big acquisition jump to the second place.
 
 ```python
-source_user.put([user_df])
-```
-
-## Load features
-
-Next, we collect all our vectors from the app.
-
-```python
-vs = VectorSampler(app=app)
-vector_collection = vs.get_all_vectors(user_index, user)
-vectors = vector_collection.vectors
-vector_df = pd.DataFrame(vectors, index=[int(id_) for id_ in vector_collection.id_list])
-vector_df.head()
-```
-
-```python
-vector_df.shape
-```
-
-Here are the first five rows (of 8000), and 776 columns, of the resulting dataframe:
-
-![](/collected_vectors.png)
-
-## Clustering
-
-Next, we fit a clustering model.
-
-NOTE: If you run into issues running this notebook on Colab, we suggest using your own environment. In Colab, the management of python packages is less straight-forward, which can cause issues.
-
-```python
-hdbscan = HDBSCAN(min_cluster_size=500, metric="cosine")
-hdbscan.fit(vector_df.values)
-```
-
-workaround on colab
-```python
-%pip install hdbscan
-from scipy.spatial import distance
-from hdbscan import HDBSCAN
-from scipy.spatial import distance
-# Assuming vector_df is your DataFrame
-mat = distance.cdist(vector_df.values, vector_df.values, metric='cosine')
-hdbscan = HDBSCAN(min_cluster_size=500, metric='precomputed')
-hdbscan.fit(mat)
-```
-
-Let's create a DataFrame to store the cluster labels assigned by HBDSCAN and count how many users belong to each cluster:
-
-```python
-label_df = pd.DataFrame(
-    hdbscan.labels_, index=vector_df.index, columns=["cluster_label"]
+result = app.query(
+    simple_query,
+    query_text="Microsoft acquires LinkedIn",
+    description_weight=1,
+    headline_weight=1,
+    recency_weight=1,
+    limit=TOP_N,
 )
-label_df["cluster_label"].value_counts()
+
+present_result(result)
 ```
 
-![user distribution by cluster label](/user_distrib-by-cluster_label.png)
+![microsoft linkedin recency upweighted](../assets/use_cases/semantic_search_news/microsoft_linkedin_recency_upweighted.png)
 
-## Visualizing the data
-
-Let's try to interpret our dataset by visualizing it using UMAP.
-
-First, we'll fit the UMAP and transform our dataset:
+Subsequently we can also search with the news article about Elon Musk offering to buy Twitter. As the dataset is quite biased towards old articles, what we get back is news about either Elon Musk or Twitter.
 
 ```python
-umap_transform = umap.UMAP(random_state=0, transform_seed=0, n_jobs=1, metric="cosine")
-umap_transform = umap_transform.fit(vector_df)
-umap_vectors = umap_transform.transform(vector_df)
-umap_df = pd.DataFrame(
-    umap_vectors, columns=["dimension_1", "dimension_2"], index=vector_df.index
+result = app.query(
+    news_query,
+    description_weight=1,
+    headline_weight=1,
+    recency_weight=0,
+    news_id="849",
+    limit=TOP_N,
 )
-umap_df = umap_df.join(label_df)
+
+present_result(result)
 ```
 
-Next,we join our dataframes and create a chart, letting us visualize the UMAP-transformed vectors, and coloring them with cluster labels.
+![musk acquires twitter](../assets/use_cases/semantic_search_news/musk_twitter.png)
+
+That we can start biasing towards recency, navigating the tradeoff of letting less connected but recent news into the mix. 
 
 ```python
-umap_df = umap_df.join(label_df)
-alt.Chart(umap_df).mark_circle(size=8).encode(
-    x="dimension_1", y="dimension_2", color="cluster_label:N"
-).properties(
-    width=600, height=500, title="UMAP Transformed vectors coloured by cluster labels"
-).configure_title(
-    fontSize=16,
-    anchor="middle",
-).configure_legend(
-    strokeColor="black",
-    fillColor="#EEEEEE",
-    padding=10,
-    cornerRadius=10,
-    labelFontSize=14,
-    titleFontSize=14,
-).configure_axis(
-    titleFontSize=14, labelFontSize=12
+result = app.query(
+    news_query,
+    description_weight=1,
+    headline_weight=1,
+    recency_weight=1,
+    news_id="849",
+    limit=TOP_N,
 )
+
+present_result(result)
 ```
 
-![cluster visualization](/cluster_visualization)
-
-
-The dark blue clusters (label -1) are outliers - not large or dense enough to form a distinct group. 
-The large number of blobs [better word?] results from the fact that 1/3 of the vector norm mass is made of not very many ad_creatives.
-Note - 2D (UMAP) visualizations often make some clusters look quite dispersed [scattered].
-
-## Understanding the cluster groups
-
-To understand our user clusters better, we can generate some activity histograms.
-
-First, we join user data with cluster labels, create separate DataFrames for each cluster, generates activity histograms for each cluster, and then concatenates these histograms into a single visualization.
-
-```python
-# activity histograms by cluster
-user_df = user_df.set_index("id").join(label_df)
-
-by_cluster_data = {
-    label: user_df[user_df["cluster_label"] == label]
-    for label in np.unique(hdbscan.labels_)
-}
-
-activity_histograms = [
-    alt.Chart(user_df_part)
-    .mark_bar()
-    .encode(x=alt.X("activity", bin=True), y="count()")
-    .properties(title=f"Activity histogram for cluster {label}")
-    for label, user_df_part in by_cluster_data.items()
-]
-
-alt.hconcat(*activity_histograms)
-```
-
-![histograms of clusters](/cluster_histograms.png)
-
-From our histograms, we can observe that:
-
-- outliers (cluster -1)... [@mor - what does "outliers are the most active relatively - active users are rare" mean?]
-- cluster 2 and cluster 3 users are quite similar, positive[?], but low activity
-- cluster 0 has the highest proportion of medium activity users
-- cluster 1 users are active, "are not outliers and have a fairly balanced activity profile" [meaning?]
-
-To see the distribution of ad_creatives across different clusters, we create a DataFrame that shows each ad_creative's count value within each cluster:
-
-```python
-pd.DataFrame(user_df.groupby("cluster_label")["ad_creative"].value_counts())
-```
-
-![ad creatives distribution across clusters](ad_creatives-per-cluster.png)
-
-observations:
-
-- outliers clicked on ad_creatives from both campaigns (as expected)
-- cluster 3 clicked on only one distinct ad_creative - from the influencer based campaign
-- clusters 0 and 2 clicked on only two distinct influencer based creatives
-- cluster 1 clicked on both campaigns' ad_creatives, but more on the first (non-influencer) campaign
-
-Now, let's get some descriptive stats for our signup dates to help us interpret our clusters' behavior further. 
-
-```python
-user_df["signup_datetime"] = [
-    datetime.fromtimestamp(ts) for ts in user_df["signup_date"]
-]
-desc = user_df.groupby("cluster_label")["signup_datetime"].describe()
-for col in desc.columns:
-    if col == "count":
-        continue
-    desc[col] = [dt.date() for dt in desc[col]]
-desc
-```
-
-![signup date per cluster group](/signup_date-per-cluster.png)
-
-observations...
-
-- outliers' (cluster -1) have signup dates that are scattered
-- cluster 1's signups mostly (75%) came from clicks on the first campaign's ad_creatives
-- clusters 0, 2, and 3 signed up in response to the new (influencer-augmented) campaign only
-
-## In sum
-
-Superlinked's framework enables you to perform more nuanced user acquisition analytics.
-
-lets you take advantage of the power of embedding structured *and* unstructured data (e.g., ad campaign text), giving you accurate, relevant results and insights - for more nuanced user acquisition and, more generally, behavioral analytics.. 
-so you can improve the effectiveness of your user acquisition (but also retention and engagement)...
-
-![summary of outcomes](/summary.png)
+![musk twitter recency](../assets/use_cases/semantic_search_news/musk_twitter_recency.png)
