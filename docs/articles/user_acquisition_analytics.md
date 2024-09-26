@@ -3,15 +3,15 @@ Notebook 4: Analytics
 
 # User Acquisition Analytics
 
-Organizations have until recently done most of their user acquisition analytics on structured data. Vector embeddings have changed this. Because vectors capture the semantic meaning and context of unstructured data such as text, they enable organizations to inform their user targeting strategies with more nuanced and detailed insight into what drives user behavior. Still, if you want to use vectors to do nuanced user behavior analysis, you need to overcome several challenges - including computational complexity, interpretability, and finding the right embedding techniques.
+Organizations have until recently done most of their user acquisition analytics on structured data. Vector embeddings have changed this. Because vectors capture the semantic meaning and context of unstructured data such as text, they enable organizations to inform their user targeting strategies with more nuanced and detailed insight into what drives user behavior. But to use vectors to do nuanced user behavior analysis, you need to overcome several challenges - including computational complexity, interpretability, and finding the right embedding techniques.
 
 In this article, we'll show you how to use the Superlinked library to overcome these challenges - letting you leverage vector embedding power to **identify and analyze users on the basis of how they respond to particular ad messaging, target them more precisely, and improve conversion rates in your campaigns**.
 
 ## Vector embedding - power & challenges
 
-By capturing intricate relationships and patterns between data points and representing them as high-dimensional vectors in a latent space, embeddings empower you to extract deeper insights from complex datasets, thereby enabling more nuanced analysis, interpretation, and accurate predictions to inform your ad campaign decision-making.
+By capturing intricate relationships and patterns between data points, and representing them as high-dimensional vectors in a latent space, embeddings empower you to extract deeper insights from complex datasets. With smart vectors, you can do more nuanced analysis, interpretation, and accurate predictions to inform your ad campaign decision-making.
 
-But while vector embeddings are a powerful tool for user analysis, they also introduce **additional challenges**:
+But while vector embeddings are a powerful tool for user analysis, they introduce **challenges**:
 
 - *Quality and relevance* - to achieve good retrieval results and avoid postprocessing and reranking, embedding generation techniques and parameters need to be selected carefully
 - *Scalability with high-dimensional data* - rich data increases computational complexity and resource requirements, especially when working with large datasets
@@ -23,9 +23,9 @@ We can use Superlinked's framework to overcome these challenges by creating vect
 
 Let's walk through how you can perform user acquisition analytics on ad creatives using Superlinked library elements, namely:
 
-- **Recency space** - to understand the freshness of information
-- **Number space** - to interpret user activity
-- **TextSimilarity space** - to interpret the ad creatives
+- **Recency space** - to understand the freshness of information (e.g., signup dates)
+- **Number space** - to interpret user activity (e.g., API calls/day)
+- **TextSimilarity space** - to interpret the semantic meaning of text data (e.g., ad creatives)
 
 ## User data
 
@@ -202,7 +202,7 @@ class UserSchema(Schema):
 user = UserSchema()
 ```
 
-Now we create a semantic space for our ad_creatives using a text similarity model. Then, we encode user activity into a numerical space to represent users' activity level. We also encode the signup date into a recency space, allowing our clustering algorithm to take account of the two specific periods of signup activity (following our two campaign start dates).
+Now we create a **semantic space** for our **ad_creatives** using a text similarity model. Then, we encode user activity into a **numerical space** to represent **users' activity level**. We also encode the **signup date** into a **recency space**, allowing our clustering algorithm to take account of the two specific periods of signup activity (following our two campaign start dates).
 
 ```python
 # create a semantic space for our ad_creatives using a text similarity model
@@ -288,8 +288,6 @@ Here are the first five rows (of 8000), and 776 columns, of the resulting datafr
 
 Next, we fit a clustering model.
 
-NOTE: If you run into issues running this notebook on Colab, we suggest using your own environment. In Colab, the management of python packages is less straight-forward, which can cause issues. In this exact case, HDBSCAN is not present in scikit-learn==1.3 - the version that is installed on Colab environments as of 09/21 2024.
-
 ```python
 hdbscan = HDBSCAN(min_cluster_size=500, metric="cosine")
 hdbscan.fit(vector_df.values)
@@ -322,7 +320,7 @@ umap_df = pd.DataFrame(
 umap_df = umap_df.join(label_df)
 ```
 
-Next,we join our dataframes and create a chart, letting us visualize the UMAP-transformed vectors, and coloring them with cluster labels.
+Next, we join our dataframes and create a chart, letting us visualize the UMAP-transformed vectors, and coloring them with cluster labels.
 
 ```python
 umap_df = umap_df.join(label_df)
@@ -428,16 +426,16 @@ Let's summarize our findings.
 
 | cluster label | activity level | ad creative (-> signup) | signup date (campaign) | # users | % of total |
 | :--- | :----------------- | :---------------------- | :----------------------- | :---------- | -------: |
-| -1 (outliers) | all (mostly active) | both campaigns | all | 1088 | 14% |
-| 0 | medium | only first campaign | first campaign | 2178 | 27% |
-| 1 | medium, balanced | only 2 influencer campaign ads| influencer campaign | 2839 | 35% |
-| 2 | low activity | only 2 influencer campaign ads | influencer campaign | 805 | 10% |
-| 3 | low activity | only 1 influencer campaign ad | influencer campaign | 1090 | 14% |
+| -1 (outliers) | all levels, with *many* highly active users | both campaigns (6 new, 6 old) | all | 1088 | 14% |
+| 0 | low to medium | only first campaign | first campaign (5 ads) | 2178 | 27% |
+| 1 | low to medium, balanced | only 2 influencer campaign ads | influencer campaign | 2839 | 35% |
+| 2 | low to medium | only 2 influencer campaign ads | influencer campaign | 805 | 10% |
+| 3 | low to medium | only 1 influencer campaign ad | influencer campaign | 1090 | 14% |
 
-Our outlier group (cluster -1) wasn't unified enough to draw any conclusions. Overall, however, we *can* conclude that the influencer backed (i.e., second) campaign performed better. Roughly 66% of user signups came *exclusively* from clicks on second campaign ad_creatives. These ads were influencer-based, included a call to action, emphasized benefits, and had motivating language. 
+Overall, however, we *can* conclude that the influencer backed (i.e., second) campaign performed better. Roughly 66% of user signups came *exclusively* from clicks on second campaign ad_creatives. These ads were influencer-based, included a call to action, emphasized benefits, and had motivating language. (Two ads in particular accounted for 38% of all signups: "Unleash your gaming potential! Upgrade to premium for 2 months free and dominate the competition with XYZCr$$d!" (22%), and "Ready to level up? Join XYZCr$$d now for intense gaming battles and exclusive rewards!" (16%).)
 
-Users who signed up in response to ads that focused on enhanced performance, risk-free premium benefits, and community engagement (cluster 1) tended to be predominantly medium activity users, but also included (fewer) low and high activity users. These users also made up the largest segment of subscriptions (35%). Both these findings suggest that this kind of ad_creative provides the best ROI, and should inform our user acquisition strategy.
+Users who signed up in response to ads that focused on enhanced performance, risk-free premium benefits, and community engagement (cluster 1) tended to be predominantly medium activity users, but also included a nontrivial number of low and high activity users. Cluster 1 users also made up the largest segment of subscriptions (35%). Both these findings suggest that this kind of ad_creative provides the best ROI.
 
-Cluster 0, though it signed up exclusively in response to the first (non-influencer) campaign, is still relatively low to moderate activity users - its overall distribution is balanced left of clusters 1, 2, and 3 - suggesting that our new campaign ads bring in users that are more active than users who subscribe in response to the non-influencer campaign ads. Still, we need to continue monitoring user activity over a longer period to see if these patterns continue to hold.
+Cluster 0, though it signed up exclusively in response to the first (non-influencer) campaign, is still relatively low to medium activity users - its overall distribution is left of clusters 1, 2, and 3 - suggesting that users who subscribe in response to the non-influencer campaign ads are less active than users who signup after clicking on new campaign ads. Still, we need to continue monitoring user activity to see if these patterns hold over time.
 
 This kind of nuanced user acquisition analytic is a nice demonstration of how you can use Superlinked's framework - namely our Number, Recency, and TextSimilarity Spaces - to take advantage of the power of embedding structured *and* unstructured data (e.g., ad campaign text). Our accurate, relevant results and insights enable you to improve the effectiveness of your user acquisition, retention, and engagement.
