@@ -5,7 +5,7 @@
 Semantic search is revolutionizing how we discover and consume news articles, offering a more intuitive and efficient method for finding relevant content and curating personalized news feeds. By understanding the nuances of language and the underlying concepts within news articles, semantic search can surface articles that align closely with the user's interests, preferences, and browsing history. 
 
 Still, implementing effective semantic search for news articles presents several challenges, including:
-Response optimisation: Balancing factors in semantic search algorithms requires complex optimisation processes.
+Response optimization: Balancing factors in semantic search algorithms requires complex optimization processes.
 Scalability and performance: Efficient indexing and retrieval mechanisms are needed to handle the vast volume of news articles.
 
 Superlinked is designed to handle these challenges, so that you can prioritize similarity or freshness when recommending articles to users.
