@@ -33,11 +33,11 @@ So how does the representation of data in a Knowledge Graph differ from the repr
 
 Vector embeddings in LLMs are "fuzzy." “One fact or concept flows into the next in a continuous multi-dimensional space.” LLMs are powerful, flexible, but not always reliable, and ultimately incomprehensible. KGs, on the other hand, are precise and discrete. KGs make each data item into a distinct node, and connections between data items into discrete edges. KGs are less flexible than LLMs, but they are **reliable and explicable**.
 
-![Schema.org representation of Queen, and general KG representation](../assets/use_cases/kg_ontologies/schema.org-queen-KG-general.png/)
+![Schema.org representation of Queen, and general KG representation](../assets/use_cases/kg_ontologies/schema.org-queen-KG-general.png)
 
 KGs are built for the integration of factual data. In addition to text (the domain of LLMs), KGs can easily capture data contained in tables, trees (e.g., json, xml), and images.
 
-![KGs-data-integration](../assets/use_cases/kg_ontologies/KGs-data-integration.png/)
+![KGs-data-integration](../assets/use_cases/kg_ontologies/KGs-data-integration.png)
 
 ### Ontologies and schema layers
 
@@ -109,13 +109,13 @@ d, i = index.search(question_embedding, 100)
 
 For **example**, I pass the description text from my KG for the “Jennifer Aniston” node into my LLM, and now can store the fact that my discrete KG node (representing “Jennifer Aniston”) relates to the Jennifer Aniston textual description in embedding vector space (in the LLM). After this, when a user comes and does a query for “Jennifer Aniston”, I can turn the query into an embedding vector, locate the closest embedding vectors in the continuous vector space, and then find the related node within the discrete KG, and return a relevant result.
 
-![Jennifer Aniston KG](../assets/use_cases/kg_ontologies/j-aniston-KG.png/)
+![Jennifer Aniston KG](../assets/use_cases/kg_ontologies/j-aniston-KG.png)
 
 Because you have control over and can modify your KG, you can limit your query results to exclude / reduce hallucination, and improve result precision and accuracy.
 
 Great! But in addition to 1) using your KG to insert context into your prompts (above), you can also harness and protect (maintain organizational boundaries around) the goldmine of data your corporation is sitting on by 2) creating a unified organizational KG using schema.org, and connecting it to your LLM.
 
-![organizational Markov blanket](../assets/use_cases/kg_ontologies/org-markov-blanket.png/)
+![organizational Markov blanket](../assets/use_cases/kg_ontologies/org-markov-blanket.png)
 
 ### 2) Create a unified organizational KG, and connect it to an LLM
 
@@ -135,11 +135,11 @@ For example, if I want to indicate that Jane Doe and John Smith are colleagues, 
 
 Jane Doe <--- Colleagues ---> John Smith
 
-![jsonLD-schema](../assets/use_cases/kg_ontologies/jsonLD-schema.png/)
+![jsonLD-schema](../assets/use_cases/kg_ontologies/jsonLD-schema.png)
 
 Each island of JSON-LD points back to schema.org, with contributions from a broad community. **Schema.org has a common set of schemas for things people mostly search for on the web** - e.g., products, flights, bookings. For example, if I search for a specific recipe on google, I get very specific results based on the google knowledge graph constructed from islands of JSON-LDs.
 
-![schema.org-recipe](../assets/use_cases/kg_ontologies/schema.org-recipe.png/)
+![schema.org-recipe](../assets/use_cases/kg_ontologies/schema.org-recipe.png)
 
 To create **your organization's schema layer**, first, register an internal schema domain within your organization - e.g., https://schema.your.org. This site will host your organization's semantics - the core concepts that are most relevant to the specifics of your business. Use industry standards. You can take schema.org’s base types as your starting model. If you're a bank, your semantics will include “trade”, “risk”, and "fraud"; if you’re a railway, “tracks” and “trains”; if you’re a hospital, “patients”, “beds”, "diseases", and “medicines”. Remember, your objective is to make your organization's useful data readable and therefore searchable by query.
 
