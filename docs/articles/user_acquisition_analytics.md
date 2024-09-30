@@ -1,11 +1,10 @@
-Notebook 4: Analytics
-[Article built around this notebook: https://github.com/superlinked/superlinked/blob/main/notebook/analytics_user_acquisition.ipynb] 
-
 # User Acquisition Analytics
 
 Organizations have until recently done most of their user acquisition analytics on structured data. Vector embeddings have changed this. Because vectors capture the semantic meaning and context of unstructured data such as text, they enable organizations to inform their user targeting strategies with more nuanced and detailed insight into what drives user behavior. But to use vectors to do nuanced user behavior analysis, you need to overcome several challenges - including computational complexity, interpretability, and finding the right embedding techniques.
 
 In this article, we'll show you how to use the Superlinked library to overcome these challenges - letting you leverage vector embedding power to **identify and analyze users on the basis of how they respond to particular ad messaging, target them more precisely, and improve conversion rates in your campaigns**.
+
+You can implement each step below as you read, in the corresponding [notebook](https://github.com/superlinked/superlinked/blob/main/notebook/analytics_user_acquisition.ipynb) and [colab](https://colab.research.google.com/github/superlinked/superlinked/blob/main/notebook/analytics_user_acquisition.ipynb).
 
 ## Vector embedding - power & challenges
 
@@ -178,6 +177,7 @@ We don't know:
 
 - which ad creatives resulted in low vs medium vs high activity users?
 - how did users cluster in terms of signup date, activity levels, *and* ad_creatives they clicked?
+- are there user data patterns we can mine to make better decisions when planning our next campaign?
 
 Fortunately, embedding with Superlinked spaces will help provide answers to these questions, and empower us to adopt a more effective user acquisition strategy.
 
@@ -376,12 +376,15 @@ alt.hconcat(*activity_histograms)
 
 ![histograms of clusters](../assets/use_cases/user_acquisition_analytics/cluster_histograms.png)
 
+Our users' activity profiles conform to a power-law distribution that's common in user activity profiles: most users tend to be low activity, some medium activity, and very active users quite rare.
+
 From our histograms, we can observe that:
 
-- cluster -1, though predominantly low activity users, has an unusually large number of extremely active users (outliers)
-- cluster 0 is largely medium activity users, with no very high activity users
-- cluster 1 users are moderately active, with relatively few very low and high activity users
-- clusters 2 and 3 are predominately low activity with no high activity users
+- cluster -1 users are outliers, balanced, with predominantly low, a few medium, and all the most active users
+- cluster 0 has mostly low-moderate activity users, and the lowest number of (i.e., nearly zero) highly active users
+- cluster 1 has the most low-moderate/medium activity users, and the second largest number of highly active users (next to the outliers cluster (-1))
+  users are moderately active, with relatively few very low and high activity users
+- clusters 2 and 3 are predominately low-moderate activity and a few medium activity users
 
 To see the distribution of ad_creatives across different clusters, we create a DataFrame that shows each ad_creative's count value within each cluster:
 
@@ -438,4 +441,8 @@ Users who signed up in response to ads that focused on enhanced performance, ris
 
 Cluster 0, though it signed up exclusively in response to the first (non-influencer) campaign, is still relatively low to medium activity users - its overall distribution is left of clusters 1, 2, and 3 - suggesting that users who subscribe in response to the non-influencer campaign ads are less active than users who signup after clicking on new campaign ads. Still, we need to continue monitoring user activity to see if these patterns hold over time.
 
-Creating embedding clusters using Superlinked's Number, Recency, and TextSimilarity Spaces enables us to turn user data, whether it's structured *or* unstructured, into nuanced user acquisition analytics insights. Insights we can use to arrive at more strategic ad_creative campaigns.
+## Conclusion
+
+Using Superlinked's Number, Recency, and TextSimilarity Spaces, we can embed various aspects of our user data, and create clusters on top our vector embeddings. By analyzing these clusters, we reveal patterns previously invisible in the data - which ad_creatives work well at generating signups, and how users behave *after* signups resulting from certain ad_creatives. These insights are invaluable for shaping more strategic marketing and sales decisions.
+
+Now it's your turn. Experiment with the Superlinked library yourself in the [notebook](https://github.com/superlinked/superlinked/blob/main/notebook/analytics_user_acquisition.ipynb)!
