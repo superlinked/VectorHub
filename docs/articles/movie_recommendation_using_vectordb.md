@@ -14,7 +14,7 @@ Let's get started!
 
 Scrolling through movie streaming platforms can seem futile. What's the point if nothing they recommend looks interesting? Building quality recommendation systems, it turns out, is not easy. RecSys is complex - it has to optimize for multiple (sometimes conflicting) objectives, and there is no *one* metric that fully captures the recommendation quality.
 
-Below, we'll walk you how to produce high quality recommendations, by 1) **creating high-dimensional embeddings** as input to a genre classification model, and 2) **leveraging a vector database** that enables us to efficiently store and query our embeddings. The following architecture gives you an overview of the processes underlying our RecSys.
+Below, we'll walk you through how to produce high quality recommendations, by 1) **creating high-dimensional embeddings** as input to a genre classification model, and 2) **leveraging a vector database** that enables us to efficiently store and query our embeddings. The following architecture gives you an overview of the processes underlying our RecSys.
 
 ![image](../assets/use_cases/movie_recommendation_using_vectordatabase/architecture_recommendation.png)
 
@@ -94,7 +94,7 @@ for chunk_start in tqdm(range(0, len(modified_movie_data), batch_size), desc="Pr
     movie_info.extend(chunk_movie_info)
     complete_data.extend(chunk_movie_data)
 
-# preproces the documents, and create TaggedDocuments
+# preprocess the documents, and create TaggedDocuments
 tagged_data = [TaggedDocument(words=word_tokenize(doc.lower()),
                               tags=[str(i)]) for i,
                doc in enumerate(complete_data)]

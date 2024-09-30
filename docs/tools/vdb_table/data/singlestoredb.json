@@ -1,0 +1,191 @@
+{
+  "name": "SingleStoreDB",
+  "links": {
+    "docs": "https://docs.singlestore.com/",
+    "github": "https://github.com/singlestore-labs",
+    "website": "https://www.singlestore.com/",
+    "vendor_discussion": "",
+    "poc_github": "apeng-singlestore",
+    "slug": "singlestoredb"
+  },
+  "oss": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "license": {
+    "value": "Proprietary",
+    "source_url": "https://www.singlestore.com/assets/contracts/singlestore-main-services-agreeement.pdf",
+    "comment": ""
+  },
+  "dev_languages": {
+    "value": [
+      "c++",
+      "go"
+    ],
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_launch_year": 2017,
+  "metadata_filter": {
+    "support": "full",
+    "source_url": "https://www.singlestore.com/blog/image-recognition-at-the-speed-of-memory-bandwidth/",
+    "comment": ""
+  },
+  "hybrid_search": {
+    "support": "full",
+    "source_url": "https://docs.singlestore.com/cloud/developer-resources/functional-extensions/working-with-vector-data/",
+    "comment": ""
+  },
+  "facets": {
+    "support": "full",
+    "source_url": "https://docs.singlestore.com/cloud/reference/sql-reference/aggregate-functions/",
+    "comment": ""
+  },
+  "geo_search": {
+    "support": "full",
+    "source_url": "https://docs.singlestore.com/cloud/reference/sql-reference/data-types/geospatial-types/",
+    "comment": ""
+  },
+  "multi_vec": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "sparse_vectors": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "bm25": {
+    "support": "full",
+    "source_url": "https://docs.singlestore.com/cloud/reference/sql-reference/full-text-search-functions/bm-25/",
+    "comment": ""
+  },
+  "full_text": {
+    "support": "full",
+    "source_url": "https://docs.singlestore.com/cloud/developer-resources/functional-extensions/working-with-full-text-search/",
+    "comment": ""
+  },
+  "embeddings_text": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_image": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_structured": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "rag": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "recsys": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "langchain": {
+    "support": "full",
+    "source_url": "https://python.langchain.com/docs/integrations/vectorstores/singlestoredb",
+    "comment": ""
+  },
+  "llamaindex": {
+    "support": "partial",
+    "source_url": "https://docs.llamaindex.ai/en/stable/api_reference/readers/singlestore/",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "full",
+    "source_url": "https://www.singlestore.com/product-overview/",
+    "comment": ""
+  },
+  "pricing": {
+    "value": "",
+    "source_url": "https://www.singlestore.com/pricing/",
+    "comment": ""
+  },
+  "in_process": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_tenancy": {
+    "support": "full",
+    "source_url": "https://www.singlestore.com/blog/multitenancy-in-singlestoredb/",
+    "comment": ""
+  },
+  "disk_index": {
+    "support": "full",
+    "source_url": "https://docs.singlestore.com/cloud/reference/sql-reference/vector-functions/vector-indexing/#searching-a-vector-index",
+    "comment": ""
+  },
+  "ephemeral": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "sharding": {
+    "support": "full",
+    "source_url": "https://docs.singlestore.com/cloud/getting-started-with-singlestore-helios/about-singlestore-helios/sharding/",
+    "comment": ""
+  },
+  "doc_size": {
+    "bytes": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
+  },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "IVF",
+      "HNSW"
+    ],
+    "source_url": "https://docs.singlestore.com/cloud/reference/sql-reference/vector-functions/vector-indexing/",
+    "comment": ""
+  },
+  "github_stars": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "docker_pulls": {
+    "value": 521652,
+    "source_url": "https://hub.docker.com/r/singlestore/cluster-in-a-box",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "pypi_downloads": {
+    "value": 1524033,
+    "source_url": "https://pypi.org/project/singlestoredb/",
+    "comment": "",
+    "value_90_days": 392838
+  },
+  "npm_downloads": {
+    "value": 376,
+    "source_url": "https://www.npmjs.com/package/@singlestore/http-client",
+    "comment": "",
+    "value_90_days": 32
+  },
+  "crates_io_downloads": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
+  }
+}

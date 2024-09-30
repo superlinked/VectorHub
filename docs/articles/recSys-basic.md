@@ -2,19 +2,19 @@
 
 ## Why do we build Recommender Systems?
 
-Recommender Systems are central to nearly every web platform that offers things - movies, clothes, any kind of commodity - to users. Recommenders analyze patterns of user behavior to suggest items they might like but would not necessarily discover on their own, items similar to what they or users similar to them have liked in the past. Personalized recommendation systems are reported to increase sales, boost user satisfaction, and improve engagment on a broad range of platforms, including, for example, Amazon, Netflix, and Spotify. Building one yourself may seem daunting. Where do you start? What are the necessary components?
+Recommender Systems are central to nearly every web platform that offers things - movies, clothes, any kind of commodity - to users. Recommenders analyze patterns of user behavior to suggest items they might like but would not necessarily discover on their own, items similar to what they or users similar to them have liked in the past. Personalized recommendation systems are reported to increase sales, boost user satisfaction, and improve engagement on a broad range of platforms, including, for example, Amazon, Netflix, and Spotify. Building one yourself may seem daunting. Where do you start? What are the necessary components?
 
 Below, we'll show you how to build a very simple recommender system. The rationale for our RecSys comes from our general recipe for providing recommendations, which is based on user-type (activity level):
 
 | **interaction level** | -> | **recommendation approach** |
-| ----------------- | -- | ---------------- |
+| :----------------- | :-- | :---------------- |
 | no interactions (cold start) | -> | most popular items |
 | some interactions | -> | content-based items |
 | more interactions | -> | collaborative filtering (interaction-based) items |
 
 Our RecSys also lets you adopt use-case-specific strategies depending on whether a content- or interaction-based approach makes more sense. Our example system, which suggests news articles to users, therefore consists of two parts:
     
-1. a **content-based recommender** - the model identifies and recommends items similar to the context item. To motivate readers to read more content, we show them a list of recommendations, entited "Similar Articles."
+1. a **content-based recommender** - the model identifies and recommends items similar to the context item. To motivate readers to read more content, we show them a list of recommendations, entitled "Similar Articles."
 2. a **collaborative filtering (interaction-based) recommender** - this type of model first identifies users with an interaction history similar to the current user's, collects articles these similar users have interacted with, excluding articles the user's already seen, and recommends these articles as an "Others also read" or "Personalized Recommendations" list. These titles tell the user that the list is personalized - generated specifically for them.
 
 Let's get started.
@@ -75,9 +75,9 @@ news_articles.shape
 
 
 
-
+```markdown
     (200853, 6)
-
+```
 
 
 
@@ -92,9 +92,9 @@ news_articles.shape
 
 
 
-
+```markdown
     (8583, 6)
-
+```
 
 
 By filtering out articles published on or before 2018-01-01, we've refined our article set down from around 200K to roughly 8.5K.
@@ -109,9 +109,9 @@ news_articles.shape[0]
 
 
 
-
+```markdown
     8429
-
+```
 
 
 
@@ -121,8 +121,9 @@ news_articles = news_articles.sort_values('headline', ascending=False).drop_dupl
 print(f"Total number of articles after removing duplicates: {news_articles.shape[0]}")
 ```
 
+```markdown
     Total number of articles after removing duplicates: 8384
-
+```
 
 
 ```python
@@ -131,10 +132,11 @@ print("Total number of authors : ", news_articles["authors"].nunique())
 print("Total number of categories : ", news_articles["category"].nunique())
 ```
 
+```markdown
     Total number of articles :  8384
     Total number of authors :  876
     Total number of categories :  26
-
+```
 
 ## 1. Content-based recommender
 
@@ -236,17 +238,19 @@ print("Loading the model...")
 model_bert = SentenceTransformer(BERT_SENT)
 ```
 
+```markdown
     Loading the model...
-
+```
 
 
 ```python
 vectors = compute_vectors(corpus, model_bert)
 ```
 
+```markdown
     Calculating Embeddings of articles...
     Embeddings calculated!
-
+```
 
 
 ```python
@@ -415,7 +419,7 @@ Our content-based model successfully provides articles relevant to both of the c
 
 The gold standard for evaluating recommender models is to A/B test - launch the models, assign a fair amount of traffic to each, then see which one has a higher click-through-rate. But a **relatively easy way to get a first-glimpse evaluation** of a recommender model (whether content-based or user-interaction-based) is to **'manually' inspect the results**, the way we've already done above. In our use case - a news platform, for example, we could get someone from the editorial team to check if our recommended articles are similar enough to our context article.
 
-Manual evaluation provides a sense of the relevance and interpretability of the recommendations. But manual evaluation remains relatively subjective and not scalable. To get a more objective (and scalable) evaluation, we can compliment our manual evaluation by obtaining metrics - precision, recall, and rank. We use manual evaluation for both our content-based and collaborative filtering (interaction-based) models, and run metrics on the latter. Let's take a closer look at these collaborative filtering models.
+Manual evaluation provides a sense of the relevance and interpretability of the recommendations. But manual evaluation remains relatively subjective and not scalable. To get a more objective (and scalable) evaluation, we can complement our manual evaluation by obtaining metrics - precision, recall, and rank. We use manual evaluation for both our content-based and collaborative filtering (interaction-based) models, and run metrics on the latter. Let's take a closer look at these collaborative filtering models.
 
 ## 2. Collaborative filtering recommenders
 
@@ -472,7 +476,7 @@ users_dynamic = create_users(num_users, categories)
 
 
 ```python
-# cenerate the user-article interactions dataset
+# generate the user-article interactions dataset
 interactions = generate_interactions(users_dynamic, articles)
 print(interactions.head())
 ```
@@ -1093,6 +1097,6 @@ In sum, we've implemented a RecSys that can handle the broad range of use cases 
 
 ## Contributors
 
-- [Dr. Mirza Klimenta](https://www.linkedin.com/in/mirza-klimenta/)
+- [Dr. Mirza Klimenta, author](https://www.linkedin.com/in/mirza-klimenta/)
 - [Mór Kapronczay, contributor](https://www.linkedin.com/in/mór-kapronczay-49447692)
 - [Robert Turner, editor](https://robertturner.co/copyedit)

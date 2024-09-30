@@ -190,7 +190,7 @@ Let's zoom in to one of the rows to see what RAGAS has generated for us (below):
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_sample_question.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_sample_question.png)
 
-In the first column (above), `question` is generated on the basis of the given list of `contexts`, along with value of `ground_truth`, which we use to evaluate the `answer` - surfaced when we run the `question` through our RAG pipeline.
+In the first column (above), `question` is generated on the basis of the given list of `contexts`, along with the value of `ground_truth`, which we use to evaluate the `answer` - surfaced when we run the `question` through our RAG pipeline.
 
 To ensure ease of use, efficiency, and interoperability, it's a good idea to export the generated Question-Context-Ground_Truth sets as a hugging-face dataset, for use later during the evaluation step.
 
@@ -288,9 +288,7 @@ $$ Context\ recall = \frac{\text{Ground truth sentences that can be attributed t
 
 $$ Context\ precision@K = \frac{\text{Precision@K * Relevance of K}}{\text{Total number of relevant items in the top K}} $$
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Relevance of K =  1 for relevant / 0 for irrelevant items
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;K = number of chunks
+...where:&nbsp;&nbsp;&nbsp;Relevance of K = 1 for relevant / 0 for irrelevant items, and K = number of chunks 
 
 The mean of these first four metrics (above) is the `ragas score` - a single comprehensive evaluation of the most critical aspects of a QA system. The last four metrics enable more granular evaluation of your RAG pipeline at an individual component level (Context relevancy and Context entity recall), and at an end-to-end level (Answer semantic similarity and Answer correctness). Let's take a quick look at these last four.
 
@@ -312,12 +310,12 @@ $$ Answer\ similarity\ score = \text{cosine similarity}(\text{Vector of ground t
 
 $$ Answer\ correctness = \text{factual correctness}(\text{ground truth}, \text{generated answer}) + \text{answer similarity score} $$
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where factual correctness is the F1 score calculated using ground truth and generated answer.
+...where:&nbsp;&nbsp;&nbsp;factual correctness is the F1 score calculated using ground truth and generated answer.
 
 
 ### The ragas score
 
-The `ragas score` reflects RAGAS' focus on evaluating RAG retrieval and generation. As we've just seen, the ragas score is the the mean of Faithfulness, Answer relevancy, Context recall, and Context precision - a single measure evaluating the most critical aspects of retrieval and generation in a RAG system.
+The `ragas score` reflects RAGAS' focus on evaluating RAG retrieval and generation. As we've just seen, the ragas score is the mean of Faithfulness, Answer relevancy, Context recall, and Context precision - a single measure evaluating the most critical aspects of retrieval and generation in a RAG system.
 
 ![../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_metrics.png](../assets/use_cases/retrieval_augmented_generation_eval_qdrant_ragas/ragas_metrics.png)
 
@@ -426,7 +424,7 @@ client = qdrant_client.QdrantClient(
 And define our `collection name`:
 
 ```python
-## Collection name that will be used throughtout in the notebook
+## Collection name that will be used throughout in the notebook
 COLLECTION_NAME = "qdrant-docs-ragas"
 ```
 
