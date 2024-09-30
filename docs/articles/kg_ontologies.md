@@ -21,6 +21,7 @@ To understand how KGs can work with LLMs to improve retrieval and harness organi
 Imagine a two-dimensional space (see diagram below), with fruitiness on the y-axis, and techiness on the x-axis. ‘Banana’ and ‘grape’ score high on fruitiness and low on techiness. Vice versa for ‘Microsoft’ and ‘Google’. ‘Apple,’ on the other hand, is more complex; it’s both a tech giant and a fruit. We need to add dimensions that capture more meaning and context to properly represent it. In fact, each term in an LLM typically occupies a unique position across thousands of dimensions, with each dimension representing a unique aspect of meaning. (Beyond two or three dimensions, a vector space becomes too complex for humans to comprehend.) Each word or word-part’s position in this “latent space” encodes its meaning.
 
 ![Simplified representation of vector embeddings (on 2 dimensions) and (inset) knowledge graph](../assets/use_cases/kg_ontologies/fruit-techiness.jpeg)
+ 
 *Simplified representation of vector embeddings (on 2 dimensions) and (inset) knowledge graph*
 
 An LLM is basically a compression of the web. The LLM reads docs on web, and tries to do next word prediction. It looks back using the transformer model to see how one word relates to another, and creates embedding vectors.
@@ -70,7 +71,8 @@ Here's how you do it:
 **Extract relevant nodes**
 
 ```python
-# Begin by pulling all the nodes that you wish to index from your Knowledge Graph, including their descriptions:
+# Begin by pulling all the nodes that you wish to index 
+# from your Knowledge Graph, including their descriptions:
 
 rows = rdflib_graph.query('SELECT * WHERE {?uri dc:description ?desc}')
 ```
@@ -78,14 +80,15 @@ rows = rdflib_graph.query('SELECT * WHERE {?uri dc:description ?desc}')
 **Generate embedding vectors**
 
 ```python
-# Employ your large language model to create an embedding vector for the description of each node:
+# Employ your large language model to create an embedding 
+# vector for the description of each node:
 
 node_embedding = openai.Embedding.create(input = row.desc, model=model) ['data'][0]['embedding']
 ```
 
 **Build a vector store**
 
-```markdown
+```python
 # Store the generated embedding vectors in a dedicated vector store:
 
 index = faiss.IndexFlatL2(len(embedding))
@@ -94,8 +97,10 @@ index.add(embedding)
 
 **Query with natural language**
 
-```markdown
-# When a user poses a question in natural language, convert the query into an embedding vector using the same language model. Then, leverage the vector store to find the nodes with the lowest cosine similarity to the query vector:
+```python
+# When a user poses a question in natural language, convert the query into an 
+# embedding vector using the same language model. Then, leverage the vector store 
+# to find the nodes with the lowest cosine similarity to the query vector:
 
 question_embedding = openai.Embedding.create(input = question, model=model) ['data'][0]['embedding']
 d, i = index.search(question_embedding, 100)
@@ -103,8 +108,10 @@ d, i = index.search(question_embedding, 100)
 
 **Semantic post-processing**
 
-```markdown
-# To further enhance the user experience, apply post-processing techniques to the retrieved related nodes. This step refines the results and presents information in a way that best provides users with actionable insights.
+```python
+# To further enhance the user experience, apply post-processing techniques to the 
+# retrieved related nodes. This step refines the results and presents information 
+# in a way that best provides users with actionable insights.
 ```
 
 For **example**, I pass the description text from my KG for the “Jennifer Aniston” node into my LLM, and now can store the fact that my discrete KG node (representing “Jennifer Aniston”) relates to the Jennifer Aniston textual description in embedding vector space (in the LLM). After this, when a user comes and does a query for “Jennifer Aniston”, I can turn the query into an embedding vector, locate the closest embedding vectors in the continuous vector space, and then find the related node within the discrete KG, and return a relevant result.
