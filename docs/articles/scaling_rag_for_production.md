@@ -10,9 +10,9 @@ The goals and requirements of development and production are usually very differ
 
 **Productionizing**, in the context of [RAG systems](retrieval-augmented-generation), involves transitioning from a prototype or test environment to a **stable, operational state**, in which the system is readily accessible and reliable for remote end users, such as via URL - i.e., independent of the end user machine state. Productionizing also involves **scaling** the system to handle varying levels of user demand and traffic, ensuring consistent performance and availability.
 
-Even though there is no ROI without productionizing, organizations often underesimate the hurdles involved in getting to an end product. Productionizing is always a trade-off between performance and costs, and this is no different for Retrieval-augmented Generation (RAG) systems. The goal is to achieve a stable, operational, and scalable end product while keeping costs low. 
+Even though there is no ROI without productionizing, organizations often underestimate the hurdles involved in getting to an end product. Productionizing is always a trade-off between performance and costs, and this is no different for Retrieval-augmented Generation (RAG) systems. The goal is to achieve a stable, operational, and scalable end product while keeping costs low. 
 
-Let's look more closely at the basic requirements of an [RAG system](retrieval-augmented-generation), before going in to the specifics of what you'll need to productionize it in a cost-effective but scalable way.
+Let's look more closely at the basic requirements of an [RAG system](retrieval-augmented-generation), before going into the specifics of what you'll need to productionize it in a cost-effective but scalable way.
 
 ## The basics of RAG
 

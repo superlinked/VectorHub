@@ -16,7 +16,7 @@ First, existing retrieval mechanisms struggle to identify the most relevant pass
 
 Second, retrieving supplementary information introduces latency; if the database is large, this latency can be prohibitive. Searching terabytes of text with complex ranking creates wait times that are too long for consumer applications.
 
-In addition, current RAG systems fail to appropriately weight the original prompt and retrieved passages. Without dynamic contextual weighting, the model can become over-reliant on retrievals (resulting in reduced control or adaptablity in generating meaningful responses).
+In addition, current RAG systems fail to appropriately weight the original prompt and retrieved passages. Without dynamic contextual weighting, the model can become over-reliant on retrievals (resulting in reduced control or adaptability in generating meaningful responses).
 
 ## Multi-agent RAGs address real-world challenges
 
@@ -254,5 +254,5 @@ Overall, the multi-agent factored RAG system demonstrates substantial improvemen
 ---
 ## Contributors
 
-- [Anthony Alcaraz](https://www.linkedin.com/in/anthony-alcaraz-b80763155/)
+- [Anthony Alcaraz, author](https://www.linkedin.com/in/anthony-alcaraz-b80763155/)
 - [Robert Turner, editor](https://robertturner.co/copyedit)

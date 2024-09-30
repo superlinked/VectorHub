@@ -117,7 +117,7 @@ text_old = r_old.text.replace("\r\n", "\n").split("\n")
 
 
 text_df = pd.DataFrame(text_new + text_old, columns=["body"]).reset_index()
-# add timestamps to diffentiate the two sources
+# add timestamps to differentiate the two sources
 text_df["creation_date"] = [int(datetime(2024, 1, 1).timestamp())] * len(text_new) + [
    int(datetime(2023, 1, 1).timestamp())
 ] * len(text_old)
