@@ -141,27 +141,27 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 87084773,
+    "value": 87100596,
     "source_url": "https://hub.docker.com/_/couchbase",
     "comment": "50M+",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 13244513,
+    "value": 13323175,
     "source_url": "https://pypi.org/project/couchbase/",
     "comment": "",
-    "value_90_days": 1255480
+    "value_90_days": 1211582
   },
   "npm_downloads": {
-    "value": 1122527,
+    "value": 1125376,
     "source_url": "https://www.npmjs.com/package/couchbase",
     "comment": "",
-    "value_90_days": 202251
+    "value_90_days": 204291
   },
   "crates_io_downloads": {
-    "value": 37475,
+    "value": 37668,
     "source_url": "https://crates.io/crates/couchbase",
     "comment": "",
-    "value_90_days": 883
+    "value_90_days": 946
   }
 }
