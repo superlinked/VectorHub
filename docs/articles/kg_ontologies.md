@@ -85,7 +85,7 @@ node_embedding = openai.Embedding.create(input = row.desc, model=model) ['data']
 
 **Build a vector store**
 
-```
+```markdown
 # Store the generated embedding vectors in a dedicated vector store:
 
 index = faiss.IndexFlatL2(len(embedding))
@@ -94,7 +94,7 @@ index.add(embedding)
 
 **Query with natural language**
 
-```
+```markdown
 # When a user poses a question in natural language, convert the query into an embedding vector using the same language model. Then, leverage the vector store to find the nodes with the lowest cosine similarity to the query vector:
 
 question_embedding = openai.Embedding.create(input = question, model=model) ['data'][0]['embedding']
@@ -103,7 +103,7 @@ d, i = index.search(question_embedding, 100)
 
 **Semantic post-processing**
 
-```
+```markdown
 # To further enhance the user experience, apply post-processing techniques to the retrieved related nodes. This step refines the results and presents information in a way that best provides users with actionable insights.
 ```
 
