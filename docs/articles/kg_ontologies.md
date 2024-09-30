@@ -41,9 +41,11 @@ KGs are built for the integration of factual data. In addition to text (the doma
 
 ### Ontologies and schema layers
 
-The keys to a KG’s power are its schema layer and ontology. The schema layer and ontology **make the KG intelligible**. The schema layer provides a basic structure to the KG, defining the types of entities and relationships that can exist in the graph. The schema layer is concretely tied to the KG's actual data. A KG's ontology, on the other hand, is a more formal, abstract, and comprehensive representation of the graph's data, including the rules, axioms, and constraints governing these entities and relationships. The ontology provides an intelligible, semantic framework (which includes classes, relationships, and attributes) for the data in the KG. This lets you inform your searches with ontological context (classes, relationships, and attributes) to make them more precise, and enables you to infer new knowledge from existing graph data.
+One of the keys to a knowledge graph’s power is its ontology. **The ontology makes the KG intelligible**, acting like a schema layer elucidating the KG's basic structure by defining the types of entities and relationships that can exist in the graph. We're familiar with the concept of schemas in the context of relational databases, where a table contains data, and the schema (metadata) describes the columns of that table. In knowledge graphs, on the other hand, _everything_ is considered data, allowing seamless movement between metadata and data. Knowledge graphs use a representation of knowledge that's more powerful than a schema. KGs use an ontology.
 
-These KG capabilities make KGs a valuable tool for safeguarding your organization's well-being.
+A KG ontology is a formal and abstract representation of the graph's data. It typically contains the rules, axioms, and constraints governing the entities, attributes, and relationships (including complex ones like inheritance and polymorphism) within the graph. A good ontology has a clear, semantic framework that makes the data's logical structure clear and easier to understand. It models concepts as they exist in the real world, using familiar business language. This helps both humans and machines in making their searches more precise. It also permits the inference of new knowledge from existing facts through logical reasoning.
+
+The ontological capabilities of knowledge graphs enable them to understand your organization's fundamental concepts. KGs, by treating metadata as data, permit you to seamlessly connect those concepts to real data. As organizations' futures increasingly come to depend on providing AI with a clear understanding of organizational semantics and data, KGs are becoming more and more indispensible.
 
 ## Using KGs for organization survival
 
@@ -190,4 +192,4 @@ In sum, KGs present an organizational opportunity to companies who work with LLM
 ## Contributors
 
 - [Tony Seale, Author](https://www.linkedin.com/in/tonyseale/)
-- [Robert Turner, Contributor](https://www.linkedin.com/in/robertdhayanturner/)
+- [Robert Turner, Author](https://www.linkedin.com/in/robertdhayanturner/)
