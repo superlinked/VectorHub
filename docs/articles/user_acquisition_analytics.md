@@ -1,6 +1,6 @@
 # User Acquisition Analytics
 
-Organizations have until recently done most of their user acquisition analytics on structured data. Vector embeddings have changed this. Because vectors capture the semantic meaning and context of unstructured data such as text, they enable organizations to inform their user targeting strategies with more nuanced and detailed insight into what drives user behavior. But to use vectors to do nuanced user behavior analysis, you need to overcome several challenges - including computational complexity, interpretability, and finding the right embedding techniques.
+Organizations have until recently done most of their user acquisition analytics on structured data. Vector embeddings have changed this. Vectors capture the semantic meaning and context of unstructured data such as text, providing more nuanced and detailed insights to inform user acquisition analysis - enabling organizations to create more strategic marketing and sales campaigns. But using vectors for more nuanced user behavior analysis requires overcoming several challenges - including computational complexity, interpretability, and finding the right embedding techniques.
 
 In this article, we'll show you how to use the Superlinked library to overcome these challenges - letting you leverage vector embedding power to **identify and analyze users on the basis of how they respond to particular ad messaging, target them more precisely, and improve conversion rates in your campaigns**.
 
@@ -10,21 +10,17 @@ You can implement each step below as you read, in the corresponding [notebook](h
 
 By capturing intricate relationships and patterns between data points, and representing them as high-dimensional vectors in a latent space, embeddings empower you to extract deeper insights from complex datasets. With smart vectors, you can do more nuanced analysis, interpretation, and accurate predictions to inform your ad campaign decision-making.
 
-But while vector embeddings are a powerful tool for user analysis, they introduce **challenges**:
-
-- *Quality and relevance* - to achieve good retrieval results and avoid postprocessing and reranking, embedding generation techniques and parameters need to be selected carefully
-- *Scalability with high-dimensional data* - rich data increases computational complexity and resource requirements, especially when working with large datasets
-- *Interpretability* - identifying underlying patterns and relationships (e.g., how specific users respond to certain ad types) embedded in abstract vectors can be tricky
-
 ## Smarter vectors
 
-We can use Superlinked's framework to overcome these challenges by creating vectors that are smarter representations of your data and therefore let you retrieve high quality, actionable insights (e.g., understanding why different users respond to different ad creatives) without postprocessing or reranking.
+Superlinked's framework lets you create vectors that are smarter representations of your data and therefore let you retrieve high quality, actionable insights (e.g., understanding why different ad creatives attract different users) without postprocessing or reranking.
 
 Let's walk through how you can perform user acquisition analytics on ad creatives using Superlinked library elements, namely:
 
-- **Recency space** - to understand the freshness of information (e.g., signup dates)
-- **Number space** - to interpret user activity (e.g., API calls/day)
-- **TextSimilarity space** - to interpret the semantic meaning of text data (e.g., ad creatives)
+| Superlinked Space | what it encodes: | what we encode with it (in our use case): |
+| :------------ | :--------------------------------- | :----------------------- |
+| Recency space | when a data point occurred | users' signup date |
+| Number space | frequency of a data point | subscribed users' API calls/day |
+| TextSimilarity space | semantic meaning of text data | campaign ad_creative text |
 
 ## User data
 
@@ -34,20 +30,11 @@ We have data from two 2023 ad campaigns - one from August (with more generic ad 
 2. the ad creative a user clicked on before signing up
 3. average daily activity (for users who signed up by clicking on a campaign ad_creative), measured in API calls/day (over the user's lifetime)
 
-To make our ad campaigns smarter, **we want to know which users to target with which kinds of ad messaging**. We can discover this by embedding our data into a vectorspace, where we can cluster users and find meaningful groups - using a UMAP visualization to examine the cluster labels' relationship to features of the ad creatives.
+To make our ad campaigns smarter, **we want to know which creatives bring in what kinds of users**, so that we can use ad messaging that brings in and retains active users. We can discover this by embedding our data into a vectorspace, where we can cluster users and find meaningful groups - using a UMAP visualization to examine the cluster labels' relationship to features of the ad creatives.
 
 Let's get started.
 
 ## Setup
-
-Before you do your installations and imports, make sure you have access to Llama2 in your environment. If you're working in google colab, sign in / up on [huggingface](https://huggingface.co/), get an access token [here](https://huggingface.co/settings/tokens/), and login:
-
-```python
-from huggingface_hub import notebook_login
-notebook_login() 
-```
-
-Now, let's get going on our installations and imports.
 
 First, we install superlinked and umap.
 
@@ -57,8 +44,6 @@ First, we install superlinked and umap.
 ```
 
 Next, import all our components and constants.
-
-(Note: Omit `alt.renderers.enable(“mimetype”)` if you’re running this in [google colab](https://colab.research.google.com/github/superlinked/superlinked/blob/main/notebook/recommendations_e_commerce.ipynb). Keep it if you’re executing in [github](https://github.com/superlinked/VectorHub/blob/main/docs/articles/ecomm-recys.md).)
 
 ```python
 from datetime import datetime, timedelta
@@ -89,11 +74,11 @@ from superlinked.framework.dsl.space.text_similarity_space import TextSimilarity
 from superlinked.framework.dsl.space.number_space import NumberSpace
 from superlinked.framework.dsl.space.recency_space import RecencySpace
 
-alt.renderers.enable("mimetype")  # important: to render plots in colab, replace 'mimetype' with 'colab'
+alt.renderers.enable(get_altair_renderer())
 alt.data_transformers.disable_max_rows()
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
 pd.set_option("display.max_colwidth", 190)
 pd.options.display.float_format = "{:.2f}".format
+np.random.seed(0)
 ```
 
 Now we import our dataset. 
@@ -106,8 +91,6 @@ USER_DATASET_URL = f"{dataset_repository_url}/user_acquisiton_data.csv"
 NOW_TS = 1708529056
 EXECUTOR_DATA = {CONTEXT_COMMON: {CONTEXT_COMMON_NOW: NOW_TS}}
 ```
-
-(This might take a few minutes. While you're waiting, you can always find other interesting reading in [VectorHub](https://superlinked.com/vectorhub/).)
 
 ## Read and explore our dataset
 
@@ -232,7 +215,7 @@ recency_plotter.plot_recency_curve()
 
 ![](../assets/use_cases/user_acquisition_analytics/recency_scores-by-date.png)
 
-Next, we set up an in-memory data processing pipeline for indexing, parsing, and executing operations on user data, including clustering (where RecencySpace lets our model take account of user signup recency).
+Next, we set up an in-memory data processing pipeline for indexing, parsing, and executing operations on user data. 
 
 First, we create our index with the spaces we use for clustering.
 
@@ -246,7 +229,7 @@ Now for dataframe parsing.
 user_df_parser = DataFrameParser(schema=user)
 ```
 
-We create an `InMemorySource` object to hold the user data in memory, and set up our executor (with our user data source and index) so that it takes account of context data.
+We create an `InMemorySource` object to hold the user data in memory, and set up our executor (with our user data source and index) so that it takes account of context data. The executor vectorizes based on the index's grouping of Spaces.
 
 ```python
 source_user: InMemorySource = InMemorySource(user, parser=user_df_parser)
@@ -266,7 +249,7 @@ source_user.put([user_df])
 
 ## Load features
 
-Next, we collect all our vectors from the app.
+Next, we collect all our vectors from the app. The vector sampler helps us export vectors so we can cluster and visualize (umap) them.
 
 ```python
 vs = VectorSampler(app=app)
@@ -345,8 +328,8 @@ alt.Chart(umap_df).mark_circle(size=8).encode(
 
 ![cluster visualization](../assets/use_cases/user_acquisition_analytics/cluster_visualization.png)
 
-The dark blue clusters (label -1) are outliers - not large or dense enough to form a distinct group. The large number of blobs indicates that 2/3 of the vector normal mass is comprised of *many* ad_creatives, while 1/3 is made up by just a *few*.
-*Note - 2D (UMAP) visualizations often make some clusters look quite dispersed / scattered.
+The dark blue clusters (label -1) are outliers - not large or dense enough to form a distinct group. Our data points are represented by vectors with three attributes (signup recency, ad_creative textSimilarity, and signed up user activity level), each attribute accounting for 1/3 of each vector's mass. The limited number of discrete ad_creatives (13), then, tends towards producing more distinct blobs in the umap visualization of the vector space, whereas signup_dates and activity levels are more continuous variables, and tend towards producing more dense blobs.
+*Note - 2D (UMAP) visualizations can make some clusters look quite dispersed / scattered.
 
 ## Understanding the cluster groups
 
