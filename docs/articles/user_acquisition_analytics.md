@@ -368,7 +368,7 @@ Our users' activity profiles conform to a power-law distribution that's common i
 
 From our histograms, we can observe that:
 
-- cluster -1 users are outliers - balanced, with predominantly low, a few medium, and all the most active users
+- cluster -1 users are outliers, not dense enough to form a proper cluster - balanced, with predominantly low, a few medium, and all the most active users
 - cluster 0 has mostly low-moderate activity users, and the lowest number of (i.e., nearly zero) highly active users
 - cluster 1 has the most low-moderate/medium activity users, and the second largest number of highly active users (next to the outliers cluster (-1))
 - clusters 2 and 3 are predominately low-moderate activity users, with a few medium activity users
