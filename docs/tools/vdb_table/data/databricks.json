@@ -4,8 +4,8 @@
       "docs": "https://docs.databricks.com/en/generative-ai/vector-search.html",
       "github": "",
       "website": "https://www.databricks.com/product/machine-learning/vector-search",
-      "vendor_discussion": "",
-      "poc_github": "",
+      "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/514",
+      "poc_github": "kobindra",
       "slug": "databricks"
     },
     "oss": {
@@ -15,7 +15,7 @@
     },
     "license": {
       "value": "Proprietary",
-      "source_url": "",
+      "source_url": "https://www.databricks.com/legal/mcsa",
       "comment": ""
     },
     "dev_languages": {
@@ -25,7 +25,7 @@
       "source_url": "",
       "comment": ""
     },
-    "vector_launch_year": 2023,
+    "vector_launch_year": 2024,
     "metadata_filter": {
       "support": "full",
       "source_url": "",
