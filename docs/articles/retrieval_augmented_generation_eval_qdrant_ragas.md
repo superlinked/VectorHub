@@ -288,9 +288,7 @@ $$ Context\ recall = \frac{\text{Ground truth sentences that can be attributed t
 
 $$ Context\ precision@K = \frac{\text{Precision@K * Relevance of K}}{\text{Total number of relevant items in the top K}} $$
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Relevance of K =  1 for relevant / 0 for irrelevant items
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;K = number of chunks
+...where:&nbsp;&nbsp;&nbsp;Relevance of K = 1 for relevant / 0 for irrelevant items, and K = number of chunks 
 
 The mean of these first four metrics (above) is the `ragas score` - a single comprehensive evaluation of the most critical aspects of a QA system. The last four metrics enable more granular evaluation of your RAG pipeline at an individual component level (Context relevancy and Context entity recall), and at an end-to-end level (Answer semantic similarity and Answer correctness). Let's take a quick look at these last four.
 
@@ -312,7 +310,7 @@ $$ Answer\ similarity\ score = \text{cosine similarity}(\text{Vector of ground t
 
 $$ Answer\ correctness = \text{factual correctness}(\text{ground truth}, \text{generated answer}) + \text{answer similarity score} $$
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where factual correctness is the F1 score calculated using ground truth and generated answer.
+...where:&nbsp;&nbsp;&nbsp;factual correctness is the F1 score calculated using ground truth and generated answer.
 
 
 ### The ragas score
