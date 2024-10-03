@@ -12,7 +12,7 @@ By capturing intricate relationships and patterns between data points, and repre
 
 Superlinked's framework lets you create vectors that are smarter representations of your data, empowering you to retrieve high quality, actionable insights (e.g., understanding why different ad creatives attract different users) without postprocessing or reranking.
 
-Let's walk through how you can perform user acquisition analytics on ad creatives using Superlinked library elements, namely:
+Let's walk through how you can perform user acquisition analysis on ad creatives using Superlinked library elements, namely:
 
 Recency space - encodes when a data point occurred (e.g., users' signup date)
 Number space - encodes the frequency of a data event (e.g., subscribed users' API calls/day)
@@ -39,7 +39,7 @@ First, we install superlinked and umap.
 %pip install umap-learn
 ```
 
-Next, we import all our components and constants.
+Next, we import all our dependencies and declare our constants.
 
 ```python
 import os
@@ -83,7 +83,7 @@ pd.options.display.float_format = "{:.2f}".format
 np.random.seed(0)
 ```
 
-Now we import our dataset. 
+Here's where we declare constants.
 
 ```python
 DATASET_REPOSITORY_URL: str = (
@@ -98,7 +98,7 @@ EXECUTOR_DATA: dict[str, dict[str, Any]] = {
 
 ## Read and explore our dataset
 
-Now that our dataset's imported, let's take a closer look at it:
+Let's read our dataset, and then take a closer look at it:
 
 ```python
 NROWS = int(os.getenv("NOTEBOOK_TEST_ROW_LIMIT", str(sys.maxsize)))
@@ -253,7 +253,7 @@ source_user.put([user_df])
 
 ## Load features
 
-Next, we collect all our vectors from the app. The vector sampler helps us export vectors so we can cluster and visualize (umap) them.
+Next, we collect all our vectors from the app. The vector sampler helps us export vectors so we can cluster and (umap) visualize them.
 
 ```python
 vs = VectorSampler(app=app)
