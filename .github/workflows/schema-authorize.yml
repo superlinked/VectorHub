@@ -10,54 +10,44 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-      
-      - name: Get list of changed files
-        id: files
-        uses: jitterbit/get-changed-files@v1
-      
-      - name: Check if vendor.schema.json has changes
-        id: check_dir
+        uses: actions/checkout@v4
+
+      - name: Get Commit Author
+        id: get_author
         run: |
-          CHANGED_FILES="${{ steps.files.outputs.all }}"
-          DIRECTORY='docs/tools/vdb_table/vendor.schema.json'
-          for FILE in $CHANGED_FILES; do
-            if [[ "$FILE" == "$DIRECTORY"* ]]; then
-              echo "Directory has changes"
-              echo "::set-output name=directory_changed::true"
-              break
-            fi
-          done
+          echo "commit_author=$(git log -1 --pretty=format:'%ae')" >> $GITHUB_ENV
       
-      - name: Get Commit Author Username
-        id: get_username
+      - name: Get GitHub Team Members
+        id: get_team_members
         run: |
-          AUTHOR_EMAIL=$(git log -1 --pretty=format:'%ae')
-          echo "Querying for username with email: $AUTHOR_EMAIL"
-          QUERY="query { search(query: \"type:user $AUTHOR_EMAIL\", type: USER, first: 1) { edges { node { ... on User { login } } } } }"
-          RESPONSE=$(curl -s -H "Authorization: bearer ${{ secrets.GITHUB_TOKEN }}" -X POST -d "{\"query\":\"$QUERY\"}" https://api.github.com/graphql)
-          USERNAME=$(echo $RESPONSE | jq -r '.data.search.edges[0].node.login')
-          echo "::set-output name=username::$USERNAME"
-          echo "Retrieved username: $USERNAME"
-            
-      - name: Check if commit author is from approved superlinked team
-        uses: octokit/request-action@v2.x
-        id: check_team
-        with:
-          route: GET /orgs/{org}/teams/{team_slug}/memberships/{username}
-          org: superlinked
-          team_slug: vdb-table-maintainers
-          username: ${{ steps.get_username.outputs.username }}
+          curl -H "Authorization: token ${{ secrets.TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/orgs/superlinked/teams/vdb-table-maintainers/members \
+            > team.json
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-      
-      - name: Fail action if not approved
+          TOKEN: ${{ secrets.SUPERLINKED_PAT_TOKEN }}
+
+      - name: Check if vendor.schema.json has changed
+        id: check_file_change
         run: |
-          TEAM_STATE=$(echo '${{ steps.check_team.outputs.data }}' | jq -r '.state')
-          if [[ "${{ steps.check_dir.outputs.directory_changed }}" == "true" && "$TEAM_STATE" != "active" ]]; then
-            echo "Unauthorized change detected"
-            exit 1
+          # Path of the specific file to check
+          file_path="docs/tools/vdb_table/vendor.schema.json"
+          
+          # Check if the file has changed
+          if git diff --name-only HEAD~1 | grep -q "$file_path"; then
+            echo "File $file_path has changed."
           else
-            echo "Change is authorized or not in specified directory"
+            echo "File $file_path has not changed."
+            exit 0
           fi
-        shell: bash
+
+      - name: Check if Commit Author is a Team Member
+        id: check_author
+        run: |
+          commit_author="${{ env.commit_author }}"
+          if jq -e ".[] | select(.email == \"$commit_author\")" team.json > /dev/null; then
+            echo "Authorized change."
+          else
+            echo "Unauthorized change detected!"
+            exit 1
+          fi
