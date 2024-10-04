@@ -1,19 +1,22 @@
 # Semantic search in business news - a notebook article
 
-Semantic search is revolutionizing how we discover and consume news articles, offering a more intuitive and efficient method for finding relevant content and curating personalized news feeds. By embedding the nuances and underlying concepts in vectors, we can retrieve articles that align closely with the user's interests, preferences, and browsing history.
+Semantic search is revolutionizing how we discover and consume news articles, offering a more intuitive and efficient method for finding relevant content and curating personalized news feeds. By embedding the nuances and underlying concepts of text documents in vectors, we can retrieve articles that align closely with the user's interests, preferences, and browsing history.
 
-Still, implementing effective semantic search for news articles presents several challenges, including:
+Still, implementing effective semantic search for news articles presents challenges, including:
 
 - **Response optimization**: you need to figure out how to weight data attributes in your semantic search algorithms
 - **Scalability and performance**: you need efficient indexing and retrieval mechanisms to handle the vast volume of news articles
 
-Superlinked is designed to handle these challenges, empowering you to scale efficiently and prioritize similarity and/or recency to recommend the news articles that are most relevant to users. Below, we'll build a semantic search - powered business news recommendation app using the following parts of the Superlinked library:
+Superlinked is designed to handle these challenges, empowering you to scale efficiently and, using Superlinked Spaces, prioritize text similarity and/or recency so you can recommend highly relevant news articles to your users. Importantly, you can optimize performance *without having to re-embed your dataset*. 
+
+Let's illustrate by taking you step by step through building a semantic-search-powered business news recommendation app, using the following parts of Superlinked's library:
 
 - **Recency space** - to encode the recency of a data point
 - **TextSimilarity space** - to encode the semantic meaning of text data
 - **Query time weights** - to prioritize different attributes in your queries, without having to re-embed the whole dataset
 
-Let's take a look at our dataset, what our embedding plans are, and how we set up Superlinked to handle our queries.
+Ready to begin?
+First, let's take a quick look at our dataset, then embed the articles smartly and handle our queries using Superlinked.
 
 ## Our dataset and embeddings
 
@@ -25,7 +28,7 @@ So that we can search for notable events, or articles related to a specific stor
 - article text (short descriptions)
 - publication (release) dates
 
-We'll be able to skew the results towards older or fresher news, and also search using specific search terms.
+We'll be able to skew the results towards older or more recent news as desired, and also search using specific search terms or a specific news article.
 
 ## Setup
 
@@ -90,7 +93,7 @@ NROWS = int(os.getenv("NOTEBOOK_TEST_ROW_LIMIT", str(sys.maxsize)))
 business_news = pd.read_json(DATASET_URL, convert_dates=True).head(NROWS)
 ```
 
-...then turn the current index into a column called "id", and convert the date column into unix timestamps (in seconds).
+...then turn the current index into a column ("id"), and convert the date column into unix timestamps (in seconds).
 
 ```python
 # we are going to need an id column
@@ -134,14 +137,13 @@ alt.Chart(years_to_plot).mark_bar().encode(
 
 ![count of articles by year of publication](../assets/use_cases/semantic_search_news/count_article-by-year_publication.png)
 
-Because our oldest article was published in 2012 and we want to be able to query all our dataset articles, we should set our longer period time inclusively to around 11 years.
+Because our oldest article was published in 2012 and we want to be able to query all our dataset articles, we should set our longer time period  inclusively to around 11 years.
 
-The vast majority of our articles are distributed from 2012 through 2017, so it makes sense to create another more recent period time of 4 years (2018-2022) to reflect its reduced article count.
+The vast majority of our articles are distributed from 2012 through 2017, so it makes sense to create another more recent time period of 4 years (2018-2022) to differentiate the latter's reduced article count from the 2012 - 2017 period.
 
-We can make sure our retrieval appropriately represents the small differences between our publication-dense period (2012-2017) articles, we can give them additional weight - so that differences in our article-scarce period, which will be larger than in the dense period, aren't overrepresented.
+We can make sure our retrieval appropriately represents the small differences between our publication-dense period (2012-2017) articles, we can give them additional weight - so that differences in our publication-scarce period, which will be larger than in the dense period, aren't overrepresented.
 
-Now let's set up Superlinked for optimal retrieval.
-[summary statement of what we'll do next here]
+Now let's set up Superlinked so we can efficiently optimize our retrieval.
 
 ## Set up Superlinked
 
@@ -160,8 +162,7 @@ class NewsSchema(Schema):
 news = NewsSchema()
 ```
 
-create a `description_space` for news article descriptions, and a `headline_space` for our headlines...both using a text similarity model..
-and finally a `recency_space` so we can encode our publications from our two release periods...
+Next, to embed the characteristics of our text, we use a sentence-transformers model to create a `description_space` for news article descriptions and a `headline_space` for our headlines, and, finally, we encode each article's release date using a `recency_space`.
 
 
 ```python
@@ -237,7 +238,7 @@ dataframe_parser = DataFrameParser(
 )
 ```
 
-... create an InMemorySource object to hold the user data in memory, and set up our executor (with our article dataset and index) so that it takes account of context data. The executor vectorizes based on the index's grouping of Spaces.
+... create an InMemorySource object to hold the user data in memory, and set up our executor (with our article dataset and index) so that it takes account of context data. The executor creates vectors based on the index's grouping of Spaces.
 
 ```python
 source: InMemorySource = InMemorySource(news, parser=dataframe_parser)
@@ -313,7 +314,7 @@ Let's take a look at our results.
 
 ![microsoft acquires linkedin](../assets/use_cases/semantic_search_news/microsoft_acquires_linkedin.png)
 
-The first result is about the deal, others are related to some aspect of the query. Let's try upweighting recency to see if other, more recent big acquisitions are surfaced.
+The first result is about the deal, others are related to some aspect of the query. Let's try upweighting recency to see if other, more recent, big acquisitions are surfaced.
 
 ```python
 result = app.query(
@@ -369,6 +370,6 @@ present_result(result)
 ![musk twitter recency](../assets/use_cases/semantic_search_news/musk_twitter_recency.png)
 
 ## In sum...
-Superlinked Spaces enables you up to optimize your vector search with a high degree of control, without incurring the time and resource costs of reembedding your dataset. Our Spaces let you embed your dataset smartly, attribute by attribute - so that you can prioritize or deprioritize different attributes as required. 
+Superlinked Spaces enables you up to optimize your vector search with a high degree of control, without incurring the time and resource costs of re-embedding your dataset. Our Spaces let you embed your dataset smartly, attribute by attribute - so that you can prioritize or deprioritize different attributes as required. 
 
 Your turn now. Try your own simple_query and news_query in the [notebook](https://github.com/superlinked/superlinked/blob/main/notebook/semantic_search_news.ipynb). Alter the `description_weight`, `headline_weight`, and `recency_weight` on your own `query_text` and `news_id` and observe the changes in your results.
