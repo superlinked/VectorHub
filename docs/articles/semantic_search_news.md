@@ -1,6 +1,4 @@
-# Semantic search in business news
-
-[Article built around this notebook: https://github.com/superlinked/superlinked/blob/main/notebook/semantic_search_news.ipynb] 
+# Semantic search in business news - a notebook article
 
 Semantic search is revolutionizing how we discover and consume news articles, offering a more intuitive and efficient method for finding relevant content and curating personalized news feeds. By embedding the nuances and underlying concepts in vectors, we can retrieve articles that align closely with the user's interests, preferences, and browsing history.
 
@@ -253,7 +251,10 @@ It's time to input our business news data.
 
 ```python
 source.put([business_news])
+
 ```
+
+(While you're waiting for your business news data to input, why not learn more about vectors in [Vectorhub](https://superlinked.com/vectorhub).)
 
 ### Understanding recency
 
@@ -368,4 +369,6 @@ present_result(result)
 ![musk twitter recency](../assets/use_cases/semantic_search_news/musk_twitter_recency.png)
 
 ## In sum...
-Superlinked Spaces lets you embed your dataset smartly, attribute by attribute - so that you can optimize your retrieval, prioritizing recency and textSimilarity as desired. We even enable you to dedicate a separate Space to each attribute you want to be able to weight.. - in our case, `description_weight` and `headline_weight`.
+Superlinked Spaces lets you embed your dataset smartly, attribute by attribute - so that you can optimize your retrieval, prioritizing recency and textSimilarity as required. We even enable you to dedicate a separate Space to each attribute you want to be able to weight.. - in our case, `description_weight` and `headline_weight`.
+
+Your turn now. Experiment with the notebook [here](https://github.com/superlinked/superlinked/blob/main/notebook/semantic_search_news.ipynb). 
