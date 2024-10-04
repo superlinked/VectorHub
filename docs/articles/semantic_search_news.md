@@ -369,6 +369,6 @@ present_result(result)
 ![musk twitter recency](../assets/use_cases/semantic_search_news/musk_twitter_recency.png)
 
 ## In sum...
-Superlinked Spaces lets you embed your dataset smartly, attribute by attribute - so that you can optimize your retrieval, prioritizing recency and textSimilarity as required. We even enable you to dedicate a separate Space to each attribute you want to be able to weight.. - in our case, `description_weight` and `headline_weight`.
+Superlinked Spaces enables you up to optimize your vector search with a high degree of control, without incurring the time and resource costs of reembedding your dataset. Our Spaces let you embed your dataset smartly, attribute by attribute - so that you can prioritize or deprioritize different attributes as required. 
 
-Your turn now. Experiment with the notebook [here](https://github.com/superlinked/superlinked/blob/main/notebook/semantic_search_news.ipynb). 
+Your turn now. Try your own simple_query and news_query in the [notebook](https://github.com/superlinked/superlinked/blob/main/notebook/semantic_search_news.ipynb). Alter the `description_weight`, `headline_weight`, and `recency_weight` on your own `query_text` and `news_id` and observe the changes in your results.
