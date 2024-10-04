@@ -52,9 +52,9 @@
     "comment": ""
   },
   "sparse_vectors": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "https://github.com/pgvector/pgvector#sparse-vectors"
   },
   "bm25": {
     "support": "full",
@@ -148,8 +148,17 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "IVF",
+      "HNSW"
+    ],
+    "source_url": "https://github.com/pgvector/pgvector#indexing",
+    "comment": ""
+  },
   "github_stars": {
-    "value": 9263,
+    "value": 11924,
     "source_url": "https://github.com/pgvector/pgvector",
     "comment": "",
     "value_90_days": 0
@@ -161,21 +170,21 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 3982676,
+    "value": 12856108,
     "source_url": "https://pypi.org/project/pgvector/",
     "comment": "",
-    "value_90_days": 2074149
+    "value_90_days": 6278494
   },
   "npm_downloads": {
-    "value": 447896,
+    "value": 1279377,
     "source_url": "https://www.npmjs.com/package/pgvector",
     "comment": "",
-    "value_90_days": 302508
+    "value_90_days": 532559
   },
   "crates_io_downloads": {
-    "value": 45487,
+    "value": 98524,
     "source_url": "https://crates.io/crates/pgvector",
     "comment": "",
-    "value_90_days": 20313
+    "value_90_days": 27720
   }
 }

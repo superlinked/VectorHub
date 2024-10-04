@@ -148,8 +148,16 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "FAISS",
+      "NGT"
+    ],
+    "source_url": "https://blog.vespa.ai/vespa-hybrid-billion-scale-vector-search/#vector-indexing-and-serving-architecture",
+    "comment": ""
+  },
   "github_stars": {
-    "value": 1461,
+    "value": 1510,
     "source_url": "https://github.com/vdaas/vald",
     "comment": "",
     "value_90_days": 0
@@ -161,16 +169,16 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 222124,
+    "value": 238589,
     "source_url": "https://pypi.org/project/vald-client-python/",
     "comment": "",
-    "value_90_days": 9754
+    "value_90_days": 11240
   },
   "npm_downloads": {
-    "value": 6856,
+    "value": 6642,
     "source_url": "https://www.npmjs.com/package/vald-client-node",
     "comment": "",
-    "value_90_days": 1518
+    "value_90_days": 851
   },
   "crates_io_downloads": {
     "value": 0,

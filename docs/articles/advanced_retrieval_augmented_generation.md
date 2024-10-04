@@ -31,7 +31,7 @@ Let's get started.
 
 Before we dive into advanced RAG and pre-retrieval, let's **set up** everything we'll need for this tutorial.
 
-We'll build a RAG system with [LlamaIndex](https://docs.llamaindex.ai/en/stable/) using open source (sentence-transformers) embeddings and models from Huggingface. In addition, we'll need the "accelerate" and "bitsandbytes" libraries to load our generative large language model (LLM) in 4-bit. This set up will enable us to run our RAG system efficiently. Indeed, this tutorial is optimized to work within free [Google Colab](https://colab.research.google.com/) GPU environments. **Note** that if you're on Windows or Mac, you may run into trouble setting up [bitsandbytes](https://github.com/TimDettmers/bitsandbytes), as neither are supported yet. There are, however, several free virtual linux enviroments available, such as Google Colab and Kaggle.
+We'll build a RAG system with [LlamaIndex](https://docs.llamaindex.ai/en/stable/) using open source (sentence-transformers) embeddings and models from Huggingface. In addition, we'll need the "accelerate" and "bitsandbytes" libraries to load our generative large language model (LLM) in 4-bit. This set up will enable us to run our RAG system efficiently. Indeed, this tutorial is optimized to work within free [Google Colab](https://colab.research.google.com/) GPU environments. **Note** that if you're on Windows or Mac, you may run into trouble setting up [bitsandbytes](https://github.com/TimDettmers/bitsandbytes), as neither are supported yet. There are, however, several free virtual linux environments available, such as Google Colab and Kaggle.
 
 ```bash
 !pip install llama-index boilerpy3 sentence-transformers fastembed qdrant_client llama-index-vector-stores-qdrant llama-index-embeddings-huggingface llama-index-llms-huggingface accelerate bitsandbytes
@@ -69,7 +69,7 @@ for resp in responses:
 documents = [Document(text=content) for content in contents]
 ```
 
-In the pre-processing step above, we using [boilerpy3](https://github.com/jmriebold/BoilerPy3)'s KeepEverythingExtractor to remove all HTML tags but keep relevant content from HTML files. The KeepEverythingExtractor keeps everything that is tagged as content.
+In the pre-processing step above, we use [boilerpy3](https://github.com/jmriebold/BoilerPy3)'s KeepEverythingExtractor to remove all HTML tags but keep relevant content from HTML files. The KeepEverythingExtractor keeps everything that is tagged as content.
   
 Now that we have our data source set up and pre-processed, let's turn to some specific Advanced RAG pre-retrieval, retrieval, and post-retrieval techniques that will improve the quality and relevance of the retrieved information, and solve the issues that plague naive RAG: low retrieval precision, hallucination in generated responses, and ineffective integration of retrieved context into generated output.
 

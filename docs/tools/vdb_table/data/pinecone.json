@@ -148,6 +148,13 @@
     "source_url": "https://docs.pinecone.io/docs/limits",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "FreshDiskANN"
+    ],
+    "source_url": "https://www.pinecone.io/blog/hnsw-not-enough/#:~:text=its%20similarities%20end.-,FreshDiskANN,-PGA%20is%20based",
+    "comment": "Proprietary variant of Microsoft's Vamana"
+  },
   "github_stars": {
     "value": 0,
     "source_url": "",
@@ -161,21 +168,21 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 11885316,
+    "value": 25159091,
     "source_url": "https://pypi.org/project/pinecone-client/",
     "comment": "",
-    "value_90_days": 3671179
+    "value_90_days": 8986742
   },
   "npm_downloads": {
-    "value": 6589946,
+    "value": 9834300,
     "source_url": "https://www.npmjs.com/package/@pinecone-database/pinecone",
     "comment": "",
-    "value_90_days": 1596844
+    "value_90_days": 1886074
   },
   "crates_io_downloads": {
-    "value": 989,
+    "value": 1811,
     "source_url": "https://crates.io/crates/pinecone-rs",
     "comment": "",
-    "value_90_days": 915
+    "value_90_days": 455
   }
 }

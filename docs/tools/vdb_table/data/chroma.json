@@ -20,6 +20,7 @@
   },
   "dev_languages": {
     "value": [
+      "rust",
       "python"
     ],
     "source_url": "",
@@ -62,8 +63,8 @@
     "comment": ""
   },
   "full_text": {
-    "support": "none",
-    "source_url": "",
+    "support": "partial",
+    "source_url": "https://docs.trychroma.com/guides#filtering-by-document-contents",
     "comment": ""
   },
   "embeddings_text": {
@@ -72,9 +73,9 @@
     "comment": ""
   },
   "embeddings_image": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://docs.trychroma.com/guides/multimodal#multi-modal-embedding-functions",
+    "comment": "CLIP is supported"
   },
   "embeddings_structured": {
     "support": "",
@@ -93,12 +94,12 @@
   },
   "langchain": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://python.langchain.com/v0.2/docs/integrations/vectorstores/chroma/",
     "comment": ""
   },
   "llamaindex": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://docs.llamaindex.ai/en/stable/examples/vector_stores/ChromaIndexDemo/",
     "comment": ""
   },
   "managed_cloud": {
@@ -117,14 +118,14 @@
     "comment": ""
   },
   "multi_tenancy": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://cookbook.chromadb.dev/strategies/multi-tenancy/",
     "comment": ""
   },
   "disk_index": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
+    "support": "partial",
+    "source_url": "https://github.com/chroma-core/chroma/issues/765#issuecomment-1623943198",
+    "comment": "Index is stored on disk after exit"
   },
   "ephemeral": {
     "support": "full",
@@ -148,8 +149,15 @@
     "source_url": "",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "HNSW"
+    ],
+    "source_url": "https://cookbook.chromadb.dev/core/concepts/#vector-index-hnsw-index",
+    "comment": ""
+  },
   "github_stars": {
-    "value": 12313,
+    "value": 14721,
     "source_url": "https://github.com/chroma-core/chroma",
     "comment": "",
     "value_90_days": 0
@@ -161,21 +169,21 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 10273817,
+    "value": 18455640,
     "source_url": "https://pypi.org/project/chromadb/",
     "comment": "",
-    "value_90_days": 3752433
+    "value_90_days": 5130732
   },
   "npm_downloads": {
-    "value": 916006,
+    "value": 1686939,
     "source_url": "https://www.npmjs.com/package/chromadb",
     "comment": "",
-    "value_90_days": 373213
+    "value_90_days": 465119
   },
   "crates_io_downloads": {
-    "value": 5751,
+    "value": 13071,
     "source_url": "https://crates.io/crates/chromadb",
     "comment": "",
-    "value_90_days": 1124
+    "value_90_days": 1432
   }
 }

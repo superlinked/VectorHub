@@ -10,7 +10,7 @@
   },
   "oss": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://github.com/qdrant/qdrant",
     "comment": ""
   },
   "license": {
@@ -22,19 +22,19 @@
     "value": [
       "rust"
     ],
-    "source_url": "",
+    "source_url": "https://github.com/qdrant/qdrant",
     "comment": ""
   },
   "vector_launch_year": 2021,
   "metadata_filter": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://qdrant.tech/documentation/concepts/filtering/",
     "comment": ""
   },
   "hybrid_search": {
-    "support": "none",
-    "source_url": "https://qdrant.tech/articles/sparse-vectors/",
-    "comment": "https://qdrant.tech/articles/sparse-vectors/#hybrid-search-combining-sparse-and-dense-vectors"
+    "support": "full",
+    "source_url": "https://qdrant.tech/documentation/concepts/hybrid-queries/",
+    "comment": "Supports hybrid fusion searches with dense/sparse/multi vectors"
   },
   "facets": {
     "support": "none",
@@ -43,38 +43,38 @@
   },
   "geo_search": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://qdrant.tech/documentation/concepts/filtering/#geo",
     "comment": ""
   },
   "multi_vec": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://qdrant.tech/documentation/concepts/vectors/#multivectors",
     "comment": ""
   },
   "sparse_vectors": {
     "support": "full",
     "source_url": "https://qdrant.tech/articles/sparse-vectors",
-    "comment": "https://qdrant.tech/articles/sparse-vectors"
+    "comment": ""
   },
   "bm25": {
     "support": "none",
-    "source_url": "",
+    "source_url": "https://qdrant.tech/articles/sparse-vectors",
     "comment": ""
   },
   "full_text": {
     "support": "full",
-    "source_url": "https://qdrant.tech/documentation/concepts/indexing/",
-    "comment": "https://qdrant.tech/documentation/concepts/indexing/#full-text-index"
+    "source_url": "https://qdrant.tech/documentation/concepts/indexing/#full-text-index",
+    "comment": ""
   },
   "embeddings_text": {
     "support": "full",
-    "source_url": "https://qdrant.github.io/fastembed/examples/Supported_Models/",
-    "comment": "via FastEmbed (Supported models: https://qdrant.github.io/fastembed/examples/Supported_Models/)"
+    "source_url": "https://qdrant.github.io/fastembed/examples/Supported_Models/#supported-text-embedding-models",
+    "comment": "via FastEmbed (Supported models: https://qdrant.github.io/fastembed/examples/Supported_Models/#supported-text-embedding-models)"
   },
   "embeddings_image": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://qdrant.github.io/fastembed/examples/Supported_Models/#supported-image-embedding-models",
+    "comment": "via FastEmbed (Supported models: https://qdrant.github.io/fastembed/examples/Supported_Models/#supported-image-embedding-models)"
   },
   "embeddings_structured": {
     "support": "",
@@ -82,7 +82,7 @@
     "comment": ""
   },
   "rag": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
@@ -103,7 +103,7 @@
   },
   "managed_cloud": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://cloud.qdrant.io/",
     "comment": ""
   },
   "pricing": {
@@ -118,7 +118,7 @@
   },
   "multi_tenancy": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://qdrant.tech/documentation/guides/multiple-partitions/",
     "comment": "via collections/metadata"
   },
   "disk_index": {
@@ -158,34 +158,45 @@
     "source_url": "https://qdrant.tech/documentation/guides/quantization/#binary-quantization",
     "comment": "via Binary Quantization of index"
   },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "HNSW",
+      "HNSW-PQ",
+      "HNSW-SQ",
+      "HNSW-BQ"
+    ],
+    "source_url": "https://qdrant.tech/documentation/concepts/indexing/",
+    "comment": ""
+  },
   "github_stars": {
-    "value": 17938,
+    "value": 19975,
     "source_url": "https://github.com/qdrant/qdrant",
     "comment": "",
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 0,
-    "source_url": "",
+    "value": 8932747,
+    "source_url": "https://hub.docker.com/r/qdrant/qdrant",
     "comment": "",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 4012619,
+    "value": 14519105,
     "source_url": "https://pypi.org/project/qdrant-client/",
     "comment": "",
-    "value_90_days": 1599110
+    "value_90_days": 7424440
   },
   "npm_downloads": {
-    "value": 24277,
-    "source_url": "https://www.npmjs.com/package/@qdrant/js-client-grpc",
-    "comment": "",
-    "value_90_days": 9923
+    "value": 1315891,
+    "source_url": "https://www.npmjs.com/~qdrant-tech",
+    "comment": "Total downloads of the REST and gRPC packages",
+    "value_90_days": 551308
   },
   "crates_io_downloads": {
-    "value": 97670,
+    "value": 199766,
     "source_url": "https://crates.io/crates/qdrant-client",
     "comment": "",
-    "value_90_days": 33052
+    "value_90_days": 28319
   }
 }

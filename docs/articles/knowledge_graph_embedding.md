@@ -18,7 +18,7 @@ The problem with KGs is that they are usually incomplete. Edges that should be p
 
 > … in Freebase, 93.8% of people have no place of birth, and [78.5% have no nationality](https://aclanthology.org/P09-1113.pdf), [about 68% of people do not have any profession](https://dl.acm.org/doi/abs/10.1145/2566486.2568032), while, in Wikidata, [about 50% of artists have no date of birth](https://arxiv.org/abs/2207.00143), and only [0.4% of known buildings have information about height](https://dl.acm.org/doi/abs/10.1145/3485447.3511932).
 
-The **imperfections of KGs** can lead to negative outcomes. For example, in recommendations systems, KG incompleteness can result in **limited or biased recommendations**; on Q&A tasks, KG incompleteness can yield **substantively and contextually incomplete or inaccurate answers to queries**.
+The **imperfections of KGs** can lead to negative outcomes. For example, in recommendation systems, KG incompleteness can result in **limited or biased recommendations**; on Q&A tasks, KG incompleteness can yield **substantively and contextually incomplete or inaccurate answers to queries**.
 
 Fortunately, KGEs can help solve problems that plague KGs.
 
@@ -124,6 +124,7 @@ Now that we have a trained model, we can do **some experiments** to see how well
 2. France contains Rio de Janeiro (which is not true)
 3. France contains Bonnie and Clyde (which makes no sense)
 
+
 ```python
 # Get node and relation IDs
 france = nodes["France"]
@@ -146,6 +147,11 @@ print(scores.tolist())
 # Bonnie and Clyde gets the lowest (negative) score
 ```
 
+**Note:** The code snippet provided serves primarily as an illustrative tool for enhancing comprehension. The process of resolving entity names for the [FB15k_237](https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.datasets.FB15k_237.html#torch_geometric.datasets.FB15k_237) dataset can indeed be somewhat convoluted.
+
+Here's a [gist](https://gist.github.com/ricsi98/81138cd51e8fe7e15644805c2371bca0) that extracts ID-node index mappings. With these mappings, resolving entity names based on the IDs becomes feasible.
+
+To illustrate, here's an [example](https://query.wikidata.org/#SELECT%20%3Fitem%20%3FitemLabel%20WHERE%20%7B%0A%20%20%3Fitem%20wdt%3AP646%20%22%2Fm%2F0mm1q%22.%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%7D%0A) of how you can resolve entity names using the Wikidata Query Service.
 
 ### Answering questions with our model
 

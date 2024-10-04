@@ -72,9 +72,9 @@
     "comment": ""
   },
   "embeddings_image": {
-    "support": "full",
+    "support": "partial",
     "source_url": "https://opensearch.org/docs/2.11/ml-commons-plugin/custom-local-models/",
-    "comment": "https://opensearch.org/docs/2.11/ml-commons-plugin/custom-local-models/"
+    "comment": ""
   },
   "embeddings_structured": {
     "support": "",
@@ -158,34 +158,42 @@
     "source_url": "https://opensearch.org/docs/latest/search-plugins/knn/knn-score-script/#getting-started-with-the-score-script-for-binary-data",
     "comment": ""
   },
+  "index_types": {
+    "value": [
+      "FLAT",
+      "HNSW"
+    ],
+    "source_url": "https://opensearch.org/docs/1.0/search-plugins/knn/approximate-knn/",
+    "comment": "via Lucene"
+  },
   "github_stars": {
-    "value": 8725,
+    "value": 9600,
     "source_url": "https://github.com/opensearch-project/OpenSearch",
     "comment": "",
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 67538480,
+    "value": 88408640,
     "source_url": "https://hub.docker.com/r/opensearchproject/opensearch",
     "comment": "",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 321132,
+    "value": 358126,
     "source_url": "https://pypi.org/project/opensearch/",
     "comment": "",
-    "value_90_days": 29681
+    "value_90_days": 22373
   },
   "npm_downloads": {
-    "value": 18998086,
+    "value": 24952307,
     "source_url": "https://www.npmjs.com/package/@opensearch-project/opensearch",
     "comment": "",
-    "value_90_days": 4489940
+    "value_90_days": 5533918
   },
   "crates_io_downloads": {
-    "value": 272666,
+    "value": 604162,
     "source_url": "https://crates.io/crates/opensearch",
     "comment": "",
-    "value_90_days": 65039
+    "value_90_days": 156095
   }
 }
