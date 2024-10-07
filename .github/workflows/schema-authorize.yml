@@ -4,6 +4,8 @@ on:
   pull_request:
     branches:
     - main
+    paths:
+      - 'docs/tools/vdb_table/**'
 
 jobs:
   check_changes:
@@ -12,7 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 2
 
       - name: Check if vendor.schema.json has changed
         id: check_file_change
@@ -52,6 +54,7 @@ jobs:
         if: env.file_changed == 'true'
         run: |
           commit_author="${{ env.commit_author }}"
+          ls -lh
           if jq -e ".[] | select(.login == \"$commit_author\")" team.json > /dev/null; then
             echo "Authorized change."
           else
