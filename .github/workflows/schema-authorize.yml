@@ -58,6 +58,7 @@ jobs:
             echo "Unauthorized change detected!"
             exit 1
           fi
+        continue-on-error: false
 
   report:
     needs: verify
