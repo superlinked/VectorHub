@@ -5,7 +5,7 @@
 
 Chunking is simply dividing data into smaller manageable pieces. Similar to how it is easier for a human to cognitively manage smaller pieces of information, it is easier for a computer to work with information divided into smaller chunks. In the context of Retrieval Augmented Generation (RAG), chunking plays a great role, especially when it comes to large datasets. The large dataset is divided into chunks and stored in vector databases and indexes. When there is a user query, it is easier to skim through and retrieve the most relevant chunks only without hassle.
 
-There are various ways we can chunk a document: paragraphs, sentences or even characters. However, based on the data and the RAG system we use, this process significantly improves the performance. Some widely used algorithms are fixed character splitter, recursive character splitter, document-specific splitter, semantic splitter, and agentic splitter.
+There are various ways we can chunk a document: by paragraphs, sentences, or characters. The choice of chunking method can significantly impact the performance of a RAG system, depending on the nature of the data and the specific RAG implementation. Some widely used chunking algorithms include fixed character splitter, recursive character splitter, document-specific splitter, semantic splitter, and agentic splitter.
 
 In this article, we will explore the semantic chunking algorithm in detail and comprehensively evaluate it using different embedding models and datasets.
 
