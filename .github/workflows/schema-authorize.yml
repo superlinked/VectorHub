@@ -38,12 +38,12 @@ jobs:
         id: get_team_members
         if: env.file_changed == 'true'
         run: |
-          curl -H "Authorization: token ${{ secrets.SUPERLINKED_PAT_TOKEN }}" \
+          curl -H "Authorization: token ${{ secrets.TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/orgs/superlinked/teams/vdb-table-maintainers/members \
             > team.json
         env:
-          TOKEN: ${{ secrets.SUPERLINKED_PAT_TOKEN }}
+          TOKEN: ${{ secrets.VDB_CONTRIBUTION_CHECK_TOKEN }}
 
       - name: Check if Commit Author is a Team Member
         id: check_author
