@@ -74,5 +74,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: "Unauthorized change detected!"
+              body: "This PR contains schema changes. Please note that schema changes affect all vendors simultaneously.\n@author: Could you create a separate issue to discuss the necessity for this schema change with @vdb-table-maintainers? This will help ensure proper review and coordination."
             })
