@@ -3,6 +3,7 @@
   "$id": "vdb_table/schema/vendor",
   "type": "object",
   "properties": {
+
     
     "name": {"type": "string", "$comment": "About | Vendor | " },
     "links": {"allOf": [{"$ref": "#/$defs/links"}], "$comment": "About | Links | " },
