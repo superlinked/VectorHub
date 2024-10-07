@@ -3,7 +3,9 @@ name: Check Authorization for schema changes
 on:
   pull_request:
     branches:
-    - main
+      - main
+    paths:
+      - 'docs/tools/vdb_table/**'
 
 jobs:
   verify:
