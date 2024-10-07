@@ -168,7 +168,7 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 2144,
+    "value": 2151,
     "source_url": "https://github.com/unum-cloud/usearch",
     "comment": "",
     "value_90_days": 0
@@ -180,21 +180,21 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 1422949,
+    "value": 1478316,
     "source_url": "https://pypi.org/project/usearch/",
     "comment": "",
-    "value_90_days": 427212
+    "value_90_days": 475683
   },
   "npm_downloads": {
-    "value": 100761,
+    "value": 102206,
     "source_url": "https://www.npmjs.com/package/usearch",
     "comment": "",
-    "value_90_days": 24738
+    "value_90_days": 24377
   },
   "crates_io_downloads": {
-    "value": 79645,
+    "value": 83392,
     "source_url": "https://crates.io/crates/usearch",
     "comment": "",
-    "value_90_days": 1439
+    "value_90_days": 1660
   }
 }
