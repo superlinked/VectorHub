@@ -62,7 +62,7 @@ jobs:
 
   report:
     needs: verify
-    if: needs.verify.result == 'failure'
+    if: failure()
     runs-on: ubuntu-latest
     steps:
       - name: Send failure result to PR
