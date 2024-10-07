@@ -422,7 +422,7 @@ Let's summarize our findings.
 | 2 | low to medium | only 2 influencer campaign ads | influencer campaign | 805 | 10% |
 | 3 | low to medium | only 1 influencer campaign ad | influencer campaign | 1090 | 14% |
 
-Overall, the influencer-backed (i.e., second) campaign performed better. Roughly 58% of user signups came *exclusively* from clicks on second campaign ad_creatives. These ads were influencer-based, included a call to action, emphasized benefits, and had motivating language. (Two ads in particular accounted for 38% of all signups: "Unleash your gaming potential! Upgrade to premium for 2 months free and dominate the competition with XYZCr$$d!" (22%), and "Ready to level up? Join XYZCr$$d now for intense gaming battles and exclusive rewards!" (16%).)
+Overall, the influencer-backed (i.e., second) campaign performed better. Roughly 58% of user signups came *exclusively* from clicks on second campaign ad_creatives. These ads were influencer-based, included a call to action, emphasized benefits, and had motivating language. (Two ads in particular accounted for 38% of all signups: "Unleash your gaming potential! Upgrade to premium for 2 months free and dominate the competition with XYZCr\$\$d!" (22%), and "Ready to level up? Join XYZCr\$\$d now for intense gaming battles and exclusive rewards!" (16%).)
 
 Users who signed up in response to ads that focused on enhanced performance, risk-free premium benefits, and community engagement - cluster 1 - tended to be predominantly medium activity users, but also included a nontrivial number of low and high activity users. Cluster 1 users also made up the largest segment of subscriptions (35%). Both these findings suggest that this kind of ad_creative provides the best ROI.
 
