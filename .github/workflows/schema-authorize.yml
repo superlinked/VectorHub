@@ -72,5 +72,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: "This PR contains schema changes. Please note that schema changes affect all vendors simultaneously.\n@${{env.commit_author}} Could you create a separate issue to discuss the necessity for this schema change with @vdb-table-maintainers? This will help ensure proper review and coordination."
+              body: "This PR contains schema changes. Please note that schema changes affect all vendors simultaneously.\n@${{env.commit_author}} Could you create a separate issue to discuss the necessity for this schema change with @superlinked/vdb-table-maintainers? This will help ensure proper review and coordination."
             })
