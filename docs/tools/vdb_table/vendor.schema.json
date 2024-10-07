@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "vdb_table/schema/vendor",
-  "type": "object",
+  "type": "object ",
   "properties": {
     "name": {"type": "string", "$comment": "About | Vendor | " },
     "links": {"allOf": [{"$ref": "#/$defs/links"}], "$comment": "About | Links | " },
