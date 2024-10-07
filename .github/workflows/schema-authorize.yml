@@ -40,7 +40,7 @@ jobs:
         id: get_team_members
         if: env.file_changed == 'true'
         run: |
-          curl -H "Authorization: token ${{ secrets.TOKEN }}" \
+          curl -H "Authorization: token ${{ env.TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/orgs/superlinked/teams/vdb-table-maintainers/members \
             > team.json

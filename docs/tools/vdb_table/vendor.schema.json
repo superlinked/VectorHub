@@ -3,7 +3,6 @@
   "$id": "vdb_table/schema/vendor",
   "type": "object",
   "properties": {
-    
     "name": {"type": "string", "$comment": "About | Vendor | " },
     "links": {"allOf": [{"$ref": "#/$defs/links"}], "$comment": "About | Links | " },
     "oss": {"allOf": [{"$ref": "#/$defs/featureWithSource"}], "$comment": "About | OSS | The code-base is open source and users can self-host it for free." },
