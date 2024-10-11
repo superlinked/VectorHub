@@ -1,0 +1,76 @@
+name: Check Authorization for schema changes
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'docs/tools/vdb_table/**'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Check if vendor.schema.json has changed
+        id: check_file_change
+        run: |
+          # Path of the specific file to check
+          file_path="docs/tools/vdb_table/vendor.schema.json"
+          
+          # Check if the file has changed
+          if git diff --name-only HEAD~1 | grep -q "$file_path"; then
+            echo "File $file_path has changed."
+            echo "file_changed=true" >> $GITHUB_ENV
+          else
+            echo "File $file_path has not changed."
+            echo "file_changed=false" >> $GITHUB_ENV
+          fi
+
+      - name: Get Commit Author
+        id: get_author
+        if: env.file_changed == 'true'
+        run: |
+          echo "commit_author=${{ github.actor }}" >> $GITHUB_ENV
+          echo "Commit author's username: ${{ github.actor }}"
+      
+      - name: Get GitHub Team Members
+        id: get_team_members
+        if: env.file_changed == 'true'
+        run: |
+          curl --fail -H "Authorization: token ${{ env.TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/orgs/superlinked/teams/vdb-table-maintainers/members \
+            > team.json
+        env:
+          TOKEN: ${{ secrets.VDB_CONTRIBUTION_CHECK_TOKEN }}
+
+      - name: Check if Commit Author is a Team Member
+        id: check_author
+        if: env.file_changed == 'true'
+        run: |
+          commit_author="${{ env.commit_author }}"
+          if jq -e ".[] | select(.login == \"$commit_author\")" team.json > /dev/null; then
+            echo "Authorized change."
+            echo "authorized=true" >> $GITHUB_ENV
+          else
+            echo "Unauthorized change detected!"
+            echo "authorized=false" >> $GITHUB_ENV
+          fi
+
+      - name: Send failure result to PR
+        uses: actions/github-script@v6
+        if: env.authorized == 'false'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "This PR contains schema changes. Please note that schema changes affect all vendors simultaneously.\n@${{env.commit_author}} Could you create a separate issue to discuss the necessity for this schema change with @superlinked/vdb-table-maintainers ? This will help ensure proper review and coordination."
+            })
