@@ -28,12 +28,12 @@
     "vector_launch_year": 2024,
     "metadata_filter": {
       "support": "full",
-      "source_url": "",
+      "source_url": "https://www.databricks.com/blog/announcing-mosaic-ai-vector-search-general-availability-databricks",
       "comment": ""
     },
     "hybrid_search": {
       "support": "full",
-      "source_url": "",
+      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html",
       "comment": ""
     },
     "facets": {
@@ -58,37 +58,37 @@
     },
     "bm25": {
       "support": "full",
-      "source_url": "",
+      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#how-does-mosaic-ai-vector-search-work",
       "comment": "Okapi BM25"
     },
     "full_text": {
       "support": "full",
-      "source_url": "",
+      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html",
       "comment": ""
     },
     "embeddings_text": {
       "support": "full",
-      "source_url": "",
+      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#options-for-providing-vector-embeddings",
       "comment": ""
     },
     "embeddings_image": {
       "support": "full",
-      "source_url": "",
+      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#options-for-providing-vector-embeddings",
       "comment": "With self-managed Delta Sync"
     },
     "embeddings_structured": {
       "support": "full",
-      "source_url": "",
+      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#options-for-providing-vector-embeddings",
       "comment": "With self-managed Delta Sync"
     },
     "rag": {
       "support": "full",
-      "source_url": "",
+      "source_url": "https://docs.databricks.com/en/generative-ai/retrieval-augmented-generation.html#databricks-vector-search",
       "comment": ""
     },
     "recsys": {
       "support": "full",
-      "source_url": "",
+      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#options-for-providing-vector-embeddings",
       "comment": ""
     },
     "langchain": {
@@ -103,7 +103,7 @@
     },
     "managed_cloud": {
       "support": "full",
-      "source_url": "",
+      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html",
       "comment": ""
     },
     "pricing": {
@@ -118,12 +118,12 @@
     },
     "multi_tenancy": {
       "support": "full",
-      "source_url": "",
+      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html",
       "comment": "via namespaces"
     },
     "disk_index": {
       "support": "full",
-      "source_url": "",
+      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html",
       "comment": ""
     },
     "ephemeral": {
@@ -133,26 +133,26 @@
     },
     "sharding": {
       "support": "full",
-      "source_url": "",
+      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html",
       "comment": ""
     },
     "doc_size": {
       "bytes": 32768,
       "unlimited": false,
-      "source_url": "",
+      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#resource-and-data-size-limits",
       "comment": ""
     },
     "vector_dims": {
       "value": 4096,
       "unlimited": false,
-      "source_url": "",
+      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#resource-and-data-size-limits",
       "comment": ""
     },
     "index_types": {
     "value": [
       "HNSW"
     ],
-    "source_url": "",
+    "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#how-does-mosaic-ai-vector-search-work",
     "comment": ""
     },
     "github_stars": {
