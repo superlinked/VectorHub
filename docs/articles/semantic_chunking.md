@@ -3,21 +3,17 @@
 
 # Semantic Chunking
 
-Chunking in Natural Language Processing is simply dividing large bodies of text into smaller manageable "chunks". Just as humans find it easier to cognitively manage smaller pieces of information, it's easier for a computer to work with information divided into smaller chunks. In the context of Retrieval Augmented Generation (RAG), chunking plays a crucial role, especially when it comes to large datasets. The large dataset is divided into chunks and stored in vector databases and indexes. When there's a user query, it's easier to skim through and retrieve only the most relevant chunks.
+Chunking in Natural Language Processing is simply dividing large bodies of text into smaller pieces that computers find it easier to handle. In Retrieval Augmented Generation (RAG), we can manage large datasets by dividing them into chunks, and then embedding and storing them in vector databases and indexes. When there's a user query, it's easier to skim through and retrieve only the most relevant chunks.
 
-There are various ways we can chunk a document: paragraphs, sentences, or even characters. However, based on the data and the RAG system we use, this process significantly improves the performance. Some widely used algorithms are rule-based - for example, fixed character splitter, recursive character splitter, document-specific splitter, among others. Others are semantic - e.g., semantic splitter, agentic splitter, and so on.
-...While rule-based chunking methods have their place, they often run into problems in some real-world applications. For example, if the dataset consists of multi-topic documents, rule-based chunking can lead to incomplete contexts or noise-filled chunks. Semantic chunking, on the other hand, because it divides text on the basis of meaning rather than rules, can create chunks that are semantically independent and cohesive, and therefore produce more effective text processing and information retrieval.
+If you want to improve your RAG system's performance, you need to choose a chunking method that's a good fit for your data. Some widely used chunking algorithms are **rule-based** - e.g., fixed character splitter, recursive character splitter, document-specific splitter, among others. But in some real-world applications, rule-based methods have trouble. If, for example, your dataset has multi-topic documents, rule-based splitting algorithms can result in incomplete contexts or noise-filled chunks. **Semantic chunking**, on the other hand - because it divides text on the basis of meaning rather than rules - creates chunks that are semantically independent and cohesive, and therefore results in more effective text processing and information retrieval.
 
-In this article, we will explore the semantic chunking algorithm in detail.. via three different types - embedding similarity based, hierarchical clustering based, LLM based.., and show you how to implement each...
-and then evaluate them by conducting experiments on them... applying a specific embedding model, and then that model plus a reranker, to two different datasets...
+In this article, we'll describe and implement three different popular semantic chunking methods - embedding-similarity-based, hierarchical-clustering-based, and LLM-based. Then we'll evaluate them, applying an embedding model and a reranker to two different datasets.
 
 ## What is semantic chunking?
 
-The idea of semantic chunking is pretty simple. The semantic splitter adaptively picks the breakpoint between sentences by comparing embedding similarity. This ensures that each chunk contains semantically cohesive sentences. 
+In semantic chunking, a splitter adaptively picks the breakpoint between sentences by comparing embedding similarity. This ensures that each chunk contains semantically cohesive sentences. Typically, a semantic splitting algorithm uses a sliding window approach, calculating the cosine similarity between the embeddings of consecutive sentences, and establishing a threshold for assigning chunk boundaries. When sentence similarity drops below this threshold, it signals a shift in semantic content, and the splitter marks a breakpoint. 
 
-Typically, a semantic splitting algorithm uses a sliding window approach to compare adjacent sentences. It calculates the cosine similarity between the embeddings of consecutive sentences, establishing a threshold to determine chunk boundaries. When the similarity drops below this threshold, it signals a shift in semantic content and marks a breakpoint. 
-
-The workflow of a semantic splitter consists basically of 3 steps:
+The workflow of a semantic splitter has basically 3 steps:
 
 ![Full text](../assets/use_cases/semantic_chunking/sample1.png)
 
@@ -29,21 +25,21 @@ The workflow of a semantic splitter consists basically of 3 steps:
 
     ![Embedding split](../assets/use_cases/semantic_chunking/sample3.png)
 
-3. Group similar sentences based on their embedding similarity.
+3. Group sentences based on their embedding similarity.
 
     ![Chunks](../assets/use_cases/semantic_chunking/sample4.png)
 
 ## Types of semantic chunking
 
-The document's semantics can be inferred in various ways for optimal chunking. Let's implement and evaluate three of them: embedding-similarity-based, hierarchical-clustering-based, and LLM-based.
+Which method of semantic chunking will produce optimal outcomes depends on your use case. To get a sense of which splitting algorithms fit which scenarios, let's take an in-depth look at, implement, and evaluate three popular methods: embedding-similarity-based, hierarchical-clustering-based, and LLM-based.
 
-### Embedding similarity based chunking
+### Embedding-similarity-based chunking
 
-This method creates chunks by comparing semantic similarities between sentences. For this, the cosine distance between consecutive sentence embeddings is calculated.
+In embedding-similarity-based chunking, we create chunks by comparing semantic similarity between sentences, which we calculate by measuring the cosine distance between consecutive sentence embeddings. 
 
-..here's how you implement it...
+Let's walk through how to implement it.
 
-Before moving forward, let's install and import the required libraries.
+First, we install and import the required libraries.
 
 ```python
 import numpy as np
@@ -53,19 +49,17 @@ from transformers import AutoTokenizer, AutoModel
 import torch
 ```
 
-Define helper function using regular expressions to split the text into sentences based on punctuation followed by whitespace.
+We define a helper function to split the text into sentences - based on regular end-of-sentence punctuation followed by a whitespace.
 
 ```python
 def _split_sentences(text):
     sentences = re.split(r'(?<=[.?!])\s+', text)
     return sentences
-
 ```
 
-To provide a wider context, create a buffer by combining each sentence with its previous and next sentence. This function combines adjacent sentences to form a context window for each sentence.
+To provide a context window to better understand each sentence, we define a function to combine it with its preceding and following sentences.
 
 ```python
-
 def _combine_sentences(sentences):
     combined_sentences = []
     for i in range(len(sentences)):
@@ -78,7 +72,7 @@ def _combine_sentences(sentences):
     return combined_sentences
 ```
 
-Define a cosine similarity distance calculation function and an embedding function that generates embeddings.
+Next, we define a cosine similarity distance calculation function, and an embedding function.
 
 ```python
 def _calculate_cosine_distances(embeddings):
@@ -108,7 +102,9 @@ def mean_pooling(model_output, attention_mask):
     return torch.sum(token_embeddings * input_mask_expanded, 1) / torch.clamp(input_mask_expanded.sum(1), min=1e-9)
 ```
 
-The next function is where chunking is done. After calculating cosine distances, this function determines a threshold for identifying breakpoints. **breakpoint_percentile_threshold** is used as an input to calculate **breakpoint_distance_threshold**, which is the actual distance value we'll use to determine breakpoints. It finds indices where distances exceed this threshold, indicating potential chunk boundaries. The code then iterates through these indices, creating chunks by joining sentences between breakpoints. Finally, it handles any remaining sentences after the last breakpoint, ensuring all text is included in the chunks.
+Now that we've split the text into sentences, calculated similarity, and generated embeddings, we turn to **chunking**.
+
+Our chunking function determines a `breakpoint_distance_threshold` - based on cosine distance - for identifying breakpoints. We use `breakpoint_percentile_threshold` to identify indices where cosine distances exceed the 80th percentile. Sentences with distances exceeding the threshold are considered chunk boundaries. `chunk_text` then creates chunks by joining sentences between breakpoints. Any sentences in the text remaining after the last identified breakpoint are clustered into a final chunk.
 
 ```python
 def chunk_text(text):
@@ -140,7 +136,9 @@ def chunk_text(text):
     return chunks
 ```
 
-You can also try reducing the threshold to get more chunks. Here is a sample output.
+Depending on the needs of your use case - e.g., more fine-grained analysis, improved context, enhanced readability, alignment with user queries, etc. - you may also want to reduce your breakpoint distance threshold, generating more chunks. 
+
+Let's run a sample text input using the `breakpoint_percentile_threshold` above (i.e., 80%) to see what results we get.
 
 ```python
 text = """
@@ -163,9 +161,10 @@ for i, chunk in enumerate(chunks, 1):
 print(f"\nTotal number of chunks: {len(chunks)}")
 ```
 
+Here's the resulting output:
+
 ```markdown
 Chunk 1:
-
 Regular exercise is essential for maintaining overall health and well-being. It helps in controlling weight,
 improving cardiovascular health, and boosting mental health. Engaging in physical activity regularly can also enhance the immune system, reduce the risk of chronic diseases,
 and increase energy levels. Regular workouts are known to improve muscle strength and flexibility, which can prevent injuries and enhance mobility.
@@ -178,13 +177,15 @@ By setting realistic goals and staying consistent, individuals can enjoy these b
 ----------------------------------------------------------------------------
 ```
 
-![results-embedding similarity based](../assets/use_cases/semantic_chunking/graph1.png)
+![results-embedding-similarity-based](../assets/use_cases/semantic_chunking/graph1.png)
 
-### Hierarchical clustering based chunking
+Our results seem very relevant and discrete. So far so good. Now, let's take a look at our second semantic chunking method.
 
-In this approach, we group sentences as clusters using hierarchical clustering based on semantic similarities. Cosine distances between embeddings of consecutive sentences are calculated as in the previous case.
+### Hierarchical-clustering-based chunking
 
-Import required libraries.
+In this approach, we again calculate semantic similarity in terms of cosine distances between embeddings of consecutive sentences. But this time we hierarchically cluster our sentences. What exactly does this look like?
+
+First, let's import the required libraries. Our utility functions are the same as in embedding-similarity-based chunking, but here we also add utilities for clustering and cluster evaluation.
 
 ```python
 import numpy as np
@@ -196,7 +197,7 @@ from transformers import AutoTokenizer, AutoModel
 import torch
 ```
 
-Utility functions are same. The **chunk_text** function here uses hierarchical clustering to group the sentences' embeddings based on their cosine distances, which measure how similar or different the sentences are. The linkage method builds a hierarchical cluster tree. You can either specify a fixed number of clusters or use a distance threshold to control how closely sentences need to be grouped. The function then assigns each sentence to a cluster and returns the resulting clusters as chunks of text.
+The **chunk_text** function in hierarchical clustering calculates a distance matrix based on cosine distances between embeddings - the `linkage` method builds a hierarchical cluster tree. To determine your chunk boundaries and how closely your sentences will be grouped, you use either a specified number of clusters (`num_clusters`) or a distance threshold (`distance_threshold`). The function then assigns each sentence to a cluster and returns the resulting clusters as chunks of text.
 
 ```python
 def chunk_text(text, num_clusters=4, distance_threshold=None):
@@ -246,7 +247,7 @@ def chunk_text(text, num_clusters=4, distance_threshold=None):
     return chunks
 ```
 
-Let's examine a sample output to understand further.
+Let's use the same text (as we used with embedding-similarity-based chunking) and, this time, apply hierarchical clustering to it.
 
 ```python
 text = """
@@ -266,31 +267,28 @@ for chunk in chunks:
 print(f"\n{len(chunks)} chunks")
 ```
 
-Output:
+Here's our output:
 
-```text
+```markdown
 Chunk 1:
-
 Regular exercise is essential for maintaining overall health and well-being. It helps in controlling weight,
 improving cardiovascular health, and boosting mental health. Engaging in physical activity regularly can also enhance the immune system, reduce the risk of chronic diseases,
 and increase energy levels. 
 ----------------------------------------------------------------------------
-
 Chunk 2:
-
 Regular workouts are known to improve muscle strength and flexibility, which can prevent injuries and enhance mobility.
 Moreover, exercise contributes to better sleep and improved mood, which are crucial for daily functioning. Physical activity can also help reduce symptoms of anxiety and depression, leading to a more balanced emotional state. 
 ----------------------------------------------------------------------------
-
 Chunk 3:
-
 Activities like walking, jogging, or swimming can be easily incorporated into a daily routine, making it accessible for everyone. By setting realistic goals and staying consistent, individuals can enjoy these benefits and lead a healthier lifestyle. Group fitness classes or sports teams can provide motivation and social support, making exercise more enjoyable and sustainable.
 ----------------------------------------------------------------------------
 ```
 
 ![results-hierarchical based](../assets/use_cases/semantic_chunking/graph2.png)
 
-For a more optimized choice of clusters, we can incorporate **Within-Cluster Sum of Squares (WCSS)**. WCSS is a measure of the compactness of clusters. It calculates the sum of the squared distances between each point in a cluster and the cluster's centroid. Lower WCSS indicates more compact, tightly-knit clusters, ie, sentences within each chunk are more semantically similar. The **elbow point** is a heuristic method for determining the optimal number of clusters. It's the point where adding more clusters doesn't significantly reduce the WCSS. 
+These results look pretty decent. But to make our clusters even more optimized (meaningfully tight and internally cohesive), we can incorporate **Within-Cluster Sum of Squares (WCSS)** - a measure of the compactness of clusters. WCSS calculates the sum of the squared distances between each point in a cluster and the cluster's centroid. The lower the WCSS, the more compact and tightly-knit are the clusters - i.e., sentences within each chunk are more semantically similar. The **elbow point** is a heuristic method for determining the optimal number of clusters - the point at which adding more clusters doesn't significantly reduce the WCSS. 
+
+Let's try adding WCSS and the elbow point method to see how it affects our results.
 
 ```python
 from sklearn.metrics import silhouette_score
@@ -361,53 +359,46 @@ def chunk_text(text, max_clusters=10):
     return chunk_text_with_clusters(text, num_clusters=optimal_clusters)
 ```
 
-You can change the value of max_clusters depending on the length of the text. Let us plot the final results. The elbow point is where the rate of decrease sharply shifts.
+You can adjust the value of max_clusters - more for longer text input, less for shorter.
+
+What insights does applying the WCSS elbow method give us? Let's take a look.
 
 ![Optimal clusters calculation](../assets/use_cases/semantic_chunking/graph3.png)
 
-Silhouette score considers both how similar an object is to its cluster and how different it is from other clusters. A high silhouette score indicates that the clustering is appropriate, while a low score might suggest that the number of clusters needs to be reconsidered.
+The elbow point (vertical red line, at 5 clusters) is where the rate of decrease sharply shifts. 
 
-Coming to the outputs, we have 5 chunks this time.
+The silhouette score (right axis) is a measure of both how similar an embedding is to its cluster and how different it is from other clusters' embeddings. A high silhouette score indicates that our clustering is optimal; a low score may suggest that we should reconsider the number of clusters.
 
-```text
+Let's take a look at our WCSS outputs. We have 5 chunks that, based on our elbow point, should give us the most internally similar and externally distinct clusters.
+
+```markdown
 Chunk 1:
-
 Regular exercise is essential for maintaining overall health and well-being. It helps in controlling weight,
 improving cardiovascular health, and boosting mental health. Engaging in physical activity regularly can also enhance the immune system, reduce the risk of chronic diseases,
 and increase energy levels. Regular workouts are known to improve muscle strength and flexibility, which can prevent injuries and enhance mobility.
 ----------------------------------------------------------------------------
-
 Chunk 2:
-
 Moreover, exercise contributes to better sleep and improved mood, which are crucial for daily functioning.
 ----------------------------------------------------------------------------
-
 Chunk 3:
-
 Physical activity can also help reduce symptoms of anxiety and depression, leading to a more balanced emotional state. Activities like walking, jogging, or swimming can be easily incorporated into a daily routine, making it accessible for everyone.
 ----------------------------------------------------------------------------
-
 Chunk 4:
-
 By setting realistic goals and staying consistent, individuals can enjoy these benefits and lead a healthier lifestyle.
 ----------------------------------------------------------------------------
-
 Chunk 5:
-
 Group fitness classes or sports teams can provide motivation and social support, making exercise more enjoyable and sustainable.
-
 ```
 
-![results-hierarchical clustering based with WCSS](../assets/use_cases/semantic_chunking/graph4.png)
+![results-hierarchical-clustering-based with WCSS](../assets/use_cases/semantic_chunking/graph4.png)
 
-### LLM based chunking
+We've looked at semantic embedding and hierarchical clustering. Let's turn to consider our third semantic chunking method.
 
-Here, the semantic assessment is done by a large language model. This variation uses simple prompt engineering to enable the LLM to decide the breakpoints and return the chunks.
-The implementation uses the idea of propositions. 
+### LLM-based chunking
 
-Take a look at the [paper](https://arxiv.org/pdf/2312.06648.pdf) which proposes this idea. Propositions represent individual facts or ideas expressed in clear, standalone natural language statements. Each proposition conveys a single, discrete piece of information in a concise and self-sufficient manner. We aim to find them by prompting the LLM.
+In LLM-based chunking, you prompt a large language model to process your text, convert it into semantic embeddings, evaluate them, and determine logical breakpoints for creating chunks. Here, our prompting aims to identify [propositions](https://arxiv.org/pdf/2312.06648.pdf) - highly refined chunks that are semantically rich and self-contained, preserving context and meaning, thereby improving retrieval in downstream applications.
 
-Here is the complete code implemented with a base class from LangChain:
+Here is the complete code, implemented with a base class from LangChain:
 
 ```python
 from langchain.text_splitter import TextSplitter
@@ -494,36 +485,56 @@ class LlmSemanticChunker(TextSplitter):
         return chunks
 ```
 
+Let's see what output we get from LLM-based chunking using the same input as we used in our two methods above.
+
+```markdown
+Chunk 1:
+Regular exercise is essential for maintaining overall health and well-being It helps in controlling weight,
+improving cardiovascular health, and boosting mental health Engaging in physical activity regularly can also enhance the immune system, reduce the risk of chronic diseases,
+and increase energy levels Regular workouts are known to improve muscle strength and flexibility, which can prevent injuries and enhance mobility.
+Moreover, exercise contributes to better sleep and improved mood, which are crucial for daily functioning
+--------------------------------------------------
+Chunk 2:
+Physical activity can also help
+reduce symptoms of anxiety and depression, leading to a more balanced emotional state Activities like walking, jogging, or swimming can be easily
+incorporated into a daily routine, making it accessible for everyone By setting realistic goals and staying consistent, individuals can enjoy these benefits and lead a healthier lifestyle
+--------------------------------------------------
+Chunk 3:
+Group fitness classes or sports teams can provide motivation and social support, making exercise more enjoyable and sustainable
+--------------------------------------------------
+```
+
 ## Evaluation
 
-We conducted experiments with the above three variations of semantic chunking on two datasets and embedding models.
-...to see how they performed in terms of...
+Now that we've gone through an implementation of our three semantic chunking methods, let's run some experiments so we can compare them more systematically. We'll use two widely used benchmark datasets, a specific embedding model, and a reranker.
 
 ***Datasets***
 
 1. [HotpotQA](https://huggingface.co/datasets/hotpotqa/hotpot_qa?row=16)
 2. [SQUAD](https://huggingface.co/datasets/squad?row=0)
 
+HotpotQA is a good test of our methods in handling complex, multi-hop reasoning tasks, while SQUAD is good at evaluating our methods on their ability to identify and extract the exact span of text that answers a given question.
+
 ***Embedding models***
 
 1. [BAAI/bge-small-en-v1.5](https://huggingface.co/BAAI/bge-small-en-v1.5)
 2. BAAI/bge-small-en-v1.5 with reranker
 
-Here are the results.
+After running our experiments, we evaluated our three methods - embedding-similarity-based, hierarchical-clustering-based, and LLM-based chunking - in terms of latency, context precision, context recall, faithfulness, and relevancy.
 
 ![Evaluation results](../assets/use_cases/semantic_chunking/table.png)
 
+Let's visualize these results side by side on a graph.
+
 ![Results summary](../assets/use_cases/semantic_chunking/graph5.png)
 
-From the above results, we can summarize.
+## Our findings, in sum
 
-- LLM based semantic chunking performs best overall, especially in faithfulness and handling complex queries as LLMs can understand context and semantics at a deep level, allowing for more intelligent chunking. But it has high latency numbers as LLM inference takes time.
-- Embedding similarity based semantic chunking shows strong performance in relevancy and a good balance of precision and recall.
-- Clustering based semantic chunking is more variable, potentially excelling in specific scenarios but possibly struggling with others. It has slightly higher latency numbers compared to embedding based method.
-- The reranker improves performance across all methods.
-
-## Wrapping up
-
+- **LLM-based** semantic chunking performed **best overall**, achieving the highest scores across nearly all metrics (only embedding-similarity-based chunking had marginally more relevant results), excelling especially in faithfulness and handling complex, multi-hop reasoning (i.e., hotpot_qa dataset) tasks. This suggests that LLMs can **better understand and preserve complex semantic relationships when chunking text**. But LLM inference takes time, so this method's **latency was higher** than our other methods (e.g., 6.88s on hotpot_qa vs. 5.24s for semantic chunking).
+- **Embedding-similarity-based** semantic chunking achieved the **highest relevancy scores** across both datasets (very slightly better than LLM-based), and well balanced (closely matching) precision and recall scores.
+- **Hierarchical-clustering-based** semantic chunking performed respectably but **not as well across nearly all metrics except latency** (where it was basically even with embedding-similarity-based, and significantly less latent than LLM-based chunking). Hierarchical clustering is viable but may struggle capturing fine-grained semantic relationships (e.g., 0.63 faithfulness score for hotpot_qa).
+- The reranker improves performance but also increases latency on all scores for all three chunking methods on both datasets. 
+- In general, our results suggest a not surprising trade-off between performance and speed.
 
 ## References
 
