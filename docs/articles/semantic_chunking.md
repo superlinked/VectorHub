@@ -538,7 +538,7 @@ Let's visualize these results side by side on a graph.
 - **Embedding-similarity-based** semantic chunking achieved the **highest relevancy scores** across both datasets (very slightly better than LLM-based), and well-balanced (closely matching) precision and recall scores.
 - **Hierarchical-clustering-based** semantic chunking performed respectably but **not as well across nearly all metrics except latency** (where it was basically even with embedding-similarity-based, and significantly less latent than LLM-based chunking). Hierarchical clustering is viable but may struggle capturing fine-grained semantic relationships (e.g., 0.63 faithfulness score for hotpot_qa).
 - The reranker improves performance but also increases latency on all scores for all chunking methods on both datasets, except hierarchical clustering on hotpot_qa.
-- In general, our semantic chunking evaluation suggests a (not surprising) trade-off between performance and speed.
+- In general, our semantic chunking evaluation suggests a not surprising trade-off between performance and speed.
 
 ## Contributors
 
