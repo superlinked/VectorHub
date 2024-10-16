@@ -372,4 +372,5 @@ present_result(result)
 Try your own simple_query and news_query in the [notebook](https://github.com/superlinked/superlinked/blob/main/notebook/semantic_search_news.ipynb). Alter the `description_weight`, `headline_weight`, and `recency_weight` on your own `query_text` and `news_id` and observe the changes in your results.
 
 ## In sum...
+
 Superlinked Spaces enables you up to optimize your vector search with a high degree of control, without incurring the time and resource costs of re-embedding your dataset. Our Spaces let you embed your dataset smartly, attribute by attribute - so that you can prioritize or deprioritize different attributes as required.
