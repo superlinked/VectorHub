@@ -211,7 +211,7 @@ simple_query = (
 )
 ```
 
-**News query** will search our database using the vector a specific news article. News query, like simple query, can also be weighted.
+**News query** will search our database using the vector a specific news article. News query, like simple query, can be weighted.
 
 ```python
 news_query = (
@@ -238,7 +238,7 @@ dataframe_parser = DataFrameParser(
 )
 ```
 
-... create an InMemorySource object to hold the user data in memory, and set up our executor (with our article dataset and index) so that it takes account of context data. The executor creates vectors based on the index's grouping of Spaces.
+...create an InMemorySource object to hold the user data in memory, and set up our executor (with our article dataset and index) so that it takes account of context data. The executor creates vectors based on the index's grouping of Spaces.
 
 ```python
 source: InMemorySource = InMemorySource(news, parser=dataframe_parser)
