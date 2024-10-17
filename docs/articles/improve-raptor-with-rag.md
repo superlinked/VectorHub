@@ -1,18 +1,19 @@
+# Improving RAPTOR with RAG
+
+Traditional [RAG](https://vipul-maheshwari.github.io/2024/02/14/rag-application-with-langchain) setups often split documents into fixed-size chunks. This creates problems when key concepts span multiple chunks. The embeddings can lose the semantic coherence of the original text, and LLM queries that retrieve single chunks often miss their relationship to crucial pieces of information buried inside other chunks, leading to incomplete or misleading responses. Without any weighting or hierarchical structure in our chunk embeddings, traditional RAG's flat retrieval returns results based simply on similarity or relevance scores. Key insights are often lost.
+
+So, is there a way of preserving the relationships and hierarchical structure that exists within source documents in our embeddings, so that our retrieval can surface key insights? 
+Yes. It's a form of semantic chunking called hierarchical-cluster-embedding-based chunking... RAPTOR (Recursive Abstractive Processing for Tree Organized Retrieval) is an example.. 
+
+## RAPTOR
+
+RAPTOR organizes information in a tree-like structure, progressively narrowing as it moves upwards, representing original documents at higher and higher levels of abstraction. RAPTOR handles each document by splitting it into chunks, embedding these chunks, grouping these embeddings into clusters, and then summarizing each cluster. Summaries become a new set of chunks, which RAPTOR then embeds, then clusters, then summarizes again... - thus preserving the relationships and hierarchical structures of the original source. At the top of each cluster, there’s a summary that encapsulates the key points from all the data below it. RAPTOR moves upwards like this, recursively, to the very top of the tree, where we have a comprehensive view of the information — it's like having both a magnifying glass and a telescope!
+
 ![image.png](../assets/use_cases/improve-raptor-with-rag/raptor-1.png)
-
-Traditional [RAG](https://vipul-maheshwari.github.io/2024/02/14/rag-application-with-langchain) setups often split documents into fixed-size chunks, but this can lead to problems in maintaining the semantic coherence of the text. If a key concept spans multiple chunks, and we only retrieve one chunk, the LLM might lack the full understanding of the idea, leading to incomplete or misleading responses. As a result, crucial ideas and relationships between concepts may be overlooked, leading to incomplete or inaccurate responses.
-
-Additionally, In a flat retrieval structure where all the retrieved chunks are treated equally, this can dilute the importance of critical sections. For example, if one section of the document has key insights but gets buried among less relevant chunks, the model won't know which parts to prioritize unless we introduce more intelligent weighting or hierarchical structures. I mean it becomes really difficult during the retrieval to weigh which chunk is more important and might be better suitable as a context. 
-
-### What is RAPTOR?
-
-RAPTOR, which stands for Recursive Abstractive Processing for Tree Organized Retrieval, is a new technique which solves the problems mentioned before. Think of RAPTOR as a librarian who organizes information in a tree-like structure. Instead of simply stacking books in a pile, it clusters similar titles together, creating a hierarchy that narrows as you ascend. Each cluster of books represents a group of related documents, and at the top of each cluster, there’s a summary that encapsulates the key points from all the books below it. This process continues all the way to the top of the tree, providing a comprehensive view of the information—it's like having both a magnifying glass and a telescope!
-
-To visualize this further, think of the leaves of the tree as document chunks. These chunks are grouped into clusters to generate meaningful summaries, which then become the new leaves of the tree. This recursive process repeats until reaching the top.  
 
 ### Key terms to look out for
 
-Before we dive in, let’s quickly review some key terms that will be useful as we explore **RAPTOR** tech. I just want to put it up here to make sure you are comfortable with the nitty tech details as we go along. 
+Before we dive in, let’s quickly review some key terms that will be useful as we explore **RAPTOR** tech. 
 
 1. **GMM Clustering**: Gaussian Mixture Models (GMM) group data into clusters based on statistical probabilities. So instead of rigidly classifying each instance into one category like K-means, GMM generates K-Gaussian distributions that consider the entire training space. This means that each point can belong to one or more distributions.
 2. **Dimensionality Reduction**: This process simplifies the data by reducing the number of variables while retaining essential features. It’s particularly important for understanding high-dimensional datasets like embeddings.
@@ -23,14 +24,14 @@ Before we dive in, let’s quickly review some key terms that will be useful as 
 
 Now that you’re familiar with the key terms (and if not, no worries—you’ll catch on as we go!), let’s dive into how everything actually works under the hood of RAPTOR. 
 
-- **Starting Documents as Leaves**: The leaves of the tree represent a set of initial documents, which are our text chunks.
-- **Embedding and Clustering**: The leaves are embedded and clustered. The authors utilize the UMAP dimensionality reduction algorithm to minimize the embedding size of these chunks. For clustering, Gaussian Mixture Models (GMM) are employed to ensure effective grouping, addressing the challenges posed by high-dimensional vector embeddings.
-- **Summarizing Clusters**: Once clustered, these groups of similar chunks are summarised into higher-level abstractions nodes. Each cluster acts like a basket for similar documents, and the individual summaries encapsulate the essence of all nodes within that cluster. This process builds from the bottom up, where nodes are clustered together to create summaries that are then passed up the hierarchy.
-- **Recursive Process**: This entire procedure is recursive, resulting in a tree structure that transitions from raw documents (the leaves) to more abstract summaries, with each summary derived from the clusters of various nodes.
+- **Starting Documents (Leaves)**: RAPTOR first splits raw documents into chunks.
+- **Embedding and Clustering**: Next, we embed these chunks ([RAPTOR authors](https://arxiv.org/pdf/2401.18059) use the UMAP dimensionality reduction algorithm to minimize chunk embedding size). Then, based on their vector embeddings, we cluster our text chunks (using Gaussian Mixture Models (GMM) to ensure effective grouping of high-dimensional vector embeddings).
+- **Summarizing Clusters**: Next, we summarize the clusters of similar chunks into a node of higher-level abstractions. 
+- **Recursive Iteration**: We treat these nodes in turn as chunks, clustering them, summarizing these clusters.. iteratively, building a tree-like structure that encapsulates the relationships and hierarchical structures inherent in the raw documents we started from.
 
 ![image.png](../assets/use_cases/improve-raptor-with-rag/raptor-2.png)
 
-### Building the RAPTOR
+### Building the RAPTOR tree
 
 Now that we’ve unpacked how it all works (and you’re still with me hopefully, right?), let’s shift gears and talk about how we actually build the RAPTOR tree. 
 
@@ -553,3 +554,8 @@ normal_answer = generate_results(query, normal_context_text)
 When we are comparing RAPTOR RAG with Vanilla RAG, it’s clear that RAPTOR performs better. Not only does RAPTOR retrieve details about the financial growth, but it also effectively connects this growth to the broader acquisition strategy, pulling relevant context from multiple sources. It excels in situations like this, where the query requires insights from various pages, making it more adept at handling complex, layered information retrieval.  
 
 And that’s a wrap for this article! If you want to dig into the intricacies of how everything works, I’d suggest checking out the official RAPTOR [GitHub repository](https://github.com/parthsarthi03/raptor/tree/master) for more info and resources. For an even deeper dive, the official [paper](https://arxiv.org/pdf/2401.18059) is a great read and highly recommended!  Here is the Google [colab](https://colab.research.google.com/drive/1I3WI0U4sgb2nc1QTQm51kThZb2q4MXyr?usp=sharing) for your reference.
+
+## Contributors
+
+- [Vipul, author](https://in.linkedin.com/in/vipul-maheshwari-19b98423)
+- [Robert Turner, editor](https://www.linkedin.com/in/robertdhayanturner/)
