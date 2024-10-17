@@ -1,18 +1,18 @@
-![image.png](../assets/use_cases/improve-raptor-with-rag/raptor-1.png)
+![Implementation of RAPTOR](../assets/use_cases/improve-raptor-with-rag/raptor-1.png)
 
 Traditional [RAG](https://vipul-maheshwari.github.io/2024/02/14/rag-application-with-langchain) setups often split documents into fixed-size chunks, but this can lead to problems in maintaining the semantic coherence of the text. If a key concept spans multiple chunks, and we only retrieve one chunk, the LLM might lack the full understanding of the idea, leading to incomplete or misleading responses. As a result, crucial ideas and relationships between concepts may be overlooked, leading to incomplete or inaccurate responses.
 
-Additionally, In a flat retrieval structure where all the retrieved chunks are treated equally, this can dilute the importance of critical sections. For example, if one section of the document has key insights but gets buried among less relevant chunks, the model won't know which parts to prioritize unless we introduce more intelligent weighting or hierarchical structures. I mean it becomes really difficult during the retrieval to weigh which chunk is more important and might be better suitable as a context. 
+Additionally, In a flat retrieval structure where all the retrieved chunks are treated equally, this can dilute the importance of critical sections. For example, if one section of the document has key insights but gets buried among less relevant chunks, the model won't know which parts to prioritize unless we introduce more intelligent weighting or hierarchical structures. I mean it becomes really difficult during the retrieval to weigh which chunk is more important and might be better suitable as a context.
 
 ### What is RAPTOR?
 
-RAPTOR, which stands for Recursive Abstractive Processing for Tree Organized Retrieval, is a new technique which solves the problems mentioned before. Think of RAPTOR as a librarian who organizes information in a tree-like structure. Instead of simply stacking books in a pile, it clusters similar titles together, creating a hierarchy that narrows as you ascend. Each cluster of books represents a group of related documents, and at the top of each cluster, there’s a summary that encapsulates the key points from all the books below it. This process continues all the way to the top of the tree, providing a comprehensive view of the information—it's like having both a magnifying glass and a telescope!
+RAPTOR, or Recursive Abstractive Processing for Tree Organized Retrieval, addresses the challenges mentioned earlier by organizing information hierarchically. It clusters related document chunks together, and for each cluster, it generates a summary that captures the key points. This process is repeated recursively, building higher-level summaries until reaching a comprehensive overview of the whole information. The recursive clustering and summarization structure provides both detailed and broad views of the data, similar to navigating a hierarchy where each level distills the content below.
 
-To visualize this further, think of the leaves of the tree as document chunks. These chunks are grouped into clusters to generate meaningful summaries, which then become the new leaves of the tree. This recursive process repeats until reaching the top.  
+![High Level Overview of RAPTOR](../assets/use_cases/improve-raptor-with-rag/raptor-7.png)
 
 ### Key terms to look out for
 
-Before we dive in, let’s quickly review some key terms that will be useful as we explore **RAPTOR** tech. I just want to put it up here to make sure you are comfortable with the nitty tech details as we go along. 
+Before we dive in, let’s quickly review some key terms that will be useful as we explore **RAPTOR** tech. I just want to put it up here to make sure you are comfortable with the nitty tech details as we go along.
 
 1. **GMM Clustering**: Gaussian Mixture Models (GMM) group data into clusters based on statistical probabilities. So instead of rigidly classifying each instance into one category like K-means, GMM generates K-Gaussian distributions that consider the entire training space. This means that each point can belong to one or more distributions.
 2. **Dimensionality Reduction**: This process simplifies the data by reducing the number of variables while retaining essential features. It’s particularly important for understanding high-dimensional datasets like embeddings.
@@ -21,18 +21,18 @@ Before we dive in, let’s quickly review some key terms that will be useful as 
 
 ### How it actually works?
 
-Now that you’re familiar with the key terms (and if not, no worries—you’ll catch on as we go!), let’s dive into how everything actually works under the hood of RAPTOR. 
+Now that you’re familiar with the key terms (and if not, no worries—you’ll catch on as we go!), let’s dive into how everything actually works under the hood of RAPTOR.
 
 - **Starting Documents as Leaves**: The leaves of the tree represent a set of initial documents, which are our text chunks.
 - **Embedding and Clustering**: The leaves are embedded and clustered. The authors utilize the UMAP dimensionality reduction algorithm to minimize the embedding size of these chunks. For clustering, Gaussian Mixture Models (GMM) are employed to ensure effective grouping, addressing the challenges posed by high-dimensional vector embeddings.
-- **Summarizing Clusters**: Once clustered, these groups of similar chunks are summarised into higher-level abstractions nodes. Each cluster acts like a basket for similar documents, and the individual summaries encapsulate the essence of all nodes within that cluster. This process builds from the bottom up, where nodes are clustered together to create summaries that are then passed up the hierarchy.
+- **Summarizing Clusters**: Once clustered, these groups of similar chunks are summarized into higher-level abstractions nodes. Each cluster acts like a basket for similar documents, and the individual summaries encapsulate the essence of all nodes within that cluster. This process builds from the bottom up, where nodes are clustered together to create summaries that are then passed up the hierarchy.
 - **Recursive Process**: This entire procedure is recursive, resulting in a tree structure that transitions from raw documents (the leaves) to more abstract summaries, with each summary derived from the clusters of various nodes.
 
-![image.png](../assets/use_cases/improve-raptor-with-rag/raptor-2.png)
+![Raptor Workflow](../assets/use_cases/improve-raptor-with-rag/raptor-2.png)
 
 ### Building the RAPTOR
 
-Now that we’ve unpacked how it all works (and you’re still with me hopefully, right?), let’s shift gears and talk about how we actually build the RAPTOR tree. 
+Now that we’ve unpacked how it all works (and you’re still with me hopefully, right?), let’s shift gears and talk about how we actually build the RAPTOR tree.
 
 **Setup and Imports**
 
@@ -131,7 +131,7 @@ embedding_model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 
 Now we have our embedded chunks, it’s time to step on for the next set of tasks. When diving into RAPTOR, one of the biggest hurdles we encounter is the high dimensionality of vector embeddings. Traditional clustering methods like Gaussian Mixture Models (GMM) often struggle with this complexity, making it tough to effectively cluster high-dimensional data chunks. To tackle this challenge, we turn to **Uniform Manifold Approximation and Projection (UMAP)**. UMAP excels at simplifying data while preserving the essential structures that matter most.
 
-A key factor in UMAP's effectiveness is the **`n_neighbors`** parameter. This setting dictates how much of the data's neighbourhood UMAP considers during dimensionality reduction. In simpler terms, it helps you choose between zooming in on details or taking a broader view:
+A key factor in UMAP's effectiveness is the **`n_neighbors`** parameter. This setting dictates how much of the data's neighborhood UMAP considers during dimensionality reduction. In simpler terms, it helps you choose between zooming in on details or taking a broader view:
 
 - **Higher `n_neighbors`:** A higher value encourages UMAP to "look at many neighbors," which helps maintain the **global structure** of the data. This results in larger, more general clusters.
 - **Lower `n_neighbors`:** Conversely, lowering `n_neighbors` prompts UMAP to "focus on close relationships," enabling it to preserve the **local structure** and form smaller, more detailed clusters.
@@ -387,7 +387,7 @@ def recursive_embedding_with_cluster_summarization(
  
 ```
 
-Okay, the code might seem a bit daunting at first glance, but don’t worry! Just give it a couple of looks, and it will start to make sense. Essentially, we’re just following the flow I mentioned earlier. 
+Okay, the code might seem a bit daunting at first glance, but don’t worry! Just give it a couple of looks, and it will start to make sense. Essentially, we’re just following the flow I mentioned earlier.
 
 ```python
 def process_text_hierarchy(
@@ -413,7 +413,7 @@ def process_text_hierarchy(
 results = process_text_hierarchy(chunks, number_of_levels=3)
 ```
 
-![image.png](../assets/use_cases/improve-raptor-with-rag/raptor-3.png)
+![Building a RAPTOR Tree](../assets/use_cases/improve-raptor-with-rag/raptor-3.png)
 
 ### Inference
 
@@ -422,7 +422,7 @@ Now that we have our tree structure with leaf nodes at the bottom and summarized
 1. **Tree Traversal Retrieval:** This method systematically explores the tree, starting from the root node. It first selects the top-k most relevant root nodes based on their cosine similarity to the query embedding. Then, for each selected root node, its children are considered in the next layer, where the top-k nodes are again selected based on their cosine similarity to the query vector. This process repeats until we reach the leaf nodes. Finally, the text from all the selected nodes is concatenated to form the retrieved context.
 2. **Collapsed Tree Retrieval:** This approach simplifies things by viewing the tree as a single layer. Here, it directly compares the query embedding to the vector embeddings of all the leaf nodes (the original text chunks) and summary nodes. This method works best for factual, keyword-based queries where you need specific details.
 
-![Reference : https://arxiv.org/pdf/2401.18059](../assets/use_cases/improve-raptor-with-rag/raptor-4.png)
+![How the Retrieval happens](../assets/use_cases/improve-raptor-with-rag/raptor-4.png)
 
 In the collapsed tree retrieval, we flatten the tree into one layer, retrieving nodes based on cosine similarity until we reach a specified number of ***top k documents***. In our code, we’ll gather the textual chunks from earlier, along with the summarized nodes at each level for all the clusters, to create one big list of texts that includes both the root documents and the summarized nodes.  
 
@@ -442,7 +442,7 @@ len(raptor_embeddings)
 
 ### Setting up Vector Database and RAG
 
-Now it’s smooth sailing! We’ll just set up a LanceDB vector database to store our embeddings and query our RAG setup. 
+Now it’s smooth sailing! We’ll just set up a LanceDB vector database to store our embeddings and query our RAG setup.
 
 ```python
 raptor_embeddings = embedding_model.encode(raptor_texts)
@@ -529,9 +529,9 @@ normal_table.add(rag_normal_df)
 normal_table.create_fts_index("texts", replace=True)
 ```
 
-With RAPTOR, we now have an increased number of chunks due to the addition of cluster-level summary nodes alongside the default chunks we had earlier. 
+With RAPTOR, we now have an increased number of chunks due to the addition of cluster-level summary nodes alongside the default chunks we had earlier.
 
-![image.png](../assets/use_cases/improve-raptor-with-rag/raptor-5.png)
+![Number of chunks in RAPTOR](../assets/use_cases/improve-raptor-with-rag/raptor-5.png)
 
 ### D-Day
 
@@ -548,7 +548,7 @@ raptor_answer = generate_results(query, raptor_context_text)
 normal_answer = generate_results(query, normal_context_text)
 ```
 
-![image.png](../assets/use_cases/improve-raptor-with-rag/raptor-6.png)
+![Comparison for a Query](../assets/use_cases/improve-raptor-with-rag/raptor-6.png)
 
 When we are comparing RAPTOR RAG with Vanilla RAG, it’s clear that RAPTOR performs better. Not only does RAPTOR retrieve details about the financial growth, but it also effectively connects this growth to the broader acquisition strategy, pulling relevant context from multiple sources. It excels in situations like this, where the query requires insights from various pages, making it more adept at handling complex, layered information retrieval.  
 
