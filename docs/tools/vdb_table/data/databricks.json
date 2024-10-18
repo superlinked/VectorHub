@@ -68,18 +68,18 @@
     },
     "embeddings_text": {
       "support": "full",
-      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#options-for-providing-vector-embeddings",
+      "source_url": "https://docs.databricks.com/en/generative-ai/external-models/index.html",
       "comment": ""
     },
     "embeddings_image": {
-      "support": "full",
+      "support": "none",
       "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#options-for-providing-vector-embeddings",
-      "comment": "With self-managed Delta Sync"
+      "comment": ""
     },
     "embeddings_structured": {
-      "support": "full",
+      "support": "none",
       "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#options-for-providing-vector-embeddings",
-      "comment": "With self-managed Delta Sync"
+      "comment": ""
     },
     "rag": {
       "support": "full",
@@ -122,7 +122,7 @@
       "comment": "via namespaces"
     },
     "disk_index": {
-      "support": "full",
+      "support": "partial",
       "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html",
       "comment": ""
     },
