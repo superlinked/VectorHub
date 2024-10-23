@@ -1,11 +1,10 @@
 # Improving RAG with RAPTOR
 
-Traditional [RAG](https://vipul-maheshwari.github.io/2024/02/14/rag-application-with-langchain) setups often split documents into fixed-size chunks. But this creates problems. If key concepts span multiple chunks, the embeddings can lose the semantic coherence of the original text, and LLM queries that retrieve single chunks often miss their relationship to crucial pieces of information buried inside other chunks, leading to incomplete or misleading responses. Because its chunk embeddings lack any weighting or hierarchical structure, traditional RAG's flat retrieval returns results based simply on similarity or relevance scores. Key insights are often lost.
+Traditional [RAG](https://superlinked.com/vectorhub/articles/retrieval-augmented-generation) setups often split documents into fixed-size chunks. But this creates problems. If key concepts span multiple chunks, the embeddings can lose the semantic coherence of the original text, and LLM queries that retrieve single chunks often miss their relationship to crucial pieces of information buried inside other chunks, leading to incomplete or misleading responses. Because its chunk embeddings lack any weighting or hierarchical structure, traditional RAG's flat retrieval returns results based simply on similarity or relevance scores. Key insights are often lost.
 
 So, is there a way of getting our embeddings to preserve the relationships and hierarchical structure that exists within source documents, so that our retrieval can surface key insights, and do it efficiently? 
-Yes! It's a form of semantic chunking called hierarchical-cluster-embedding-based chunking. Below, we'll look closely at a recent and innovative implementation of hierarchical clustering - [RAPTOR](https://arxiv.org/pdf/2401.18059) (Recursive Abstractive Processing for Tree Organized Retrieval). 
 
-We'll walk you step-by-step through setting up RAPTOR RAG and then run an example query on a financial news document to evaluate how RAPTOR performs against vanilla RAG.
+Yes! It's a form of semantic chunking called hierarchical-cluster-embedding-based chunking. Below, we'll look closely at a recent and innovative implementation of hierarchical clustering called [RAPTOR](https://arxiv.org/pdf/2401.18059) (Recursive Abstractive Processing for Tree Organized Retrieval). We'll walk you step-by-step through setting up RAPTOR RAG and then run an example query on a financial news document to evaluate how RAPTOR performs against vanilla RAG.
 
 Let's get started!
 
@@ -58,9 +57,13 @@ openai_api_key = "sk-XXXXXXXXXXXXXXX"
 client = OpenAI(api_key=openai_api_key)
 ```
 
+Note: Don't forget to input your open_ai_key above (we'll be using gpt-4 below).
+
 ### Creating the Chunks
 
-First, create a directory_path to your source documents. (For simplication purposes, our use case example will use just [one financial document](https://www.nttdata.com/global/en/-/media/nttdataglobal/1_files/investors/financial-results/2021/fy2021_fs_3q.pdf) as a source. You can of course load any source documents (and alter the query below) in your own experiments!)
+First, create a directory_path to your source documents. To simplify things, our use case example will use just [one financial document](https://www.nttdata.com/global/en/-/media/nttdataglobal/1_files/investors/financial-results/2021/fy2021_fs_3q.pdf) as a source. You can of course load any source documents (and alter the query below) in your own experiments!
+
+(Note: make sure you use an unencrypted version of this file to avoid errors when PyPDF2 tries to read the file.)
 
 ```python
 directory_path = '/content/data'
@@ -456,7 +459,7 @@ So how do we implement it?
 
 ## Implementing collapsed tree retrieval
 
-Collapsed tree retrieval retrieves top-k nodes (highest cosine similarity to the query vector). To do this, we gather our original root document text chunks and summarized nodes at each level for all the clusters into one big list. Next, we embed all these data points, storing them in a vector database, which we'll query with our RAG.
+Collapsed tree retrieval retrieves top-k nodes (highest cosine similarity to the query vector). To do this, we gather our original root document text chunks and summarized nodes at each level for all the clusters into one big list. Next, we embed all these data points, storing them in a [vector database](https://superlinked.com/vector-db-comparison), which we'll query with our RAG.
 
 First, the embeddings.
 
@@ -585,7 +588,7 @@ normal_answer = generate_results(query, normal_context_text)
 
 ![Comparison for a Query](../assets/use_cases/improve-raptor-with-rag/raptor-6.png)
 
-RAPTOR RAG performs better than vanilla RAG at handling retrieval on our hierarchically chunked and embedded source document. RAPTOR retrieves specific details about NTT's financial growth for the specified quarter, and  connects this growth to the broader acquisition strategy, pulling relevant context from our example [source document](https://www.nttdata.com/global/en/-/media/nttdataglobal/1_files/investors/financial-results/2021/fy2021_fs_3q.pdf). (Note: collapsed tree retrieval will work well in this kind of use case - a factual, keyword-based query requiring specific details - whether you have multiple source chunks or even many source documents.) Whereas, our vanilla RAG, while correctly identifying the specific details, fails to elucidate either NTT's strategy or a relationship between their quarterly growth, broader strategy, and the particular (Nexient) acquisition in question.
+RAPTOR RAG performed better than vanilla RAG at handling retrieval on our hierarchically chunked and embedded source document. RAPTOR retrieved specific details about NTT's financial growth for the specified quarter, and connected this growth to the broader acquisition strategy, pulling relevant context from our example [source document](https://www.nttdata.com/global/en/-/media/nttdataglobal/1_files/investors/financial-results/2021/fy2021_fs_3q.pdf). (Note: collapsed tree retrieval will work well in this kind of use case - a factual, keyword-based query requiring specific details - whether you have multiple source chunks or even many source documents.) Whereas, our vanilla RAG, while correctly identifying the specific details, failed to elucidate either NTT's strategy or a relationship between their quarterly growth, broader strategy, and the particular (Nexient) acquisition in question.
 
 ## Your turn
 
