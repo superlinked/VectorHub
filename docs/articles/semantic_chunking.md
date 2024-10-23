@@ -1,7 +1,7 @@
+# Semantic Chunking
+
 <!-- SEO: Explore semantic chunking for Retrieval Augmented Generation (RAG) in this comprehensive guide. Learn about embedding similarity, hierarchical clustering, and LLM-based methods for optimal text chunking. Discover how semantic chunking improves RAG performance compared to traditional rule-based approaches. Includes code examples, evaluation metrics, and comparisons using HotpotQA and SQUAD datasets with BAAI/bge-small-en-v1.5 embeddings.
 -->
-
-# Semantic Chunking
 
 Chunking in Natural Language Processing is simply dividing large bodies of text into smaller pieces that computers can manage more easily. Splitting large datasets into chunks enables your Retrieval Augmented Generation (RAG) system to embed, index, and store even very large datasets optimally. But *how* you chunk your data is crucial in determining whether you can efficiently return only the most relevant results to your user queries. 
 
