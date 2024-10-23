@@ -585,13 +585,13 @@ normal_answer = generate_results(query, normal_context_text)
 
 ![Comparison for a Query](../assets/use_cases/improve-raptor-with-rag/raptor-6.png)
 
-RAPTOR RAG performs better than vanilla RAG. RAPTOR retrieves specific details about NTT's financial growth for the specified quarter, and  connects this growth to the broader acquisition strategy, pulling relevant context from our example [source document](https://www.nttdata.com/global/en/-/media/nttdataglobal/1_files/investors/financial-results/2021/fy2021_fs_3q.pdf). (Note: collapsed tree retrieval will work well in this kind of use case - a factual, keyword-based query requiring specific details - even if you have many source documents.) Whereas, our vanilla RAG, while correctly identifying the specific details, fails to elucidate either NTT's strategy or a relationship between their quarterly growth, the broader strategy, and the particular (Nexient) acquisition in question.
+RAPTOR RAG performs better than vanilla RAG at handling retrieval on our hierarchically chunked and embedded source document. RAPTOR retrieves specific details about NTT's financial growth for the specified quarter, and  connects this growth to the broader acquisition strategy, pulling relevant context from our example [source document](https://www.nttdata.com/global/en/-/media/nttdataglobal/1_files/investors/financial-results/2021/fy2021_fs_3q.pdf). (Note: collapsed tree retrieval will work well in this kind of use case - a factual, keyword-based query requiring specific details - whether you have multiple source chunks or even many source documents.) Whereas, our vanilla RAG, while correctly identifying the specific details, fails to elucidate either NTT's strategy or a relationship between their quarterly growth, broader strategy, and the particular (Nexient) acquisition in question.
 
 ## Your turn
 
 Now it's your turn to try out RAPTOR RAG! Here's the Google [colab](https://colab.research.google.com/drive/1I3WI0U4sgb2nc1QTQm51kThZb2q4MXyr?usp=sharing).
 
-To learn more about the intricacies of RAPTOR, check out the official [GitHub repository](https://github.com/parthsarthi03/raptor/tree/master). For an even deeper dive, we highly recommend the official [paper](https://arxiv.org/pdf/2401.18059)!
+To learn more about the intricacies of RAPTOR, check out their official [GitHub repository](https://github.com/parthsarthi03/raptor/tree/master). For an even deeper dive, we highly recommend the official [paper](https://arxiv.org/pdf/2401.18059)!
 
 ## Contributors
 
