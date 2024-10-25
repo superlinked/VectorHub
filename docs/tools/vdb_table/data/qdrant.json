@@ -37,9 +37,9 @@
     "comment": "Supports hybrid fusion searches with dense/sparse/multi vectors"
   },
   "facets": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://qdrant.tech/documentation/concepts/payload/?q=facet#facet-counts",
+    "comment": "Supports dynamically aggregate and count unique values in fields"
   },
   "geo_search": {
     "support": "full",
