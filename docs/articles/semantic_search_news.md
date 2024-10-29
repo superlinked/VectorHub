@@ -2,43 +2,44 @@
 
 Semantic search is revolutionizing how we discover and consume news articles, offering a more intuitive and efficient method for finding relevant content and curating personalized news feeds. By embedding the nuances and underlying concepts of text documents in vectors, we can retrieve articles that align closely with the user's interests, preferences, and browsing history.
 
-Still, implementing effective semantic search for news articles presents challenges, including:
+Still, implementing effective semantic search for news articles presents **challenges**, including:
 
 - **Response optimization**: you need to figure out how to weight data attributes in your semantic search algorithms
 - **Scalability and performance**: you need efficient indexing and retrieval mechanisms to handle the vast volume of news articles
 
-Superlinked is designed to handle these challenges, empowering you to scale efficiently and, using Superlinked Spaces, prioritize text similarity and/or recency so you can recommend highly relevant news articles to your users. Importantly, you can optimize performance *without having to re-embed your dataset*. 
+Superlinked is designed to handle these challenges, empowering you to **scale efficiently** and - using Superlinked Spaces - **prioritize text similarity and/or recency so you can recommend highly relevant news articles to your users *without having to re-embed your dataset*.** 
 
-Let's illustrate by taking you step by step through building a semantic-search-powered business news recommendation app, using the following parts of Superlinked's library:
+To illustrate, we'll take you step by step through building a **semantic-search-powered business news recommendation app**, using the following parts of Superlinked's library:
 
 - **Recency space** - to encode the recency of a data point
 - **TextSimilarity space** - to encode the semantic meaning of text data
 - **Query time weights** - to prioritize different attributes in your queries, without having to re-embed the whole dataset
 
-Ready to begin?
-First, let's take a quick look at our dataset, then embed the articles smartly and handle our queries using Superlinked.
+Using these spaces to embed our articles' headlines, text, and publication dates, we'll be able to skew our results towards older or more recent news as desired, and also search using specific search terms or a specific news article.
+
+Ready to begin? Let's get started!
+
+Let's take a quick look at our dataset, then use Superlinked to embed the articles smartly and handle our queries.
 
 ## Our dataset and embeddings
 
 Our dataset of [news articles](https://www.kaggle.com/datasets/rmisra/news-category-dataset) is filtered for news in the 'BUSINESS' category.
 
-So that we can search for notable events, or articles related to a specific story, we'll embed:
+We'll embed:
 
 - headlines
 - article text (short descriptions)
 - publication (release) dates
 
-We'll be able to skew the results towards older or more recent news as desired, and also search using specific search terms or a specific news article.
-
 ## Setup
 
-First, we'll **install Superlinked**.
+First, we **install Superlinked**.
 
 ```python
 %pip install superlinked==9.48.1
 ```
 
-Now, let's **import all our dependencies**...
+Now we **import all our dependencies**...
 
 ```python
 from datetime import datetime, timedelta, timezone
@@ -86,19 +87,19 @@ EXECUTOR_DATA = {CONTEXT_COMMON: {CONTEXT_COMMON_NOW: END_OF_2022_TS}}
 
 ## Prepare & explore dataset
 
-Now let's read our data...
+Let's read our data...
 
 ```python
 NROWS = int(os.getenv("NOTEBOOK_TEST_ROW_LIMIT", str(sys.maxsize)))
 business_news = pd.read_json(DATASET_URL, convert_dates=True).head(NROWS)
 ```
 
-...then turn the current index into a column ("id"), and convert the date column into unix timestamps (in seconds).
+...then turn the current index into a column ("id"), and convert the date column timestamp into UTC.
 
 ```python
 # we are going to need an id column
 business_news = business_news.reset_index().rename(columns={"index": "id"})
-# we need to handle the timestamp being set in milliseconds
+# convert the date timestamp into utc timezone
 business_news["date"] = [
     int(date.replace(tzinfo=timezone.utc).timestamp()) for date in business_news.date
 ]
@@ -112,13 +113,13 @@ print(f"Our dataset contains {num_rows} articles.")
 business_news.head()
 ```
 
-Our dataset has 5992 articles, and here are the first 5.
+Our dataset has 5992 articles. Here are the first 5.
 
 ![sneak peak into data](../assets/use_cases/semantic_search_news/sneak_peek.png)
 
 ### Understand release date distribution
 
-Let's take a closer look at how our articles distribute over time, so we can use it to set our recency time periods.
+So that we can set some recency time periods, we'll take a closer look at how our articles distribute over time.
 
 ```python
 # some quick transformations and an altair histogram
@@ -139,15 +140,15 @@ alt.Chart(years_to_plot).mark_bar().encode(
 
 Because our oldest article was published in 2012 and we want to be able to query all our dataset articles, we should set our longer time period  inclusively to around 11 years.
 
-The vast majority of our articles are distributed from 2012 through 2017, so it makes sense to create another more recent time period of 4 years (2018-2022) to differentiate the latter's reduced article count from the 2012 - 2017 period.
+The vast majority of our articles are distributed from 2012 through 2017, so it makes sense to differentiate create another more recent time period of 4 years (2018-2022) when the article count is much lower.
 
-We can make sure our retrieval appropriately represents the small differences between our publication-dense period (2012-2017) articles, we can give them additional weight - so that differences in our publication-scarce period, which will be larger than in the dense period, aren't overrepresented.
+We can make sure our retrieval appropriately represents the small differences between articles in our publication-dense period (2012-2017) articles by giving them additional weight. This way, differences in our publication-scarce period (2018-2022), which will be larger than in the dense period, aren't overrepresented.
 
 Now let's set up Superlinked so we can efficiently optimize our retrieval.
 
 ## Set up Superlinked
 
-First, let's define a schema for our news articles.
+First, we'll define a schema for our news articles.
 
 ```python
 # set up schema to accommodate our inputs
@@ -163,7 +164,6 @@ news = NewsSchema()
 ```
 
 Next, to embed the characteristics of our text, we use a sentence-transformers model to create a `description_space` for news article descriptions and a `headline_space` for our headlines, and, finally, we encode each article's release date using a `recency_space`.
-
 
 ```python
 # textual characteristics are embedded using a sentence-transformers model
@@ -184,15 +184,15 @@ recency_space = RecencySpace(
 )
 ```
 
-Next, we create an index of our spaces.
+To query our data, we'll need to create an index of our spaces...
 
 ```python
 news_index = Index(spaces=[description_space, headline_space, recency_space])
 ```
 
-We set up a **simple query** and a **news query**. 
+...and set up a **simple query** and a **news query**.
 
-**Simple query** lets us use a search term to retrieve from both the headlline and the description. Simple query also gives us the option to weight certain inputs' importance.
+**Simple query** lets us use a search term to retrieve from both the headline and the description. Simple query also gives us the option to weight certain inputs' importance.
 
 ```python
 simple_query = (
@@ -211,7 +211,7 @@ simple_query = (
 )
 ```
 
-**News query** will search our database using the vector a specific news article. News query, like simple query, can be weighted.
+**News query** will search our database using the vector for a specific news article. News query, like simple query, can be weighted.
 
 ```python
 news_query = (
@@ -229,7 +229,7 @@ news_query = (
 )
 ```
 
-Next we parse our dataframe...
+Next we parse our dataframe,...
 
 ```python
 dataframe_parser = DataFrameParser(
@@ -248,7 +248,7 @@ executor: InMemoryExecutor = InMemoryExecutor(
 app: InMemoryApp = executor.run()
 ```
 
-It's time to input our business news data.
+It's time to **input our business news data**.
 
 ```python
 source.put([business_news])
@@ -259,7 +259,7 @@ source.put([business_news])
 
 ### Understanding recency
 
-Let's plot our recency scores.
+With our business news finished inputting, let's plot our recency scores.
 
 ```python
 recency_plotter = RecencyPlotter(recency_space, context_data=EXECUTOR_DATA)
@@ -287,7 +287,7 @@ def present_result(
         ]
     # parse result to dataframe
     df: pd.DataFrame = result_to_present.to_pandas()
-    # transform timestamp back to release year. Ts is in milliseconds originally hence the division
+    # transform timestamp back to release year
     df["release_date"] = [
         datetime.fromtimestamp(timestamp, tz=timezone.utc).date()
         for timestamp in df["release_timestamp"]
@@ -314,7 +314,7 @@ Let's take a look at our results.
 
 ![microsoft acquires linkedin](../assets/use_cases/semantic_search_news/microsoft_acquires_linkedin.png)
 
-The first result is about the deal, others are related to some aspect of the query. Let's try upweighting recency to see if other, more recent, big acquisitions are surfaced.
+The first result is about the deal. Other results are related to some aspect of the query. Let's try upweighting recency to see we can surface other, more recent, big acquisitions.
 
 ```python
 result = app.query(
@@ -333,7 +333,7 @@ present_result(result)
 
 With recency upweighted, our second result is an article about the much more recent Elon Musk Twitter offer.
 
-Now let's take this article and perform a search with it, resetting recency to 0.
+Now let's take this article and perform a search with its `news_id`, resetting recency to 0.
 
 ```python
 result = app.query(
@@ -369,8 +369,8 @@ present_result(result)
 
 ![musk twitter recency](../assets/use_cases/semantic_search_news/musk_twitter_recency.png)
 
-Try your own simple_query and news_query in the [notebook](https://github.com/superlinked/superlinked/blob/main/notebook/semantic_search_news.ipynb). Alter the `description_weight`, `headline_weight`, and `recency_weight` on your own `query_text` and `news_id` and observe the changes in your results.
+## In sum
 
-## In sum...
+Whatever your semantic search use case, Superlinked Spaces enables you up to optimize your vector retrieval with a high degree of control, without incurring the time and resource costs of re-embedding your dataset. By embedding smartly (attribute by attribute) with our Recency and TextSimilarity spaces, you can prioritize or deprioritize different attributes as needed at query time.
 
-Superlinked Spaces enables you up to optimize your vector search with a high degree of control, without incurring the time and resource costs of re-embedding your dataset. Our Spaces let you embed your dataset smartly, attribute by attribute - so that you can prioritize or deprioritize different attributes as required.
+Now it's your turn! Try your own simple_query and news_query in the [notebook](https://github.com/superlinked/superlinked/blob/main/notebook/semantic_search_news.ipynb). Alter the `description_weight`, `headline_weight`, and `recency_weight` on your own `query_text` and `news_id` and observe the changes in your results!
