@@ -92,7 +92,7 @@ from superlinked.framework.dsl.space.text_similarity_space import (
 from superlinked.framework.dsl.space.recency_space import RecencySpace
 
 
-alt.renderers.enable("mimetype")
+alt.renderers.enable(get_altair_renderer())
 alt.data_transformers.disable_max_rows()
 pd.set_option("display.max_colwidth", 1000)
 START_OF_2024_TS = int(datetime(2024, 1, 2).timestamp())
