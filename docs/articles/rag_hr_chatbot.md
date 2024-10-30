@@ -321,11 +321,48 @@ maternity_result_df
 
 ![Results 4](../assets/use_cases/rag_hr_chatbot/results4.png)
 
-Now that we’re happy with the retrieval, let’s set up the generation.
+...
+Weighting at query time is not the only way we can do our retrieval. We also have a new way of optimizing retrieval - by detecting user intent. We discuss this Natural Language Querying method in depth in [this feature notebook](https://github.com/superlinked/superlinked/blob/main/notebook/feature/natural_language_querying.ipynb), but let's do a quick implementation here just to demo it.
+
+## NEW Natural language querying
+
+We can save time manually optimizing our query time weights by *letting the system set them* based on the detected user intent. Here's how:
+
+```python
+# switch to your working OpenAI API key!
+openai_config = sl.OpenAIClientConfig(
+    api_key=os.environ["OPEN_AI_API_KEY"], model="gpt-4o"
+)
+
+nlq_knowledgebase_query = knowledgebase_query.with_natural_query(
+    sl.Param("natural_query"), openai_config
+)
+```
+
+```python
+nlq_result = app.query(
+    nlq_knowledgebase_query,
+    natural_query="recent useful info on management responsibilities",
+    limit=TOP_N,
+)
+
+nlq_result_df = present_result(nlq_result)
+nlq_result_df
+```
+
+Let's take a look at our results.
+
+![natural language query results](../assets/use_cases/rag_hr_chatbot/nlqresults.png)
+
+Excellent results!...
+
+Whichever method we use (manual query time weights or natural language query), we're achieving highly relevant results. With our retrieval performing well, let’s move on to augmenting our query template so that we optimize LLM generation.
 
 ### Augmentation - formulating your query for LLM generation
 
-To keep your build light and tool-independent, you can just manually craft your query template based on [LLama2 instructions from HuggingFace](https://huggingface.co/blog/llama2). 
+Enriching our prompt with relevant context will improve the accuracy and relevance of what an LLM generates in response to our queries. We retrieve and formulate this context as follows.
+
+To keep your build light and tool-independent, you can just manually craft your query template based on [LLama2 instructions from HuggingFace](https://huggingface.co/blog/llama2).
 
 ```python
 context_items_from_retrieval: int = 5
