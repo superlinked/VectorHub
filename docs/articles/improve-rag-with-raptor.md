@@ -1,14 +1,14 @@
 # Improving RAG with RAPTOR
 
-Traditional [RAG](https://superlinked.com/vectorhub/articles/retrieval-augmented-generation) setups often split documents into fixed-size chunks. But this creates problems. If key concepts span multiple chunks, the embeddings can lose the semantic coherence of the original text, and LLM queries that retrieve single chunks often miss their relationship to crucial pieces of information buried inside other chunks, leading to incomplete or misleading responses. Because its chunk embeddings lack any weighting or hierarchical structure, traditional RAG's flat retrieval returns results based simply on similarity or relevance scores. Key insights are often lost.
+Traditional [RAG](https://superlinked.com/vectorhub/articles/retrieval-augmented-generation) setups commonly split documents into fixed-size chunks. But this creates problems. If key concepts span multiple chunks, the embeddings can lose the semantic coherence of the original text. LLM queries that retrieve single chunks frequently _miss_ their relationship to crucial pieces of information buried inside other chunks. This leads to incomplete or misleading responses. **Because its chunk embeddings lack any weighting or hierarchical structure, traditional RAG's flat retrieval returns results based only on similarity or relevance scores. Key insights are often lost.**
 
-So, is there a way of getting our embeddings to preserve the relationships and hierarchical structure that exists within source documents, so that our retrieval can surface key insights, and do it efficiently?
+So, **is there a way of getting our embeddings to preserve the relationships and hierarchical structure that exists within source documents, so that our retrieval can surface key insights, and do it efficiently**?
 
-Yes! It's a form of semantic chunking called hierarchical-cluster-embedding-based chunking. Below, we'll look closely at a recent and innovative implementation of hierarchical clustering called [RAPTOR](https://arxiv.org/pdf/2401.18059) (Recursive Abstractive Processing for Tree Organized Retrieval). We'll walk you step-by-step through setting up RAPTOR RAG and then run an example query on a financial news document to evaluate how RAPTOR performs against vanilla RAG.
+Yes! It's a form of semantic chunking called **hierarchical-cluster-embedding-based chunking**. Below, we'll look closely at a recent and innovative implementation of hierarchical clustering called [RAPTOR](https://arxiv.org/pdf/2401.18059) (Recursive Abstractive Processing for Tree Organized Retrieval). We'll walk you step-by-step through setting up RAPTOR RAG. Then we'll run an example query on a financial news document to evaluate **how RAPTOR performs against vanilla RAG**.
 
 Let's get started!
 
-## RAPTOR basic steps
+## RAPTOR's basic steps
 
 RAPTOR organizes information in a tree-like structure, progressively narrowing as it moves upwards, representing original documents at higher and higher levels of abstraction, so it can retain the original meaning in full. Let's break this into steps.
 
@@ -19,7 +19,7 @@ RAPTOR organizes information in a tree-like structure, progressively narrowing a
 **RAPTOR tree construction - basic steps:**
 
 - **starting documents (leaves)**: RAPTOR first splits each raw document into chunks
-- **embedding and clustering**: we embed these chunks ([RAPTOR authors](https://arxiv.org/pdf/2401.18059) use the UMAP dimensionality reduction algorithm to minimize chunk embedding size), and, based on their vector embeddings, cluster these chunks (using Gaussian Mixture Models (GMM), which generate distributions that consider the entire training space; each point can belong to more than one distribution) to ensure effective grouping of high-dimensional vector embeddings
+- **embedding and clustering**: we embed these chunks ([RAPTOR authors](https://arxiv.org/pdf/2401.18059) use the UMAP dimensionality reduction algorithm to minimize chunk embedding size), and, based on their vector embeddings, cluster the chunks (using Gaussian Mixture Models (GMM) to generate distributions that consider the entire training space; each point can belong to more than one distribution) to ensure effective grouping of high-dimensional vector embeddings
 - **summarizing clusters**: we summarize the clusters of similar chunks into a node of higher-level abstractions
 - **recursive iteration**: we treat these nodes in turn as chunks, clustering them, summarizing these clusters, iteratively, building a tree-like structure that encapsulates the relationships and hierarchical structures inherent in the raw documents we started from
 
@@ -222,7 +222,7 @@ To set up our hierarchical clustering, we define several functions:
 
 - a clustering_algorithm function to manage both global and local clustering using GMMs - first globally, then locally within each global cluster (start with a broad overview, and then zoom in for more detailed clusters before summarizing)
 - a generate_summary function to generate text summaries using a language model
-- an embed clusters function manages the embedding and initial clustering
+- an embed clusters function to manage the embedding and initial clustering
 - an embed cluster summaries function for summarizing each cluster
 - a recursive_embedding_with_cluster_summarization function that leverages these methods to create a multi-level hierarchical clustering and summarization structure
 
@@ -450,7 +450,7 @@ RAPTOR has two distinct strategies for querying the RAPTOR tree: tree traversal 
 
 If our query demanded complex multi-level reasoning, and a contextually rich and precise result, it would make sense to use tree traversal. But for specific queries requiring specific factual information - like our financial news query, we want to be able to directly compare our query embedding with the vector embeddings of all nodes (both leaf and summary), efficiently bypassing RAPTOR's hierarchical structure and going straight to the most relevant data points.
 
-But even though the collapsed tree method's retrieval bypasses the RAPTOR tree's hierarchy, it still capitalizes on the RAPTOR tree's hierarchical encapsulation of meaning to retrieve context. Because the collapsed tree method treats summarized nodes from higher levels simply as additional (same level) chunks, we can pull in higher-level summaries (the global perspective) alongside granular details in just one pass. We want our retrieval to get both an overall perspective and pinpoint very specific details of a particular company's financial quarter.
+But even though the collapsed tree method's retrieval bypasses the RAPTOR tree's hierarchy, it still capitalizes on the RAPTOR tree's hierarchical encapsulation of meaning to retrieve context. Because the collapsed tree method treats summarized nodes from higher levels simply as additional (same level) chunks, we can pull in higher-level summaries (the global perspective) alongside granular details with just one pass. We want our retrieval to get both an overall perspective and pinpoint very specific details of a particular company's financial quarter.
 
 For our purposes, the collapsed tree method is a better fit than tree traversal.
 
@@ -587,7 +587,7 @@ normal_answer = generate_results(query, normal_context_text)
 
 ![Comparison for a Query](../assets/use_cases/improve-rag-with-raptor/raptor-6.png)
 
-RAPTOR RAG performed better than vanilla RAG at handling retrieval on our hierarchically chunked and embedded source document. RAPTOR retrieved specific details about NTT's financial growth for the specified quarter, and connected this growth to the broader acquisition strategy, pulling relevant context from our example [source document](https://www.nttdata.com/global/en/-/media/nttdataglobal/1_files/investors/financial-results/2021/fy2021_fs_3q.pdf). (Note: collapsed tree retrieval will work well in this kind of use case - a factual, keyword-based query requiring specific details - whether you have multiple source chunks or even many source documents.) Whereas, our vanilla RAG, while correctly identifying the specific details, failed to elucidate either NTT's strategy or a relationship between their quarterly growth, broader strategy, and the particular (Nexient) acquisition in question.
+RAPTOR RAG performed **better than vanilla RAG** at handling retrieval on our hierarchically chunked and embedded source document. RAPTOR retrieved specific details about NTT's financial growth for the specified quarter, and connected this growth to the broader acquisition strategy, pulling relevant context from our example [source document](https://www.nttdata.com/global/en/-/media/nttdataglobal/1_files/investors/financial-results/2021/fy2021_fs_3q.pdf). (Note: collapsed tree retrieval will _work well_ in this kind of use case - _a factual, keyword-based query requiring specific details_ - whether you have multiple source chunks or even many source documents.) Whereas, our vanilla RAG, while correctly identifying the specific details, failed to elucidate either NTT's strategy or a relationship between their quarterly growth, broader strategy, and the particular (Nexient) acquisition in question.
 
 ## Your turn
 
@@ -597,5 +597,5 @@ To learn more about the intricacies of RAPTOR, check out their official [GitHub 
 
 ## Contributors
 
-- [Vipul, author](https://in.linkedin.com/in/vipul-maheshwari-19b98423)
+- [Vipul Maheshwari, author](https://in.linkedin.com/in/vipul-maheshwari-19b98423)
 - [Robert Turner, editor](https://www.linkedin.com/in/robertdhayanturner/)
