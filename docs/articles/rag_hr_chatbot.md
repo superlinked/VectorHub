@@ -2,19 +2,21 @@
 
 ## Improving retrieval quality for an HR chatbot, balancing freshness and relevance - a [notebook](https://github.com/superlinked/superlinked/blob/main/notebook/rag_hr_knowledgebase.ipynb) article
 
-So, you’ve implemented a RAG system. But you’re struggling to get your retrieval results to live up to RAG’s potential. We have a solution - the Superlinked library. In this article, we’ll show you how to improve retrieval quality using the Superlinked library in an example use case - a RAG-powered HR chatbot that queries HR policies. This chatbot will leverage semantic query understanding and freshness via the Superlinked library to improve results.
+So, you’ve implemented a RAG system. But you’re struggling to get your retrieval results to live up to RAG’s potential. In this article, we’ll show you how to use the Superlinked library to improve retrieval quality in an example use case - a RAG-powered HR chatbot that queries HR policies. This chatbot will leverage semantic query understanding and freshness via the Superlinked library to improve results.
  
 ## RAG’s strengths and challenges
 
 Retrieval-augmented generation is a versatile solution applicable in various domains, from chatbots to content creation systems. By integrating retrieval and generation, RAG enables nuanced and context-aware interactions. RAG can:
+
 - provide a unique response to any query
-- reduce hallucinations as the answer has to be grounded in the retrieved context
+- reduce hallucinations, as the answer has to be grounded in the retrieved context
 - make the process highly scalable due to automatic question-answering
 
 But RAG-powered applications face several challenges, including:
+
 - ensuring the quality and diversity of retrieved information, particularly from unstructured data sources like the Internet; the knowledge base must be kept consistent and up to date
 - needing costly reranking models to refine retrieved information and improve the relevance of generated responses
-- deploying and maintaining RAG systems at scale demands substantial computational resources and expertise; the LLMs need to run efficiently
+- getting the LLM to run efficiently; deploying and maintaining RAG systems at scale demands substantial computational resources and expertise
 
 In our use case - RAG retrieval of company HR documents - we need, additionally, to make sure results are aligned with company guidelines.
 
@@ -22,7 +24,7 @@ Below, we’ll show you how to integrate Superlinked into your tech stack to add
 
 ## Superlinked addresses RAG challenges, by turning your data into nuanced, multimodal vectors
 
-By enabling you to turn your data into multimodal vectors, and apply weights to specific parts of your data at query time, Superlinked optimizes retrieval without requiring a custom reranking model or postprocessing tasks, thus reducing your RAG system’s operating resources. Superlinked enables you to natively do things that would otherwise (i.e., with other libraries) require complex “hacks” - for example, and importantly in our case, Superlink’s Recency embedding space, which you can tune to your requirements, lets you set the freshness of the data you query and, consequently, your results.
+By enabling you to turn your data into multimodal vectors, and apply weights to specific parts of your data at query time, Superlinked optimizes retrieval without requiring a custom reranking model or postprocessing tasks, reducing your RAG system’s operating resources. Superlinked enables you to natively do things that would otherwise (i.e., with other libraries) require complex “hacks” - for example, and importantly in our case, Superlink’s Recency embedding space, which you can tune to your requirements, lets you set the freshness of the data you query and, consequently, your results.
 
 We build our RAG-powered chatbot below using elements of the Superlinked library that address the (above) challenges of RAG:
 - Recency space - to ascertain the freshness (currency and relevancy) of your data
