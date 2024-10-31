@@ -7,13 +7,13 @@ Still, implementing effective semantic search for news articles presents **chall
 - **Response optimization**: you need to figure out how to weight data attributes in your semantic search algorithms
 - **Scalability and performance**: you need efficient indexing and retrieval mechanisms to handle the vast volume of news articles
 
-Superlinked is designed to handle these challenges, empowering you to **scale efficiently** and - using Superlinked Spaces - **prioritize text similarity and/or recency so you can recommend highly relevant news articles to your users *without having to re-embed your dataset*.** 
+Superlinked is designed to handle these challenges, empowering you to **scale efficiently** and - using Superlinked Spaces - **prioritize semantic relevance and/or recency so you can recommend highly relevant news articles to your users *without having to re-embed your dataset*.** 
 
 To illustrate, we'll take you step by step through building a **semantic-search-powered business news recommendation app**, using the following parts of Superlinked's library:
 
-- **Recency space** - to encode the recency of a data point
-- **TextSimilarity space** - to encode the semantic meaning of text data
-- **Query time weights** - to prioritize different attributes in your queries, without having to re-embed the whole dataset
+- **[Recency space](https://github.com/superlinked/superlinked/blob/main/notebook/feature/recency_embedding.ipynb)** - to encode the recency of a data point
+- **[TextSimilarity space](https://github.com/superlinked/superlinked/blob/main/notebook/feature/text_embedding.ipynb)** - to encode the semantic meaning of text data
+- **[Query time weights](https://github.com/superlinked/superlinked/blob/main/notebook/feature/query_time_weights.ipynb)** - to prioritize different attributes in your queries, without having to re-embed the whole dataset
 
 Using these spaces to embed our articles' headlines, text, and publication dates, we'll be able to skew our results towards older or more recent news as desired, and also search using specific search terms or a specific news article.
 
@@ -36,7 +36,7 @@ We'll embed:
 First, we **install Superlinked**.
 
 ```python
-%pip install superlinked==9.48.1
+%pip install superlinked==12.19.1
 ```
 
 Now we **import all our dependencies**...
@@ -140,7 +140,7 @@ alt.Chart(years_to_plot).mark_bar().encode(
 
 Because our oldest article was published in 2012 and we want to be able to query all our dataset articles, we should set our longer time period  inclusively to around 11 years.
 
-The vast majority of our articles are distributed from 2012 through 2017, so it makes sense to differentiate create another more recent time period of 4 years (2018-2022) when the article count is much lower.
+The vast majority of our articles are distributed from 2012 through 2017, so it makes sense to differentiate that period by creating another more recent 4-year period (2018-2022) when the article count is much lower.
 
 We can make sure our retrieval appropriately represents the small differences between articles in our publication-dense period (2012-2017) articles by giving them additional weight. This way, differences in our publication-scarce period (2018-2022), which will be larger than in the dense period, aren't overrepresented.
 
@@ -238,7 +238,7 @@ dataframe_parser = DataFrameParser(
 )
 ```
 
-...create an InMemorySource object to hold the user data in memory, and set up our executor (with our article dataset and index) so that it takes account of context data. The executor creates vectors based on the index's grouping of Spaces.
+...create an InMemorySource object to accept the data (which is stored in an InMemoryVectorDatabase), and set up our executor (with our article dataset and index) so that it takes account of context data. The executor creates vectors based on the index's grouping of Spaces.
 
 ```python
 source: InMemorySource = InMemorySource(news, parser=dataframe_parser)
@@ -254,8 +254,6 @@ It's time to **input our business news data**.
 source.put([business_news])
 
 ```
-
-(While you're waiting for your business news data to input, why not learn more about vectors in [Vectorhub](https://superlinked.com/vectorhub).)
 
 ### Understanding recency
 
