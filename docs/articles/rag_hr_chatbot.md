@@ -2,15 +2,15 @@
 
 ## Improving retrieval quality for an HR chatbot, balancing freshness and relevance - a [notebook](https://github.com/superlinked/superlinked/blob/main/notebook/rag_hr_knowledgebase.ipynb) article
 
-So, you’ve implemented a RAG system. But you’re struggling to get your retrieval results to live up to RAG’s potential. In this article, we’ll show you how to use the Superlinked library to improve retrieval quality in an example use case - a RAG-powered HR chatbot that queries HR policies. This chatbot will leverage semantic query understanding and freshness via the Superlinked library to improve results.
+So, you’ve implemented a RAG system. But you’re struggling to get your retrieval results to live up to RAG’s potential. In this article, we’ll show you how to use the Superlinked library to improve retrieval quality in an example use case - a RAG-powered HR chatbot that queries HR policies. This chatbot will improve results by leveraging semantic query understanding and freshness via the Superlinked library.
  
 ## RAG’s strengths and challenges
 
 Retrieval-augmented generation is a versatile solution applicable in various domains, from chatbots to content creation systems. By integrating retrieval and generation, RAG enables nuanced and context-aware interactions. RAG can:
 
 - provide a unique response to any query
-- reduce hallucinations, as the answer has to be grounded in the retrieved context
-- make the process highly scalable due to automatic question-answering
+- reduce hallucinations - the answer has to be grounded in the retrieved context
+- make the process highly scalable, because it performs automatic question-answering
 
 But RAG-powered applications face several challenges, including:
 
@@ -24,13 +24,13 @@ Below, we’ll show you how to integrate Superlinked into your tech stack to add
 
 ## Superlinked addresses RAG challenges, by turning your data into nuanced, multimodal vectors
 
-By enabling you to turn your data into multimodal vectors, and apply weights to specific parts of your data at query time, Superlinked optimizes retrieval without requiring a custom reranking model or postprocessing tasks, reducing your RAG system’s operating resources. Superlinked enables you to natively do things that would otherwise (i.e., with other libraries) require complex “hacks” - for example, and importantly in our case, Superlink’s Recency embedding space, which you can tune to your requirements, lets you set the freshness of the data you query and, consequently, your results.
+Superlinked enables you to turn your data into multimodal vectors, and apply weights to specific parts of your data at query time, optimizing retrieval without a custom reranking model or postprocessing tasks. By letting you natively things - e.g., using a Recency embedding space to fine tune the freshness of the data you query - that would otherwise require complex hacks (i.e., using other libraries), Superlinked optimizes your results while reducing your RAG system’s operating resources.
 
-We build our RAG-powered chatbot below using elements of the Superlinked library that address the (above) challenges of RAG:
+We build our RAG-powered chatbot below using elements of the Superlinked library that address the challenges of RAG - ensuring your data's diverse, quality, and up-to-date-ness, avoiding reranking, efficient LLM deployment, and, in our HR policy use case, alignment with company guidelines:
 
 - Recency space - to ascertain the freshness (currency and relevancy) of your data
 - TextSimilarity space - to understand the semantic meaning of your text
-- Query time weights - to optimize the treatment of the data when you run the query, without needing to re-embed the whole dataset
+- Query time weights - to optimize the treatment of data when you run a query, without needing to re-embed the whole dataset
 
 ## Superlinked-powered RAG for HR document retrieval
 
@@ -42,15 +42,15 @@ In our hypothetical company, there are three HR policy sources:
 
 - an older (2023) HR policy, which contains a maternal leave policy and details on manager responsibilities
 - a more recent (2024) HR policy document, containing inaccurate information on management responsibilities, but also unique information about paternity leave
-- a newer (2024) HR policy document, with updated information about management responsibilities, correcting the mistakes of the previous update,  along with some other HR policy information
+- a newer (2024) HR policy document, with updated information about management responsibilities, correcting the mistakes of the previous update, along with some other HR policy information
 
-These three documents' stipulations on management responsibilities contradict each other on certain points. In addition, only the first contains guidelines on maternity leave.
+These three documents' stipulations on management responsibilities contradict each other on certain points. In addition, only the first (2023) contains guidelines on maternity leave.
 
 ### Returning most relevant results from different and conflicting sources
 
 A good RAG system will be able to:
 
-- provide relevant information on maternity leave (only covered in the old document)
+- provide relevant information on maternity leave (only covered in the old (2023) document)
 - synthesize conflicting information, and only present us with the correct policy advice
 
 To handle cases where the policies contradict each other, we’ll use the **creation date** as a proxy for relevance; that is, if/when there exist two documents with very similar information, but different wording, and slight differences in one piece of important information, creation date will indicate which of the two documents (i.e., the most recent) is more relevant to your query. We'll also use a **usefulness score** to understand *whether* retrieved paragraphs that are seemingly on topic *actually* convey information useful to answering our queries.
@@ -108,7 +108,7 @@ EXECUTOR_DATA = {CONTEXT_COMMON: {CONTEXT_COMMON_NOW: START_OF_2024_TS}}
 TOP_N = 10
 ```
 
-Now, you load the data.
+Now, let's load our data.
 
 ```python
 text_df = pd.read_csv(
