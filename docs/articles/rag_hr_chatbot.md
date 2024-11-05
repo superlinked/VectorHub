@@ -41,7 +41,7 @@ For companies aiming to make HR documents more accessible to employees and contr
 In our hypothetical company, there are three HR policy sources:
 
 - an older (2023) HR policy, which contains a maternal leave policy and details on manager responsibilities
-- a more recent HR policy document, containing inaccurate information on management responsibilities, but also unique information about paternity leave
+- a more recent (2024) HR policy document, containing inaccurate information on management responsibilities, but also unique information about paternity leave
 - a newer (2024) HR policy document, with updated information about management responsibilities, correcting the mistakes of the previous update,  along with some other HR policy information
 
 These three documents' stipulations on management responsibilities contradict each other on certain points. In addition, only the first contains guidelines on maternity leave.
@@ -122,7 +122,7 @@ Let's take a sneak peak at the first five rows of our data, which comes from all
 - index
 - body: text of the HR policy paragraph
 - creation_date: utc timestamp when the policy was issued
-- usefulness: ratio of people who (when prompted) deem the paragraph useful
+- usefulness: ratio of employees who (when prompted) deem the paragraph useful
 
 ![Data frame preview](../assets/use_cases/rag_hr_chatbot/dataframepreview.png)
 
@@ -322,7 +322,7 @@ maternity_result_df
 ![Results 4](../assets/use_cases/rag_hr_chatbot/results4.png)
 
 ...
-Weighting at query time is not the only way we can do our retrieval. We also have a new way of optimizing retrieval - by detecting user intent. We discuss this Natural Language Querying method in depth in [this feature notebook](https://github.com/superlinked/superlinked/blob/main/notebook/feature/natural_language_querying.ipynb), but let's do a quick implementation here just to demo it.
+Weighting at query time is not the only way we can do our retrieval. We also have a new way of optimizing retrieval - by detecting user intent from the query. We discuss this Natural Language Querying method in depth in [this feature notebook](https://github.com/superlinked/superlinked/blob/main/notebook/feature/natural_language_querying.ipynb), but let's do a quick implementation here just to demo it.
 
 ## NEW Natural language querying
 
@@ -356,7 +356,7 @@ Let's take a look at our results.
 
 Excellent results!...
 
-Whichever method we use (manual query time weights or natural language query), we're achieving highly relevant results. With our retrieval performing well, let’s move on to augmenting our query template so that we optimize LLM generation.
+Whichever method we use (manual query time weights or natural language query), we achieving highly relevant results. With our retrieval performing well, let’s move on to augmenting our query template so that we optimize LLM generation.
 
 ### Augmentation - formulating your query for LLM generation
 
