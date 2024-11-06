@@ -1,6 +1,5 @@
 # Improving RAG with RAPTOR
 
-
 Traditional [RAG](https://superlinked.com/vectorhub/articles/retrieval-augmented-generation) setups commonly split documents into fixed-size chunks. But this creates problems. If key concepts span multiple chunks, the embeddings can lose the semantic coherence of the original text. LLM queries that retrieve single chunks frequently _miss_ their relationship to crucial pieces of information buried inside other chunks. This leads to incomplete or misleading responses. **Because its chunk embeddings lack any weighting or hierarchical structure, traditional RAG's flat retrieval returns results based only on similarity or relevance scores. Key insights are often lost.**
 
 So, **is there a way of getting our embeddings to preserve the relationships and hierarchical structure that exists within source documents, so that our retrieval can surface key insights, and do it efficiently**?
@@ -592,7 +591,7 @@ RAPTOR RAG performed **better than vanilla RAG** at handling retrieval on our hi
 
 ## Your turn
 
-Now it's your turn to try out RAPTOR RAG! Here's the Google [colab](../assets/use_cases/improve-rag-with-raptor/raptor_with_rag.ipynb).
+Now it's your turn to try out RAPTOR RAG! Here's the Google [colab](https://colab.research.google.com/drive/1I3WI0U4sgb2nc1QTQm51kThZb2q4MXyr).
 
 To learn more about the intricacies of RAPTOR, check out their official [GitHub repository](https://github.com/parthsarthi03/raptor/tree/master). For an even deeper dive, we highly recommend the official [paper](https://arxiv.org/pdf/2401.18059)!
 
