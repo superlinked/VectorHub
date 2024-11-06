@@ -592,7 +592,7 @@ RAPTOR RAG performed **better than vanilla RAG** at handling retrieval on our hi
 
 ## Your turn
 
-Now it's your turn to try out RAPTOR RAG! Here's the Google [colab](https://colab.research.google.com/drive/1I3WI0U4sgb2nc1QTQm51kThZb2q4MXyr?usp=sharing).
+Now it's your turn to try out RAPTOR RAG! Here's the Google [colab](../assets/use_cases/improve-rag-with-raptor/raptor_with_rag.ipynb).
 
 To learn more about the intricacies of RAPTOR, check out their official [GitHub repository](https://github.com/parthsarthi03/raptor/tree/master). For an even deeper dive, we highly recommend the official [paper](https://arxiv.org/pdf/2401.18059)!
 
