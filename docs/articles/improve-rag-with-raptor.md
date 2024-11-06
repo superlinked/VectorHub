@@ -1,5 +1,6 @@
 # Improving RAG with RAPTOR
 
+
 Traditional [RAG](https://superlinked.com/vectorhub/articles/retrieval-augmented-generation) setups commonly split documents into fixed-size chunks. But this creates problems. If key concepts span multiple chunks, the embeddings can lose the semantic coherence of the original text. LLM queries that retrieve single chunks frequently _miss_ their relationship to crucial pieces of information buried inside other chunks. This leads to incomplete or misleading responses. **Because its chunk embeddings lack any weighting or hierarchical structure, traditional RAG's flat retrieval returns results based only on similarity or relevance scores. Key insights are often lost.**
 
 So, **is there a way of getting our embeddings to preserve the relationships and hierarchical structure that exists within source documents, so that our retrieval can surface key insights, and do it efficiently**?
@@ -450,7 +451,7 @@ RAPTOR has two distinct strategies for querying the RAPTOR tree: tree traversal 
 
 If our query demanded complex multi-level reasoning, and a contextually rich and precise result, it would make sense to use tree traversal. But for specific queries requiring specific factual information - like our financial news query, we want to be able to directly compare our query embedding with the vector embeddings of all nodes (both leaf and summary), efficiently bypassing RAPTOR's hierarchical structure and going straight to the most relevant data points.
 
-But even though the collapsed tree method's retrieval bypasses the RAPTOR tree's hierarchy, it still capitalizes on the RAPTOR tree's hierarchical encapsulation of meaning to retrieve context. Because the collapsed tree method treats summarized nodes from higher levels simply as additional (same level) chunks, we can pull in higher-level summaries (the global perspective) alongside granular details with just one pass. We want our retrieval to get both an overall perspective and pinpoint very specific details of a particular company's financial quarter.
+But even though the collapsed tree method's retrieval bypasses the RAPTOR tree's hierarchy, it still capitalizes on the RAPTOR tree's hierarchical encapsulation of meaning to retrieve context. Because the collapsed tree method treats summarized nodes from higher levels simply as additional (same level) chunks, we can pull in higher-level summaries (the global perspective) alongside granular details in just one pass. We want our retrieval to get both an overall perspective and pinpoint very specific details of a particular company's financial quarter.
 
 For our purposes, the collapsed tree method is a better fit than tree traversal.
 
@@ -591,7 +592,7 @@ RAPTOR RAG performed **better than vanilla RAG** at handling retrieval on our hi
 
 ## Your turn
 
-Now it's your turn to try out RAPTOR RAG! Here's the Google [colab](https://colab.research.google.com/drive/1I3WI0U4sgb2nc1QTQm51kThZb2q4MXyr?usp=sharing).
+Now it's your turn to try out RAPTOR RAG! Here's the Google [colab](https://colab.research.google.com/github/superlinked/VectorHub/blob/main/docs/assets/use_cases/improve-rag-with-raptor/raptor_with_rag.ipynb).
 
 To learn more about the intricacies of RAPTOR, check out their official [GitHub repository](https://github.com/parthsarthi03/raptor/tree/master). For an even deeper dive, we highly recommend the official [paper](https://arxiv.org/pdf/2401.18059)!
 
