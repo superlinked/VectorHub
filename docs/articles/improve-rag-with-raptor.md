@@ -14,7 +14,7 @@ RAPTOR organizes information in a tree-like structure, progressively narrowing a
 
 ![High level overview of RAPTOR](../assets/use_cases/improve-rag-with-raptor/raptor-7.png)
 
-*Above: "Figure 1. Tree construction process" from [RAPTOR](https://arxiv.org/pdf/2401.18059)*
+*Above: "Figure 1. Tree construction process" from the [RAPTOR paper](https://arxiv.org/pdf/2401.18059)*
 
 **RAPTOR tree construction - basic steps:**
 
@@ -446,7 +446,7 @@ RAPTOR has two distinct strategies for querying the RAPTOR tree: tree traversal 
 2. **Collapsed tree** method - flattens the tree into a single layer, directly comparing the query embedding to the vector embeddings of all the leaf nodes (the original text chunks) and summary nodes. For factual, keyword-based queries where you need specific details, collapsed tree returns more relevant and accurate results (with lower latency) than the tree traversal method.
 
 ![How the retrieval happens](../assets/use_cases/improve-rag-with-raptor/raptor-4.png)
-from: https://arxiv.org/pdf/2401.18059 page 5
+*Above: "Figure 2: Illustration of the tree traversal and collapsed tree retrieval mechanisms" from the [RAPTOR paper](https://arxiv.org/pdf/2401.1805)*
 
 If our query demanded complex multi-level reasoning, and a contextually rich and precise result, it would make sense to use tree traversal. But for specific queries requiring specific factual information - like our financial news query, we want to be able to directly compare our query embedding with the vector embeddings of all nodes (both leaf and summary), efficiently bypassing RAPTOR's hierarchical structure and going straight to the most relevant data points.
 

@@ -1,188 +1,188 @@
 {
-    "name": "Databricks Vector Search",
-    "links": {
-      "docs": "https://docs.databricks.com/en/generative-ai/vector-search.html",
-      "github": "",
-      "website": "https://www.databricks.com/product/machine-learning/vector-search",
-      "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/514",
-      "poc_github": "kobindra",
-      "slug": "databricks"
-    },
-    "oss": {
-      "support": "none",
-      "source_url": "",
-      "comment": ""
-    },
-    "license": {
-      "value": "Proprietary",
-      "source_url": "https://www.databricks.com/legal/mcsa",
-      "comment": ""
-    },
-    "dev_languages": {
-      "value": [
-        ""
-      ],
-      "source_url": "",
-      "comment": ""
-    },
-    "vector_launch_year": 2024,
-    "metadata_filter": {
-      "support": "full",
-      "source_url": "https://www.databricks.com/blog/announcing-mosaic-ai-vector-search-general-availability-databricks",
-      "comment": ""
-    },
-    "hybrid_search": {
-      "support": "full",
-      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html",
-      "comment": ""
-    },
-    "facets": {
-      "support": "none",
-      "source_url": "",
-      "comment": ""
-    },
-    "geo_search": {
-      "support": "none",
-      "source_url": "",
-      "comment": ""
-    },
-    "multi_vec": {
-      "support": "none",
-      "source_url": "",
-      "comment": ""
-    },
-    "sparse_vectors": {
-      "support": "none",
-      "source_url": "",
-      "comment": ""
-    },
-    "bm25": {
-      "support": "full",
-      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#how-does-mosaic-ai-vector-search-work",
-      "comment": "Okapi BM25"
-    },
-    "full_text": {
-      "support": "full",
-      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html",
-      "comment": ""
-    },
-    "embeddings_text": {
-      "support": "full",
-      "source_url": "https://docs.databricks.com/en/generative-ai/external-models/index.html",
-      "comment": ""
-    },
-    "embeddings_image": {
-      "support": "none",
-      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#options-for-providing-vector-embeddings",
-      "comment": ""
-    },
-    "embeddings_structured": {
-      "support": "none",
-      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#options-for-providing-vector-embeddings",
-      "comment": ""
-    },
-    "rag": {
-      "support": "full",
-      "source_url": "https://docs.databricks.com/en/generative-ai/retrieval-augmented-generation.html#databricks-vector-search",
-      "comment": ""
-    },
-    "recsys": {
-      "support": "full",
-      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#options-for-providing-vector-embeddings",
-      "comment": ""
-    },
-    "langchain": {
-      "support": "full",
-      "source_url": "https://python.langchain.com/v0.2/docs/integrations/vectorstores/databricks_vector_search/",
-      "comment": ""
-    },
-    "llamaindex": {
-      "support": "full",
-      "source_url": "https://docs.llamaindex.ai/en/stable/examples/vector_stores/DatabricksVectorSearchDemo/",
-      "comment": ""
-    },
-    "managed_cloud": {
-      "support": "full",
-      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html",
-      "comment": ""
-    },
-    "pricing": {
-      "value": "full",
-      "source_url": "https://www.databricks.com/product/pricing/vector-search",
-      "comment": "Includes free tier"
-    },
-    "in_process": {
-      "support": "none",
-      "source_url": "",
-      "comment": ""
-    },
-    "multi_tenancy": {
-      "support": "full",
-      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html",
-      "comment": "via namespaces"
-    },
-    "disk_index": {
-      "support": "partial",
-      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html",
-      "comment": ""
-    },
-    "ephemeral": {
-      "support": "none",
-      "source_url": "",
-      "comment": ""
-    },
-    "sharding": {
-      "support": "full",
-      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html",
-      "comment": ""
-    },
-    "doc_size": {
-      "bytes": 32768,
-      "unlimited": false,
-      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#resource-and-data-size-limits",
-      "comment": ""
-    },
-    "vector_dims": {
-      "value": 4096,
-      "unlimited": false,
-      "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#resource-and-data-size-limits",
-      "comment": ""
-    },
-    "index_types": {
+  "name": "Databricks Vector Search",
+  "links": {
+    "docs": "https://docs.databricks.com/en/generative-ai/vector-search.html",
+    "github": "",
+    "website": "https://www.databricks.com/product/machine-learning/vector-search",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/514",
+    "poc_github": "kobindra",
+    "slug": "databricks"
+  },
+  "oss": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "license": {
+    "value": "Proprietary",
+    "source_url": "https://www.databricks.com/legal/mcsa",
+    "comment": ""
+  },
+  "dev_languages": {
+    "value": [
+      ""
+    ],
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_launch_year": 2024,
+  "metadata_filter": {
+    "support": "full",
+    "source_url": "https://www.databricks.com/blog/announcing-mosaic-ai-vector-search-general-availability-databricks",
+    "comment": ""
+  },
+  "hybrid_search": {
+    "support": "full",
+    "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html",
+    "comment": ""
+  },
+  "facets": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "geo_search": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_vec": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "sparse_vectors": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "bm25": {
+    "support": "full",
+    "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#how-does-mosaic-ai-vector-search-work",
+    "comment": "Okapi BM25"
+  },
+  "full_text": {
+    "support": "full",
+    "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html",
+    "comment": ""
+  },
+  "embeddings_text": {
+    "support": "full",
+    "source_url": "https://docs.databricks.com/en/generative-ai/external-models/index.html",
+    "comment": ""
+  },
+  "embeddings_image": {
+    "support": "none",
+    "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#options-for-providing-vector-embeddings",
+    "comment": ""
+  },
+  "embeddings_structured": {
+    "support": "none",
+    "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#options-for-providing-vector-embeddings",
+    "comment": ""
+  },
+  "rag": {
+    "support": "full",
+    "source_url": "https://docs.databricks.com/en/generative-ai/retrieval-augmented-generation.html#databricks-vector-search",
+    "comment": ""
+  },
+  "recsys": {
+    "support": "full",
+    "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#options-for-providing-vector-embeddings",
+    "comment": ""
+  },
+  "langchain": {
+    "support": "full",
+    "source_url": "https://python.langchain.com/v0.2/docs/integrations/vectorstores/databricks_vector_search/",
+    "comment": ""
+  },
+  "llamaindex": {
+    "support": "full",
+    "source_url": "https://docs.llamaindex.ai/en/stable/examples/vector_stores/DatabricksVectorSearchDemo/",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "full",
+    "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html",
+    "comment": ""
+  },
+  "pricing": {
+    "value": "full",
+    "source_url": "https://www.databricks.com/product/pricing/vector-search",
+    "comment": "Includes free tier"
+  },
+  "in_process": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_tenancy": {
+    "support": "full",
+    "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html",
+    "comment": "via namespaces"
+  },
+  "disk_index": {
+    "support": "partial",
+    "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html",
+    "comment": ""
+  },
+  "ephemeral": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "sharding": {
+    "support": "full",
+    "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html",
+    "comment": ""
+  },
+  "doc_size": {
+    "bytes": 32768,
+    "unlimited": false,
+    "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#resource-and-data-size-limits",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 4096,
+    "unlimited": false,
+    "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#resource-and-data-size-limits",
+    "comment": ""
+  },
+  "index_types": {
     "value": [
       "HNSW"
     ],
     "source_url": "https://docs.databricks.com/en/generative-ai/vector-search.html#how-does-mosaic-ai-vector-search-work",
     "comment": ""
-    },
-    "github_stars": {
-      "value": 0,
-      "source_url": "",
-      "comment": "",
-      "value_90_days": 0
-    },
-    "docker_pulls": {
-      "value": 0,
-      "source_url": "",
-      "comment": "",
-      "value_90_days": 0
-    },
-    "pypi_downloads": {
-      "value": 0,
-      "source_url": "",
-      "comment": "",
-      "value_90_days": 0
-    },
-    "npm_downloads": {
-      "value": 0,
-      "source_url": "",
-      "comment": "",
-      "value_90_days": 0
-    },
-    "crates_io_downloads": {
-      "value": 0,
-      "source_url": "",
-      "comment": "",
-      "value_90_days": 0
-    }
+  },
+  "github_stars": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "docker_pulls": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "pypi_downloads": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "npm_downloads": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "crates_io_downloads": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
   }
+}
