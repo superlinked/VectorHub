@@ -163,7 +163,7 @@ class NewsSchema(Schema):
 news = NewsSchema()
 ```
 
-Next, to embed the characteristics of our text, we use a sentence-transformers model to create a `description_space` for news article descriptions and a `headline_space` for our headlines, and, finally, we encode each article's release date using a `recency_space`.
+Next, to embed the characteristics of our text, we use a sentence-transformers model to create a `description_space` for news article descriptions and a `headline_space` for our headlines. We also encode each article's release date using a `recency_space`.
 
 ```python
 # textual characteristics are embedded using a sentence-transformers model
@@ -184,7 +184,7 @@ recency_space = RecencySpace(
 )
 ```
 
-To query our data, we'll need to create an index of our spaces...
+To query our data, we'll need to create an **index** of our spaces...
 
 ```python
 news_index = Index(spaces=[description_space, headline_space, recency_space])
@@ -229,7 +229,7 @@ news_query = (
 )
 ```
 
-Next we parse our dataframe,...
+Next, we parse our dataframe,...
 
 ```python
 dataframe_parser = DataFrameParser(
@@ -257,7 +257,7 @@ source.put([business_news])
 
 ### Understanding recency
 
-With our business news finished inputting, let's plot our recency scores.
+Now that we've finished inputting our business news, let's plot our recency scores.
 
 ```python
 recency_plotter = RecencyPlotter(recency_space, context_data=EXECUTOR_DATA)
@@ -293,7 +293,7 @@ def present_result(
     return df[cols_to_keep]
 ```
 
-Now, say we wanted to read articles about Microsoft acquiring LinkedIn - one of the biggest acquisitions of the last decade. We input our query text as follows, weighting headline and description at 1. Recency weight doesn't matter yet so we'll set it to 0.
+Now, say we wanted to read articles about Microsoft acquiring LinkedIn - one of the biggest acquisitions of the last decade. We input our query text as follows, weighting headline and description at 1. Recency weight doesn't matter yet, so we'll set it to 0.
 
 ```python
 result = app.query(
@@ -369,6 +369,6 @@ present_result(result)
 
 ## In sum
 
-Whatever your semantic search use case, Superlinked Spaces enables you up to optimize your vector retrieval with a high degree of control, without incurring the time and resource costs of re-embedding your dataset. By embedding smartly (attribute by attribute) with our Recency and TextSimilarity spaces, you can prioritize or deprioritize different attributes as needed at query time.
+Whatever your semantic search use case, Superlinked Spaces enables you to optimize your vector retrieval with a high degree of control, without incurring the time and resource costs of re-embedding your dataset. By embedding smartly (attribute by attribute) with our Recency and TextSimilarity spaces, you can prioritize or deprioritize different attributes as needed at query time.
 
-Now it's your turn! Try your own simple_query and news_query in the [notebook](https://github.com/superlinked/superlinked/blob/main/notebook/semantic_search_news.ipynb). Alter the `description_weight`, `headline_weight`, and `recency_weight` on your own `query_text` and `news_id` and observe the changes in your results!
+Now it's your turn! Try your own simple_query and news_query in the [notebook](https://github.com/superlinked/superlinked/blob/main/notebook/semantic_search_news.ipynb). Alter the `description_weight`, `headline_weight`, and `recency_weight` on your own `query_text` and `news_id`, and observe the changes in your results!
