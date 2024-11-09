@@ -62,8 +62,10 @@ Let’s get started setting up our solution!
 To start building your RAG-powered HR policy chatbot with Superlinked, your first step is to install the library and import the classes.
 
 ```python
-%pip install superlinked==12.16.0
+%pip install superlinked==13.1.3
 
+from datetime import datetime, timedelta
+import os
 
 from datetime import datetime, timedelta
 import os
@@ -72,47 +74,21 @@ import altair as alt
 import pandas as pd
 from torch import float16
 from transformers import AutoTokenizer, pipeline
+from superlinked import framework as sl
 
-from superlinked.framework.common.dag.context import CONTEXT_COMMON, CONTEXT_COMMON_NOW
-from superlinked.framework.common.dag.period_time import PeriodTime
-from superlinked.framework.common.nlq.open_ai import OpenAIClientConfig
-from superlinked.framework.common.parser.dataframe_parser import DataFrameParser
-from superlinked.framework.common.schema.schema import Schema
-from superlinked.framework.common.schema.schema_object import Float, String, Timestamp
-from superlinked.framework.common.schema.id_schema_object import IdField
-from superlinked.framework.common.space.config.embedding.number_embedding_config import (
-    Mode,
-)
-from superlinked.framework.common.util.interactive_util import get_altair_renderer
-from superlinked.framework.dsl.executor.in_memory.in_memory_executor import (
-    InMemoryExecutor,
-)
-from superlinked.framework.dsl.index.index import Index
-from superlinked.framework.dsl.query.param import Param
-from superlinked.framework.dsl.query.query import Query
-from superlinked.framework.dsl.query.result import Result
-from superlinked.framework.dsl.source.in_memory_source import InMemorySource
-from superlinked.framework.dsl.space.text_similarity_space import (
-    TextSimilaritySpace,
-    chunk,
-)
-from superlinked.framework.dsl.space.number_space import NumberSpace
-from superlinked.framework.dsl.space.recency_space import RecencySpace
-
-
-alt.renderers.enable(get_altair_renderer())
+alt.renderers.enable(sl.get_altair_renderer())
 alt.data_transformers.disable_max_rows()
 pd.set_option("display.max_colwidth", 1000)
 START_OF_2024_TS = int(datetime(2024, 1, 2).timestamp())
-EXECUTOR_DATA = {CONTEXT_COMMON: {CONTEXT_COMMON_NOW: START_OF_2024_TS}}
-TOP_N = 10
+EXECUTOR_DATA = {sl.CONTEXT_COMMON: {sl.CONTEXT_COMMON_NOW: START_OF_2024_TS}}
+TOP_N = 8
 ```
 
 Now, let's load our data.
 
 ```python
 text_df = pd.read_csv(
-    "https://storage.googleapis.com/superlinked-notebook-hr-knowledgebase/hr_rag_database.csv"
+    "https://storage.googleapis.com/superlinked-notebook-hr-knowledgebase/hr_rag_policies.csv"
 )
 text_df.head()
 ```
@@ -149,39 +125,39 @@ class ParagraphSchema:
    usefulness: Float 
    id: IdField
 
-
 paragraph = ParagraphSchema()
 ```
 
 Next, you use Spaces to say how you want to treat each part of the data when embedding. Which Spaces you use depends on your datatype. Each Space is optimized to embed the data so your system can return the highest possible quality of retrieval results.
 
 ```python
+%%capture
 # relevance space will encode our knowledgebase utilizing chunking to control the granularity of information
-relevance_space = TextSimilaritySpace(
-   text=chunk(paragraph.body, chunk_size=100, chunk_overlap=20),
-   model="sentence-transformers/all-mpnet-base-v2",
+relevance_space = sl.TextSimilaritySpace(
+    text=sl.chunk(paragraph.body, chunk_size=100, chunk_overlap=20),
+    model="sentence-transformers/all-mpnet-base-v2",
 )
 # recency has a periodtime to differentiate between the document created at the beginning of this year and last year
-recency_space = RecencySpace(
-   timestamp=paragraph.created_at,
-   period_time_list=[PeriodTime(timedelta(days=300))],
-   negative_filter=-0.25,
+recency_space = sl.RecencySpace(
+    timestamp=paragraph.created_at,
+    period_time_list=[sl.PeriodTime(timedelta(days=300))],
+    negative_filter=-0.25,
 )
 # usefulness is a ratio, so the relevant range is [0-1], and we prefer higher numbers
-usefulness_space = NumberSpace(
-    number=paragraph.usefulness, min_value=0.0, max_value=1.0, mode=Mode.MAXIMUM
+usefulness_space = sl.NumberSpace(
+    number=paragraph.usefulness, min_value=0.0, max_value=1.0, mode=sl.Mode.MAXIMUM
 )
 ```
 
 Once you have the data defined in Spaces, you then combine those Spaces into a single vector index to run vector search on:
 
 ```python
-paragraph_index = Index([relevance_space, recency_space, usefulness_space])
-paragraph_parser = DataFrameParser(
+paragraph_index = sl.Index([relevance_space, recency_space, usefulness_space])
+paragraph_parser = sl.DataFrameParser(
     paragraph, mapping={paragraph.id: "index", paragraph.created_at: "creation_date"}
 )
-source: InMemorySource = InMemorySource(paragraph, parser=paragraph_parser)
-executor = InMemoryExecutor(
+source: sl.InMemorySource = sl.InMemorySource(paragraph, parser=paragraph_parser)
+executor = sl.InMemoryExecutor(
     sources=[source], indices=[paragraph_index], context_data=EXECUTOR_DATA
 )
 app = executor.run()
@@ -196,24 +172,24 @@ To prepare the query to retrieve relevant information from the knowledge base, y
 # our simple query will make a search term possible, and gives us the opportunity to weight input aspects
 # relevance, recency and usefulness against each other
 knowledgebase_query = (
-    Query(
+    sl.Query(
         paragraph_index,
         weights={
-            relevance_space: Param("relevance_weight"),
-            recency_space: Param("recency_weight"),
-            usefulness_space: Param("usefulness_weight"),
+            relevance_space: sl.Param("relevance_weight"),
+            recency_space: sl.Param("recency_weight"),
+            usefulness_space: sl.Param("usefulness_weight"),
         },
     )
     .find(paragraph)
-    .similar(relevance_space, Param("search_query"))
-    .limit(Param("limit"))
+    .similar(relevance_space, sl.Param("search_query"))
+    .limit(sl.Param("limit"))
 )
 ```
 
-Now, let's perform retrieval.
+Now, let's perform **retrieval**.
 
 ```python
-def present_result(result: Result) -> pd.DataFrame:
+def present_result(result: sl.Result) -> pd.DataFrame:
     """A small helper function to present our query results"""
     df = result.to_pandas()
     df["date_created"] = [datetime.fromtimestamp(ts).date() for ts in df["created_at"]]
@@ -244,7 +220,7 @@ Here are our results:
 
 Look closely at the elements with ids 23 and 0. These documents essentially say the same thing. But the older element (id 0) prescribes a "bi-annual review" of policies and procedures. The new one (id 23), on the other hand, prescribes an annual review. Also, notice that when we upweight only "relevance", our top 10 documents include an element (id 34) with a very *low* usefulness score.
 
-Let's see what happens if we **upweight "recency"** in our query.
+Let's see what happens if we **upweight recency** in our query.
 
 ```python
 mild_recency_result = app.query(
@@ -288,7 +264,7 @@ normal_recency_usefulness_result = app.query(
     knowledgebase_query,
     relevance_weight=1,
     recency_weight=0.4,
-    usefulness_weight=0.25,
+    usefulness_weight=0.5,
     search_query=initial_query_text,
     limit=TOP_N,
 )
@@ -299,19 +275,17 @@ normal_recency_usefulness_result_df
 
 ![Results - usefulness weighted](../assets/use_cases/rag_hr_chatbot/results-usefulness.png)
 
-Weighting usefulness eradicates all irrelevant docs from our top ten results!
+Weighting usefulness eradicates all irrelevant docs from our top results!
 
-It is also important to see that the same weights produce relevant results for queries about maternity leave — a topic only discussed in the older HR document. It should not get overruled by recent but not relevant documents....
-
-Note also, importantly, that if we query "maternity leave" (below), the same weights (as above) produce relevant results for queries about maternity leave — a topic discussed only in the older HR document (2023). With the proper weighting, this older material appropriately does *not* get overruled by more recent but *irrelevant* documents.
+Now, let's query "maternity leave" — a topic discussed only in the older HR document (2023). Using the same weights we just used above, we should be able to surface relevant results that rank higher than other more recent but irrelevant results:
 
 ```python
 maternity_result = app.query(
     knowledgebase_query,
     relevance_weight=1,
     recency_weight=0.4,
-    usefulness_weight=0.25,
-    search_query="What are the companies terms for maternal leave?",
+    usefulness_weight=0.5,
+    search_query="What are the companies terms for parental leave?",
     limit=TOP_N,
 )
 
@@ -321,12 +295,17 @@ maternity_result_df
 
 ![Results 4](../assets/use_cases/rag_hr_chatbot/results4.png)
 
-...
-Weighting at query time is not the only way we can do our retrieval. We also have a new way of optimizing retrieval - by detecting user intent from the query. We discuss this Natural Language Querying method in depth in [this feature notebook](https://github.com/superlinked/superlinked/blob/main/notebook/feature/natural_language_querying.ipynb), but let's do a quick implementation here just to demo it.
+And our results do not disappoint. We see relevant maternity leave results at the top of our list, despite the fact that they are less recent.
+
+Using weights on Superlinked spaces at query time (i.e., not having to re-embed our data), our results confirm, is a relatively efficient way of optimizing retrieval, returning relevant, useful information to different kinds of HR policy queries.
+
+But query time weighting is *not the only way* to retrieve relevant, useful results. We can be even more efficient by applying **another method** that saves even the time we take to do our manual weight adjustments. Let's see how.
 
 ## NEW Natural language querying
 
-We can save time manually optimizing our query time weights by *letting the system set them* based on the detected user intent. Here's how:
+ We can save time manually optimizing our query time weights by *letting the system set them* based on user intent. Our new **Natural Language Querying method** (covered in depth in [this feature notebook](https://github.com/superlinked/superlinked/blob/main/notebook/feature/natural_language_querying.ipynb)) handles this by **detecting user intent from the query**. To demonstrate, let's very quickly implement this method on the same HR policy data above.
+
+ Here's how:
 
 ```python
 # switch to your working OpenAI API key!
@@ -339,6 +318,8 @@ nlq_knowledgebase_query = knowledgebase_query.with_natural_query(
 )
 ```
 
+Now, let's send our query and see what we get.
+
 ```python
 nlq_result = app.query(
     nlq_knowledgebase_query,
@@ -350,13 +331,11 @@ nlq_result_df = present_result(nlq_result)
 nlq_result_df
 ```
 
-Let's take a look at our results.
-
 ![natural language query results](../assets/use_cases/rag_hr_chatbot/nlqresults.png)
 
-Excellent results!...
+Our natural language querying method achieves excellent results and saves us the time of manually adjusting our weights when we query.
 
-Whichever method we use (manual query time weights or natural language query), we achieving highly relevant results. With our retrieval performing well, let’s move on to augmenting our query template so that we optimize LLM generation.
+Whichever method we use (manually adjusting query time weights or natural language querying), we achieve highly relevant results. **With our retrieval performing well**, let’s take the **final step** in implementing our HR chatbot - **augment our query template**, so that we optimize the LLM generation.
 
 ### Augmentation - formulating your query for LLM generation
 
@@ -418,7 +397,7 @@ QUESTION: What should management monitor?
 [/INST]
 ```
 
-With the query template in place, let’s prompt the LLM for a text answer.
+Now that we have our augmented query template in place, let’s prompt the LLM for a text answer.
 
 ### Generation - prompting the LLM to generate a text answer to your query
 
@@ -481,9 +460,11 @@ QUESTION: What should management monitor?
 It is important to note that management should monitor these areas in a socially unbiased and positive manner, ensuring that any monitoring is conducted in a fair and ethical manner, without any harmful or illegal content.
 ```
 
-### Evaluating the answer
+### How are our query results?
 
-Our HR chatbot's text answer is structured, contains relevant information from our context documents, and is tailored to our question. Because of our hardware setup, our chatbot generates results in a manageable time. We see that the generated text in "3." contains the correct annual term, mainly because our Superlinked-powered retrieval feeds our HR chatbot the right thing as context information.
+Our HR chatbot's text answer is structured, contains relevant information from our context documents, and is tailored to our question. Because of our hardware setup, our chatbot generates results in a manageable time. We see that the generated text in "3." (above) contains the correct annual term, mainly because our Superlinked-powered retrieval feeds our HR chatbot the right thing as context information.
+
+## Summing up...
 
 Using Superlinked’s Recency, TextSimilarity, and Usefulness spaces along with Query time weights to power retrieval enables semantic search to achieve high quality, nuanced outcomes at scale, even in cases where accurate results require prioritizing both recency and relevance. This HR chatbot example is just one example of what you can do with the Superlinked library.
 
