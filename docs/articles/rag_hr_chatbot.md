@@ -24,7 +24,7 @@ Below, we’ll show you how to integrate Superlinked into your tech stack to add
 
 ## Superlinked addresses RAG challenges, by turning your data into nuanced, multimodal vectors
 
-Superlinked enables you to turn your data into multimodal vectors, and apply weights to specific parts of your data at query time, optimizing retrieval without a custom reranking model or postprocessing tasks. By letting you natively things - e.g., using a Recency embedding space to fine tune the freshness of the data you query - that would otherwise require complex hacks (i.e., using other libraries), Superlinked optimizes your results while reducing your RAG system’s operating resources.
+Superlinked enables you to turn your data into multimodal vectors, and apply weights to specific parts of your data at query time, optimizing retrieval without a custom reranking model or postprocessing tasks. By letting you natively embed things - e.g., using a Recency embedding space to fine tune the freshness of the data you query - that would otherwise require complex hacks (i.e., using other libraries), Superlinked optimizes your results while reducing your RAG system’s operating resources.
 
 We build our RAG-powered chatbot below using elements of the Superlinked library that address the challenges of RAG - ensuring your data's diverse, quality, and up-to-date-ness, avoiding reranking, efficient LLM deployment, and, in our HR policy use case, alignment with company guidelines:
 
