@@ -598,5 +598,5 @@ To learn more about the intricacies of RAPTOR, check out their official [GitHub 
 
 ## Contributors
 
-- [Vipul Maheshwari, author](https://in.linkedin.com/in/vipul-maheshwari-19b98423)
+- [Vipul Maheshwari, author](https://www.linkedin.com/in/vipulmaheshwarii/)
 - [Robert Turner, editor](https://www.linkedin.com/in/robertdhayanturner/)
