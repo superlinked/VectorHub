@@ -174,13 +174,13 @@
     "value": 504687,
     "source_url": "https://pypi.org/project/astrapy/",
     "comment": "",
-    "value_90_days": 221447
+    "value_90_days": 227364
   },
   "npm_downloads": {
-    "value": 837714,
+    "value": 885787,
     "source_url": "https://www.npmjs.com/package/@datastax/astra-db-ts",
     "comment": "",
-    "value_90_days": 315571
+    "value_90_days": 342047
   },
   "crates_io_downloads": {
     "value": 0,
