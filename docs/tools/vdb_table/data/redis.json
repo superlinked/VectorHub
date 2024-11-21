@@ -33,8 +33,8 @@
   },
   "hybrid_search": {
     "support": "full",
-    "source_url": "",
-    "comment": "Supported using the aggregation api. Example: https://github.com/redis-developer/redis-ai-resources/blob/main/python-recipes/vector-search/02_hybrid_search.ipynb"
+    "source_url": "https://github.com/redis-developer/redis-ai-resources/blob/main/python-recipes/vector-search/02_hybrid_search.ipynb",
+    "comment": "Supported using the aggregation api."
   },
   "facets": {
     "support": "full",
