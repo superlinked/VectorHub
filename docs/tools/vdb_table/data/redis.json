@@ -3,7 +3,7 @@
   "links": {
     "docs": "https://redis.io/docs/get-started/vector-database/",
     "github": "https://github.com/RediSearch/RediSearch",
-    "website": "https://redis.com/solutions/use-cases/vector-database/",
+    "website": "https://redis.io/solutions/vector-database/",
     "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/81",
     "poc_github": "https://github.com/adrianoamaral",
     "slug": "redis"
@@ -32,9 +32,9 @@
     "comment": ""
   },
   "hybrid_search": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://github.com/redis-developer/redis-ai-resources/blob/main/python-recipes/vector-search/02_hybrid_search.ipynb",
+    "comment": "Supported using the aggregation api."
   },
   "facets": {
     "support": "full",
