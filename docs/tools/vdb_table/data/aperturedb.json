@@ -9,42 +9,42 @@
     "slug": "aperturedb"
   },
   "oss": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "community",
+    "source_url": "https://hub.docker.com/r/aperturedata/aperturedb-community",
+    "comment": "ApertureDB community is a great way to test all the database features, locally."
   },
   "license": {
-    "value": "",
+    "value": "Proprietary",
     "source_url": "",
     "comment": ""
   },
   "dev_languages": {
     "value": [
-      ""
+      "C++"
     ],
     "source_url": "",
     "comment": ""
   },
-  "vector_launch_year": 0,
+  "vector_launch_year": 2021,
   "metadata_filter": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://docs.aperturedata.io/concepts/Schema",
+    "comment": "Complete graph database support alongside vector search"
   },
   "hybrid_search": {
-    "support": "",
+    "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "Blending graph filtering with vector search. Easy to introduce search algorithms"
   },
   "facets": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "geo_search": {
-    "support": "",
+    "support": "partial",
     "source_url": "",
-    "comment": ""
+    "comment": "Coordinates can be represented in metadata or as embeddings"
   },
   "multi_vec": {
     "support": "",
@@ -52,7 +52,7 @@
     "comment": ""
   },
   "sparse_vectors": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
@@ -67,14 +67,14 @@
     "comment": ""
   },
   "embeddings_text": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "embeddings_image": {
-    "support": "",
+    "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "Supports multimodal embeddings in general including video"
   },
   "embeddings_structured": {
     "support": "",
@@ -82,34 +82,34 @@
     "comment": ""
   },
   "rag": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "recsys": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "langchain": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "llamaindex": {
-    "support": "",
+    "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "Yet to contribute upstream"
   },
   "managed_cloud": {
-    "support": "",
+    "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "VPC options available as well"
   },
   "pricing": {
-    "value": "",
-    "source_url": "",
-    "comment": ""
+    "value": "full",
+    "source_url": "http://aperturedata.io/pricing",
+    "comment": "Offers free trial"
   },
   "in_process": {
     "support": "none",
@@ -117,7 +117,7 @@
     "comment": ""
   },
   "multi_tenancy": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
@@ -127,33 +127,33 @@
     "comment": ""
   },
   "ephemeral": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "sharding": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "doc_size": {
     "bytes": 0,
-    "unlimited": false,
-    "source_url": "",
-    "comment": ""
+    "unlimited": true,
+    "source_url": "https://docs.aperturedata.io/administration/Distributed%20aperturedb",
+    "comment": "Multimodal data stored in a horizontally scalable ApertureDB deployment, not limited in count of objects."
   },
   "vector_dims": {
     "value": 0,
     "unlimited": true,
     "source_url": "",
-    "comment": ""
+    "comment": "Unlimited. Commonly tested 4096 dims"
   },
   "index_types": {
     "value": [
-      "HNSW"
+      "HNSW", "FLAT", "IVF"
     ],
-    "source_url": "",
-    "comment": ""
+    "source_url": "https://docs.aperturedata.io/query_language/reference/descriptor_commands/desc_set_commands/AddDescriptorSet",
+    "comment": "New indexes introduced as needed. Multiple distance metrics supported."
   },
   "github_stars": {
     "value": 0,
