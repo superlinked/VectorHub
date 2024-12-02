@@ -542,5 +542,5 @@ Let's visualize these results side by side on a graph.
 
 ## Contributors
 
-- [Ashish Abraham, author](https://www.linkedin.com/in/ashish-abraham/)
+- [Ashish Abraham, author](https://www.linkedin.com/in/ashish-abraham-811a23201/)
 - [Robert Turner, editor](https://www.linkedin.com/in/robertdhayanturner/)
