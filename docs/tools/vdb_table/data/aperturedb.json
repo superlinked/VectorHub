@@ -9,9 +9,9 @@
     "slug": "aperturedb"
   },
   "oss": {
-    "support": "community",
+    "support": "partial",
     "source_url": "https://hub.docker.com/r/aperturedata/aperturedb-community",
-    "comment": "ApertureDB community is a great way to test all the database features, locally."
+    "comment": "ApertureDB community edition is free and a great way to test all the database features, locally."
   },
   "license": {
     "value": "Proprietary",
