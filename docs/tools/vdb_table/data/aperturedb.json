@@ -9,51 +9,51 @@
     "slug": "aperturedb"
   },
   "oss": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "partial",
+    "source_url": "https://hub.docker.com/r/aperturedata/aperturedb-community",
+    "comment": "ApertureDB community edition is free and a great way to test all the database features, locally."
   },
   "license": {
-    "value": "",
-    "source_url": "",
-    "comment": ""
+    "value": "Proprietary",
+    "source_url": "https://github.com/aperture-data",
+    "comment": "ApertureDB code is proprietary but we have open source clients, dataset, and applications repositories."
   },
   "dev_languages": {
     "value": [
-      ""
+      "c++"
     ],
-    "source_url": "",
+    "source_url": "https://github.com/aperture-data",
     "comment": ""
   },
-  "vector_launch_year": 0,
+  "vector_launch_year": 2021,
   "metadata_filter": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://docs.aperturedata.io/concepts/Schema",
+    "comment": "Complete graph database support alongside vector search"
   },
   "hybrid_search": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://docs.aperturedata.io/python_sdk/object_wrappers/Descriptors",
+    "comment": "Blending graph filtering with vector search. Easy to introduce search algorithms. You can search across multiple embedding sets as well (collections)"
   },
   "facets": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.aperturedata.io/query_language/Reference/shared_command_parameters/constraints",
     "comment": ""
   },
   "geo_search": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "partial",
+    "source_url": "https://docs.aperturedata.io/HowToGuides/start/Embeddings",
+    "comment": "Coordinates can be represented in metadata or as embeddings"
   },
   "multi_vec": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://docs.aperturedata.io/HowToGuides/Applications/similarity_search#all-of-the-above-and-some-more-can-be-done-by-executing-this-through-adb-cli",
+    "comment": "You can attach multiple embeddings per source of data for multimodal data types in different embeddings collections or within the same (regions of interest or full data embeddings)."
   },
   "sparse_vectors": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.aperturedata.io/query_language/Reference/descriptor_commands/desc_set_commands/AddDescriptorSet",
     "comment": ""
   },
   "bm25": {
@@ -67,49 +67,49 @@
     "comment": ""
   },
   "embeddings_text": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://docs.aperturedata.io/HowToGuides/Applications/semantic_search/website_ingest",
+    "comment": "We use text embeddings in ApertureDB vector store for our documentation chatbot."
   },
   "embeddings_image": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://docs.aperturedata.io/HowToGuides/Advanced/Image%20Similarity%20Search",
+    "comment": "Supports multimodal embeddings in general including for videos."
   },
   "embeddings_structured": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "partial",
+    "source_url": "https://docs.aperturedata.io/query_language/Reference/descriptor_commands/desc_commands/AddDescriptor",
+    "comment": "ApertureDB vector store can store embeddings from any source but we don't generate them ourselves."
   },
   "rag": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://docs.aperturedata.io/category/chatbot-with-langchain-and-aperturedb",
+    "comment": "You can build hybrid-RAG with our graph-vector search."
   },
   "recsys": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "partial",
+    "source_url": "https://docs.aperturedata.io/HowToGuides/Applications/similarity_search",
+    "comment": "Recommendations can be built using our KNN and metadata search support."
   },
   "langchain": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.aperturedata.io/Integrations/langchain_howto",
     "comment": ""
   },
   "llamaindex": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://github.com/aperture-data/llama_index",
+    "comment": "Yet to contribute upstream but deployed with customer"
   },
   "managed_cloud": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://cloud.aperturedata.io/",
+    "comment": "VPC options and community edition available as well"
   },
   "pricing": {
-    "value": "",
-    "source_url": "",
-    "comment": ""
+    "value": "full",
+    "source_url": "http://aperturedata.io/pricing",
+    "comment": "Offers free trial"
   },
   "in_process": {
     "support": "none",
@@ -117,9 +117,9 @@
     "comment": ""
   },
   "multi_tenancy": {
-    "support": "",
+    "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "Not documented externally."
   },
   "disk_index": {
     "support": "",
@@ -127,33 +127,33 @@
     "comment": ""
   },
   "ephemeral": {
-    "support": "",
+    "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "Not documented externally."
   },
   "sharding": {
-    "support": "",
+    "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "Not documented externally."
   },
   "doc_size": {
     "bytes": 0,
-    "unlimited": false,
-    "source_url": "",
-    "comment": ""
+    "unlimited": true,
+    "source_url": "https://docs.aperturedata.io/administration/Distributed%20aperturedb",
+    "comment": "Multimodal data stored in a horizontally scalable ApertureDB deployment, not limited in count of objects."
   },
   "vector_dims": {
     "value": 0,
     "unlimited": true,
-    "source_url": "",
-    "comment": ""
+    "source_url": "https://docs.aperturedata.io/query_language/reference/descriptor_commands/desc_set_commands/AddDescriptorSet",
+    "comment": "Unlimited. Currently tested up to 4096 dims"
   },
   "index_types": {
     "value": [
-      "HNSW"
+      "HNSW", "FLAT", "IVF"
     ],
-    "source_url": "",
-    "comment": ""
+    "source_url": "https://docs.aperturedata.io/query_language/reference/descriptor_commands/desc_set_commands/AddDescriptorSet",
+    "comment": "New indexes introduced as needed. Multiple distance metrics supported."
   },
   "github_stars": {
     "value": 0,
