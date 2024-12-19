@@ -32,28 +32,28 @@
     "comment": "Complete graph database support alongside vector search"
   },
   "hybrid_search": {
-    "support": "full",
-    "source_url": "https://docs.aperturedata.io/python_sdk/object_wrappers/Descriptors",
-    "comment": "Blending graph filtering with vector search. Easy to introduce search algorithms. You can search across multiple embedding sets as well (collections)"
+    "support": "",
+    "source_url": "",
+    "comment": ""
   },
   "facets": {
     "support": "full",
-    "source_url": "https://docs.aperturedata.io/query_language/Reference/shared_command_parameters/constraints",
-    "comment": ""
+    "source_url": "https://docs.aperturedata.io/query_language/Reference/shared_command_parameters/results",
+    "comment": "Results can be aggregated on property values"
   },
   "geo_search": {
-    "support": "partial",
-    "source_url": "https://docs.aperturedata.io/HowToGuides/start/Embeddings",
-    "comment": "Coordinates can be represented in metadata or as embeddings"
+    "support": "",
+    "source_url": "",
+    "comment": ""
   },
   "multi_vec": {
-    "support": "full",
+    "support": "partial",
     "source_url": "https://docs.aperturedata.io/HowToGuides/Applications/similarity_search#all-of-the-above-and-some-more-can-be-done-by-executing-this-through-adb-cli",
     "comment": "You can attach multiple embeddings per source of data for multimodal data types in different embeddings collections or within the same (regions of interest or full data embeddings)."
   },
   "sparse_vectors": {
-    "support": "full",
-    "source_url": "https://docs.aperturedata.io/query_language/Reference/descriptor_commands/desc_set_commands/AddDescriptorSet",
+    "support": "",
+    "source_url": "",
     "comment": ""
   },
   "bm25": {
@@ -68,28 +68,28 @@
   },
   "embeddings_text": {
     "support": "full",
-    "source_url": "https://docs.aperturedata.io/HowToGuides/Applications/semantic_search/website_ingest",
-    "comment": "We use text embeddings in ApertureDB vector store for our documentation chatbot."
+    "source_url": "https://docs.aperturedata.io/HowToGuides/Ingestion/Updates#transformations-while-loading",
+    "comment": "You can plug-in user-defined or off-the-shelf text embedding models when adding text blobs in the form of new generators"
   },
   "embeddings_image": {
     "support": "full",
-    "source_url": "https://docs.aperturedata.io/HowToGuides/Advanced/Image%20Similarity%20Search",
-    "comment": "Supports multimodal embeddings in general including for videos."
+    "source_url": "https://docs.aperturedata.io/HowToGuides/Ingestion/Updates#transformations-while-loading",
+    "comment": "You can plug-in user-defined or off-the-shelf image embedding models when adding images to introduce any number of embedding per image, in different collections"
   },
   "embeddings_structured": {
-    "support": "partial",
-    "source_url": "https://docs.aperturedata.io/query_language/Reference/descriptor_commands/desc_commands/AddDescriptor",
-    "comment": "ApertureDB vector store can store embeddings from any source but we don't generate them ourselves."
+    "support": "",
+    "source_url": "",
+    "comment": ""
   },
   "rag": {
-    "support": "full",
-    "source_url": "https://docs.aperturedata.io/category/chatbot-with-langchain-and-aperturedb",
-    "comment": "You can build hybrid-RAG with our graph-vector search."
+    "support": "",
+    "source_url": "",
+    "comment": ""
   },
   "recsys": {
-    "support": "partial",
-    "source_url": "https://docs.aperturedata.io/HowToGuides/Applications/similarity_search",
-    "comment": "Recommendations can be built using our KNN and metadata search support."
+    "support": "",
+    "source_url": "",
+    "comment": ""
   },
   "langchain": {
     "support": "full",
@@ -97,7 +97,7 @@
     "comment": ""
   },
   "llamaindex": {
-    "support": "full",
+    "support": "partial",
     "source_url": "https://github.com/aperture-data/llama_index",
     "comment": "Yet to contribute upstream but deployed with customer"
   },
@@ -107,9 +107,9 @@
     "comment": "VPC options and community edition available as well"
   },
   "pricing": {
-    "value": "full",
+    "value": "Instance-based hourly (cloud) or annual (VPC) pricing with free trial",
     "source_url": "http://aperturedata.io/pricing",
-    "comment": "Offers free trial"
+    "comment": "Priced generally by number of database instances, support level, and resource tier. Free trial and cloud pricing are on website. Custom pricing for VPC deployments."
   },
   "in_process": {
     "support": "none",
@@ -117,9 +117,9 @@
     "comment": ""
   },
   "multi_tenancy": {
-    "support": "full",
+    "support": "",
     "source_url": "",
-    "comment": "Not documented externally."
+    "comment": ""
   },
   "disk_index": {
     "support": "",
@@ -127,20 +127,20 @@
     "comment": ""
   },
   "ephemeral": {
-    "support": "full",
+    "support": "partial",
     "source_url": "",
     "comment": "Not documented externally."
   },
   "sharding": {
-    "support": "full",
+    "support": "partial",
     "source_url": "",
     "comment": "Not documented externally."
   },
   "doc_size": {
     "bytes": 0,
     "unlimited": true,
-    "source_url": "https://docs.aperturedata.io/administration/Distributed%20aperturedb",
-    "comment": "Multimodal data stored in a horizontally scalable ApertureDB deployment, not limited in count of objects."
+    "source_url": "https://docs.aperturedata.io/administration/Configuring%20ApertureDB",
+    "comment": "You can store large or small files but need to change message size for adding or querying files larger than 256MB. For very large files like GBs of video, it will require optimizations to send over network or would be slow."
   },
   "vector_dims": {
     "value": 0,
