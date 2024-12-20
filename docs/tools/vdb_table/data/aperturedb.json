@@ -152,7 +152,7 @@
     "value": [
       "HNSW", "FLAT", "IVF"
     ],
-    "source_url": "https://docs.aperturedata.io/query_language/reference/descriptor_commands/desc_set_commands/AddDescriptorSet",
+    "source_url": "https://docs.aperturedata.io/query_language/Reference/descriptor_commands/desc_set_commands/AddDescriptorSet#details",
     "comment": "New indexes introduced as needed. Multiple distance metrics supported."
   },
   "github_stars": {
