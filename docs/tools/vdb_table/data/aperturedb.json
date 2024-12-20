@@ -140,7 +140,7 @@
     "bytes": 0,
     "unlimited": true,
     "source_url": "https://docs.aperturedata.io/administration/Configuring%20ApertureDB",
-    "comment": "You can store large or small files but need to change message size for adding or querying files larger than 256MB. For very large files like GBs of video, it will require optimizations to send over network or would be slow."
+    "comment": "You can store large or small files but need to change the `max_connection_message_size_mb` for adding or querying files larger than 256MB. For very large files like GBs of video, it will require optimizations to send over network or would be slow."
   },
   "vector_dims": {
     "value": 0,
