@@ -9,27 +9,27 @@
     "slug": "aperturedb"
   },
   "oss": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "partial",
+    "source_url": "https://hub.docker.com/r/aperturedata/aperturedb-community",
+    "comment": "ApertureDB community edition is free and a great way to test all the database features, locally."
   },
   "license": {
-    "value": "",
-    "source_url": "",
-    "comment": ""
+    "value": "Proprietary",
+    "source_url": "https://github.com/aperture-data",
+    "comment": "ApertureDB code is proprietary but we have open source clients, dataset, and applications repositories."
   },
   "dev_languages": {
     "value": [
-      ""
+      "c++"
     ],
-    "source_url": "",
+    "source_url": "https://github.com/aperture-data",
     "comment": ""
   },
-  "vector_launch_year": 0,
+  "vector_launch_year": 2021,
   "metadata_filter": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://docs.aperturedata.io/concepts/Schema",
+    "comment": "Complete graph database support alongside vector search"
   },
   "hybrid_search": {
     "support": "",
@@ -37,9 +37,9 @@
     "comment": ""
   },
   "facets": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://docs.aperturedata.io/query_language/Reference/shared_command_parameters/results",
+    "comment": "Results can be aggregated on property values"
   },
   "geo_search": {
     "support": "",
@@ -47,9 +47,9 @@
     "comment": ""
   },
   "multi_vec": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "partial",
+    "source_url": "https://docs.aperturedata.io/HowToGuides/Applications/similarity_search#all-of-the-above-and-some-more-can-be-done-by-executing-this-through-adb-cli",
+    "comment": "You can attach multiple embeddings per source of data for multimodal data types in different embeddings collections or within the same (regions of interest or full data embeddings)."
   },
   "sparse_vectors": {
     "support": "",
@@ -67,14 +67,14 @@
     "comment": ""
   },
   "embeddings_text": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://docs.aperturedata.io/HowToGuides/Ingestion/Updates#transformations-while-loading",
+    "comment": "You can plug-in user-defined or off-the-shelf text embedding models when adding text blobs in the form of new generators"
   },
   "embeddings_image": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://docs.aperturedata.io/HowToGuides/Ingestion/Updates#transformations-while-loading",
+    "comment": "You can plug-in user-defined or off-the-shelf image embedding models when adding images to introduce any number of embedding per image, in different collections"
   },
   "embeddings_structured": {
     "support": "",
@@ -92,24 +92,24 @@
     "comment": ""
   },
   "langchain": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.aperturedata.io/Integrations/langchain_howto",
     "comment": ""
   },
   "llamaindex": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "partial",
+    "source_url": "https://github.com/aperture-data/llama_index",
+    "comment": "Yet to contribute upstream but deployed with customer"
   },
   "managed_cloud": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://cloud.aperturedata.io/",
+    "comment": "VPC options and community edition available as well"
   },
   "pricing": {
-    "value": "",
-    "source_url": "",
-    "comment": ""
+    "value": "Instance-based hourly (cloud) or annual (VPC) pricing with free trial",
+    "source_url": "http://aperturedata.io/pricing",
+    "comment": "Priced generally by number of database instances, support level, and resource tier. Free trial and cloud pricing are on website. Custom pricing for VPC deployments."
   },
   "in_process": {
     "support": "none",
@@ -127,33 +127,33 @@
     "comment": ""
   },
   "ephemeral": {
-    "support": "",
+    "support": "partial",
     "source_url": "",
-    "comment": ""
+    "comment": "Not documented externally."
   },
   "sharding": {
-    "support": "",
+    "support": "partial",
     "source_url": "",
-    "comment": ""
+    "comment": "Not documented externally."
   },
   "doc_size": {
     "bytes": 0,
-    "unlimited": false,
-    "source_url": "",
-    "comment": ""
+    "unlimited": true,
+    "source_url": "https://docs.aperturedata.io/administration/Configuring%20ApertureDB",
+    "comment": "You can store large or small files but need to change the `max_connection_message_size_mb` for adding or querying files larger than 256MB. For very large files like GBs of video, it will require optimizations to send over network or would be slow."
   },
   "vector_dims": {
     "value": 0,
     "unlimited": true,
-    "source_url": "",
-    "comment": ""
+    "source_url": "https://docs.aperturedata.io/query_language/reference/descriptor_commands/desc_set_commands/AddDescriptorSet",
+    "comment": "Unlimited. Currently tested up to 4096 dims"
   },
   "index_types": {
     "value": [
-      "HNSW"
+      "HNSW", "FLAT", "IVF"
     ],
-    "source_url": "",
-    "comment": ""
+    "source_url": "https://docs.aperturedata.io/query_language/Reference/descriptor_commands/desc_set_commands/AddDescriptorSet#details",
+    "comment": "New indexes introduced as needed. Multiple distance metrics supported."
   },
   "github_stars": {
     "value": 0,
