@@ -163,33 +163,33 @@
     "comment": "via Lucene"
   },
   "github_stars": {
-    "value": 71028,
+    "value": 71088,
     "source_url": "https://github.com/elastic/elasticsearch",
     "comment": "",
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 891804964,
+    "value": 892504126,
     "source_url": "https://hub.docker.com/_/elasticsearch",
     "comment": "",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 941042256,
+    "value": 948890683,
     "source_url": "https://pypi.org/project/elasticsearch/",
     "comment": "",
-    "value_90_days": 108563973
+    "value_90_days": 108032203
   },
   "npm_downloads": {
-    "value": 77839438,
+    "value": 78042557,
     "source_url": "https://www.npmjs.com/package/@elastic/elasticsearch",
     "comment": "",
-    "value_90_days": 13587118
+    "value_90_days": 13582233
   },
   "crates_io_downloads": {
-    "value": 5011270,
+    "value": 5154001,
     "source_url": "https://crates.io/crates/elasticsearch",
     "comment": "",
-    "value_90_days": 1713420
+    "value_90_days": 1715995
   }
 }

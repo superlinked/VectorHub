@@ -168,10 +168,10 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 60537,
+    "value": 61968,
     "source_url": "https://pypi.org/project/pyepsilla/",
     "comment": "",
-    "value_90_days": 10397
+    "value_90_days": 11351
   },
   "npm_downloads": {
     "value": 0,

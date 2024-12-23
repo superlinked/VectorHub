@@ -150,7 +150,9 @@
   },
   "index_types": {
     "value": [
-      "HNSW", "FLAT", "IVF"
+      "HNSW",
+      "FLAT",
+      "IVF"
     ],
     "source_url": "https://docs.aperturedata.io/query_language/Reference/descriptor_commands/desc_set_commands/AddDescriptorSet#details",
     "comment": "New indexes introduced as needed. Multiple distance metrics supported."
@@ -171,13 +173,13 @@
     "value": 195530,
     "source_url": "https://pypi.org/project/aperturedb/",
     "comment": "",
-    "value_90_days": 54201
+    "value_90_days": 54798
   },
   "npm_downloads": {
-    "value": 17056,
+    "value": 16913,
     "source_url": "https://www.npmjs.com/package/aperture",
     "comment": "",
-    "value_90_days": 1528
+    "value_90_days": 1607
   },
   "crates_io_downloads": {
     "value": 0,
