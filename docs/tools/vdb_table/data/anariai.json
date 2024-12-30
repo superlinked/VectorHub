@@ -174,10 +174,10 @@
     "value_90_days": 0
   },
   "npm_downloads": {
-    "value": 5341,
+    "value": 5364,
     "source_url": "https://www.npmjs.com/package/epsillajs",
     "comment": "",
-    "value_90_days": 551
+    "value_90_days": 498
   },
   "crates_io_downloads": {
     "value": 0,
