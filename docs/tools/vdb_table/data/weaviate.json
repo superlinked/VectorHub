@@ -165,13 +165,13 @@
     "comment": "Option to dynamically switch from Flat to HNSW"
   },
   "github_stars": {
-    "value": 11919,
+    "value": 11963,
     "source_url": "https://github.com/weaviate/weaviate",
     "comment": "",
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 7107038,
+    "value": 7147405,
     "source_url": "https://hub.docker.com/r/semitechnologies/weaviate",
     "comment": "",
     "value_90_days": 0
@@ -180,18 +180,18 @@
     "value": 45038466,
     "source_url": "https://pypi.org/project/weaviate-client/",
     "comment": "",
-    "value_90_days": 21549023
+    "value_90_days": 20883322
   },
   "npm_downloads": {
-    "value": 505086,
+    "value": 512385,
     "source_url": "https://www.npmjs.com/package/weaviate-client",
     "comment": "",
-    "value_90_days": 224788
+    "value_90_days": 222915
   },
   "crates_io_downloads": {
-    "value": 855,
+    "value": 859,
     "source_url": "https://crates.io/crates/weaviate-client",
     "comment": "",
-    "value_90_days": 209
+    "value_90_days": 188
   }
 }
