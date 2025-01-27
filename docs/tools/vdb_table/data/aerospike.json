@@ -178,10 +178,10 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 2331,
+    "value": 2610,
     "source_url": "https://pypi.org/project/aerospike-vector/",
     "comment": "",
-    "value_90_days": 825
+    "value_90_days": 732
   },
   "npm_downloads": {
     "value": 0,
