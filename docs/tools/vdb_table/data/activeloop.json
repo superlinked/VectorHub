@@ -33,9 +33,9 @@
     "comment": ""
   },
   "hybrid_search": {
-    "support": "",
-    "source_url": "https://docs.activeloop.ai/performance-features/querying-datasets/query-syntax",
-    "comment": "While you can run embedding search + contains(text, 'keywoard') or multiple those (keyword search inside text tensor) since BM25 not available I wouldn't call a full hybrid search.  https://docs.activeloop.ai/performance-features/querying-datasets/query-syntax"
+    "support": "full",
+    "source_url": "https://docs.deeplake.ai/4.0/guide/rag/",
+    "comment": "BM25 with ANN"
   },
   "facets": {
     "support": "",
@@ -58,14 +58,14 @@
     "comment": "no native sparse vector support, although it supports all numpy arrays hence can also store sparse numpy arrays"
   },
   "bm25": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.deeplake.ai/latest/",
     "comment": ""
   },
   "full_text": {
-    "support": "partial",
-    "source_url": "",
-    "comment": "you can search keywords with TQL `contains(...)` function"
+    "support": "full",
+    "source_url": "https://docs.deeplake.ai/4.0/guide/rag/",
+    "comment": "via Inverted Index and BM25"
   },
   "embeddings_text": {
     "support": "partial",
