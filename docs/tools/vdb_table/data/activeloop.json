@@ -149,6 +149,11 @@
     "source_url": "",
     "comment": ""
   },
+  "binary_quantization": {
+    "support": "partial",
+    "source_url": "https://docs.deeplake.ai/latest/api/types/#deeplake.types.Embedding",
+    "comment": "Binary Quantization of index"
+  },
   "index_types": {
     "value": [
       "HNSW"
