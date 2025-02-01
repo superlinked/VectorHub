@@ -34,7 +34,7 @@
   },
   "hybrid_search": {
     "support": "full",
-    "source_url": "https://docs.deeplake.ai/4.0/guide/rag/",
+    "source_url": "https://docs.deeplake.ai/latest/guide/rag/",
     "comment": "BM25 with ANN"
   },
   "facets": {
@@ -64,7 +64,7 @@
   },
   "full_text": {
     "support": "full",
-    "source_url": "https://docs.deeplake.ai/4.0/guide/rag/",
+    "source_url": "https://docs.deeplake.ai/latest/api/query/",
     "comment": "via Inverted Index and BM25"
   },
   "embeddings_text": {
