@@ -1,0 +1,185 @@
+{
+  "name": "ObjectBox",
+  "links": {
+    "docs": "https://docs.objectbox.io/",
+    "github": "https://github.com/objectbox",
+    "website": "https://objectbox.io/",
+    "vendor_discussion": "",
+    "poc_github": "",
+    "slug": "objectbox"
+  },
+  "oss": {
+    "support": "partial",
+    "source_url": "https://github.com/orgs/objectbox/repositories/",
+    "comment": "Partly open source with bindings under Apache 2.0"
+  },
+  "license": {
+    "value": "Apache 2.0, MIT, proprietory",
+    "source_url": "https://github.com/orgs/objectbox/repositories",
+    "comment": ""
+  },
+  "dev_languages": {
+    "value": [
+      "Java",
+      "Kotlin",
+      "Flutter/Dart",
+      "Swift",
+      "C",
+      "C++",
+      "Go",
+      "Python"
+    ],
+    "source_url": "https://docs.objectbox.io/getting-started",
+    "comment": ""
+  },
+  "vector_launch_year": 2024,
+  "metadata_filter": {
+    "support": "full",
+    "source_url": "https://docs.objectbox.io/queries",
+    "comment": "Implemented via Query Builder"
+  },
+  "hybrid_search": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "facets": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "geo_search": {
+    "support": "full",
+    "source_url": "https://docs.objectbox.io/on-device-vector-search",
+    "comment": ""
+  },
+  "multi_vec": {
+    "support": "partial",
+    "source_url": "https://docs.objectbox.io/on-device-vector-search",
+    "comment": " via Relations "
+  },
+  "full_text": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_text": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_image": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_structured": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "rag": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "langchain": {
+    "support": "full",
+    "source_url": "https://github.com/objectbox/langchain-objectbox",
+    "comment": ""
+  },
+  "llamaindex": {
+    "support": "full",
+    "source_url": "https://docs.llamaindex.ai/en/stable/api_reference/storage/vector_store/objectbox/ ",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "no",
+    "source_url": "",
+    "comment": "Local-first, on-device vector database for Mobile, IoT, Embedded devices and other commodity hardware - with out-of-the-box Data Sync"
+  },
+  "pricing": {
+    "value": "Vector Database is free, contact for Data Sync pricing",
+    "source_url": "https://objectbox.io/pricing/",
+    "comment": ""
+  },
+  "multi_tenancy": {
+    "support": "full",
+    "source_url": "https://docs.objectbox.io/on-device-vector-search",
+    "comment": ""
+  },
+  "disk_index": {
+    "support": "full",
+    "source_url": "https://docs.objectbox.io/on-device-vector-search",
+    "comment": ""
+  },
+  "ephemeral": {
+    "support": "no",
+    "source_url": "",
+    "comment": ""
+  },
+  "sharding": {
+    "support": "full",
+    "source_url": "https://docs.objectbox.io/on-device-vector-search",
+    "comment": ""
+  },
+  "doc_size": {
+    "bytes": "unlimited",
+    "unlimited": true,
+    "source_url": "https://docs.objectbox.io/on-device-vector-search",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": "unlimited",
+    "unlimited": true,
+    "source_url": "https://docs.objectbox.io/on-device-vector-search",
+    "comment": ""
+  },
+  "int8_quantization": {
+    "support": "",
+    "source_url": "",
+    "comment": "planned"
+  },
+  "binary_quantization": {
+    "support": "",
+    "source_url": "",
+    "comment": "planned"
+  },
+  "index_types": {
+    "value": [
+      "HNSW"
+    ],
+    "source_url": "https://docs.objectbox.io/on-device-vector-search",
+    "comment": ""
+  },
+  "github_stars": {
+    "value": 7340,
+    "source_url": "https://github.com/objectbox ",
+    "comment": "",
+    "value_90_days": ""
+  },
+  "docker_pulls": {
+    "value": "",
+    "source_url": "",
+    "comment": "",
+    "value_90_days": ""
+  },
+  "pypi_downloads": {
+    "value": "",
+    "source_url": "",
+    "comment": "",
+    "value_90_days": ""
+  },
+  "npm_downloads": {
+    "value": "",
+    "source_url": "",
+    "comment": "",
+    "value_90_days": ""
+  },
+  "crates_io_downloads": {
+    "value": "",
+    "source_url": "",
+    "comment": "",
+    "value_90_days": ""
+  }
+}
