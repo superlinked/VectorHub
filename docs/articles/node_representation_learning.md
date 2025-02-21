@@ -78,7 +78,7 @@ Let's look at Node2Vec first.
 
 As opposed to BoW vectors, node embeddings are vector representations that capture the structural role and properties of nodes in a network. Node2Vec is an algorithm that learns node representations using the Skip-Gram method; it models the conditional probability of encountering a context node given a source node in node sequences (random walks):
 
-$P(\text{context}|\text{source}) = \frac{1}{Z}\exp(w_{c}^Tw_s)$
+$$P(\text{context}|\text{source}) = \frac{1}{Z}\exp(w_{c}^Tw_s)$$
 
 
 Here, $w_c$ and $w_s$ are the embeddings of the context node $c$ and source node $s$ respectively. The variable $Z$ serves as a normalization constant, which, for computational efficiency, is never explicitly computed.
