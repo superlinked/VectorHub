@@ -20,7 +20,7 @@
   },
   "dev_languages": {
     "value": [
-      "java"
+      "kotlin"
     ],
     "source_url": "",
     "comment": ""
@@ -92,8 +92,8 @@
     "comment": ""
   },
   "langchain": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://python.langchain.com/docs/integrations/vectorstores/aerospike/",
     "comment": ""
   },
   "llamaindex": {
@@ -122,8 +122,8 @@
     "comment": ""
   },
   "disk_index": {
-    "support": "full",
-    "source_url": "https://aerospike.com/docs/vector/architecture/vector-data#index-partitioning-in-aerospike",
+    "support": "none",
+    "source_url": "",
     "comment": ""
   },
   "ephemeral": {
@@ -132,7 +132,7 @@
     "comment": ""
   },
   "sharding": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
