@@ -157,7 +157,7 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 687,
+    "value": 688,
     "source_url": "https://github.com/nuclia/nucliadb",
     "comment": "",
     "value_90_days": 0
@@ -169,16 +169,16 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 940752,
+    "value": 987730,
     "source_url": "https://pypi.org/project/nucliadb/",
     "comment": "",
-    "value_90_days": 173775
+    "value_90_days": 177292
   },
   "npm_downloads": {
-    "value": 12561,
+    "value": 12455,
     "source_url": "https://www.npmjs.com/package/@nuclia/core",
     "comment": "",
-    "value_90_days": 1714
+    "value_90_days": 1578
   },
   "crates_io_downloads": {
     "value": 0,
