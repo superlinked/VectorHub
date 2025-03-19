@@ -1,18 +1,23 @@
-I’ve always wanted an AI assistant that could make it easier to go through a collection of research papers, answer my questions, summarize the content, and give me the important points. In short, I wanted a research helper that would make the whole process simpler. That’s when I decided to create it
+### Simplifying Complex Research with AI
 
-### What’s the Plan?
+Keeping up-to-date with the vast number of research papers published regularly can be challenging and time-consuming. An AI assistant capable of efficiently locating relevant research, summarizing key insights, and answering specific questions from these papers could significantly streamline this process.
 
-I wanted to build an agentic system that could do three main things:
+### Where to start building a research assistant system ?
 
-1. Find Papers: Search for research papers by topic (e.g., “quantum computing”) and rank them by relevance and recency.
-2. Summarize: Crunch those papers into bite-sized insights fast when I asked it to do so.
-3. Answer Questions: Pull answers from the specific papers which I tell it to do and based on that it answer those questions
+Traditionally, building such a system involves complexity and considerable resource investment. Search systems typically retrieve an initial broad set of documents based on relevance and subsequently apply a secondary reranking process to refine and reorder results. While reranking enhances accuracy, it significantly increases computational complexity, latency, and overhead due to the extensive data retrieval initially required. Superlinked addresses this complexity by combining structured numeric and categorical embeddings with semantic text embeddings, providing comprehensive multimodal vectors.
+This method significantly enhances search accuracy by preserving attribute-specific information within each embedding.
 
-In all of it, Superlinked is the backbone here, As it improves the vector search relevance by encoding metadata together with your unstructured data into vectors. This powers a vector database that understands both the text's meaning and the time factor. I mean when we will stitch the schema design later on, we will be using `RecencySpace` which will literally help us to add the relevancy of the papers during the retrieval (ps: without using any rerankers) that means during the retrieval, if the two papers have the same kind of relevancy, it will prioritize paper which is more recent. More on this later.
+### Learn to build an agentic system with Superlinked
 
-For the LLM reasoning, I plan to use OpenAI’s models. However, you can easily replace it with any LLM of your choice. And last but not least,  I made a Kernel Agent to handle the queries. If you want to follow along, here is the [colab](https://colab.research.google.com/drive/1DZ13m8lTPsGFVW0KuHnjP5Z7z5xmFOaa?usp=sharing)
+This article shows how to build an agent system using a Kernel agent to handle queries. If you want to follow along, here is the [colab](https://colab.research.google.com/drive/1DZ13m8lTPsGFVW0KuHnjP5Z7z5xmFOaa?usp=sharing)
 
-Too much talking, let's go now..
+This AI agent can do three main things:
+
+1. Find Papers: Search for research papers by topic (e.g. “quantum computing”) and then rank them by relevance and recency.
+2. Summarize papers: Condense the retrieved papers into bite-sized insights.
+3. Answer questions: Extract answers directly from the specific research papers based on targeted user queries.
+
+Superlinked eliminates the need for re-ranking methods as it improves the vector search relevance. Superlinked's RecencySpace will be used which specifically encodes temporal metadata, prioritizing recent documents during retrieval, and eliminating the need for computationally expensive reranking. For example, if two papers have the same relevance - the one that is most recent will rank higher.
 
 ### Step 1 : Setting up the toolbox
 
@@ -33,6 +38,7 @@ import os
 from abc import ABC, abstractmethod
 from typing import Any, Optional, Dict
 from tqdm import tqdm
+from google.colab import userdata
 
 # Abstract Tool Class
 class Tool(ABC):
@@ -48,18 +54,25 @@ class Tool(ABC):
     def use(self, *args, **kwargs) -> Any:
         pass
 
+
+# Get API key from Google Colab secrets
+try:
+    api_key = userdata.get('OPENAI_API_KEY')
+except KeyError:
+    raise ValueError("OPENAI_API_KEY not found in user secrets. Please add it using Tools > User secrets.")
+
 # Initialize OpenAI Client
-api_key = os.environ.get("OPENAI_API_KEY", "your-api-key")  # Replace with your OpenAI API key
+api_key = os.environ.get("OPENAI_API_KEY", "your-openai-key")  # Replace with your OpenAI API key
 if not api_key:
     raise ValueError("Please set the OPENAI_API_KEY environment variable.")
 
 client = OpenAI(api_key=api_key)
-model = "gpt-3.5-turbo"
+model = "gpt-4"
 ```
 
-### Step 2 : Data needs
+### Step 2 : Understanding the Dataset
 
-What does the data look like? For this experiment, I used a dataset consisting of 10,000 AI research papers from [Kaggle](https://www.kaggle.com/datasets/yasirabdaali/arxivorg-ai-research-papers-dataset). To make it easy, simply run the cell below, and it will automatically download the dataset to your working directory. You can also replace this with your own data sources, whether they are research papers or other academic content. If you decide to do so, all you need to do is adjust the schema design slightly and update the column names.
+This example uses a dataset containing approximately 10,000 AI research papers available on [Kaggle](https://www.kaggle.com/datasets/yasirabdaali/arxivorg-ai-research-papers-dataset). To make it easy, simply run the cell below, and it will automatically download the dataset to your working directory. You may also use your own data sources, such as research papers or other academic content. If you decide to do so, all you need to do is adjust the schema design slightly and update the column names.
 
 ```python
 import pandas as pd
@@ -67,12 +80,10 @@ import pandas as pd
 !wget --no-check-certificate 'https://drive.google.com/uc?export=download&id=1FCR3TW5yLjGhEmm-Uclw0_5PWVEaLk1j' -O arxiv_ai_data.csv
 ```
 
-For now, I’m going to work with just 1,000 papers—mainly to speed things up for the demo. SHHHHHH :)
-
-There’s one more thing: I’ll convert the published data from string timestamps (like '1993-08-01 00:00:00+00:00') into pandas datetime objects. This conversion is necessary because it allows us to perform date/time operations.
+For now, to make things run a bit quicker, we will use a smaller subset of the papers just to speed things up but feel free to try the example using the full dataset. An important technical detail here is that the timestamps from the dataset will be converted from string timestamps (like '1993-08-01 00:00:00+00:00') into pandas datetime objects.  This conversion is necessary because it allows us to perform date/time operations.
 
 ```python
-df = pd.read_csv('arxiv_ai_data.csv').head(1000)
+df = pd.read_csv('arxiv_ai_data.csv').head(100)
 
 # Convert to datetime but keep it as datetime (more readable and usable)
 df['published'] = pd.to_datetime(df['published'])
@@ -88,19 +99,21 @@ df['text'] = df['title'] + " " + df['summary']
 Debug: Columns in original DataFrame: ['authors', 'categories', 'comment', 'doi', 'entry_id', 'journal_ref' 'pdf_url', 'primary_category', 'published', 'summary', 'title', 'updated']
 ```
 
-Let me briefly explain the columns and what they contain, as this will be helpful later on:
+### Understanding the Dataset Columns
 
-1. `published`: The date the paper was published.
-2. `summary`: The abstract of the paper.
-3. `entry_id`: The arXiv entry ID for the paper.
+Below is a brief overview of the key columns in our dataset, which will be important in the upcoming steps:
 
-For our experiment, the only columns we need are `entry_id`, `published`, `title`, and `summary`. To make things more effective, we can combine the title and the summary of each paper to create a comprehensive text, which will be the core of our work. So `text` column will contains the `title` and the `summary`
+1. `published`: The publication date of the research paper.
+2. `summary`: The abstract of the paper, providing a concise overview.
+3. `entry_id`: The unique identifier for each paper from arXiv.
 
-Just a bit on the Superlinked's in-memory indexer. So basically I think it's a game-changer for our small dataset of 1,000 papers. I mean it stores data in the computer’s memory, which means queries are lightning-fast—no waiting for disk access. This is perfect for real-time applications and prototyping, like our proof-of-concept.
+For this demonstration, we specifically focus on four columns: `entry_id`, `published`, `title`, and `summary`. To optimize retrieval quality, the title and summary are combined into a single, comprehensive text column, which forms the core of our embedding and search process.
+
+A Note on Superlinked’s In-Memory Indexer : Superlinked’s in-memory indexing stores our dataset directly in RAM, making retrieval exceptionally fast which is ideal for real-time searches and rapid prototyping. For this proof-of-concept with 1,000 research papers, leveraging an in-memory approach significantly enhances query performance, eliminating delays associated with disk access.
 
 ### Step 3 : Defining the Superlinked Schema
 
-To move ahead, we will need a schema to map our data. I set up `PaperSchema` with key fields:
+To move ahead, there is a need for schema to map our data. We have set up `PaperSchema` with key fields:
 
 ```python
 class PaperSchema(sl.Schema):
@@ -113,7 +126,13 @@ class PaperSchema(sl.Schema):
 paper = PaperSchema()
 ```
 
-Now, the most important part of the process is creating the spaces. There are two spaces we need to create for our schema. The first one is `TextSimilaritySpace`. This space plays a crucial role in organizing and searching through the research papers. Essentially, it converts the text data we provide into vectors, making it much easier to search through them. The TextSimilaritySpace is specifically designed to efficiently encode longer text sequences using specialized models, enabling effective similarity comparisons between different pieces of text
+### Defining Superlinked Spaces for Effective Retrieval
+
+An essential step in organizing and effectively querying our dataset involves defining two specialized vector spaces: TextSimilaritySpace and RecencySpace.
+
+1. TextSimilaritySpace
+
+The `TextSimilaritySpace` is designed to encode textual information—such as the titles and abstracts of research papers into vectors. By converting text into embeddings, this space significantly enhances the ease and accuracy of semantic searches. It is optimized specifically to handle longer text sequences efficiently, enabling precise similarity comparisons across documents.
 
 ```python
 text_space = sl.TextSimilaritySpace(
@@ -122,7 +141,9 @@ text_space = sl.TextSimilaritySpace(
 )
 ```
 
-On the other hand, `RecencySpace` focuses on the importance of time in the context of research papers. It encodes timestamps, prioritizing the recency of the papers. This ensures that more recent papers are given greater weight in the similarity calculations, allowing for a balance between the relevance of the content and the publication time of the papers.
+2. RecencySpace
+
+The `RecencySpace` captures temporal metadata, emphasizing the recency of research publications. By encoding timestamps, this space assigns greater significance to newer documents. As a result, retrieval results naturally balance content relevance with publication dates, favoring recent insights.
 
 ```python
 recency_space = sl.RecencySpace(
