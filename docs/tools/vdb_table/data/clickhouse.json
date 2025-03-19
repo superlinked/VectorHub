@@ -156,7 +156,7 @@
     "comment": "HNSW via USearch"
   },
   "github_stars": {
-    "value": 39427,
+    "value": 39555,
     "source_url": "https://github.com/ClickHouse/ClickHouse",
     "comment": "",
     "value_90_days": 0
@@ -171,18 +171,18 @@
     "value": 208216,
     "source_url": "https://pypi.org/project/clickhouse/",
     "comment": "",
-    "value_90_days": 7194
+    "value_90_days": 7320
   },
   "npm_downloads": {
-    "value": 22914162,
+    "value": 23381232,
     "source_url": "https://www.npmjs.com/package/@clickhouse/client",
     "comment": "",
-    "value_90_days": 8247879
+    "value_90_days": 8306021
   },
   "crates_io_downloads": {
-    "value": 726374,
+    "value": 745400,
     "source_url": "https://crates.io/crates/clickhouse",
     "comment": "",
-    "value_90_days": 148649
+    "value_90_days": 151600
   }
 }
