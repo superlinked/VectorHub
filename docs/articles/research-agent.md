@@ -183,13 +183,13 @@ These spaces are key to making the dataset more accessible and effective. They a
 
 ### Step 4 : Building the index
 
-Next, I fused the spaces into an index, A.K.A the search engine’s core:
+Next, the spaces are fused into an index which is the search engine's core:
 
 ```python
 paper_index = sl.Index([text_space, recency_space])
 ```
 
-Then, I mapped the DataFrame to the schema and loaded it in batches (10 papers at a time) into in-memory store:
+Then the DataFrame is mapped to the schema and loaded in batches (10 papers at a time) into an in-memory store:
 
 ```python
 # Parser to map DataFrame columns to schema fields
@@ -220,7 +220,7 @@ The in-memory executor is why Superlinked shines here—1,000 papers fit snugly 
 
 ### Step 5 : Crafting the query
 
-Next, we move on to query creation. This is where we set up a template for crafting queries. To manage this, we need a query template that can balance both relevance and recency. Here’s what it looks like:
+Next is the query creation. This is where the template for crafting queries is created. To manage this, we need a query template that can balance both relevance and recency. Here’s what that would look like:
 
 ```python
 # Define the query
@@ -239,15 +239,15 @@ knowledgebase_query = (
 )
 ```
 
-This lets me puts on how much I care about content (relevance_weight) versus freshness (recency_weight) — a killer combo for our agentic needs.
+This allows us to pick whether to prioritize the content (relevance_weight) or the recency (recency_weight) - a very useful combo for our agent's needs.
 
 ### Step 6 : Building tools
 
-Now comes the tooling part, here we go lads.
+Now comes the tooling part.
 
-Ok , So We’ll be creating three tools for our agent to choose from. These tools will help find papers, summarize them if needed, and answer relevant questions.
+We will be creating three tools ...
 
-1. `Retrieval Tool` : This tool is crafted by hooking into Superlinked’s index, letting it pull the top 5 papers based on a query. It balances relevance (1.0 weight) and recency (0.5 weight) to nail the “find papers” goal.  I mean what we wanted is to find the papers which are relevant to the query. So if the query is something like, "What are the Quantum computers papers are published in b/w 1993 and 1994" , then the retrieval tool will retrieve those papers, will bring out the summary of those papers one by one, and will return the result.
+1. `Retrieval Tool` : This tool is crafted by plugging into Superlinked’s index, letting it pull the top 5 papers based on a query. It balances relevance (1.0 weight) and recency (0.5 weight) to accomplish the “find papers” goal. What we want is to find the papers which are relevant to the query. So, if the query is: “What quantum computing papers were published between 1993 and 1994?”, then the retrieval tool will retrieve those papers, summarize them one by one, and return the results.
 
 ```python
 class RetrievalTool(Tool):
@@ -281,7 +281,7 @@ class RetrievalTool(Tool):
         return df_result
 ```
 
-Next up is the `Summarization Tool`. This tool is designed for cases where we need a concise summary of a paper. To use it, we’ll provide the `paper_id`, which is the ID of the paper we want summarized. Keep in mind that if you don’t provide the `paper_id`, the tool won’t work, as it requires these IDs to look up the corresponding papers in the dataset.
+Next up is the `Summarization Tool`. This tool is designed for cases where a concise summary of a paper is needed. In order to use it, it will be provided with `paper_id`, which is the ID of the paper that needs to be summarized. If a `paper_id` is not provided, the tool will not work as these IDs are a requirement in order to find the corresponding papers in the dataset.
 
 ```python
 class SummarizationTool(Tool):
@@ -361,7 +361,7 @@ class QuestionAnsweringTool(Tool):
 
 ### Step 7 :  Building the Kernel Agent
 
-Next, we have the Kernel Agent. Whenever I build an agent-based system, I always include the Kernel Agent—it acts like the 'boss.' It really makes everything run smoothly. The Kernel Agent is the centerpiece of the system. If you have multiple agents working in parallel, it acts as a router, directing queries based on the intent. In a single-agent system like this one, you simply use the Kernel Agent with the relevant tools.
+Next is the Kernel Agent. It functions as the central controller, ensuring smooth and efficient operation. Acting as the core component of the system, the Kernel Agent coordinates communication by routing queries according to their intent when multiple agents operate concurrently. In single-agent systems, such as this one, the Kernel Agent directly uses the relevant tools to manage tasks effectively.
 
 ```python
 class KernelAgent:
@@ -414,7 +414,7 @@ class KernelAgent:
             return "Error: Unable to classify query as 'retrieval', 'summarization', or 'question_answering'."
 ```
 
-By this point, everything is set up for our Research Agent System. All you need to do is initialize the Kernel Agent with the tools, and voilà—our Research Agent system is ready to roll.
+At this stage, all components of the Research Agent System have been configured. The system can now be initialized by providing the Kernel Agent with the appropriate tools, after which the Research Agent System will be fully operational.
 
 ```python
 retrieval_tool = RetrievalTool(df, app, knowledgebase_query, client, model)
@@ -432,7 +432,7 @@ Now let's test the system..
 print(kernel_agent.process_query("Find papers on quantum computing in last 10 years"))
 ```
 
-When you run this, the `RetrievalTool` will be activated. It will fetch the relevant papers based on both relevance and recency, and return the relevant columns. If the returned result includes the summary column (indicating the papers were retrieved from the dataset), it will use those summaries and return them to us.
+Running this activates the `RetrievalTool`. It will fetch the relevant papers based on both relevance and recency, and return the relevant columns. If the returned result includes the summary column (indicating the papers were retrieved from the dataset), it will use those summaries and return them to us.
 
 ```python
 Query type: retrieval
@@ -442,21 +442,21 @@ Summary: We introduce an algorithm for combinatorial search on quantum computers
 is capable of significantly concentrating amplitude into solutions for some NP
 search problems, on average. This is done by...
 
-2. The Road to Quantum Artificial Intelligence 
+1. The Road to Quantum Artificial Intelligence 
 Summary: This paper overviews the basic principles and recent advances in the emerging
 field of Quantum Computation (QC), highlighting its potential application to
 Artificial Intelligence (AI). The paper provi...
 
-3. Solving Highly Constrained Search Problems with Quantum Computers 
+1. Solving Highly Constrained Search Problems with Quantum Computers 
 Summary: A previously developed quantum search algorithm for solving 1-SAT problems in
 a single step is generalized to apply to a range of highly constrained k-SAT
 problems. We identify a bound on the number o...
 
-4. The model of quantum evolution 
+1. The model of quantum evolution 
 Summary: This paper has been withdrawn by the author due to extremely unscientific
 errors....
 
-5. Artificial and Biological Intelligence 
+1. Artificial and Biological Intelligence 
 Summary: This article considers evidence from physical and biological sciences to show
 machines are deficient compared to biological systems at incorporating
 intelligence. Machines fall short on two counts: fi...
@@ -473,6 +473,4 @@ Query type: summarization
 This paper discusses the challenges of learning logic programs that contain the cut predicate (!). Traditional learning methods cannot handle clauses with cut because it has a procedural meaning. The proposed approach is to first generate a candidate base program that covers positive examples, and then make it consistent by inserting cut where needed. Learning programs with cut is difficult due to the need for intensional evaluation, and current induction techniques may need to be limited to purely declarative logic languages.
 ```
 
-I mean it's so cool.
-
-Adios Amigos, until next time..
+I hope this example has been helpful for developing AI agents and agent-based systems. Much of the retrieval functionality demonstrated here was made possible by Superlinked, so please consider starring the [repository](https://github.com/superlinked/superlinked) for future reference when accurate retrieval capabilities are needed for your AI agents!
