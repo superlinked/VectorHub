@@ -1,13 +1,13 @@
-### Simplifying Complex Research with AI
+# Simplifying Complex Research with AI
 
 Keeping up-to-date with the vast number of research papers published regularly can be challenging and time-consuming. An AI assistant capable of efficiently locating relevant research, summarizing key insights, and answering specific questions from these papers could significantly streamline this process.
 
-### Where to start building a research assistant system ?
+## Where to start building a research assistant system ?
 
 Traditionally, building such a system involves complexity and considerable resource investment. Search systems typically retrieve an initial broad set of documents based on relevance and subsequently apply a secondary reranking process to refine and reorder results. While reranking enhances accuracy, it significantly increases computational complexity, latency, and overhead due to the extensive data retrieval initially required. Superlinked addresses this complexity by combining structured numeric and categorical embeddings with semantic text embeddings, providing comprehensive multimodal vectors.
 This method significantly enhances search accuracy by preserving attribute-specific information within each embedding.
 
-### Learn to build an agentic system with Superlinked
+## Build an agentic system with Superlinked
 
 This article shows how to build an agent system using a Kernel agent to handle queries. If you want to follow along, here is the [colab](links.superlinked.com/research_ai_agent_nb)
 
@@ -474,3 +474,9 @@ This paper discusses the challenges of learning logic programs that contain the 
 ```
 
 I hope this example has been helpful for developing AI agents and agent-based systems. Much of the retrieval functionality demonstrated here was made possible by Superlinked, so please consider starring the [repository](links.superlinked.com/research_ai_agent_repo) for future reference when accurate retrieval capabilities are needed for your AI agents!
+
+
+## Contributors
+
+- [Vipul Maheshwari, author](https://www.linkedin.com/in/vipulmaheshwarii/)
+- [Filip Makraduli, reviewer](https://www.linkedin.com/in/filipmakraduli/)
