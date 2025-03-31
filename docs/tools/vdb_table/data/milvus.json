@@ -176,7 +176,7 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 33515,
+    "value": 33721,
     "source_url": "https://github.com/milvus-io/milvus",
     "comment": "",
     "value_90_days": 0
@@ -191,18 +191,18 @@
     "value": 20610389,
     "source_url": "https://pypi.org/project/pymilvus/",
     "comment": "",
-    "value_90_days": 4555245
+    "value_90_days": 4754075
   },
   "npm_downloads": {
-    "value": 2176224,
+    "value": 2240786,
     "source_url": "https://www.npmjs.com/package/@zilliz/milvus2-sdk-node",
     "comment": "",
-    "value_90_days": 968259
+    "value_90_days": 973721
   },
   "crates_io_downloads": {
-    "value": 3910,
+    "value": 3953,
     "source_url": "https://crates.io/crates/milvus",
     "comment": "",
-    "value_90_days": 774
+    "value_90_days": 792
   }
 }
