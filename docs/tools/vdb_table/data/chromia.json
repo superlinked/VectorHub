@@ -1,0 +1,188 @@
+{
+    "name": "Chroma",
+    "links": {
+      "docs": "https://docs.chromia.com/intro/extensions/vector-db",
+      "github": "https://gitlab.com/chromaway/core/vector-db-extension",
+      "website": "https://chromia.com/",
+      "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/544",
+      "poc_github": "https://gitlab.com/johan.nilssonn",
+      "slug": "chromia"
+    },
+    "oss": {
+      "support": "full",
+      "source_url": "",
+      "comment": ""
+    },
+    "license": {
+      "value": "GPL-3.0",
+      "source_url": "https://www.gnu.org/licenses/",
+      "comment": ""
+    },
+    "dev_languages": {
+      "value": [
+        "kotlin"
+      ],
+      "source_url": "",
+      "comment": ""
+    },
+    "vector_launch_year": 2025,
+    "metadata_filter": {
+      "support": "partial",
+      "source_url": "",
+      "comment": ""
+    },
+    "hybrid_search": {
+      "support": "partial",
+      "source_url": "",
+      "comment": ""
+    },
+    "facets": {
+      "support": "",
+      "source_url": "",
+      "comment": ""
+    },
+    "geo_search": {
+      "support": "",
+      "source_url": "",
+      "comment": ""
+    },
+    "multi_vec": {
+      "support": "none",
+      "source_url": "",
+      "comment": ""
+    },
+    "sparse_vectors": {
+      "support": "none",
+      "source_url": "",
+      "comment": ""
+    },
+    "bm25": {
+      "support": "none",
+      "source_url": "",
+      "comment": ""
+    },
+    "full_text": {
+      "support": "partial",
+      "source_url": "https://docs.trychroma.com/guides#filtering-by-document-contents",
+      "comment": ""
+    },
+    "embeddings_text": {
+      "support": "none",
+      "source_url": "",
+      "comment": ""
+    },
+    "embeddings_image": {
+      "support": "none",
+      "source_url": "",
+      "comment": ""
+    },
+    "embeddings_structured": {
+      "support": "",
+      "source_url": "",
+      "comment": ""
+    },
+    "rag": {
+      "support": "",
+      "source_url": "",
+      "comment": ""
+    },
+    "recsys": {
+      "support": "",
+      "source_url": "",
+      "comment": ""
+    },
+    "langchain": {
+      "support": "",
+      "source_url": "",
+      "comment": ""
+    },
+    "llamaindex": {
+      "support": "",
+      "source_url": "",
+      "comment": ""
+    },
+    "managed_cloud": {
+      "support": "full",
+      "source_url": "https://chromia.com/mainnet",
+      "comment": ""
+    },
+    "pricing": {
+      "value": "",
+      "source_url": "",
+      "comment": ""
+    },
+    "in_process": {
+      "support": "",
+      "source_url": "",
+      "comment": ""
+    },
+    "multi_tenancy": {
+      "support": "",
+      "source_url": "",
+      "comment": ""
+    },
+    "disk_index": {
+      "support": "",
+      "source_url": "",
+      "comment": ""
+    },
+    "ephemeral": {
+      "support": "none",
+      "source_url": "",
+      "comment": ""
+    },
+    "sharding": {
+      "support": "full",
+      "source_url": "",
+      "comment": ""
+    },
+    "doc_size": {
+      "bytes": 0,
+      "unlimited": false,
+      "source_url": "",
+      "comment": ""
+    },
+    "vector_dims": {
+      "value": 2000,
+      "unlimited": false,
+      "source_url": "",
+      "comment": ""
+    },
+    "index_types": {
+      "value": [
+        "HNSW"
+      ],
+      "source_url": "",
+      "comment": ""
+    },
+    "github_stars": {
+      "value": 0,
+      "source_url": "",
+      "comment": "",
+      "value_90_days": 0
+    },
+    "docker_pulls": {
+      "value": 0,
+      "source_url": "",
+      "comment": "",
+      "value_90_days": 0
+    },
+    "pypi_downloads": {
+      "value": 0,
+      "source_url": "",
+      "comment": "",
+      "value_90_days": 0
+    },
+    "npm_downloads": {
+      "value": 0,
+      "source_url": "",
+      "comment": "",
+      "value_90_days": 0
+    },
+    "crates_io_downloads": {
+      "value": 0,
+      "source_url": "",
+      "comment": "",
+      "value_90_days": 0
+    }
+  }
