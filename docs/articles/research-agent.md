@@ -9,7 +9,7 @@ This method significantly enhances search accuracy by preserving attribute-speci
 
 ## Build an agentic system with Superlinked
 
-This article shows how to build an agent system using a Kernel agent to handle queries. If you want to follow along, here is the [colab](links.superlinked.com/research_ai_agent_nb)
+This article shows how to build an agent system using a Kernel agent to handle queries. If you want to follow along, here is the [colab](https://links.superlinked.com/research_ai_agent_nb)
 
 This AI agent can do three main things:
 
@@ -22,8 +22,7 @@ Superlinked eliminates the need for re-ranking methods as it improves the vector
 ### Step 1 : Setting up the toolbox
 
 ```python
-%%capture
-!pip3 install openai pandas sentence-transformers transformers superlinked==19.21.1
+%pip3 install openai pandas sentence-transformers transformers superlinked==19.21.1
 ```
 
 To make things easier and more modular, I created an Abstract Tool class. This will simplify the process of building and adding tools
