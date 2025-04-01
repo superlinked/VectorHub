@@ -9,7 +9,7 @@ This method significantly enhances search accuracy by preserving attribute-speci
 
 ## Build an agentic system with Superlinked
 
-This article shows how to build an agent system using a Kernel agent to handle queries. If you want to follow along, here is the [colab](links.superlinked.com/research_ai_agent_nb)
+This article shows how to build an agent system using a Kernel agent to handle queries. If you want to follow along, here is the [colab](https://links.superlinked.com/research_ai_agent_nb)
 
 This AI agent can do three main things:
 
