@@ -143,10 +143,10 @@
       "comment": ""
     },
     "vector_dims": {
-      "value": 1536,
+      "value": 2000,
       "unlimited": false,
-      "source_url": "",
-      "comment": "For now, the soft limit is 1536 but there is no official documentation about this. It depends on the embedding model as well"
+      "source_url": "https://github.com/pgvector/pgvector",
+      "comment": ""
     },
     "index_types": {
       "value": [
