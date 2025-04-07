@@ -155,7 +155,7 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 9195,
+    "value": 9277,
     "source_url": "https://hub.docker.com/r/vectara/vectara-answer",
     "comment": "",
     "value_90_days": 0
@@ -167,10 +167,10 @@
     "value_90_days": 0
   },
   "npm_downloads": {
-    "value": 7559,
+    "value": 7641,
     "source_url": "https://www.npmjs.com/package/@vectara/react-search",
     "comment": "",
-    "value_90_days": 1847
+    "value_90_days": 1833
   },
   "crates_io_downloads": {
     "value": 0,
