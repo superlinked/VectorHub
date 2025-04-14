@@ -143,9 +143,9 @@
       "comment": ""
     },
     "vector_dims": {
-      "value": 2000,
+      "value": 0,
       "unlimited": false,
-      "source_url": "https://github.com/pgvector/pgvector",
+      "source_url": "",
       "comment": ""
     },
     "index_types": {
