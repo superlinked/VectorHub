@@ -153,6 +153,11 @@
     "source_url": "https://www.elastic.co/blog/whats-new-elasticsearch-platform-8-12-0",
     "comment": ""
   },
+  "binary_quantization": {
+    "support": "full",
+    "source_url": "https://www.elastic.co/search-labs/blog/bit-vectors-in-elasticsearch",
+    "comment": ""
+  },
   "index_types": {
     "value": [
       "FLAT",
