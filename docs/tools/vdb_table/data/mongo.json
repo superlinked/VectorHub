@@ -72,7 +72,7 @@
     "source_url": "https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-quantization/",
     "comment": ""
   },
-   "binary_quantization": {
+  "binary_quantization": {
     "support": "full",
     "source_url": "https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-quantization/",
     "comment": ""
@@ -174,22 +174,22 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 4562235539,
+    "value": 4564818404,
     "source_url": "https://hub.docker.com/_/mongo",
     "comment": "",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 49531,
+    "value": 49792,
     "source_url": "https://pypi.org/project/mongodbatlas/",
     "comment": "",
-    "value_90_days": 3088
+    "value_90_days": 3139
   },
   "npm_downloads": {
-    "value": 750838,
+    "value": 764421,
     "source_url": "https://www.npmjs.com/package/mongodb-atlas-api-client",
     "comment": "",
-    "value_90_days": 204906
+    "value_90_days": 204893
   },
   "crates_io_downloads": {
     "value": 0,
