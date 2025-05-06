@@ -34,8 +34,8 @@
   },
   "hybrid_search": {
     "support": "full",
-    "source_url": "https://gist.github.com/hweller1/d6dbd5036ae4366108b534a0f1662a20",
-    "comment": "https://gist.github.com/hweller1/d6dbd5036ae4366108b534a0f1662a20"
+    "source_url": "https://www.mongodb.com/docs/atlas/atlas-vector-search/tutorials/reciprocal-rank-fusion/",
+    "comment": "https://www.mongodb.com/docs/atlas/atlas-vector-search/tutorials/reciprocal-rank-fusion/"
   },
   "facets": {
     "support": "full",
@@ -59,12 +59,22 @@
   },
   "bm25": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://www.mongodb.com/docs/atlas/atlas-search/",
     "comment": ""
   },
   "full_text": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://www.mongodb.com/docs/atlas/atlas-search/",
+    "comment": ""
+  },
+  "int8_quantization": {
+    "support": "full",
+    "source_url": "https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-quantization/",
+    "comment": ""
+  },
+  "binary_quantization": {
+    "support": "full",
+    "source_url": "https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-quantization/",
     "comment": ""
   },
   "embeddings_text": {
@@ -94,12 +104,12 @@
   },
   "langchain": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://www.mongodb.com/docs/atlas/atlas-vector-search/ai-integrations/langchain/",
     "comment": ""
   },
   "llamaindex": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://www.mongodb.com/docs/atlas/atlas-vector-search/ai-integrations/llamaindex/",
     "comment": ""
   },
   "managed_cloud": {
@@ -119,7 +129,7 @@
   },
   "multi_tenancy": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://www.mongodb.com/docs/atlas/atlas-vector-search/multi-tenant-architecture/",
     "comment": "via logical partitioning or metadata"
   },
   "disk_index": {
@@ -144,9 +154,9 @@
     "comment": ""
   },
   "vector_dims": {
-    "value": 4096,
+    "value": 8192,
     "unlimited": false,
-    "source_url": "",
+    "source_url": "https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type/",
     "comment": ""
   },
   "index_types": {
@@ -164,22 +174,22 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 4556861351,
+    "value": 4567262184,
     "source_url": "https://hub.docker.com/_/mongo",
     "comment": "",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 48915,
+    "value": 49792,
     "source_url": "https://pypi.org/project/mongodbatlas/",
     "comment": "",
-    "value_90_days": 2940
+    "value_90_days": 3237
   },
   "npm_downloads": {
-    "value": 728842,
+    "value": 772852,
     "source_url": "https://www.npmjs.com/package/mongodb-atlas-api-client",
     "comment": "",
-    "value_90_days": 207234
+    "value_90_days": 198600
   },
   "crates_io_downloads": {
     "value": 0,
