@@ -1,6 +1,6 @@
-# Simplifying Complex Research with AI
+# Learn how to build an AI agent for Research Paper Retrieval, Search, and Summarization
 
-Keeping up-to-date with the vast number of research papers published regularly can be challenging and time-consuming. An AI assistant capable of efficiently locating relevant research, summarizing key insights, and answering specific questions from these papers could significantly streamline this process.
+Keeping up-to-date with the vast number of research papers published regularly can be challenging and time-consuming. An agentic AI assistant workflow capable of efficiently locating relevant research, summarizing key insights, and answering specific questions from these papers could significantly streamline this process.
 
 ## Where to start building a research assistant system ?
 
