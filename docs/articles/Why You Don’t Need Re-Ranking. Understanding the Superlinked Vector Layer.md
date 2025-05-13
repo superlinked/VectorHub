@@ -91,7 +91,7 @@ Superlinked's core innovation lies in these abilities:
 
 3.  **Hard filtering before vector search**
 
-![](media/unified.png)
+![](../assets/use_cases/understanding_vector_layer/unified.png)
 
 <p align="center">Unified vector search without re-ranking</p>
 
@@ -153,7 +153,7 @@ Superlinked supports two flexible methods for applying weights:
     ability to adjust weights dynamically, offering more control over
     what's considered important even after the query has been defined.
 
-![](media/weights.png)
+![](../assets/use_cases/understanding_vector_layer/weights.png)
 
 <p align="center">Two ways to weight the query</p>
 
@@ -345,7 +345,7 @@ display(traditional_df)
 
 #### Results
 
-![](media/traditionalresults.png)
+![](../assets/use_cases/understanding_vector_layer/traditionalresults.png)
 
 ### Superlinked approach
 
@@ -457,7 +457,7 @@ sl.PandasConverter.to_pandas(result)
 
 #### Results
 
-![](media/superlinkedresults.png)
+![](../assets/use_cases/understanding_vector_layer/superlinkedresults.png)
 
 This use case shows how Superlinked makes search simpler and more
 powerful. It gives you a unified way to handle search, whereas in the
