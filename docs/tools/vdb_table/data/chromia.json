@@ -33,7 +33,7 @@
     },
     "hybrid_search": {
       "support": "partial",
-      "source_url": "",
+      "source_url": "https://docs.chromia.com/intro/extensions/vector-db#querying-vectors",
       "comment": ""
     },
     "facets": {
@@ -143,10 +143,10 @@
       "comment": ""
     },
     "vector_dims": {
-      "value": 0,
+      "value": 2000,
       "unlimited": false,
-      "source_url": "",
-      "comment": ""
+      "source_url": "https://github.com/pgvector/pgvector",
+      "comment": "Powered by pgvector - open-source vector similarity"
     },
     "index_types": {
       "value": [
