@@ -47,8 +47,8 @@
     "comment": ""
   },
   "multi_vec": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://community.pinecone.io/t/multiple-vector-representations-in-pinecone/362",
     "comment": ""
   },
   "sparse_vectors": {
@@ -57,23 +57,23 @@
     "comment": "Supports all sparse vectors, including BM25 and native support for SPLADE vectors"
   },
   "bm25": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://github.com/pinecone-io/pinecone-text",
     "comment": ""
   },
   "full_text": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.pinecone.io/guides/search/lexical-search",
     "comment": ""
   },
   "embeddings_text": {
-    "support": "partial",
-    "source_url": "https://github.com/pinecone-io/canopy",
+    "support": "full",
+    "source_url": "https://docs.pinecone.io/models/overview",
     "comment": ""
   },
   "embeddings_image": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.pinecone.io/models/overview",
     "comment": ""
   },
   "embeddings_structured": {
@@ -82,8 +82,8 @@
     "comment": ""
   },
   "rag": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://www.pinecone.io/learn/retrieval-augmented-generation/",
     "comment": ""
   },
   "recsys": {
@@ -112,7 +112,7 @@
     "comment": "Includes free tier"
   },
   "in_process": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
@@ -122,9 +122,9 @@
     "comment": "via namespaces"
   },
   "disk_index": {
-    "support": "",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://www.pinecone.io/blog/evolving-pinecone-for-knowledgeable-ai/",
+    "comment": "Intelligent storage tiering between RAM, disk, and object storage"
   },
   "ephemeral": {
     "support": "none",
