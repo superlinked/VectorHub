@@ -23,7 +23,7 @@ Superlinked eliminates the need for re-ranking methods as it improves the vector
 
 ```python
 %%capture
-!pip3 install openai pandas sentence-transformers transformers superlinked==19.21.1
+%pip install -q --upgrade --force-reinstall --no-cache-dir "numpy>=2.0" superlinked==23.7.0 openai
 ```
 
 To make things easier and more modular, I created an Abstract Tool class. This will simplify the process of building and adding tools
