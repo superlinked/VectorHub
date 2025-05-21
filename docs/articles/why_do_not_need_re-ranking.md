@@ -1,31 +1,5 @@
 # Why You Don't Need Re-Ranking: Understanding the Superlinked Vector Layer
 
-## Takeaways
-
-- Superlinked removes the need for re-ranking by combining semantic and
-  numeric signals in a single vector index.
-
-- Dynamic query-time weighting in Superlinked allows for real-time
-  adjustments without the need to re-embed data.
-
-- Superlinked simplifies search by unifying text, number, and category
-  data into one index, unlike traditional systems that use multiple
-  indices.
-
-- Hard filtering before search boosts precision and speed, unlike
-  traditional post-search filtering.
-
-- Superlinked reduces latency and computational costs, providing faster
-  and more efficient search results.
-
-***Meta Title:** Superlinked Boosts Search Speed Without Re-Ranking
-Steps*
-
-***Meta Description:** Discover how Superlinked eliminates the need for
-re-ranking in vector search systems. Learn about its unified multimodal
-vectors, dynamic intent capture that improve search relevance, speed,
-and scalability.*
-
 When it comes to vector search, it's not just about matching words.
 Understanding the meaning behind them is equally important. But there
 are challenges. Sometimes, factors like text meaning, popularity, and
@@ -39,13 +13,13 @@ query. However, this process comes with its own set of problems. It
 takes up a lot of computing power and slows things down, especially when
 working with large datasets.
 
-[Now, imagine if your search infrastructure was smarter even before you
+Now, imagine if your search infrastructure was smarter even before you
 hit the database. The key idea here is that with Superlinked, your
 search system can understand what you want and adjust accordingly. This
 reduces the need for re-ranking altogether. Superlinked improves search
 results by embedding multiple signals directly into the search index.
 This makes the results more relevant, faster, and more efficient, all
-without the need for extra steps.]{.mark}
+without the need for extra steps.
 
 This article discusses how Superlinked eliminates the need for
 re-ranking by embedding multiple signals directly into unified vector
@@ -128,6 +102,7 @@ dynamic [query-time
 weighting](https://docs.superlinked.com/concepts/dynamic-parameters).
 For example, a query can prioritize text similarity over "like counts"
 by adjusting weights at runtime without re-embedding data:
+
 <pre><code class="language-python">
 
 # Weight text similarity 2x more than likes
@@ -303,7 +278,6 @@ reranked = ranker.rank(
 )
 </code></pre>
 
-
 #### Process results with metadata
 
 We combine reranker output with metadata by weighting the reranker score
@@ -399,7 +373,6 @@ category_space = sl.CategoricalSimilaritySpace(
 )
 </code></pre>
 
-
 #### Superlinked index and executor setup
 
 We configure the Superlinked index using the defined spaces. The
@@ -424,7 +397,6 @@ app = executor.run()
 
 source.put(products)
 </code></pre>
-
 
 #### Superlinked query with weights and filters
 
@@ -454,7 +426,6 @@ result = app.query(query)
 sl.PandasConverter.to_pandas(result)
 </code></pre>
 
-
 #### Results
 
 ![](../assets/use_cases/understanding_vector_layer/superlinkedresults.png)
@@ -471,17 +442,16 @@ Here\'s a quick comparison between Superlinked and traditional
 re-ranking systems across key features to show how they differ in
 performance, usability, and scalability.
 
-  | **Feature**                         | **Superlinked Approach**                                                                                                                                                   | **Traditional Re-ranking**                                                                                                                        |
-|-------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Unified Multi-space Indexing**    | Uses a mixture of encoders to combine multiple data types (text, numbers, categories) into a single index, enabling simultaneous consideration during search.             | Requires separate indices for each data type during re-ranking.                                                                                     |
-| **Dynamic Query-time Weighting**    | Allows adjustment of the importance of different embedding components during query execution without re-embedding the dataset.                                            | Adjustments require reprocessing or re-embedding data, leading to increased complexity and latency.                                               |
-| **Hard Filtering Before Search**    | Applies business rules and filters prior to vector search, reducing the search space and improving performance.                                                            | Filtering is typically applied post-search, which can be less efficient and may return less relevant results.                                     |
-| **Event-driven Personalization**    | Supports real-time personalization by updating user vectors based on behavioral events, enhancing recommendation relevance.                                               | Personalization often requires batch processing and lacks real-time adaptability.                                                                 |
-| **VectorSampler Utility**          | Provides direct access to export vectors from the index into a VectorCollection (NumPy array and ID list), facilitating analysis and debugging.                          | Lacks built-in tools for easy extraction and analysis of vector data.                                                                             |
-| **Integration with Vector Databases** | Compatible with various vector databases like Redis, Qdrant, and MongoDB, allowing flexible deployment options.                                                           | Integration often requires custom connectors and additional configuration.                                                                         |
-| **Performance and Scalability**     | Optimized for high-throughput and low-latency scenarios, capable of handling complex, multi-dimensional data efficiently.                                                 | Performance can degrade with increased data complexity and volume due to processing overhead.                                                     |
-| **Ease of Use and Flexibility**     | Provides a Python framework with intuitive APIs, reducing boilerplate code and simplifying the development of advanced search and recommendation systems.                | Development often involves extensive boilerplate code and complex configurations.                                                                 |
-
+| **Feature**                           | **Superlinked Approach**                                                                                                                                      | **Traditional Re-ranking**                                                                                    |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **Unified Multi-space Indexing**      | Uses a mixture of encoders to combine multiple data types (text, numbers, categories) into a single index, enabling simultaneous consideration during search. | Requires separate indices for each data type during re-ranking.                                               |
+| **Dynamic Query-time Weighting**      | Allows adjustment of the importance of different embedding components during query execution without re-embedding the dataset.                                | Adjustments require reprocessing or re-embedding data, leading to increased complexity and latency.           |
+| **Hard Filtering Before Search**      | Applies business rules and filters prior to vector search, reducing the search space and improving performance.                                               | Filtering is typically applied post-search, which can be less efficient and may return less relevant results. |
+| **Event-driven Personalization**      | Supports real-time personalization by updating user vectors based on behavioral events, enhancing recommendation relevance.                                   | Personalization often requires batch processing and lacks real-time adaptability.                             |
+| **VectorSampler Utility**             | Provides direct access to export vectors from the index into a VectorCollection (NumPy array and ID list), facilitating analysis and debugging.               | Lacks built-in tools for easy extraction and analysis of vector data.                                         |
+| **Integration with Vector Databases** | Compatible with various vector databases like Redis, Qdrant, and MongoDB, allowing flexible deployment options.                                               | Integration often requires custom connectors and additional configuration.                                    |
+| **Performance and Scalability**       | Optimized for high-throughput and low-latency scenarios, capable of handling complex, multi-dimensional data efficiently.                                     | Performance can degrade with increased data complexity and volume due to processing overhead.                 |
+| **Ease of Use and Flexibility**       | Provides a Python framework with intuitive APIs, reducing boilerplate code and simplifying the development of advanced search and recommendation systems.     | Development often involves extensive boilerplate code and complex configurations.                             |
 
 ## Conclusion
 
@@ -501,3 +471,8 @@ even hit the database.
 Ready to upgrade your search and recommendations? Explore
 [Superlinked](https://superlinked.com/) and build smarter,
 faster results with real-world data.
+
+## Contributors
+
+- [Haziqa Sajid, Author](https://www.linkedin.com/in/haziqa-sajid-22b53245/)
+- [Filip Makraduli, Editor](https://www.linkedin.com/in/filipmakraduli/)
