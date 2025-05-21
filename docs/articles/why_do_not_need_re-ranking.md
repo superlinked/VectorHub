@@ -1,61 +1,22 @@
 # Why You Don't Need Re-Ranking: Understanding the Superlinked Vector Layer
 
-When it comes to vector search, it's not just about matching words.
-Understanding the meaning behind them is equally important. But there
-are challenges. Sometimes, factors like text meaning, popularity, and
-recency can lead to results that aren't quite right. This is because
-vector search isn't always perfect at making precise matches.
+When it comes to vector search, it's not just about matching words. Understanding the meaning behind them is equally important. But there are challenges. Sometimes, factors like text meaning, popularity, and recency can lead to results that aren't quite right. This is because vector search isn't always perfect at making precise matches.
 
-To fix this, many systems use a technique called **re-ranking**. This
-involves using a separate model that processes both the query and the
-initial results together to reorder them based on their relevance to the
-query. However, this process comes with its own set of problems. It
-takes up a lot of computing power and slows things down, especially when
-working with large datasets.
+To fix this, many systems use a technique called **re-ranking**. This involves using a separate model that processes both the query and the initial results together to reorder them based on their relevance to the query. However, this process comes with its own set of problems. It takes up a lot of computing power and slows things down, especially when working with large datasets.
 
-Now, imagine if your search infrastructure was smarter even before you
-hit the database. The key idea here is that with Superlinked, your
-search system can understand what you want and adjust accordingly. This
-reduces the need for re-ranking altogether. Superlinked improves search
-results by embedding multiple signals directly into the search index.
-This makes the results more relevant, faster, and more efficient, all
-without the need for extra steps.
+Now, imagine if your search infrastructure was smarter even before you hit the database. The key idea here is that with Superlinked, your search system can understand what you want and adjust accordingly. This reduces the need for re-ranking altogether. Superlinked improves search results by embedding multiple signals directly into the search index. This makes the results more relevant, faster, and more efficient, all without the need for extra steps.
 
-This article discusses how Superlinked eliminates the need for
-re-ranking by embedding multiple signals directly into unified vector
-spaces.
+This article discusses how Superlinked eliminates the need for re-ranking by embedding multiple signals directly into unified vector spaces.
 
 ## Understanding vector re-ranking in modern search systems
 
-Vector re-ranking improves initial search results by adding a secondary
-scoring process. It uses neural networks or cross-encoders to prioritize
-documents that are most relevant to the context. Unlike the initial
-vector search, which converts documents into vectors before querying,
-re-ranking processes the query and documents together. It then reorders
-the results more precisely based on relevance. This method is commonly
-used in [Retrieval-Augmented Generation
-(RAG)](https://superlinked.com/vectorhub/articles/retrieval-augmented-generation)
-pipelines and semantic search systems to fill the gaps of traditional
-retrieval methods like vector similarity search.
+Vector re-ranking improves initial search results by adding a secondary scoring process. It uses neural networks or cross-encoders to prioritize documents that are most relevant to the context. Unlike the initial vector search, which converts documents into vectors before querying, re-ranking processes the query and documents together. It then reorders the results more precisely based on relevance. This method is commonly used in [Retrieval-Augmented Generation (RAG)](https://superlinked.com/vectorhub/articles/retrieval-augmented-generation) pipelines and semantic search systems to fill the gaps of traditional retrieval methods like vector similarity search.
 
-However, as with everything, reranking comes with challenges. This
-process often involves cross-encoders which compute similarity scores
-for each query-document pair individually and may require augmenting
-results with domain-specific metadata. While this increases precision,
-it also adds latency and computing costs. These factors can be
-challenging in production environments, particularly in RAG and
-[semantic search
-systems](https://github.com/superlinked/superlinked/blob/main/notebook/semantic_search_news.ipynb).
+However, as with everything, reranking comes with challenges. This process often involves cross-encoders which compute similarity scores for each query-document pair individually and may require augmenting results with domain-specific metadata. While this increases precision, it also adds latency and computing costs. These factors can be challenging in production environments, particularly in RAG and [semantic search systems](https://github.com/superlinked/superlinked/blob/main/notebook/semantic_search_news.ipynb).
 
 ## Superlinked's approach to eliminating re-ranking
 
-Superlinked is a Python framework designed for AI engineers to build
-high-performance search and recommendation systems that unify structured
-and unstructured data into multi-modal vectors. It bridges the gap
-between data and vector databases by using a mixture of encoders to
-combine text semantics, numerical ranges, and categorical attributes
-into unified embeddings. This eliminates the need for post-retrieval
-re-ranking.
+Superlinked is a Python framework designed for AI engineers to build high-performance search and recommendation systems that unify structured and unstructured data into multi-modal vectors. It bridges the gap between data and vector databases by using a mixture of encoders to combine text semantics, numerical ranges, and categorical attributes into unified embeddings. This eliminates the need for post-retrieval re-ranking.
 
 Superlinked's core innovation lies in these abilities:
 
@@ -71,16 +32,9 @@ Superlinked's core innovation lies in these abilities:
 
 ### Mixture of encoders at index time
 
-Superlinked addresses the need for re-ranking by embedding data across
-different modalities, such as text and numerical attributes, into
-separate vectors. These vectors are then combined into a single
-[multimodal
-vector](https://docs.superlinked.com/concepts/multiple-embeddings),
-ensuring that all aspects of the data are captured.
+Superlinked addresses the need for re-ranking by embedding data across different modalities, such as text and numerical attributes, into separate vectors. These vectors are then combined into a single [multimodal vector](https://docs.superlinked.com/concepts/multiple-embeddings), ensuring that all aspects of the data are captured.
 
-For example, paragraphs and their like_count values are embedded
-separately using TextSimilaritySpace and NumberSpace, then combined into
-a single index:
+For example, paragraphs and their like_count values are embedded separately using TextSimilaritySpace and NumberSpace, then combined into a single index:
 
 <pre><code class="language-python">
 # Define Spaces for text and numerical data
@@ -90,18 +44,12 @@ like_space = NumberSpace(number=paragraph.like_count, min_value=0, max_value=100
 paragraph_index = Index([body_space, like_space])  # Unified multimodal vector
 </code></pre>
 
-This approach streamlines search processes by preserving structured
-attributes like popularity metrics alongside unstructured text
-semantics, improving retrieval relevance without additional layers or
-complex filtering.
+This approach streamlines search processes by preserving structured attributes like popularity metrics alongside unstructured text semantics, improving retrieval relevance without additional layers or complex filtering.
 
 ### Dynamic intent capture at query time
 
 Superlinked also enables us to fine-tune search relevance through
-dynamic [query-time
-weighting](https://docs.superlinked.com/concepts/dynamic-parameters).
-For example, a query can prioritize text similarity over "like counts"
-by adjusting weights at runtime without re-embedding data:
+dynamic [query-time weighting](https://docs.superlinked.com/concepts/dynamic-parameters). For example, a query can prioritize text similarity over "like counts" by adjusting weights at runtime without re-embedding data:
 
 <pre><code class="language-python">
 
@@ -111,22 +59,13 @@ body_query = Query(index, weights={body_space: 1.0, like_space: 0.5})
 
 </code></pre>
 
-Superlinked optimizes our search by allowing dynamic control over
-assigning weights to attributes. All weights are kept on the query-side
-vector. This allows us to prioritize what matters most based on our use
-case without the overhead of re-embedding or re-indexing.
+Superlinked optimizes our search by allowing dynamic control over assigning weights to attributes. All weights are kept on the query-side vector. This allows us to prioritize what matters most based on our use case without the overhead of re-embedding or re-indexing.
 
 Superlinked supports two flexible methods for applying weights:
 
-1.  **At query definition:** Since each attribute, like text or numbers,
-    is embedded separately, we can assign specific weights to them when
-    defining the query. This means we can experiment with what matters
-    most for our search without re-embedding or changing our dataset.
+1.  **At query definition:** Since each attribute, like text or numbers, is embedded separately, we can assign specific weights to them when defining the query. This means we can experiment with what matters most for our search without re-embedding or changing our dataset.
 
-2.  **At query execution:** We can define placeholder parameters within
-    the query and fill them in dynamically at runtime. This gives us the
-    ability to adjust weights dynamically, offering more control over
-    what's considered important even after the query has been defined.
+2.  **At query execution:** We can define placeholder parameters within the query and fill them in dynamically at runtime. This gives us the ability to adjust weights dynamically, offering more control over what's considered important even after the query has been defined.
 
 ![](../assets/use_cases/understanding_vector_layer/weights.png)
 
@@ -134,11 +73,7 @@ Superlinked supports two flexible methods for applying weights:
 
 ### Hard filtering before vector search
 
-[Hard
-filtering](https://colab.research.google.com/github/superlinked/superlinked/blob/main/notebook/feature/hard_filtering.ipynb)
-is essential when we need to ensure that certain items are excluded from
-our results. In Superlinked, this can be achieved using the ".filter"
-within a query:
+[Hard filtering](https://colab.research.google.com/github/superlinked/superlinked/blob/main/notebook/feature/hard_filtering.ipynb) is essential when we need to ensure that certain items are excluded from our results. In Superlinked, this can be achieved using the ".filter" within a query:
 
 <pre><code class="language-python">
 # Exclude paragraphs by author "Adam" and enforce minimum length
@@ -150,36 +85,24 @@ query = (
 )
 </code></pre>
 
-This allows filtering out paragraphs based on specific authors,
-excluding items below length thresholds, and combining conditions using
-logical operators.
+This allows filtering out paragraphs based on specific authors, excluding items below length thresholds, and combining conditions using logical operators.
 
-Superlinked also supports set operations. This helps filter results by a
-list of possible values or exclude results from a list.
+Superlinked also supports set operations. This helps filter results by a list of possible values or exclude results from a list.
 
 <pre><code class="language-shell">
 # Filter results containing BOTH "fresh" and "useful" tags
 query.filter(paragraph.tags.contains_all(["fresh", "useful"]))
 </code></pre>
 
-Hard filtering eliminates the need for time-consuming reranking later by
-retrieving only the most relevant items based on defined criteria.
+Hard filtering eliminates the need for time-consuming reranking later by retrieving only the most relevant items based on defined criteria.
 
 ## A product search use case
 
-To show how traditional reranking compares to Superlinked's unified
-multi-space querying, let's compare how each handles the query:
+To show how traditional reranking compares to Superlinked's unified multi-space querying, let's compare how each handles the query:
 
-"Find affordable wireless headphones with noise cancellation under \$200
-and high ratings."
+"Find affordable wireless headphones with noise cancellation under \$200 and high ratings."
 
-Both methods capture semantic similarity using transformer-based
-embeddings. But they handle metadata like price, rating, and category
-very differently. The traditional approach uses a reranker model that
-scores only the text, and we have to write extra logic to blend in
-metadata like price and rating afterward. Superlinked makes it easier by
-natively supporting multimodal scoring, letting us assign dynamic
-weights at query time, and apply hard filters directly.
+Both methods capture semantic similarity using transformer-based embeddings. But they handle metadata like price, rating, and category very differently. The traditional approach uses a reranker model that scores only the text, and we have to write extra logic to blend in metadata like price and rating afterward. Superlinked makes it easier by natively supporting multimodal scoring, letting us assign dynamic weights at query time, and apply hard filters directly.
 
 ### Installations
 
@@ -194,8 +117,7 @@ We begin by installing the necessary packages.
 
 ### Imports
 
-We import the core libraries needed for both the traditional reranking
-approach and the Superlinked-based approach.
+We import the core libraries needed for both the traditional reranking approach and the Superlinked-based approach.
 
 <pre><code class="language-python">
 # Imports
@@ -210,8 +132,7 @@ from superlinked import framework as sl
 
 ### Dataset
 
-We define a product dataset with text descriptions, numerical price and
-rating fields, and a categorical field for category.
+We define a product dataset with text descriptions, numerical price and rating fields, and a categorical field for category.
 
 <pre><code class="language-python">
 # Sample product data
@@ -246,9 +167,7 @@ products = [
 
 ### Define query and embed descriptions
 
-We initialize the SentenceTransformer model to compute semantic
-embeddings for product descriptions. This is used in both the
-traditional and Superlinked pipelines.
+We initialize the SentenceTransformer model to compute semantic embeddings for product descriptions. This is used in both the traditional and Superlinked pipelines.
 
 <pre><code class="language-python">
 # User query and embedding with SentenceTransformer
@@ -262,9 +181,7 @@ embeddings = model.encode([p["description"] for p in products])
 
 ### Traditional approach
 
-We use a reranker model (mxbai-rerank-large-v1) from the rerankers
-library. This model only takes query and documents, not metadata, and
-returns a ranked list based on text relevance.
+We use a reranker model (mxbai-rerank-large-v1) from the rerankers library. This model only takes query and documents, not metadata, and returns a ranked list based on text relevance.
 
 <pre><code class="language-python">
 # Initialize reranker
@@ -280,9 +197,7 @@ reranked = ranker.rank(
 
 #### Process results with metadata
 
-We combine reranker output with metadata by weighting the reranker score
-and product rating. We also apply a filter to exclude products priced
-over \$200.
+We combine reranker output with metadata by weighting the reranker score and product rating. We also apply a filter to exclude products priced over \$200.
 
 <pre><code class="language-python">
 # Reranker-based hybrid ranking with price filtering
@@ -323,13 +238,10 @@ display(traditional_df)
 
 ### Superlinked approach
 
-We define a structured schema for products and create multiple
-similarity spaces:
+We define a structured schema for products and create multiple similarity spaces:
 
 - Text similarity
-
 - Numeric similarity
-
 - Categorical similarity
 
 <pre><code class="language-python">
@@ -375,8 +287,7 @@ category_space = sl.CategoricalSimilaritySpace(
 
 #### Superlinked index and executor setup
 
-We configure the Superlinked index using the defined spaces. The
-InMemorySource and Executor manage querying and updates.
+We configure the Superlinked index using the defined spaces. The InMemorySource and Executor manage querying and updates.
 
 <pre><code class="language-python">
 # Create index with filterable fields
@@ -400,9 +311,7 @@ source.put(products)
 
 #### Superlinked query with weights and filters
 
-We construct a unified query with dynamic weights assigned to text,
-price, and rating spaces. We also apply hard filters to enforce price is
-below 200\$ and category falls is limited to electronics.
+We construct a unified query with dynamic weights assigned to text, price, and rating spaces. We also apply hard filters to enforce price is below 200\$ and category falls is limited to electronics.
 
 <pre><code class="language-python">
 # Unified multimodal query with dynamic weights and hard filters
@@ -430,17 +339,11 @@ sl.PandasConverter.to_pandas(result)
 
 ![](../assets/use_cases/understanding_vector_layer/superlinkedresults.png)
 
-This use case shows how Superlinked makes search simpler and more
-powerful. It gives you a unified way to handle search, whereas in the
-traditional setup, you have to manually piece together reranking logic,
-filters, and weights. You also save on compute since there's no need to
-re-embed or re-rank results multiple times.
+This use case shows how Superlinked makes search simpler and more powerful. It gives you a unified way to handle search, whereas in the traditional setup, you have to manually piece together reranking logic, filters, and weights. You also save on compute since there's no need to re-embed or re-rank results multiple times.
 
 ## Benefits of Superlinked's vector layer over vector re-ranking
 
-Here\'s a quick comparison between Superlinked and traditional
-re-ranking systems across key features to show how they differ in
-performance, usability, and scalability.
+Here\'s a quick comparison between Superlinked and traditional re-ranking systems across key features to show how they differ in performance, usability, and scalability.
 
 | **Feature**                           | **Superlinked Approach**                                                                                                                                      | **Traditional Re-ranking**                                                                                    |
 | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
@@ -455,22 +358,11 @@ performance, usability, and scalability.
 
 ## Conclusion
 
-Modern users expect fast, intelligent responses to complex queries that
-blend semantics with filters and real-world context. The real challenge
-in traditional vector search isn't just poor re-ranking; it's weak
-initial retrieval. If the first layer of results misses the right
-signals, no amount of re-sorting will fix it. That's where Superlinked
-changes the game.
+Modern users expect fast, intelligent responses to complex queries that blend semantics with filters and real-world context. The real challenge in traditional vector search isn't just poor re-ranking; it's weak initial retrieval. If the first layer of results misses the right signals, no amount of re-sorting will fix it. That's where Superlinked changes the game.
 
-Superlinked combines structured and unstructured data into unified
-multimodal vectors, enabling the most relevant results to surface early
-without re-ranking. This enhances both the accuracy and the speed of
-search systems, making your search infrastructure smarter before you
-even hit the database.
+Superlinked combines structured and unstructured data into unified multimodal vectors, enabling the most relevant results to surface early without re-ranking. This enhances both the accuracy and the speed of search systems, making your search infrastructure smarter before you even hit the database.
 
-Ready to upgrade your search and recommendations? Explore
-[Superlinked](https://superlinked.com/) and build smarter,
-faster results with real-world data.
+Ready to upgrade your search and recommendations? Explore [Superlinked](https://superlinked.com/) and build smarter, faster results with real-world data.
 
 ## Contributors
 
