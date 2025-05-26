@@ -169,21 +169,21 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 8262793,
+    "value": 9167033,
     "source_url": "https://pypi.org/project/lancedb/",
     "comment": "",
-    "value_90_days": 2908552
+    "value_90_days": 2885110
   },
   "npm_downloads": {
-    "value": 1578145,
+    "value": 1573894,
     "source_url": "https://www.npmjs.com/package/@lancedb/vectordb-linux-x64-gnu",
     "comment": "",
-    "value_90_days": 174841
+    "value_90_days": 161422
   },
   "crates_io_downloads": {
-    "value": 57041,
+    "value": 58242,
     "source_url": "https://crates.io/crates/lancedb",
     "comment": "",
-    "value_90_days": 8723
+    "value_90_days": 5900
   }
 }

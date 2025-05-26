@@ -174,10 +174,10 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 1640660,
+    "value": 1693495,
     "source_url": "https://pypi.org/project/deeplake/",
     "comment": "",
-    "value_90_days": 406002
+    "value_90_days": 437265
   },
   "npm_downloads": {
     "value": 0,

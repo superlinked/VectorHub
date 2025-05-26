@@ -164,7 +164,7 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 106367,
+    "value": 110383,
     "source_url": "https://hub.docker.com/r/paradedb/paradedb",
     "comment": "",
     "value_90_days": 0
