@@ -174,16 +174,16 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 14155719,
+    "value": 14281764,
     "source_url": "https://hub.docker.com/r/tensorchord/pgvecto-rs",
     "comment": "",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 188596,
+    "value": 192215,
     "source_url": "https://pypi.org/project/pgvecto-rs/",
     "comment": "",
-    "value_90_days": 65480
+    "value_90_days": 66275
   },
   "npm_downloads": {
     "value": 0,
