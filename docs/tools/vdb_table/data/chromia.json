@@ -1,48 +1,48 @@
 {
-  "name": "OramaSearch",
+  "name": "Chromia",
   "links": {
-    "docs": "https://docs.oramasearch.com/open-source/",
-    "github": "https://github.com/oramasearch/orama",
-    "website": "http://oramasearch.com/",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/82",
-    "poc_github": "https://github.com/MicheleRiva",
-    "slug": "oramasearch"
+    "docs": "https://docs.chromia.com/intro/extensions/vector-db",
+    "github": "https://gitlab.com/chromaway/core/vector-db-extension",
+    "website": "https://chromia.com/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/544",
+    "poc_github": "https://gitlab.com/johan.nilssonn",
+    "slug": "chromia"
   },
   "oss": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://gitlab.com/chromaway/core/vector-db-extension/-/blob/dev/LICENSE",
     "comment": ""
   },
   "license": {
-    "value": "Apache-2.0",
-    "source_url": "",
+    "value": "GPL-3.0",
+    "source_url": "https://www.gnu.org/licenses/",
     "comment": ""
   },
   "dev_languages": {
     "value": [
-      "typescript"
+      "kotlin"
     ],
     "source_url": "",
     "comment": ""
   },
-  "vector_launch_year": 2022,
+  "vector_launch_year": 2025,
   "metadata_filter": {
-    "support": "full",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "hybrid_search": {
-    "support": "none",
-    "source_url": "",
+    "support": "partial",
+    "source_url": "https://docs.chromia.com/intro/extensions/vector-db#querying-vectors",
     "comment": ""
   },
   "facets": {
-    "support": "full",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "geo_search": {
-    "support": "full",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
@@ -57,22 +57,22 @@
     "comment": ""
   },
   "bm25": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "full_text": {
-    "support": "full",
-    "source_url": "",
+    "support": "partial",
+    "source_url": "https://gitlab.com/chromaway/core/vector-db-extension#local-run-and-example",
     "comment": ""
   },
   "embeddings_text": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "embeddings_image": {
-    "support": "",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
@@ -92,49 +92,49 @@
     "comment": ""
   },
   "langchain": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "llamaindex": {
-    "support": "none",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "managed_cloud": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://chromia.com/mainnet",
     "comment": ""
   },
   "pricing": {
-    "value": "free plan / $4.99 per month (pro)",
-    "source_url": "https://oramasearch.com/pricing",
+    "value": "",
+    "source_url": "",
     "comment": ""
   },
   "in_process": {
-    "support": "full",
-    "source_url": "https://github.com/askorama/orama#installation",
-    "comment": "Orama can work completely in-memory in your browser or server"
+    "support": "",
+    "source_url": "",
+    "comment": ""
   },
   "multi_tenancy": {
-    "support": "full",
+    "support": "",
     "source_url": "",
     "comment": ""
   },
   "disk_index": {
-    "support": "full",
-    "source_url": "https://github.com/oramasearch/orama/tree/main/packages/plugin-data-persistence",
-    "comment": "Available via the official Data Persistence plugin"
+    "support": "",
+    "source_url": "",
+    "comment": ""
   },
   "ephemeral": {
-    "support": "full",
+    "support": "none",
     "source_url": "",
     "comment": ""
   },
   "sharding": {
-    "support": "",
+    "support": "full",
     "source_url": "",
-    "comment": "Cloud solution only"
+    "comment": ""
   },
   "doc_size": {
     "bytes": 0,
@@ -143,14 +143,21 @@
     "comment": ""
   },
   "vector_dims": {
-    "value": 0,
-    "unlimited": true,
+    "value": 2000,
+    "unlimited": false,
+    "source_url": "https://github.com/pgvector/pgvector",
+    "comment": "Powered by pgvector - open-source vector similarity"
+  },
+  "index_types": {
+    "value": [
+      "HNSW"
+    ],
     "source_url": "",
     "comment": ""
   },
   "github_stars": {
-    "value": 9436,
-    "source_url": "https://github.com/oramasearch/orama",
+    "value": 0,
+    "source_url": "",
     "comment": "",
     "value_90_days": 0
   },
@@ -167,10 +174,10 @@
     "value_90_days": 0
   },
   "npm_downloads": {
-    "value": 2584320,
-    "source_url": "https://www.npmjs.com/package/@orama/orama",
+    "value": 0,
+    "source_url": "",
     "comment": "",
-    "value_90_days": 978932
+    "value_90_days": 0
   },
   "crates_io_downloads": {
     "value": 0,
