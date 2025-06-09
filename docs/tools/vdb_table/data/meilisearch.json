@@ -164,13 +164,13 @@
     "value": 2973072,
     "source_url": "https://pypi.org/project/meilisearch/",
     "comment": "",
-    "value_90_days": 605164
+    "value_90_days": 616495
   },
   "npm_downloads": {
-    "value": 6786571,
+    "value": 6839297,
     "source_url": "https://www.npmjs.com/package/meilisearch",
     "comment": "",
-    "value_90_days": 1483183
+    "value_90_days": 1479224
   },
   "crates_io_downloads": {
     "value": 0,

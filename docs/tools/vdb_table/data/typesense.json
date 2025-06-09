@@ -169,16 +169,16 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 4276860,
+    "value": 4394222,
     "source_url": "https://pypi.org/project/typesense/",
     "comment": "",
-    "value_90_days": 746966
+    "value_90_days": 773900
   },
   "npm_downloads": {
-    "value": 9837956,
+    "value": 9986171,
     "source_url": "https://www.npmjs.com/package/typesense",
     "comment": "",
-    "value_90_days": 2533970
+    "value_90_days": 2570041
   },
   "crates_io_downloads": {
     "value": 0,
