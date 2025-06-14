@@ -29,22 +29,22 @@ For our search methodology benchmark, we use a publicly available dataset contai
 ### Dataset Overview
 The dataset contains information about 3,350 Stockholm Airbnb listings, including property details, pricing, location data, accommodation type, ratings, descriptions, and amenities. As shown in Figure 1, each listing contains multiple attribute types such as text fields (listing_name, description), numerical fields (price, rating), categorical fields (accommodation_type), and structured lists (amenities).
 
-![Stockholm Airbnb Listings Sample](/assets/dataframe.png)
+![Stockholm Airbnb Listings Sample](/assets/use_cases/airbnb_search/dataframe.png)
 <figcaption>Figure 1: Stockholm Airbnb listing sample</figcaption>
 
 ### Distribution Analysis and Search Implications
 
 The figures below illustrate the distribution of key listing attributes in our dataset. Looking at the visualizations, we can observe patterns in price ranges, review counts, and rating scores across Stockholm Airbnb properties. These distributions help us understand the landscape of available accommodations and provide context for the search queries we will test with different retrieval methods.
 <div style="display: flex; justify-content: space-between;">
- <img src="../assets/price.png" alt="Price Distribution" width="32%">
- <img src="../assets/review_rating.png" alt="Room Types" width="32%">
- <img src="../assets/number_of_reviews.png" alt="Review Scores" width="32%">
+ <img src="../assets/use_cases/airbnb_search/price.png" alt="Price Distribution" width="32%">
+ <img src="../assets/use_cases/airbnb_search/review_rating.png" alt="Room Types" width="32%">
+ <img src="../assets/use_cases/airbnb_search/number_of_reviews.png" alt="Review Scores" width="32%">
 </div>
 
 <div style="display: flex; justify-content: space-between;">
- <img src="../assets/st_price.png" alt="Price Distribution" width="32%">
- <img src="../assets/st_review_rating.png" alt="Rating" width="32%">
- <img src="../assets/st_review_count.png" alt="Rating Distribution" width="32%">
+ <img src="../assets/use_cases/airbnb_search/st_price.png" alt="Price Distribution" width="32%">
+ <img src="../assets/use_cases/airbnb_search/st_review_rating.png" alt="Rating" width="32%">
+ <img src="../assets/use_cases/airbnb_search/st_review_count.png" alt="Rating Distribution" width="32%">
 </div>
 
 ### Text Representation for Search
@@ -70,7 +70,7 @@ df['document'] = df.apply(create_text_description, axis=1)
 One of the most straightforward ways to perform search is using keyword matching. BM25 (Best Matching 25) is one implementation of keyword (aka sparse vector) search where we match search terms from the query and documents. This algorithm estimates the relevance of documents to a given search query.
 
 <figure style="text-align: center; margin: 20px 0;">
-  <img src="../assets/BM25.png" alt="BM25 Search Approach" style="width: 80%; max-width: 800px;">
+  <img src="../assets/use_cases/airbnb_search/BM25.png" alt="BM25 Search Approach" style="width: 80%; max-width: 800px;">
   <figcaption>Figure 2: BM25 search approach workflow</figcaption>
 </figure>
 
@@ -106,11 +106,11 @@ To evaluate BM25's performance, we tested it with two different types of queries
 
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin: 20px 0;">
   <div style="flex: 0 0 48%;">
-    <img src="../assets/bm25_semantic_res.png" alt="BM25 Results for Subjective Query" style="width: 100%;">
+    <img src="../assets/use_cases/airbnb_search/bm25_semantic_res.png" alt="BM25 Results for Subjective Query" style="width: 100%;">
     <p style="text-align: center;">Figure 3: BM25 results for "affordable place with good reviews" query</p>
   </div>
   <div style="flex: 0 0 48%;">
-    <img src="../assets/bm25_filter_res.png" alt="BM25 Results for Numerical Constraints" style="width: 100%;">
+    <img src="../assets/use_cases/airbnb_search/bm25_filter_res.png" alt="BM25 Results for Numerical Constraints" style="width: 100%;">
     <p style="text-align: center;">Figure 4: BM25 results for numerical constraints</p>
   </div>
 </div>
@@ -125,7 +125,7 @@ These limitations highlight why more advanced search methods are needed for comp
 Since BM25's keyword matching approach showed significant limitations, we needed a more sophisticated method to handle complex natural language queries. Vector search addresses these limitations by converting queries and documents (listings) into dense numerical representations (embeddings) that capture semantic meaning rather than just matching keywords. This approach allows the search system to understand context, synonyms, and conceptual relationships between words, enabling more intuitive and accurate retrieval results. In vector search, both document items (Airbnb listings in our case) and user queries are transformed into high-dimensional (dense) numerical vectors using embedding models. These embeddings capture the semantic meaning of text, allowing the system to find matches based on conceptual similarity rather than exact word matches. The search process uses nearest neighbor algorithms to identify listings whose vector representations are closest to the query vector in the embedding space.
 
 <figure style="text-align: center; margin: 20px 0;">
-  <img src="../assets/vector_search.png" alt="Vector Search Approach" style="width: 80%; max-width: 800px;">
+  <img src="../assets/use_cases/airbnb_search/vector_search.png" alt="Vector Search Approach" style="width: 80%; max-width: 800px;">
   <figcaption>Figure 5: Vector search approach workflow</figcaption>
 </figure>
 
@@ -181,11 +181,11 @@ To evaluate the performance of our vector search implementation, we tested it wi
 
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin: 20px 0;">
   <div style="flex: 0 0 48%; margin-bottom: 20px;">
-    <img src="../assets/vector_semantic_2.png" alt="Vector Results for Luxury Query" style="width: 100%;">
+    <img src="../assets/use_cases/airbnb_search/vector_semantic_2.png" alt="Vector Results for Luxury Query" style="width: 100%;">
     <p style="text-align: center;">Figure 6: Vector search results for "luxury places with good reviews"</p>
   </div>
   <div style="flex: 0 0 48%; margin-bottom: 20px;">
-    <img src="../assets/vector_semantic.png" alt="Vector Results for Affordable Query" style="width: 100%;">
+    <img src="../assets/use_cases/airbnb_search/vector_semantic.png" alt="Vector Results for Affordable Query" style="width: 100%;">
     <p style="text-align: center;">Figure 7: Vector search results for "affordable place with good reviews"</p>
   </div>
 </div>
@@ -195,7 +195,7 @@ The vector search results demonstrate both strengths and limitations compared to
 Similarly, for the "affordable place with good reviews" query in Figure 9, vector search returns reasonably priced listings (most under 1000) with good ratings. Notably, it finds one listing (#744) with 140 reviews and a 4.97 rating, but its rank is lower than the other listing with less reviews and lower score (#765) although the prices are very close. 
 
 <figure style="text-align: center; margin: 20px 0;">
- <img src="../assets/vector_filter.png" alt="Vector Results for Numerical Query" style="width: 80%; max-width: 800px;">
+ <img src="../assets/use_cases/airbnb_search/vector_filter.png" alt="Vector Results for Numerical Query" style="width: 80%; max-width: 800px;">
  <figcaption>Figure 8: Vector search results for numerical constraint query</figcaption>
 </figure>
 
@@ -212,7 +212,7 @@ Another powerful approach in information retrieval is hybrid search. Hybrid sear
 Usually, a reranker is used to combine and rank the results from keyword and vector searches. A reranker is responsible for merging the separate result lists into a single coherent ranking that preserves the strengths of each approach. There are different types of rerankers such as fusion algorithms (like Reciprocal Rank Fusion), linear combinations of scores, or more sophisticated machine learning-based rerankers.
 
 <figure style="text-align: center; margin: 20px 0;">
- <img src="../assets/hybrid_search.png" alt="Hybrid Search Approach" style="width: 80%; max-width: 800px;">
+ <img src="../assets/use_cases/airbnb_search/hybrid_search.png" alt="Hybrid Search Approach" style="width: 80%; max-width: 800px;">
  <figcaption>Figure 9: Hybrid search architecture combining vector and keyword search</figcaption>
 </figure>
 
@@ -259,14 +259,14 @@ For reranking, we used a linear combination approach controlled by the parameter
 If neither of the two approaches produces satisfactory results on structured data individually, it is unlikely that combining them will produce the desired outcome. However, we applied the hybrid search on the same three queries and observed some interesting patterns. As shown in Figure 10, for the "luxury places with good reviews" query, hybrid search effectively prioritizes listings that contain explicit luxury indicators in their titles while also having strong rating metrics. The top results include "Luxury Living" and "Luxury apartment" with perfect 5.0 ratings.
 
 <figure style="text-align: center; margin: 20px 0;">
- <img src="../assets/hybrid_semantic_luxury.png" alt="Hybrid Search Results" style="width: 100%;">
+ <img src="../assets/use_cases/airbnb_search/hybrid_semantic_luxury.png" alt="Hybrid Search Results" style="width: 100%;">
  <figcaption>Figure 10: Hybrid search results for "luxury places with good reviews"</figcaption>
 </figure>
 
 The results indicate that hybrid search effectively balances semantic understanding with keyword precision. By combining vector search's ability to grasp concepts like "luxury" with BM25's strength in finding exact term matches, the hybrid approach delivers more comprehensive results. However, the fundamental limitations remain: the system still cannot reliably interpret numerical constraints (Figure 11) or make sophisticated judgments about what constitutes "good reviews" in terms of both rating quality and quantity. Additionaly, finding the optimal alpha value for the weighted combination requires careful tuning and may need adjustment based on specific use cases or datasets. Implementing hybrid search also requires maintaining two separate index structures and ensuring proper score normalization and fusion. This suggests that while hybrid search improves upon its component approaches, we need a more advanced solution to truly understand structured data attributes and their relationships.
 
 <figure style="text-align: center; margin: 20px 0;">
- <img src="../assets/hybrid_filter.png" alt="Hybrid Search Results" style="width: 100%;">
+ <img src="../assets/use_cases/airbnb_search/hybrid_filter.png" alt="Hybrid Search Results" style="width: 100%;">
  <figcaption>Figure 11: Hybrid search results for numerical constraint query</figcaption>
 </figure>
 
@@ -275,7 +275,7 @@ The results indicate that hybrid search effectively balances semantic understand
 While vector search offers strong semantic understanding, we can further enhance search quality by adding a reranking stage using cross-encoders. This approach represents an even more advanced search architecture that can address some of the limitations we have observed in previous methods.
 
 <figure style="text-align: center; margin: 20px 0;">
- <img src="../assets/cross_encoder.png" alt="Cross-Encoder Reranking Architecture" style="width: 80%; max-width: 800px;">
+ <img src="../assets/use_cases/airbnb_search/cross_encoder.png" alt="Cross-Encoder Reranking Architecture" style="width: 80%; max-width: 800px;">
  <figcaption>Figure 12: Cross-encoder reranking architecture</figcaption>
 </figure>
 
@@ -315,11 +315,11 @@ The cross-encoder reranking results demonstrate a notable improvement in result 
 
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin: 20px 0;">
  <div style="flex: 0 0 100%; margin-bottom: 20px;">
-   <img src="../assets/cross_semantic_luxury.png" alt="Cross-Encoder Results for Luxury Query" style="width: 100%;">
+   <img src="../assets/use_cases/airbnb_search/cross_semantic_luxury.png" alt="Cross-Encoder Results for Luxury Query" style="width: 100%;">
    <p style= "text-align: center;">Figure 13: Cross-encoder results for "luxury places with good reviews" </p>
  </div>
  <div style= "flex: 0 0 48%;">
-   <img src="../assets/cross_semantic_affordable.png" alt="Cross-Encoder Results for Affordable Query" style="width: 100%;">
+   <img src="../assets/use_cases/airbnb_search/cross_semantic_affordable.png" alt="Cross-Encoder Results for Affordable Query" style="width: 100%;">
    <p style= "text-align: center;">Figure 14: Cross-encoder results for "affordable place with good reviews" </p>
  </div>
 </div>
@@ -327,7 +327,7 @@ The cross-encoder reranking results demonstrate a notable improvement in result 
 Most impressively, for the numerical constraints query, the cross-encoder makes progress in understanding specific requirements. Despite the first result exceeding the price constraint (2632 > 2000), the reranking correctly identifies more listings matching the "5 guests" requirement and prioritizes them appropriately. This shows the effectiveness of using cross-encoders, since they re-calculate the similarity between the query and the documents after the initial retrieval based on vector search. In other words, the model can make finer distinctions when examining query-document pairs together rather than separately. However, the cross-encoder still does not perfectly understand all numerical constraints. Additionally, despite the improvements, cross-encoder reranking has significant computational drawbacks. It requires evaluating each query-document pair individually through a transformer-based model, which increases latency and resource requirements. Especially as the candidate pool grows, making the search challenging to scale for large datasets or real-time applications with strict performance requirements. These takeaways suggest that while this approach represents a significant improvement, a more structured approach to handling multi-attribute data could yield better results.
 
 <figure style="text-align: center; margin: 20px 0;">
- <img <img src="../assets/cross_filter.png" alt="Cross-Encoder Results for Numerical Query" style="width: 100%;">
+ <img <img src="../assets/use_cases/airbnb_search/cross_filter.png" alt="Cross-Encoder Results for Numerical Query" style="width: 100%;">
  <figcaption>Figure 15: Cross-encoder results for numerical constraints query</figcaption>
 </figure>
 
@@ -337,7 +337,7 @@ While dense vector search methods significantly outperform keyword-based approac
 
 To better understand this limitation, we visualized the embedding space using t-SNE. We generated embeddings for all listings in the dataset and highlighted the top-k results retrieved by each method for the query "apartment for 5 guests with price lower than 2000 and review rating bigger than 4.5."
 
-<figure style="text-align: center; margin: 20px 0;"> <img src="../assets/embedding_comparison.png" alt="Embedding Space Visualization" style="width: 100%;"> <figcaption>Figure 16: 2D projection of listing and query embeddings retrieved by various methods</figcaption> </figure>
+<figure style="text-align: center; margin: 20px 0;"> <img src="../assets/use_cases/airbnb_search/embedding_comparison.png" alt="Embedding Space Visualization" style="width: 100%;"> <figcaption>Figure 16: 2D projection of listing and query embeddings retrieved by various methods</figcaption> </figure>
 
 As shown in Figure 16, the retrieved listings from different methods cluster tightly around the query embedding in the low-dimensional space. This visualization highlights the key issue. The issue is when all information (e.g., textual, numerical, categorical) is encoded into a single vector, many listings appear semantically close to the query, even if they fail to satisfy specific constraints like guest capacity or price. These compressed representations blur important distinctions, leading to retrieval errors that a user would find unsatisfactory. This trade-off between semantic richness and structural precision suggests that we need a more expressive retrieval framework.
 
@@ -347,7 +347,7 @@ To address these challenges, we turn to multi-vector search methods and specific
 During offline indexing, each listing is passed through a BERT model to produce multiple contextual embeddings (one for each token). These token-level vectors are stored in an indexable format, allowing for efficient retrieval. Then, during query-time, the user query is similarly tokenized and encoded into contextual vectors. Instead of computing a single similarity score between two full-document vectors (query, and document vectors), ColBERT evaluates the maximum similarity between each query token and all document token vectors. These maximum similarity scores are then aggregated to produce a final relevance score for each document. 
 
 <figure style="text-align: center; margin: 20px 0;">
- <img src="../assets/colbert.png" alt="Cross-Encoder Reranking Architecture" style="width: 80%; max-width: 800px;">
+ <img src="../assets/use_cases/airbnb_search/colbert.png" alt="Cross-Encoder Reranking Architecture" style="width: 80%; max-width: 800px;">
  <figcaption>Figure 17: Colbert Multi-Vector Retrieval</figcaption>
 </figure>
 
@@ -420,21 +420,21 @@ class ColBERTSearch:
 When evaluated on the numerical constraints query "Apartment for 5 guests with price lower than 2000 and review rating bigger than 4.5", ColBERT outperforms the cross-encoder reranker in terms of constraint satisfaction. As seen in Figure 18, multiple listings correctly match the requirement for 5 guests, stay within the 2000 price threshold, and meet or exceed the rating constraint. This suggests that ColBERT's late interaction mechanism is more effective at capturing structured constraints, particularly when they are distributed across multiple fields. Additionally, in contrast to the cross-encoder approach, the search is much faster.
 
 <figure style="text-align: center; margin: 20px 0;">
- <img src="../assets/colbert_filter.png" alt="ColBERT result on structured query" style="width: 80%; max-width: 800px;">
+ <img src="../assets/use_cases/airbnb_search/colbert_filter.png" alt="ColBERT result on structured query" style="width: 80%; max-width: 800px;">
  <figcaption>Figure 18: Colbert results for numerical constraints query</figcaption>
 </figure>
 
 However, ColBERT's performance shows sensitivity to query phrasing. When we modify the query slightly to "Places with price lower than 2000 with review rating bigger than 4.5 for 5 guests", placing the guest capacity at the end, ColBERT retrieves listings that no longer meet the 5-guest requirement. This drop in alignment may be influenced by how listing documents are structured. In our case, the document begins with the listing name and includes the guest capacity early on. Because ColBERT compares query and document tokens in parallel and relies on maximum similarity aggregation, the relative position of information might affect the final scoring.
 
 <figure style="text-align: center; margin: 20px 0;">
- <img src="../assets/colbert_filter_2.png" alt="ColBERT result on structured query 2" style="width: 80%; max-width: 800px;">
+ <img src="../assets/use_cases/airbnb_search/colbert_filter_2.png" alt="ColBERT result on structured query 2" style="width: 80%; max-width: 800px;">
  <figcaption>Figure 19: ColBERT results for numerical constraints query</figcaption>
 </figure>
 
 For the query “luxury places with good reviews”, ColBERT appears to rely heavily on lexical signals. Many of the returned listings explicitly contain the word “luxury” in their titles. Additionally, there is a noticeable inconsistency in pricing. Some results are extremely expensive while others are comparatively moderate. This disparity raises an important question: does ColBERT truly understand the concept of “luxury,” or is it simply anchoring on the occurrence of the word embeddings in the query and document?
 
 <figure style="text-align: center; margin: 20px 0;">
- <img src="../assets/colbert_semantic_luxury.png" alt="ColBERT result on structured query 2" style="width: 80%; max-width: 800px;">
+ <img src="../assets/use_cases/airbnb_search/colbert_semantic_luxury.png" alt="ColBERT result on structured query 2" style="width: 80%; max-width: 800px;">
  <figcaption>Figure 20: ColBERT results for "luxury places with good reviews" query</figcaption>
 </figure>
 
@@ -443,7 +443,7 @@ This behavior can be partly explained by ColBERT’s architectural design. ColBE
 For the query “affordable places with good reviews,” ColBERT returns mostly relevant results, with prices ranging from 500 to just over 1000 and ratings near or above 4.8. However, one listing priced at 3700 also appears among the top results, clearly violating the affordability expectation. Additionally, while most results have strong ratings, the final listing has a much lower rating (3.25), which weakens the consistency of the ranking.
 
 <figure style="text-align: center; margin: 20px 0;">
- <img src="../assets/colbert_semantic_affordable.png" alt="ColBERT result on structured query 2" style="width: 80%; max-width: 800px;">
+ <img src="../assets/use_cases/airbnb_search/colbert_semantic_affordable.png" alt="ColBERT result on structured query 2" style="width: 80%; max-width: 800px;">
  <figcaption>Figure 21: Colbert results for "affordable places with good reviews" query</figcaption>
 </figure>
 
@@ -456,7 +456,7 @@ For instance, embedding a number like 2000 using a language model trained primar
 Superlinked introduces a novel mixture of encoder retrieval architecture, particularly designed to handle structured, multi-attribute data more effectively than traditional models. Unlike single-vector approaches that compress all information into one embedding, or late-interaction models like ColBERT that still rely on general-purpose text representations, Superlinked uses dedicated encoders for each attribute based on its data type. For example, textual descriptions are encoded using a text embedding, while numerical values like price or rating are embedded using models that preserve quantitative relationships. Categorical fields and timestamps are similarly handled by encoders tailored to their respective modalities.
 
 <figure style="text-align: center; margin: 20px 0;">
- <img src="../assets/superlinked.png" alt="Superlinked approach" style="width: 80%; max-width: 800px;">
+ <img src="../assets/use_cases/airbnb_search/superlinked.png" alt="Superlinked approach" style="width: 80%; max-width: 800px;">
  <figcaption>Figure 22: Superlinked architecture</figcaption>
 </figure>
 
@@ -619,7 +619,7 @@ The first query we tested was a numerical constrained query "apartment for 5 gue
 As can be seen in the Figure 23, Superlinked successfully managed to provide listings that precisely match the user's criteria. Unlike previous approaches, all returned listings can accommodate 5 guests, have prices below the 2000 threshold (ranging from 544 to 1985), and maintain ratings above 4.5 (between 4.71 and 4.9).
 
 <figure style="text-align: center; margin: 20px 0;">
- <img src="../assets/superlinked_filter.png" alt="Superlinked filter query" style="width: 80%; max-width: 800px;">
+ <img src="../assets/use_cases/airbnb_search/superlinked_filter.png" alt="Superlinked filter query" style="width: 80%; max-width: 800px;">
  <figcaption>Figure 23: Superlinked results for numerical constraints query</figcaption>
 </figure>
 
@@ -628,7 +628,7 @@ What is particularly impressive is how the results are ranked. A combination of 
 We then changed the structure of the query to test whether Superlinked would exhibit the same sensitivity to query phrasing that we observed with ColBERT. The new query was: "apartment with price lower than 2000 and review rating bigger than 4.5 for 5 guests."
 
 <figure style="text-align: center; margin: 20px 0;">
- <img src="../assets/superlinked_filter_2.png" alt="Superlinked filter query" style="width: 80%; max-width: 800px;">
+ <img src="../assets/use_cases/airbnb_search/superlinked_filter_2.png" alt="Superlinked filter query" style="width: 80%; max-width: 800px;">
  <figcaption>Figure 24: Superlinked results for numerical constraints query with different structure</figcaption>
 </figure>
 
@@ -637,14 +637,14 @@ As can be seen in the results, when we changed the query structure, Superlinked 
 For the "luxury places with good reviews" query, Superlinked demonstrates an impressive understanding of the "luxury" and the concept of "having good reviews". The results showcase high-priced listings all with excellent ratings and substantial review counts.
 
 <figure style="text-align: center; margin: 20px 0;">
- <img src="../assets/superlinked_semantic_luxury.png" alt="Superlinked filter query" style="width: 80%; max-width: 800px;">
+ <img src="../assets/use_cases/airbnb_search/superlinked_semantic_luxury.png" alt="Superlinked filter query" style="width: 80%; max-width: 800px;">
  <figcaption>Figure 25: Superlinked results for semantic query "luxury places with good reviews".</figcaption>
 </figure>
 
 In contrast, the "affordable places with good reviews" query returns listings with dramatically lower prices (360-630) while maintaining exceptional ratings (4.81-4.92). Despite the lower prices, these listings have impressive review counts (261-591), suggesting intense user satisfaction.
 
 <figure style="text-align: center; margin: 20px 0;">
- <img src="../assets/superlinked_semantic_affordable.png" alt="Superlinked filter query" style="width: 80%; max-width: 800px;">
+ <img src="../assets/use_cases/airbnb_search/superlinked_semantic_affordable.png" alt="Superlinked filter query" style="width: 80%; max-width: 800px;">
  <figcaption>Figure 26: Superlinked results for semantic query "affordable places with good reviews".</figcaption>
 </figure>
 
