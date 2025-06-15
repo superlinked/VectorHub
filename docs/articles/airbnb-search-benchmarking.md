@@ -1,27 +1,34 @@
 # Airbnb Search Benchmarking - Comparison of retrieval techniques
 
 ## Introduction & Motivation
-Imagine you are searching for the ideal Airbnb for a weekend getaway. You open the website and adjust sliders and checkboxes but still encounter lists of options that nearly match your need but never are never truly what you are looking for. Although it is straightforward to specify a filter such as: "price less than two hundred dollars", rigid tags and thresholds for more complex search queries, make it a much more difficult task to figure out what the user is looking for. 
 
-Converting a mental image of a luxury apartment near the city's finest cafés or an affordable business-ready suite with good reviews into numerical filters often proves frustrating. Natural language is inherently unstructured and must be transformed into numerical representations to uncover user intent. At the same time, the rich structured data associated with each listing must also be encoded numerically to reveal relationships between location, comfort, price, and reviews. 
+Imagine you are searching for the ideal Airbnb for a weekend getaway. You open the website and adjust sliders and checkboxes but still encounter lists of options that nearly match your need but never are never truly what you are looking for. Although it is straightforward to specify a filter such as: "price less than two hundred dollars", rigid tags and thresholds for more complex search queries, make it a much more difficult task to figure out what the user is looking for.
+
+Converting a mental image of a luxury apartment near the city's finest cafés or an affordable business-ready suite with good reviews into numerical filters often proves frustrating. Natural language is inherently unstructured and must be transformed into numerical representations to uncover user intent. At the same time, the rich structured data associated with each listing must also be encoded numerically to reveal relationships between location, comfort, price, and reviews.
 
 Motivated by this challenge of bridging unstructured user intent with structured listing attributes, in this article, we evaluate a range of retrieval techniques from classic keyword-matching approaches through vector search, hybrid, multi-vector strategies, and ultimately Superlinked's semantic engine using a mixture of encoders.
 
 While traditional search systems often treat structured data (like price, and rating) as simple filters and unstructured data (like descriptions) as separate search indices, our benchmark reveals how modern approaches can understand the semantic relationships between all attribute types. By comparing various methodologies on the same Airbnb dataset, we quantify the advantages of integrated approaches like Superlinked's mixture of encoders, which can understand that 'affordable with good reviews' represents both a price range and quality expectation rather than just matching keywords. This benchmark provides actionable insights for developers looking to implement more intuitive search experiences across domains with mixed data types.
 
 ## Data Exploration: Stockholm Airbnb Listings
+
 For our search methodology benchmark, we use a publicly available dataset containing Airbnb listings in Stockholm, sourced from [Inside Airbnb](http://insideairbnb.com/). This dataset provides rich, structured information about rental properties, making it ideal for testing multi-attribute semantic search capabilities.
 
 ### Dataset Overview
+
 The dataset contains information about 3,350 Stockholm Airbnb listings, including property details, pricing, location data, accommodation type, ratings, descriptions, and amenities. As shown in Figure 1, each listing contains multiple attribute types such as text fields (listing_name, description), numerical fields (price, rating), categorical fields (accommodation_type), and structured lists (amenities).
 
-![Stockholm Airbnb Listings Sample](/assets/use_cases/airbnb_search/dataframe.png)
+![Stockholm Airbnb Listings Sample](../assets/use_cases/airbnb_search/dataframe.png)
+
 <figcaption>Figure 1: Stockholm Airbnb listing sample</figcaption>
 
 ### Distribution Analysis and Search Implications
 
 The figures below illustrate the distribution of key listing attributes in our dataset. Looking at the visualizations, we can observe patterns in price ranges, review counts, and rating scores across Stockholm Airbnb properties. These distributions help us understand the landscape of available accommodations and provide context for the search queries we will test with different retrieval methods.
-<div style="display: flex; justify-content: space-between;">
+
+![Distribution Analysis and Search Implications](../assets/use_cases/airbnb_search/distribution_analysis_and_implications.png)
+
+<!-- <div style="display: flex; justify-content: space-between;">
  <img src="../assets/use_cases/airbnb_search/price.png" alt="Price Distribution" width="32%">
  <img src="../assets/use_cases/airbnb_search/review_rating.png" alt="Room Types" width="32%">
  <img src="../assets/use_cases/airbnb_search/number_of_reviews.png" alt="Review Scores" width="32%">
@@ -31,7 +38,7 @@ The figures below illustrate the distribution of key listing attributes in our d
  <img src="../assets/use_cases/airbnb_search/st_price.png" alt="Price Distribution" width="32%">
  <img src="../assets/use_cases/airbnb_search/st_review_rating.png" alt="Rating" width="32%">
  <img src="../assets/use_cases/airbnb_search/st_review_count.png" alt="Rating Distribution" width="32%">
-</div>
+</div> -->
 
 ### Text Representation for Search
 
@@ -74,18 +81,19 @@ class BM25Search:
        self.corpus = df['text_description'].tolist()
        self.tokenized_corpus = [doc.lower().split() for doc in self.corpus]
        self.bm25 = BM25Okapi(self.tokenized_corpus)
-       
+
    def search(self, query: str, top_k: int = 10):
        """Perform BM25 search on the corpus."""
        tokenized_query = query.lower().split()
        bm25_scores = self.bm25.get_scores(tokenized_query)
-       
+
        results = self.df.copy()
        results['bm25_score'] = bm25_scores
        results = results.sort_values('bm25_score', ascending=False).head(top_k)
-       
+
        return results
 ```
+
 ### BM25 Search Results
 
 To evaluate BM25's performance, we tested it with two different types of queries. Figure 3 shows results for a subjective query ("affordable place with good reviews"), while Figure 4 demonstrates a query with specific numerical constraints ("Apartment with price lower than 2000 for 5 guests with review rating bigger than 4.5").
@@ -108,6 +116,7 @@ More fundamentally, BM25 lacks semantic understanding of concepts. If you search
 These limitations highlight why more advanced search methods are needed for complex, natural language queries that include both conceptual understanding and numerical constraints.
 
 ## Vector Search (Embedding-Based)
+
 Since BM25's keyword matching approach showed significant limitations, we needed a more sophisticated method to handle complex natural language queries. Vector search addresses these limitations by converting queries and documents (listings) into dense numerical representations (embeddings) that capture semantic meaning rather than just matching keywords. This approach allows the search system to understand context, synonyms, and conceptual relationships between words, enabling more intuitive and accurate retrieval results. In vector search, both document items (Airbnb listings in our case) and user queries are transformed into high-dimensional (dense) numerical vectors using embedding models. These embeddings capture the semantic meaning of text, allowing the system to find matches based on conceptual similarity rather than exact word matches. The search process uses nearest neighbor algorithms to identify listings whose vector representations are closest to the query vector in the embedding space.
 
 <figure style="text-align: center; margin: 20px 0;">
@@ -131,36 +140,37 @@ class VectorSearch:
        self.model = SentenceTransformer(model_name)
        # Create embeddings for all listings
        self.embeddings = self.model.encode(
-           self.df['text_description'].tolist(), 
+           self.df['text_description'].tolist(),
            normalize_embeddings=True
        ).astype(np.float32)
        # Build FAISS index
        self.index = self._create_faiss_index()
-   
+
    def _create_faiss_index(self):
        """Create FAISS index for fast similarity search."""
        vector_dimension = self.embeddings.shape[1]
        index = faiss.IndexFlatIP(vector_dimension)  # Inner product for cosine similarity
        index.add(self.embeddings)
        return index
-   
+
    def search(self, query: str, top_k: int = 10):
        """Perform vector search on the listings."""
        # Convert query to embedding
        query_embedding = self.model.encode(
-           [query], 
+           [query],
            normalize_embeddings=True
        ).astype(np.float32)
-       
+
        # Search the index
        scores, indices = self.index.search(query_embedding, top_k)
-       
+
        # Return results with similarity scores
        results = self.df.iloc[indices[0]].copy()
        results['vector_score'] = scores[0]
-       
+
        return results
 ```
+
 ### Vector Search Results Analysis
 
 To evaluate the performance of our vector search implementation, we tested it with the same queries used for BM25. Figures 6 and 7 show the results for both the subjective query and the query with numerical constraints.
@@ -178,7 +188,7 @@ To evaluate the performance of our vector search implementation, we tested it wi
 
 The vector search results demonstrate both strengths and limitations compared to BM25. For subjective queries, vector search shows a remarkable ability to understand semantic concepts. In Figure 6, the query for "luxury places with good reviews" returns listings that directly match this intent. The top result literally contains "Luxury Living" in its name, with other results featuring "beautiful," "fully equipped," and "great location" in its description. All results have excellent ratings (4.67-5.0), although some have very few reviews (one potential weakness).
 
-Similarly, for the "affordable place with good reviews" query in Figure 9, vector search returns reasonably priced listings (most under 1000) with good ratings. Notably, it finds one listing (#744) with 140 reviews and a 4.97 rating, but its rank is lower than the other listing with less reviews and lower score (#765) although the prices are very close. 
+Similarly, for the "affordable place with good reviews" query in Figure 9, vector search returns reasonably priced listings (most under 1000) with good ratings. Notably, it finds one listing (#744) with 140 reviews and a 4.97 rating, but its rank is lower than the other listing with less reviews and lower score (#765) although the prices are very close.
 
 <figure style="text-align: center; margin: 20px 0;">
  <img src="../assets/use_cases/airbnb_search/vector_filter.png" alt="Vector Results for Numerical Query" style="width: 80%; max-width: 800px;">
@@ -213,28 +223,28 @@ class HybridSearch:
        self.df = df
        self.bm25_search = BM25Search(df)
        self.vector_search = VectorSearch(df, model_name)
-       
+
    def search(self, query: str, alpha: float = 0.4, top_k: int = 10):
        """Perform hybrid search combining BM25 and vector search."""
        # Get results from both search methods
        bm25_results = self.bm25_search.search(query, top_k=len(self.df))
        vector_results = self.vector_search.search(query, top_k=len(self.df))
-       
+
        # Normalize scores to [0,1] range
        bm25_scores = bm25_results['bm25_score'].values
        bm25_scores_norm = (bm25_scores - np.min(bm25_scores)) / (np.max(bm25_scores) - np.min(bm25_scores))
-       
+
        vector_scores = vector_results['vector_score'].values
        vector_scores_norm = (vector_scores - np.min(vector_scores)) / (np.max(vector_scores) - np.min(vector_scores))
-       
+
        # Combine scores using linear combination
        hybrid_scores = alpha * bm25_scores_norm + (1 - alpha) * vector_scores_norm
-       
+
        # Add hybrid scores and rank results
        results = self.df.copy()
        results['hybrid_score'] = hybrid_scores
        results = results.sort_values('hybrid_score', ascending=False).head(top_k)
-       
+
        return results
 ```
 
@@ -277,24 +287,25 @@ class CrossEncoderSearch:
        """Initialize the CrossEncoderSearch with specified models."""
        self.df = df
        self.cross_encoder = CrossEncoder(cross_encoder_model_name)
-   
+
    def search(self, query, dense_search, top_k=10):
        """Perform cross-encoder search with reranking."""
        # First retrieval phase using vector search
        initial_results = dense_search.search(query, top_k=top_k*5)
-       
+
        # Cross-encoder reranking phase
        descriptions = initial_results['text_description'].tolist()
        pairs = [(query, doc) for doc in descriptions]
        scores = self.cross_encoder.predict(pairs)
-       
+
        # Add scores and rerank results
        reranked_results = initial_results.copy()
        reranked_results['cross_encoder_score'] = scores
        reranked_results = reranked_results.sort_values('cross_encoder_score', ascending=False).head(top_k)
-       
+
        return reranked_results
 ```
+
 ### Cross-Encoder Reranking Results Analysis
 
 The cross-encoder reranking results demonstrate a notable improvement in result quality compared to previous approaches. For the "luxury places" query, the cross-encoder seems to prioritize listings with "Luxury" in their titles and high ratings, showing semantic alignment with the query intent. For "affordable places," it effectively balances price considerations with review quality. However, the results of these two queries still overlap. The listing #744 appears in both the "luxury" and "affordable" sets. Since the semantic meanings of "luxury" and "affordable" are fundamentally different, this overlap fails to meet the user's expectations.
@@ -328,9 +339,10 @@ To better understand this limitation, we visualized the embedding space using t-
 As shown in Figure 16, the retrieved listings from different methods cluster tightly around the query embedding in the low-dimensional space. This visualization highlights the key issue. The issue is when all information (e.g., textual, numerical, categorical) is encoded into a single vector, many listings appear semantically close to the query, even if they fail to satisfy specific constraints like guest capacity or price. These compressed representations blur important distinctions, leading to retrieval errors that a user would find unsatisfactory. This trade-off between semantic richness and structural precision suggests that we need a more expressive retrieval framework.
 
 ## Multi-Vector Search: ColBERT
+
 To address these challenges, we turn to multi-vector search methods and specifically, the [ColBERT](https://github.com/stanford-futuredata/ColBERT) architecture (Contextualized Late Interaction over BERT). ColBERT is built on the idea of late interaction. Instead of embedding an entire document (such as an Airbnb listing) into a single vector, ColBERT represents each token as a separate vector. This allows for fine-grained matching between the query tokens and the token-level vectors of each document during retrieval. Unlike traditional bi-encoder architectures that rely on pre-computed summary vectors, ColBERT dynamically compares different parts of the query with specific document components.
 
-During offline indexing, each listing is passed through a BERT model to produce multiple contextual embeddings (one for each token). These token-level vectors are stored in an indexable format, allowing for efficient retrieval. Then, during query-time, the user query is similarly tokenized and encoded into contextual vectors. Instead of computing a single similarity score between two full-document vectors (query, and document vectors), ColBERT evaluates the maximum similarity between each query token and all document token vectors. These maximum similarity scores are then aggregated to produce a final relevance score for each document. 
+During offline indexing, each listing is passed through a BERT model to produce multiple contextual embeddings (one for each token). These token-level vectors are stored in an indexable format, allowing for efficient retrieval. Then, during query-time, the user query is similarly tokenized and encoded into contextual vectors. Instead of computing a single similarity score between two full-document vectors (query, and document vectors), ColBERT evaluates the maximum similarity between each query token and all document token vectors. These maximum similarity scores are then aggregated to produce a final relevance score for each document.
 
 <figure style="text-align: center; margin: 20px 0;">
  <img src="../assets/use_cases/airbnb_search/colbert.png" alt="Cross-Encoder Reranking Architecture" style="width: 80%; max-width: 800px;">
@@ -341,7 +353,7 @@ Here is how we implment the multi-vecotr search by ColBERT:
 
 ```python
 class ColBERTSearch:
-    def __init__(self, df: pd.DataFrame, nbits: int = 2, doc_maxlen: int = 400, 
+    def __init__(self, df: pd.DataFrame, nbits: int = 2, doc_maxlen: int = 400,
                  checkpoint: str = 'colbert-ir/colbertv2.0', max_listings: int = 10000):
         """Initialize the ColBERT search with the provided dataframe and parameters."""
         self.df = df
@@ -350,44 +362,44 @@ class ColBERTSearch:
         self.checkpoint = checkpoint
         self.max_listings = max_listings
         self.index_name = f'airbnb_index_{nbits}'
-        
+
         # Extract text descriptions for the collection
         self.collection = [x['text_description'] for x in df.to_dict(orient='records')]
-        
+
         # Create mapping from text descriptions to dataframe indices
         self.text_to_df_map = {text: idx for idx, text in enumerate(df['text_description'])}
-        
+
         # Build the index and initialize the searcher
         self._build_index()
         self._init_searcher()
-        
+
     def _build_index(self):
         """Build the ColBERT index for the collection."""
         with Run().context(RunConfig(nranks=1, experiment='notebook')):
             config = ColBERTConfig(doc_maxlen=self.doc_maxlen, nbits=self.nbits, kmeans_niters=4)
-            
+
             indexer = Indexer(checkpoint=self.checkpoint, config=config)
-            indexer.index(name=self.index_name, 
-                          collection=self.collection[:self.max_listings], 
+            indexer.index(name=self.index_name,
+                          collection=self.collection[:self.max_listings],
                           overwrite=True)
-    
+
     def _init_searcher(self):
         """Initialize the ColBERT searcher with the built index."""
         with Run().context(RunConfig(experiment='notebook')):
             self.searcher = Searcher(index=self.index_name, collection=self.collection)
-    
+
     def search(self, query: str, top_k: int = 5):
         """Perform ColBERT search on the indexed collection."""
         print(f"#> {query}")
-        
+
         # Get search results from ColBERT
         results = self.searcher.search(query, k=top_k)
-        
+
         # Match results to original DataFrame records
         matched_records = []
         for passage_id, passage_rank, passage_score in zip(*results):
             text_desc = self.searcher.collection[passage_id]
-            
+
             # Look up the corresponding DataFrame row
             if text_desc in self.text_to_df_map:
                 idx = self.text_to_df_map[text_desc]
@@ -395,7 +407,7 @@ class ColBERTSearch:
                 record['colbert_rank'] = passage_rank
                 record['colbert_score'] = passage_score
                 matched_records.append(record)
-        
+
         # Convert the matched records to a DataFrame
         colbert_results = pd.DataFrame(matched_records)
         return colbert_results
@@ -463,7 +475,7 @@ class AirbnbSchema(sl.Schema):
     price: sl.Float
     rating: sl.Float
     description: sl.String
-    
+
     # fields that we use for filtering
     review_count: sl.Integer
     listing_name: sl.String
@@ -474,7 +486,7 @@ class AirbnbSchema(sl.Schema):
     latitude: sl.Float
     longitude: sl.Float
     #last_review: sl.Timestamp #This can also be used for queries like "most recent..."
-    
+
 
 airbnb_schema = AirbnbSchema()
 ```
@@ -498,9 +510,9 @@ price_space = sl.NumberSpace(
 
 # Numerical space for ratings
 rating_space = sl.NumberSpace(
-    number=airbnb_schema.rating, 
-    min_value=1.0, 
-    max_value=5.0, 
+    number=airbnb_schema.rating,
+    min_value=1.0,
+    max_value=5.0,
     mode=sl.Mode.MAXIMUM
 )
 
@@ -579,6 +591,7 @@ query = (
 ```
 
 Then we can assign some filters to the query as well:
+
 ```python
 query = base_query.filter(airbnb_schema.price >= sl.Param("min_price"))
 # Additional filters can be added
@@ -592,11 +605,12 @@ And finally, we can leverage an LLM to interpret complex natural language querie
 query = query.with_natural_query(
     natural_query=sl.Param("natural_query"),
     client_config=sl.OpenAIClientConfig(
-        api_key=os.getenv("OPENAI_API_KEY"), 
+        api_key=os.getenv("OPENAI_API_KEY"),
         model=settings.openai_model
     ),
 )
 ```
+
 This approach bridges how humans naturally express their search intent ("a cozy, affordable place near downtown with good reviews") and the structured, multi-attribute vector operations needed to retrieve the most relevant results. The LLM analyzes the natural language query and intelligently sets appropriate weights and filter values for each attribute, resulting in a personalized search experience that understands explicit constraints and implicit preferences.
 
 ### Superlinked Result Analysis
@@ -645,7 +659,6 @@ Traditional methods like BM25 performed well for exact keyword matches but strug
 Superlinked's mixture-of-encoders architecture emerged as the superior solution, consistently delivering relevant results across all query types. Using specialized encoders for different data types and leveraging LLM-powered query understanding successfully bridged the gap between natural language and structured data. The system demonstrated its ability to reliably interpret numerical constraints ("price lower than 2000") and subjective concepts ("luxury" vs "affordable"), while remaining resilient to query reformulation.
 
 This benchmark underscores the importance of preserving attribute relationships in multi-modal search scenarios. As users increasingly expect to interact with search systems through natural language, approaches that can translate between conversational queries and structured data attributes will become essential. Superlinked's architecture points toward a future where users can express what they want in their own words, and search systems will understand what they say and what they mean.
-
 
 ## Contributor
 
