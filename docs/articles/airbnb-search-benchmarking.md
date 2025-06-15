@@ -1,18 +1,4 @@
-# Let Users Talk to Your Store: Benchmarking Superlinked's Mixture-of-Encoders and Other Retrieval Techniques on Airbnb Scenario
-
-**Author:** Amirhossein Layegh
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1A7qN7CDGXcuCm_9OwsT87f_RfL7C-Vrq?usp=sharing)
-
-## Takeaways
-
-* Traditional search methods like BM25 struggle with semantic understanding and numerical constraints
-* Vector search improves semantic comprehension but loses attribute relationships in single embeddings
-* Hybrid approaches and cross-encoder reranking offer incremental improvements but can't reliably interpret numerical thresholds
-* ColBERT's multi-vector approach shows promise but remains sensitive to query phrasing
-* Superlinked's mixture-of-encoders architecture consistently delivers relevant results across all query types
-* Specialized encoders for different data types combined with LLM-powered query understanding bridge natural language and structured data
-* The benchmark demonstrates the importance of preserving attribute relationships in multi-modal search scenarios
+# Airbnb Search Benchmarking - Comparison of retrieval techniques
 
 ## Introduction & Motivation
 Imagine you are searching for the ideal Airbnb for a weekend getaway. You open the website and adjust sliders and checkboxes but still encounter lists of options that nearly match your need but never are never truly what you are looking for. Although it is straightforward to specify a filter such as: "price less than two hundred dollars", rigid tags and thresholds for more complex search queries, make it a much more difficult task to figure out what the user is looking for. 
@@ -121,7 +107,7 @@ More fundamentally, BM25 lacks semantic understanding of concepts. If you search
 
 These limitations highlight why more advanced search methods are needed for complex, natural language queries that include both conceptual understanding and numerical constraints.
 
-# Vector Search (Embedding-Based)
+## Vector Search (Embedding-Based)
 Since BM25's keyword matching approach showed significant limitations, we needed a more sophisticated method to handle complex natural language queries. Vector search addresses these limitations by converting queries and documents (listings) into dense numerical representations (embeddings) that capture semantic meaning rather than just matching keywords. This approach allows the search system to understand context, synonyms, and conceptual relationships between words, enabling more intuitive and accurate retrieval results. In vector search, both document items (Airbnb listings in our case) and user queries are transformed into high-dimensional (dense) numerical vectors using embedding models. These embeddings capture the semantic meaning of text, allowing the system to find matches based on conceptual similarity rather than exact word matches. The search process uses nearest neighbor algorithms to identify listings whose vector representations are closest to the query vector in the embedding space.
 
 <figure style="text-align: center; margin: 20px 0;">
@@ -331,7 +317,7 @@ Most impressively, for the numerical constraints query, the cross-encoder makes 
  <figcaption>Figure 15: Cross-encoder results for numerical constraints query</figcaption>
 </figure>
 
-# Why Single-Vector Representations Fall Short
+## Why Single-Vector Representations Fall Short
 
 While dense vector search methods significantly outperform keyword-based approaches like BM25 in understanding semantic intent, they come with a fundamental limitation: compressing all aspects of a listing into a single, fixed-length vector. This simplification can hinder their ability to fully capture the multifaceted nature of structured data.
 
@@ -341,7 +327,7 @@ To better understand this limitation, we visualized the embedding space using t-
 
 As shown in Figure 16, the retrieved listings from different methods cluster tightly around the query embedding in the low-dimensional space. This visualization highlights the key issue. The issue is when all information (e.g., textual, numerical, categorical) is encoded into a single vector, many listings appear semantically close to the query, even if they fail to satisfy specific constraints like guest capacity or price. These compressed representations blur important distinctions, leading to retrieval errors that a user would find unsatisfactory. This trade-off between semantic richness and structural precision suggests that we need a more expressive retrieval framework.
 
-# Multi-Vector Search: ColBERT
+## Multi-Vector Search: ColBERT
 To address these challenges, we turn to multi-vector search methods and specifically, the [ColBERT](https://github.com/stanford-futuredata/ColBERT) architecture (Contextualized Late Interaction over BERT). ColBERT is built on the idea of late interaction. Instead of embedding an entire document (such as an Airbnb listing) into a single vector, ColBERT represents each token as a separate vector. This allows for fine-grained matching between the query tokens and the token-level vectors of each document during retrieval. Unlike traditional bi-encoder architectures that rely on pre-computed summary vectors, ColBERT dynamically compares different parts of the query with specific document components.
 
 During offline indexing, each listing is passed through a BERT model to produce multiple contextual embeddings (one for each token). These token-level vectors are stored in an indexable format, allowing for efficient retrieval. Then, during query-time, the user query is similarly tokenized and encoded into contextual vectors. Instead of computing a single similarity score between two full-document vectors (query, and document vectors), ColBERT evaluates the maximum similarity between each query token and all document token vectors. These maximum similarity scores are then aggregated to produce a final relevance score for each document. 
@@ -451,7 +437,7 @@ Although ColBERT demonstrates promising performance, especially in scenarios inv
 
 For instance, embedding a number like 2000 using a language model trained primarily on text may lose its quantitative meaning, making it difficult for the model to enforce precise thresholds. Similarly, relying solely on lexical signals for abstract terms like "luxury" can cause the model to overfit to surface-level token matches. These limitations suggest that a more expressive and comprehensive approach is needed. The one that encodes each attribute using specialized embeddings tailored to its modality. In the next section, we explore how Superlinked's mixture of encoders architectures addresses this challenge on structured data.
 
-# Mixture of Encoders Search: Superlinked
+## Mixture of Encoders Search: Superlinked
 
 Superlinked introduces a novel mixture of encoder retrieval architecture, particularly designed to handle structured, multi-attribute data more effectively than traditional models. Unlike single-vector approaches that compress all information into one embedding, or late-interaction models like ColBERT that still rely on general-purpose text representations, Superlinked uses dedicated encoders for each attribute based on its data type. For example, textual descriptions are encoded using a text embedding, while numerical values like price or rating are embedded using models that preserve quantitative relationships. Categorical fields and timestamps are similarly handled by encoders tailored to their respective modalities.
 
@@ -613,7 +599,7 @@ query = query.with_natural_query(
 ```
 This approach bridges how humans naturally express their search intent ("a cozy, affordable place near downtown with good reviews") and the structured, multi-attribute vector operations needed to retrieve the most relevant results. The LLM analyzes the natural language query and intelligently sets appropriate weights and filter values for each attribute, resulting in a personalized search experience that understands explicit constraints and implicit preferences.
 
-## Superlinked Result Analysis
+### Superlinked Result Analysis
 
 The first query we tested was a numerical constrained query "apartment for 5 guests with price lower than 2000 and review rating bigger than 4.5."
 As can be seen in the Figure 23, Superlinked successfully managed to provide listings that precisely match the user's criteria. Unlike previous approaches, all returned listings can accommodate 5 guests, have prices below the 2000 threshold (ranging from 544 to 1985), and maintain ratings above 4.5 (between 4.71 and 4.9).
@@ -650,7 +636,7 @@ In contrast, the "affordable places with good reviews" query returns listings wi
 
 What is remarkable is the complete separation between these result sets. There is no overlap between "luxury" and "affordable" listings, demonstrating Superlinked's ability to interpret these subjective concepts through its mixture-of-encoder architecture correctly.
 
-# Conclusion
+## Conclusion
 
 In this article, we examined different retrieval techniques for searching structured data, progressing from basic keyword matching to advanced mixture-of-encoders approaches. Our benchmark on Airbnb listings revealed significant differences in how these methods handle search on structured data.
 
@@ -659,3 +645,8 @@ Traditional methods like BM25 performed well for exact keyword matches but strug
 Superlinked's mixture-of-encoders architecture emerged as the superior solution, consistently delivering relevant results across all query types. Using specialized encoders for different data types and leveraging LLM-powered query understanding successfully bridged the gap between natural language and structured data. The system demonstrated its ability to reliably interpret numerical constraints ("price lower than 2000") and subjective concepts ("luxury" vs "affordable"), while remaining resilient to query reformulation.
 
 This benchmark underscores the importance of preserving attribute relationships in multi-modal search scenarios. As users increasingly expect to interact with search systems through natural language, approaches that can translate between conversational queries and structured data attributes will become essential. Superlinked's architecture points toward a future where users can express what they want in their own words, and search systems will understand what they say and what they mean.
+
+
+## Contributor
+
+- [Amirhossein Layegh, author](https://www.linkedin.com/in/amirhosseinlayegh/)
