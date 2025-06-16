@@ -7,7 +7,7 @@ GenAI is transforming the search and retrieval space like never before. Gone are
 ## Retrieval with Superlinked
 These powerful RAG engines require a step up from traditional vector search because the best search results are no longer based on text only. It is based on various modalities of data, structured and unstructured. Enter *Superlinked*! With Superlinked, your data is transformed into vector embeddings that capture not just the textual content but also the associated metadata, each processed within its own distinct embedding space. This multi-space representation enables more precise and context-aware search, retrieval, and reasoning across diverse data dimensions.
 
-In this article, we will explore how we can integrate Superlinked to build RAG systems with a leading framework - *LangChain*.
+In this article, we will explore how to integrate Superlinked with the leading framework LangChain to build RAG systems.
 
 ![Full text](../assets/use_cases/superlinked_langchain_retriever/image1.png)
 
@@ -138,14 +138,14 @@ At its core, this query performs a multi-space weighted search over the report_i
 
 #### Weight assignment
 ```python
-weights={
-                    text_space: sl.Param("text_weight"),
-                    recency_space: sl.Param("recency_weight"),
-                    filing_type_space: sl.Param("filing_type_weight"),
-                    revenue_space: sl.Param("revenue_weight"),
-                    net_income_space: sl.Param("net_income_weight"),
-                    eps_space: sl.Param("eps_weight"),
-                }
+weights = {
+        text_space: sl.Param("text_weight"),
+        recency_space: sl.Param("recency_weight"),
+        filing_type_space: sl.Param("filing_type_weight"),
+        revenue_space: sl.Param("revenue_weight"),
+        net_income_space: sl.Param("net_income_weight"),
+        eps_space: sl.Param("eps_weight"),
+}
 ```
 Weights define how much each dimension influences the overall relevance score. By parameterizing them `(sl.Param(...))`, you retain the flexibility to tune these dynamically at runtime based on user preferences or context.
 
@@ -164,27 +164,27 @@ This is the semantic heart of the query. It compares the user’s input query ag
 #### Structured Filtering
 ```python
 .filter(
-                financial_report.filing_type == sl.Param("filing_type_filter")
-            )
-            .filter(
-                financial_report.company_name == sl.Param("company_name_filter")
-            )
+    financial_report.filing_type == sl.Param("filing_type_filter")
+)
+.filter(
+    financial_report.company_name == sl.Param("company_name_filter")
+)
 ```
 These filters restrict the search space to specific filing types (e.g., 10-K, 8-K) or companies (e.g., Apple Inc.), ensuring targeted, high-precision retrieval. These are optional and can be used to refine the query contextually.
 
 ####  Field Selection
 ```python
 .select([
-                financial_report.report_content,
-                financial_report.company_name,
-                financial_report.ticker_symbol,
-                financial_report.filing_type,
-                financial_report.filing_date,
-                financial_report.revenue,
-                financial_report.net_income,
-                financial_report.eps
-            ])
-            .limit(sl.Param("limit"))
+            financial_report.report_content,
+            financial_report.company_name,
+            financial_report.ticker_symbol,
+            financial_report.filing_type,
+            financial_report.filing_date,
+            financial_report.revenue,
+            financial_report.net_income,
+            financial_report.eps
+        ])
+.limit(sl.Param("limit"))
 ```
 This clause tells Superlinked which fields to return in the results. This minimizes unnecessary payload and keeps downstream processing efficient by including only the necessary metadata and report content. The limit clause limits the number of retrieved documents.
 Here is the complete query with defualt values for query parameters:
