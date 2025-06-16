@@ -168,16 +168,16 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 35426,
+    "value": 36470,
     "source_url": "https://hub.docker.com/r/myscale/myscaledb",
     "comment": "",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 26500,
+    "value": 26655,
     "source_url": "https://pypi.org/project/myscaledb-client/",
     "comment": "",
-    "value_90_days": 1203
+    "value_90_days": 1139
   },
   "npm_downloads": {
     "value": 0,

@@ -162,7 +162,7 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 8650,
+    "value": 8663,
     "source_url": "https://github.com/activeloopai/deeplake",
     "comment": "",
     "value_90_days": 0
@@ -177,7 +177,7 @@
     "value": 1806053,
     "source_url": "https://pypi.org/project/deeplake/",
     "comment": "",
-    "value_90_days": 502656
+    "value_90_days": 532691
   },
   "npm_downloads": {
     "value": 0,
