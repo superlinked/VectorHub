@@ -2,7 +2,7 @@
 
 As retrieval-augmented generation (RAG) systems continue to evolve, the need for **custom, domain-specific retrievers** is becoming more and more obvious. Sure, traditional vector databases are great for basic similarity search—but the moment you throw in more complex, context-heavy queries, they start to fall short. Especially when you're working with real-world data that needs richer filtering or semantic understanding.
 
-In this post, I’ll walk through how to build a **custom retriever** by combining **Superlinked**— with **LlamaIndex**'s flexible retrieval framework. Think of this as a hands-on guide: I'll show you how to wire things up end-to-end using a **Steam game recommendation system** as the example. We’ll tap into semantic similarity, multi-field indexing, and advanced query logic to make sure recommendations aren’t just relevant—they actually make sense. If you want to follow along, here is the colab link : [Google Colab](https://colab.research.google.com/drive/1o793nZRB0IZTnxSX6FV0gx8o4NxELx-d?usp=sharing)
+In this post, I’ll walk through how to build a **custom retriever** by combining **Superlinked**— with **LlamaIndex**'s flexible retrieval framework. Think of this as a hands-on guide: I'll show you how to wire things up end-to-end using a **Steam game recommendation system** as the example. We’ll tap into semantic similarity, multi-field indexing, and advanced query logic to make sure recommendations aren’t just relevant—they actually make sense. If you want to follow along, here is the colab link : [Google Colab](https://colab.research.google.com/github/superlinked/VectorHub/blob/main/docs/assets/use_cases/custom_retriever_with_llamaindex/superlinked_custom_retriever_with_llamaindex.ipynb)
 
 ## Why Custom Retrievers Matter
 
@@ -57,26 +57,25 @@ class BaseRetriever:
         pass
 ```
 
-The moat here is the presence of the Retrieval Protocol from the LlamaIndex. As this "retrieval protocol" makes it easy to plug in different backends or strategies without having to touch the rest of your system. Let’s break it down on what’s exactly is going on : 
+The moat here is the presence of the Retrieval Protocol from the LlamaIndex. As this "retrieval protocol" makes it easy to plug in different backends or strategies without having to touch the rest of your system. Let’s break it down on what’s exactly is going on :
 
 1. **Input: `QueryBundle`**
-    
-    This is the query object passed into your retriever. At minimum, it contains the user's raw query string (e.g., "sci-fi strategy games"). But it can also include extra metadata—like filters, embeddings, or user preferences. Basically, anything that might help shape a more relevant response.
-    
+
+   This is the query object passed into your retriever. At minimum, it contains the user's raw query string (e.g., "sci-fi strategy games"). But it can also include extra metadata—like filters, embeddings, or user preferences. Basically, anything that might help shape a more relevant response.
+
 2. **Output: `List[NodeWithScore]`**
-    
-    The retriever returns a list of nodes—these are your chunks of content, documents, or data entries—each paired with a relevance score. The higher the score, the more relevant the node is to the query. This list is what gets passed downstream to the LLM or other post-processing steps. As in our case, we are plugging on the 
-    
+
+   The retriever returns a list of nodes—these are your chunks of content, documents, or data entries—each paired with a relevance score. The higher the score, the more relevant the node is to the query. This list is what gets passed downstream to the LLM or other post-processing steps. As in our case, we are plugging on the
+
 3. **Processing: Backend-Agnostic**
-    
-    Here’s the cool part: how you get from query to result is totally up to you. You can use a vector database, a traditional search engine, a REST API, or even something handcrafted for your specific use case. This decouples logic and gives you full control over the retrieval stack.
-    
+
+   Here’s the cool part: how you get from query to result is totally up to you. You can use a vector database, a traditional search engine, a REST API, or even something handcrafted for your specific use case. This decouples logic and gives you full control over the retrieval stack.
 
 ### But Why This Matters?
 
-This abstraction isn’t just clean—it’s *powerful*. It means you can:
+This abstraction isn’t just clean—it’s _powerful_. It means you can:
 
-- **Combine multiple strategies** – Use dense vector search *and* keyword filtering together if needed.
+- **Combine multiple strategies** – Use dense vector search _and_ keyword filtering together if needed.
 - **Run A/B tests easily** – Compare different retrievers to see what gives better results for your users.
 - **Plug into any agent or tool** – Whether you're building a chatbot, a search UI, or a full-blown agent system, this retriever interface slots in easily.
 
@@ -104,7 +103,7 @@ First up is the **schema definition**—think of it as the foundation. It’s wh
     self.game = GameSchema()
 ```
 
-Next up is the **text similarity space**—this is where the magic of semantic search happens. It uses the `sentence-transformers/all-mpnet-base-v2` model to turn a bunch of game info (like the name, description, genre, etc.) into dense vector representations. Basically, it smooshes all that text together into something the model can understand. The cool part? This lets the retriever understand what a user *means*, not just what words they type. So if someone searches for something like “open-world adventure,” it can find games that actually fit that vibe, not just ones with those exact words.
+Next up is the **text similarity space**—this is where the magic of semantic search happens. It uses the `sentence-transformers/all-mpnet-base-v2` model to turn a bunch of game info (like the name, description, genre, etc.) into dense vector representations. Basically, it smooshes all that text together into something the model can understand. The cool part? This lets the retriever understand what a user _means_, not just what words they type. So if someone searches for something like “open-world adventure,” it can find games that actually fit that vibe, not just ones with those exact words.
 
 ```python
     self.text_space = sl.TextSimilaritySpace(
@@ -313,28 +312,22 @@ class GameSchema(sl.Schema):
 self.game = GameSchema()
 ```
 
-Let’s break down what some of these elements actually *does*:
+Let’s break down what some of these elements actually _does_:
 
 - **`sl.IdField` (→ `game_number`)**
-    
-    Think of this as our primary key. It gives each game a unique identity and allows Superlinked to index and retrieve items efficiently, I mean basically it’s about how we are telling the Superlinked to segregate the unique identify of the games, and btw it’s especially important when you're dealing with thousands of records.
-    
+  Think of this as our primary key. It gives each game a unique identity and allows Superlinked to index and retrieve items efficiently, I mean basically it’s about how we are telling the Superlinked to segregate the unique identify of the games, and btw it’s especially important when you're dealing with thousands of records.
 - **`sl.String` and `sl.Float`**
-    
-    Now these aren't just type hints—they enable Superlinked to optimize operations differently depending on the field. For instance, `sl.String` fields can be embedded and compared semantically, while `sl.Float` fields can support numeric filtering or sorting.
-    
+  Now these aren't just type hints—they enable Superlinked to optimize operations differently depending on the field. For instance, `sl.String` fields can be embedded and compared semantically, while `sl.Float` fields can support numeric filtering or sorting.
 - **`combined_text`**
-    
-    This is the **semantic anchor** of our retriever. It’s a synthetic field where we concatenate the game name, description, genre, and other relevant attributes into a single block of text. This lets us build a single **text similarity space** using sentence-transformer embeddings:
-    
-    ```python
-    self.text_space = sl.TextSimilaritySpace(
-        text=self.game.combined_text,
-        model="sentence-transformers/all-mpnet-base-v2"
-    )
-    ```
-    
-Why do this? Because users don’t just search by genre or name—they describe what they’re *looking for*. By embedding all the important signals into `combined_text`, we can better match fuzzy, natural-language queries with the most relevant games.
+  This is the **semantic anchor** of our retriever. It’s a synthetic field where we concatenate the game name, description, genre, and other relevant attributes into a single block of text. This lets us build a single **text similarity space** using sentence-transformer embeddings:
+  ```python
+  self.text_space = sl.TextSimilaritySpace(
+      text=self.game.combined_text,
+      model="sentence-transformers/all-mpnet-base-v2"
+  )
+  ```
+
+Why do this? Because users don’t just search by genre or name—they describe what they’re _looking for_. By embedding all the important signals into `combined_text`, we can better match fuzzy, natural-language queries with the most relevant games.
 
 ### Part 4: Vector Space Configuration
 
@@ -353,7 +346,7 @@ To power the semantic search over our Steam games dataset, I made two intentiona
 
 First, for the embedding model, I selected `all-mpnet-base-v2` from the Sentence Transformers library. This model produces 768-dimensional embeddings that strike a solid middle ground: they're expressive enough to capture rich semantic meaning, yet lightweight enough to be fast in production. I mean it’s a reliable general-purpose model, known to perform well across diverse text types — which matters a lot when your data ranges from short genre tags to long-form game descriptions. In our case, i needed a model that wouldn’t choke on either end of that spectrum, and `all-mpnet-base-v2` handled it cleanly.
 
-Next, although Superlinked supports multi-space indexing — where you can combine multiple fields or even modalities (like text + images) — I deliberately kept things simple with a single `TextSimilaritySpace`.  I would have included the `RecencySpace` in here too but I don’t have the information on the release date for the games. But just to put this out here, if we have the release date information, I could plug in the RecencySpace here, and I can even sort the games with the `TextSimilaritySpace` along with the Recency of the games. Cool.. 
+Next, although Superlinked supports multi-space indexing — where you can combine multiple fields or even modalities (like text + images) — I deliberately kept things simple with a single `TextSimilaritySpace`. I would have included the `RecencySpace` in here too but I don’t have the information on the release date for the games. But just to put this out here, if we have the release date information, I could plug in the RecencySpace here, and I can even sort the games with the `TextSimilaritySpace` along with the Recency of the games. Cool..
 
 ### Part 5: Data Pipeline and Executor Setup
 
@@ -385,7 +378,7 @@ Next, although Superlinked supports multi-space indexing — where you can combi
         print(f"Initialized Superlinked retriever with {len(self.df)} games")
 ```
 
-At the heart of our retrieval system is a streamlined pipeline built for both clarity and speed. I start with the `DataFrameParser`, which serves as our ETL layer. It ensures that each field in the dataset is correctly typed and consistently mapped to our schema — essentially acting as the contract between our raw CSV data and the Superlinked indexing layer. 
+At the heart of our retrieval system is a streamlined pipeline built for both clarity and speed. I start with the `DataFrameParser`, which serves as our ETL layer. It ensures that each field in the dataset is correctly typed and consistently mapped to our schema — essentially acting as the contract between our raw CSV data and the Superlinked indexing layer.
 
 Once the data is structured, I feed it into an `InMemorySource`, which is ideal for datasets that comfortably fit in memory . This approach keeps everything lightning-fast without introducing storage overhead or network latency. Finally, the queries are handled by an `InMemoryExecutor`, which is optimised for sub-millisecond latency. This is what makes Superlinked suitable for real-time applications like interactive recommendation systems, where speed directly impacts user experience.
 
@@ -505,3 +498,9 @@ for i, query in enumerate(test_queries, 1):
 ```
 
 This setup combines our custom semantic retriever with an LLM-powered response generator. Queries move smoothly through the pipeline, and instead of just spitting out raw data, it returns a thoughtful suggestion on what kind of game the user might actually want to play based on what they asked.
+
+---
+
+## Contributor
+
+- [Vipul Maheshwari, author](https://www.linkedin.com/in/vipulmaheshwarii/)
