@@ -122,7 +122,7 @@
   "disk_index": {
     "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "TopK's proprietary indexing algorithm caches data on NVME SSDs allowing for single-digit millisecond query latency."
   },
   "ephemeral": {
     "support": "",
@@ -132,7 +132,7 @@
   "sharding": {
     "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "TopK automatically shards data across multiple query nodes internally. This can be configured and directly influences query throughput."
   },
   "doc_size": {
     "bytes": 0,
@@ -149,7 +149,7 @@
   "index_types": {
     "value": ["Proprietary"],
     "source_url": "https://www.topk.io/blog/vector-dbs-are-the-wrong-abstraction-how-we-built-a-new-search-database-from-scratch",
-    "comment": ""
+    "comment": "TopK uses a proprietary indexing algorithm designed for true hybrid retrieval - vectors, keyword, and filters with flexible scoring in one query."
   },
   "github_stars": {
     "value": 4263,
