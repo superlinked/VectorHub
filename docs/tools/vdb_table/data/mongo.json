@@ -174,7 +174,7 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 4603075333,
+    "value": 4606332267,
     "source_url": "https://hub.docker.com/_/mongo",
     "comment": "",
     "value_90_days": 0
@@ -186,10 +186,10 @@
     "value_90_days": 3091
   },
   "npm_downloads": {
-    "value": 859352,
+    "value": 855128,
     "source_url": "https://www.npmjs.com/package/mongodb-atlas-api-client",
     "comment": "",
-    "value_90_days": 177023
+    "value_90_days": 171317
   },
   "crates_io_downloads": {
     "value": 0,

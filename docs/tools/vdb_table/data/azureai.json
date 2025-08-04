@@ -185,10 +185,10 @@
     "value_90_days": 4753840
   },
   "npm_downloads": {
-    "value": 13147547,
+    "value": 13283456,
     "source_url": "https://www.npmjs.com/package/@azure/openai",
     "comment": "",
-    "value_90_days": 2588984
+    "value_90_days": 2627113
   },
   "crates_io_downloads": {
     "value": 0,
