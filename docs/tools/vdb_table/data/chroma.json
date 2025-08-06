@@ -64,7 +64,7 @@
   "full_text": {
     "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "https://docs.trychroma.com/docs/querying-collections/full-text-search"
   },
   "embeddings_text": {
     "support": "full",
@@ -123,7 +123,7 @@
   },
   "disk_index": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://docs.trychroma.com/docs/overview/architecture",
     "comment": ""
   },
   "ephemeral": {
@@ -133,7 +133,7 @@
   },
   "sharding": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://docs.trychroma.com/docs/overview/data-model#collections",
     "comment": ""
   },
   "doc_size": {
