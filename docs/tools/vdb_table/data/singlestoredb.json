@@ -165,7 +165,7 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 646699,
+    "value": 647893,
     "source_url": "https://hub.docker.com/r/singlestore/cluster-in-a-box",
     "comment": "",
     "value_90_days": 0
