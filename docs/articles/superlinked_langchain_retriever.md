@@ -23,7 +23,7 @@ from google.colab import userdata
 OPENAI_API_KEY = userdata.get('OPENAI_API_KEY')
 ```
 ### Dataset & Superlinked Schema
-For simplicity, I have created a dummy [dataset](https://drive.google.com/file/d/1vzFfm85vvHTXpkh5Cm1T0OVET7Hc_tFJ/view?usp=drive_link) of AAPL financial reports. Let’s understand the dataset a bit.
+For simplicity, I have created a dummy [dataset](../assets/use_cases/superlinked_langchain_retriever/apple_financial_reports.json) of AAPL financial reports. Let’s understand the dataset a bit.
 
 - report_id : A unique identifier for each financial report, typically combining the ticker symbol, filing type, and reporting date.
 - company_name (string): The full legal name of the company issuing the report (e.g., Apple Inc.).
@@ -401,6 +401,6 @@ for doc in result['source_documents']:
 ## Wrapping Up
 We built a streamlined Retrieval-Augmented Generation (RAG) pipeline by integrating Superlinked and LangChain. Thanks to Superlinked’s multi-space indexing, which fuses various embedding modalities into a single vector, the need for expensive post-retrieval reranking is eliminated—there’s *no need for a separate reranker stage*. This results in faster, more precise retrieval tailored to both content and metadata.
 
-Link to complete [code](https://colab.research.google.com/drive/1RzVsgsiqvRF4-fiEt5i35VJdMDDsGm8g?usp=sharing).
+Link to complete [code](https://colab.research.google.com/github/superlinked/VectorHub/blob/main/docs/assets/use_cases/superlinked_langchain_retriever/Superlinked_LangChain.ipynb).
 
 
