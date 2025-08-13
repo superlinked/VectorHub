@@ -473,7 +473,7 @@ Query type: summarization
 This paper discusses the challenges of learning logic programs that contain the cut predicate (!). Traditional learning methods cannot handle clauses with cut because it has a procedural meaning. The proposed approach is to first generate a candidate base program that covers positive examples, and then make it consistent by inserting cut where needed. Learning programs with cut is difficult due to the need for intensional evaluation, and current induction techniques may need to be limited to purely declarative logic languages.
 ```
 
-I hope this example has been helpful for developing AI agents and agent-based systems. Much of the retrieval functionality demonstrated here was made possible by Superlinked, so please consider starring the [repository](links.superlinked.com/research_ai_agent_repo) for future reference when accurate retrieval capabilities are needed for your AI agents!
+I hope this example has been helpful for developing AI agents and agent-based systems. Much of the retrieval functionality demonstrated here was made possible by Superlinked, so please consider starring the [repository](https://links.superlinked.com/research_ai_agent_repo) for future reference when accurate retrieval capabilities are needed for your AI agents!
 
 
 ## Contributors
