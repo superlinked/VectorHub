@@ -1,13 +1,20 @@
-# Building a Custom Steam Games Retriever with Superlinked and LlamaIndex
+# How We Approached Building a Custom Steam Games Retriever with Superlinked and LlamaIndex
 
-As retrieval-augmented generation (RAG) systems continue to evolve, the need for **custom, domain-specific retrievers** is becoming more and more obvious. Sure, traditional vector databases are great for basic similarity search—but the moment you throw in more complex, context-heavy queries, they start to fall short. Especially when you're working with real-world data that needs richer filtering or semantic understanding.
+The goal was simple: take Superlinked's core strengths in handling complex, multi-modal retrieval scenarios and package them in a way that developers can easily adopt and extend in their own RAG systems.
 
-In this post, I’ll walk through how to build a **custom retriever** by combining **Superlinked**— with **LlamaIndex**'s flexible retrieval framework. Think of this as a hands-on guide: I'll show you how to wire things up end-to-end using a **Steam game recommendation system** as the example. We’ll tap into semantic similarity, multi-field indexing, and advanced query logic to make sure recommendations aren’t just relevant—they actually make sense. If you want to follow along, here is the colab link : [Google Colab](https://colab.research.google.com/github/superlinked/VectorHub/blob/main/docs/assets/use_cases/custom_retriever_with_llamaindex/superlinked_custom_retriever_with_llamaindex.ipynb)
+## Why Superlinked + LlamaIndex?
+
+Superlinked excels at creating sophisticated vector spaces through its mixture of encoders approach, allowing you to combine multiple embedding models, apply custom weighting schemes, and handle complex multi-modal data with ease. LlamaIndex, on the other hand, provides the robust infrastructure for RAG applications, from document processing and node management to query engines and response synthesis.
+As retrieval-augmented generation (RAG) systems continue to evolve, the need for **custom, domain-specific retrievers** is becoming more and more obvious. Sure, traditional vector databases are great for basic similarity search but the moment you throw in more complex, context-heavy queries, they start to fall short. Especially when you're working with real-world data that needs richer filtering or semantic understanding.
+In this guide, we'll show you our approach for building a custom LlamaIndex retriever that leverages Superlinked's mixture of encoders architecture. We've refined this approach through numerous production deployments, and now we're making it available for the broader developer community.
+
+You can follow allong this guide in colab: 
+- [Google Colab of this guide](https://colab.research.google.com/github/superlinked/VectorHub/blob/main/docs/assets/use_cases/custom_retriever_with_llamaindex/superlinked_custom_retriever_with_llamaindex.ipynb)
+
+If you prefer to start using Superlinked's retriever right away you can have a look at the full implementation with Llamaindex:
+- [Link to full offical integration on Llamahub](https://links.superlinked.com/llama_hub_in_article)
 
 ## Why Custom Retrievers Matter
-
-Before we dive into the implementation, let’s talk about why building your own retriever is often the better choice in real-world RAG setups.
-
 1. **Tuned for Your Domain** – Generic retrievers are fine for general use, but they tend to miss the subtle stuff. Think about jargon, shorthand, or domain-specific phrasing—those don’t usually get picked up unless your retriever knows what to look for. That’s where custom ones shine: you can hardwire in that context.
 2. **Works Beyond Just Text** – Most real-world data isn’t just plain text. You’ll often have metadata and tags too. For example, in a game recommendation system, we don’t just care about the game description—we also want to factor in genres, tags, user ratings, and more. Think about this logic: someone searching for a “strategy co-op game with sci-fi elements” won’t get far with text-only matching.
 3. **Custom Filtering and Ranking Logic** – Sometimes you want to apply your own rules to how things are scored or filtered. Maybe you want to prioritize newer content, or penalize results that don’t meet certain quality thresholds. I mean, having that kind of control is like giving your retriever an actual brain—it can reason through relevance instead of just relying on vector distances.
@@ -455,9 +462,9 @@ Another thoughtful design decision I made was to **explicitly select the fields*
 
 Now once we receive the results from Superlinked, I transformed them into a format that plays well with LlamaIndex. First, I construct a **human-readable text** string by combining the game’s name with its short description — this becomes the content of each node, making it easier for the language model to reason about. It’s a small touch, but it really improves how relevant and understandable the retrieved data is when passed to the LLM.
 
-Next, I make sure that **all original fields** from the dataset — including things like genre, pricing, and game details — are retained in the metadata. This is crucial because downstream processes might want to filter, display, or rank results based on this information. I don’t want to lose any useful context once we start working with the retrieved nodes.
+Next, I make sure that **all original fields** from the dataset, including things like genre, pricing, and game details - are retained in the metadata. This is crucial because downstream processes might want to filter, display, or rank results based on this information. I don’t want to lose any useful context once we start working with the retrieved nodes.
 
-Finally, I apply a lightweight **score normalisation** strategy. Instead of relying on raw similarity scores, we assign scores based on the position of the result in the ranked list. This keeps things simple and consistent — the top result always has the highest score, and the rest follow in descending order. It's not fancy, but it gives us a stable and interpretable scoring system that works well across different queries.
+Finally, I apply a lightweight **score normalisation** strategy. Instead of relying on raw similarity scores, we assign scores based on the position of the result in the ranked list. This keeps things simple and consistent. The top result always has the highest score, and the rest follow in descending order. It's not fancy, but it gives us a stable and interpretable scoring system that works well across different queries.
 
 ## Show Time: Executing the pipeline
 
@@ -504,3 +511,4 @@ This setup combines our custom semantic retriever with an LLM-powered response g
 ## Contributor
 
 - [Vipul Maheshwari, author](https://www.linkedin.com/in/vipulmaheshwarii/)
+- [Filip Makraduli, editor](https://www.linkedin.com/in/filipmakraduli/)
