@@ -179,16 +179,16 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 48208263,
+    "value": 48674975,
     "source_url": "https://pypi.org/project/azure-ai-ml/",
     "comment": "",
-    "value_90_days": 4753840
+    "value_90_days": 5175947
   },
   "npm_downloads": {
-    "value": 13554455,
+    "value": 13708571,
     "source_url": "https://www.npmjs.com/package/@azure/openai",
     "comment": "",
-    "value_90_days": 2677806
+    "value_90_days": 2726793
   },
   "crates_io_downloads": {
     "value": 0,
