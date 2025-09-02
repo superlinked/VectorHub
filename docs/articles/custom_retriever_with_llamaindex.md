@@ -6,7 +6,7 @@ The goal was simple: take Superlinked's core strengths in handling complex, mult
 
 Superlinked excels at creating sophisticated vector spaces through its mixture of encoders approach, allowing you to combine multiple embedding models, apply custom weighting schemes, and handle complex multi-modal data with ease. LlamaIndex, on the other hand, provides the robust infrastructure for RAG applications, from document processing and node management to query engines and response synthesis.
 
-As retrieval-augmented generation (RAG) systems continue to evolve, the need for **custom, domain-specific retrievers** is becoming more and more obvious. Sure, traditional vector databases are great for basic similarity search but the moment you throw in more complex, context-heavy queries, they start to fall short. Especially when you're working with real-world data that needs richer filtering or semantic understanding.
+As retrieval-augmented generation (RAG) systems continue to evolve, the need for **custom, domain-specific retrievers** is becoming more and more obvious. Sure, traditional vector databases are great for basic similarity search but the moment you throw in more complex, context-heavy queries, they start to fall short. Especially when you're working with real-world data that needs richer filtering or semantic understanding. If you are not sure why you would need mixture-of-encoders as part of you RAG pipeline, feel free to [talk to us](https://links.superlinked.com/get_demo_langchain).
 
 You can follow allong this guide in a colab notebook: 
 - [Google Colab of this guide](https://colab.research.google.com/github/superlinked/VectorHub/blob/main/docs/assets/use_cases/custom_retriever_with_llamaindex/superlinked_custom_retriever_with_llamaindex.ipynb)
