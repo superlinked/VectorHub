@@ -6,8 +6,9 @@ GenAI is transforming the search and retrieval space like never before. Gone are
 
 ## Retrieval with Superlinked
 These powerful RAG engines require a step up from traditional vector search because the best search results are no longer based on text only. It is based on various modalities of data, structured and unstructured. Enter *Superlinked*! With Superlinked, your data is transformed into vector embeddings that capture not just the textual content but also the associated metadata, each processed within its own distinct embedding space. This multi-space representation enables more precise and context-aware search, retrieval, and reasoning across diverse data dimensions.
+If you want to explore in more detail how Superlinked's mixture-of-encoders approach works, you can [learn more by talking to us](https://links.superlinked.com/get_demo_langchain).
 
-In this article, we will explore how to integrate Superlinked with the leading framework LangChain to build RAG systems.
+In this article, we will explore how to integrate Superlinked with the leading framework LangChain to build RAG systems. You can have a look at the [full integration repo here](https://github.com/superlinked/langchain-superlinked).
 
 ![Full text](../assets/use_cases/superlinked_langchain_retriever/image1.png)
 
@@ -402,5 +403,6 @@ for doc in result['source_documents']:
 We built a streamlined Retrieval-Augmented Generation (RAG) pipeline by integrating Superlinked and LangChain. Thanks to Superlinked’s multi-space indexing, which fuses various embedding modalities into a single vector, the need for expensive post-retrieval reranking is eliminated—there’s *no need for a separate reranker stage*. This results in faster, more precise retrieval tailored to both content and metadata.
 
 Link to complete [code](https://colab.research.google.com/github/superlinked/VectorHub/blob/main/docs/assets/use_cases/superlinked_langchain_retriever/Superlinked_LangChain.ipynb).
+
 
 
