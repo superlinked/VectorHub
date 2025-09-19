@@ -1,10 +1,10 @@
 # Building an Agentic NLQ System for Real Estate Search
 
-Real estate search is straight-up broken. I mean we all know the drill right, It’s just too much  dropdowns, rigid filters, and somehow we still end up scrolling through properties that miss the mark completely. Want a "family-friendly home near good schools"? Good luck translating that into checkboxes and price sliders. I mean imagine there is a system which can just translate these queries to something meaningful reference and give us better results. 
+Real estate search is straight-up broken. I mean we all know the drill right, It’s just too much dropdowns, rigid filters, and somehow we still end up scrolling through properties that miss the mark completely. Want a "family-friendly home near good schools"? Good luck translating that into checkboxes and price sliders. I mean imagine there is a system which can just translate these queries to something meaningful reference and give us better results.
 
 Taking into that account, I created an agentic Natural Language Querying (NLQ) system that actually understands what people want. Just tell it "Find me a 3-bedroom home in Toronto under $600,000 with 2 bedrooms and 3 bathrooms" and it figures out the rest. I mean this is one of the coolest thing right..
 
-Here's how I combined vector search with AI agents to create a real estate assistant that actually gets it. If you want to follow along, refer to this [colab](https://colab.research.google.com/drive/1UNOtum5ngDSm6Jj1dp6qpFe5mStqdgGb?usp=sharing)
+Here's how I combined vector search with AI agents to create a real estate assistant that actually gets it. If you want to follow along, refer to this [colab](https://colab.research.google.com/github/superlinked/VectorHub/blob/main/docs/assets/use_cases/real_estate_agentic_nlq/real_estate_agentic_nlq.ipynb)
 
 ![Complete Flow Diagram](../assets/use_cases/real_estate_agentic_nlq/flow_diagram.png)
 
@@ -43,7 +43,7 @@ You can use any LLM or any embedding model of your choice based on the requireme
 
 ## Data Requirements
 
-To demonstrate how the NLQ system and agentic flow work in practice, I used a dataset that reflects what you'd typically find in real-world property listings. This includes property-level attributes like price, number of bedrooms and bathrooms, and address, along with geographic fields such as city and province. 
+To demonstrate how the NLQ system and agentic flow work in practice, I used a dataset that reflects what you'd typically find in real-world property listings. This includes property-level attributes like price, number of bedrooms and bathrooms, and address, along with geographic fields such as city and province.
 
 To support more context-aware reasoning, the data also includes demographic details like population size and median household income—useful for queries that imply lifestyle or investment considerations.
 
@@ -114,12 +114,12 @@ Why vector spaces? They enable fuzzy matching, so when someone searches "near do
 
 ### Step 2: Weighted Query Construction
 
-Weighted queries prioritize what matters most in searches. As weights defines how much importance that parameter have when we fetch the relevant results. Higher weights, like for price, ensure results match user priorities, like sticking to a budget. 
+Weighted queries prioritize what matters most in searches. As weights defines how much importance that parameter have when we fetch the relevant results. Higher weights, like for price, ensure results match user priorities, like sticking to a budget.
 
 ```python
 query = sl.Query(index, weights={
     address_space: sl.Param("address_weight", default=1.0),
-    price_space: sl.Param("price_weight", default=100.0), 
+    price_space: sl.Param("price_weight", default=100.0),
     city_space: sl.Param("city_weight", default=1.0),
     beds_space: sl.Param("beds_weight", default=1.0),
     baths_space: sl.Param("baths_weight", default=1.0),
@@ -136,24 +136,24 @@ Before we get into the tools and how they simplify everything, let’s take a qu
 
 1. **NLQ helps machines speak our language.**
 
-    When someone says, “affordable family homes under $250,000,” NLQ knows how to break that down into structured search parameters and get the relevant results for us.
-    
+   When someone says, “affordable family homes under $250,000,” NLQ knows how to break that down into structured search parameters and get the relevant results for us.
+
 2. **But on its own, NLQ hits a ceiling.**
-    
-    Sure, it’s great at filtering by the criteria as I mention, but it tends to fall short when:
-    
-    - The results are too few or too literal, without understanding the intent behind the query.
-    - You’re looking for personalised suggestions that go beyond the filters. I mean just think when you have let’s say 10 different properties which are completing your criteria but you still need some kind of personalised recommendations.
-    - You want to compare multiple results in context.
+
+   Sure, it’s great at filtering by the criteria as I mention, but it tends to fall short when:
+
+   - The results are too few or too literal, without understanding the intent behind the query.
+   - You’re looking for personalised suggestions that go beyond the filters. I mean just think when you have let’s say 10 different properties which are completing your criteria but you still need some kind of personalised recommendations.
+   - You want to compare multiple results in context.
 
 3. **That’s where agents step in.**
-    
-    Agents bring reasoning to the table. They can:
-    
-    - Recognise when a search is too narrow and offer smarter alternatives.
-    - Read between the lines and pick up on what the user might actually want. So instead of just throwing the results, we can utilize these agents to make more of those findings.
-    - Handle more complex workflows—like comparing options or building narratives from raw data.
-  
+
+   Agents bring reasoning to the table. They can:
+
+   - Recognise when a search is too narrow and offer smarter alternatives.
+   - Read between the lines and pick up on what the user might actually want. So instead of just throwing the results, we can utilize these agents to make more of those findings.
+   - Handle more complex workflows—like comparing options or building narratives from raw data.
+
 So when you blend NLQ (which listens and interprets) with agents (which think and act), you get something far more intelligent: a system that doesn’t just understand your request—it also knows how to respond meaningfully. That’s the sweet spot.
 
 ### Step 3: The Agentic Layer - Where the Magic Happens
@@ -178,7 +178,7 @@ Each tool has a specific job. Let me break them down all of them one step at a t
 
 ### PropertyRetrievalTool
 
-This one’s is used for the straightforward lookups. So if we type a query something like, *“3-bedroom homes in Oshawa under $600K.”* This tool parses that to our Superlinked Search engine, runs it through and—bam—we get relevant listings back. It’s quick, clean, and no fuss.
+This one’s is used for the straightforward lookups. So if we type a query something like, _“3-bedroom homes in Oshawa under $600K.”_ This tool parses that to our Superlinked Search engine, runs it through and—bam—we get relevant listings back. It’s quick, clean, and no fuss.
 
 Behind the scenes, what it really do is it wraps the user query, hands it to the NLQ-powered engine, and formats the results for display. If nothing shows up, it gracefully pass the actions to another tool called `QueryRefinementTool` which takes care of the situation. More on this a bit later..
 
@@ -205,13 +205,13 @@ class PropertyRetrievalTool(Tool):
 
 ### PropertyRecommendationTool
 
-This tool isn’t just matching filters—it’s more like a reasoning. When someone enters a query, it tries to understand their *intent* and *preferences*. For example, it might see that “affordable housing for a growing family” suggests a budget, space needs, and a preference for family-friendly areas.
+This tool isn’t just matching filters—it’s more like a reasoning. When someone enters a query, it tries to understand their _intent_ and _preferences_. For example, it might see that “affordable housing for a growing family” suggests a budget, space needs, and a preference for family-friendly areas.
 
 It:
 
 - Uses GPT-4 to extract a lightweight user profile from the query.
 - Fetches relevant results with NLQ.
-- Then it generates top 3 recommendations *with pros and cons*, using both the data and inferred preferences.
+- Then it generates top 3 recommendations _with pros and cons_, using both the data and inferred preferences.
 
 It’s like having a real estate advisor who reads between the lines.
 
@@ -349,7 +349,7 @@ Results for '{new_query}' (NLQ Ranked):
 
 ### NarrativeInsightTool
 
-This tool’s for the data-savvy users—the investors, the analysts, the curious minds.It takes a query and returns a story: average prices, price ranges, bedroom counts, top cities, median incomes, Then it wraps all that data into a readable narrative: market trends, investment potential, and key takeaways based on the context. 
+This tool’s for the data-savvy users—the investors, the analysts, the curious minds.It takes a query and returns a story: average prices, price ranges, bedroom counts, top cities, median incomes, Then it wraps all that data into a readable narrative: market trends, investment potential, and key takeaways based on the context.
 
 You get both the numbers and the story behind them. So instead of just seeing the relevant results in the tabular format, this tool gives the results a more readable format.
 
@@ -404,15 +404,15 @@ class NarrativeInsightTool(Tool):
 
 ### MultiStepQueryTool
 
-This one’s built for the power users—the folks asking things like, *“Compare properties in Toronto vs. family homes in Ontario under $300K.”* That’s not a simple query; it’s actually two or more requests bundled into one.
+This one’s built for the power users—the folks asking things like, _“Compare properties in Toronto vs. family homes in Ontario under $300K.”_ That’s not a simple query; it’s actually two or more requests bundled into one.
 
-Instead of throwing its hands up, this tool does it : 
+Instead of throwing its hands up, this tool does it :
 
 - It just break down the question into the manageable parts, something like more doable.
 - Now it runs those sub-query in the independent fashion using the correct retrieval logic.
 - Then comes the comparison where it just compares them side by side
 
-It’s what makes the whole system feel flexible—like it *understands* layered intent instead of forcing users to rephrase things over and over.
+It’s what makes the whole system feel flexible—like it _understands_ layered intent instead of forcing users to rephrase things over and over.
 
 ```python
 class MultiStepQueryTool(Tool):
@@ -492,7 +492,7 @@ class MultiStepQueryTool(Tool):
 
 ### Step 4: Intent Classification – Figuring Out What the User Really Wants
 
-At this point, the system needs to make a smart decision on which tool we should invoke? *Which tool is the best fit for this query?*
+At this point, the system needs to make a smart decision on which tool we should invoke? _Which tool is the best fit for this query?_
 
 To do that, it relies on GPT-4 to act like a traffic director. I mean more like a router which takes the query and classifies the intent behind it. Based on the outcome, it routes the query to the right tool:
 
@@ -524,33 +524,31 @@ Query: "{query}"
 
 To understand how the system operates in practice, let’s walk through a few real-world queries and how they are handled end-to-end.
 
-
 ### Example 1: Basic Search
 
-Consider the query: "3 bedroom homes in Oshawa under $600,000." The system classifies this as a retrieval task. It extracts structured parameters—location (Oshawa), number of bedrooms (3+), and price ceiling ($600,000)—and executes a vector-based search using these constraints. 
+Consider the query: "3 bedroom homes in Oshawa under $600,000." The system classifies this as a retrieval task. It extracts structured parameters—location (Oshawa), number of bedrooms (3+), and price ceiling ($600,000)—and executes a vector-based search using these constraints.
 
-The results are then ranked and returned based on semantic relevance and price alignment. Eassy pisssy.. 
+The results are then ranked and returned based on semantic relevance and price alignment. Eassy pisssy..
 
 ```markdown
 Processing query: 3 bedroom homes in Oshawa under $600,000
 Query classified as: retrieval
 Search Results for '3 bedroom homes in Oshawa under $600,000':
 
-  city  id province              address    price  number_beds  number_baths relevance_score
-Oshawa 171  Ontario #70 -53 TAUNTON RD E $520,000            3             3           0.418
-Oshawa 603  Ontario      145 BANTING AVE $499,900            6             5           0.417
+city id province address price number_beds number_baths relevance_score
+Oshawa 171 Ontario #70 -53 TAUNTON RD E $520,000 3 3 0.418
+Oshawa 603 Ontario 145 BANTING AVE $499,900 6 5 0.417
 ```
 
 ### Example 2: Personalised Recommendations
 
-In this case, the query is: *"I live in Toronto, show me the most expensive option that would be good for me."* The system classifies this under the recommendation category. It infers that the user is located in Toronto and likely has a preference for high-end listings. Now if this thing goes to the NLQ directly, the NLQ might not be able to make a ton of sense as we haven’t putted out too much of the filtration here, that’s where the agentic tooling helps. 
+In this case, the query is: _"I live in Toronto, show me the most expensive option that would be good for me."_ The system classifies this under the recommendation category. It infers that the user is located in Toronto and likely has a preference for high-end listings. Now if this thing goes to the NLQ directly, the NLQ might not be able to make a ton of sense as we haven’t putted out too much of the filtration here, that’s where the agentic tooling helps.
 
-So now the query pass through the router, then the router directs that to the relevant tool which is `RecommendationTool` in this case, and then that tool extracts additional implicit preferences (e.g., lifestyle, city familiarity, price range), fetches the top relevant properties using the user profile, and then generates recommendations with a short rationale, including pros and cons for each option. 
+So now the query pass through the router, then the router directs that to the relevant tool which is `RecommendationTool` in this case, and then that tool extracts additional implicit preferences (e.g., lifestyle, city familiarity, price range), fetches the top relevant properties using the user profile, and then generates recommendations with a short rationale, including pros and cons for each option.
 
 THIS IS TOO MUCH HANDY MANNN
 
 ```markdown
-
 Processing query: I want to know which will be a good option for me if I live in Toronto, most expensive one
 Query classified as: recommendation
 Recommendations for 'I want to know which will be a good option for me if I live in Toronto, most expensive one':
@@ -574,7 +572,7 @@ Recommendations for 'I want to know which will be a good option for me if I live
 
    2.2. 209 BELLWOODS AVE
    Pros: The property has 4 bedrooms and 4 bathrooms, offering ample space for a family. The price is also relatively high, suggesting a quality property.
-   Cons: May be expensive for some buyers. 
+   Cons: May be expensive for some buyers.
 
    2.3. 43 WALMSLEY BLVD
    Pros: The property is reasonably priced for its offerings. It has 3 bedrooms, which can be suitable for a family.
@@ -589,19 +587,19 @@ Recommendations for 'I want to know which will be a good option for me if I live
    3.3. Future Resale Value: If you're considering the property as an investment, you might want to consider the potential resale value. Higher-end properties might have a better resale value.
 
 Property Listings (NLQ Ranked):
-   city  id province                        address      price  number_beds  number_baths relevance_score
-Toronto   9  Ontario #LPH19 -2095 LAKE SHORE BLVD W $4,336,900            3             4          -0.624
-Toronto 489  Ontario              209 BELLWOODS AVE $2,500,000            4             4          -0.677
-Toronto 190  Ontario               43 WALMSLEY BLVD $1,998,000            3             1          -0.687
-Toronto 195  Ontario                411 CONCORD AVE $1,859,000            3             3          -0.690
-Toronto 357  Ontario              212 EDENBRIDGE DR $1,800,000            4             3          -0.690
+city id province address price number_beds number_baths relevance_score
+Toronto 9 Ontario #LPH19 -2095 LAKE SHORE BLVD W $4,336,900 3 4 -0.624
+Toronto 489 Ontario 209 BELLWOODS AVE $2,500,000 4 4 -0.677
+Toronto 190 Ontario 43 WALMSLEY BLVD $1,998,000 3 1 -0.687
+Toronto 195 Ontario 411 CONCORD AVE $1,859,000 3 3 -0.690
+Toronto 357 Ontario 212 EDENBRIDGE DR $1,800,000 4 3 -0.690
 ```
 
 ### Example 3: Query Refinement
 
-The query "3 bedroom homes in Oshawa under $300,000" is classified as a retrieval request, but the result set is empty due to overly strict constraints. Instead of returning nothing, the system triggers a refinement process. 
+The query "3 bedroom homes in Oshawa under $300,000" is classified as a retrieval request, but the result set is empty due to overly strict constraints. Instead of returning nothing, the system triggers a refinement process.
 
-It automatically adjusts the query—suggesting a more realistic 
+It automatically adjusts the query—suggesting a more realistic
 variant like "3 bedroom homes in Oshawa under $400,000"—and displays both the original and refined results. This helps the user quickly iterate without needing to rephrase their search.
 
 ```markdown
@@ -611,22 +609,22 @@ Query classified as: retrieval
 Original Query: '3 bedroom homes in Oshawa under $300,000' returned 0 results.
 Suggested Query: '"3 bedroom homes in Durham Region under $400,000"'
 Results for '"3 bedroom homes in Durham Region under $400,000"' (NLQ Ranked):
-       city  id                  province                 address    price  number_beds  number_baths relevance_score
-    Calgary 263                   Alberta   84 Whitehaven Road NE $329,000            3             2           0.793
- St. John's 544 Newfoundland and Labrador     28 Chapman Crescent $199,900            3             1           0.790
- St. John's 148 Newfoundland and Labrador 193 Cumberland Crescent $190,000            3             2           0.789
- St. John's  30 Newfoundland and Labrador       162 Bennetts Road $369,900            3             2           0.788
- St. John's 658 Newfoundland and Labrador 127 Commonwealth Avenue $295,000            3             2           0.788
-Thunder Bay 723                   Ontario          71 Hull Avenue $329,900            3             1           0.787
-     Regina 315              Saskatchewan    2914 Avonhurst DRIVE $265,000            3             2           0.787
-     Regina 683              Saskatchewan          35 Hind STREET $159,900            3             1           0.786
-     Regina 547              Saskatchewan  4609 Green Rock ROAD E $395,000            3             3           0.784
- Lethbridge 596                   Alberta          12 Lynx Road N $388,000            3             3           0.783
+city id province address price number_beds number_baths relevance_score
+Calgary 263 Alberta 84 Whitehaven Road NE $329,000 3 2 0.793
+St. John's 544 Newfoundland and Labrador 28 Chapman Crescent $199,900 3 1 0.790
+St. John's 148 Newfoundland and Labrador 193 Cumberland Crescent $190,000 3 2 0.789
+St. John's 30 Newfoundland and Labrador 162 Bennetts Road $369,900 3 2 0.788
+St. John's 658 Newfoundland and Labrador 127 Commonwealth Avenue $295,000 3 2 0.788
+Thunder Bay 723 Ontario 71 Hull Avenue $329,900 3 1 0.787
+Regina 315 Saskatchewan 2914 Avonhurst DRIVE $265,000 3 2 0.787
+Regina 683 Saskatchewan 35 Hind STREET $159,900 3 1 0.786
+Regina 547 Saskatchewan 4609 Green Rock ROAD E $395,000 3 3 0.784
+Lethbridge 596 Alberta 12 Lynx Road N $388,000 3 3 0.783
 ```
 
 ### Example 4: Market Insight Generation
 
-When a user asks: "What's a good investment in Toronto?" the system identifies this as an insight-oriented query. It analyses the dataset to produce a narrative summary, including average prices, market trends, top-performing neighbourhoods, and potential investment signals. 
+When a user asks: "What's a good investment in Toronto?" the system identifies this as an insight-oriented query. It analyses the dataset to produce a narrative summary, including average prices, market trends, top-performing neighbourhoods, and potential investment signals.
 
 The output combines raw statistics with interpreted insights to guide decision-making.
 
@@ -636,33 +634,33 @@ Query classified as: insight
 Insights for 'What's a good investment in Toronto?':
 
 Market Overview:
-The Toronto property market is characterized by an average property price of $577,158, with a median price slightly higher at $589,000. The price range for properties in the market spans from $415,000 to $695,000. The average property consists of approximately 1.6 bedrooms and 1.1 bathrooms. 
+The Toronto property market is characterized by an average property price of $577,158, with a median price slightly higher at $589,000. The price range for properties in the market spans from $415,000 to $695,000. The average property consists of approximately 1.6 bedrooms and 1.1 bathrooms.
 
 Investment Potential:
 Given the average income in Toronto is $97,000, the property prices indicate a relatively high cost of living. This presents an opportunity for investors as there is a substantial market for both property purchasing and rental if buying to let. The properties in Toronto have been ranked by our NLQ system based on price and other factors, giving a relevance score. This score indicates the property's potential for return on investment considering these factors.
 
 Key Considerations:
-The top-ranked property by our NLQ system is located at '#1808 -1 KING ST W' with a price of $415,000. This property has 1 bedroom and 1 bathroom and it is the most affordable among the top-ranked properties. Other good investment options include properties located at '#201 -115 RICHMOND ST E', '#1608 -101 ERSKINE AVE', '#906 -1190 DUNDAS ST E', and '#2009 -24 WELLESLEY ST W' with prices ranging from $479,000 to $599,000. 
+The top-ranked property by our NLQ system is located at '#1808 -1 KING ST W' with a price of $415,000. This property has 1 bedroom and 1 bathroom and it is the most affordable among the top-ranked properties. Other good investment options include properties located at '#201 -115 RICHMOND ST E', '#1608 -101 ERSKINE AVE', '#906 -1190 DUNDAS ST E', and '#2009 -24 WELLESLEY ST W' with prices ranging from $479,000 to $599,000.
 
 It is important for potential investors to consider the location of the property, as properties in certain neighborhoods may offer higher potential returns due to demand and price trends. It is also crucial to consider the number of bedrooms and bathrooms, as these factors can affect both the rental income potential and the resale value.
 
 Property Listings (NLQ Ranked):
-   city  id province                  address    price  number_beds  number_baths relevance_score
-Toronto  25  Ontario       #1808 -1 KING ST W $415,000            1             1           0.418
-Toronto 914  Ontario  #201 -115 RICHMOND ST E $479,000            1             1           0.418
-Toronto  91  Ontario   #1608 -101 ERSKINE AVE $539,900            1             1           0.418
-Toronto 699  Ontario   #906 -1190 DUNDAS ST E $579,000            1             1           0.418
-Toronto 592  Ontario #2009 -24 WELLESLEY ST W $599,000            2             1           0.418
-Toronto 695  Ontario       #1606 -36 ZORRA ST $519,888            2             1           0.418
-Toronto 492  Ontario #907 -185 ROEHAMPTON AVE $609,900            2             1           0.418
-Toronto 164  Ontario     #325 -361 FRONT ST W $659,900            2             1           0.417
-Toronto 649  Ontario     #213 -525 WILSON AVE $675,000            2             2           0.417
-Toronto 706  Ontario      #2112 -101 PETER ST $695,000            2             1           0.417
+city id province address price number_beds number_baths relevance_score
+Toronto 25 Ontario #1808 -1 KING ST W $415,000 1 1 0.418
+Toronto 914 Ontario #201 -115 RICHMOND ST E $479,000 1 1 0.418
+Toronto 91 Ontario #1608 -101 ERSKINE AVE $539,900 1 1 0.418
+Toronto 699 Ontario #906 -1190 DUNDAS ST E $579,000 1 1 0.418
+Toronto 592 Ontario #2009 -24 WELLESLEY ST W $599,000 2 1 0.418
+Toronto 695 Ontario #1606 -36 ZORRA ST $519,888 2 1 0.418
+Toronto 492 Ontario #907 -185 ROEHAMPTON AVE $609,900 2 1 0.418
+Toronto 164 Ontario #325 -361 FRONT ST W $659,900 2 1 0.417
+Toronto 649 Ontario #213 -525 WILSON AVE $675,000 2 2 0.417
+Toronto 706 Ontario #2112 -101 PETER ST $695,000 2 1 0.417
 ```
 
 ### Example 5: Comparative Search
 
-In the query: "Compare 3 bedroom homes in Toronto and Kitchener," the system recognizes the need for multi-step reasoning. It decomposes the query into two independent sub-queries—one for Toronto, one for Kitchener—runs each using the retrieval tool, and then formats the results into a side-by-side comparison. 
+In the query: "Compare 3 bedroom homes in Toronto and Kitchener," the system recognizes the need for multi-step reasoning. It decomposes the query into two independent sub-queries—one for Toronto, one for Kitchener—runs each using the retrieval tool, and then formats the results into a side-by-side comparison.
 
 ```markdown
 Processing query: Compare 3 bedroom homes in Toronto and Kitchener
@@ -672,6 +670,7 @@ Comparison for 'Compare 3 bedroom homes in Toronto and Kitchener':
 1. Side-by-side comparison:
 
    - 3 bedroom homes in Toronto:
+
      - Prices: $929,000, $848,000, $1,149,999
      - Beds: 3 for all
      - Baths: 2 for all
@@ -684,6 +683,7 @@ Comparison for 'Compare 3 bedroom homes in Toronto and Kitchener':
      - NLQ Relevance: 0.419 for all
 
 2. Key Differences:
+
    - Location: The key difference between these two sets of properties is their location, with one set located in Toronto and the other in Kitchener.
    - Value: The properties in Toronto are significantly more expensive than those in Kitchener, reflecting the higher real estate prices in Toronto.
    - Market Positioning: The properties in Toronto might be positioned towards buyers looking for homes in a bustling, cosmopolitan city, while the homes in Kitchener might attract those looking for a more relaxed, suburban lifestyle.
@@ -694,20 +694,20 @@ Comparison for 'Compare 3 bedroom homes in Toronto and Kitchener':
    - For investors, both cities could offer good opportunities depending on their strategy. Toronto's high property prices could lead to high rental income, while Kitchener's lower prices could result in higher yield.
 
 Results for '3 bedroom homes in Toronto' (NLQ Ranked):
-   city  id province              address      price  number_beds  number_baths relevance_score
-Toronto 508  Ontario    166 HIAWATHA RD W   $929,000            3             2           0.417
-Toronto 869  Ontario         299 OSLER ST   $848,000            3             2           0.417
-Toronto  54  Ontario         35 FOURTH ST $1,149,999            3             2           0.415
-Toronto 813  Ontario 1042* ST CLARENS AVE $1,139,000            3             2           0.415
-Toronto 659  Ontario    108 ARMSTRONG AVE $1,189,000            3             2           0.415
+city id province address price number_beds number_baths relevance_score
+Toronto 508 Ontario 166 HIAWATHA RD W $929,000 3 2 0.417
+Toronto 869 Ontario 299 OSLER ST $848,000 3 2 0.417
+Toronto 54 Ontario 35 FOURTH ST $1,149,999 3 2 0.415
+Toronto 813 Ontario 1042\* ST CLARENS AVE $1,139,000 3 2 0.415
+Toronto 659 Ontario 108 ARMSTRONG AVE $1,189,000 3 2 0.415
 
 Results for '3 bedroom homes in Kitchener' (NLQ Ranked):
-     city  id province                        address    price  number_beds  number_baths relevance_score
-Kitchener 471  Ontario           204 SCHLUETER Street $589,000            3             1           0.419
-Kitchener 918  Ontario 355 FISHER MILLS Road Unit# 75 $649,900            3             2           0.419
-Kitchener 156  Ontario         24 TIMBERLANE Crescent $624,900            3             2           0.419
-Kitchener 906  Ontario     400 WILSON Avenue Unit# 49 $599,000            3             3           0.419
-Kitchener 371  Ontario      110 FERGUS Avenue Unit# 1 $790,000            3             2           0.418
+city id province address price number_beds number_baths relevance_score
+Kitchener 471 Ontario 204 SCHLUETER Street $589,000 3 1 0.419
+Kitchener 918 Ontario 355 FISHER MILLS Road Unit# 75 $649,900 3 2 0.419
+Kitchener 156 Ontario 24 TIMBERLANE Crescent $624,900 3 2 0.419
+Kitchener 906 Ontario 400 WILSON Avenue Unit# 49 $599,000 3 3 0.419
+Kitchener 371 Ontario 110 FERGUS Avenue Unit# 1 $790,000 3 2 0.418
 ```
 
 Here is the conclued look of how the whole system looks under the hood..
