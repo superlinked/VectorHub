@@ -149,7 +149,7 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 51988,
+    "value": 53173,
     "source_url": "https://github.com/meilisearch/meilisearch",
     "comment": "",
     "value_90_days": 0
@@ -161,16 +161,16 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 2973072,
+    "value": 3688752,
     "source_url": "https://pypi.org/project/meilisearch/",
     "comment": "",
-    "value_90_days": 672653
+    "value_90_days": 1282682
   },
   "npm_downloads": {
-    "value": 6977316,
+    "value": 7799541,
     "source_url": "https://www.npmjs.com/package/meilisearch",
     "comment": "",
-    "value_90_days": 1498449
+    "value_90_days": 1688407
   },
   "crates_io_downloads": {
     "value": 0,
