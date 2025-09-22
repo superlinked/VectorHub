@@ -172,18 +172,18 @@
     "value": 55605840,
     "source_url": "https://pypi.org/project/chromadb/",
     "comment": "",
-    "value_90_days": 18701304
+    "value_90_days": 19336647
   },
   "npm_downloads": {
-    "value": 3868055,
+    "value": 3912068,
     "source_url": "https://www.npmjs.com/package/chromadb",
     "comment": "",
-    "value_90_days": 897138
+    "value_90_days": 897286
   },
   "crates_io_downloads": {
-    "value": 39860,
+    "value": 40377,
     "source_url": "https://crates.io/crates/chromadb",
     "comment": "",
-    "value_90_days": 4265
+    "value_90_days": 4272
   }
 }
