@@ -526,7 +526,7 @@ To understand how the system operates in practice, let’s walk through a few re
 
 ### Example 1: Basic Search
 
-Consider the query: "3 bedroom homes in Oshawa under $600,000." The system classifies this as a retrieval task. It extracts structured parameters—location (Oshawa), number of bedrooms (3+), and price ceiling ($600,000)—and executes a vector-based search using these constraints.
+Consider the query: "3 bedroom homes in Oshawa under \$600,000." The system classifies this as a retrieval task. It extracts structured parameters—location (Oshawa), number of bedrooms (3+), and price ceiling (\$600,000)—and executes a vector-based search using these constraints.
 
 The results are then ranked and returned based on semantic relevance and price alignment. Eassy pisssy..
 
