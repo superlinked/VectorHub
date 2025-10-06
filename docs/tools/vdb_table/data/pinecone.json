@@ -5,7 +5,7 @@
     "github": "https://github.com/pinecone-io",
     "website": "https://www.pinecone.io/",
     "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/65",
-    "poc_github": "https://github.com/jamescalam",
+    "poc_github": "https://edoliberty.github.io/",
     "slug": "pinecone"
   },
   "oss": {
@@ -34,7 +34,7 @@
   "hybrid_search": {
     "support": "full",
     "source_url": "https://docs.pinecone.io/docs/hybrid-search",
-    "comment": "Supports full hybrid search, including BM25 and native support for SPLADE vectors"
+    "comment": "Supports full hybrid search and native support for SPLADE vectors"
   },
   "facets": {
     "support": "none",
@@ -54,7 +54,7 @@
   "sparse_vectors": {
     "support": "full",
     "source_url": "https://docs.pinecone.io/docs/hybrid-search",
-    "comment": "Supports all sparse vectors, including BM25 and native support for SPLADE vectors"
+    "comment": "Supports all sparse vectors and native support for SPLADE vectors"
   },
   "bm25": {
     "support": "none",
@@ -62,13 +62,13 @@
     "comment": ""
   },
   "full_text": {
-    "support": "none",
+    "support": "partial",
     "source_url": "",
     "comment": ""
   },
   "embeddings_text": {
-    "support": "partial",
-    "source_url": "https://github.com/pinecone-io/canopy",
+    "support": "full",
+    "source_url": "https://docs.pinecone.io/guides/get-started/overview#integrated-embedding",
     "comment": ""
   },
   "embeddings_image": {
@@ -82,8 +82,8 @@
     "comment": ""
   },
   "rag": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.pinecone.io/guides/assistant/quickstart",
     "comment": ""
   },
   "recsys": {
@@ -122,19 +122,19 @@
     "comment": "via namespaces"
   },
   "disk_index": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "ephemeral": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://docs.pinecone.io/reference/api/2025-04/data-plane/deletenamespace",
+    "comment": "Namespaces are lightweight and easy to create & delete as needed."
   },
   "sharding": {
     "support": "full",
-    "source_url": "https://docs.pinecone.io/docs/scaling-indexes#horizontal-scaling",
-    "comment": ""
+    "source_url": "https://docs.pinecone.io/guides/index-data/dedicated-read-nodes",
+    "comment": "Sharding is automatic for Serverless indexes. Only Dedicated Read Nodes require sharding specifications."
   },
   "doc_size": {
     "bytes": 40000,
@@ -150,10 +150,10 @@
   },
   "index_types": {
     "value": [
-      "FreshDiskANN"
+      "Proprietary"
     ],
-    "source_url": "https://www.pinecone.io/blog/hnsw-not-enough/#:~:text=its%20similarities%20end.-,FreshDiskANN,-PGA%20is%20based",
-    "comment": "Proprietary variant of Microsoft's Vamana"
+    "source_url": "https://github.com/edoliberty/vector-search-class-notes",
+    "comment": "Pinecone dynamically uses different indexes including clusteting, qunatization, graphs, hashing, and fast scans."
   },
   "github_stars": {
     "value": 0,
@@ -168,10 +168,10 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 58658345,
-    "source_url": "https://pypi.org/project/pinecone-client/",
-    "comment": "",
-    "value_90_days": 4122871
+    "value": 58981168,
+    "source_url": "https://pypi.org/project/pinecone/",
+    "comment": "Stats include also depricated pinecone-client package",
+    "value_90_days": 29169636 
   },
   "npm_downloads": {
     "value": 17167407,
