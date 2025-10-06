@@ -162,13 +162,13 @@
     "comment": "MSTG is a proprietary index type developed by MyScale, available in MyScale Cloud only"
   },
   "github_stars": {
-    "value": 982,
+    "value": 984,
     "source_url": "https://github.com/myscale/MyscaleDB",
     "comment": "",
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 52276,
+    "value": 52876,
     "source_url": "https://hub.docker.com/r/myscale/myscaledb",
     "comment": "",
     "value_90_days": 0
@@ -177,7 +177,7 @@
     "value": 27441,
     "source_url": "https://pypi.org/project/myscaledb-client/",
     "comment": "",
-    "value_90_days": 751
+    "value_90_days": 752
   },
   "npm_downloads": {
     "value": 0,

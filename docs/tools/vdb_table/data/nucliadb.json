@@ -172,13 +172,13 @@
     "value": 1181473,
     "source_url": "https://pypi.org/project/nucliadb/",
     "comment": "",
-    "value_90_days": 171820
+    "value_90_days": 165720
   },
   "npm_downloads": {
-    "value": 10002,
+    "value": 10048,
     "source_url": "https://www.npmjs.com/package/@nuclia/core",
     "comment": "",
-    "value_90_days": 863
+    "value_90_days": 1092
   },
   "crates_io_downloads": {
     "value": 0,
