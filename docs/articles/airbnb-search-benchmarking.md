@@ -593,7 +593,7 @@ query = (
 Then we can assign some filters to the query as well:
 
 ```python
-query = base_query.filter(airbnb_schema.price >= sl.Param("min_price"))
+query = query.filter(airbnb_schema.price >= sl.Param("min_price"))
 # Additional filters can be added
 query = query.filter(airbnb_schema.max_guests >= sl.Param("min_guests"))
 query = query.filter(airbnb_schema.rating >= sl.Param("min_rating"))
