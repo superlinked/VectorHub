@@ -174,15 +174,15 @@
     "value_90_days": 29169636 
   },
   "npm_downloads": {
-    "value": 16973779,
+    "value": 17167407,
     "source_url": "https://www.npmjs.com/package/@pinecone-database/pinecone",
     "comment": "",
-    "value_90_days": 4149959
+    "value_90_days": 4179470
   },
   "crates_io_downloads": {
-    "value": 3606,
+    "value": 3635,
     "source_url": "https://crates.io/crates/pinecone-rs",
     "comment": "",
-    "value_90_days": 412
+    "value_90_days": 402
   }
 }
