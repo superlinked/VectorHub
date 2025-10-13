@@ -157,7 +157,7 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 1647,
+    "value": 1648,
     "source_url": "https://github.com/vdaas/vald",
     "comment": "",
     "value_90_days": 0
@@ -169,16 +169,16 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 292564,
+    "value": 292735,
     "source_url": "https://pypi.org/project/vald-client-python/",
     "comment": "",
-    "value_90_days": 9717
+    "value_90_days": 8931
   },
   "npm_downloads": {
-    "value": 3012,
+    "value": 3006,
     "source_url": "https://www.npmjs.com/package/vald-client-node",
     "comment": "",
-    "value_90_days": 185
+    "value_90_days": 159
   },
   "crates_io_downloads": {
     "value": 0,
