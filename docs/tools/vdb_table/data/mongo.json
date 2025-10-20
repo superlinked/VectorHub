@@ -183,13 +183,13 @@
     "value": 55410,
     "source_url": "https://pypi.org/project/mongodbatlas/",
     "comment": "",
-    "value_90_days": 2909
+    "value_90_days": 2870
   },
   "npm_downloads": {
-    "value": 924530,
+    "value": 935201,
     "source_url": "https://www.npmjs.com/package/mongodb-atlas-api-client",
     "comment": "",
-    "value_90_days": 169070
+    "value_90_days": 170581
   },
   "crates_io_downloads": {
     "value": 0,

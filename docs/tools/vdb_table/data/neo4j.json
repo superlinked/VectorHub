@@ -172,18 +172,18 @@
     "value": 81473486,
     "source_url": "https://pypi.org/project/neo4j/",
     "comment": "",
-    "value_90_days": 16198132
+    "value_90_days": 16413887
   },
   "npm_downloads": {
-    "value": 46895,
+    "value": 48091,
     "source_url": "https://www.npmjs.com/package/neo4j",
     "comment": "",
-    "value_90_days": 9087
+    "value_90_days": 8864
   },
   "crates_io_downloads": {
-    "value": 280960,
+    "value": 288070,
     "source_url": "https://crates.io/crates/neo4rs",
     "comment": "",
-    "value_90_days": 8960
+    "value_90_days": 9640
   }
 }
