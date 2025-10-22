@@ -1,11 +1,13 @@
 import os
 import enum
 
-GIT_REPO = 'https://github.com/superlinked/VectorHub'
+GIT_REPO = "https://github.com/superlinked/VectorHub"
+
 
 class ItemType(enum.Enum):
     FOLDER = "folder"
     FILE = "file"
+
 
 class Item:
     def __init__(self, type, name, path, has_blogs=False, children=None):
@@ -36,7 +38,7 @@ class Item:
             name=data.get("name", ""),
             path=data.get("path", ""),
             has_blogs=data.get("has_blogs", False),
-            children=data.get("children", [])
+            children=data.get("children", []),
         )
 
     def to_dict(self):
@@ -62,27 +64,38 @@ class StrapiBlog:
         self.title = self.get_title()
 
     def get_title(self) -> str:
-        lines = self.content.split('\n')
+        lines = self.content.split("\n")
         first_line = str(lines[0]).strip()
-        if first_line.startswith('# '):
-            self.content = '\n'.join(lines[1:])
+        if first_line.startswith("# "):
+            self.content = "\n".join(lines[1:])
             self.content = self.content.strip()
-            return first_line.replace('# ', '').strip()
+            return first_line.replace("# ", "").strip()
         else:
-            return os.path.basename(self.filepath).replace('-', ' ').replace('_', ' ').replace('.md', '')
+            return (
+                os.path.basename(self.filepath)
+                .replace("-", " ")
+                .replace("_", " ")
+                .replace(".md", "")
+            )
 
     def __str__(self) -> str:
         return self.title
 
     def get_github_url(self):
-        return f'{GIT_REPO}/blob/main/{self.filepath}'
-    
+        return f"{GIT_REPO}/blob/main/{self.filepath}"
+
     def get_filepath(self):
-        return self.filepath.replace('&', '').replace('--', '-').replace('__', '_')
-    
+        return self.filepath.replace("&", "").replace("--", "-").replace("__", "_")
+
     def get_slug(self):
         if not self.slug_url:
-            slug = self.get_filepath().replace('.md', '').replace('_', '-').replace(' ', '-').replace('docs/', '')
+            slug = (
+                self.get_filepath()
+                .replace(".md", "")
+                .replace("_", "-")
+                .replace(" ", "-")
+                .replace("docs/", "")
+            )
             self.slug_url = slug.lower()
         return self.slug_url
 
@@ -94,14 +107,15 @@ class StrapiBlog:
 
     def get_json(self):
         return {
-        "github_url": self.get_github_url(),
-        "content": self.content,
-        "github_last_updated_date": self.last_updated,
-        "title": self.title,
-        "slug_url": self.get_slug(),
-        "publishedAt": self.publishedAt,
-        "filepath": self.get_filepath()
-    }
+            "github_url": self.get_github_url(),
+            "content": self.content,
+            "github_last_updated_date": self.last_updated,
+            "title": self.title,
+            "slug_url": self.get_slug(),
+            "publishedAt": self.publishedAt,
+            "filepath": self.get_filepath(),
+            "meta_desc": self.meta_desc,
+        }
 
     def get_post_json(self, is_draft=False):
         return {"data": self.get_json()}
