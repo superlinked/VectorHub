@@ -51,17 +51,17 @@ The hybrid search algorithm combines keyword search and vector search to retriev
 - How often do the query words appear in each document? (the more, the better)
 - How rare are the query words across all the documents? (the rarer, the better)
 
-The BM25 score for document **D** for query **Q** is calculated as the sum of the scores for individual query terms. Here's the formula for calculating the BM25 score:
+The BM25 score for document $D$ for query $Q$ is calculated as the sum of the scores for individual query terms. Here's the formula for calculating the BM25 score:
 
-**BM25(D, Q) = ∑(IDF(q) _ ((TF(q, D) _ (k1 + 1)) / (TF(q, D) + k1 _ (1 — b + b _ (|D| / avgdl)))))**
+$$\text{BM25}(D, Q) = \sum_{q \in Q} \text{IDF}(q) \cdot \frac{\text{TF}(q, D) \cdot (k_1 + 1)}{\text{TF}(q, D) + k_1 \cdot (1 - b + b \cdot \frac{|D|}{\text{avgdl}})}$$
 
 where,
 
-- **IDF(q)** denotes inverse document frequency
-- **TF(q,D)** denotes term frequency
-- **|D|** is the document length
-- **avgdl** is the average document length
-- **k1** and **b** are tunable constants
+- $\text{IDF}(q)$ denotes inverse document frequency
+- $\text{TF}(q,D)$ denotes term frequency
+- $|D|$ is the document length
+- $\text{avgdl}$ is the average document length
+- $k_1$ and $b$ are tunable constants
 
 Notice that the BM25 algorithm is a refined version of the [TF-IDF(Term-Frequency Inverse-Document Frequency)](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) algorithm.
 
@@ -71,32 +71,32 @@ Notice that the BM25 algorithm is a refined version of the [TF-IDF(Term-Frequenc
 
 A common approach to vector search is [cosine similarity search](https://en.wikipedia.org/wiki/Cosine_similarity). Cosine similarity is calculated as the result of the dot product of the vectors, normalized by the multiplication of their magnitudes. The nearer the outcome is to 1, the more similar the vectors are.
 
-**C(A,B) = cos(θ) = A.B / ||A|| ||B||**
+$$C(A,B) = \cos(\theta) = \frac{A \cdot B}{||A|| \cdot ||B||}$$
 
 ### Combination
 
 The results from each algorithm have to be fused to implement a hybrid search. There are various strategies to combine them and get a score. To balance the keyword search score and vector search score to meet our requirements, we use the following formula:
 
-**H = (1-α) K + αV**
+$$H = (1-\alpha) K + \alpha V$$
 
 where,
 
-- **H** is the hybrid search score
-- **α** is the weighted parameter
-- **K** is the keyword search score
-- **V** is the vector search score
+- $H$ is the hybrid search score
+- $\alpha$ is the weighted parameter
+- $K$ is the keyword search score
+- $V$ is the vector search score
 
 The hybrid score is a pure vector score when α is 1, and a pure keyword score when α is 0.
 
 **Reciprocal Rank Fusion (RRF)** is one of several available methods for combining dense and sparse search scores. RRF ranks each passage according to its place in the keyword and vector outcome lists, and then merges these rankings to generate a unified result list. The RRF score is determined by summing the inverse rankings from each list. Positioning the document’s rank in the denominator imposes a penalty on documents that appear lower in the list.
 
-<img src="../assets/use_cases/hybrid_search_&_rerank_rag/RRF.png" alt="Reciprocal Rank Fusion Equation"  data-size="25" />
+$$\text{RRF}(d) = \sum_{d \in D} \frac{1}{k + r(d)}$$
 
 where,
 
-- **D** represents the set of documents
-- **k** is a constant
-- **r(d)** is the rank of document d
+- $D$ represents the set of documents
+- $k$ is a constant
+- $r(d)$ is the rank of document $d$
 
 ### Reranking
 
