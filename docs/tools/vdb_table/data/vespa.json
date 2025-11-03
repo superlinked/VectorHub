@@ -176,7 +176,7 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 12700398,
+    "value": 12721822,
     "source_url": "https://hub.docker.com/r/vespaengine/vespa",
     "comment": "",
     "value_90_days": 0
@@ -185,7 +185,7 @@
     "value": 1516421,
     "source_url": "https://pypi.org/project/pyvespa/",
     "comment": "",
-    "value_90_days": 369784
+    "value_90_days": 402695
   },
   "npm_downloads": {
     "value": 0,

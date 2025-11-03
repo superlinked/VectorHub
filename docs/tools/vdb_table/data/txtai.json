@@ -159,7 +159,7 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 11746,
+    "value": 11774,
     "source_url": "https://github.com/neuml/txtai",
     "comment": "",
     "value_90_days": 0
@@ -174,18 +174,18 @@
     "value": 1041597,
     "source_url": "https://pypi.org/project/txtai/",
     "comment": "",
-    "value_90_days": 82194
+    "value_90_days": 85687
   },
   "npm_downloads": {
-    "value": 2487,
+    "value": 2462,
     "source_url": "https://www.npmjs.com/package/txtai",
     "comment": "",
-    "value_90_days": 474
+    "value_90_days": 478
   },
   "crates_io_downloads": {
-    "value": 41924,
+    "value": 42052,
     "source_url": "https://crates.io/crates/txtai",
     "comment": "",
-    "value_90_days": 968
+    "value_90_days": 944
   }
 }
