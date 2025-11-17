@@ -149,7 +149,7 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 9911,
+    "value": 9929,
     "source_url": "https://github.com/oramasearch/orama",
     "comment": "",
     "value_90_days": 0
@@ -167,10 +167,10 @@
     "value_90_days": 0
   },
   "npm_downloads": {
-    "value": 5457921,
+    "value": 5599280,
     "source_url": "https://www.npmjs.com/package/@orama/orama",
     "comment": "",
-    "value_90_days": 1828085
+    "value_90_days": 1852492
   },
   "crates_io_downloads": {
     "value": 0,
