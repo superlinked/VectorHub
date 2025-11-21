@@ -82,6 +82,7 @@ Users engaged more with surfaced listings and saved jobs with more confidence. A
 ## Understanding Superlinked’s Multi-modal Semantic Search
 
 ![Understanding Superlinked](../assets/use_cases/Migrating from Algolia to Superlinked/understanding_superlinked.png)
+
 How Superlinked unifies your ingestion and querying logic
 
 Superlinked derives meaning from data rather than just words by encoding each attribute of an entity with its own specialized model. Text, images, numeric values, and categorical fields are each embedded or encoded separately using the appropriate modality-specific encoder. These representations are then fused into a unified multimodal vector that captures both semantic and structured signals for the entity.
@@ -100,6 +101,7 @@ Check out this [vector database comparison table](https://superlinked.com/vector
 To plan your migration effectively, it's essential to understand the fundamental differences in how Superlinked and Algolia process and store data.
 
 ![Key Architectural Differences](../assets/use_cases/Migrating from Algolia to Superlinked/key_architectural_differences.png)
+
 From prefix search to full stack AI
 
 
