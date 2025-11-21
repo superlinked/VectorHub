@@ -81,7 +81,7 @@ Users engaged more with surfaced listings and saved jobs with more confidence. A
 
 ## Understanding Superlinked’s Multi-modal Semantic Search
 
-![Understanding Superlinked](../assets/use_cases/Migrating from Algolia to Superlinked/understanding_superlinked.jpg)
+![Understanding Superlinked](../assets/use_cases/Migrating%20from%20Algolia%20to%20Superlinked/understanding_superlinked.jpg)
 
 How Superlinked unifies your ingestion and querying logic
 
