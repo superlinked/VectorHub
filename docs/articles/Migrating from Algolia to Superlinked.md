@@ -81,7 +81,7 @@ Users engaged more with surfaced listings and saved jobs with more confidence. A
 
 ## Understanding Superlinked’s Multi-modal Semantic Search
 
-![Understanding Superlinked](../assets/use_cases/Migrating from Algolia to Superlinked/understanding_superlinked.png)
+![Understanding Superlinked](../assets/use_cases/Migrating from Algolia to Superlinked/understanding_superlinked.jpg)
 
 How Superlinked unifies your ingestion and querying logic
 
@@ -100,7 +100,7 @@ Check out this [vector database comparison table](https://superlinked.com/vector
 
 To plan your migration effectively, it's essential to understand the fundamental differences in how Superlinked and Algolia process and store data.
 
-![Key Architectural Differences](../assets/use_cases/Migrating from Algolia to Superlinked/key_architectural_differences.png)
+![Key Architectural Differences](../assets/use_cases/Migrating from Algolia to Superlinked/key_architectural_differences.jpg)
 
 From prefix search to full stack AI
 
