@@ -141,7 +141,6 @@ def upload_blog(blog: StrapiBlog):
         blog_id = existing[0]["documentId"]
         blog.set_slug_url(existing[0].get("slug_url"))
         blog.set_published_at(existing[0].get("publishedAt"))
-        print(existing[0].get("publishedAt"))
         meta_desc = existing[0].get("meta_desc")
         if meta_desc:
             blog.meta_desc = meta_desc
