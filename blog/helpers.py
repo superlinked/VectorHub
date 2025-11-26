@@ -112,7 +112,7 @@ class StrapiBlog:
             "github_last_updated_date": self.last_updated,
             "title": self.title,
             "slug_url": self.get_slug(),
-            "publishedAt": self.publishedAt,
+            "published_date": self.publishedAt,
             "filepath": self.get_filepath(),
             "meta_desc": self.meta_desc,
         }
