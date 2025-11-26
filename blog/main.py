@@ -6,7 +6,7 @@ import requests
 from urllib.parse import urljoin
 from helpers import Item, ItemType, StrapiBlog
 from tqdm.auto import tqdm
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 args = None
@@ -141,6 +141,7 @@ def upload_blog(blog: StrapiBlog):
         blog_id = existing[0]["documentId"]
         blog.set_slug_url(existing[0].get("slug_url"))
         blog.set_published_at(existing[0].get("publishedAt"))
+        print(existing[0].get("publishedAt"))
         meta_desc = existing[0].get("meta_desc")
         if meta_desc:
             blog.meta_desc = meta_desc
@@ -154,6 +155,11 @@ def upload_blog(blog: StrapiBlog):
     else:
         # New blog
         blog.meta_desc = blog.title
+        blog.set_published_at(
+            datetime.now(timezone.utc)
+            .isoformat(timespec="milliseconds")
+            .replace("+00:00", "Z")
+        )
         create_response = session.post(
             base_url, headers=headers, data=json.dumps(blog.get_post_json())
         )
