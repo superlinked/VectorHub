@@ -153,6 +153,7 @@ def upload_blog(blog: StrapiBlog):
         )
     else:
         # New blog
+        blog.meta_desc = blog.title
         create_response = session.post(
             base_url, headers=headers, data=json.dumps(blog.get_post_json())
         )
