@@ -160,7 +160,9 @@ def upload_blog(blog: StrapiBlog):
             .replace("+00:00", "Z")
         )
         create_response = session.post(
-            base_url, headers=headers, data=json.dumps(blog.get_post_json())
+            f"{base_url}?status=draft",
+            headers=headers,
+            data=json.dumps(blog.get_post_json()),
         )
 
     if create_response.status_code not in (200, 201):
