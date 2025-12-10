@@ -122,3 +122,6 @@ class StrapiBlog:
 
     def __eq__(self, __value) -> bool:
         self.get_slug() == __value.get_slug()
+
+    def __str__(self):
+        return f"StrapiBlog(title={self.title}, published_date={self.publishedAt})"

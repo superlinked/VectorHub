@@ -8,6 +8,7 @@ from helpers import Item, ItemType, StrapiBlog
 from tqdm.auto import tqdm
 from datetime import datetime, timezone
 from pathlib import Path
+from time import sleep
 
 args = None
 
@@ -137,15 +138,17 @@ def upload_blog(blog: StrapiBlog):
     print(f"📤 Uploading filepath: {filepath}")
 
     if existing:
-        # Blog already exists
         blog_id = existing[0]["documentId"]
         blog.set_slug_url(existing[0].get("slug_url"))
-        blog.set_published_at(existing[0].get("publishedAt"))
+        blog.set_published_at(existing[0].get("published_date"))
+
         meta_desc = existing[0].get("meta_desc")
         if meta_desc:
             blog.meta_desc = meta_desc
         else:
             blog.meta_desc = blog.title
+
+        print("Updating Blog", blog)
 
         url = f"{base_url}/{blog_id}"
         create_response = session.put(
@@ -159,6 +162,7 @@ def upload_blog(blog: StrapiBlog):
             .isoformat(timespec="milliseconds")
             .replace("+00:00", "Z")
         )
+        print("Adding Blog", blog)
         create_response = session.post(
             f"{base_url}?status=draft",
             headers=headers,
@@ -198,6 +202,7 @@ if __name__ == "__main__":
 
     print("📦 Uploading blogs...")
     for file in tqdm(files):
+        sleep(0.7)  # To avoid overwhelming the server
         blog = build_blog_object(file)
         upload_blog(blog)
 
