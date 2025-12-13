@@ -112,7 +112,7 @@ class StrapiBlog:
             "github_last_updated_date": self.last_updated,
             "title": self.title,
             "slug_url": self.get_slug(),
-            "publishedAt": self.publishedAt,
+            "published_date": self.publishedAt,
             "filepath": self.get_filepath(),
             "meta_desc": self.meta_desc,
         }
@@ -122,3 +122,6 @@ class StrapiBlog:
 
     def __eq__(self, __value) -> bool:
         self.get_slug() == __value.get_slug()
+
+    def __str__(self):
+        return f"StrapiBlog(title={self.title}, published_date={self.publishedAt})"

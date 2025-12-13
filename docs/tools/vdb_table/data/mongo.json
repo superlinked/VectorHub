@@ -174,22 +174,22 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 4657821679,
+    "value": 4668199662,
     "source_url": "https://hub.docker.com/_/mongo",
     "comment": "",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 56318,
+    "value": 56830,
     "source_url": "https://pypi.org/project/mongodbatlas/",
     "comment": "",
-    "value_90_days": 2686
+    "value_90_days": 2511
   },
   "npm_downloads": {
-    "value": 1008817,
+    "value": 1059206,
     "source_url": "https://www.npmjs.com/package/mongodb-atlas-api-client",
     "comment": "",
-    "value_90_days": 238288
+    "value_90_days": 259253
   },
   "crates_io_downloads": {
     "value": 0,
