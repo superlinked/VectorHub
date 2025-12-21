@@ -168,7 +168,7 @@ vectorstore = Chroma.from_documents(chunks, embeddings)
 Now, we build the keyword and semantic retrievers separately. For keyword matching, we use the [BM25 retriever](https://python.langchain.com/docs/integrations/retrievers/bm25) from Langchain. By setting k to 3, we’re asking the retriever to return the 3 most relevant documents or vectors from the vector store.
 
 ```python
-vectorstore_retreiver = vectorstore.as_retriever(search_kwargs={"k": 3})
+vectorstore_retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 keyword_retriever = BM25Retriever.from_documents(chunks)
 keyword_retriever.k =  3
 ```
@@ -176,7 +176,7 @@ keyword_retriever.k =  3
 Now, we create the ensemble retriever, which is a weighted combination of the keyword and semantic retrievers above.
 
 ```python
-ensemble_retriever = EnsembleRetriever(retrievers=[vectorstore_retreiver,
+ensemble_retriever = EnsembleRetriever(retrievers=[vectorstore_retriever,
                                                    keyword_retriever],
                                        weights=[0.3, 0.7])
 ```

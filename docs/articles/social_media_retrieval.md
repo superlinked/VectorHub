@@ -47,7 +47,7 @@ Because LinkedIn posts (or any other social media data) evolve frequently, your 
 
 ### 1.2. The retrieval client
 
-Our retrieval client is a standard Python module that preprocesses user queries and searches the vector DB for most similar results. Qdrant vector DB lets us decouple the retrieval client from the streaming ingestion pipeline.
+Our retrieval client is a standard Python module that preprocesses user queries and searches the vector DB for the most similar results. Qdrant vector DB lets us decouple the retrieval client from the streaming ingestion pipeline.
 
 To avoid training-serving skew, it's essential to preprocess the ingested posts and queries in the same way.
 
@@ -60,7 +60,7 @@ Lastly, to better understand and explain the retrieval process for particular qu
 
 ## 2. Data
 
-We will ingest 215 LinkedIn posts from [my Linked profile - Paul Iusztin](https://www.linkedin.com/in/pauliusztin/). Though we simulate the post ingestion step using JSON files, the posts themselves are authentic.
+We will ingest 215 LinkedIn posts from [my LinkedIn profile - Paul Iusztin](https://www.linkedin.com/in/pauliusztin/). Though we simulate the post ingestion step using JSON files, the posts themselves are authentic.
 
 Before diving into the code, let's take a look at an example LinkedIn post to familiarize ourselves with the challenges it introduces ↓
 
@@ -114,7 +114,7 @@ These constants are used across all components of the retrieval system, ensuring
 
 Let's dive into the streaming pipeline, beginning at the top, and working our way to the bottom ↓
 
-### 4.1. Bytemax flow - starting with ingestion
+### 4.1. Bytewax flow - starting with ingestion
 
 **The Bytewax flow** transparently conveys all the steps of the streaming pipeline.
 
@@ -150,7 +150,7 @@ def build_flow():
     )
     op.inspect("inspect", stream, print)
     op.output(
-        "output", stream, QdrantVectorOutput(vector_size=model.embedding_size)
+        "output", stream, QdrantVectorOutput(vector_size=embedding_model.embedding_size)
     )
     
     return flow
@@ -220,7 +220,7 @@ class CleanedPost(BaseModel):
         return cleaned_text
 ```
 
-The `from_raw_post` factory method takes an instance of the `RawPost` as input and uses the `clean()` method to clean the text, so that it's compatible with the embedding model. Our cleaning method addresses all embedding-incompatible features highlighted in our `2. Data` section above - e.g., bolded text, emojis, non-ascii characters, etc.
+The `from_raw_post` factory method takes an instance of the `RawPost` as input and uses the `clean()` method to clean the text, so that it's compatible with the embedding model. Our cleaning method addresses all embedding-incompatible features highlighted in our `2. Data` section above - e.g., bolded text, emojis, non-ASCII characters, etc.
 
 Here's what the cleaned post looks like:
 
@@ -419,11 +419,11 @@ class QdrantVectorDBRetriever:
     def embed_query(self, query: str) -> list[list[float]]:
         cleaned_query = CleanedPost.clean(query)
         chunks = ChunkedPost.chunk(cleaned_query, self._embedding_model)
-        embdedded_queries = [
+        embedded_queries = [
             self._embedding_model(chunk, to_list=True) for chunk in chunks
         ]
 
-        return embdedded_queries
+        return embedded_queries
 ```
 
 In cases where the query is too large, we divide it into multiple smaller query chunks. We can query Qdrant with each chunk and merge the results. Moreover, chunking can even enhance our search, by broadening it to include posts in more areas of the embedded posts vector space. In essence, it permits more comprehensive coverage of the vector space, potentially leading to more relevant and diverse results.
