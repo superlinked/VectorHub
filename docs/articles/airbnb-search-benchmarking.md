@@ -2,7 +2,7 @@
 
 ## Introduction & Motivation
 
-Imagine you are searching for the ideal Airbnb for a weekend getaway. You open the website and adjust sliders and checkboxes but still encounter lists of options that nearly match your need but never are never truly what you are looking for. Although it is straightforward to specify a filter such as: "price less than two hundred dollars", rigid tags and thresholds for more complex search queries, make it a much more difficult task to figure out what the user is looking for.
+Imagine you are searching for the ideal Airbnb for a weekend getaway. You open the website and adjust sliders and checkboxes but still encounter lists of options that nearly match your need but are never truly what you are looking for. Although it is straightforward to specify a filter such as: "price less than two hundred dollars", rigid tags and thresholds for more complex search queries, make it a much more difficult task to figure out what the user is looking for.
 
 Converting a mental image of a luxury apartment near the city's finest cafés or an affordable business-ready suite with good reviews into numerical filters often proves frustrating. Natural language is inherently unstructured and must be transformed into numerical representations to uncover user intent. At the same time, the rich structured data associated with each listing must also be encoded numerically to reveal relationships between location, comfort, price, and reviews.
 
@@ -49,7 +49,7 @@ def create_text_description(row):
    """Create a unified text description from listing attributes."""
    text = f"{row['listing_name']} is a {row['accommodation_type']} "
    text += f"For {row['max_guests']} guests. "
-   text += f"It costs ${row['price']} per night with a rating of {row['rating']} with {row['review_count']} nymber of reviews. "
+   text += f"It costs ${row['price']} per night with a rating of {row['rating']} with {row['review_count']} number of reviews. "
    text += f"Description: {row['description']} "
    text += f"Amenities include: {', '.join(row['amenities_list'])}"
    return text
@@ -259,7 +259,7 @@ If neither of the two approaches produces satisfactory results on structured dat
  <figcaption>Figure 10: Hybrid search results for "luxury places with good reviews"</figcaption>
 </figure>
 
-The results indicate that hybrid search effectively balances semantic understanding with keyword precision. By combining vector search's ability to grasp concepts like "luxury" with BM25's strength in finding exact term matches, the hybrid approach delivers more comprehensive results. However, the fundamental limitations remain: the system still cannot reliably interpret numerical constraints (Figure 11) or make sophisticated judgments about what constitutes "good reviews" in terms of both rating quality and quantity. Additionaly, finding the optimal alpha value for the weighted combination requires careful tuning and may need adjustment based on specific use cases or datasets. Implementing hybrid search also requires maintaining two separate index structures and ensuring proper score normalization and fusion. This suggests that while hybrid search improves upon its component approaches, we need a more advanced solution to truly understand structured data attributes and their relationships.
+The results indicate that hybrid search effectively balances semantic understanding with keyword precision. By combining vector search's ability to grasp concepts like "luxury" with BM25's strength in finding exact term matches, the hybrid approach delivers more comprehensive results. However, the fundamental limitations remain: the system still cannot reliably interpret numerical constraints (Figure 11) or make sophisticated judgments about what constitutes "good reviews" in terms of both rating quality and quantity. Additionally, finding the optimal alpha value for the weighted combination requires careful tuning and may need adjustment based on specific use cases or datasets. Implementing hybrid search also requires maintaining two separate index structures and ensuring proper score normalization and fusion. This suggests that while hybrid search improves upon its component approaches, we need a more advanced solution to truly understand structured data attributes and their relationships.
 
 <figure style="text-align: center; margin: 20px 0;">
  <img src="../assets/use_cases/airbnb_search/hybrid_filter.png" alt="Hybrid Search Results" style="width: 100%;">
@@ -324,7 +324,7 @@ The cross-encoder reranking results demonstrate a notable improvement in result 
 Most impressively, for the numerical constraints query, the cross-encoder makes progress in understanding specific requirements. Despite the first result exceeding the price constraint (2632 > 2000), the reranking correctly identifies more listings matching the "5 guests" requirement and prioritizes them appropriately. This shows the effectiveness of using cross-encoders, since they re-calculate the similarity between the query and the documents after the initial retrieval based on vector search. In other words, the model can make finer distinctions when examining query-document pairs together rather than separately. However, the cross-encoder still does not perfectly understand all numerical constraints. Additionally, despite the improvements, cross-encoder reranking has significant computational drawbacks. It requires evaluating each query-document pair individually through a transformer-based model, which increases latency and resource requirements. Especially as the candidate pool grows, making the search challenging to scale for large datasets or real-time applications with strict performance requirements. These takeaways suggest that while this approach represents a significant improvement, a more structured approach to handling multi-attribute data could yield better results.
 
 <figure style="text-align: center; margin: 20px 0;">
- <img <img src="../assets/use_cases/airbnb_search/cross_filter.png" alt="Cross-Encoder Results for Numerical Query" style="width: 100%;">
+ <img src="../assets/use_cases/airbnb_search/cross_filter.png" alt="Cross-Encoder Results for Numerical Query" style="width: 100%;">
  <figcaption>Figure 15: Cross-encoder results for numerical constraints query</figcaption>
 </figure>
 
@@ -349,7 +349,7 @@ During offline indexing, each listing is passed through a BERT model to produce 
  <figcaption>Figure 17: Colbert Multi-Vector Retrieval</figcaption>
 </figure>
 
-Here is how we implment the multi-vecotr search by ColBERT:
+Here is how we implement the multi-vector search by ColBERT:
 
 ```python
 class ColBERTSearch:
@@ -462,7 +462,7 @@ At query time, Superlinked uses a large language model to interpret the user’s
 
 To ensure that non-negotiable constraints are respected, Superlinked first applies hard filters to eliminate listings that do not meet specific criteria, such as guest capacity or maximum price. Only the listings that pass these filters are considered in the final ranking stage. The system then performs a weighted nearest neighbors search, comparing the multi-attribute embeddings of these candidates against the weighted query representation to rank them by overall relevance. This combination of modality-aware encoding, constraint filtering, and weighted ranking allows Superlinked to produce accurate, context-aware results that reflect both the structure of the underlying data and the nuanced preferences of the user.
 
-Here is how we implment the Superlinked for our Airbnb search:
+Here is how we implement the Superlinked for our Airbnb search:
 
 We first need to define a schema that captures the structure of our dataset. The schema outlines both the fields we'll use for embedding and those we'll use for filtering:
 

@@ -6,13 +6,13 @@ The goal was simple: take Superlinked's core strengths in handling complex, mult
 
 Superlinked excels at creating sophisticated vector spaces through its mixture of encoders approach, allowing you to combine multiple embedding models, apply custom weighting schemes, and handle complex multi-modal data with ease. LlamaIndex, on the other hand, provides the robust infrastructure for RAG applications, from document processing and node management to query engines and response synthesis.
 
-As retrieval-augmented generation (RAG) systems continue to evolve, the need for **custom, domain-specific retrievers** is becoming more and more obvious. Sure, traditional vector databases are great for basic similarity search but the moment you throw in more complex, context-heavy queries, they start to fall short. Especially when you're working with real-world data that needs richer filtering or semantic understanding. If you are not sure why you would need mixture-of-encoders as part of you RAG pipeline, feel free to [talk to us](https://links.superlinked.com/get_demo_langchain).
+As retrieval-augmented generation (RAG) systems continue to evolve, the need for **custom, domain-specific retrievers** is becoming more and more obvious. Sure, traditional vector databases are great for basic similarity search but the moment you throw in more complex, context-heavy queries, they start to fall short. Especially when you're working with real-world data that needs richer filtering or semantic understanding. If you are not sure why you would need mixture-of-encoders as part of your RAG pipeline, feel free to [talk to us](https://links.superlinked.com/get_demo_langchain).
 
-You can follow allong this guide in a colab notebook: 
+You can follow along this guide in a colab notebook: 
 - [Google Colab of this guide](https://colab.research.google.com/github/superlinked/VectorHub/blob/main/docs/assets/use_cases/custom_retriever_with_llamaindex/superlinked_custom_retriever_with_llamaindex.ipynb)
 
 If you prefer to start using Superlinked's retriever right away you can have a look at the full implementation with Llamaindex:
-- [Link to full offical integration on Llamahub](https://links.superlinked.com/llama_hub_in_article)
+- [Link to full official integration on Llamahub](https://links.superlinked.com/llama_hub_in_article)
 
 In this guide, we'll show you our approach for building a custom LlamaIndex retriever that leverages Superlinked's mixture of encoders architecture. We've refined this approach through numerous production deployments, and now we're making it available for the broader developer community.
 
@@ -66,7 +66,7 @@ class BaseRetriever:
         pass
 ```
 
-The moat here is the presence of the Retrieval Protocol from the LlamaIndex. As this "retrieval protocol" makes it easy to plug in different backends or strategies without having to touch the rest of your system. Let’s break it down on what’s exactly is going on :
+Any custom retriever only needs to implement one core method. The "retrieval protocol" from LlamaIndex makes it easy to plug in different backends or strategies without having to touch the rest of your system. Let’s break down exactly what is going on:
 
 1. **Input: `QueryBundle`**
 
@@ -74,7 +74,7 @@ The moat here is the presence of the Retrieval Protocol from the LlamaIndex. As 
 
 2. **Output: `List[NodeWithScore]`**
 
-   The retriever returns a list of nodes—these are your chunks of content, documents, or data entries—each paired with a relevance score. The higher the score, the more relevant the node is to the query. This list is what gets passed downstream to the LLM or other post-processing steps. As in our case, we are plugging on the
+   The retriever returns a list of nodes—these are your chunks of content, documents, or data entries—each paired with a relevance score. The higher the score, the more relevant the node is to the query. This list is what gets passed downstream to the LLM or other post-processing steps.
 
 3. **Processing: Backend-Agnostic**
 
@@ -301,7 +301,7 @@ print("✅ SuperlinkedSteamGamesRetriever class defined successfully!")
 
 ### Part 3: Superlinked Schema Definition and Setup
 
-Now is the time when we go a bit deep dive on certain thing. Starting with schema desgin, Now in Superlinked, the schema isn’t just about defining data types— it’s more like a formal definition between our data and the underlying vector compute engine. This schema determines how our data gets parsed, indexed, and queried — so getting it right is crucial.
+Now is the time when we go a bit deep dive on certain things. Starting with schema design, now in Superlinked, the schema isn’t just about defining data types— it’s more like a formal definition between our data and the underlying vector compute engine. This schema determines how our data gets parsed, indexed, and queried — so getting it right is crucial.
 
 In our `SuperlinkedSteamGamesRetriever`, the schema is defined like this:
 
@@ -321,10 +321,10 @@ class GameSchema(sl.Schema):
 self.game = GameSchema()
 ```
 
-Let’s break down what some of these elements actually _does_:
+Let’s break down what some of these elements actually _do_:
 
 - **`sl.IdField` (→ `game_number`)**
-  Think of this as our primary key. It gives each game a unique identity and allows Superlinked to index and retrieve items efficiently, I mean basically it’s about how we are telling the Superlinked to segregate the unique identify of the games, and btw it’s especially important when you're dealing with thousands of records.
+  Think of this as our primary key. It gives each game a unique identity and allows Superlinked to index and retrieve items efficiently. I mean basically it’s about how we are telling Superlinked to segregate the unique identity of the games, and btw it’s especially important when you're dealing with thousands of records.
 - **`sl.String` and `sl.Float`**
   Now these aren't just type hints—they enable Superlinked to optimize operations differently depending on the field. For instance, `sl.String` fields can be embedded and compared semantically, while `sl.Float` fields can support numeric filtering or sorting.
 - **`combined_text`**
@@ -353,7 +353,7 @@ Why do this? Because users don’t just search by genre or name—they describe 
 
 To power the semantic search over our Steam games dataset, I made two intentional design choices that balance performance, simplicity, and flexibility.
 
-First, for the embedding model, I selected `all-mpnet-base-v2` from the Sentence Transformers library. This model produces 768-dimensional embeddings that strike a solid middle ground: they're expressive enough to capture rich semantic meaning, yet lightweight enough to be fast in production. I mean it’s a reliable general-purpose model, known to perform well across diverse text types — which matters a lot when your data ranges from short genre tags to long-form game descriptions. In our case, i needed a model that wouldn’t choke on either end of that spectrum, and `all-mpnet-base-v2` handled it cleanly.
+First, for the embedding model, I selected `all-mpnet-base-v2` from the Sentence Transformers library. This model produces 768-dimensional embeddings that strike a solid middle ground: they're expressive enough to capture rich semantic meaning, yet lightweight enough to be fast in production. I mean it’s a reliable general-purpose model, known to perform well across diverse text types — which matters a lot when your data ranges from short genre tags to long-form game descriptions. In our case, I needed a model that wouldn’t choke on either end of that spectrum, and `all-mpnet-base-v2` handled it cleanly.
 
 Next, although Superlinked supports multi-space indexing — where you can combine multiple fields or even modalities (like text + images) — I deliberately kept things simple with a single `TextSimilaritySpace`. I would have included the `RecencySpace` in here too but I don’t have the information on the release date for the games. But just to put this out here, if we have the release date information, I could plug in the RecencySpace here, and I can even sort the games with the `TextSimilaritySpace` along with the Recency of the games. Cool..
 
@@ -389,7 +389,7 @@ Next, although Superlinked supports multi-space indexing — where you can combi
 
 At the heart of our retrieval system is a streamlined pipeline built for both clarity and speed. I start with the `DataFrameParser`, which serves as our ETL layer. It ensures that each field in the dataset is correctly typed and consistently mapped to our schema — essentially acting as the contract between our raw CSV data and the Superlinked indexing layer.
 
-Once the data is structured, I feed it into an `InMemorySource`, which is ideal for datasets that comfortably fit in memory . This approach keeps everything lightning-fast without introducing storage overhead or network latency. Finally, the queries are handled by an `InMemoryExecutor`, which is optimised for sub-millisecond latency. This is what makes Superlinked suitable for real-time applications like interactive recommendation systems, where speed directly impacts user experience.
+Once the data is structured, I feed it into an `InMemorySource`, which is ideal for datasets that comfortably fit in memory. This approach keeps everything lightning-fast without introducing storage overhead or network latency. Finally, the queries are handled by an `InMemoryExecutor`, which is optimized for sub-millisecond latency. This is what makes Superlinked suitable for real-time applications like interactive recommendation systems, where speed directly impacts user experience.
 
 ### Part 6: The Retrieval Engine
 
@@ -466,7 +466,7 @@ Now once we receive the results from Superlinked, I transformed them into a form
 
 Next, I make sure that **all original fields** from the dataset, including things like genre, pricing, and game details - are retained in the metadata. This is crucial because downstream processes might want to filter, display, or rank results based on this information. I don’t want to lose any useful context once we start working with the retrieved nodes.
 
-Finally, I apply a lightweight **score normalisation** strategy. Instead of relying on raw similarity scores, we assign scores based on the position of the result in the ranked list. This keeps things simple and consistent. The top result always has the highest score, and the rest follow in descending order. It's not fancy, but it gives us a stable and interpretable scoring system that works well across different queries.
+Finally, I apply a lightweight **score normalization** strategy. Instead of relying on raw similarity scores, we assign scores based on the position of the result in the ranked list. This keeps things simple and consistent. The top result always has the highest score, and the rest follow in descending order. It's not fancy, but it gives us a stable and interpretable scoring system that works well across different queries.
 
 ## Show Time: Executing the pipeline
 
