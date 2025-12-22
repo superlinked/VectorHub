@@ -157,33 +157,33 @@
     "comment": "via Lucene"
   },
   "github_stars": {
-    "value": 1531,
+    "value": 1535,
     "source_url": "https://github.com/apache/solr",
     "comment": "",
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 349977285,
+    "value": 350079258,
     "source_url": "https://hub.docker.com/_/solr",
     "comment": "",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 16669258,
+    "value": 16806717,
     "source_url": "https://pypi.org/project/pysolr/",
     "comment": "",
-    "value_90_days": 1106920
+    "value_90_days": 1162400
   },
   "npm_downloads": {
-    "value": 497990,
+    "value": 496545,
     "source_url": "https://www.npmjs.com/package/solr-client",
     "comment": "",
-    "value_90_days": 76507
+    "value_90_days": 76429
   },
   "crates_io_downloads": {
-    "value": 2345,
+    "value": 2347,
     "source_url": "https://crates.io/crates/solr",
     "comment": "",
-    "value_90_days": 112
+    "value_90_days": 93
   }
 }
