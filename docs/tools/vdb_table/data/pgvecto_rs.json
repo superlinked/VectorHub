@@ -168,22 +168,22 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 2136,
+    "value": 2138,
     "source_url": "https://github.com/tensorchord/pgvecto.rs",
     "comment": "",
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 18196084,
+    "value": 18301038,
     "source_url": "https://hub.docker.com/r/tensorchord/pgvecto-rs",
     "comment": "",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 503820,
+    "value": 562869,
     "source_url": "https://pypi.org/project/pgvecto-rs/",
     "comment": "",
-    "value_90_days": 218985
+    "value_90_days": 218959
   },
   "npm_downloads": {
     "value": 0,

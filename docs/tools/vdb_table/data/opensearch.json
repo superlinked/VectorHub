@@ -173,27 +173,27 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 141388513,
+    "value": 142028849,
     "source_url": "https://hub.docker.com/r/opensearchproject/opensearch",
     "comment": "",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 422242,
+    "value": 463010,
     "source_url": "https://pypi.org/project/opensearch/",
     "comment": "",
-    "value_90_days": 25356
+    "value_90_days": 24664
   },
   "npm_downloads": {
-    "value": 46990602,
+    "value": 47034127,
     "source_url": "https://www.npmjs.com/package/@opensearch-project/opensearch",
     "comment": "",
-    "value_90_days": 10425214
+    "value_90_days": 10125853
   },
   "crates_io_downloads": {
-    "value": 1678257,
+    "value": 1688111,
     "source_url": "https://crates.io/crates/opensearch",
     "comment": "",
-    "value_90_days": 208508
+    "value_90_days": 207472
   }
 }

@@ -170,13 +170,13 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 27753,
+    "value": 27883,
     "source_url": "https://github.com/qdrant/qdrant",
     "comment": "",
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 19664305,
+    "value": 20003964,
     "source_url": "https://hub.docker.com/r/qdrant/qdrant",
     "comment": "",
     "value_90_days": 0
@@ -185,7 +185,7 @@
     "value": 56452784,
     "source_url": "https://pypi.org/project/qdrant-client/",
     "comment": "",
-    "value_90_days": 27666583
+    "value_90_days": 28304524
   },
   "npm_downloads": {
     "value": 1315891,
@@ -194,9 +194,9 @@
     "value_90_days": 551308
   },
   "crates_io_downloads": {
-    "value": 1459042,
+    "value": 1474322,
     "source_url": "https://crates.io/crates/qdrant-client",
     "comment": "",
-    "value_90_days": 151718
+    "value_90_days": 159152
   }
 }

@@ -171,21 +171,21 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 1088281,
+    "value": 1128573,
     "source_url": "https://pypi.org/project/txtai/",
     "comment": "",
-    "value_90_days": 95875
+    "value_90_days": 93800
   },
   "npm_downloads": {
-    "value": 2693,
+    "value": 2818,
     "source_url": "https://www.npmjs.com/package/txtai",
     "comment": "",
-    "value_90_days": 556
+    "value_90_days": 652
   },
   "crates_io_downloads": {
-    "value": 42189,
+    "value": 42199,
     "source_url": "https://crates.io/crates/txtai",
     "comment": "",
-    "value_90_days": 300
+    "value_90_days": 210
   }
 }

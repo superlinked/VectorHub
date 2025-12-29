@@ -171,13 +171,13 @@
     "value": 7880486,
     "source_url": "https://pypi.org/project/turbopuffer/",
     "comment": "",
-    "value_90_days": 3157034
+    "value_90_days": 3102451
   },
   "npm_downloads": {
-    "value": 3102475,
+    "value": 3139961,
     "source_url": "https://www.npmjs.com/package/@turbopuffer/turbopuffer",
     "comment": "",
-    "value_90_days": 1000395
+    "value_90_days": 980110
   },
   "crates_io_downloads": {
     "value": 0,
