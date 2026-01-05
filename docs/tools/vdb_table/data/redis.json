@@ -157,28 +157,28 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 6040,
+    "value": 6047,
     "source_url": "https://github.com/RediSearch/RediSearch",
     "comment": "Vector Search library is part of RediSearch https://github.com/RediSearch/RediSearch/tree/master/deps",
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 15756743,
+    "value": 15839157,
     "source_url": "https://hub.docker.com/r/redis/redis-stack",
     "comment": "Vector Search is part of the Redis Stack",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 1364815,
+    "value": 1370510,
     "source_url": "https://pypi.org/project/redisearch/",
     "comment": "",
-    "value_90_days": 94516
+    "value_90_days": 88439
   },
   "npm_downloads": {
-    "value": 235489196,
+    "value": 236558758,
     "source_url": "https://www.npmjs.com/package/@redis/search",
     "comment": "",
-    "value_90_days": 56901570
+    "value_90_days": 55590860
   },
   "crates_io_downloads": {
     "value": 0,
