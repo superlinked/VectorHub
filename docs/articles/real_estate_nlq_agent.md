@@ -719,3 +719,9 @@ Well before ending this one, there are couple of points I want your attention. S
 The most important one here is that I intentionally gave more weight to the Price rather than other filters when we were creating the query, as It acts as a hard constraint, while other attributes like location or amenities adjust the relevance within that boundary. I mean the Price is the most important factor I guess when we are looking out for the real estate.
 
 And as I said earlier, our NLQ engine doesn’t depends on the structured filters, instead it understand the natural language directly.
+
+---
+## Contributors
+
+- [Vipul Maheshwari, author](https://www.linkedin.com/in/vipulmaheshwarii/)
+- [Filip Makraduli, reviewer](https://www.linkedin.com/in/filipmakraduli/)
