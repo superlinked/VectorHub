@@ -46,7 +46,7 @@ One of the keys to a knowledge graph’s power is its ontology. **The ontology m
 
 A KG ontology is a formal and abstract representation of the graph's data. It typically contains the rules, axioms, and constraints governing the entities, attributes, and relationships (including complex ones like inheritance and polymorphism) within the graph. A good ontology has a clear, semantic framework that makes the data's logical structure clear and easier to understand. It models concepts as they exist in the real world, using familiar business language. This helps both humans and machines in making their searches more precise. It also permits the inference of new knowledge from existing facts through logical reasoning.
 
-The ontological capabilities of knowledge graphs enable them to understand your organization's fundamental concepts. KGs, by treating metadata as data, permit you to seamlessly connect those concepts to real data. As organizations' futures increasingly come to depend on providing AI with a clear understanding of organizational semantics and data, KGs are becoming more and more indispensible.
+The ontological capabilities of knowledge graphs enable them to understand your organization's fundamental concepts. KGs, by treating metadata as data, permit you to seamlessly connect those concepts to real data. As organizations' futures increasingly come to depend on providing AI with a clear understanding of organizational semantics and data, KGs are becoming more and more indispensable.
 
 ## Using KGs for organization survival
 
@@ -162,7 +162,7 @@ Take for example, "trade". Each department in your organization takes on the tas
 
 Embed the definitions salient to your own particular business into your own version of schema.org, sticking as close as possible to the actual, working semantics of the real people in your business. In a large organization, there’ll be between 5000-100000 separate apps and databases, each with 1000s of different tables, each table with 100s of different columns - in sum, a vast complex of data. 
 
-Each department's data can be made available as a webAPI to your central data department, and represented in JSON-LD. Your central data department can then publish the data in each application or database in JSON-LD. As long as each deparment has referenced the well-defined semantics in your schema.org, you will have a good, queryable organizational KG.
+Each department's data can be made available as a webAPI to your central data department, and represented in JSON-LD. Your central data department can then publish the data in each application or database in JSON-LD. As long as each department has referenced the well-defined semantics in your schema.org, you will have a good, queryable organizational KG.
 
 Your organizational KG should not be treated as a new database. Rather, for each use case, you need only download the chunk of the graph (pre-connected, pre-integrated) that you want. In other words, “within your organization, let a thousand knowledge graphs bloom.”
 
