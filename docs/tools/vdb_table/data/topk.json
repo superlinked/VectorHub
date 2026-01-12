@@ -173,13 +173,13 @@
     "value": 793468,
     "source_url": "https://pypi.org/project/topk-sdk/",
     "comment": "",
-    "value_90_days": 170412
+    "value_90_days": 180606
   },
   "npm_downloads": {
-    "value": 2599,
+    "value": 2764,
     "source_url": "https://www.npmjs.com/package/topk-js",
     "comment": "",
-    "value_90_days": 644
+    "value_90_days": 603
   },
   "crates_io_downloads": {
     "value": 0,
