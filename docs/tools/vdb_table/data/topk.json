@@ -158,7 +158,7 @@
     "comment": "TopK uses a proprietary indexing algorithm designed for true hybrid retrieval - vectors, keyword, and filters with flexible scoring in one query."
   },
   "github_stars": {
-    "value": 53,
+    "value": 54,
     "source_url": "https://github.com/topk-io/topk",
     "comment": "",
     "value_90_days": 0
@@ -173,13 +173,13 @@
     "value": 793468,
     "source_url": "https://pypi.org/project/topk-sdk/",
     "comment": "",
-    "value_90_days": 180606
+    "value_90_days": 171581
   },
   "npm_downloads": {
-    "value": 2764,
+    "value": 3104,
     "source_url": "https://www.npmjs.com/package/topk-js",
     "comment": "",
-    "value_90_days": 603
+    "value_90_days": 903
   },
   "crates_io_downloads": {
     "value": 0,
