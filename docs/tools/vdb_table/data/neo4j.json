@@ -163,7 +163,7 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 304808579,
+    "value": 305126972,
     "source_url": "https://hub.docker.com/_/neo4j",
     "comment": "",
     "value_90_days": 0
@@ -172,18 +172,18 @@
     "value": 97994652,
     "source_url": "https://pypi.org/project/neo4j/",
     "comment": "",
-    "value_90_days": 20315668
+    "value_90_days": 20430105
   },
   "npm_downloads": {
-    "value": 53346,
+    "value": 53631,
     "source_url": "https://www.npmjs.com/package/neo4j",
     "comment": "",
-    "value_90_days": 12068
+    "value_90_days": 11791
   },
   "crates_io_downloads": {
-    "value": 366810,
+    "value": 375552,
     "source_url": "https://crates.io/crates/neo4rs",
     "comment": "",
-    "value_90_days": 18857
+    "value_90_days": 18987
   }
 }
