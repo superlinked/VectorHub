@@ -1,0 +1,196 @@
+{
+  "name": "Apache Doris",
+  "links": {
+    "docs": "https://doris.apache.org/docs/dev/ai/vector-search/",
+    "github": "https://github.com/apache/doris",
+    "website": "https://doris.apache.org/",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/575",
+    "poc_github": "https://github.com/zhiqiang-hhhh",
+    "slug": "Fastest Search & Analytics in One Unified System"
+  },
+  "oss": {
+    "support": "full",
+    "source_url": "https://doris.apache.org/docs/dev/compute-storage-decoupled/overview/",
+    "comment": ""
+  },
+  "license": {
+    "value": "Apache 2.0",
+    "source_url": "",
+    "comment": ""
+  },
+  "dev_languages": {
+    "value": [
+      "java",
+      "c++"
+    ],
+    "source_url": "https://github.com/apache/doris",
+    "comment": ""
+  },
+  "vector_launch_year": 2025,
+  "metadata_filter": {
+    "support": "full",
+    "source_url": "https://doris.apache.org/docs/dev/ai/text-search/overview/",
+    "comment": ""
+  },
+  "hybrid_search": {
+    "support": "full",
+    "source_url": "https://doris.apache.org/docs/dev/ai/vector-search#ann-search-with-additional-filters",
+    "comment": ""
+  },
+  "facets": {
+    "support": "full",
+    "source_url": "https://doris.apache.org/docs/dev/ai/vector-search#approximate-range-search",
+    "comment": "Doris has full support for SQL. You can use standard SQL syntax to perform faceted search on vector data."
+  },
+  "geo_search": {
+    "support": "full",
+    "source_url": "https://doris.apache.org/docs/dev/sql-manual/basic-element/sql-data-types/semi-structured/GEO",
+    "comment": ""
+  },
+  "multi_vec": {
+    "support": "full",
+    "source_url": "",
+    "comment": "You can create a teble with multiple vector columns to store different types of vectors."
+  },
+  "sparse_vectors": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "bm25": {
+    "support": "full",
+    "source_url": "https://doris.apache.org/docs/dev/ai/text-search/scoring",
+    "comment": ""
+  },
+  "full_text": {
+    "support": "full",
+    "source_url": "https://doris.apache.org/docs/dev/ai/text-search/search-operators",
+    "comment": ""
+  },
+  "embeddings_text": {
+    "support": "full",
+    "source_url": "https://doris.apache.org/docs/4.x/sql-manual/sql-functions/ai-functions/distance-functions/embed/",
+    "comment": "You can convert text to embeddings using built-in AI functions."
+  },
+  "embeddings_image": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "embeddings_structured": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "rag": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "recsys": {
+    "support": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "langchain": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "llamaindex": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "managed_cloud": {
+    "support": "full",
+    "source_url": "",
+    "comment": ""
+  },
+  "pricing": {
+    "value": "",
+    "source_url": "",
+    "comment": ""
+  },
+  "in_process": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "multi_tenancy": {
+    "support": "full",
+    "source_url": "https://doris.apache.org/blog/multi-tenant-workload-isolation-in-apache-doris/",
+    "comment": ""
+  },
+  "disk_index": {
+    "support": "full",
+    "source_url": "https://doris.apache.org/docs/4.x/ai/vector-search#approximate-nearest-neighbor-search",
+    "comment": "Via Faiss"
+  },
+  "ephemeral": {
+    "support": "none",
+    "source_url": "",
+    "comment": ""
+  },
+  "sharding": {
+    "support": "full",
+    "source_url": "",
+    "comment": "Support partitioning and sharding for tables with vector columns"
+  },
+  "doc_size": {
+    "bytes": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
+  },
+  "vector_dims": {
+    "value": 0,
+    "unlimited": true,
+    "source_url": "",
+    "comment": ""
+  },
+  "int8_quantization": {
+    "support": "full",
+    "source_url": "https://doris.apache.org/docs/4.x/ai/vector-search#vector-quantization",
+    "comment": ""
+  },
+  "index_types": {
+    "value": [
+      "HNSW",
+      "IVF",
+      "FLAT"
+    ],
+    "source_url": "https://doris.apache.org/docs/4.x/ai/vector-search#approximate-nearest-neighbor-search",
+    "comment": "via Faiss"
+  },
+  "github_stars": {
+    "value": 14600,
+    "source_url": "https://github.com/ClickHouse/ClickHouse",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "docker_pulls": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "pypi_downloads": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "npm_downloads": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
+  },
+  "crates_io_downloads": {
+    "value": 0,
+    "source_url": "",
+    "comment": "",
+    "value_90_days": 0
+  }
+}
