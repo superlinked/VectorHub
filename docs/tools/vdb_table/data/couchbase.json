@@ -10,21 +10,21 @@
   },
   "oss": {
     "support": "partial",
-    "source_url": "https://www.couchbase.com/blog/couchbase-adopts-bsl-license/",
-    "comment": "Vector search currently only part of Enterprise and DBaaS editions"
+    "source_url": "https://github.com/blevesearch/bleve",
+    "comment": "Hybrid Vector uses Bleve and is OSS, Hyperscale & Composite currently only part of Enterprise and DBaaS editions"
   },
   "license": {
     "value": "Proprietary",
     "source_url": "https://www.couchbase.com/blog/couchbase-adopts-bsl-license/",
-    "comment": "Vector search currently only part of Enterprise and DBaaS editions"
+    "comment": "Hyperscale & Composite currently only part of Enterprise and DBaaS editions"
   },
   "dev_languages": {
     "value": [
       "c++",
       "erlang"
     ],
-    "source_url": "",
-    "comment": ""
+    "source_url": "https://github.com/couchbase/manifest",
+    "comment": "Couchbase is developed with a variety of languages, and it varies by component."
   },
   "vector_launch_year": 2024,
   "metadata_filter": {
@@ -52,15 +52,20 @@
     "source_url": "https://docs.couchbase.com/cloud/vector-search/create-vector-search-index-ui.html",
     "comment": ""
   },
+  "bm25": {
+    "support": "full",
+    "source_url": "https://docs.couchbase.com/cloud/search/run-searches.html#bm25",
+    "comment": ""
+  },  
   "full_text": {
     "support": "full",
     "source_url": "https://docs.couchbase.com/c-sdk/current/concept-docs/full-text-search-overview.html",
     "comment": ""
   },
   "embeddings_text": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://docs.couchbase.com/ai/build/model-service/deploy-embed-model.html",
+    "comment": "Capella AI Services can host text embedding models"
   },
   "embeddings_image": {
     "support": "none",
@@ -73,9 +78,9 @@
     "comment": ""
   },
   "rag": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://docs.couchbase.com/ai/build/model-service/deploy-llm-model.html",
+    "comment": "Capella AI Services can host LLM models"
   },
   "langchain": {
     "support": "full",
@@ -108,9 +113,9 @@
     "comment": ""
   },
   "ephemeral": {
-    "support": "none",
-    "source_url": "",
-    "comment": ""
+    "support": "full",
+    "source_url": "https://docs.couchbase.com/server/current/indexes/storage-modes.html#memory-optimized-index-storage",
+    "comment": "Memory-optimized indexes keep all the index data in memory"
   },
   "sharding": {
     "support": "full",
@@ -130,9 +135,9 @@
     "comment": ""
   },
   "int8_quantization": {
-    "support": "partial",
-    "source_url": "https://docs.couchbase.com/couchbase-lite/3.2/java/working-with-vector-search.html#create-a-vector-index",
-    "comment": "Automatic algorithm selection between: IdMap2,Flat, IVF,Flat, IVF,SQ8"
+    "support": "full",
+    "source_url": "https://docs.couchbase.com/cloud/vector-search/vector-search-index-architecture.html#scalar-quant",
+    "comment": "Supports int8 (and int4) scalar quantization to reduce vector index size"
   },
   "github_stars": {
     "value": 1662,
@@ -147,10 +152,10 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 22599014,
+    "value": 22959614,
     "source_url": "https://pypi.org/project/couchbase/",
-    "comment": "",
-    "value_90_days": 3364928
+    "comment": "Total downloads and previous 90 days from BigTable data for just the main Couchbase library",
+    "value_90_days": 3364746
   },
   "npm_downloads": {
     "value": 1916327,
