@@ -8,7 +8,7 @@ Running AI applications depends on vectors, often called [embeddings](https://su
 
 ![What is a vector index](../assets/use_cases/vector_indexes/vector_index1.png)
 
-Vector indexing, by creating groups of matching elements, speeds up similarity search - which calculate vector closeness using metrics like Euclidean or Jacobian distance. (In small datasets where accuracy is more important than efficiency, you can use K-Nearest Neighbors to pinpoint your query's closest near neighbors. As datasets get bigger and efficiency becomes an issue, an [Approximate Nearest Neighbor](https://superlinked.com/vectorhub/building-blocks/vector-search/nearest-neighbor-algorithms) (ANN) approach will *very quickly* return accurate-enough results.)
+Vector indexing, by creating groups of matching elements, speeds up similarity search - which calculate vector closeness using metrics like Euclidean or Jaccard distance. (In small datasets where accuracy is more important than efficiency, you can use K-Nearest Neighbors to pinpoint your query's closest near neighbors. As datasets get bigger and efficiency becomes an issue, an [Approximate Nearest Neighbor](https://superlinked.com/vectorhub/building-blocks/vector-search/nearest-neighbor-algorithms) (ANN) approach will *very quickly* return accurate-enough results.)
 
 Vector indexes are crucial to efficient, relevant, and accurate search in various common applications, including Retrieval Augmented Generation ([RAG](https://superlinked.com/vectorhub/articles/advanced-retrieval-augmented-generation)), [semantic search in image databases](https://superlinked.com/vectorhub/articles/retrieval-from-image-text-modalities) (e.g., in smartphones), large text documents, advanced e-commerce websites, and so on.
 
@@ -77,9 +77,9 @@ IVF_SQ makes sense when dealing with medium to large datasets where memory effic
 
 ### DiskANN
 
-Most ANN algorithms - including those above - are designed for in-memory computation. But when you're dealing with *big data*, in-memory computation can be a bottleneck. Disk-based ANN ([DiskANN](https://suhasjs.github.io/files/diskann_neurips19.pdf)) is built to leverage Solid-State Drives' (SSDs') large memory and high-speed capabilities. DiskANN indexes vectors using the Vamana algorithm, a graph-based indexing structure that minimizes the number of sequential disk reads required during, by creating a graph with a smaller search "diameter" - the max distance between any two nodes (representing vectors), measured as the least number of hops (edges) to get from one to the other. This makes the search process more efficient, especially for the kind of large-scale datasets that are stored on SSDs.
+Most ANN algorithms - including those above - are designed for in-memory computation. But when you're dealing with *big data*, in-memory computation can be a bottleneck. Disk-based ANN ([DiskANN](https://suhasjs.github.io/files/diskann_neurips19.pdf)) is built to leverage Solid-State Drives' (SSDs') large memory and high-speed capabilities. DiskANN indexes vectors using the Vamana algorithm, a graph-based indexing structure that minimizes the number of sequential disk reads required, by creating a graph with a smaller search "diameter" - the max distance between any two nodes (representing vectors), measured as the least number of hops (edges) to get from one to the other. This makes the search process more efficient, especially for the kind of large-scale datasets that are stored on SSDs.
 
-By using a SSD to store and search its graph index, DiskANN can be cost-effective, scalable, and efficient.
+By using an SSD to store and search its graph index, DiskANN can be cost-effective, scalable, and efficient.
 
 ### SPTAG-based Approximate Nearest Neighbor Search (SPANN)
 

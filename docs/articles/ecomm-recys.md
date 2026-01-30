@@ -2,7 +2,7 @@
 
 ### - a [notebook](https://github.com/superlinked/superlinked/blob/main/notebook/recommendations_e_commerce.ipynb) article
 
-Pioneered by the likes of Google and AirBnB, vector embedding has revolutionized recommendation systems by enabling more accuracy and personalization than traditional methods. By representing users and items as high-dimensional vectors in a latent space, embeddings capture similarities and relationships between users and items, and can therefore be used to provide more relevant recommendations. Their compact and dense nature facilitates efficient computation and scalability, which is vital for real-time and large-scale scenarios.
+Pioneered by the likes of Google and Airbnb, vector embedding has revolutionized recommendation systems by enabling more accuracy and personalization than traditional methods. By representing users and items as high-dimensional vectors in a latent space, embeddings capture similarities and relationships between users and items, and can therefore be used to provide more relevant recommendations. Their compact and dense nature facilitates efficient computation and scalability, which is vital for real-time and large-scale scenarios.
 
 In this article, we'll walk you through how to use the Superlinked library to create an effective RecSys - specifically an e-commerce site selling mainly clothing, that can be updated in real-time employing feedback loops defined by user interactions.
 
@@ -424,7 +424,7 @@ With very little weight placed on Spaces affected by events, we observe a change
 But if we weight the event-affected Spaces more heavily, we surface completely novel items in our recommendations list.
 
 ```python
-# with larger weight on the the event-affected spaces, more totally new items appear in the TOP10
+# with larger weight on the event-affected spaces, more totally new items appear in the TOP10
 event_weighted_result = app_with_events.query(
    personalised_query,
    user_id="user_1",

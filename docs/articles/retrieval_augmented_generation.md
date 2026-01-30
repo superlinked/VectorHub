@@ -119,7 +119,7 @@ Answer: Tesla's revenue for Q2 2023 was $1.2 billion.
 
 ```
 
-Despite our model's confident assertion, it turns out that Telsa's February earnings were _not_ the $1.2 billion it claims. In fact, this result is way off. Without external data, we might have believed phi-1.5's result, and made a poorly informed investment decision.
+Despite our model's confident assertion, it turns out that Tesla's February earnings were _not_ the $1.2 billion it claims. In fact, this result is way off. Without external data, we might have believed phi-1.5's result, and made a poorly informed investment decision.
 
 So how can we fix this? You already know the answer: RAG to the rescue. In order to retrieve relevant context, we need a document to retrieve from in the first place. We will download Tesla's financial report for Q2 2023 from their website.
 
