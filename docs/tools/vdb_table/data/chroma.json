@@ -20,13 +20,12 @@
   },
   "dev_languages": {
     "value": [
-      "rust",
-      "python"
+      "rust"
     ],
     "source_url": "",
     "comment": ""
   },
-  "vector_launch_year": 2022,
+  "vector_launch_year": 2023,
   "metadata_filter": {
     "support": "full",
     "source_url": "",
@@ -63,9 +62,9 @@
     "comment": ""
   },
   "full_text": {
-    "support": "partial",
-    "source_url": "https://docs.trychroma.com/guides#filtering-by-document-contents",
-    "comment": ""
+    "support": "full",
+    "source_url": "",
+    "comment": "https://docs.trychroma.com/docs/querying-collections/full-text-search"
   },
   "embeddings_text": {
     "support": "full",
@@ -103,13 +102,13 @@
     "comment": ""
   },
   "managed_cloud": {
-    "support": "none",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://www.trychroma.com",
     "comment": ""
   },
   "pricing": {
-    "value": "",
-    "source_url": "",
+    "value": "Chroma Pricing ($5 free credit)",
+    "source_url": "https://www.trychroma.com/pricing",
     "comment": ""
   },
   "in_process": {
@@ -123,9 +122,9 @@
     "comment": ""
   },
   "disk_index": {
-    "support": "partial",
-    "source_url": "https://github.com/chroma-core/chroma/issues/765#issuecomment-1623943198",
-    "comment": "Index is stored on disk after exit"
+    "support": "full",
+    "source_url": "https://docs.trychroma.com/docs/overview/architecture",
+    "comment": ""
   },
   "ephemeral": {
     "support": "full",
@@ -133,8 +132,8 @@
     "comment": ""
   },
   "sharding": {
-    "support": "",
-    "source_url": "",
+    "support": "full",
+    "source_url": "https://docs.trychroma.com/docs/overview/data-model#collections",
     "comment": ""
   },
   "doc_size": {
@@ -151,39 +150,40 @@
   },
   "index_types": {
     "value": [
-      "HNSW"
+      "HNSW",
+      "SPANN"
     ],
-    "source_url": "https://cookbook.chromadb.dev/core/concepts/#vector-index-hnsw-index",
+    "source_url": "https://docs.trychroma.com/docs/collections/configure",
     "comment": ""
   },
   "github_stars": {
-    "value": 20189,
+    "value": 25752,
     "source_url": "https://github.com/chroma-core/chroma",
     "comment": "",
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 0,
+    "value": 1000000,
     "source_url": "",
     "comment": "",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 40670560,
+    "value": 94041377,
     "source_url": "https://pypi.org/project/chromadb/",
     "comment": "",
-    "value_90_days": 12539183
+    "value_90_days": 27173795
   },
   "npm_downloads": {
-    "value": 3101960,
+    "value": 4598620,
     "source_url": "https://www.npmjs.com/package/chromadb",
     "comment": "",
-    "value_90_days": 765995
+    "value_90_days": 909706
   },
   "crates_io_downloads": {
-    "value": 30970,
+    "value": 46523,
     "source_url": "https://crates.io/crates/chromadb",
     "comment": "",
-    "value_90_days": 1815
+    "value_90_days": 3609
   }
 }
