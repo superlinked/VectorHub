@@ -1,5 +1,8 @@
 # Optimizing RAG with Hybrid Search & Reranking
 
+> **Scaling RAG to production is *very* painful.**  
+> Hybrid search, reranking, latency, and cost add up quickly. Let us help you simplify it. → **[Talk to us here](https://getdemo.superlinked.com/?utm_source=opt_rag)**
+
 Retrieval-Augmented Generation (RAG) is revolutionizing traditional search engines and AI methodologies for information retrieval. However, standard RAG systems employing simple semantic search often lack efficiency and precision when dealing with extensive data repositories. Hybrid search, on the other hand, combines the strengths of different search methods, unlocking new levels of efficiency and accuracy. **Hybrid search is flexible and can be adapted to tackle a wider range of information needs**.
 
 Hybrid search can also be paired with **semantic reranking** (to reorder outcomes) to further enhance performance. Combining hybrid search with reranking holds immense potential for various applications, including natural language processing tasks like question answering and text summarization, even for implementation at a large-scale.
@@ -372,3 +375,4 @@ We've looked at how RAG system performance can be enhanced by using hybrid searc
 - [Ashish Abraham, author](https://www.linkedin.com/in/ashish-abraham-811a23201/)
 - [Mór Kapronczay, contributor](https://www.linkedin.com/in/mór-kapronczay-49447692)
 - [Robert Turner, editor](https://robertturner.co/copyedit)
+
