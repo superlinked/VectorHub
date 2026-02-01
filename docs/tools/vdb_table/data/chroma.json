@@ -32,7 +32,7 @@
     "comment": ""
   },
   "hybrid_search": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
@@ -52,12 +52,12 @@
     "comment": ""
   },
   "sparse_vectors": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
   "bm25": {
-    "support": "none",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
