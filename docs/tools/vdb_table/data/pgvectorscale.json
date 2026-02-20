@@ -1,16 +1,16 @@
 {
-  "name": "pgvector",
+  "name": "pgvectorscale",
   "links": {
     "docs": "",
-    "github": "https://github.com/pgvector/pgvector",
-    "website": "https://github.com/pgvector/pgvector",
-    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/69",
-    "poc_github": "https://github.com/jkatz",
-    "slug": "pgvector"
+    "github": "https://github.com/timescale/pgvectorscale",
+    "website": "https://github.com/timescale/pgvectorscale",
+    "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/554",
+    "poc_github": "https://github.com/cevian",
+    "slug": "pgvectorscale"
   },
   "oss": {
     "support": "full",
-    "source_url": "",
+    "source_url": "https://github.com/timescale/pgvectorscale",
     "comment": ""
   },
   "license": {
@@ -20,12 +20,12 @@
   },
   "dev_languages": {
     "value": [
-      "c"
+      "rust"
     ],
-    "source_url": "",
+    "source_url": "https://github.com/timescale/pgvectorscale",
     "comment": ""
   },
-  "vector_launch_year": 2021,
+  "vector_launch_year": 2023,
   "metadata_filter": {
     "support": "full",
     "source_url": "",
@@ -33,8 +33,8 @@
   },
   "hybrid_search": {
     "support": "full",
-    "source_url": "https://github.com/pgvector/pgvector",
-    "comment": "https://github.com/pgvector/pgvector#hybrid-search"
+    "source_url": "https://www.timescale.com/blog/postgresql-hybrid-search-using-pgvector-and-cohere",
+    "comment": "Hybrid search provided by combination of PostgreSQL full text search and pgvectorscale"
   },
   "facets": {
     "support": "",
@@ -53,13 +53,13 @@
   },
   "sparse_vectors": {
     "support": "full",
-    "source_url": "",
-    "comment": "https://github.com/pgvector/pgvector#sparse-vectors"
+    "source_url": "https://github.com/pgvector/pgvector#sparse-vectors",
+    "comment": "provided by pgvector"
   },
   "bm25": {
     "support": "full",
     "source_url": "",
-    "comment": ""
+    "comment": "provided by pgvector"
   },
   "full_text": {
     "support": "full",
@@ -103,12 +103,12 @@
   },
   "managed_cloud": {
     "support": "full",
-    "source_url": "",
-    "comment": "(AWS RDS, Google CloudSQL, Azure, Supabase, Timescale, etc.)"
+    "source_url": "https://www.timescale.com/cloud",
+    "comment": ""
   },
   "pricing": {
-    "value": "",
-    "source_url": "",
+    "value": "Timescale Cloud",
+    "source_url": "https://www.timescale.com/pricing",
     "comment": ""
   },
   "in_process": {
@@ -122,7 +122,7 @@
     "comment": ""
   },
   "disk_index": {
-    "support": "",
+    "support": "full",
     "source_url": "",
     "comment": ""
   },
@@ -134,7 +134,7 @@
   "sharding": {
     "support": "none",
     "source_url": "",
-    "comment": "While pgvector does not provide this natively, you can get this either from PostgreSQL functionality like \"postgres_fdw\" or from extensions. You can also choose to subdivide your index through partitioning."
+    "comment": "While pgvectorscale does not provide this natively, you can get this either from PostgreSQL functionality like \"postgres_fdw\" or from extensions. You can also choose to subdivide your index through partitioning."
   },
   "doc_size": {
     "bytes": 0,
@@ -143,23 +143,22 @@
     "comment": ""
   },
   "vector_dims": {
-    "value": 2000,
+    "value": 16000,
     "unlimited": false,
-    "source_url": "",
+    "source_url": "https://github.com/timescale/pgvectorscale/pull/181",
     "comment": ""
   },
   "index_types": {
     "value": [
-      "FLAT",
-      "IVF",
-      "HNSW"
+      "DiskANN",
+      "FreshDiskANN"
     ],
-    "source_url": "https://github.com/pgvector/pgvector#indexing",
+    "source_url": "https://www.timescale.com/blog/how-we-made-postgresql-as-fast-as-pinecone-for-vector-data",
     "comment": ""
   },
   "github_stars": {
-    "value": 19478,
-    "source_url": "https://github.com/pgvector/pgvector",
+    "value": 2008,
+    "source_url": "https://github.com/timescale/pgvectorscale",
     "comment": "",
     "value_90_days": 0
   },
@@ -170,21 +169,21 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 117184187,
-    "source_url": "https://pypi.org/project/pgvector/",
+    "value": 0,
+    "source_url": "",
     "comment": "",
-    "value_90_days": 34314668
+    "value_90_days": 0
   },
   "npm_downloads": {
-    "value": 6448699,
-    "source_url": "https://www.npmjs.com/package/pgvector",
+    "value": 0,
+    "source_url": "",
     "comment": "",
-    "value_90_days": 1550023
+    "value_90_days": 0
   },
   "crates_io_downloads": {
-    "value": 7888498,
-    "source_url": "https://crates.io/crates/pgvector",
+    "value": 0,
+    "source_url": "",
     "comment": "",
-    "value_90_days": 3125782
+    "value_90_days": 0
   }
 }
