@@ -21,7 +21,7 @@ The following tutorial in creating a small-scale AI application demonstrates jus
 
 Intrigued? Ready to start building?
 
-Note for production users: Running embeddings and rerankers entirely in the browser is a great way to prototype. For production workloads or for models that produce multiple outputs (for example dense plus sparse encodings), teams often run inference in a server-side layer. SIE (Superlinked Inference Engine) is an inference orchestration layer that exposes `encode`, `score`, and `extract` primitives and is designed to work with client-side components or any vector database when you need a production inference surface.
+For production users, running embeddings and rerankers entirely in the browser is a great way to prototype. For production workloads or for models that produce multiple outputs (for example dense plus sparse encodings), teams often run inference in a server-side layer. SIE (Superlinked Inference Engine) is an inference orchestration layer that exposes `encode`, `score`, and `extract` primitives and is designed to work with client-side components or any vector database when you need a production inference surface.
 
 ## An app that generates, compares, and visualizes vector embeddings in your browser!
 
