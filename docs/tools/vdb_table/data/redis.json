@@ -2,21 +2,21 @@
   "name": "Redis Search",
   "links": {
     "docs": "https://redis.io/docs/get-started/vector-database/",
-    "github": "https://github.com/RediSearch/RediSearch",
+    "github": "https://github.com/redis/redis",
     "website": "https://redis.io/solutions/vector-database/",
     "vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/81",
-    "poc_github": "https://github.com/adrianoamaral",
+    "poc_github": "https://github.com/abid-redis",
     "slug": "redis"
   },
   "oss": {
-    "support": "partial",
-    "source_url": "https://blog.opensource.org/the-sspl-is-not-an-open-source-license/",
-    "comment": "vector search component is under SSPL which is not fully OSS"
+    "support": "full",
+    "source_url": "https://github.com/redis/redis",
+    "comment": "Starting with Redis 8.0, both Redis and its vector search functionality are fully open source, with vector search integrated natively into Redis instead of provided as a separate RediSearch library."
   },
   "license": {
-    "value": "(i) Redis Source Available License 2.0 (RSALv2) or (ii) the Server Side Public License v1 (SSPLv1)",
-    "source_url": "",
-    "comment": ""
+    "value": "(i) Redis Source Available License 2.0 (RSALv2) or (ii) the Server Side Public License v1 (SSPLv1) or (iii) the GNU Affero General Public License v3 (AGPLv3)",
+    "source_url": "https://redis.io/legal/licenses/",
+    "comment": "Starting with Redis 8, Redis Open Source is moving to a tri-licensing model with all new Redis code contributions governed by the updated Redis Software Grant and Contributor License Agreement. After this release, contributions are subject to your choice of: (a) the Redis Source Available License v2 (RSALv2);or (b) the Server Side Public License v1 (SSPLv1); or (c) the GNU Affero General Public License v3 (AGPLv3)."
   },
   "dev_languages": {
     "value": [
@@ -34,7 +34,7 @@
   "hybrid_search": {
     "support": "full",
     "source_url": "https://github.com/redis-developer/redis-ai-resources/blob/main/python-recipes/vector-search/02_hybrid_search.ipynb",
-    "comment": "Supported using the aggregation api."
+    "comment": "Redis provides a unified hybrid search interface via the FT.HYBRID command (introduced in Redis Open Source 8.4.0); previously, hybrid search was only available through the aggregations API."
   },
   "facets": {
     "support": "full",
@@ -151,21 +151,22 @@
   "index_types": {
     "value": [
       "FLAT",
-      "HNSW"
+      "HNSW",
+      "SVS-VAMANA"
     ],
-    "source_url": "https://redis.io/docs/latest/develop/interact/search-and-query/advanced-concepts/vectors/",
-    "comment": ""
+    "source_url": "https://redis.io/docs/latest/develop/ai/search-and-query/vectors/#svs-vamana-index",
+    "comment": "Redis supports the following index types: FLAT, HNSW, and SVS-VAMANA. SVS-VAMANA is a new index type introduced in Redis 8.2."
   },
   "github_stars": {
-    "value": 6069,
-    "source_url": "https://github.com/RediSearch/RediSearch",
-    "comment": "Vector Search library is part of RediSearch https://github.com/RediSearch/RediSearch/tree/master/deps",
+    "value": 72680,
+    "source_url": "https://github.com/redis/redis",
+    "comment": "Starting with Redis 8.0, both Redis and its vector search functionality are fully open source, with vector search integrated natively into Redis instead of provided as a separate RediSearch library.",
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 16231233,
-    "source_url": "https://hub.docker.com/r/redis/redis-stack",
-    "comment": "Vector Search is part of the Redis Stack",
+    "value": 10279832320,
+    "source_url": "https://hub.docker.com/_/redis",
+    "comment": "Starting with Redis 8.0, both Redis and its vector search functionality are fully open source, with vector search integrated natively into Redis instead of provided as a separate RediSearch library.",
     "value_90_days": 0
   },
   "pypi_downloads": {
