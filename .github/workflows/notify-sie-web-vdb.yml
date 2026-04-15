@@ -1,0 +1,38 @@
+name: Notify sie-web (VDB data updated)
+
+# Fires a repository_dispatch at superlinked/sie-web when VectorHub's main
+# branch changes files under docs/tools/vdb_table/, so sie-web's
+# sync-vdb-data workflow pulls the new data.
+#
+# Uses the sie-web-sync-bot GitHub App installation token — the default
+# GITHUB_TOKEN cannot dispatch events into another repository.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/tools/vdb_table/data/**'
+      - 'docs/tools/vdb_table/vendor.schema.json'
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mint sie-web-sync-bot token
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.SYNC_APP_ID }}
+          private-key: ${{ secrets.SYNC_APP_PRIVATE_KEY }}
+          owner: superlinked
+          repositories: sie-web
+
+      - name: Fire repository_dispatch on sie-web
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          gh api repos/superlinked/sie-web/dispatches \
+            -f event_type=vdb-data-updated
