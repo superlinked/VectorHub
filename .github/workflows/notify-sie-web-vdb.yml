@@ -5,7 +5,8 @@ name: Notify sie-web (VDB data updated)
 # sync-vdb-data workflow pulls the new data.
 #
 # Uses the sie-web-sync-bot GitHub App installation token — the default
-# GITHUB_TOKEN cannot dispatch events into another repository.
+# GITHUB_TOKEN cannot dispatch events into another repository. Token is
+# scoped to the minimum permissions needed to call POST /repos/.../dispatches.
 
 on:
   push:
@@ -29,6 +30,8 @@ jobs:
           private-key: ${{ secrets.SYNC_APP_PRIVATE_KEY }}
           owner: superlinked
           repositories: sie-web
+          permission-contents: write
+          permission-metadata: read
 
       - name: Fire repository_dispatch on sie-web
         env:
