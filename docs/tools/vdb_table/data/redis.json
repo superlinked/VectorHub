@@ -14,7 +14,7 @@
     "comment": "Starting with Redis 8.0, both Redis and its vector search functionality are fully open source, with vector search integrated natively into Redis instead of provided as a separate RediSearch library."
   },
   "license": {
-    "value": "(i) Redis Source Available License 2.0 (RSALv2) or (ii) the Server Side Public License v1 (SSPLv1) or (iii) the GNU Affero General Public License v3 (AGPLv3)",
+    "value": "AGPL-3.0 / SSPLv1",
     "source_url": "https://redis.io/legal/licenses/",
     "comment": "Starting with Redis 8, Redis Open Source is moving to a tri-licensing model with all new Redis code contributions governed by the updated Redis Software Grant and Contributor License Agreement. After this release, contributions are subject to your choice of: (a) the Redis Source Available License v2 (RSALv2);or (b) the Server Side Public License v1 (SSPLv1); or (c) the GNU Affero General Public License v3 (AGPLv3)."
   },
