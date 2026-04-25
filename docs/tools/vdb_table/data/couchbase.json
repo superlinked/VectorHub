@@ -56,7 +56,7 @@
     "support": "full",
     "source_url": "https://docs.couchbase.com/cloud/search/run-searches.html#bm25",
     "comment": ""
-  },  
+  },
   "full_text": {
     "support": "full",
     "source_url": "https://docs.couchbase.com/c-sdk/current/concept-docs/full-text-search-overview.html",
@@ -140,33 +140,33 @@
     "comment": "Supports int8 (and int4) scalar quantization to reduce vector index size"
   },
   "github_stars": {
-    "value": 1662,
+    "value": 1660,
     "source_url": "https://github.com/couchbase/couchbase-lite-ios",
     "comment": "",
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 88879449,
+    "value": 89469121,
     "source_url": "https://hub.docker.com/_/couchbase",
     "comment": "50M+",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 22959614,
+    "value": 25275750,
     "source_url": "https://pypi.org/project/couchbase/",
     "comment": "Total downloads and previous 90 days from BigTable data for just the main Couchbase library",
-    "value_90_days": 3364746
+    "value_90_days": 2491778
   },
   "npm_downloads": {
-    "value": 1916327,
+    "value": 2527139,
     "source_url": "https://www.npmjs.com/package/couchbase",
     "comment": "",
-    "value_90_days": 440379
+    "value_90_days": 802476
   },
   "crates_io_downloads": {
-    "value": 50070,
+    "value": 54953,
     "source_url": "https://crates.io/crates/couchbase",
     "comment": "",
-    "value_90_days": 1189
+    "value_90_days": 4840
   }
 }
