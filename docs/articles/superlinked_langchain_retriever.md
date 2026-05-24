@@ -45,15 +45,15 @@ from typing import Optional
 
 
 class FinancialReportSchema(sl.Schema):
-    report_id: sl.IdField          
-    company_name: sl.String      
-    ticker_symbol: sl.String     
-    filing_date: sl.Timestamp    
-    filing_type: sl.String       
-    report_content: sl.String    
-    revenue: Optional[sl.Float]            
-    net_income: Optional[sl.Float] 
-    eps: Optional[sl.Float]     
+    report_id: sl.IdField
+    company_name: sl.String
+    ticker_symbol: sl.String
+    filing_date: sl.Timestamp
+    filing_type: sl.String
+    report_content: sl.String
+    revenue: Optional[sl.Float]
+    net_income: Optional[sl.Float]
+    eps: Optional[sl.Float]
 
 
 financial_report = FinancialReportSchema()
@@ -85,8 +85,8 @@ recency_space = sl.RecencySpace(
 ```
 This works similarly to sorting earnings releases by freshness or spotlighting recent SEC filings during a financial quarter.
 
-#### CategoricalSimilaritySpace 
-As the filing type is a finite number of text categories, we use CategoricalSimilaritySpace to encode them. 
+#### CategoricalSimilaritySpace
+As the filing type is a finite number of text categories, we use CategoricalSimilaritySpace to encode them.
 ```python
 filing_type_space = sl.CategoricalSimilaritySpace(
     category_input=financial_report.filing_type,
@@ -188,7 +188,7 @@ These filters restrict the search space to specific filing types (e.g., 10-K, 8-
 .limit(sl.Param("limit"))
 ```
 This clause tells Superlinked which fields to return in the results. This minimizes unnecessary payload and keeps downstream processing efficient by including only the necessary metadata and report content. The limit clause limits the number of retrieved documents.
-Here is the complete query with defualt values for query parameters:
+Here is the complete query with default values for query parameters:
 
 ```python
 superlinked_query = (
