@@ -180,9 +180,9 @@
     "value_90_days": 6938005
   },
   "crates_io_downloads": {
-    "value": 4126,
+    "value": 4143,
     "source_url": "https://crates.io/crates/pinecone-rs",
     "comment": "",
-    "value_90_days": 240
+    "value_90_days": 241
   }
 }
