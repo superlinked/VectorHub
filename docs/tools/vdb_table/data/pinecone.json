@@ -171,10 +171,10 @@
     "value": 148486924,
     "source_url": "https://pypi.org/project/pinecone/",
     "comment": "Stats include also depricated pinecone-client package",
-    "value_90_days": 25891131
+    "value_90_days": 22124066
   },
   "npm_downloads": {
-    "value": 25640507,
+    "value": 27773619,
     "source_url": "https://www.npmjs.com/package/@pinecone-database/pinecone",
     "comment": "",
     "value_90_days": 6938005

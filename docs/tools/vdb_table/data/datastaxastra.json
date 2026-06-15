@@ -177,10 +177,10 @@
     "value_90_days": 1600208
   },
   "npm_downloads": {
-    "value": 2862321,
+    "value": 2893770,
     "source_url": "https://www.npmjs.com/package/@datastax/astra-db-ts",
     "comment": "",
-    "value_90_days": 651954
+    "value_90_days": 662151
   },
   "crates_io_downloads": {
     "value": 0,

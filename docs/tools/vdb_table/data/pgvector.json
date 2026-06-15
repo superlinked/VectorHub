@@ -158,7 +158,7 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 21656,
+    "value": 21759,
     "source_url": "https://github.com/pgvector/pgvector",
     "comment": "",
     "value_90_days": 0
@@ -173,13 +173,13 @@
     "value": 216535416,
     "source_url": "https://pypi.org/project/pgvector/",
     "comment": "",
-    "value_90_days": 66169856
+    "value_90_days": 67660993
   },
   "npm_downloads": {
-    "value": 11022220,
+    "value": 11352419,
     "source_url": "https://www.npmjs.com/package/pgvector",
     "comment": "",
-    "value_90_days": 4011879
+    "value_90_days": 4149994
   },
   "crates_io_downloads": {
     "value": 12702743,
