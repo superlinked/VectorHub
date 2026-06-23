@@ -1,30 +1,26 @@
-[![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
+# VectorHub is deprecated
 
-# VectorHub
+VectorHub was Superlinked's historical learning hub for vector search, RAG, retrieval, and vector database content.
 
-[VectorHub](https://www.superlinked.com/vectorhub) is a free and open-sourced learning hub for people interested in adding vector retrieval to their ML stack. On VectorHub you will find practical resources to help you -
+Superlinked now develops **SIE, the Superlinked Inference Engine**: an open-source, self-hosted inference server for embeddings, reranking, extraction, OCR, and document processing workloads.
 
-* Create MVPs with easy-to-follow learning materials
-* Solve use case specific challenges in vector retrieval
-* Get confident in taking their MVPs to production and making them actually useful
-* Learn about vendors in the space and select the ones that fit their use-case
+For current Superlinked work, use SIE:
 
-Read more about our philosophy in our [Manifesto](manifesto.md).
+- GitHub: https://github.com/superlinked/sie
+- Docs: https://superlinked.com/docs
+- Models: https://superlinked.com/models
+- Blog and Vectorhub-style tutorials: https://superlinked.com/blog
 
-## Tools by VectorHub
-[Vector DB Comparison](https://www.superlinked.com/vector-db-comparison) is a free and open source tool from VectorHub to compare vector databases. It is created to outline the feature sets of different VDB solutions. Each of the features outlined has been verified to varying degrees.
+## Repository status
 
+This repository is no longer actively maintained.
 
-## Contributing
+The articles, examples, and resources in this repository are preserved for historical reference only. They may no longer reflect Superlinked's current product, architecture, or positioning.
 
-Please read [CONTRIBUTING.md](https://www.superlinked.com/vectorhub/contributing) for details on our code of conduct, and the process for submitting pull requests to us.
+Please do not use this repository as the source of truth for current Superlinked capabilities. For up-to-date documentation, examples, and model support, use the SIE resources linked above.
 
-## License
-This work is licensed under a
-[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License][cc-by-nc-sa].
+## Historical context
 
-[![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]
+VectorHub was created to help developers learn about vector search, RAG, retrieval systems, and vector databases.
 
-[cc-by-nc-sa]: http://creativecommons.org/licenses/by-nc-sa/4.0/
-[cc-by-nc-sa-image]: https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png
-[cc-by-nc-sa-shield]: https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg
+Superlinked's current focus is SIE: self-hosted inference infrastructure for teams running embedding, reranking, extraction, OCR, and document processing models in their own environment.
