@@ -251,7 +251,7 @@ EVAL_SIZE = 10
 RETRIEVAL_SIZE_3 = 3
 
 ## The dataset used to evaluate RAG using RAGAS
-## Note this is the dataset needed for evaluation hence has to be recreated everytime changes to RAG config is made
+## Note this is the dataset needed for evaluation hence has to be recreated every time changes to RAG config is made
 rag_eval_dataset_512_3 = create_eval_dataset(qdrant_qna_dataset,EVAL_SIZE,RETRIEVAL_SIZE_3)
 # The dataset is then exported as a CSV file, with a filename that includes details of the experiment for easy identification, such as the chunk size along with retrieval window used in this case  
 rag_response_dataset_512_3 = Dataset.from_dict(rag_eval_dataset_512_3)

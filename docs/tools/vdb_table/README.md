@@ -37,7 +37,7 @@ Thanks for your interest in contributing to [vdbs.superlinked.com](https://vdbs.
 
 We use [discussions](https://github.com/superlinked/VectorHub/discussions/categories/vdb-comparison) as our way to have conversations about each vendor. Please find the relevant discussion and add to the conversation.
 
-Kindly review the following sections before you submit your issue or initial pull request, and use the approriate issues/PR template. In addition, check for existing open issues and pull requests to ensure that someone else has not already corrected the information.
+Kindly review the following sections before you submit your issue or initial pull request, and use the appropriate issues/PR template. In addition, check for existing open issues and pull requests to ensure that someone else has not already corrected the information.
 
 If you need any help, feel free to tag [@AruneshSingh](https://github.com/AruneshSingh) in your discussions/issues/PRs.
 
