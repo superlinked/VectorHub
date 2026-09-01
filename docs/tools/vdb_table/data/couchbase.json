@@ -146,7 +146,7 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 90197527,
+    "value": 90250381,
     "source_url": "https://hub.docker.com/_/couchbase",
     "comment": "50M+",
     "value_90_days": 0

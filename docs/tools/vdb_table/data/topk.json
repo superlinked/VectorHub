@@ -176,10 +176,10 @@
     "value_90_days": 127891
   },
   "npm_downloads": {
-    "value": 8701,
+    "value": 9363,
     "source_url": "https://www.npmjs.com/package/topk-js",
     "comment": "",
-    "value_90_days": 3167
+    "value_90_days": 3600
   },
   "crates_io_downloads": {
     "value": 0,

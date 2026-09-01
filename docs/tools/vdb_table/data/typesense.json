@@ -157,7 +157,7 @@
     "comment": ""
   },
   "github_stars": {
-    "value": 26476,
+    "value": 26491,
     "source_url": "https://github.com/typesense/typesense",
     "comment": "",
     "value_90_days": 0
@@ -169,16 +169,16 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 13447555,
+    "value": 13686330,
     "source_url": "https://pypi.org/project/typesense/",
     "comment": "",
     "value_90_days": 3421117
   },
   "npm_downloads": {
-    "value": 28473349,
+    "value": 29192200,
     "source_url": "https://www.npmjs.com/package/typesense",
     "comment": "",
-    "value_90_days": 8566773
+    "value_90_days": 8811956
   },
   "crates_io_downloads": {
     "value": 0,
