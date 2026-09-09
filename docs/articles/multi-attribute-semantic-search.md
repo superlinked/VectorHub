@@ -7,7 +7,7 @@
 There are two common approaches to multi-attribute vector search. Both start by separately embedding each attribute of a data object. The main difference between these two approaches is in how our embeddings are *stored* and *searched*.
 
 1. the *naive* approach - store each attribute vector in separate vector stores (one per attribute), perform a separate search for each attribute, combine search results, and post-process (e.g., weight) as required.
-2. the *Superlinked* approach - concatenate and store all attribute vectors in the same vector store (using Superlinked's built-in funtionality), which allows us to *search just once*, with attendant efficiency gains. Superlinked's `spaces` *also* let us weight each attribute at query time to surface more relevant results, with no post-processing.
+2. the *Superlinked* approach - concatenate and store all attribute vectors in the same vector store (using Superlinked's built-in functionality), which allows us to *search just once*, with attendant efficiency gains. Superlinked's `spaces` *also* let us weight each attribute at query time to surface more relevant results, with no post-processing.
 
 ![Two approaches to multi-attribute vector search](../assets/use_cases/multi-attribute-semantic-search/graphics.png)
 

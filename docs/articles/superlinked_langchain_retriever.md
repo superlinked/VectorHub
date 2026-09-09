@@ -188,7 +188,7 @@ These filters restrict the search space to specific filing types (e.g., 10-K, 8-
 .limit(sl.Param("limit"))
 ```
 This clause tells Superlinked which fields to return in the results. This minimizes unnecessary payload and keeps downstream processing efficient by including only the necessary metadata and report content. The limit clause limits the number of retrieved documents.
-Here is the complete query with defualt values for query parameters:
+Here is the complete query with default values for query parameters:
 
 ```python
 superlinked_query = (
