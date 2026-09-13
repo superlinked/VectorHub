@@ -290,7 +290,7 @@ Now that our chunks are embedded, we need to **store** them somewhere. For the s
 from qdrant_client import QdrantClient
 from qdrant_client.http.models import Distance, VectorParams
 
-# Initalizing a local client in-memory
+# Initializing a local client in-memory
 client = QdrantClient(":memory:")
 
 client.recreate_collection(
@@ -313,7 +313,7 @@ from qdrant_client.models import PointStruct
 def store_results(df, collection_name="documents", client=client):
 	  # Defining our data structure
     points = [
-        # PointStruct is the data classs used in Qdrant
+        # PointStruct is the data class used in Qdrant
         PointStruct(
             id=hash(path),  # Unique ID for each point
             vector=embedding,

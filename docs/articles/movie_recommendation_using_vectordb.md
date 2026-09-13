@@ -267,7 +267,7 @@ torch.save(model.state_dict(), 'trained_model.pth')
 
 ## Implementing our movie RecSys
 
-To complete our movie recommendation system, we next set up our system so that users can input a movie title as a query. After this, our system retrieves Doc2Vec embeddings from our vector database, then uses similarity metrics such as cosine similarity or determines smallest Euclidian distances - to identify and recommend 'n' number of movies whose embeddings closely resemble those of the user's query movie, based on its genre/s.
+To complete our movie recommendation system, we next set up our system so that users can input a movie title as a query. After this, our system retrieves Doc2Vec embeddings from our vector database, then uses similarity metrics such as cosine similarity or determines smallest Euclidean distances - to identify and recommend 'n' number of movies whose embeddings closely resemble those of the user's query movie, based on its genre/s.
 
 ### Setting up our vector DB
 
