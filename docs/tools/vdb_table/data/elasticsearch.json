@@ -174,7 +174,7 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 981993459,
+    "value": 983241028,
     "source_url": "https://hub.docker.com/_/elasticsearch",
     "comment": "",
     "value_90_days": 0
@@ -183,7 +183,7 @@
     "value": 1813308928,
     "source_url": "https://pypi.org/project/elasticsearch/",
     "comment": "",
-    "value_90_days": 134636364
+    "value_90_days": 130097015
   },
   "npm_downloads": {
     "value": 131221759,

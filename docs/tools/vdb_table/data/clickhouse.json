@@ -171,7 +171,7 @@
     "value": 260880,
     "source_url": "https://pypi.org/project/clickhouse/",
     "comment": "",
-    "value_90_days": 4160
+    "value_90_days": 4096
   },
   "npm_downloads": {
     "value": 98829001,

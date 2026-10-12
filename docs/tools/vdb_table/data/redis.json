@@ -164,7 +164,7 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 11384562140,
+    "value": 11427213863,
     "source_url": "https://hub.docker.com/_/redis",
     "comment": "Starting with Redis 8.0, both Redis and its vector search functionality are fully open source, with vector search integrated natively into Redis instead of provided as a separate RediSearch library.",
     "value_90_days": 0
@@ -173,7 +173,7 @@
     "value": 1567484,
     "source_url": "https://pypi.org/project/redisearch/",
     "comment": "",
-    "value_90_days": 35397
+    "value_90_days": 37717
   },
   "npm_downloads": {
     "value": 469538144,
