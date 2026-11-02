@@ -174,7 +174,7 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 4899993468,
+    "value": 4908812535,
     "source_url": "https://hub.docker.com/_/mongo",
     "comment": "",
     "value_90_days": 0
@@ -183,7 +183,7 @@
     "value": 63261,
     "source_url": "https://pypi.org/project/mongodbatlas/",
     "comment": "",
-    "value_90_days": 1463
+    "value_90_days": 1464
   },
   "npm_downloads": {
     "value": 3801016,
