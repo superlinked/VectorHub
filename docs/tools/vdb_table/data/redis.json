@@ -158,28 +158,28 @@
     "comment": "Redis supports the following index types: FLAT, HNSW, and SVS-VAMANA. SVS-VAMANA is a new index type introduced in Redis 8.2."
   },
   "github_stars": {
-    "value": 77312,
+    "value": 77518,
     "source_url": "https://github.com/redis/redis",
     "comment": "Starting with Redis 8.0, both Redis and its vector search functionality are fully open source, with vector search integrated natively into Redis instead of provided as a separate RediSearch library.",
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 11622165684,
+    "value": 11683019412,
     "source_url": "https://hub.docker.com/_/redis",
     "comment": "Starting with Redis 8.0, both Redis and its vector search functionality are fully open source, with vector search integrated natively into Redis instead of provided as a separate RediSearch library.",
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 1586463,
+    "value": 1592295,
     "source_url": "https://pypi.org/project/redisearch/",
     "comment": "",
-    "value_90_days": 34046
+    "value_90_days": 37129
   },
   "npm_downloads": {
-    "value": 532821288,
+    "value": 551577445,
     "source_url": "https://www.npmjs.com/package/@redis/search",
     "comment": "",
-    "value_90_days": 163056490
+    "value_90_days": 174097471
   },
   "crates_io_downloads": {
     "value": 0,

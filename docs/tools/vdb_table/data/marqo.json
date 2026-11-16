@@ -168,16 +168,16 @@
     "value_90_days": 0
   },
   "pypi_downloads": {
-    "value": 1412755,
+    "value": 1511310,
     "source_url": "https://pypi.org/project/marqo/",
     "comment": "",
-    "value_90_days": 174649
+    "value_90_days": 177258
   },
   "npm_downloads": {
-    "value": 678,
+    "value": 687,
     "source_url": "https://www.npmjs.com/package/marqo",
     "comment": "",
-    "value_90_days": 57
+    "value_90_days": 59
   },
   "crates_io_downloads": {
     "value": 0,

@@ -146,7 +146,7 @@
     "value_90_days": 0
   },
   "docker_pulls": {
-    "value": 90835038,
+    "value": 90909191,
     "source_url": "https://hub.docker.com/_/couchbase",
     "comment": "50M+",
     "value_90_days": 0
@@ -155,7 +155,7 @@
     "value": 29846750,
     "source_url": "https://pypi.org/project/couchbase/",
     "comment": "Total downloads and previous 90 days from BigTable data for just the main Couchbase library",
-    "value_90_days": 1481463
+    "value_90_days": 1420536
   },
   "npm_downloads": {
     "value": 4318039,
