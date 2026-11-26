@@ -1,0 +1,148 @@
+{
+	"name": "Vector Panda",
+	"links": {
+		"docs": "https://www.vectorpanda.com/docs",
+		"github": "https://github.com/vectorpanda/veep",
+		"website": "https://www.vectorpanda.com",
+		"vendor_discussion": "https://github.com/superlinked/VectorHub/discussions/603",
+		"poc_github": "",
+		"slug": "vectorpanda"
+	},
+	"oss": {
+		"support": "none",
+		"source_url": "https://github.com/vectorpanda/veep",
+		"comment": "Managed service. The Python SDK (veep) and the LangChain integration are open source under MIT."
+	},
+	"license": {
+		"value": "Proprietary (managed service); SDK: MIT",
+		"source_url": "https://github.com/vectorpanda/veep/blob/main/LICENSE",
+		"comment": ""
+	},
+	"dev_languages": {
+		"value": "Rust",
+		"source_url": "",
+		"comment": "Vendor-submitted: the managed service's core is written in Rust."
+	},
+	"vector_launch_year": 2026,
+	"metadata_filter": {
+		"support": "full",
+		"source_url": "https://www.vectorpanda.com/openapi.yaml",
+		"comment": "Metadata filters on query; filter fields defined per collection schema."
+	},
+	"hybrid_search": {
+		"support": "none",
+		"source_url": "",
+		"comment": ""
+	},
+	"facets": {
+		"support": "none",
+		"source_url": "",
+		"comment": ""
+	},
+	"geo_search": {
+		"support": "none",
+		"source_url": "",
+		"comment": ""
+	},
+	"multi_vec": {
+		"support": "none",
+		"source_url": "",
+		"comment": ""
+	},
+	"sparse_vectors": {
+		"support": "none",
+		"source_url": "",
+		"comment": ""
+	},
+	"bm25": {
+		"support": "none",
+		"source_url": "",
+		"comment": ""
+	},
+	"full_text": {
+		"support": "none",
+		"source_url": "",
+		"comment": ""
+	},
+	"embeddings_text": {
+		"support": "none",
+		"source_url": "https://www.vectorpanda.com/llms.txt",
+		"comment": "By design: embedding always happens client-side. The service stores and searches vectors plus metadata; raw customer text and media never reach it."
+	},
+	"embeddings_image": {
+		"support": "none",
+		"source_url": "https://www.vectorpanda.com/llms.txt",
+		"comment": "Same client-side-embedding design as text."
+	},
+	"embeddings_structured": {
+		"support": "none",
+		"source_url": "",
+		"comment": ""
+	},
+	"rag": {
+		"support": "none",
+		"source_url": "",
+		"comment": ""
+	},
+	"recsys": {
+		"support": "none",
+		"source_url": "",
+		"comment": ""
+	},
+	"langchain": {
+		"support": "full",
+		"source_url": "https://pypi.org/project/langchain-vectorpanda/",
+		"comment": "langchain-vectorpanda VectorStore integration on PyPI."
+	},
+	"llamaindex": {
+		"support": "none",
+		"source_url": "",
+		"comment": ""
+	},
+	"managed_cloud": {
+		"support": "full",
+		"source_url": "https://www.vectorpanda.com/",
+		"comment": "Managed cloud only."
+	},
+	"pricing": {
+		"value": "Storage-only: $5.99 (hot) / $1.49 (warm) / $0.09 (paused) per GB-month; queries included; $5/month usage credits to start",
+		"source_url": "https://www.vectorpanda.com/pricing",
+		"comment": "No per-query or egress fees; unlimited export."
+	},
+	"in_process": {
+		"support": "none",
+		"source_url": "",
+		"comment": ""
+	},
+	"multi_tenancy": {
+		"support": "none",
+		"source_url": "",
+		"comment": ""
+	},
+	"disk_index": {
+		"support": "full",
+		"source_url": "https://www.vectorpanda.com/docs/concepts/tier-mental-model",
+		"comment": "Warm tier serves from local SSD via memory-mapped files and the OS page cache; paused tier archives to dense storage and rehydrates on demand."
+	},
+	"ephemeral": {
+		"support": "none",
+		"source_url": "",
+		"comment": ""
+	},
+	"sharding": {
+		"support": "",
+		"source_url": "",
+		"comment": ""
+	},
+	"index_types": {
+		"value": "Automatic: the optimizer sweeps nine index strategies per collection — HNSW, Vamana (DiskANN-family), IVF-Flat, IVF-PQ, PCA projection, LSH, and scalar/product/optimized-product quantization — scored against an exact brute-force baseline, and promotes the best performer for the collection's data and recall target; no manual tuning",
+		"source_url": "https://www.vectorpanda.com/benchmarks",
+		"comment": "There are no user-facing index knobs: every candidate is built and measured against the collection's own data, and the recall/latency evidence for each experiment is visible per collection via the SDK and MCP."
+	},
+	"vector_dims": {
+		"value": null,
+		"unlimited": false,
+		"source_url": "https://www.vectorpanda.com/benchmarks",
+		"comment": "768d validated in the published VectorDBBench run; no public hard cap documented."
+	}
+}
